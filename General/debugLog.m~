@@ -1,0 +1,14 @@
+function writeLog(data, varargin)
+    persistent FID   
+    if (isempty(FID))
+        log_path = getenv('log_path'); 
+        host = getComputerName();
+        FID = fopen(fullfile([log_path, 'LogFile', host , '.txt']), 'w');
+        if FID < 0
+            error('Cannot open file');
+            return;
+        end
+    end
+    fprintf(FID, data, varargin{:});
+    fprintf(data, varargin{:});
+end

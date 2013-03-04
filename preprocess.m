@@ -1,0 +1,10 @@
+initialize();
+[X, Y, channels] = getBackusDataset();
+[X, Y, channels] = removeBrokenData(X, Y, channels);
+npca = 60;
+[X, pca_reconstruct] = pcaWhite(X, npca);
+writelnLog(0, 'Saved pca proprocessed data to file');
+save([getenv('data_path'), 'processed08_pca.mat'], 'X', 'Y', 'channels', 'pca_reconstruct');
+[X, icaweights, icasphere, icawinv] = ica(X);
+save([getenv('data_path'), 'processed08_ica.mat'], 'X', 'Y', 'channels', 'icaweights', 'icasphere', 'icawinv', 'pca_reconstruct');
+writelnLog(0, 'Saved ica proprocessed data to file');

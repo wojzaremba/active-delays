@@ -1,0 +1,26 @@
+function WriteLog(Data)
+    home = getenv('HOME'); 
+    persistent FID
+    host = getHost();
+    % Open the file
+    if strcmp(Data, 'open')
+      FID = fopen(fullfile([home, '/bio/Dropbox/', 'LogFile', host , '.txt']), 'w');
+      if FID < 0
+         error('Cannot open file');
+      end
+      return;
+    elseif strcmp(Data, 'close')
+      fclose(FID);
+      FID = -1;
+      return;
+    end
+    try 
+        t = getCurrentTask(); 
+        tid = int2str(t.ID);
+	Data = sprintf('machine = %d %s', tid, Data);
+    catch    
+    end 
+    fprintf(FID, '%s', Data);
+    % Write to the screen at the same time:
+    fprintf('%s', Data);
+end
