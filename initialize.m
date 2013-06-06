@@ -1,16 +1,16 @@
 function initialize()
     clc;
     clear;
-    external_tools = '/home/wojto/bio/Dropbox/external/';
-    setenv('code_path', '/home/wojto/bio/Dropbox/Wojciechs_shared/');
-    setenv('output_images', '/home/wojto/bio/Dropbox/Wojciechs_shared/ipmi2013_writing/images_new');    
-    setenv('cache_path', '/home/wojto/bio/Dropbox/Cache/');
-    setenv('log_path', '/home/wojto/bio/Dropbox/Logs/');
-    setenv('data_path', '/home/wojto/data/');
+    mainpath = '/home/wojto/bio/Dropbox/Wojciech_shared_old/active-delays/';
+    external_tools = [mainpath, 'external_tools/'];
+    setenv('code_path', mainpath);
+    setenv('output_images', [mainpath, '/output/images']);    
+    setenv('cache_path', [mainpath, '/output/cache/']);
+    setenv('data_path', [mainpath, '/data/']);
     setenv('log_level', '0');
     setenv('external_tools', external_tools);
     setenv('date_free', 'false');
-    addpath(genpath('/home/wojto/bio/Dropbox/Wojciechs_shared'));
+    addpath(genpath(mainpath));
     rng('default');
     addpath([external_tools, 'mosek/6/toolbox/r2009b']);
     addpath(genpath([external_tools, 'eeglab11_0_4_3b']));
