@@ -47,7 +47,7 @@ function [ model, H ] = latentsvmTrain( X, Y, firsts, len, windowSize, C, model_
             H(i) = h - windowSize - 1;
             writeLogDataFree(2, '%d, ', H(i));
         end   
-        writelnLog(2, '');
+        writeLogDataFree(2, '\n');
         diff = sum(Hold ~= H);
         writelnLog(0, 'diff = %d primalobj = %f eps = %f', diff, primalobj, eps);
         if (mod(iter, 10) == 9)

@@ -14,10 +14,10 @@ DATA
 ====
 
 Download exemplary data from 
-https://docs.google.com/file/d/0B3AOXcK7MRHlQnM1SEtEdGl0SVk/edit
-or from the original source : 
-http://www.biomag2012.org/content/data-analysis-competition
-Put it into directory active-delays/data/ of your project.
+- https://docs.google.com/file/d/0B3AOXcK7MRHlQnM1SEtEdGl0SVk/edit
+- or from the original source : http://www.biomag2012.org/content/data-analysis-competition
+
+Put ltmcla_S08.mat file that constains experimental data of subject nr 8 into directory active-delays/data/ of your project. You can download ltmcla_S09.mat as well.
 
 HOW TO RUN
 ==========
@@ -31,8 +31,14 @@ Start with executing preprocess.m, which will generate all further neccessary pr
 Next you can verify that your environment works well by running tests from the file runTests.m.
 
 Every experiment presented in the paper can be easily reporduced by executing files starting with the name expr : 
-- expr1
-- expr2
+- expr1_allcomponents
+- expr2_results_per_component
+- expr3_1_vis
+- expr3_componentvisualization
+- expr4_results_per_component_single_fold
+- expr5_meassure_for_components
+- expr6_dependency
+- expr7_permutation_test
 
 
 
