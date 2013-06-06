@@ -1,0 +1,1327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>3. Bug fixes and improvements</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node002.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 2. Limitations and known issues" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Release Notes. Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><img src="graphics/inactive-next.png" class="navbutton-inactive-next" alt="" border="0"/></td>
+<td align="center" class="navtitle">The MOSEK Release Notes. Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><img src="graphics/inactive-index.png" class="navbutton-inactive-index" alt="" border="0"/></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node002.html" target="_self">2. Limitations and known issues</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Release Notes. Version 6.0 (Revision 137).</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="140378740620248">3. Bug fixes and improvements</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node003.html#140378740619096" target="_self">6.0.0.137</a></li>
+<li><a href="node003.html#140378740621256" target="_self">6.0.0.136</a></li>
+<li><a href="node003.html#140378740622184" target="_self">6.0.0.135</a></li>
+<li><a href="node003.html#140378740623048" target="_self">6.0.0.133</a></li>
+<li><a href="node003.html#140378740623912" target="_self">6.0.0.132</a></li>
+<li><a href="node003.html#140378740624776" target="_self">6.0.0.131</a></li>
+<li><a href="node003.html#140378740625704" target="_self">6.0.0.130</a></li>
+<li><a href="node003.html#140378740626568" target="_self">6.0.0.129</a></li>
+<li><a href="node003.html#140378740627432" target="_self">6.0.0.128</a></li>
+<li><a href="node003.html#140378740628512" target="_self">6.0.0.127</a></li>
+<li><a href="node003.html#140378740629376" target="_self">6.0.0.126</a></li>
+<li><a href="node003.html#140378740630736" target="_self">6.0.0.125</a></li>
+<li><a href="node003.html#140378740631600" target="_self">6.0.0.124</a></li>
+<li><a href="node003.html#140378740632680" target="_self">6.0.0.123</a></li>
+<li><a href="node003.html#140378740634040" target="_self">6.0.0.122</a></li>
+<li><a href="node003.html#140378740635336" target="_self">6.0.0.121</a></li>
+<li><a href="node003.html#140378740636200" target="_self">6.0.0.120</a></li>
+<li><a href="node003.html#140378740637280" target="_self">6.0.0.119</a></li>
+<li><a href="node003.html#140378740638208" target="_self">6.0.0.118</a></li>
+<li><a href="node003.html#140378740639072" target="_self">6.0.0.117</a></li>
+<li><a href="node003.html#140378740639936" target="_self">6.0.0.116</a></li>
+<li><a href="node003.html#140378740640800" target="_self">6.0.0.115</a></li>
+<li><a href="node003.html#140378740641664" target="_self">6.0.0.114</a></li>
+<li><a href="node003.html#140378740642808" target="_self">6.0.0.113</a></li>
+<li><a href="node003.html#140378740643672" target="_self">6.0.0.112</a></li>
+<li><a href="node003.html#140378740644752" target="_self">6.0.0.111</a></li>
+<li><a href="node003.html#140378740645616" target="_self">6.0.0.110</a></li>
+<li><a href="node003.html#140378740646544" target="_self">6.0.0.109</a></li>
+<li><a href="node003.html#140378740647408" target="_self">6.0.0.108</a></li>
+<li><a href="node003.html#140378740648272" target="_self">6.0.0.107</a></li>
+<li><a href="node003.html#140378740649136" target="_self">6.0.0.106</a></li>
+<li><a href="node003.html#140378740650928" target="_self">6.0.0.105</a></li>
+<li><a href="node003.html#140378740652008" target="_self">6.0.0.104</a></li>
+<li><a href="node003.html#140378740653088" target="_self">6.0.0.103</a></li>
+<li><a href="node003.html#140378740653952" target="_self">6.0.0.102</a></li>
+<li><a href="node003.html#140378740654880" target="_self">6.0.0.101</a></li>
+<li><a href="node003.html#140378740655744" target="_self">6.0.0.100</a></li>
+<li><a href="node003.html#140378740656608" target="_self">6.0.0.99</a></li>
+<li><a href="node003.html#140378740657904" target="_self">6.0.0.98</a></li>
+<li><a href="node003.html#140378740659048" target="_self">6.0.0.97</a></li>
+<li><a href="node003.html#140378740660128" target="_self">6.0.0.96</a></li>
+<li><a href="node003.html#140378740660992" target="_self">6.0.0.95</a></li>
+<li><a href="node003.html#140378740662072" target="_self">6.0.0.94</a></li>
+<li><a href="node003.html#140378740663000" target="_self">6.0.0.93</a></li>
+<li><a href="node003.html#140378740663864" target="_self">6.0.0.92</a></li>
+<li><a href="node003.html#140378740664728" target="_self">6.0.0.91</a></li>
+<li><a href="node003.html#140378740665592" target="_self">6.0.0.90</a></li>
+<li><a href="node003.html#140378740666520" target="_self">6.0.0.89</a></li>
+<li><a href="node003.html#140378740667384" target="_self">6.0.0.87</a></li>
+<li><a href="node003.html#140378740668536" target="_self">6.0.0.86</a></li>
+<li><a href="node003.html#140378740669616" target="_self">6.0.0.85</a></li>
+<li><a href="node003.html#140378740671120" target="_self">6.0.0.83</a></li>
+<li><a href="node003.html#140378740672200" target="_self">6.0.0.82</a></li>
+<li><a href="node003.html#140378740673064" target="_self">6.0.0.81</a></li>
+<li><a href="node003.html#140378740673928" target="_self">6.0.0.80</a></li>
+<li><a href="node003.html#140378740675144" target="_self">6.0.0.79</a></li>
+<li><a href="node003.html#140378740676440" target="_self">6.0.0.78</a></li>
+<li><a href="node003.html#140378740677520" target="_self">6.0.0.77</a></li>
+<li><a href="node003.html#140378740678096" target="_self">6.0.0.76</a></li>
+<li><a href="node003.html#140378740679024" target="_self">6.0.0.75</a></li>
+<li><a href="node003.html#140378740679888" target="_self">6.0.0.74</a></li>
+<li><a href="node003.html#140378740681256" target="_self">6.0.0.73</a></li>
+<li><a href="node003.html#140378740681832" target="_self">6.0.0.70</a></li>
+<li><a href="node003.html#140378740682696" target="_self">6.0.0.69</a></li>
+<li><a href="node003.html#140378740683912" target="_self">6.0.0.68</a></li>
+<li><a href="node003.html#140378740684776" target="_self">6.0.0.67</a></li>
+<li><a href="node003.html#140378740685856" target="_self">6.0.0.66</a></li>
+<li><a href="node003.html#140378740687216" target="_self">6.0.0.65</a></li>
+<li><a href="node003.html#140378740688008" target="_self">6.0.0.64</a></li>
+<li><a href="node003.html#140378740689160" target="_self">6.0.0.63</a></li>
+<li><a href="node003.html#140378740689952" target="_self">6.0.0.62</a></li>
+<li><a href="node003.html#140378740691600" target="_self">6.0.0.61</a></li>
+<li><a href="node003.html#140378740692392" target="_self">6.0.0.60</a></li>
+<li><a href="node003.html#140378740693328" target="_self">6.0.0.59</a></li>
+<li><a href="node003.html#140378740694120" target="_self">6.0.0.58</a></li>
+<li><a href="node003.html#140378740694984" target="_self">6.0.0.57</a></li>
+<li><a href="node003.html#140378740695912" target="_self">6.0.0.56</a></li>
+<li><a href="node003.html#140378740696776" target="_self">6.0.0.55</a></li>
+<li><a href="node003.html#140378740699008" target="_self">6.0.0.54</a></li>
+<li><a href="node003.html#140378740700584" target="_self">6.0.0.53</a></li>
+<li><a href="node003.html#140378740701664" target="_self">6.0.0.52</a></li>
+<li><a href="node003.html#140378740702960" target="_self">6.0.0.51</a></li>
+<li><a href="node003.html#140378740704320" target="_self">6.0.0.50</a></li>
+<li><a href="node003.html#140378740705400" target="_self">6.0.0.49</a></li>
+<li><a href="node003.html#140378740706480" target="_self">6.0.0.47</a></li>
+<li><a href="node003.html#140378740707272" target="_self">6.0.0.46</a></li>
+<li><a href="node003.html#140378740708200" target="_self">6.0.0.44</a></li>
+<li><a href="node003.html#140378740708848" target="_self">6.0.0.43</a></li>
+<li><a href="node003.html#140378740709496" target="_self">6.0.0.41</a></li>
+<li><a href="node003.html#140378740710432" target="_self">6.0.0.40</a></li>
+<li><a href="node003.html#140378740711008" target="_self">6.0.0.39</a></li>
+<li><a href="node003.html#140378740712440" target="_self">6.0.0.38</a></li>
+<li><a href="node003.html#140378740713736" target="_self">6.0.0.37</a></li>
+<li><a href="node003.html#140378740714600" target="_self">6.0.0.36</a></li>
+<li><a href="node003.html#140378740715464" target="_self">6.0.0.34</a></li>
+<li><a href="node003.html#140378740716320" target="_self">6.0.0.33</a></li>
+<li><a href="node003.html#140378740717184" target="_self">6.0.0.32</a></li>
+<li><a href="node003.html#140378740717832" target="_self">6.0.0.31</a></li>
+<li><a href="node003.html#140378740718768" target="_self">6.0.0.30</a></li>
+<li><a href="node003.html#140378740719344" target="_self">6.0.0.29</a></li>
+<li><a href="node003.html#140378740720560" target="_self">6.0.0.28</a></li>
+<li><a href="node003.html#140378740721640" target="_self">6.0.0.27</a></li>
+<li><a href="node003.html#140378740722720" target="_self">6.0.0.26</a></li>
+<li><a href="node003.html#140378740723584" target="_self">6.0.0.25</a></li>
+<li><a href="node003.html#140378740724224" target="_self">6.0.0.24</a></li>
+<li><a href="node003.html#140378740725592" target="_self">6.0.0.23</a></li>
+<li><a href="node003.html#140378740726456" target="_self">6.0.0.22</a></li>
+<li><a href="node003.html#140378740727320" target="_self">6.0.0.21</a></li>
+<li><a href="node003.html#140378740728464" target="_self">6.0.0.20</a></li>
+<li><a href="node003.html#140378740729328" target="_self">6.0.0.19</a></li>
+<li><a href="node003.html#140378740729904" target="_self">6.0.0.18</a></li>
+<li><a href="node003.html#140378740731056" target="_self">6.0.0.17</a></li>
+<li><a href="node003.html#140378740731632" target="_self">6.0.0.15</a></li>
+<li><a href="node003.html#140378740732560" target="_self">6.0.0.14</a></li>
+<li><a href="node003.html#140378740733424" target="_self">6.0.0.12</a></li>
+<li><a href="node003.html#140378740734288" target="_self">6.0.0.10</a></li>
+<li><a href="node003.html#140378740735152" target="_self">3.1. Mosek/Java API</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<div>
+<h1><a name="140378740619096">6.0.0.137</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug that caused MOSEK not to check the maximum amount time used when using the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740621256">6.0.0.136</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the dual simplex optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740622184">6.0.0.135</a></h1>
+
+<ul class="itemize">
+<li>Fixed a number of bugs in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740623048">6.0.0.133</a></h1>
+
+<ul class="itemize">
+<li>Fixed some bugs in the AMPL interface. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740623912">6.0.0.132</a></h1>
+
+<ul class="itemize">
+<li>Added support for conic constraints in the AMPL interface. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740624776">6.0.0.131</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug occurring under special circumstances in the interior-point optimizer when multiple threads are employed. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740625704">6.0.0.130</a></h1>
+
+<ul class="itemize">
+<li>Some internal changes. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740626568">6.0.0.129</a></h1>
+
+<ul class="itemize">
+<li>Fixed bug in the mixed integer optimizer occuring on some mixed integer conic quadratic problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740627432">6.0.0.128</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed integer optimizer. </li>
+<li>Fixed a bug that would when running one of the interior-point optimizers and using many threads. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740628512">6.0.0.127</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the dual simplex optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740629376">6.0.0.126</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the primal simplex optimizer. </li>
+<li>Fixed a bug in the dual simplex optimizer. </li>
+<li>Fixed a bug in the presolve. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740630736">6.0.0.125</a></h1>
+
+<ul class="itemize">
+<li>Fixed a recently introduced bug in the network detection procedure. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740631600">6.0.0.124</a></h1>
+
+<ul class="itemize">
+<li>Upgrade FlexLM license license software to version 11.10.0. </li>
+<li>Fixed a bug in the network detection procedure. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740632680">6.0.0.123</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the convexity checker. </li>
+<li>Fixed performance issue in the mixed integer optimizer. </li>
+<li>Improved the interior point optimizers for linear problems for certain hard problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740634040">6.0.0.122</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug that made enum values iterable in Python. </li>
+<li>Fixed a problem in the output log. </li>
+<li>Fixed an issue in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740635336">6.0.0.121</a></h1>
+
+<ul class="itemize">
+<li>Added support for the MinGW-w64 toolchain on win64x86. The 64-bit applications build with MinGW-w64 should be linked against <tt class="tt">libmosek_64_6_0.a</tt>. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740636200">6.0.0.120</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the mixed integer optimizer that caused it to crash in rare cases. </li>
+<li>Added support for Python on the platform osx64x86. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740637280">6.0.0.119</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740638208">6.0.0.118</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the dual simplex optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740639072">6.0.0.117</a></h1>
+
+<ul class="itemize">
+<li>Fixed a documentation issue. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740639936">6.0.0.116</a></h1>
+
+<ul class="itemize">
+<li>Fixed an issue in the intrior-point optimizer for linear problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740640800">6.0.0.115</a></h1>
+
+<ul class="itemize">
+<li>The simplex optimizer did callback too frequently. It has been fixed. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740641664">6.0.0.114</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the concurrent optimizer. </li>
+<li>Fixed a bug in the mixed-integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740642808">6.0.0.113</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740643672">6.0.0.112</a></h1>
+
+<ul class="itemize">
+<li>Removed debug output occuring when reading MOSEK binary task files. </li>
+<li>Fixed a bug in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740644752">6.0.0.111</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740645616">6.0.0.110</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740646544">6.0.0.109</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740647408">6.0.0.108</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740648272">6.0.0.107</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740649136">6.0.0.106</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the conic optimizer that in special cases made MOSEK report an nonoptimal solution. </li>
+<li>Fixed several bugs in the mixed integer optimizer. </li>
+<li>The Flexlm license system has been downgraded to version 11.9 on Linux due to a bug in flexlm that caused the license manager to use excessive CPU resources. </li>
+<li>
+<p>A problem running Flexlm license manager under Ubuntu has been discovered. A workaround to this problem is to create a missing directory using the command: </p>
+
+<pre class="verbatim">       sudo ln -s /tmp /usr/tmp
+     </pre>
+</li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740650928">6.0.0.105</a></h1>
+
+<ul class="itemize">
+<li>Fixed a couple of bugs in the graph partitioning based ordering algorithm (employed in the interior-point optimizers). </li>
+<li>Improved the network structure detection capabilities. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740652008">6.0.0.104</a></h1>
+
+<ul class="itemize">
+<li>Fixed a couple of bugs in the graph partitioning based ordering algorithm (employed in the interior-point optimizers). </li>
+<li>Fixed a bug in the basis identification procedure. This bug occurs very rarely. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740653088">6.0.0.103</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the mixed integer optimizer that casued MOSEK to crash in certain cases. This happened only if a very low timit limited was used. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740653952">6.0.0.102</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the mixed integer optimizer that caused MOSEK to crash in certain cases. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740654880">6.0.0.101</a></h1>
+
+<ul class="itemize">
+<li>Fixed annother issue in the graph partioning based ordering. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740655744">6.0.0.100</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the graph partition based ordering that in rare cases could cause a crash. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740656608">6.0.0.99</a></h1>
+
+<ul class="itemize">
+<li>Improved the manual. </li>
+<li>Fixed a number of bugs in the mixed integer optimizer. </li>
+<li>Fixed an issue in the presolve ocurring very rarely. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740657904">6.0.0.98</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug causing an assert on very large problems. </li>
+<li>FLEXlm has been upgraded to version 11.9.1 because some bugs in FLEXlm has been fixed. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740659048">6.0.0.97</a></h1>
+
+<ul class="itemize">
+<li>Fixed several issues appearing when the input data had NANs. </li>
+<li>FLEXlm has been upgraded to version 11.9 because some bugs in FLEXlm has been fixed. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740660128">6.0.0.96</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740660992">6.0.0.95</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed integer optimizer. </li>
+<li>Fixed a bug in the conic optimizer causing an assert for certain problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740662072">6.0.0.94</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in <tt class="tt">MSK_analyzeproblem</tt> that could cause a segmentation fault on problems containing cones. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740663000">6.0.0.93</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the Python API array module that caused a segmantation fault under certain circumstances at 64 bit systems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740663864">6.0.0.92</a></h1>
+
+<ul class="itemize">
+<li>Made some improvement to licensing system. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740664728">6.0.0.91</a></h1>
+
+<ul class="itemize">
+<li>Several bugs in the mixed integer optimizer have been fixed. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740665592">6.0.0.90</a></h1>
+
+<ul class="itemize">
+<li>A rarely occurring issue in Java interface has been fixed. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740666520">6.0.0.89</a></h1>
+
+<ul class="itemize">
+<li>Fixed a few bugs in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740667384">6.0.0.87</a></h1>
+
+<ul class="itemize">
+<li>Fixed a performance issue in the interior-point optimizers occuring rarely.</li>
+<li>Fixed a bug in the conic optimizer occurring on problems that has more constraints than variables. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740668536">6.0.0.86</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug occuring when presolving a solution i.e. only relevant in the hotstart case.</li>
+<li>Fixed several bugs in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740669616">6.0.0.85</a></h1>
+
+<ul class="itemize">
+<li>Fixed a several bugs in the mixed integer optimizer.</li>
+<li>Fixed a bug in OPF file writer. </li>
+</ul>
+
+<ul class="itemize">
+<li>Fixed a performance issue in the interior-point optimizer occuring very rarely. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740671120">6.0.0.83</a></h1>
+
+<ul class="itemize">
+<li>Improved the performance of the mixed integer optimizer for certain problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740672200">6.0.0.82</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the presolve occuring on numerical unstable problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740673064">6.0.0.81</a></h1>
+
+<ul class="itemize">
+<li>Improved the section about the MOSEK and MATLAB integration in the toolbox manual. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740673928">6.0.0.80</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the mixed integer optimizer.</li>
+<li>Improved the automatic selection of the simplex optimizer when hot-starting. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740675144">6.0.0.79</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in a error message.</li>
+<li>Fixed several bugs in the mixed integer optimizer. In one case the optimizer incorrectly declared a problem infeasible.</li>
+<li>Fixed a bug in the LP writer that occured when numbers close 1 or -1 occured. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740676440">6.0.0.78</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs the 64bit Python interfaces.</li>
+<li>Fixed a bug in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740677520">6.0.0.77</a></h1>
+
+<ul class="itemize">
+<li>Included support for Python 3+. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740678096">6.0.0.76</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740679024">6.0.0.75</a></h1>
+
+<ul class="itemize">
+<li>Fixed an issue in the AMPL binary. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740679888">6.0.0.74</a></h1>
+
+<ul class="itemize">
+<li>Fixed an issue in the basis identification.</li>
+<li>Improved the stability of interior-point optimizer for linear problems.</li>
+<li>Fixed an issue in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740681256">6.0.0.73</a></h1>
+
+<ul class="itemize">
+<li>Fixed an issue in the conic interior-point optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740681832">6.0.0.70</a></h1>
+
+<ul class="itemize">
+<li>Previous versions of MOSEK employed a high resolution timer on Windows. Unfortunately that gave rise to problems on the Amazon EC2 cloud. Therefore, MOSEK is now emplying a low resolution timer that does not cause problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740682696">6.0.0.69</a></h1>
+
+<ul class="itemize">
+<li>Fixed several issues in the mixed integer optimizer.</li>
+<li>Fixed an issue <tt class="tt">MSK_putsolutioni</tt>. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740683912">6.0.0.68</a></h1>
+
+<ul class="itemize">
+<li>Fixed an issue with an assert in the conic optimizer.</li>
+<li>Fixed a performance issue in the presolve. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740684776">6.0.0.67</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed integer optimizer.</li>
+<li>Fixed a bug in the OPF writer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740685856">6.0.0.66</a></h1>
+
+<ul class="itemize">
+<li>Improved the interior-point optimizer for linear problems.</li>
+<li>Fixed several bugs in the mixed integer optimizer.</li>
+<li>Fixed a bug that potentially affecting all the intrior-point optimizers. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740687216">6.0.0.65</a></h1>
+
+<ul class="itemize">
+<li>Fixed an issue in <tt class="tt">MSK_appendcone</tt> that occurs when appending a cone to an empty task. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740688008">6.0.0.64</a></h1>
+
+<ul class="itemize">
+<li>The AMPL modeling shell is updated to version 2010.01. The new version fixes many bugs. New license files are required.</li>
+<li>Improve the stability in the interior-point optimizer for linear problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740689160">6.0.0.63</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740689952">6.0.0.62</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed integer optimizer.</li>
+<li>The problem analyzer is now available when using the MOSEK optimization toolbox for MATLAB.</li>
+<li>Fixed a few typos in the manual.</li>
+<li>Fixed a bug in the presolve. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740691600">6.0.0.61</a></h1>
+
+<ul class="itemize">
+<li>Fixed an issue in the CPU detection affecting new AMD CPU based computers. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740692392">6.0.0.60</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the interior-point optimizer that made it use a lot of space in certain cases during the setup.</li>
+<li>Fixed an issue in the presolve that could cause an assert on near infeasible or badly scaled problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740693328">6.0.0.59</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the AMPL interface. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740694120">6.0.0.58</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740694984">6.0.0.57</a></h1>
+
+<ul class="itemize">
+<li>Include the optimization toolbox for MATLAB on 64 bit OSX. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740695912">6.0.0.56</a></h1>
+
+<ul class="itemize">
+<li>Build the Linux versions on RedHat with glibc 2.3.4 instead of RedHat 5. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740696776">6.0.0.55</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug that occurs in the presolve on all problems with many more constraints than variables.</li>
+<li>Fixed a bug that occuring when reading a solution into an empty task.</li>
+<li>On some problems dual simplex returned an incorrect dual infeasibility certificate. This issue is fixed.</li>
+<li>A bug regarding detecting primal infeasibility in the network optimizer has been fixed.</li>
+<li>A serious memory overwrite fixed in the simplex network extration module.</li>
+<li>A rarely occuring cycling bug in the primal simplex optimizer has been fixed.</li>
+<li>Fixed a bug in the LU factor module. This affects all the simplex optimizers as well as the basis identification procedure.</li>
+<li>Fixed a performance issue in the mixed integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740699008">6.0.0.54</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the manuals.</li>
+<li>Fixed a bug in the optimization toolbox for MATLAB. The problem occured if the <span class="math"><span class="mi">A</span></span> matrix is not a sparse matrix.</li>
+<li>Fixed a bug occuring on certain nonlinear problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740700584">6.0.0.53</a></h1>
+
+<ul class="itemize">
+<li>The bug fixes for the mixed integer optimizer mentioned in release 6.0.0.52 had not been included in the release version. They are included in this version.</li>
+<li>Fixed a bug in the mixed integer optimizer occuring on nonlinear problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740701664">6.0.0.52</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug occuring on certain nonlinear problems.</li>
+<li>Fixed a bug in the mixed integer optimizer that caused the log infomation to be wrong.</li>
+<li>Fixed a bug in the mixed integer optimizer that could occur on problems with ranged constraints.</li>
+<li>Fixed a bug occuring when setting <tt class="tt">presolve_tol_aij</tt> was set to zero. That is no longer an acceptable value. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740702960">6.0.0.51</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug the in the MATLAB function <tt class="tt">lsqnonneg</tt>.</li>
+<li>Fixed several issues in the mixed integer optimizer.</li>
+<li>Fixed a bug in the linear dependency checker. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740704320">6.0.0.50</a></h1>
+
+<ul class="itemize">
+<li>Fixed a few minor issues in the manual.</li>
+<li>Improved the matrix reordering. The problem zib01 is an example.</li>
+<li>Fixed an innocent uninitialized read. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740705400">6.0.0.49</a></h1>
+
+<ul class="itemize">
+<li>Fixed some log output issues.</li>
+<li>Updated the Microsoft Solver Foundation documentation and examples. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740706480">6.0.0.47</a></h1>
+
+<ul class="itemize">
+<li>First final release. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740707272">6.0.0.46</a></h1>
+
+<ul class="itemize">
+<li>First several problems in the documentation. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740708200">6.0.0.44</a></h1>
+
+<ul class="itemize">
+<li>First a minor issue in the basis identification. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740708848">6.0.0.43</a></h1>
+
+<ul class="itemize">
+<li>Switched to release candidate mode. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740709496">6.0.0.41</a></h1>
+
+<ul class="itemize">
+<li>Fixed several issues in the simplex optimizers.</li>
+<li>Fixed an issue in the Python interface for win32x86. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740710432">6.0.0.40</a></h1>
+
+<ul class="itemize">
+<li>Fixed several issues in the simplex optimizers. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740711008">6.0.0.39</a></h1>
+
+<ul class="itemize">
+<li>Improved the problem analyzer.</li>
+<li>Fixed some issues in the mixed integer optimizer.</li>
+<li>Improved the simplex optimizers. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740712440">6.0.0.38</a></h1>
+
+<ul class="itemize">
+<li>Removed some debug output.</li>
+<li>Fixed a few minor issues regarding the problem type reporting.</li>
+<li>Fixed a in the presolve causing an assert in sepcial cases.</li>
+<li>Fixed several issues in the mixed-integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740713736">6.0.0.37</a></h1>
+
+<ul class="itemize">
+<li>Fixed several problem in the manuals.</li>
+<li>Fixed several bugs in the simplex optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740714600">6.0.0.36</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the problem analyzer.</li>
+<li>Changed the way the licensing is handled internally. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740715464">6.0.0.34</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the mixed-integer optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740716320">6.0.0.33</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug that could cause an crash in the extreme case. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740717184">6.0.0.32</a></h1>
+
+<ul class="itemize">
+<li>Fixed an issue related to the usage of openmp. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740717832">6.0.0.31</a></h1>
+
+<ul class="itemize">
+<li>Fixed several problem in MATLAB optimization toolbox.</li>
+<li>Improved the performance of the dual simplex optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740718768">6.0.0.30</a></h1>
+
+<ul class="itemize">
+<li>Improved the AMPL interface. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740719344">6.0.0.29</a></h1>
+
+<ul class="itemize">
+<li>Upgraded the compiler on OSX and implemented a workaround for a compiler bug.</li>
+<li>Improved the termination criteia in conic optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740720560">6.0.0.28</a></h1>
+
+<ul class="itemize">
+<li>Fixed various cosmetic issues.</li>
+<li>Disabled the Python interface for win64x86. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740721640">6.0.0.27</a></h1>
+
+<ul class="itemize">
+<li>Fixed some issues in the manuals.</li>
+<li>Fixed some issues in the Python interface. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740722720">6.0.0.26</a></h1>
+
+<ul class="itemize">
+<li>Fixed some issues in the simplex optimizers.</li>
+<li>Fixed an issue that affected the Solaris 32 bit platforms. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740723584">6.0.0.25</a></h1>
+
+<ul class="itemize">
+<li>Fixed an issue affecting the interior-point optimizers. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740724224">6.0.0.24</a></h1>
+
+<ul class="itemize">
+<li>Fixed an issue regarding termination of the mixed integer optimizer.</li>
+<li>Fixed a few issues in the simplex optimizers.</li>
+<li>Improved the performance of the simplex optimizers. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740725592">6.0.0.23</a></h1>
+
+<ul class="itemize">
+<li>Fixed a problem in the LP and OPF readers and writers.</li>
+<li>Fixed a few issues in the simplex optimizers. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740726456">6.0.0.22</a></h1>
+
+<ul class="itemize">
+<li>Fixed a number of bugs in the simplex optimizers.</li>
+<li>The presolve time was reported as zero when the simplex optimizer was used. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740727320">6.0.0.21</a></h1>
+
+<ul class="itemize">
+<li>Fixed a number of bugs in the simplex optimizers.</li>
+<li>Fixed yet another bug occuring on very large problems when using an interior-point optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740728464">6.0.0.20</a></h1>
+
+<ul class="itemize">
+<li>Fixed a number of bugs in the simplex optimizers.</li>
+<li>Fixed a bug occuring on very large problems when using an interior-point optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740729328">6.0.0.19</a></h1>
+
+<ul class="itemize">
+<li>Fixed a number of bugs in the simplex optimizers. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740729904">6.0.0.18</a></h1>
+
+<ul class="itemize">
+<li>Fixed a number of bugs in the simplex optimizers.</li>
+<li>Fixed many bugs in the mixed integer optimizer.</li>
+<li>Fixed several bugs in the conic optimizer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740731056">6.0.0.17</a></h1>
+
+<ul class="itemize">
+<li>Fixed a number of problems in the presolve and postsolve. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740731632">6.0.0.15</a></h1>
+
+<ul class="itemize">
+<li>Fixed a bug in the presolve that could occur on infeasible problems. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740732560">6.0.0.14</a></h1>
+
+<ul class="itemize">
+<li>Fixed a large number of bugs in the simplex optimizers. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740733424">6.0.0.12</a></h1>
+
+<ul class="itemize">
+<li>Fixed several bugs in the presolve. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740734288">6.0.0.10</a></h1>
+
+<ul class="itemize">
+<li>First beta. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="140378740735152">3.1. Mosek/Java API</a></h1>
+
+<ul class="itemize">
+<li>The <tt class="tt">mosek.jar</tt> library now requires Java 1.5.</li>
+<li>Interface constants have been replaced with native Java Enums improving type safety for several API methods. </li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node002.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 2. Limitations and known issues" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Release Notes. Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><img src="graphics/inactive-next.png" class="navbutton-inactive-next" alt="" border="0"/></td>
+<td align="center" class="navtitle">The MOSEK Release Notes. Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><img src="graphics/inactive-index.png" class="navbutton-inactive-index" alt="" border="0"/></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node002.html" target="_self">2. Limitations and known issues</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Release Notes. Version 6.0 (Revision 137).</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Wed Apr 11 08:26:06 2012</div>
+</body></html>

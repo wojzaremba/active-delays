@@ -1,0 +1,3182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>6. Advanced API tutorial</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. Basic API tutorial" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. Modelling" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">7. Modelling</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="258922472">6. Advanced API tutorial</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node008.html#258913560" target="_self">6.1. Separable convex optimization</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#258922544" target="_self">6.1.1. The problem</a></li>
+<li><a href="node008.html#258940008" target="_self">6.1.2. A numerical example</a></li>
+<li><a href="node008.html#258957112" target="_self">6.1.3. <tt class="tt">scopt</tt> an optimizer for separable convex optimization</a>
+<ul class="toc-level-3">
+<li><a href="node008.html#258958544" target="_self">6.1.3.1. Design principles of <tt class="tt">scopt</tt></a></li>
+<li><a href="node008.html#258996848" target="_self">6.1.3.2. Example</a></li>
+<li><a href="node008.html#259019048" target="_self">6.1.3.3. Source code</a></li>
+<li><a href="node008.html#259021352" target="_self">6.1.3.4. Adding more nonlinear expression types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node008.html#259025952" target="_self">6.2. Exponential optimization</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#259022216" target="_self">6.2.1. The problem</a></li>
+<li><a href="node008.html#259046504" target="_self">6.2.2. Source code</a></li>
+<li><a href="node008.html#259048296" target="_self">6.2.3. Solving from the command line.</a>
+<ul class="toc-level-3">
+<li><a href="node008.html#259047576" target="_self">6.2.3.1. The input format</a></li>
+</ul>
+</li>
+<li><a href="node008.html#259092560" target="_self">6.2.4. Choosing primal or dual form</a></li>
+<li><a href="node008.html#259093856" target="_self">6.2.5. An example</a></li>
+<li><a href="node008.html#259100968" target="_self">6.2.6. Solving from your C code</a></li>
+<li><a href="node008.html#259117280" target="_self">6.2.7. A warning about exponential optimization problems</a></li>
+</ul>
+</li>
+<li><a href="node008.html#259122456" target="_self">6.3. General convex optimization</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#259117928" target="_self">6.3.1. A warning</a></li>
+<li><a href="node008.html#259122960" target="_self">6.3.2. The problem</a></li>
+<li><a href="node008.html#259125192" target="_self">6.3.3. Assumptions about a nonlinear optimization problem</a></li>
+<li><a href="node008.html#259128064" target="_self">6.3.4. Specifying general convex terms</a></li>
+</ul>
+</li>
+<li><a href="node008.html#259132448" target="_self">6.4. Dual geometric optimization</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#259130072" target="_self">6.4.1. The problem</a></li>
+<li><a href="node008.html#260801456" target="_self">6.4.2. A numerical example</a></li>
+<li><a href="node008.html#260821648" target="_self">6.4.3. <tt class="tt">dgopt</tt>: A program for dual geometric optimization</a>
+<ul class="toc-level-3">
+<li><a href="node008.html#260801528" target="_self">6.4.3.1. Data input</a></li>
+<li><a href="node008.html#260829336" target="_self">6.4.3.2. Solving the numerical example</a></li>
+</ul>
+</li>
+<li><a href="node008.html#260830416" target="_self">6.4.4. The source code: <tt class="tt">dgopt</tt></a></li>
+</ul>
+</li>
+<li><a href="node008.html#260840120" target="_self">6.5. Linear network flow problems</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#260855352" target="_self">6.5.1. A linear network flow problem example</a>
+<ul class="toc-level-3">
+<li><a href="node008.html#260890352" target="_self">6.5.1.1. Source code</a></li>
+<li><a href="node008.html#260888840" target="_self">6.5.1.2. Example code comments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node008.html#260885248" target="_self">6.6. Embedded network flow problems</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#260984128" target="_self">6.6.1. Example: Exploit embedded network flow structure in the simplex optimizer</a></li>
+</ul>
+</li>
+<li><a href="node008.html#260980960" target="_self">6.7. Solving linear systems involving the basis matrix</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#260970256" target="_self">6.7.1. Identifying the basis</a></li>
+<li><a href="node008.html#261007552" target="_self">6.7.2. An example</a></li>
+<li><a href="node008.html#262725000" target="_self">6.7.3. Solving arbitrary linear systems</a></li>
+</ul>
+</li>
+<li><a href="node008.html#262740304" target="_self">6.8. The progress call-back</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#262741456" target="_self">6.8.1. Source code example</a></li>
+</ul>
+</li>
+<li><a href="node008.html#262742744" target="_self">6.9. Customizing the warning and error reporting</a></li>
+<li><a href="node008.html#262743824" target="_self">6.10. Unicode strings</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#262744904" target="_self">6.10.1. A source code example</a></li>
+<li><a href="node008.html#262744472" target="_self">6.10.2. Limitations</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> This chapter provides information about additional problem classes and functionality provided in the C API.</p>
+
+<div>
+<h1><a name="258913560">6.1. Separable convex optimization</a></h1>
+
+<p> <a name="sec-sepconvexopt">&#09;</a> <a name="idx-79255096">&#09;</a></p>
+
+<p>In this section we will discuss solution of nonlinear <b>separable</b> convex optimization problems using MOSEK. We allow both nonlinear constraints and objective, but restrict ourselves to separable functions.</p>
+
+<div>
+<h2><a name="258922544">6.1.1. The problem</a></h2>
+
+<p>A general separable nonlinear optimization problem can be specified as follows: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math130.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} &  &  & f(x)+c^{T}x &  & \\\nonumber{}\mbox{subject to } & l^{c} & \leq{} & g(x)+Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:SEC:SEPCONOPT:EQ:NLOPT">&#09;</a>(6.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<ul class="itemize">
+<li><span class="math"><span class="mi">m</span></span> is the number of constraints. </li>
+<li><span class="math"><span class="mi">n</span></span> is the number of decision variables. </li>
+<li><span class="math"><img src="math/math131.png" alt="[[MathCmd 131]]"/></span> is a vector of decision variables. </li>
+<li><span class="math"><img src="math/math132.png" alt="[[MathCmd 132]]"/></span> is the linear part of the objective function. </li>
+<li><span class="math"><img src="math/math133.png" alt="[[MathCmd 133]]"/></span> is the constraint matrix. </li>
+<li><span class="math"><img src="math/math134.png" alt="[[MathCmd 134]]"/></span> is the lower limit on the activity for the constraints. </li>
+<li><span class="math"><img src="math/math135.png" alt="[[MathCmd 135]]"/></span> is the upper limit on the activity for the constraints. </li>
+<li><span class="math"><img src="math/math136.png" alt="[[MathCmd 136]]"/></span> is the lower limit on the activity for the variables. </li>
+<li><span class="math"><img src="math/math137.png" alt="[[MathCmd 137]]"/></span> is the upper limit on the activity for the variables. </li>
+<li><span class="math"><img src="math/math138.png" alt="[[MathCmd 138]]"/></span> is a nonlinear function. </li>
+<li><span class="math"><img src="math/math139.png" alt="[[MathCmd 139]]"/></span> is a nonlinear vector function. </li>
+</ul>
+
+<p>This implies that the <span class="math"><span class="mi">i</span></span>th constraint essentially has the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math140.png" alt="\begin{displaymath}\nonumber{}l_{i}^{c}\leq{}g_{i}(x)+\sum \limits _{{j=1}}^{n}a_{{ij}}x_{j}\leq{}u_{i}^{c}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The problem (<a href="node008.html#CH:MATLAB:SEC:SEPCONOPT:EQ:NLOPT">6.1.1</a>) must satisfy the three important requirements: </p>
+
+<ol class="enumerate">
+<li>
+<p>Separability: This requirement implies that all nonlinear functions can be written on the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math141.png" alt="\begin{displaymath}\nonumber{}f(x)=\sum \limits _{{j=1}}^{n}f^{j}(x_{j})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> and </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math142.png" alt="\begin{displaymath}\nonumber{}g_{i}(x)=\sum \limits _{{j=1}}^{n}g_{i}^{j}(x_{j})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> where </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math143.png" alt="\begin{displaymath}\nonumber{}f^{j}:~\mathbb{R}\rightarrow \mathbb{R}\mbox{ and }g_{i}^{j}:~\mathbb{R}\rightarrow \mathbb{R}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> Hence, the nonlinear functions can be written as a sum of functions which depends only one variable.</p>
+</li>
+<li>
+<p>Differentiability: All functions should be twice differentiable for all <span class="math"><img src="math/math144.png" alt="[[MathCmd 144]]"/></span> satisfying </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math145.png" alt="\begin{displaymath}\nonumber{}l_{j}^{x}<x<u_{j}^{x}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> if <span class="math"><img src="math/math144.png" alt="[[MathCmd 144]]"/></span> occurs in at least one nonlinear function.</p>
+</li>
+<li>Convexity: The problem should be a convex optimization problem. See Section <a title="7.4. Nonlinear convex optimization" href="node009.html#ch-use-sec-nlo">7.4</a> for a discussion of this requirement. </li>
+</ol>
+
+</div>
+
+<div>
+<h2><a name="258940008">6.1.2. A numerical example</a></h2>
+
+<p>Subsequently, we will use the following example to demonstrate the solution of a separable convex optimization problem using MOSEK: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math147.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & x_{1}-\ln (x_{1}+2x_{2}) &  & \\\nonumber{}\mbox{subject to} & x_{1}^{2}+x_{2}^{2} & \leq{} & 1\end{array}\end{math}"/></td>
+<td><a name="CH:APIEX:MSKSCOPT:PRO1">&#09;</a>(6.1.2)</td></tr>
+</tbody>
+</table>
+
+<p>First note that the problem (<a href="node008.html#CH:APIEX:MSKSCOPT:PRO1">6.1.2</a>) is not a separable optimization problem because the logarithmic term in the objective is not a function of a single variable. However, by introducing a constraint and a variable the problem can be made separable as follows </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math148.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & x_{1}-\ln (x_{3}) &  & \\\nonumber{}\mbox{subject to} & x_{1}^{2}+x_{2}^{2} & \leq{} & 1,\\\nonumber{} & x_{1}+2x_{2}-x_{3} & = & 0,\\\nonumber{} & x_{3}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td><a name="CH:APIEX:SEC:MSKSCOPT:PRO2">&#09;</a>(6.1.3)</td></tr>
+</tbody>
+</table>
+
+<p>This problem is obviously separable and equivalent to the previous problem. Moreover, note that all nonlinear functions are well defined for <span class="math"><span class="mi">x</span></span> values satisfying the variable bounds strictly, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math149.png" alt="\begin{displaymath}\nonumber{}x_{3}>0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This assures sure that function evaluation errors will not occur during the optimization process because MOSEK will only evaluate <span class="math"><img src="math/math150.png" alt="[[MathCmd 150]]"/></span> for <span class="math"><img src="math/math151.png" alt="[[MathCmd 151]]"/></span>.</p>
+
+<p>Frequently the method employed above can be used to make convex optimization problems separable even if these are not formulated as such initially. The reader might object that this approach is inefficient because additional constraints and variables are introduced to make the problem separable. However, in our experience this drawback is offset largely by the much simpler structure of the nonlinear functions. Particularly, the evaluation of the nonlinear functions, their gradients and Hessians is much easier in the separable case.</p>
+
+</div>
+
+<div>
+<h2><a name="258957112">6.1.3. <tt class="tt">scopt</tt> an optimizer for separable convex optimization</a></h2>
+
+<p> <a name="idx-79304536">&#09;</a></p>
+
+<p><tt class="tt">scopt</tt> is an easy-to-use interface to MOSEKs nonlinear capabilities for solving separable convex problems. As currently implemented <tt class="tt">scopt</tt> is not capable of handling arbitrary nonlinear expressions. In fact <tt class="tt">scopt</tt> can handle only the nonlinear expressions <span class="math"><img src="math/math152.png" alt="[[MathCmd 152]]"/></span>, <span class="math"><img src="math/math153.png" alt="[[MathCmd 153]]"/></span>, <span class="math"><img src="math/math154.png" alt="[[MathCmd 154]]"/></span>, and <span class="math"><img src="math/math155.png" alt="[[MathCmd 155]]"/></span>. However, in a subsequent section we will demonstrate that it is easy to expand the number of nonlinear expressions that <tt class="tt">scopt</tt> can handle. </p>
+
+<div>
+<h3><a name="258958544">6.1.3.1. Design principles of <tt class="tt">scopt</tt></a></h3>
+
+<p>All the linear data of the problem, such as <span class="math"><span class="mi">c</span></span> and <span class="math"><span class="mi">A</span></span>, is inputted to MOSEK as usual, i.e. using the relevant functions in the MOSEK API.</p>
+
+<p>The nonlinear part of the problem is specified using some arrays which indicate the type of the nonlinear expressions and where these should be added.</p>
+
+<p>For example given the three <tt class="tt">int</tt> arrays &mdash; <tt class="tt">oprc</tt>, <tt class="tt">opric</tt>, and <tt class="tt">oprjc</tt> &mdash; and the two <tt class="tt">double</tt> arrays &mdash; <tt class="tt">oprfc</tt> and <tt class="tt">oprgc</tt> &mdash; the nonlinear expressions in the constraints can be coded in those arrays using the following table: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">oprc[k]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">opric[k]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">oprjc[k]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">oprfc[k]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">oprgc[k]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">oprhc[k]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Expression added </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td align="center" valign="top"> </td>
+<td align="center" valign="top"> </td>
+<td align="center" valign="top"> </td>
+<td align="center" valign="top"> </td>
+<td align="center" valign="top"> </td>
+<td align="center" valign="top"> to constraint <span class="math"><span class="mi">i</span></span> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">0 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> i </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> j </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">g</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">h</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math156.png" alt="[[MathCmd 156]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top">1 </td>
+<td align="center" valign="top"> i </td>
+<td align="center" valign="top"> j </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">g</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">h</span></span> </td>
+<td align="center" valign="top"> <span class="math"><img src="math/math157.png" alt="[[MathCmd 157]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top">2 </td>
+<td align="center" valign="top"> i </td>
+<td align="center" valign="top"> j </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">g</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">h</span></span> </td>
+<td align="center" valign="top"> <span class="math"><img src="math/math158.png" alt="[[MathCmd 158]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;">3 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> i </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> j </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mi">g</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mi">h</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><img src="math/math159.png" alt="[[MathCmd 159]]"/></span> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>Hence, <tt class="tt">oprc[k]</tt> specifies the nonlinear expression type, <tt class="tt">opric[k]</tt> indicates to which constraint the nonlinear expression should be added. <tt class="tt">oprfc[k]</tt> and <tt class="tt">oprgc[k]</tt> are parameters used when the nonlinear expression is evaluated. This implies that nonlinear expressions can be added to an arbitrary constraint and hence you can create multiple nonlinear constraints.</p>
+
+<p>Using the same method all the nonlinear terms in the objective can be specified using <tt class="tt">opro[k]</tt>, <tt class="tt">oprjo[k]</tt>, <tt class="tt">oprfo[k]</tt> and <tt class="tt">oprho[k]</tt> as shown below: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">opro[k]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">oprjo[k]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">oprfo[k]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">oprgo[k]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">oprho[k]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Expression added </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td align="center" valign="top"> </td>
+<td align="center" valign="top"> </td>
+<td align="center" valign="top"> </td>
+<td align="center" valign="top"> </td>
+<td align="center" valign="top"> in objective </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">0 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> j </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">g</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">h</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math156.png" alt="[[MathCmd 156]]"/></span> </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;">1 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> j </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">g</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">h</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math157.png" alt="[[MathCmd 157]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top">2 </td>
+<td align="center" valign="top"> j </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">g</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">h</span></span> </td>
+<td align="center" valign="top"> <span class="math"><img src="math/math158.png" alt="[[MathCmd 158]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;">3 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> j </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mi">g</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mi">h</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><img src="math/math159.png" alt="[[MathCmd 159]]"/></span> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+</div>
+
+<div>
+<h3><a name="258996848">6.1.3.2. Example</a></h3>
+
+<p>Suppose we want to add the nonlinear expression <span class="math"><img src="math/math164.png" alt="[[MathCmd 164]]"/></span> to the objective. This is an expression on the form <span class="math"><img src="math/math158.png" alt="[[MathCmd 158]]"/></span> where <span class="math"><span class="mi">f</span><span class="mo">=</span><span class="mn">-1</span></span>, <span class="math"><span class="mi">g</span><span class="mo">=</span><span class="mn">1</span></span>, <span class="math"><span class="mi">h</span><span class="mo">=</span><span class="mn">0</span></span> and <span class="math"><span class="mi">j</span><span class="mo">=</span><span class="mn">3</span></span>. This can be represented by: </p>
+
+<pre class="verbatim">opro[0]  = 2 
+oprjo[0] = 3
+oprfo[0] = -1.0
+oprgo[0] = 1.0
+oprho[0] = 0.0
+</pre>
+
+</div>
+
+<div>
+<h3><a name="259019048">6.1.3.3. Source code</a></h3>
+
+<p>The source code for <tt class="tt">scopt</tt> consists of the files: </p>
+
+<ul class="itemize">
+<li><tt class="tt">scopt.h</tt>: An include file that defines the two functions <tt class="tt">MSK_scbegin</tt> and <tt class="tt">MSK_scend</tt>, which are used to initialize and remove the nonlinear function data.</li>
+<li><tt class="tt">scopt.c</tt> : This file implements the nonlinear initialization and evaluation functions.</li>
+<li><tt class="tt"> tstscopt.c </tt>: This file solves the example problem (<a href="node008.html#CH:APIEX:MSKSCOPT:PRO1">6.1.2</a>) using <tt class="tt">scopt.c</tt>. </li>
+</ul>
+
+<p>These three files are all available in the directory </p>
+
+<pre class="verbatim">mosek\6\tools\examples\c
+</pre>
+
+<p> We will not discuss the implementation of <tt class="tt">scopt</tt> in details but rather refer the reader to the source code found in <tt class="tt">scopt.c</tt> which is included in the distribution. However, the driver program <tt class="tt"> tstscopt.c </tt> which solves the example (<a href="node008.html#CH:APIEX:MSKSCOPT:PRO1">6.1.2</a>).</p>
+
+<div class="verbatimcode"><span class="comment">/* 
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved. 
+
+   File     : tstscopt.c
+
+   Purpose  : To solve the problem
+
+              minimize    x_1 - log(x_3)
+              subject to  x_1^2 + x_2^2 &lt;= 1
+                          x_1 + 2*x_2 - x_3 = 0
+                          x_3 &gt;=0
+ */</span>
+
+<span class="preprocessor">#include</span> "<span class="string">scopt.h</span>"
+
+<span class="preprocessor">#define</span> NUMOPRO  1 <span class="comment">/* Number of nonlinear expressions in the obj. */</span>
+<span class="preprocessor">#define</span> NUMOPRC  2 <span class="comment">/* Number of nonlinear expressions in the con. */</span>
+<span class="preprocessor">#define</span> NUMVAR   3 <span class="comment">/* Number of variables.     */</span>
+<span class="preprocessor">#define</span> NUMCON   2 <span class="comment">/* Number of constraints.   */</span>
+<span class="preprocessor">#define</span> NUMANZ   3 <span class="comment">/* Number of non-zeros in A. */</span>
+
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printstr(<span class="type">void</span> *handle,
+                            <span class="type">char</span> str<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",str);
+} <span class="comment">/* printstr */</span>
+
+<span class="type">int</span> main()
+{
+  <span class="type">char</span>         buffer[MSK_MAX_STR_LEN];
+  <span class="type">double</span>       oprfo[NUMOPRO],oprgo[NUMOPRO],oprho[NUMOPRO],
+               oprfc[NUMOPRC],oprgc[NUMOPRC],oprhc[NUMOPRC],
+               c[NUMVAR],aval[NUMANZ],
+               blc[NUMCON],buc[NUMCON],blx[NUMVAR],bux[NUMVAR];
+  <span class="type">int</span>          numopro,numoprc,
+               numcon=NUMCON,numvar=NUMVAR,
+               opro[NUMOPRO],oprjo[NUMOPRO],
+               oprc[NUMOPRC],opric[NUMOPRC],oprjc[NUMOPRC],
+               aptrb[NUMVAR],aptre[NUMVAR],asub[NUMANZ];
+  MSKboundkeye bkc[NUMCON],bkx[NUMVAR];
+  MSKenv_t     env;
+  MSKrescodee  r;
+  MSKtask_t    task;
+  schand_t     sch;
+
+  <span class="comment">/* Specify nonlinear terms in the objective. */</span>
+  numopro  = NUMOPRO;
+  opro[0]  = MSK_OPR_LOG; <span class="comment">/* Defined in scopt.h */</span>
+  oprjo[0] = 2;
+  oprfo[0] = -1.0;
+  oprgo[0] = 1.0;  <span class="comment">/* This value is never used. */</span>
+  oprho[0] = 0.0;
+
+  <span class="comment">/* Specify nonlinear terms in the constraints. */</span>
+  numoprc  = NUMOPRC;
+  
+  oprc[0]  = MSK_OPR_POW;
+  opric[0] = 0;
+  oprjc[0] = 0;
+  oprfc[0] = 1.0;
+  oprgc[0] = 2.0;
+  oprhc[0] = 0.0;
+
+  oprc[1]  = MSK_OPR_POW;
+  opric[1] = 0;
+  oprjc[1] = 1;
+  oprfc[1] = 1.0;
+  oprgc[1] = 2.0;
+  oprhc[1] = 0.0;
+
+  <span class="comment">/* Specify c */</span>
+  c[0] = 1.0; c[1] = 0.0; c[2] = 0.0;
+
+  <span class="comment">/* Specify a. */</span>
+  aptrb[0] = 0;   aptrb[1] = 1;   aptrb[2] = 2;
+  aptre[0] = 1;   aptre[1] = 2;   aptre[2] = 3;
+  asub[0]  = 1;   asub[1]  = 1;   asub[2]  = 1;
+  aval[0]  = 1.0; aval[1]  = 2.0; aval[2]  = -1.0;
+
+  <span class="comment">/* Specify bounds for constraints. */</span>
+  bkc[0] = MSK_BK_UP;     bkc[1] = MSK_BK_FX;
+  blc[0] = -MSK_INFINITY; blc[1] = 0.0;
+  buc[0] = 1.0;           buc[1] = 0.0;
+
+  <span class="comment">/* Specify bounds for variables. */</span>
+  bkx[0] = MSK_BK_FR;      bkx[1] = MSK_BK_FR;     bkx[2] = MSK_BK_LO;
+  blx[0] = -MSK_INFINITY;  blx[1] = -MSK_INFINITY; blx[2] = 0.0;
+  bux[0] = MSK_INFINITY;   bux[1] = MSK_INFINITY;  bux[2] = MSK_INFINITY;
+
+  <span class="comment">/* Create  the mosek environment. */</span>
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+
+  <span class="comment">/* Check whether the return code is ok. */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Directs the log stream to the user
+       specified procedure 'printstr'. */</span>
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+  }
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Initialize the environment. */</span>   
+    r = MSK_initenv(env);
+  }
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {  
+    <span class="comment">/* Make the optimization task. */</span>
+    r = MSK_makeemptytask(env,&amp;task);
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+      MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+    {
+      r = MSK_inputdata(task,
+                        numcon,numvar,
+                        numcon,numvar,
+                        c,0.0,
+                        aptrb,aptre,
+                        asub,aval,
+                        bkc,blc,buc,
+                        bkx,blx,bux);
+    }
+   
+    <span class="keyword">if</span> ( r== MSK_RES_OK )
+    {
+      <span class="comment">/* Set-up of nonlinear expressions. */</span>
+      r = MSK_scbegin(task,
+                      numopro,opro,oprjo,oprfo,oprgo,oprho,
+                      numoprc,oprc,opric,oprjc,oprfc,oprgc,oprhc,
+                      &amp;sch);
+       
+     
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        printf("<span class="string">Start optimizing\n</span>");
+
+        r = MSK_optimize(task);
+
+        printf("<span class="string">Done optimizing\n</span>");
+
+        MSK_solutionsummary(task,MSK_STREAM_MSG);
+      }
+       
+      <span class="comment">/* The nonlinear expressions are no longer needed. */</span>
+      MSK_scend(task,&amp;sch);
+    }
+    MSK_deletetask(&amp;task);
+  }
+  MSK_deleteenv(&amp;env);
+       
+  printf("<span class="string">Return code: %d\n</span>",r);
+  <span class="keyword">if</span> ( r!=MSK_RES_OK )
+  {
+    MSK_getcodedisc(r,buffer,<span class="keyword">NULL</span>);
+    printf("<span class="string">Description: %s\n</span>",buffer);
+  }
+} <span class="comment">/* main */</span>
+</div>
+
+</div>
+
+<div>
+<h3><a name="259021352">6.1.3.4. Adding more nonlinear expression types</a></h3>
+
+<p><tt class="tt">scopt</tt> handles only a limited number of nonlinear expression types. However, it is easy to add a new operator such as the square root operator. First step is to define the new operator in the file <tt class="tt">scopt.h</tt> that after modification contains the lines</p>
+
+<pre class="verbatimcode">#define MSK_OPR_ENT 0
+#define MSK_OPR_EXP 1
+#define MSK_OPR_LOG 2
+#define MSK_OPR_POW 3
+#define MSK_OPR_SQRT 4 /* constant for square root operator */
+</pre>
+
+<p>Next the function <tt class="tt">evalopr</tt> in the file <tt class="tt">scopt.c</tt> should be modified. The purpose of <tt class="tt">evalopr</tt> is to compute the function value, the gradient (first derivative), and the Hessian (second derivative) for a nonlinear expression. The modified function has the form:</p>
+
+<div class="verbatimcode"><span class="keyword">static</span> <span class="type">int</span> evalopr(<span class="type">int</span>    opr,
+                   <span class="type">double</span> f,
+                   <span class="type">double</span> g,
+                   <span class="type">double</span> h,
+                   <span class="type">double</span> xj,
+                   <span class="type">double</span> *fxj,
+                   <span class="type">double</span> *grdfxj,
+                   <span class="type">double</span> *hesfxj)
+<span class="comment">/* Purpose: To evaluate an operator and its derivatives.
+     fxj:    Is the function value
+     grdfxj: Is the first derivative.
+     hexfxj: Is the second derivative.
+ */</span>
+{
+  <span class="type">double</span> rtemp;
+
+  <span class="keyword">switch</span> ( opr )
+  {
+    case MSK_OPR_ENT:
+      <span class="keyword">if</span> ( fxj )
+      fxj[0] = f*xj*log(xj);
+
+      <span class="keyword">if</span> ( grdfxj )
+      grdfxj[0] = f*(1.0+log(xj));
+
+      <span class="keyword">if</span> ( hesfxj )
+      hesfxj[0] = f/xj;
+      <span class="keyword">break</span>;
+    case MSK_OPR_EXP:
+      <span class="keyword">if</span> ( fxj || grdfxj || hesfxj )
+      {
+        rtemp = exp(g*xj+h);
+
+        <span class="keyword">if</span> ( fxj )
+        fxj[0] = f*rtemp;
+
+        <span class="keyword">if</span> ( grdfxj )
+        grdfxj[0] = f*g*rtemp;
+
+        <span class="keyword">if</span> ( hesfxj )
+        hesfxj[0] = f*g*g*rtemp;
+      }
+      <span class="keyword">break</span>;
+    case MSK_OPR_LOG:
+      rtemp = g*xj+h;
+      <span class="keyword">if</span> ( rtemp&lt;=0.0 )
+        <span class="keyword">return</span> ( 1 );
+
+      <span class="keyword">if</span> ( fxj )
+      fxj[0] = f*log(rtemp);
+
+      <span class="keyword">if</span> ( grdfxj )
+      grdfxj[0] = (g*f)/(rtemp);
+
+      <span class="keyword">if</span> ( hesfxj )
+      hesfxj[0] = -(f*g*g)/(rtemp*rtemp);
+      <span class="keyword">break</span>;
+    case MSK_OPR_POW:
+      <span class="keyword">if</span> ( fxj )
+      fxj[0] = f*pow(xj+h,g);
+
+      <span class="keyword">if</span> ( grdfxj )
+      grdfxj[0] = f*g*pow(xj+h,g-1.0);
+
+      <span class="keyword">if</span> ( hesfxj )
+        hesfxj[0] = f*g*(g-1.0)*pow(xj+h,g-2.0);
+      <span class="keyword">break</span>;
+    case MSK_OPR_SQRT: <span class="comment">/* handle operator f * sqrt(x+g) */</span>
+      <span class="keyword">if</span> ( fxj )
+        fxj[0] = f*sqrt(g*xj+h); <span class="comment">/* The function value. */</span>
+
+      <span class="keyword">if</span> ( grdfxj )
+        grdfxj[0] = 0.5*f*g/sqrt(g*xj+h); <span class="comment">/* The gradient. */</span>
+
+
+      <span class="keyword">if</span> ( hesfxj )
+        hesfxj[0] = -0.25*f*g*g*pow(g*xj+h,-1.5);
+      <span class="keyword">break</span>;
+    <span class="keyword">default</span>:
+      printf("<span class="string">scopt.c: Unknown operator %d\n</span>",opr);
+      exit(0);
+  }
+
+  <span class="keyword">return</span> ( 0 );
+} <span class="comment">/* evalopr */</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="259025952">6.2. Exponential optimization</a></h1>
+
+<p> <a name="idx-79380776">&#09;</a> <a name="chap-mosekapi-sec-exponential-optimization">&#09;</a></p>
+
+<div>
+<h2><a name="259022216">6.2.1. The problem</a></h2>
+
+<p>An exponential optimization problem has the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math166.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{k\in{}J_{0}}}c_{k}e^{{\left(\sum \limits _{{j=0}}^{{n-1}}a_{{k,j}}x_{j}\right)}} &  &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{k\in{}J_{i}}}c_{k}e^{{\left(\sum \limits _{{j=0}}^{{n-1}}a_{{k,j}}x_{j}\right)}} & \leq{} & 1, & i=1,\ldots ,m,\\\nonumber{} & x\in{}\mathbb{R}^{n} &  &  &\end{array}\end{math}"/></td>
+<td><a name="ch-apiex-exp-nonseparable">&#09;</a>(6.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>where it is assumed that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math167.png" alt="\begin{displaymath}\nonumber{}\cup _{{i=0}}^{m}J_{k}=\lbrace{}1,\ldots ,T\rbrace{}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math168.png" alt="\begin{displaymath}\nonumber{}J_{i}\cap J_{j}=\emptyset\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>if <span class="math"><img src="math/math169.png" alt="[[MathCmd 169]]"/></span>.</p>
+
+<p>Given </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math170.png" alt="\begin{displaymath}\nonumber{}c_{i}>0,~,i=1,\ldots ,T\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>the problem (<a href="node008.html#ch-apiex-exp-nonseparable">6.2.1</a>) is a convex optimization problem which can be solved using MOSEK. We will call </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math171.png" alt="\begin{displaymath}\nonumber{}c_{t}e^{{\left(\sum \limits _{{j=0}}^{{n-1}}a_{{t,j}}x_{j}\right)}}=e^{{\left(\log (c_{t})+\sum \limits _{{j=0}}^{{n-1}}a_{{t,j}}x_{j}\right)}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>for a term and hence the number of terms is <span class="math"><span class="mi">T</span></span>.</p>
+
+<p>As stated the problem (<a href="node008.html#ch-apiex-exp-nonseparable">6.2.1</a>) is a nonseparable problem. However, using </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math172.png" alt="\begin{displaymath}\nonumber{}v_{t}=e^{{\left(\log (c_{t})+\sum \limits _{{j=0}}^{{n-1}}a_{{tj}}x_{j}\right)}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>we obtain the separable problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math173.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{t\in{}J_{0}}}e^{{v_{t}}} &  &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{t\in{}J_{i}}}e^{{v_{t}}} & \leq{} & 1, & i=1,\ldots ,m,\\\nonumber{} & \sum \limits _{{j=0}}^{{n-1}}a_{{t,j}}x_{j}-v_{t} & = & -\log (c_{t}), & t=0,\ldots ,T,\end{array}\end{math}"/></td>
+<td><a name="ch-apiex-exp-separable">&#09;</a>(6.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>which could be solved using the scopt interface discussed in Section <a title="6.1. Separable convex optimization" href="node008.html#sec-sepconvexopt">6.1</a>. A warning about this approach is that computing the function </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math174.png" alt="\begin{displaymath}\nonumber{}e^{x}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>using double-precision floating point numbers is only possible for small values of <span class="math"><span class="mi">x</span></span> in absolute value. Indeed <span class="math"><img src="math/math153.png" alt="[[MathCmd 153]]"/></span> grows very rapidly for larger <span class="math"><span class="mi">x</span></span> values, and numerical problems may arise when solving the problem on this form.</p>
+
+<p>It is also possible to reformulate the exponential optimization problem (<a href="node008.html#ch-apiex-exp-nonseparable">6.2.1</a>) as a dual geometric geometric optimization problem (<a href="node008.html#CH:APIEX:SEC:DGO:EQ:DGOP">6.4.1</a>). This is often the preferred solution approach because it is computationally more efficient and the numerical problems associated with evaluating <span class="math"><img src="math/math153.png" alt="[[MathCmd 153]]"/></span> for moderately large <span class="math"><span class="mi">x</span></span> values are avoided.</p>
+
+</div>
+
+<div>
+<h2><a name="259046504">6.2.2. Source code</a></h2>
+
+<p>The MOSEK distribution includes the source code for a program that enables you to: </p>
+
+<ol class="enumerate">
+<li>Read (and write) a data file stating an exponential optimization problem.</li>
+<li>Verify that the input data is reasonable.</li>
+<li>Solve the problem via the exponential optimization problem (<a href="node008.html#ch-apiex-exp-separable">6.2.2</a>) or the dual geometric optimization problem (<a href="node008.html#CH:APIEX:SEC:DGO:EQ:DGOP">6.4.1</a>).</li>
+<li>Write a solution file. </li>
+</ol>
+
+</div>
+
+<div>
+<h2><a name="259048296">6.2.3. Solving from the command line.</a></h2>
+
+<p> <a name="idx-79407296">&#09;</a></p>
+
+<p>In the following we will discuss the program <tt class="tt">mskexpopt</tt>, which is included in the MOSEK distribution, in both source code and compiled form. Hence, you can solve exponential optimization problems using the operating system command line or directly from your own C program.</p>
+
+<div>
+<h3><a name="259047576">6.2.3.1. The input format</a></h3>
+
+<p>First we will define a text input format for specifying an exponential optimization problem. This is as follows: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math177.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rll}\nonumber{}\mbox{* This is a comment} &  & \\\nonumber{}numcon &  & \\\nonumber{}numvar &  & \\\nonumber{}numter &  & \\\nonumber{}c_{1} &  & \\\nonumber{}c_{2} &  & \\\nonumber{}\vdots  &  & \\\nonumber{}c_{{numter}} &  & \\\nonumber{}i_{1} &  & \\\nonumber{}i_{2} &  & \\\nonumber{}\vdots  &  & \\\nonumber{}i_{{numter}} &  & \\\nonumber{}t_{1} & j_{{1}} & a_{{t_{1},j_{1}}}\\\nonumber{}t_{2} & j_{{2}} & a_{{t_{2},j_{2}}}\\\nonumber{}\vdots  & \vdots  & \vdots\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The first line is an optional comment line. In general everything occurring after a * is considered a comment. Lines 2 to 4 inclusive define the number of constraints (<span class="math"><span class="mi">m</span></span>), the number of variables (<span class="math"><span class="mi">n</span></span>), and the number of terms <span class="math"><span class="mi">T</span></span> in the problem. Then follows three sections containing the problem data.</p>
+
+<p>The first section </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math178.png" alt="\begin{displaymath}\nonumber{}\begin{array}{ll}\nonumber{}c_{1} & \\\nonumber{}c_{2} & \\\nonumber{}\vdots  & \\\nonumber{}c_{{numter}} &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>lists the coefficients <span class="math"><img src="math/math179.png" alt="[[MathCmd 179]]"/></span> of each term <span class="math"><span class="mi">t</span></span> in their natural order.</p>
+
+<p>The second section </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math180.png" alt="\begin{displaymath}\nonumber{}\begin{array}{ll}\nonumber{}i_{1} & \\\nonumber{}i_{2} & \\\nonumber{}\vdots  & \\\nonumber{}i_{{numter}} &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>specifies to which constraint each term belongs. Hence, for instance <span class="math"><img src="math/math181.png" alt="[[MathCmd 181]]"/></span> means that the term number 2 belongs to constraint 5. <span class="math"><img src="math/math182.png" alt="[[MathCmd 182]]"/></span> means that term number <span class="math"><span class="mi">t</span></span> belongs to the objective.</p>
+
+<p>The third section </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math183.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lll}\nonumber{}t_{1} & j_{{1}} & a_{{t_{1},j_{1}}}\\\nonumber{}t_{2} & j_{{2}} & a_{{t_{2},j_{2}}}\\\nonumber{}\vdots  & \vdots  & \vdots\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>defines the non-zero <span class="math"><img src="math/math184.png" alt="[[MathCmd 184]]"/></span> values. For instance the entry </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math185.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lll}\nonumber{}1 & 3 & 3.3\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>implies that <span class="math"><img src="math/math186.png" alt="[[MathCmd 186]]"/></span> for <span class="math"><span class="mi">t</span><span class="mo">=</span><span class="mn">1</span></span> and <span class="math"><span class="mi">j</span><span class="mo">=</span><span class="mn">3</span></span>.</p>
+
+<p>Please note that each <span class="math"><img src="math/math184.png" alt="[[MathCmd 184]]"/></span> should be specified only once.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="259092560">6.2.4. Choosing primal or dual form</a></h2>
+
+<p> One can choose to solve the exponential optimization problem directly in the primal form (<a href="node008.html#ch-apiex-exp-separable">6.2.2</a>) or on the dual form. By default <tt class="tt">mskexpopt</tt> solves a problem on the dual form since usually this is more efficient. The command line option </p>
+
+<pre class="verbatim">-primal 
+</pre>
+
+<p>chooses the primal form.</p>
+
+</div>
+
+<div>
+<h2><a name="259093856">6.2.5. An example</a></h2>
+
+<p>Consider the problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math188.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} & 40e^{{-x_{1}-1/2x_{2}-x_{3}}}+20e^{{x_{1}+x_{3}}}+40e^{{x_{1}+x_{2}+x_{3}}} &  & \\\nonumber{}\mbox{subject to} & \frac{1}{3}e^{{-2x_{1}-2x_{2}}}+\frac{4}{3}e^{{1/2x_{2}-x_{3}}} & \leq{} & 1.\end{array}\end{math}"/></td>
+<td><a name="ch-apiex-exp-separable-example1">&#09;</a>(6.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>This small problem can be specified as follows using the input format: <small class="small">
+<pre class="verbatim">* File : expopt1.eo
+
+1   * numcon
+3   * numvar
+5   * numter
+
+* Coefficients of terms
+
+40           
+20
+40
+0.3333333
+1.3333333
+
+* For each term, the index of the 
+* constraints to the term belongs
+
+0     
+0
+0
+1
+1
+
+* Section defining a_kj
+
+0 0 -1
+0 1 -0.5
+0 2 -1
+1 0 1.0
+1 2 1.0
+2 0 1.0
+2 1 1.0
+2 2 1.0
+3 0 -2
+3 1 -2
+4 1 0.5
+4 2 -1.0
+</pre>
+</small></p>
+
+<p>Using the program <tt class="tt">mskexpopt</tt> included in the MOSEK distribution the example can be solved. Indeed the command line </p>
+
+<pre class="verbatim">mskexpopt expopt1.eo
+</pre>
+
+<p>will produce the solution file <tt class="tt">expopt1.sol</tt> shown below.</p>
+
+<pre class="verbatim">PROBLEM STATUS      : PRIMAL_AND_DUAL_FEASIBLE
+SOLUTION STATUS     : OPTIMAL
+PRIMAL OBJECTIVE    : 1.331371e+02
+
+VARIABLES
+INDEX   ACTIVITY
+1       6.931471e-01
+2       -6.931472e-01
+3       3.465736e-01
+</pre>
+
+</div>
+
+<div>
+<h2><a name="259100968">6.2.6. Solving from your C code</a></h2>
+
+<p>The C source code for solving an exponential optimization problem is included in the MOSEK distribution. The relevant source code consists of the files: </p>
+
+<dl class="description">
+<dt><tt class="tt">expopt.h</tt>:</dt>
+<dd>
+<p> Defines prototypes for the functions: </p>
+
+<dl class="description">
+<dt><tt class="tt">MSK_expoptread</tt>:</dt>
+<dd>
+<p> Reads a problem from a file.</p>
+</dd>
+<dt><tt class="tt">MSK_expoptsetup</tt>:</dt>
+<dd>
+<p> Sets up a problem. The function takes the arguments: </p>
+
+<ul class="itemize">
+<li><tt class="tt">expopttask:</tt> A MOSEK task structure. </li>
+<li><tt class="tt">solveform:</tt> If 0, then the optimizer will choose whether the problem is solved on primal or dual form. If -1 the primal form is used and if <span class="math"><span class="mn">1</span></span> the dual form. </li>
+<li><tt class="tt">numcon:</tt> Number of constraints. </li>
+<li><tt class="tt">numvar:</tt> Number of variables. </li>
+<li><tt class="tt">numter:</tt> Number of terms <span class="math"><span class="mi">T</span></span>. </li>
+<li><tt class="tt">*subi:</tt> Array of length <tt class="tt">numter</tt> defining which constraint a term belongs to or zero for the objective. </li>
+<li><tt class="tt">*c:</tt> Array of length <tt class="tt">numter</tt> containing coefficients for the terms. </li>
+<li><tt class="tt">numanz:</tt> Length of <tt class="tt">subk</tt>, <tt class="tt">subj</tt>, and <tt class="tt">akj</tt>. </li>
+<li><tt class="tt">*subk:</tt> Term indexes. </li>
+<li><tt class="tt">*subj:</tt> Variable indexes.</li>
+<li>
+<p><tt class="tt">*akj:</tt> <tt class="tt">akj[i]</tt> is coefficient of variable <tt class="tt">subj[i]</tt> in term <tt class="tt">subk[i]</tt>, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math189.png" alt="\begin{displaymath}\nonumber{}a_{{\mathtt{subk}[i],\mathtt{subj}[i]}}=\mathtt{akj}[i].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li><tt class="tt">*expopthnd:</tt> Data structure containing nonlinear information. </li>
+</ul>
+</dd>
+<dt><tt class="tt">MSK_expoptimize</tt>:</dt>
+<dd>
+<p> Solves the problem and returns the problem status and the optimal primal solution.</p>
+</dd>
+<dt><tt class="tt">MSK_expoptfree</tt>:</dt>
+<dd>
+<p> Frees data structures allocated by <tt class="tt">MSK_expoptsetup</tt>. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">expopt.c</tt>:</dt>
+<dd>
+<p> Implements the functions specified in <tt class="tt">expopt.h</tt>.</p>
+</dd>
+<dt><tt class="tt">mskexpopt.c</tt>:</dt>
+<dd>
+<p> A command line interface. </p>
+</dd>
+</dl>
+
+<p>As a demonstration of the interface a C program that solves (<a href="node008.html#ch-apiex-exp-separable-example1">6.2.3</a>) is included below.</p>
+
+<div class="verbatimcode"><span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File     : tstexpopt.c
+
+   Purpose  : To demonstrate a simple interface for exponential optimization.
+*/</span>
+
+<span class="preprocessor">#include</span> &lt;string.h&gt;
+
+<span class="preprocessor">#include</span> "<span class="string">expopt.h</span>"
+
+<span class="type">void</span> MSKAPI printcb(<span class="type">void</span>* handle,<span class="type">char</span> str<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",str);
+}
+
+  
+<span class="type">int</span> main (<span class="type">int</span> argc, <span class="type">char</span> **argv)
+{
+  <span class="type">int</span>          r = MSK_RES_OK, numcon = 1, numvar = 3 , numter = 5;
+  
+  <span class="type">int</span>          subi<span class="brackets">[]</span>   = {0,0,0,1,1};
+  <span class="type">int</span>          subk<span class="brackets">[]</span>   = {0,0,0,1,1,2,2,2,3,3,4,4};
+  <span class="type">double</span>       c<span class="brackets">[]</span>      = {40.0,20.0,40.0,0.333333,1.333333};
+  <span class="type">int</span>          subj<span class="brackets">[]</span>   = {0,1,2,0,2,0,1,2,0,1,1,2};
+  <span class="type">double</span>       akj<span class="brackets">[]</span>    = {-1,-0.5,-1.0,1.0,1.0,1.0,1.0,1.0,-2.0,-2.0,0.5,-1.0};
+  <span class="type">int</span>          numanz   = 12;
+  <span class="type">double</span>       objval;
+  <span class="type">double</span>       xx[3];
+  <span class="type">double</span>       y[5];
+  MSKenv_t     env;
+  MSKprostae   prosta;
+  MSKsolstae   solsta;
+  MSKtask_t    expopttask;
+  expopthand_t expopthnd = <span class="keyword">NULL</span>;
+  <span class="comment">/* Pointer to data structure that holds nonlinear information */</span>
+  
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_makeenv (
+                     &amp;env, 
+                     <span class="keyword">NULL</span>,
+                     <span class="keyword">NULL</span>,
+                     <span class="keyword">NULL</span>,
+                     <span class="keyword">NULL</span>);
+      
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printcb);
+  
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_initenv(env);
+  
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    MSK_makeemptytask(env,&amp;expopttask);
+  
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_linkfunctotaskstream(expopttask,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printcb);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+  {
+    <span class="comment">/* Initialize expopttask with problem data */</span>    
+    r =  MSK_expoptsetup(expopttask,
+                         1, <span class="comment">/* Solve the dual formulation */</span>      
+                         numcon,
+                         numvar,
+                         numter,
+                         subi,
+                         c,
+                         subk,
+                         subj,
+                         akj,
+                         numanz,
+                         &amp;expopthnd
+                         <span class="comment">/* Pointer to data structure holding nonlinear data */</span>
+                         );
+  }
+
+  <span class="comment">/* Any parameter can now be changed with standard mosek function calls */</span> 
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_putintparam(expopttask,MSK_IPAR_INTPNT_MAX_ITERATIONS,200); 
+
+  <span class="comment">/* Optimize, xx holds the primal optimal solution,
+   y holds solution to the dual problem if the dual formulation is used
+  */</span>
+  
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_expoptimize(expopttask,
+                        &amp;prosta,
+                        &amp;solsta,
+                        &amp;objval,
+                        xx,
+                        y,
+                        &amp;expopthnd);
+    
+  <span class="comment">/* Free data allocated by expoptsetup */</span>
+  <span class="keyword">if</span> (expopthnd)
+    MSK_expoptfree(expopttask,
+                   &amp;expopthnd);
+  
+  MSK_deletetask(&amp;expopttask);
+  MSK_deleteenv(&amp;env);
+  
+}
+</div>
+
+</div>
+
+<div>
+<h2><a name="259117280">6.2.7. A warning about exponential optimization problems</a></h2>
+
+<p> Exponential optimization problem may in some cases have a final optimal objective value for a solution containing infinite values. Consider the simple example </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math190.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rl}\nonumber{}\mathrm{min} & e^{x}\\\nonumber{}\mathrm{s.t.} & x\in{}\mathbb{R}{},\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which has the optimal objective value 0 at <span class="math"><span class="mi">x</span><span class="mo">=</span><span class="mo">-</span>&infin;</span>. Similar problems can occur in constraints.</p>
+
+<p>Such a solution can not in general be obtained by numerical methods, which means that MOSEK will act unpredictably in these situations &mdash; possibly failing to find a meaningful solution or simply stalling.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="259122456">6.3. General convex optimization</a></h1>
+
+<p> MOSEK provides an interface for general convex optimization which is discussed in this section.</p>
+
+<div>
+<h2><a name="259117928">6.3.1. A warning</a></h2>
+
+<p> Using the general convex optimization interface in MOSEK is complicated. It is recommended to use the conic solver, the quadratic solver or the <tt class="tt">scopt</tt> interface whenever possible. Alternatively GAMS or AMPL with MOSEK as solver are well-suited for general convex optimization problems.</p>
+
+</div>
+
+<div>
+<h2><a name="259122960">6.3.2. The problem</a></h2>
+
+<p>A general nonlinear convex optimization problem is to minimize or maximize an objective function of the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math191.png" alt="\begin{math}\nonumber{}\displaystyle f(x)+\frac{1}{2}\sum _{{i=0}}^{{n-1}}\sum _{{j=0}}^{{n-1}}q_{{i,j}}^{o}x_{i}x_{j}+\sum _{{j=0}}^{{n-1}}c_{j}x_{j}+c^{f}\end{math}"/></td>
+<td><a name="CH:API:EQ:DEFOBJ">&#09;</a>(6.3.1)</td></tr>
+</tbody>
+</table>
+
+<p>subject to the functional constraints </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math192.png" alt="\begin{math}\nonumber{}\displaystyle l_{k}^{c}\leq{}g_{k}(x)+\frac{1}{2}\sum _{{i=0}}^{{n-1}}\sum _{{j=0}}^{{n-1}}q_{{i,j}}^{k}x_{i}x_{j}+\sum _{{j=0}}^{{n-1}}a_{{k,j}}x_{j}\leq{}u_{k}^{c},~k=0,\ldots ,m-1,\end{math}"/></td>
+<td><a name="CH:API:EQ:DEFCON">&#09;</a>(6.3.2)</td></tr>
+</tbody>
+</table>
+
+<p>and the bounds </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math193.png" alt="\begin{math}\nonumber{}\displaystyle l_{j}^{x}\leq{}x_{j}\leq{}u_{j}^{x},~j=0,\ldots ,n-1.\end{math}"/></td>
+<td><a name="CH:API:EQ:DEF:BOUNDS">&#09;</a>(6.3.3)</td></tr>
+</tbody>
+</table>
+
+<p> Please note that this problem is a generalization of linear and quadratic optimization. This implies that the parameters <span class="math"><span class="mi">c</span></span>, <span class="math"><span class="mi">A</span></span>, <span class="math"><img src="math/math36.png" alt="[[MathCmd 36]]"/></span>, <span class="math"><span class="mi">Q</span></span>, and so forth denote the same as in the case of linear and quadratic optimization. All linear and quadratic terms should be inputted to MOSEK as described for these problem classes. The general convex part of the problems is defined by the functions <span class="math"><span class="mi">f</span><span class="mo">(</span><span class="mi">x</span><span class="mo">)</span></span> and <span class="math"><img src="math/math195.png" alt="[[MathCmd 195]]"/></span>, which must be general nonlinear, twice differentiable functions.</p>
+
+</div>
+
+<div>
+<h2><a name="259125192">6.3.3. Assumptions about a nonlinear optimization problem</a></h2>
+
+<p>MOSEK makes two assumptions about the optimization problem.</p>
+
+<p>The first assumption is that all functions are at least twice differentiable on their domain. More precisely, <span class="math"><span class="mi">f</span><span class="mo">(</span><span class="mi">x</span><span class="mo">)</span></span> and <span class="math"><span class="mi">g</span><span class="mo">(</span><span class="mi">x</span><span class="mo">)</span></span> must be at least twice differentiable for all <span class="math"><span class="mi">x</span></span> so that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math196.png" alt="\begin{displaymath}\nonumber{}l^{x}<x<u^{x}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> The second assumption is that </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math197.png" alt="\begin{math}\nonumber{}f(x)+\frac{1}{2}x^{T}Q^{o}x\end{math}"/></td>
+<td>(6.3.4)</td></tr>
+</tbody>
+</table>
+
+<p>must be a convex function if the objective is minimized. Otherwise if the objective is maximized it must be a concave function. Moreover, </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math198.png" alt="\begin{math}\nonumber{}g_{k}(x)+\frac{1}{2}x^{T}Q^{k}x\end{math}"/></td>
+<td>(6.3.5)</td></tr>
+</tbody>
+</table>
+
+<p>must be a convex function if </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math199.png" alt="\begin{displaymath}\nonumber{}u_{k}^{c}<\infty\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and a concave function if </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math200.png" alt="\begin{displaymath}\nonumber{}l_{k}^{c}>-\infty .\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Note in particular that nonlinear equalities are not allowed.</p>
+
+<p><b>If these two assumptions are not satisfied, then it cannot be guaranteed that MOSEK produces correct results or works at all</b>.</p>
+
+</div>
+
+<div>
+<h2><a name="259128064">6.3.4. Specifying general convex terms</a></h2>
+
+<p>MOSEK receives information about the general convex terms via two call-back functions implemented by the user: </p>
+
+<ul class="itemize">
+<li><a href="node017.html#common-typedef*mosek*nlgetspfunc"><tt class="tt">MSK_nlgetspfunc</tt></a>: For parsing information on structural information about <span class="math"><span class="mi">f</span></span> and <span class="math"><span class="mi">g</span></span>.</li>
+<li><a href="node017.html#common-typedef*mosek*nlgetvafunc"><tt class="tt">MSK_nlgetvafunc</tt></a>: For parsing information on numerical information about <span class="math"><span class="mi">f</span></span> and <span class="math"><span class="mi">g</span></span>. </li>
+</ul>
+
+<p>The call-back functions are passed to MOSEK with the function <a href="node017.html#common-func*mosek*task*putnlfunc"><tt class="tt">MSK_putnlfunc</tt></a>.</p>
+
+<p>For an example of using the general convex framework see Section <a title="6.4. Dual geometric optimization" href="node008.html#sec-dgopt">6.4</a>.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="259132448">6.4. Dual geometric optimization</a></h1>
+
+<p> <a name="sec-dgopt">&#09;</a> <a name="idx-81215568">&#09;</a> <a name="idx-81216216">&#09;</a></p>
+
+<p>Dual geometric is a special class of nonlinear optimization problems involving a nonlinear and nonseparable objective function. In this section we will show how to solve dual geometric optimization problems using MOSEK.</p>
+
+<div>
+<h2><a name="259130072">6.4.1. The problem</a></h2>
+
+<p>  Consider the dual geometric optimization problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math201.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & f(x) &  & \\\nonumber{}\mbox{subject to} & Ax & = & b,\\\nonumber{} & x\geq{}0, &  &\end{array}\end{math}"/></td>
+<td><a name="CH:APIEX:SEC:DGO:EQ:DGOP">&#09;</a>(6.4.1)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math133.png" alt="[[MathCmd 133]]"/></span> and all other quantities have conforming dimensions. Let <span class="math"><span class="mi">t</span></span> be an integer and <span class="math"><span class="mi">p</span></span> be a vector of <span class="math"><span class="mi">t</span><span class="mo">+</span><span class="mn">1</span></span> integers satisfying the conditions </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math203.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcll}\nonumber{}p_{0} & = & 0, & \\\nonumber{}p_{i} & < & p_{{i+1}}, & i=1,\ldots ,t,\\\nonumber{}p_{{t}} & = & n. &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Then <span class="math"><span class="mi">f</span></span> can be stated as follows </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math204.png" alt="\begin{displaymath}\nonumber{}f(x)=\sum \limits _{{j=0}}^{{n-1}}x_{j}\ln \left(\frac{v_{j}}{x_{j}}\right)+\sum \limits _{{i=1}}^{t}\left(\sum \limits _{{j=p_{i}}}^{{p_{{i+1}}-1}}x_{j}\right)\ln \left(\sum \limits _{{j=p_{i}}}^{{p_{{i+1}}-1}}x_{j}\right)\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math205.png" alt="[[MathCmd 205]]"/></span> is a vector positive positive values.</p>
+
+<p>Given these assumptions, it can be proven that <span class="math"><span class="mi">f</span></span> is a concave function and therefore the dual geometric optimization problem can be solved using MOSEK.</p>
+
+<p>For a thorough discussion of geometric optimization see [<a href="node029.html#BAZARAA:93:A" class="citation">18</a>, pp. 531-538].</p>
+
+<p>We will introduce the following definitions: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math206.png" alt="\begin{displaymath}\nonumber{}x^{i}:=\left[\begin{array}{c}\nonumber{}x_{{p_{i}}}\\\nonumber{}x_{{p_{i}+1}}\\\nonumber{}\vdots \\\nonumber{}x_{{p_{{i+1}}-1}}\end{array}\right],\quad{}X^{i}:=\mbox{diag}(x^{i}),\quad{}\mbox{and}\quad{}e^{i}:=\left[\begin{array}{c}\nonumber{}1\\\nonumber{}\vdots \\\nonumber{}1\end{array}\right]\in{}\mathbb{R}^{{p_{{i+1}}-p_{i}}}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which make it possible to state <span class="math"><span class="mi">f</span></span> on the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math207.png" alt="\begin{displaymath}\nonumber{}f(x)=\sum \limits _{{j=0}}^{{n-1}}x_{j}\ln \left(\frac{v_{j}}{x_{j}}\right)+\sum \limits _{{i=1}}^{t}((e^{i})^{T}x^{i})\ln ((e^{i})^{T}x^{i}).\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Furthermore, we have that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math208.png" alt="\begin{displaymath}\nonumber{}\nabla f(x)=\left[\begin{array}{c}\nonumber{}\ln (v_{0})-1-\ln (x_{0})\\\nonumber{}\vdots \\\nonumber{}\ln (v_{j})-1-\ln (x_{j})\\\nonumber{}\vdots \\\nonumber{}\ln (v_{{n-1}})-1-\ln (x_{{n-1}})\end{array}\right]+\left[\begin{array}{c}\nonumber{}0e^{0}\\\nonumber{}(1+\ln ((e^{1})^{T}x^{1}))e^{1}\\\nonumber{}\vdots \\\nonumber{}(1+\ln ((e^{i})^{T}x^{i}))e^{i}\\\nonumber{}\vdots \\\nonumber{}(1+\ln ((e^{t})^{T}x^{t}))e^{t}\end{array}\right]\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math209.png" alt="\begin{displaymath}\nonumber{}\begin{array}{c}\nonumber{}\nabla ^{2}f(x)=\\\nonumber{}\left[\begin{array}{ccccc}\nonumber{}-(X^{0})^{{-1}} & 0 & 0 & \cdots  & 0\\\nonumber{}0 & \frac{e^{1} (e^{1})^{T}}{(e^{1})^{T} x^{1}}-(X^{1})^{{-1}} & 0 & \cdots  & 0\\\nonumber{}0 & 0 & \ddots  & \cdots  & 0\\\nonumber{}\vdots  & \vdots  & \vdots  & \ddots  & \vdots \\\nonumber{}0 & 0 & 0 & 0 & \frac{e^{t} (e^{t})^{T}}{(e^{t})^{T} x^{t}}-(X^{t})^{{-1}}\end{array}\right].\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> Please note that the Hessian is a block diagonal matrix and, especially if <span class="math"><span class="mi">t</span></span> is large, it is very sparse &mdash; MOSEK will automatically exploit these features to speed up computations. Moreover, the Hessian can be computed cheaply, specificly in </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math210.png" alt="\begin{displaymath}\nonumber{}O\left(\sum \limits _{{i=0}}^{t}(p_{{i+1}}-p_{i})^{2}\right)\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>operations.</p>
+
+</div>
+
+<div>
+<h2><a name="260801456">6.4.2. A numerical example</a></h2>
+
+<p> In the following we will use the data </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math211.png" alt="\begin{displaymath}\nonumber{}A=\left[\begin{array}{ccccc}\nonumber{}-1 & 1 & 1 & -2 & 0\\\nonumber{}-0.5 & 0 & 1 & -2 & 0.5\\\nonumber{}-1 & 1 & 1 & 0 & -1\\\nonumber{}1 & 1 & 1 & 0 & 0\end{array}\right],\quad{}b=\left[\begin{array}{c}\nonumber{}0\\\nonumber{}0\\\nonumber{}0\\\nonumber{}1\end{array}\right],\quad{}v=\left[\begin{array}{c}\nonumber{}40\\\nonumber{}20\\\nonumber{}40\\\nonumber{}\frac{1}{3}\end{array}\right]\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and the function <span class="math"><span class="mi">f</span></span> given by </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math212.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}f(x) & = & \sum \limits _{{j=0}}^{4}x_{j}\ln \left(\frac{v_{j}}{x_{j}}\right)\\\nonumber{} &  & +(x_{3}+x_{4})\ln (x_{3}+x_{4})\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>for demonstration purposes.</p>
+
+</div>
+
+<div>
+<h2><a name="260821648">6.4.3. <tt class="tt">dgopt</tt>: A program for dual geometric optimization</a></h2>
+
+<p> The generic dual geometric optimization problem and a numerical example have been presented and we will now develop a program which can solve the dual geometric optimization problem using the MOSEK API.</p>
+
+<div>
+<h3><a name="260801528">6.4.3.1. Data input</a></h3>
+
+<p> The first problem is how to feed the problem data into MOSEK. Since the constraints of the optimization problem are linear, they can be specified fully using an MPS file as in the purely linear case. The MPS file for the numerical data above will look as follows: </p>
+
+<pre class="verbatim">NAME
+ROWS
+ N  obj
+ E  c1      
+ E  c2      
+ E  c3      
+ E  c4      
+COLUMNS
+    x1        obj       0
+    x1        c1        -1
+    x1        c2        -0.5
+    x1        c3        -1
+    x1        c4        1
+    x2        obj       0
+    x2        c1        1
+    x2        c3        1
+    x2        c4        1
+    x3        obj       0
+    x3        c1        1
+    x3        c2        1
+    x3        c3        1
+    x3        c4        1
+    x4        obj       0
+    x4        c1        -2
+    x4        c2        -2
+    x5        obj       0
+    x5        c2        0.5
+    x5        c3        -1
+RHS
+    rhs       c4        1
+RANGES
+BOUNDS
+ENDATA
+</pre>
+
+<p>Moreover, a file specifying <span class="math"><span class="mi">f</span></span> is required so for that purpose we define a file: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math213.png" alt="\begin{displaymath}\nonumber{}\begin{array}{c}\nonumber{}t\\\nonumber{}v_{0}\\\nonumber{}v_{1}\\\nonumber{}\vdots \\\nonumber{}v_{{n-1}}\\\nonumber{}p_{1}-p_{0}\\\nonumber{}p_{2}-p_{1}\\\nonumber{}\vdots \\\nonumber{}p_{t}-p_{{t-1}}\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Hence, for the numerical example this file has the format:</p>
+
+<pre class="verbatim">2
+40.0
+20.0
+40.0
+0.33333333333333
+1.33333333333333
+3
+2
+</pre>
+
+</div>
+
+<div>
+<h3><a name="260829336">6.4.3.2. Solving the numerical example</a></h3>
+
+<p>The example is solved by executing the command line </p>
+
+<pre class="verbatim">mskdgopt examp/data/dgo.mps examples/data/dgo.f
+</pre>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="260830416">6.4.4. The source code: <tt class="tt">dgopt</tt></a></h2>
+
+<p> The source code for the <tt class="tt">dgopt</tt> consists of the files: </p>
+
+<ul class="itemize">
+<li><tt class="tt">dgopt.h</tt> and <tt class="tt">dgopt.c</tt>: Functions for reading and solving the dual geometric optimization problem. </li>
+<li><tt class="tt">mskdgopt.c</tt> : The command line interface. </li>
+</ul>
+
+<p>These files are available in the MOSEK distribution in the directory: </p>
+
+<pre class="verbatim">mosek/6/tools/examples/c
+</pre>
+
+<p>The basic functionality of <tt class="tt">dgopt</tt> can be gathered by studying the function <tt class="tt">main</tt> in <tt class="tt">mskdgopt.c</tt>. This function first loads the linear part of the problem from an MPS file into the task. Next, the nonlinear part of the problem is read from a file with the function <tt class="tt">MSK_dgoptread</tt>. Finally, the nonlinear function is created and inputted with <tt class="tt">MSK_dgoptsetup</tt> and the problem is solved. The solution is written to the file <tt class="tt">dgopt.sol</tt>.</p>
+
+<p>The following functions in <tt class="tt">dgopt.c</tt> are used to set up the information about the evaluation of the nonlinear objective function: </p>
+
+<dl class="description">
+<dt><tt class="tt">MSK_dgoread</tt></dt>
+<dd>
+<p> The purpose of this function is to read data from a file which specifies the nonlinear function <span class="math"><span class="mi">f</span></span> in the objective.</p>
+</dd>
+<dt><tt class="tt">MSK_dgosetup</tt></dt>
+<dd>
+<p> This function creates the problem in the task. The information parsed to the function is stored in a data structure called <tt class="tt">nlhandt</tt>, defined in the program. This structure is later passed to the functions <tt class="tt">gostruc</tt> and <tt class="tt">goeval</tt> which are used to compute the gradient and the Hessian of <span class="math"><span class="mi">f</span></span>. </p>
+</dd>
+<dt><tt class="tt">gostruc</tt></dt>
+<dd>
+<p> This function is a call-back function used by MOSEK. The function reports structural information about <span class="math"><span class="mi">f</span></span> such as the number of non-zeros in the Hessian and the sparsity pattern of the Hessian.</p>
+</dd>
+<dt><tt class="tt">goeval</tt></dt>
+<dd>
+<p> This function is a call-back function used by MOSEK. It reports numerical information about <span class="math"><span class="mi">f</span></span> such as the objective value and gradient for a particular <span class="math"><span class="mi">x</span></span> value. </p>
+</dd>
+</dl>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="260840120">6.5. Linear network flow problems</a></h1>
+
+<p> <a name="chap-apiintro-sec-linear-network-optimization">&#09;</a>  <a name="idx-81324080">&#09;</a></p>
+
+<p>Network flow problems are a special class of linear optimization problems which has many applications. A network consists of a set of points connected by a set of lines. Usually the points and lines are called <em>nodes</em> and <em>arcs</em>. Arcs may have an direction on them. The network is directed if all arcs are directed. The class of network flow problems is defined as follows.
+<br/>Let <span class="math"><img src="math/math214.png" alt="[[MathCmd 214]]"/></span> be a directed network of nodes <span class="math"><img src="math/math215.png" alt="[[MathCmd 215]]"/></span> and arcs <span class="math"><img src="math/math216.png" alt="[[MathCmd 216]]"/></span>. Associated with every arc <span class="math"><img src="math/math217.png" alt="[[MathCmd 217]]"/></span> is a cost <span class="math"><img src="math/math218.png" alt="[[MathCmd 218]]"/></span> and a capacity <span class="math"><img src="math/math219.png" alt="[[MathCmd 219]]"/></span>. Moreover, associated with each node <span class="math"><img src="math/math220.png" alt="[[MathCmd 220]]"/></span> in the network is a lower limit <span class="math"><img src="math/math221.png" alt="[[MathCmd 221]]"/></span> and an upper limit <span class="math"><img src="math/math222.png" alt="[[MathCmd 222]]"/></span> on the demand (supply) of the node. The minimum cost of a network flow problem can be stated as follows: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math223.png" alt="\begin{math}\nonumber{}\begin{array}{lcccccl}\nonumber{}\mbox{minimize} &  &  & \sum \limits _{{(i,j)\in{}\mathcal{A}}}c_{{ij}}x_{{ij}} &  &  & \\\nonumber{}\mbox{subject to} & l^{c}_{{i}} & \leq{} & \sum \limits _{{\lbrace{}j:(i,j)\in{}\mathcal{A}\rbrace{}}}x_{{ij}}-\sum \limits _{{\lbrace{}j:(j,i)\in{}\mathcal{A}\rbrace{}}}x_{{ji}} & \leq{} & u^{c}_{{i}} & \forall i\in{}\mathcal{N},\\\nonumber{} & l^{x}_{{ij}} & \leq{} & x_{{ij}} & \leq{} & u^{x}_{{ij}} & \forall (i,j)\in{}\mathcal{A}.\end{array}\end{math}"/></td>
+<td><a name="pure-network-flow-problem">&#09;</a>(6.5.1)</td></tr>
+</tbody>
+</table>
+
+<p>A classical example of a network flow problem is the transportation problem where the objective is to distribute goods from warehouses to customers at lowest possible total cost, see [<a href="node029.html#AHUJA:89:A" class="citation">7</a>] for a detailed application reference.</p>
+
+<p>The above graph formulation of the network flow problem implies the structural properties. Each variable appears in exactly two constraints with a numerical value of either <span class="math"><img src="math/math224.png" alt="[[MathCmd 224]]"/></span> or <span class="math"><img src="math/math225.png" alt="[[MathCmd 225]]"/></span>.</p>
+
+<p>It is well-known that problems with network flow structure can be solved efficiently with a specialized version of the simplex method. MOSEK includes such a network simplex implementation which can be called either directly using <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">MSK_netoptimize</tt></a> or indirectly by letting the standard simplex optimizer extract the embedded network. This section shows how to solve a network problem by a direct call to <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">MSK_netoptimize</tt></a>. For further details on how to exploit embedded network in the standard simplex optimizer, see Section <a title="8.3.1. Network flow problems" href="node010.html#solving-network-problems">8.3.1</a>.</p>
+
+<div>
+<h2><a name="260855352">6.5.1. A linear network flow problem example</a></h2>
+
+<p> <a name="chap-apiintro-sec-linear-network-example">&#09;</a> <a name="idx-81363456">&#09;</a> The following is an example of a linear network optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math226.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & x_{0} &  &  & + & x_{2} & + &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & -x_{0} &  &  &  &  & + & x_{3} &  &  &  &  & = & 1,\\\nonumber{} &  &  &  &  & x_{2} & - & x_{3} & + & x_{4} & + & x_{5} & = & -2,\\\nonumber{} & x_{0} & - & x_{1} &  &  &  &  & - & x_{4} & - & x_{5} & = & 0,\\\nonumber{} &  &  & x_{1} & - & x_{2} & + &  &  &  &  &  & = & 0,\end{array}\end{math}"/></td>
+<td><a name="net-prob">&#09;</a>(6.5.2)</td></tr>
+</tbody>
+</table>
+
+<p>having the bounds <span class="math"><img src="math/math227.png" alt="[[MathCmd 227]]"/></span>.</p>
+
+<p>The corresponding graph <span class="math"><img src="math/math214.png" alt="[[MathCmd 214]]"/></span> is displayed in fig.<a href="node008.html#fig-network">6.1</a>.</p>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td><center>
+<p> <img src="graphics/network.png"/> </p>
+<span class="caption">Figure&nbsp;6.1: Simple network.</span>
+<br/>
+<p> <a name="fig-network">&#09;</a> </p>
+</center></td></tr></table>
+
+</div>
+
+<div>
+<h3><a name="260890352">6.5.1.1. Source code</a></h3>
+
+<p> <a name="idx-81379200">&#09;</a><a name="sec:network1-source">&#09;</a></p>
+
+<p>In this section we will show how to solve (<a href="node008.html#net-prob">6.5.2</a>) with the network optimizer.</p>
+
+<p>The C program included below, which solves this problem, is distributed with MOSEK and can be found in the directory</p>
+
+<pre class="verbatim">  mosek\6\tools\examples\c
+</pre>
+
+<div class="verbatimcode"><span class="preprocessor">#include</span> &lt;stdio.h&gt;
+<span class="preprocessor">#include</span> &lt;stdlib.h&gt;
+<span class="preprocessor">#include</span> &lt;string.h&gt;
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>"
+
+<span class="comment">/*
+  Demonstrates a simple use of the network optimizer.
+
+   Purpose: 1. Specify data for a network.
+            2. Solve the network problem with the network optimizer.
+ */</span>
+
+<span class="comment">/* Network sizes */</span>
+<span class="preprocessor">#define</span> NUMCON 4 <span class="comment">/* Nodes in network */</span>
+<span class="preprocessor">#define</span> NUMVAR 6 <span class="comment">/* Arcs in network */</span>
+
+<span class="type">void</span> MSKAPI printlog(<span class="type">void</span> *ptr,
+                     <span class="type">char</span> s<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",s);
+} <span class="comment">/* printlog */</span>
+
+<span class="comment">/* Main function  */</span>
+<span class="type">int</span> main(<span class="type">int</span> argc, <span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+  MSKrescodee         r;
+  MSKenv_t            env;
+  MSKtask_t           dummytask=<span class="keyword">NULL</span>;
+  MSKidxt             from<span class="brackets">[]</span> = {0,2,3,1,1,1},
+                      to<span class="brackets">[]</span>   = {2,3,1,0,2,2};
+  MSKrealt            cc<span class="brackets">[]</span>   = {0.0,0.0},
+                      cx<span class="brackets">[]</span>   = {1.0,0.0,1.0,0.0,-1.0,1.0},
+                      blc<span class="brackets">[]</span>  = {1.0,1.0,-2.0,0.0},
+                      buc<span class="brackets">[]</span>  = {1.0,1.0,-2.0,0.0}, 
+                      blx<span class="brackets">[]</span>  = {0.0,0.0,0.0,0.0,0.0,0.0},
+                      bux<span class="brackets">[]</span>  = {MSK_INFINITY,MSK_INFINITY,MSK_INFINITY,
+                               MSK_INFINITY,MSK_INFINITY,MSK_INFINITY},
+                      xc[NUMCON],xx[NUMVAR],y[NUMCON],slc[NUMCON],
+                      suc[NUMCON],slx[NUMVAR],sux[NUMVAR];
+  MSKboundkeye        bkc<span class="brackets">[]</span> = {MSK_BK_FX,MSK_BK_FX,MSK_BK_FX,MSK_BK_FX},
+                      bkx<span class="brackets">[]</span> = {MSK_BK_LO,MSK_BK_LO,MSK_BK_LO,MSK_BK_LO,
+                               MSK_BK_LO,MSK_BK_LO};
+  MSKstakeye          skc[NUMCON],skx[NUMVAR];
+  MSKprostae          prosta;
+  MSKsolstae          solsta;
+  <span class="type">int</span>                 i,j;
+  
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printlog);
+    
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_initenv(env);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Create an optimization task. 
+       Will be used as a dummy task in MSK_netoptimize, parameters can be set here */</span>
+    r = MSK_maketask(env,0,0,&amp;dummytask);
+  }
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    MSK_linkfunctotaskstream(dummytask, MSK_STREAM_LOG, <span class="keyword">NULL</span>,     printlog);
+  }
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    r = MSK_putobjsense(dummytask, MSK_OBJECTIVE_SENSE_MAXIMIZE);
+  }
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Solve network problem with a direct call into the network optimizer */</span>
+    r =  MSK_netoptimize(dummytask,
+                         NUMCON,
+                         NUMVAR,
+                         cc,
+                         cx,
+                         bkc,
+                         blc,
+                         buc,
+                         bkx,
+                         blx,
+                         bux,
+                         from,
+                         to,
+                         &amp;prosta,
+                         &amp;solsta,
+                         0,
+                         skc,
+                         skx,
+                         xc,
+                         xx,
+                         y,
+                         slc,
+                         suc,
+                         slx,
+                         sux);
+
+    <span class="keyword">if</span> ( solsta == MSK_SOL_STA_OPTIMAL )
+    {
+      printf("<span class="string">Network problem is optimal\n</span>");
+
+      printf("<span class="string">Primal solution is :\n</span>");
+      <span class="keyword">for</span>( i = 0; i &lt; NUMCON; ++i )
+        printf("<span class="string">xc[%d] = %-16.10e\n</span>",i,xc[i]);
+
+      <span class="keyword">for</span>( j = 0; j &lt; NUMVAR; ++j )
+        printf("<span class="string">Arc(%d,%d) -&gt; xx[%d] = %-16.10e\n</span>",from[j],to[j],j,xx[j]);
+    }
+    <span class="keyword">else</span> <span class="keyword">if</span> ( solsta == MSK_SOL_STA_PRIM_INFEAS_CER )
+    {
+      printf("<span class="string">Network problem is primal infeasible\n</span>");
+    }
+    <span class="keyword">else</span> <span class="keyword">if</span> ( solsta == MSK_SOL_STA_DUAL_INFEAS_CER )
+    {
+      printf("<span class="string">Network problem is dual infeasible\n</span>");
+    }
+    <span class="keyword">else</span>
+    {
+      printf("<span class="string">Network problem solsta : %d\n</span>",solsta);
+    }
+  }
+
+  MSK_deletetask(&amp;dummytask);
+  MSK_deleteenv(&amp;env);
+}
+</div>
+
+</div>
+
+<div>
+<h3><a name="260888840">6.5.1.2. Example code comments</a></h3>
+
+<p> There are a few important differences between the linear network optimization example in section <a title="6.5.1.1. Source code" href="node008.html#sec:network1-source">6.5.1.1</a> and the general linear optimization problem in section <a title="5.2. Linear optimization" href="node007.html#chap-apiintro-sec-linear-optimization">5.2</a>. </p>
+
+<ul class="itemize">
+<li>MOSEK allows that network problems can be inputted and optimized using one function call to the function <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">MSK_netoptimize</tt></a>. This is more efficient and uses less memory than a call to the standard optimizer. </li>
+<li>Since we know that each column of matrix <span class="math"><span class="mi">A</span></span> has two non-zeroes, it can be stored in two arrays, <tt class="tt">from</tt> and <tt class="tt">to</tt>, specifying the origin and destination of the arcs (variables), see graph in fig.fig-network. </li>
+<li>The solution is written directly to <tt class="tt">skc</tt>, <tt class="tt">skx</tt>, <tt class="tt">xc</tt>, <tt class="tt">xx</tt>, <tt class="tt">y</tt>, <tt class="tt">slc</tt>, <tt class="tt">suc</tt>, <tt class="tt">slx</tt> and <tt class="tt">sux</tt> by <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">MSK_netoptimize</tt></a>. </li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="260885248">6.6. Embedded network flow problems</a></h1>
+
+<p> <a name="advanced-embedded-network">&#09;</a>  <a name="idx-83059416">&#09;</a></p>
+
+<p>Often problems contains both large parts with network structure and some non-network constraints or variables &mdash; such problems are said to have <em>embedded network structure</em>.</p>
+
+<p>A linear optimization with embedded network structure problem can be written as : <a name="idx-83043248">&#09;</a> </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math229.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  & \\\nonumber{}\mbox{subject to} & l^{c}_{N} & \leq{} & Nx & \leq{} & u^{c}_{N},\\\nonumber{} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\end{array}\end{math}"/></td>
+<td><a name="embedded-network-specs">&#09;</a>(6.6.1)</td></tr>
+</tbody>
+</table>
+
+<p>Where the constraints</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math230.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}l^{c}_{N} & \leq{} & Nx & \leq{} & u^{c}_{N}\end{array}\end{math}"/></td>
+<td>(6.6.2)</td></tr>
+</tbody>
+</table>
+
+<p>defines a network as explained in section <a title="6.5. Linear network flow problems" href="node008.html#chap-apiintro-sec-linear-network-optimization">6.5</a>, and the constraints</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math231.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}l^{c} & \leq{} & Ax & \leq{} & u^{c}\end{array}\end{math}"/></td>
+<td>(6.6.3)</td></tr>
+</tbody>
+</table>
+
+<p>defines the general non-network linear constraints. As an example consider the small linear optimization problem</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math232.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & -x_{0} &  &  & + & x_{2} &  &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & 0.50x_{0} &  &  &  &  & + & 0.50x_{3} &  &  &  &  & = & 0.5,\\\nonumber{} &  &  &  &  & 0.50x_{2} & - & 0.50x_{3} & + & 0.50x_{4} & + & 0.50x_{5} & = & -1,\\\nonumber{} & -0.25x_{0} & + & -2.50x_{1} & + &  &  &  & - & 0.25x_{4} & - & 0.25x_{5} & = & 0,\\\nonumber{} &  &  & 2.50x_{1} & - & 0.25x_{2} &  &  &  &  &  &  & = & 0,\\\nonumber{} &  & - & x_{1} & + & x_{2} & + & x_{3} &  &  & + & x_{5} & \geq{} & 6,\end{array}\end{math}"/></td>
+<td><a name="net-em-prob">&#09;</a>(6.6.4)</td></tr>
+</tbody>
+</table>
+
+<p>with the bounds </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math233.png" alt="\begin{displaymath}\nonumber{}-\infty \leq{}x_{0}\leq{}0,0\leq{}x_{j}\leq{}\infty \mbox{ for }j=1\ldots 5.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> Recalling the network flow problem structural properties from section <a href="node008.html#pure-network-flow-problem">6.5.1</a>, each variable should appear in exactly two constraints with coefficients of either <span class="math"><img src="math/math224.png" alt="[[MathCmd 224]]"/></span> or <span class="math"><img src="math/math225.png" alt="[[MathCmd 225]]"/></span>.</p>
+
+<p>At first glance it does not seem to contain any network structure, but if we scale constraints 1-4 by respectively 2.0, 2.0, 4.0, 4.0 and columns 1-2 by -1.0, 0.1 we get the following problem :</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math236.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & x_{0} &  &  & + & x_{2} & + &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & -x_{0} &  &  &  &  & + & x_{3} &  &  &  &  & = & 1,\\\nonumber{} &  &  &  &  & x_{2} & - & x_{3} & + & x_{4} & + & x_{5} & = & -2,\\\nonumber{} & x_{0} & - & x_{1} &  &  &  &  & - & x_{4} & - & x_{5} & = & 0,\\\nonumber{} &  &  & x_{1} & - & x_{2} & + &  &  &  &  &  & = & 0,\\\nonumber{} &  &  & x_{1} & + & x_{2} & + & x_{3} &  &  & + & x_{5} & \geq{} & 6,\end{array}\end{math}"/></td>
+<td>(6.6.5)</td></tr>
+</tbody>
+</table>
+
+<p>with the bounds </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math237.png" alt="\begin{displaymath}\nonumber{}0\leq{}x_{j}\leq{}\infty \mbox{ for }j=0\ldots 5.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> This corresponds to the network flow problem in section <a title="6.5.1. A linear network flow problem example" href="node008.html#chap-apiintro-sec-linear-network-example">6.5.1</a> plus one extra non-network constraint. We cannot use the network optimizer directly on the above problem since the last constraint destroys the network property. Finding the largest possible network structure in a linear optimization problem is computationally difficult, so MOSEK offers a heuristic <a href="node017.html#common-func*mosek*task*netextraction"><tt class="tt">MSK_netextraction</tt></a> that attempts to find suitable scaling factors maximizing numbers of network constraints and variables. Assuming that the embedded network structure is dominant and the problem has few non-network constraints, we can exploit this structure and potentially speed up the optimization. Since the network constraints can be handled efficiently by the specialized network optimizer, the following idea is used: </p>
+
+<ul class="itemize">
+<li>Disregard the non-network constraints and optimize the network problem. </li>
+<li>Use the network solution to hot-start the standard dual simplex optimizer. </li>
+</ul>
+
+<p>An embedded network can be exploited by this scheme in two ways: </p>
+
+<ul class="itemize">
+<li>Use the extraction heuristics directly by the <a href="node017.html#common-func*mosek*task*netextraction"><tt class="tt">MSK_netextraction</tt></a> function and optimize with the <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">MSK_netoptimize</tt></a> function. </li>
+<li>Let the simplex optimizer exploit embedded network structure automatically. </li>
+</ul>
+
+<p> The first method is more difficult than the second, but also offers much more flexibility. In <a title="6.6.1. Example: Exploit embedded network flow structure in the simplex optimizer" href="node008.html#network-advanced-example">6.6.1</a> the first method is demonstrated by a code example below. For further details on exploiting embedded network structure in the standard simplex optimizer, see section <a title="8.3.1. Network flow problems" href="node010.html#solving-network-problems">8.3.1</a>.</p>
+
+<div>
+<h2><a name="260984128">6.6.1. Example: Exploit embedded network flow structure in the simplex optimizer</a></h2>
+
+<p> <a name="idx-83094992">&#09;</a> <a name="network-advanced-example">&#09;</a></p>
+
+<p>MOSEK is distributed with some network examples which can be found in the directory</p>
+
+<pre class="verbatim">  mosek\6\tools\examples 
+</pre>
+
+<p> The example given in this section demonstrates how to extract and optimize embedded network structure in a arbitrary linear optimization problem. The following idea is used</p>
+
+<ul class="itemize">
+<li>Read an arbitrary linear optimization problem into a task. </li>
+<li>Use the <a href="node017.html#common-func*mosek*task*netextraction"><tt class="tt">MSK_netextraction</tt></a> function to extract embedded network structure. </li>
+<li>Optimize the network problem using the <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">MSK_netoptimize</tt></a> function. </li>
+</ul>
+
+<div class="verbatimcode"><span class="preprocessor">#include</span> &lt;stdio.h&gt;
+<span class="preprocessor">#include</span> &lt;stdlib.h&gt;
+<span class="preprocessor">#include</span> &lt;string.h&gt;
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>"
+
+<span class="comment">/*
+  Demonstrates a simple use of network structure in a model.
+
+   Purpose: 1. Read an optimization problem from an
+                          user specified MPS file.
+                     2. Extract the embedded network.
+                     3. Solve the embedded network with the network optimizer.
+
+   Note that the general simplex optimizer called though MSK_optimize can also extract 
+   embedded network and solve it with the network optimizer. The direct call to the 
+   network optimizer, which is demonstrated here, is offered as an option to save 
+   memory and overhead when solving either many or large network problems.
+ */</span>
+
+<span class="comment">/* Helper functions  */</span>
+<span class="type">void</span> addext(<span class="type">char</span> filename<span class="brackets">[]</span>,
+            <span class="type">char</span> extension<span class="brackets">[]</span>)
+{
+  <span class="type">char</span> *cptr;
+
+  cptr = strrchr(filename,<span class="string">'.'</span>);
+  <span class="keyword">if</span> ( cptr &amp;&amp; cptr[1]!=<span class="string">'\\'</span> )
+    strcpy(cptr+1,extension);
+  <span class="keyword">else</span>
+  {
+    strcat(filename,"<span class="string">.</span>");
+    strcat(filename,extension);
+  }
+} <span class="comment">/* addext */</span>
+
+<span class="type">void</span> MSKAPI printlog(<span class="type">void</span> *ptr,
+                     <span class="type">char</span> s<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",s);
+} <span class="comment">/* printlog */</span>
+
+<span class="comment">/* Main function  */</span>
+<span class="type">int</span> main(<span class="type">int</span> argc, <span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+  MSKrescodee         r;
+  MSKenv_t            env;
+  MSKtask_t           task=<span class="keyword">NULL</span>,dummytask=<span class="keyword">NULL</span>;
+  MSKintt             numcon=0,numvar=0,numnetcon,numnetvar;
+  MSKidxt             *netcon,*netvar,*from,*to;
+  MSKrealt            *scalcon,*scalvar,*cc,*cx,*blc,*buc,*blx,*bux,
+                      *xc,*xx,*y,*slc,*suc,*slx,*sux;
+  MSKboundkeye        *bkc,*bkx;
+  MSKstakeye          *skc,*skx;
+  MSKprostae          prosta;
+  MSKsolstae          solsta;
+  <span class="type">int</span>                 i,j,k,*rmap,*cmap,hotstart=0;
+  <span class="type">char</span>                filename[1024];
+
+  <span class="keyword">if</span> ( argc&lt;2 )
+  {
+    printf("<span class="string">No input file specified\n</span>");
+    exit(0);
+  }
+  <span class="keyword">else</span>
+    printf("<span class="string">Inputfile:  %s\n</span>",argv[1]);
+  
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printlog);
+    
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_initenv(env);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )            
+  {
+    strcpy(filename,argv[1]);
+    addext(filename,"<span class="string">log</span>");
+  
+    <span class="comment">/* Create an (empty) optimization task. */</span>
+    r = MSK_maketask(env,0,0,&amp;task);
+
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+    {
+      MSK_linkfunctotaskstream(task, MSK_STREAM_LOG, <span class="keyword">NULL</span>,     printlog);
+      MSK_linkfiletotaskstream(task, MSK_STREAM_LOG, filename, 0);
+    }
+     
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+    {
+     r = MSK_readdata(task,argv[1]);
+    }
+  }
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )  
+  {
+    r = MSK_getnumcon(task,&amp;numcon);
+  }
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )  
+  {
+    r = MSK_getnumvar(task,&amp;numvar);
+  }
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )  
+  {
+    <span class="comment">/* Create an (empty) optimization task. Will be used as a dummy task 
+       in MSK_netoptimize, parameters can be set here */</span>
+    r = MSK_maketask(env,0,0,&amp;dummytask);
+  }
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    MSK_linkfunctotaskstream(dummytask, MSK_STREAM_LOG, <span class="keyword">NULL</span>,     printlog);
+    MSK_linkfiletotaskstream(dummytask, MSK_STREAM_LOG, filename, 0);
+  }
+
+  <span class="comment">/* Allocate memory for embedded network (maximum sizez =&gt; (numcon and numvar) */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )       
+  {
+     <span class="comment">/* Sizes of the embedded network structure is unknown use maximum size
+        required  by MSK_networkextraction */</span>
+     rmap     = MSK_calloctask(dummytask,numcon,sizeof(<span class="type">int</span>));
+     cmap     = MSK_calloctask(dummytask,numvar,sizeof(<span class="type">int</span>));
+     netcon   = MSK_calloctask(dummytask,numcon,sizeof(MSKidxt));
+     netvar   = MSK_calloctask(dummytask,numvar,sizeof(MSKidxt));
+     from     = MSK_calloctask(dummytask,numvar,sizeof(MSKidxt));
+     to       = MSK_calloctask(dummytask,numvar,sizeof(MSKidxt));
+
+     scalcon  = MSK_calloctask(dummytask,numcon,sizeof(MSKrealt));
+     scalvar  = MSK_calloctask(dummytask,numvar,sizeof(MSKrealt));
+     cc       = MSK_calloctask(dummytask,numcon,sizeof(MSKrealt));
+     cx       = MSK_calloctask(dummytask,numvar,sizeof(MSKrealt));
+     blc      = MSK_calloctask(dummytask,numcon,sizeof(MSKrealt));
+     buc      = MSK_calloctask(dummytask,numcon,sizeof(MSKrealt));
+     blx      = MSK_calloctask(dummytask,numvar,sizeof(MSKrealt));
+     bux      = MSK_calloctask(dummytask,numvar,sizeof(MSKrealt));
+     xx       = MSK_calloctask(dummytask,numvar,sizeof(MSKrealt));
+     xc       = MSK_calloctask(dummytask,numcon,sizeof(MSKrealt));
+     y        = MSK_calloctask(dummytask,numcon,sizeof(MSKrealt));
+     slc      = MSK_calloctask(dummytask,numcon,sizeof(MSKrealt));
+     suc      = MSK_calloctask(dummytask,numcon,sizeof(MSKrealt));
+     slx      = MSK_calloctask(dummytask,numvar,sizeof(MSKrealt));
+     sux      = MSK_calloctask(dummytask,numvar,sizeof(MSKrealt));
+
+     bkc      = MSK_calloctask(dummytask,numcon,sizeof(MSKboundkeye));
+     bkx      = MSK_calloctask(dummytask,numvar,sizeof(MSKboundkeye));
+
+     skc      = MSK_calloctask(dummytask,numvar,sizeof(MSKstakeye));
+     skx      = MSK_calloctask(dummytask,numvar,sizeof(MSKstakeye));
+
+     <span class="keyword">if</span>( !( rmap    &amp;&amp; cmap    &amp;&amp; netcon &amp;&amp; netvar &amp;&amp; from &amp;&amp; to  &amp;&amp; 
+            scalcon &amp;&amp; scalvar &amp;&amp; cc     &amp;&amp; cx     &amp;&amp; blc  &amp;&amp; buc &amp;&amp; 
+            blx     &amp;&amp; bux     &amp;&amp; xx     &amp;&amp; xc     &amp;&amp; y    &amp;&amp; slc &amp;&amp; 
+            suc     &amp;&amp; slx     &amp;&amp; sux    &amp;&amp; bkc    &amp;&amp; bkx  &amp;&amp; skc &amp;&amp; 
+            skx ) )
+     {
+       r = MSK_RES_ERR_SPACE;
+     }
+     <span class="keyword">else</span>
+     {
+       <span class="comment">/* We just use zero cost on slacks */</span>
+       <span class="keyword">for</span>( i = 0; i &lt; numcon; ++i )
+         cc[i] = 0.0;
+     } 
+  }
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )        
+  {
+    <span class="comment">/* Extract embedded network */</span>
+    r = MSK_netextraction(task,
+                          &amp;numnetcon,
+                          &amp;numnetvar,
+                          netcon,
+                          netvar,
+                          scalcon,
+                          scalvar,
+                          cx,
+                          bkc,
+                          blc,
+                          buc,
+                          bkx,
+                          blx,
+                          bux,
+                          from,
+                          to);
+
+    MSK_deletetask(&amp;task);
+  }
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK ) 
+  {
+    <span class="comment">/* Solve embedded network with a direct call into the network optimizer */</span>
+    r =  MSK_netoptimize(dummytask,
+                         numnetcon,
+                         numnetvar,
+                         cc,
+                         cx,
+                         bkc,
+                         blc,
+                         buc,
+                         bkx,
+                         blx,
+                         bux,
+                         from,
+                         to,
+                         &amp;prosta,
+                         &amp;solsta,
+                         hotstart,
+                         skc,
+                         skx,
+                         xc,
+                         xx,
+                         y,
+                         slc,
+                         suc,
+                         slx,
+                         sux);
+
+    <span class="keyword">if</span> ( solsta == MSK_SOL_STA_OPTIMAL )
+    {
+      printf("<span class="string">Embedded network problem is optimal\n</span>");
+    }
+    <span class="keyword">else</span> <span class="keyword">if</span> ( solsta == MSK_SOL_STA_PRIM_INFEAS_CER )
+    {
+      printf("<span class="string">Embedded network problem is primal infeasible\n</span>");
+    }
+    <span class="keyword">else</span> <span class="keyword">if</span> ( solsta == MSK_SOL_STA_DUAL_INFEAS_CER )
+    {
+      printf("<span class="string">Embedded network problem is dual infeasible\n</span>");
+    }
+    <span class="keyword">else</span>
+    {
+      printf("<span class="string">Embedded network problem solsta : %d\n</span>",solsta);
+    }
+  }
+
+  <span class="comment">/* Free allocated memory */</span>
+  MSK_freetask(dummytask,rmap);
+  MSK_freetask(dummytask,cmap);
+  MSK_freetask(dummytask,netcon);
+  MSK_freetask(dummytask,netvar);
+  MSK_freetask(dummytask,from);
+  MSK_freetask(dummytask,to);
+  MSK_freetask(dummytask,scalcon);
+  MSK_freetask(dummytask,scalvar);
+  MSK_freetask(dummytask,cc);
+  MSK_freetask(dummytask,cx);
+  MSK_freetask(dummytask,blc);
+  MSK_freetask(dummytask,buc);
+  MSK_freetask(dummytask,blx);
+  MSK_freetask(dummytask,bux);
+  MSK_freetask(dummytask,xx);
+  MSK_freetask(dummytask,xc);
+  MSK_freetask(dummytask,y);
+  MSK_freetask(dummytask,slc);
+  MSK_freetask(dummytask,suc);
+  MSK_freetask(dummytask,slx);
+  MSK_freetask(dummytask,sux);
+  MSK_freetask(dummytask,bkc);
+  MSK_freetask(dummytask,bkx);
+  MSK_freetask(dummytask,skc);
+  MSK_freetask(dummytask,skx);
+
+  MSK_deletetask(&amp;dummytask);
+  MSK_deleteenv(&amp;env);
+}
+</div>
+
+<p>In the above example we only optimize the embedded network problem. We still need to use the found network solution as a hot-start for the simplex optimizer and solve the original problem. This involves unscaling the network solution back to same unit measure as the original problem. In the example</p>
+
+<pre class="verbatim">  mosek\6\tools\examples\c\network3.c 
+</pre>
+
+<p>we show how to convert the network solution into a valid hot-start for the simplex optimizer.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="260980960">6.7. Solving linear systems involving the basis matrix</a></h1>
+
+<p> A linear optimization problem always has an optimal solution which is also a basic solution. In an optimal basic solution there are exactly <span class="math"><span class="mi">m</span></span> basic variables where <span class="math"><span class="mi">m</span></span> is the number of rows in the constraint matrix <span class="math"><span class="mi">A</span></span>. Define </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math238.png" alt="\begin{displaymath}\nonumber{}B\in{}\mathbb{R}^{{m\times m}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>as a matrix consisting of the columns of <span class="math"><span class="mi">A</span></span> corresponding to the basic variables.</p>
+
+<p>The basis matrix <span class="math"><span class="mi">B</span></span> is always non-singular, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math239.png" alt="\begin{displaymath}\nonumber{}\det (B)\not=0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>or equivalently that <span class="math"><img src="math/math240.png" alt="[[MathCmd 240]]"/></span> exists. This implies that the linear systems </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math241.png" alt="\begin{math}\nonumber{}B\bar{x}=w\end{math}"/></td>
+<td><a name="ch-apiex-sec-basissolve-eq-ftran">&#09;</a>(6.7.1)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math242.png" alt="\begin{math}\nonumber{}B^{T}\bar{x}=w\end{math}"/></td>
+<td><a name="ch-apiex-sec-basissolve-eq-btran">&#09;</a>(6.7.2)</td></tr>
+</tbody>
+</table>
+
+<p>each has a unique solution for all <span class="math"><span class="mi">w</span></span>.</p>
+
+<p>MOSEK provides functions for solving the linear systems (<a href="node008.html#ch-apiex-sec-basissolve-eq-ftran">6.7.1</a>) and (<a href="node008.html#ch-apiex-sec-basissolve-eq-btran">6.7.2</a>) for an arbitrary <span class="math"><span class="mi">w</span></span>.</p>
+
+<div>
+<h2><a name="260970256">6.7.1. Identifying the basis</a></h2>
+
+<p>To use the solutions to (<a href="node008.html#ch-apiex-sec-basissolve-eq-ftran">6.7.1</a>) and (<a href="node008.html#ch-apiex-sec-basissolve-eq-btran">6.7.2</a>) it is important to know how the basis matrix <span class="math"><span class="mi">B</span></span> is constructed.</p>
+
+<p>Internally MOSEK employs the linear optimization problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math243.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{maximize} &  &  & c^{T}x &  & \\\nonumber{}\mbox{subject to} &  &  & Ax-x^{c} & = & 0\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\\\nonumber{} & l^{c} & \leq{} & x^{c} & \leq{} & u^{c}.\end{array}\end{math}"/></td>
+<td><a name="ch-apiex-basissolve-eq-primal">&#09;</a>(6.7.3)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math244.png" alt="\begin{displaymath}\nonumber{}x^{c}\in{}\mathbb{R}^{{m}}\mbox{ and }x\in{}\mathbb{R}^{n}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The basis matrix is constructed of <span class="math"><span class="mi">m</span></span> columns taken from </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math245.png" alt="\begin{displaymath}\nonumber{}[\begin{array}{cc}\nonumber{}A & -I\end{array}].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>If variable <span class="math"><img src="math/math144.png" alt="[[MathCmd 144]]"/></span> is a basis variable, then the <span class="math"><span class="mi">j</span></span>'th column of <span class="math"><span class="mi">A</span></span> denoted <span class="math"><img src="math/math247.png" alt="[[MathCmd 247]]"/></span> will appear in <span class="math"><span class="mi">B</span></span>. Similarly, if <span class="math"><img src="math/math248.png" alt="[[MathCmd 248]]"/></span> is a basis variable, then the <span class="math"><span class="mi">i</span></span>'th column of <span class="math"><span class="mo">-</span><span class="mi">I</span></span> will appear in the basis. The ordering of the basis variables and therefore the ordering of the columns of <span class="math"><span class="mi">B</span></span> is arbitrary. The ordering of the basis variables may be retrieved by calling the function:</p>
+
+<pre class="verbatim">MSK_initbasissolve (MSKtask_t task
+                    MSKidxt   *basis);
+</pre>
+
+<p>This function initializes data structures for later use and returns the indexes of the basic variables in the array <tt class="tt">basis</tt>. The interpretation of the <tt class="tt">basis</tt> is as follows. If </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math249.png" alt="\begin{displaymath}\nonumber{}\mathtt{basis}[i]<\mathtt{numcon},\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>then the <span class="math"><span class="mi">i</span></span>'th basis variable is <span class="math"><img src="math/math248.png" alt="[[MathCmd 248]]"/></span>. Moreover, the <span class="math"><span class="mi">i</span></span>'th column in <span class="math"><span class="mi">B</span></span> will be the <span class="math"><span class="mi">i</span></span>'th column of <span class="math"><span class="mo">-</span><span class="mi">I</span></span>. On the other hand if </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math251.png" alt="\begin{displaymath}\nonumber{}\mathtt{basis}[i]\geq{}\mathtt{numcon},\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>then the <span class="math"><span class="mi">i</span></span>'th basis variable is variable </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math252.png" alt="\begin{displaymath}\nonumber{}x_{{\mathtt{basis}[i]-\mathtt{numcon}}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and the <span class="math"><span class="mi">i</span></span>'th column of <span class="math"><span class="mi">B</span></span> is the column </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math253.png" alt="\begin{displaymath}\nonumber{}A_{{:,(\mathtt{basis}[i]-\mathtt{numcon})}}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> For instance if <span class="math"><img src="math/math254.png" alt="[[MathCmd 254]]"/></span> and <span class="math"><img src="math/math255.png" alt="[[MathCmd 255]]"/></span>, then since <span class="math"><img src="math/math256.png" alt="[[MathCmd 256]]"/></span>, the first basis variable is <span class="math"><img src="math/math257.png" alt="[[MathCmd 257]]"/></span>. Therefore, the first column of <span class="math"><span class="mi">B</span></span> is the fourth column of <span class="math"><span class="mo">-</span><span class="mi">I</span></span>. Similarly, if <span class="math"><img src="math/math258.png" alt="[[MathCmd 258]]"/></span>, then the second variable in the basis is <span class="math"><img src="math/math259.png" alt="[[MathCmd 259]]"/></span>. Hence, the second column of <span class="math"><span class="mi">B</span></span> is identical to <span class="math"><img src="math/math260.png" alt="[[MathCmd 260]]"/></span>.</p>
+
+</div>
+
+<div>
+<h2><a name="261007552">6.7.2. An example</a></h2>
+
+<p>Consider the linear optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math261.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & x_{0}+x_{1} &  & \\\nonumber{}\mbox{subject to} & x_{0}+2x_{1} & \leq{} & 2,\\\nonumber{} & x_{0}+x_{1} & \leq{} & 6,\\\nonumber{} & x_{0},x_{1}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td><a name="CH:APIEX:SEC:SOLVEWITHBASIS:EX1">&#09;</a>(6.7.4)</td></tr>
+</tbody>
+</table>
+
+<p>Suppose a call to <a href="node017.html#common-func*mosek*task*initbasissolve"><tt class="tt">MSK_initbasissolve</tt></a> returns an array <tt class="tt">basis</tt> so that </p>
+
+<pre class="verbatim">basis[0] = 1,
+basis[1] = 2.
+</pre>
+
+<p>Then the basis variables are <span class="math"><img src="math/math262.png" alt="[[MathCmd 262]]"/></span> and <span class="math"><img src="math/math17.png" alt="[[MathCmd 17]]"/></span> and the corresponding basis matrix <span class="math"><span class="mi">B</span></span> is </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math264.png" alt="\begin{math}\nonumber{}\left[\begin{array}{cc}\nonumber{}0 & 1\\\nonumber{}-1 & 1\end{array}\right].\end{math}"/></td>
+<td>(6.7.5)</td></tr>
+</tbody>
+</table>
+
+<p>Please note the ordering of the columns in <span class="math"><span class="mi">B</span></span>.</p>
+
+<p>The following program demonstrates the use of <a href="node017.html#common-func*mosek*task*solvewithbasis"><tt class="tt">MSK_solvewithbasis</tt></a>.</p>
+
+<div class="verbatimcode"><span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File:      solvebasis.c
+
+  Purpose:   To demonstrate the usage of
+             MSK_solvewithbasis on the problem:
+ 
+             maximize  x0 + x1
+             st. 
+                     x0 + 2.0 x1 &lt;= 2
+                     x0  +    x1 &lt;= 6
+                     x0 &gt;= 0, x1&gt;= 0
+
+               The problem has the slack variables
+               xc0, xc1 on the constraints
+               and the variables x0 and x1.
+
+               maximize  x0 + x1
+               st. 
+                  x0 + 2.0 x1 -xc1       = 2
+                  x0  +    x1       -xc2 = 6                     
+                  x0 &gt;= 0, x1&gt;= 0,
+                  xc1 &lt;=  0 , xc2 &lt;= 0
+
+
+             problem data is read from basissolve.lp.
+
+  Syntax:    solvebasis basissolve.lp     
+                  
+ */</span>
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>"
+
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printstr(<span class="type">void</span> *handle,
+                            <span class="type">char</span> str<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",str);
+} <span class="comment">/* printstr */</span>
+
+<span class="type">int</span> main(<span class="type">int</span> argc,<span class="type">char</span> **argv)
+{
+  MSKenv_t  env;
+  MSKtask_t task;
+  MSKintt NUMCON = 2;
+  MSKintt NUMVAR = 2;
+  
+  <span class="type">double</span>       c<span class="brackets">[]</span>    = {1.0, 1.0};
+  MSKintt      ptrb<span class="brackets">[]</span> = {0, 2};
+  MSKintt      ptre<span class="brackets">[]</span> = {2, 3};
+  MSKidxt      asub<span class="brackets">[]</span> = {0, 1,
+                        0, 1};
+  <span class="type">double</span> aval<span class="brackets">[]</span> = {1.0, 1.0,
+                   2.0, 1.0};
+  MSKboundkeye bkc<span class="brackets">[]</span>  = {MSK_BK_UP,
+                       MSK_BK_UP};
+  
+  <span class="type">double</span> blc<span class="brackets">[]</span>  = {-MSK_INFINITY,
+                   -MSK_INFINITY};
+  <span class="type">double</span> buc<span class="brackets">[]</span>  = {2.0,
+                   6.0};
+  
+  MSKboundkeye  bkx<span class="brackets">[]</span>  = {MSK_BK_LO,
+                          MSK_BK_LO};
+  <span class="type">double</span>  blx<span class="brackets">[]</span>  = {0.0,
+                    0.0};
+  
+  <span class="type">double</span>  bux<span class="brackets">[]</span>  = {+MSK_INFINITY,
+                    +MSK_INFINITY};
+  
+  
+  MSKrescodee       r = MSK_RES_OK;
+  MSKidxt       i,nz;
+  <span class="type">double</span>    w1<span class="brackets">[]</span> = {2.0,6.0};
+  <span class="type">double</span>    w2<span class="brackets">[]</span> = {1.0,0.0};
+  MSKidxt   sub<span class="brackets">[]</span> = {0,1};
+  MSKidxt   *basis;
+    
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_initenv(env);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_makeemptytask(env,&amp;task);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+      MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);  
+
+  <span class="keyword">if</span> ( r == MSK_RES_OK)
+    r = MSK_inputdata(task, NUMCON,NUMVAR, NUMCON,NUMVAR, c, 0.0,
+                      ptrb, ptre, asub, aval, bkc, blc, buc, bkx, blx, bux);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_putobjsense(task,MSK_OBJECTIVE_SENSE_MAXIMIZE); 
+
+  
+ 
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_optimize(task);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    basis = MSK_calloctask(task,NUMCON,sizeof(MSKidxt));
+  
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_initbasissolve(task,basis);
+
+  <span class="comment">/* List basis variables corresponding to columns of B */</span>
+  <span class="keyword">for</span> (i=0;i&lt;NUMCON &amp;&amp; r == MSK_RES_OK;++i)
+  {
+    printf("<span class="string">basis[%d] = %d\n</span>",i,basis[i]);   
+    <span class="keyword">if</span> (basis[sub[i]] &lt; NUMCON)
+      printf ("<span class="string">Basis variable no %d is xc%d.\n</span>",i, basis[i]);
+    <span class="keyword">else</span>
+      printf ("<span class="string">Basis variable no %d is x%d.\n</span>",i,basis[i] - NUMCON); 
+  }
+  
+  nz = 2;
+  <span class="comment">/* solve Bx = w1 */</span>
+  <span class="comment">/* sub contains index of non-zeros in w1.
+     On return w1 contains the solution x and sub 
+     the index of the non-zeros in x. 
+   */</span>
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_solvewithbasis(task,0,&amp;nz,sub,w1);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+  {
+    printf("<span class="string">\nSolution to Bx = w1:\n\n</span>");
+
+    <span class="comment">/* Print solution and b. */</span>
+
+    <span class="keyword">for</span> (i=0;i&lt;nz;++i) 
+    {    
+      <span class="keyword">if</span> (basis[sub[i]] &lt; NUMCON)     
+        printf ("<span class="string">xc%d = %e\n</span>",basis[sub[i]] , w1[sub[i]] );     
+      <span class="keyword">else</span>   
+        printf ("<span class="string">x%d = %e\n</span>",basis[sub[i]] - NUMCON , w1[sub[i]] );   
+    }
+  } 
+    <span class="comment">/* Solve B^Tx = c */</span>
+  nz = 2;
+  sub[0] = 0;
+  sub[1] = 1;
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)  
+    r = MSK_solvewithbasis(task,1,&amp;nz,sub,w2);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+  {
+    printf("<span class="string">\nSolution to B^Tx = w2:\n\n</span>");
+    <span class="comment">/* Print solution and y. */</span>
+    <span class="keyword">for</span> (i=0;i&lt;nz;++i) 
+    {    
+      <span class="keyword">if</span> (basis[sub[i]] &lt; NUMCON)     
+        printf ("<span class="string">xc%d = %e\n</span>",basis[sub[i]] , w2[sub[i]] );    
+      <span class="keyword">else</span>   
+        printf ("<span class="string">x%d = %e\n</span>",basis[sub[i]] - NUMCON , w2[sub[i]] );   
+    }
+  }
+   
+   printf("<span class="string">Return code: %d (0 means no error occurred.)\n</span>",r);
+   
+   <span class="keyword">return</span> ( r );
+   
+}<span class="comment">/* main */</span>
+</div>
+
+<p>In the example above the linear system is solved using the optimal basis for (<a href="node008.html#CH:APIEX:SEC:SOLVEWITHBASIS:EX1">6.7.4</a>) and the original right-hand side of the problem. Thus the solution to the linear system is the optimal solution to the problem. When running the example program the following output is produced. </p>
+
+<pre class="verbatim">basis[0] = 1
+Basis variable no 0 is xc1.
+basis[1] = 2
+Basis variable no 1 is x0.
+
+Solution to Bx = b:
+
+x0 = 2.000000e+00
+xc1 = -4.000000e+00
+
+Solution to B^Tx = c:
+
+x1 = -1.000000e+00
+x0 = 1.000000e+00
+</pre>
+
+<p>Please note that the ordering of the basis variables is </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math265.png" alt="\begin{displaymath}\nonumber{}\left[\begin{array}{c}\nonumber{}x^{c}_{1}\\\nonumber{}x_{0}\end{array}\right]\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and thus the basis is given by: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math266.png" alt="\begin{math}\nonumber{}B=\left[\begin{array}{cc}\nonumber{}0 & 1\\\nonumber{}-1 & 1\end{array}\right]\end{math}"/></td>
+<td>(6.7.6)</td></tr>
+</tbody>
+</table>
+
+<p>It can be verified that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math267.png" alt="\begin{displaymath}\nonumber{}\left[\begin{array}{c}\nonumber{}x^{c}_{1}\\\nonumber{}x_{0}\end{array}\right]=\left[\begin{array}{c}\nonumber{}-4\\\nonumber{}2\end{array}\right]\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is a solution to </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math268.png" alt="\begin{displaymath}\nonumber{}\left[\begin{array}{cc}\nonumber{}0 & 1\\\nonumber{}-1 & 1\end{array}\right]\left[\begin{array}{c}\nonumber{}x^{c}_{1}\\\nonumber{}x_{0}\end{array}\right]=\left[\begin{array}{c}\nonumber{}2\\\nonumber{}6\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h2><a name="262725000">6.7.3. Solving arbitrary linear systems</a></h2>
+
+<p> MOSEK can be used to solve an arbitrary (rectangular) linear system </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math269.png" alt="\begin{displaymath}\nonumber{}Ax=b\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>using the <a href="node017.html#common-func*mosek*task*solvewithbasis"><tt class="tt">MSK_solvewithbasis</tt></a> function without optimizing the problem as in the previous example. This is done by setting up an <span class="math"><span class="mi">A</span></span> matrix in the task, setting all variables to basic and calling the <a href="node017.html#common-func*mosek*task*solvewithbasis"><tt class="tt">MSK_solvewithbasis</tt></a> function with the <span class="math"><span class="mi">b</span></span> vector as input. The solution is returned by the function.</p>
+
+<p>Below we demonstrate how to solve the linear system </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math270.png" alt="\begin{math}\nonumber{}\left[\begin{array}{cc}\nonumber{}0 & 1\\\nonumber{}-1 & 1\end{array}\right]\left[\begin{array}{c}\nonumber{}x_{0}\\\nonumber{}x_{1}\end{array}\right]=\left[\begin{array}{c}\nonumber{}b_{1}\\\nonumber{}b_{2}\end{array}\right]\end{math}"/></td>
+<td><a name="eq:linear-system-ex">&#09;</a>(6.7.7)</td></tr>
+</tbody>
+</table>
+
+<p>with <span class="math"><span class="mi">b</span><span class="mo">=</span><span class="mo">(</span><span class="mn">1</span><span class="mo">,</span><span class="mn">-2</span><span class="mo">)</span></span> and <span class="math"><span class="mi">b</span><span class="mo">=</span><span class="mo">(</span><span class="mn">7</span><span class="mo">,</span><span class="mn">0</span><span class="mo">)</span></span>.</p>
+
+<div class="verbatimcode"><span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File     :  solvelinear.c
+ 
+   Purpose  :  To demonstrate the usage of MSK_solvewithbasis
+               to solve the linear system:
+               
+                1.0  x1             = b1
+               -1.0  x0  +  1.0  x1 = b2
+
+               with two different right hand sides
+
+               b = (1.0, -2.0)
+
+               and
+
+               b = (7.0, 0.0)
+ */</span>
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>"
+
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printstr(<span class="type">void</span> *handle,
+                            <span class="type">char</span> str<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",str);
+} <span class="comment">/* printstr */</span>
+
+
+MSKrescodee put_a(MSKtask_t task,
+                   <span class="type">double</span> *aval,
+                   MSKidxt *asub,
+                   MSKidxt *ptrb,
+                   MSKidxt *ptre,
+                   <span class="type">int</span> numvar,
+                  MSKidxt *basis
+                  )
+
+{
+  MSKrescodee r = MSK_RES_OK;
+  <span class="type">int</span> i;
+  MSKstakeye *skx = <span class="keyword">NULL</span> , *skc = <span class="keyword">NULL</span>;
+
+  
+  skx = (MSKstakeye *) calloc(numvar,sizeof(MSKstakeye));
+  <span class="keyword">if</span> (skx == <span class="keyword">NULL</span> &amp;&amp; numvar)
+    r = MSK_RES_ERR_SPACE;
+  
+  skc = (MSKstakeye *) calloc(numvar,sizeof(MSKstakeye));
+  <span class="keyword">if</span> (skc == <span class="keyword">NULL</span> &amp;&amp; numvar)
+    r = MSK_RES_ERR_SPACE;
+  
+  <span class="keyword">for</span> (i=0;i&lt;numvar &amp;&amp; r == MSK_RES_OK;++i)
+  {
+    skx[i] = MSK_SK_BAS;
+    skc[i] = MSK_SK_FIX;
+  }
+  
+  
+  <span class="comment">/* Create a coefficient matrix and right hand
+     side with the data from the linear system */</span>
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_append(task,MSK_ACC_VAR,numvar);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_append(task,MSK_ACC_CON,numvar);
+
+  <span class="keyword">for</span> (i=0;i&lt;numvar &amp;&amp; r == MSK_RES_OK;++i)
+    r = MSK_putavec(task,MSK_ACC_VAR,i,ptre[i]-ptrb[i],asub+ptrb[i],aval+ptrb[i]);
+
+  <span class="keyword">for</span> (i=0;i&lt;numvar &amp;&amp; r == MSK_RES_OK;++i)
+    r = MSK_putbound(task,MSK_ACC_CON,i,MSK_BK_FX,0,0);
+    
+  <span class="keyword">for</span> (i=0;i&lt;numvar &amp;&amp; r == MSK_RES_OK;++i)
+    r = MSK_putbound(task,MSK_ACC_VAR,i,MSK_BK_FR,-MSK_INFINITY,MSK_INFINITY);
+  
+  <span class="comment">/* Allocate space for the solution and set status to unknown */</span>
+  
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+  {
+    r = MSK_makesolutionstatusunknown(task, MSK_SOL_BAS);
+  }
+
+  <span class="comment">/* Define a basic solution by specifying
+     status keys for variables &amp; constraints. */</span> 
+  <span class="keyword">for</span> (i=0; i&lt;numvar &amp;&amp; r==MSK_RES_OK;++i)
+      r = MSK_putsolutioni (
+                            task,
+                            MSK_ACC_VAR,
+                            i,
+                            MSK_SOL_BAS, 
+                            skx[i], 
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0);
+                           
+  <span class="keyword">for</span> (i=0;i&lt;numvar &amp;&amp; r == MSK_RES_OK;++i)
+      r = MSK_putsolutioni (
+                            task,
+                            MSK_ACC_CON,
+                            i,
+                            MSK_SOL_BAS, 
+                            skc[i], 
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0);
+
+  
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_initbasissolve(task,basis);
+
+  free (skx);
+  free (skc);
+
+  <span class="keyword">return</span> ( r );
+  
+}
+
+<span class="preprocessor">#define</span> NUMCON 2
+<span class="preprocessor">#define</span> NUMVAR 2
+
+
+<span class="type">int</span> main(<span class="type">int</span> argc,<span class="type">char</span> **argv)
+{
+  MSKenv_t  env;
+  MSKtask_t task;
+  MSKrescodee r = MSK_RES_OK;
+  MSKintt   numvar = NUMCON;
+  MSKintt   numcon = NUMVAR;   <span class="comment">/* we must have numvar == numcon */</span>
+  <span class="type">int</span>       i,nz;
+  <span class="type">double</span>    aval<span class="brackets">[]</span> = {-1.0,1.0,1.0};
+  MSKidxt   asub<span class="brackets">[]</span> = {1,0,1};
+  MSKidxt   ptrb<span class="brackets">[]</span> = {0,1};
+  MSKidxt   ptre<span class="brackets">[]</span> = {1,3};
+  
+  MSKidxt   bsub[NUMCON];
+  <span class="type">double</span>    b[NUMCON];
+
+  MSKidxt   *basis = <span class="keyword">NULL</span>;
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_initenv(env);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_makeemptytask(env,&amp;task);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+      MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+  
+  basis = (MSKidxt *) calloc(numcon,sizeof(MSKidxt));
+  <span class="keyword">if</span> ( basis == <span class="keyword">NULL</span> &amp;&amp; numvar)
+    r = MSK_RES_ERR_SPACE;
+    
+    
+  <span class="comment">/* Put A matrix and factor A.
+     Call this function only once for a given task. */</span> 
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = put_a( task,
+               aval,
+               asub,
+               ptrb,
+               ptre,
+               numvar,
+               basis
+               );
+
+  <span class="comment">/* now solve rhs */</span>
+  b[0] = 1;
+  b[1] = -2;
+  bsub[0] = 0;
+  bsub[1] = 1;
+  nz = 2;
+  
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_solvewithbasis(task,0,&amp;nz,bsub,b);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+  {
+    printf("<span class="string">\nSolution to Bx = b:\n\n</span>");
+    <span class="comment">/* Print solution and show correspondents
+       to original variables in the problem */</span>
+    <span class="keyword">for</span> (i=0;i&lt;nz;++i) 
+    {    
+      <span class="keyword">if</span> (basis[bsub[i]] &lt; numcon)
+        printf("<span class="string">This should never happen\n</span>");
+      <span class="keyword">else</span>   
+        printf ("<span class="string">x%d = %e\n</span>",basis[bsub[i]] - numcon , b[bsub[i]] );   
+    }
+  }
+    
+  b[0] = 7;
+  bsub[0] = 0;
+  nz = 1;
+  
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_solvewithbasis(task,0,&amp;nz,bsub,b);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+  {
+    printf("<span class="string">\nSolution to Bx = b:\n\n</span>");
+    <span class="comment">/* Print solution and show correspondents
+       to original variables in the problem */</span>
+    <span class="keyword">for</span> (i=0;i&lt;nz;++i) 
+    {    
+      <span class="keyword">if</span> (basis[bsub[i]] &lt; numcon)
+        printf("<span class="string">This should never happen\n</span>");
+      <span class="keyword">else</span>   
+        printf ("<span class="string">x%d = %e\n</span>",basis[bsub[i]] - numcon , b[bsub[i]] );   
+    }
+  }
+    
+  free (basis);
+  <span class="keyword">return</span> r;
+}
+</div>
+
+<p>The most important step in the above example is the definition of the basic solution using the <a href="node017.html#common-func*mosek*task*putsolutioni"><tt class="tt">MSK_putsolutioni</tt></a> function, where we define the status key for each variable. The actual values of the variables are not important and can be selected arbitrarily, so we set them to zero. All variables corresponding to columns in the linear system we want to solve are set to basic and the slack variables for the constraints, which are all non-basic, are set to their bound.</p>
+
+<p>The program produces the output: </p>
+
+<pre class="verbatim">Solution to Bx = b:
+
+x1 = 1
+x0 = 3
+
+Solution to Bx = b:
+
+x1 = 7
+x0 = 7
+</pre>
+
+<p>and we can verify that <span class="math"><img src="math/math271.png" alt="[[MathCmd 271]]"/></span> is indeed a solution to <a href="node008.html#eq:linear-system-ex">(6.7.7)</a>.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="262740304">6.8. The progress call-back</a></h1>
+
+<p> <a name="idx-83211472">&#09;</a></p>
+
+<p>Some of the API function calls, notably <a href="node017.html#common-func*mosek*task*optimize"><tt class="tt">MSK_optimize</tt></a>, may take a long time to complete. Therefore, during the optimization a call-back function is called frequently. From the call-back function it is possible </p>
+
+<ul class="itemize">
+<li>to obtain information on the solution process,</li>
+<li>to report of the the optimizer's progress, and</li>
+<li>to ask MOSEK to terminate, if desired. </li>
+</ul>
+
+<div>
+<h2><a name="262741456">6.8.1. Source code example</a></h2>
+
+<p> The following source code example documents how the progress call-back function can be used.</p>
+
+<div class="verbatimcode"><span class="preprocessor">#include</span> &lt;stdio.h&gt;
+<span class="preprocessor">#include</span> &lt;stdlib.h&gt;
+<span class="preprocessor">#include</span> &lt;string.h&gt;
+
+<span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      callback.c
+
+   Purpose:   To demonstrate how to use the progress 
+              callback. 
+
+              Compile and link the file with  MOSE, then 
+              it is used as follows:
+
+              callback psim 25fv47.mps
+              callback dsim 25fv47.mps
+              callback intpnt 25fv47.mps
+
+              The first argument tells which optimizer to use
+              i.e. psim is primal simplex, dsim is dual simplex
+              and intpnt is interior-point. 
+ */</span>
+
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>"
+
+
+<span class="comment">/* Note: This function is declared using MSKAPI,
+         so the correct calling convention is
+         employed. */</span>
+<span class="keyword">static</span> <span class="type">int</span> MSKAPI usercallback(MSKtask_t        task,
+                               MSKuserhandle_t  handle,
+                               MSKcallbackcodee caller)
+{
+  <span class="type">int</span>    iter;
+  <span class="type">double</span> pobj,dobj,opttime=0.0,stime=0.0,
+         *maxtime=(<span class="type">double</span> *) handle;
+
+  <span class="keyword">switch</span> ( caller )
+  {
+    case MSK_CALLBACK_BEGIN_INTPNT:
+      printf("<span class="string">Starting interior-point optimizer\n</span>");
+      <span class="keyword">break</span>;
+    case MSK_CALLBACK_INTPNT:
+      MSK_getintinf(task,
+                    MSK_IINF_INTPNT_ITER,
+                    &amp;iter);
+      MSK_getdouinf(task,
+                    MSK_DINF_INTPNT_PRIMAL_OBJ,
+                    &amp;pobj);
+      MSK_getdouinf(task,
+                    MSK_DINF_INTPNT_DUAL_OBJ,
+                    &amp;dobj);
+      MSK_getdouinf(task,
+                    MSK_DINF_INTPNT_TIME,
+                    &amp;stime);
+      MSK_getdouinf(task,
+                    MSK_DINF_OPTIMIZER_TIME,
+                    &amp;opttime);
+
+      printf("<span class="string">Iterations: %-3d  Time: %6.2f(%.2f)  </span>",
+             iter,opttime,stime);
+      printf("<span class="string">Primal obj.: %-18.6e  Dual obj.: %-18.6e\n</span>",
+              pobj,dobj);
+      <span class="keyword">break</span>;
+    case MSK_CALLBACK_END_INTPNT:
+      printf("<span class="string">Interior-point optimizer finished.\n</span>");
+      <span class="keyword">break</span>;
+    case MSK_CALLBACK_BEGIN_PRIMAL_SIMPLEX:
+      printf("<span class="string">Primal simplex optimizer started.\n</span>");
+      <span class="keyword">break</span>;
+    case MSK_CALLBACK_UPDATE_PRIMAL_SIMPLEX:
+      MSK_getintinf(task,
+                    MSK_IINF_SIM_PRIMAL_ITER,
+                    &amp;iter);
+      MSK_getdouinf(task,
+                    MSK_DINF_SIM_OBJ,
+                    &amp;pobj);
+      MSK_getdouinf(task,
+                    MSK_DINF_SIM_TIME,
+                    &amp;stime);
+      MSK_getdouinf(task,
+                    MSK_DINF_OPTIMIZER_TIME,
+                    &amp;opttime);
+
+      printf("<span class="string">Iterations: %-3d  </span>",iter);
+      printf("<span class="string">  Elapsed time: %6.2f(%.2f)\n</span>",
+             opttime,stime);
+      printf("<span class="string">Obj.: %-18.6e\n</span>",pobj);
+      <span class="keyword">break</span>;
+    case MSK_CALLBACK_END_PRIMAL_SIMPLEX:
+      printf("<span class="string">Primal simplex optimizer finished.\n</span>");
+      <span class="keyword">break</span>;
+    case MSK_CALLBACK_BEGIN_DUAL_SIMPLEX:
+      printf("<span class="string">Dual simplex optimizer started.\n</span>");
+      <span class="keyword">break</span>;
+    case MSK_CALLBACK_UPDATE_DUAL_SIMPLEX:
+      MSK_getintinf(task,
+                    MSK_IINF_SIM_DUAL_ITER,
+                    &amp;iter);
+      MSK_getdouinf(task,
+                    MSK_DINF_SIM_OBJ,
+                    &amp;pobj);
+      MSK_getdouinf(task,
+                    MSK_DINF_SIM_TIME,
+                    &amp;stime);
+      MSK_getdouinf(task,
+                    MSK_DINF_OPTIMIZER_TIME,
+                    &amp;opttime);
+
+      printf("<span class="string">Iterations: %-3d  </span>",iter);
+      printf("<span class="string">  Elapsed time: %6.2f(%.2f)\n</span>",
+             opttime,stime);
+      printf("<span class="string">Obj.: %-18.6e\n</span>",pobj);
+      <span class="keyword">break</span>;
+    case MSK_CALLBACK_END_DUAL_SIMPLEX:
+      printf("<span class="string">Dual simplex optimizer finished.\n</span>");
+      <span class="keyword">break</span>;
+    case MSK_CALLBACK_BEGIN_BI:
+      printf("<span class="string">Basis identification started.\n</span>");
+      <span class="keyword">break</span>;
+    case MSK_CALLBACK_END_BI:
+      printf("<span class="string">Basis identification finished.\n</span>");
+      <span class="keyword">break</span>;
+  }
+
+  <span class="keyword">if</span> ( opttime&gt;=maxtime[0] )
+  {
+    <span class="comment">/* mosek is spending too much time.
+       Terminate it. */</span>
+    <span class="keyword">return</span> ( 1 );
+  }
+  
+  <span class="keyword">return</span> ( 0 );
+} <span class="comment">/* usercallback */</span>
+
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printtxt(<span class="type">void</span> *info,
+                            <span class="type">char</span> *buffer)
+{
+  printf("<span class="string">%s</span>",buffer); 
+} <span class="comment">/* printtxt */</span>
+
+<span class="type">int</span> main(<span class="type">int</span> argc, <span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+  <span class="type">double</span>    maxtime,
+            *xx,*y;
+  <span class="type">int</span>       r,j,i,numcon,numvar;
+  FILE      *f;
+  MSKenv_t  env;
+  MSKtask_t task;
+
+  <span class="keyword">if</span> ( argc&lt;3 )
+  {
+    printf("<span class="string">Too few input arguments. mosek intpnt myfile.mps\n</span>");
+    exit(0);
+  }
+
+  <span class="comment">/*
+   * It is assumed that we are working in a
+   * windows environment.
+   */</span>
+
+  <span class="comment">/* Create mosek environment. */</span>
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+
+  <span class="comment">/* Check the return code. */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_initenv(env);
+
+  <span class="comment">/* Check the return code. */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Create an (empty) optimization task. */</span>
+    r = MSK_makeemptytask(env,&amp;task);
+    
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+    {
+      MSK_linkfunctotaskstream(task,MSK_STREAM_MSG,<span class="keyword">NULL</span>, printtxt);
+      MSK_linkfunctotaskstream(task,MSK_STREAM_ERR,<span class="keyword">NULL</span>, printtxt);
+    }
+
+    <span class="comment">/* Specifies that data should be read from the
+       file argv[2].
+     */</span>
+
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+      r = MSK_readdata(task,argv[2]);
+
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+    {
+      <span class="keyword">if</span> ( 0==strcmp(argv[1],"<span class="string">psim</span>") )
+        MSK_putintparam(task,MSK_IPAR_OPTIMIZER,MSK_OPTIMIZER_PRIMAL_SIMPLEX);
+      <span class="keyword">else</span>  <span class="keyword">if</span> ( 0==strcmp(argv[1],"<span class="string">dsim</span>") )
+        MSK_putintparam(task,MSK_IPAR_OPTIMIZER,MSK_OPTIMIZER_DUAL_SIMPLEX);
+      <span class="keyword">else</span>  <span class="keyword">if</span> ( 0==strcmp(argv[1],"<span class="string">intpnt</span>") )
+        MSK_putintparam(task,MSK_IPAR_OPTIMIZER,MSK_OPTIMIZER_INTPNT);
+        
+
+      <span class="comment">/* Tell mosek about the call-back function. */</span>
+      maxtime = 3600;
+      MSK_putcallbackfunc(task,
+                          usercallback,
+                          (<span class="type">void</span> *) &amp;maxtime);
+
+      <span class="comment">/* Turn all MOSEK logging off. */</span>  
+      MSK_putintparam(task,
+                      MSK_IPAR_LOG,
+                      0);
+
+      r = MSK_optimize(task);
+
+      MSK_solutionsummary(task,MSK_STREAM_MSG);
+    }
+
+
+    MSK_deletetask(&amp;task);
+  }
+  MSK_deleteenv(&amp;env);
+
+  printf("<span class="string">Return code - %d\n</span>",r);
+
+  <span class="keyword">return</span> ( r );
+} <span class="comment">/* main */</span>
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="262742744">6.9. Customizing the warning and error reporting</a></h1>
+
+<p> You can customize the warning and error reporting in the <tt class="tt">C</tt> API. The <a href="node017.html#common-func*mosek*task*putresponsefunc"><tt class="tt">MSK_putresponsefunc</tt></a> function can be used to register a user-defined function to be called every time a warning or an error is encountered by MOSEK. This user-defined function will then handle the error/warning as desired.</p>
+
+<p>The following code shows how to define and register an error handling function: </p>
+
+<div class="verbatimcode"><span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File: errorreporting.c
+
+   Purpose:   To demonstrate how the error reporting can be customized.
+ */</span>
+
+<span class="preprocessor">#include</span> &lt;stdio.h&gt;
+<span class="preprocessor">#include</span> &lt;stdlib.h&gt;
+<span class="preprocessor">#include</span> &lt;string.h&gt;
+
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>"
+
+MSKrescodee MSKAPI handleresponse(MSKuserhandle_t handle,
+                                  MSKrescodee     r,
+                                  MSKCONST <span class="type">char</span>   msg<span class="brackets">[]</span>)
+<span class="comment">/* A custom response handler. */</span>                            
+{
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  { 
+    <span class="comment">/* Do nothing */</span>
+  }
+  <span class="keyword">else</span> <span class="keyword">if</span> ( r&lt;MSK_FIRST_ERR_CODE )
+  { 
+    printf("<span class="string">MOSEK reports warning number %d: %s\n</span>",r,msg);
+  }
+  <span class="keyword">else</span>
+  {
+    printf("<span class="string">MOSEK reports error number %d: %s\n</span>",r,msg);
+  }  
+
+  <span class="keyword">return</span> ( MSK_RES_OK );
+  
+} <span class="comment">/* handlerespone */</span>
+
+
+<span class="type">int</span> main(<span class="type">int</span> argc, <span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+  MSKenv_t    env;
+  MSKrescodee r; 
+  MSKtask_t   task;
+  
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_initenv(env);
+    
+  <span class="keyword">if</span> ( r==MSK_RES_OK ) 
+  { 
+
+    r = MSK_makeemptytask(env,&amp;task);
+    
+    <span class="keyword">if</span> ( r==MSK_RES_OK ) 
+    {
+      <span class="comment">/*
+       * Input a custom warning and error handler function.
+       */</span>
+       
+      MSK_putresponsefunc(task,handleresponse,<span class="keyword">NULL</span>); 
+
+      <span class="comment">/* User defined code goes here */</span>
+      <span class="comment">/* This will provoke an error */</span>
+
+      <span class="keyword">if</span> (r == MSK_RES_OK)
+        r = MSK_putaij(task,10,10,1.0);
+      
+    }  
+    MSK_deletetask(&amp;task);
+  }
+  MSK_deleteenv(&amp;env);
+
+  printf("<span class="string">Return code - %d\n</span>",r);
+
+  <span class="keyword">if</span> (r == MSK_RES_ERR_INDEX_IS_TOO_LARGE)
+    <span class="keyword">return</span> ( MSK_RES_OK);
+  <span class="keyword">else</span>
+    <span class="keyword">return</span> (-1);
+} <span class="comment">/* main */</span>
+</div>
+
+<p>The output from the code above is: </p>
+
+<pre class="verbatim">  MOSEK reports error number 1204: The index value 10 occurring in argument 'i' is too large.
+Return code - 1204
+</pre>
+
+</div>
+
+<div>
+<h1><a name="262743824">6.10. Unicode strings</a></h1>
+
+<p> <a name="idx-83225704">&#09;</a> <a name="idx-83226496">&#09;</a> <a name="idx-83227208">&#09;</a> <a name="idx-83227784">&#09;</a></p>
+
+<p>All strings i.e. <tt class="tt">char *</tt> in the <tt class="tt">C</tt> API are assumed to be UTF8 strings. Please note that </p>
+
+<ul class="itemize">
+<li>an ASCII string is always a valid UTF8 string, and</li>
+<li>an UTF8 string is stored in an array of chars. </li>
+</ul>
+
+<p> For more information about UTF8 encoded strings, please see <a href="http://en.wikipedia.org/wiki/UTF-8">http://en.wikipedia.org/wiki/UTF-8</a>.</p>
+
+<p>It is possible to convert a <tt class="tt">wchar_t</tt> string to a UTF8 string using the function <a href="node017.html#common-func*mosek*env*wchartoutf8"><tt class="tt">MSK_wchartoutf8</tt></a>. The inverse function <a href="node017.html#common-func*mosek*env*utf8towchar"><tt class="tt">MSK_utf8towchar</tt></a> converts a UTF8 string to a <tt class="tt">wchar_t</tt> string.</p>
+
+<div>
+<h2><a name="262744904">6.10.1. A source code example</a></h2>
+
+<p>The example below documents how to convert a <tt class="tt">wchar_t</tt> string to a UTF8 string.</p>
+
+<div class="verbatimcode"><span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File: unicode.c
+
+   Purpose:   To demonstrate how to use a unicoded strings.
+ */</span>
+
+<span class="preprocessor">#include</span> &lt;stdio.h&gt;
+<span class="preprocessor">#include</span> &lt;stdlib.h&gt;
+<span class="preprocessor">#include</span> &lt;string.h&gt;
+
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>"
+
+<span class="type">int</span> main(<span class="type">int</span> argc, <span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+  <span class="type">char</span>        output[512];
+  wchar_t     *input=L"<span class="string">myfile.mps</span>";
+  MSKenv_t    env;
+  MSKrescodee r;
+  MSKtask_t   task;
+  <span class="type">size_t</span>      len,conv;
+
+
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_initenv(env);
+    
+  <span class="keyword">if</span> ( r==MSK_RES_OK ) 
+  { 
+    r = MSK_makeemptytask(env,&amp;task);
+
+    <span class="keyword">if</span> ( r==MSK_RES_OK )   
+    { 
+      <span class="comment">/*
+         The wchar_t string "input" specifying a file name
+         is converted to a UTF8 string that can be inputted 
+         to MOSEK.
+       */</span>
+    
+      r = MSK_wchartoutf8(sizeof(output),&amp;len,&amp;conv,output,input);
+    
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {     
+        <span class="comment">/* output is now an UTF8 encoded string. */</span> 
+        r = MSK_readdata(task,output);
+      }  
+    
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        r = MSK_optimize(task);
+        MSK_solutionsummary(task,MSK_STREAM_MSG);
+      }
+    }  
+    MSK_deletetask(&amp;task);
+  }
+  MSK_deleteenv(&amp;env);
+
+  printf("<span class="string">Return code - %d\n</span>",r);
+
+  <span class="keyword">return</span> ( r );
+} <span class="comment">/* main */</span>
+</div>
+
+</div>
+
+<div>
+<h2><a name="262744472">6.10.2. Limitations</a></h2>
+
+<p>Please note that the MPS and LP format are based ASCII formats whereas the OPF, MBT, and XML are UTF8 based formats. This implies that problems which contains non-ASCII variable or constraint names cannot be written correctly to an MPS or LP formatted file.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. Basic API tutorial" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. Modelling" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">7. Modelling</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:50:19 2012</div>
+</body></html>

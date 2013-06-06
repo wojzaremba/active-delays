@@ -1,0 +1,3639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>5. Basic API tutorial</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node006.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 4. Testing installation and compiling examples" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node008.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  6. Advanced API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node006.html" target="_self">4. Testing installation and compiling examples</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node008.html" target="_self">6. Advanced API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="245072168">5. Basic API tutorial</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node007.html#245069296" target="_self">5.1. The basics</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#245075480" target="_self">5.1.1. The environment and the task</a></li>
+<li><a href="node007.html#245077200" target="_self">5.1.2. A simple working example</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#245078928" target="_self">5.1.2.1. Writing a problem to a file</a></li>
+<li><a href="node007.html#245079576" target="_self">5.1.2.2. Inputting and outputting problem data</a></li>
+<li><a href="node007.html#245080504" target="_self">5.1.2.3. Setting parameters</a></li>
+</ul>
+</li>
+<li><a href="node007.html#245080008" target="_self">5.1.3. Compiling and running examples</a></li>
+</ul>
+</li>
+<li><a href="node007.html#245081584" target="_self">5.2. Linear optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#245098544" target="_self">5.2.1. Linear optimization example: lo1</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#245099264" target="_self">5.2.1.1. Solving the problem</a></li>
+<li><a href="node007.html#245159336" target="_self">5.2.1.2. Source code for lo1</a></li>
+</ul>
+</li>
+<li><a href="node007.html#245165016" target="_self">5.2.2. Row-wise input</a></li>
+</ul>
+</li>
+<li><a href="node007.html#245168032" target="_self">5.3. Quadratic optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#245182264" target="_self">5.3.1. Example: Quadratic objective</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#245205688" target="_self">5.3.1.1. Source code</a></li>
+<li><a href="node007.html#245205904" target="_self">5.3.1.2. Example code comments</a></li>
+</ul>
+</li>
+<li><a href="node007.html#245211648" target="_self">5.3.2. Example: Quadratic constraints</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#256953520" target="_self">5.3.2.1. Source code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#256960704" target="_self">5.4. Conic optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#256977808" target="_self">5.4.1. Example: cqo1</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#256978024" target="_self">5.4.1.1. Source code</a></li>
+<li><a href="node007.html#256989520" target="_self">5.4.1.2. Source code comments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#256991176" target="_self">5.5. Integer optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#256989664" target="_self">5.5.1. Example: milo1</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#256991528" target="_self">5.5.1.1. Source code</a></li>
+<li><a href="node007.html#257002168" target="_self">5.5.1.2. Code comments</a></li>
+</ul>
+</li>
+<li><a href="node007.html#257001520" target="_self">5.5.2. Specifying an initial solution</a></li>
+<li><a href="node007.html#257002600" target="_self">5.5.3. Example: Specifying an integer solution</a></li>
+</ul>
+</li>
+<li><a href="node007.html#257007912" target="_self">5.6. Problem modification and reoptimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#257003104" target="_self">5.6.1. A production planning problem</a></li>
+<li><a href="node007.html#257037736" target="_self">5.6.2. Changing the <span class="math"><span class="mi">A</span></span> matrix</a></li>
+<li><a href="node007.html#257054552" target="_self">5.6.3. Appending variables</a></li>
+<li><a href="node007.html#257050024" target="_self">5.6.4. Reoptimization</a></li>
+<li><a href="node007.html#257080928" target="_self">5.6.5. Appending constraints</a></li>
+</ul>
+</li>
+<li><a href="node007.html#257087680" target="_self">5.7. Efficiency considerations</a></li>
+<li><a href="node007.html#257094432" target="_self">5.8. Conventions employed in the API</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#257087752" target="_self">5.8.1. Naming conventions for arguments</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#257198632" target="_self">5.8.1.1. Bounds</a></li>
+</ul>
+</li>
+<li><a href="node007.html#257200352" target="_self">5.8.2. Vector formats</a></li>
+<li><a href="node007.html#257203448" target="_self">5.8.3. Matrix formats</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#257200568" target="_self">5.8.3.1. Unordered triplets</a></li>
+<li><a href="node007.html#257205960" target="_self">5.8.3.2. Row or column ordered sparse matrix</a></li>
+<li><a href="node007.html#258913416" target="_self">5.8.3.3. Row ordered sparse matrix</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#258921824" target="_self">5.9. The license system</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#258913488" target="_self">5.9.1. Waiting for a free license</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="chap:using-mosek-interface">&#09;</a> In this chapter the reader will learn how to build a simple application that uses MOSEK.</p>
+
+<p>A number of examples is provided to demonstrate the functionality required for solving linear, quadratic, and conic problems as well as mixed integer problems.</p>
+
+<p>Please note that the section on linear optimization also describes most of the basic functionality that is not specific to linear problems. Hence, it is recommended to read Section <a title="5.2. Linear optimization" href="node007.html#chap-apiintro-sec-linear-optimization">5.2</a> before reading the rest of this chapter.</p>
+
+<div>
+<h1><a name="245069296">5.1. The basics</a></h1>
+
+<p>A typical program using the MOSEK C interface can be described shortly: </p>
+
+<ol class="enumerate">
+<li>Create an environment (<tt class="tt">MSKenv_t</tt>) object.</li>
+<li>Set up some environment specific data and initialize the environment object.</li>
+<li>Create a task (<tt class="tt">MSKtask_t</tt>) object.</li>
+<li>Load a problem into the task object.</li>
+<li>Optimize the problem.</li>
+<li>Fetch the result.</li>
+<li>Delete the environment and task objects.</li>
+</ol>
+
+<div>
+<h2><a name="245075480">5.1.1. The environment and the task</a></h2>
+
+<p> The first MOSEK related step in any program that employs MOSEK is to create an environment (<tt class="tt">MSKenv_t</tt>) object. The environment contains environment specific data such as information about the license file, streams for environment messages etc. Before creating any task objects, the environment must be initialized using <a href="node017.html#common-func*mosek*env*initenv"><tt class="tt">MSK_initenv</tt></a>. When this is done one or more task (<tt class="tt">MSKtask_t</tt>) objects can be created. Each task is associated with a single environment and defines a complete optimization problem as well as task message streams and optimization parameters.</p>
+
+<p>  In C, the creation of an environment and a task could like this: </p>
+
+<pre class="verbatimcode">{
+  MSKenv_t    env = NULL;
+  MSKtask_t   task = NULL;
+  MSKrescodee res;
+
+  /* Create an environment */
+  res = MSK_makeenv(&amp;env, NULL,NULL,NULL,NULL);
+
+  /* You may connect streams and other callbacks to env here */
+
+  /* Initialize the environment */
+  if (res == MSK_RES_OK)
+    res = MSK_initenv(env)
+    
+  /* Create a task */
+  if (res == MSK_RES_OK)
+    res = MSK_maketask(env, 0,0, &amp;task);
+  ...
+  /* input some task data, optimize etc. */
+  ...
+  MSK_deletetask(&amp;task);
+  MSK_deleteenv(&amp;env);
+}
+</pre>
+
+<p>Please note that an environment should, if possible, be shared between multiple tasks.</p>
+
+</div>
+
+<div>
+<h2><a name="245077200">5.1.2. A simple working example</a></h2>
+
+<p>The following simple example shows a working C program which </p>
+
+<ul class="itemize">
+<li>creates an environment and a task,</li>
+<li>reads a problem from a file,</li>
+<li>optimizes the problem, and</li>
+<li>writes the solution to a file. </li>
+</ul>
+
+<p> <a name="idx-74322504">&#09;</a> <a name="idx-74339320">&#09;</a></p>
+
+<p><a name="idx-74340688">&#09;</a> <a name="idx-74340760">&#09;</a> <a name="idx-74341480">&#09;</a></p>
+
+<div class="verbatimcode"><span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File:    simple.c
+
+  Purpose: To demonstrate a very simple example using MOSEK by
+           reading a problem file, solving the problem and
+           writing the solution to a file.
+*/</span>
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>"
+
+<span class="type">int</span> main (<span class="type">int</span> argc, <span class="type">char</span> * argv<span class="brackets">[]</span>)
+{
+  MSKtask_t   task = <span class="keyword">NULL</span>;
+  MSKenv_t    env  = <span class="keyword">NULL</span>;
+  MSKrescodee res  = MSK_RES_OK;
+
+  <span class="keyword">if</span> (argc &lt;= 1)
+  {
+    printf ("<span class="string">Missing argument. The syntax is:\n</span>");
+    printf ("<span class="string"> simple inputfile [ solutionfile ]\n</span>");
+  }
+  <span class="keyword">else</span>
+  {
+    <span class="comment">/* Create the mosek environment. 
+       The `NULL' arguments here, are used to specify customized 
+       memory allocators and a memory debug file. These can
+       safely be ignored for now. */</span>
+    
+    res = MSK_makeenv(&amp;env, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>);
+      
+    <span class="comment">/* Initialize the environment */</span>
+    <span class="keyword">if</span> ( res==MSK_RES_OK )
+      MSK_initenv (env);
+
+    <span class="comment">/* Create a task object linked to the environment env.
+       Initially we create it with 0 variables and 0 columns, 
+       since we do not know the size of the problem. */</span> 
+    <span class="keyword">if</span> ( res==MSK_RES_OK )
+      res = MSK_maketask (env, 0,0, &amp;task);
+      
+    <span class="comment">/* We assume that a problem file was given as the first command
+       line argument (received in `argv'). */</span>
+    <span class="keyword">if</span> ( res==MSK_RES_OK )   
+      res = MSK_readdata (task, argv[1]);
+
+    <span class="comment">/* Solve the problem */</span>
+    <span class="keyword">if</span> ( res==MSK_RES_OK )
+      MSK_optimize(task);
+
+    <span class="comment">/* Print a summary of the solution. */</span>
+    MSK_solutionsummary(task, MSK_STREAM_MSG);
+        
+    <span class="comment">/* If an output file was specified, write a solution */</span>
+    <span class="keyword">if</span> ( res==MSK_RES_OK &amp;&amp; argc&gt;2 )
+    {
+      <span class="comment">/* We define the output format to be OPF, and tell MOSEK to
+         leave out parameters and problem data from the output file. */</span>
+      MSK_putintparam (task,MSK_IPAR_WRITE_DATA_FORMAT,    MSK_DATA_FORMAT_OP);
+      MSK_putintparam (task,MSK_IPAR_OPF_WRITE_SOLUTIONS,  MSK_ON);
+      MSK_putintparam (task,MSK_IPAR_OPF_WRITE_HINTS,      MSK_OFF);
+      MSK_putintparam (task,MSK_IPAR_OPF_WRITE_PARAMETERS, MSK_OFF);
+      MSK_putintparam (task,MSK_IPAR_OPF_WRITE_PROBLEM,    MSK_OFF);
+      MSK_writedata(task,argv[2]);
+    }
+  
+    MSK_deletetask(&amp;task);
+    MSK_deleteenv(&amp;env);
+  }
+  <span class="keyword">return</span> res;
+}
+</div>
+
+<div>
+<h3><a name="245078928">5.1.2.1. Writing a problem to a file</a></h3>
+
+<p>It is frequently beneficial to write a problem to a file that can be stored for later use or inspected visually. The <a href="node017.html#common-func*mosek*task*writedata"><tt class="tt">MSK_writedata</tt></a> function is used write a problem to a file as follows</p>
+
+<div class="verbatimcode">MSK_writedata(task,argv[2]);
+</div>
+
+<p> By default the extension of the filename is the format written. I.e. the filename <tt class="tt">somename.opf</tt> implies the file is written in the OPF format.</p>
+
+<p>Similarly, the function <a href="node017.html#common-func*mosek*task*readdata"><tt class="tt">MSK_readdata</tt></a> reads a problem from a file:</p>
+
+<div class="verbatimcode">res = MSK_readdata (task, argv[1]);
+</div>
+
+</div>
+
+<div>
+<h3><a name="245079576">5.1.2.2. Inputting and outputting problem data</a></h3>
+
+<p>An optimization problem consists of several components; objective, objective sense, constraints, variable bounds etc. Therefore, the task (<tt class="tt">MSKtask_t</tt>) provides a number of methods to operate on the task specific data, all of which are listed in Section <a title="15.4. Mosek Task" href="node017.html#apiclass*mosek*task">15.4</a>.</p>
+
+</div>
+
+<div>
+<h3><a name="245080504">5.1.2.3. Setting parameters</a></h3>
+
+<p>Apart from the problem data, the task contains a number of parameters defining the behavior of MOSEK. For example the <a href="node018.html#common-const*mosek*iparam*optimizer"><tt class="tt">MSK_IPAR_OPTIMIZER</tt></a> parameter defines which optimizer to use. A complete list of all parameters are listed in Chapter <a title="16. Parameter reference" href="node018.html#chap-paramref">16</a>.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="245080008">5.1.3. Compiling and running examples</a></h2>
+
+<p>All examples presented in this chapter are distributed with MOSEK and are available in the directory </p>
+
+<pre class="verbatim"> mosek/6/tools/examples/ 
+</pre>
+
+<p>in the MOSEK installation. Chapter <a title="4. Testing installation and compiling examples" href="node006.html#started-chap-iterface-intro-sec-compile-and-run">4</a> describes how to compile and run the examples.</p>
+
+<p>It is recommended to copy examples to a different directory before modifying and compiling them.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="245081584">5.2. Linear optimization</a></h1>
+
+<p> <a name="chap-apiintro-sec-linear-optimization">&#09;</a> <a name="idx-74346864">&#09;</a> The simplest optimization problem is a purely linear problem. A <em>linear optimization problem</em> is a problem of the following form:</p>
+
+<p>Minimize or maximize the objective function </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math6.png" alt="\begin{math}\nonumber{}\sum _{{j=0}}^{{n-1}}c_{j}x_{j}+c^{f}\end{math}"/></td>
+<td><a name="chap-using-mosek-api-sec-lo-eq1">&#09;</a>(5.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>subject to the linear constraints </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math7.png" alt="\begin{math}\nonumber{}l_{k}^{c}\leq{}\sum _{{j=0}}^{{n-1}}a_{{kj}}x_{j}\leq{}u_{k}^{c},~k=0,\ldots ,m-1,\end{math}"/></td>
+<td><a name="chap-using-mosek-api-sec-lo-eq2">&#09;</a>(5.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>and the bounds </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math8.png" alt="\begin{math}\nonumber{}l_{j}^{x}\leq{}x_{j}\leq{}u_{j}^{x},~j=0,\ldots ,n-1,\end{math}"/></td>
+<td><a name="chap-using-mosek-api-sec-lo-eq3">&#09;</a>(5.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>where we have used the problem elements </p>
+
+<dl class="description">
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">m</span></span> and <span class="math"><span class="mi">n</span></span>, <a name="idx-74367632">&#09;</a> <a name="idx-74368136">&#09;</a> which are the number of constraints and variables respectively, </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">x</span></span>, <a name="idx-74369648">&#09;</a> which is the variable vector of length <span class="math"><span class="mi">n</span></span>, </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">c</span></span>, <a name="idx-74371224">&#09;</a> which is a coefficient vector of size <span class="math"><span class="mi">n</span></span> </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math9.png" alt="\begin{displaymath}\nonumber{}c=\left[\begin{array}{c}\nonumber{}c_{0}\\\nonumber{}\vdots \\\nonumber{}c_{{n-1}}\end{array}\right],\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><img src="math/math10.png" alt="[[MathCmd 10]]"/></span>, which is a constant, </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">A</span></span>, <a name="idx-74376976">&#09;</a> which is a <span class="math"><img src="math/math11.png" alt="[[MathCmd 11]]"/></span> matrix of coefficients is given by  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math12.png" alt="\begin{displaymath}\nonumber{}A=\left[\begin{array}{ccc}\nonumber{}a_{{0,0}} & \cdots  & a_{{0,(n-1)}}\\\nonumber{}\vdots  & \cdots  & \vdots \\\nonumber{}a_{{(m-1),0}} & \cdots  & a_{{(m-1),(n-1)}}\end{array}\right],\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><img src="math/math13.png" alt="[[MathCmd 13]]"/></span> and <span class="math"><img src="math/math14.png" alt="[[MathCmd 14]]"/></span>, <a name="idx-74383872">&#09;</a> <a name="idx-74384376">&#09;</a> which specify the lower and upper bounds on constraints respectively, and </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><img src="math/math15.png" alt="[[MathCmd 15]]"/></span> and <span class="math"><img src="math/math16.png" alt="[[MathCmd 16]]"/></span>, <a name="idx-74386104">&#09;</a> <a name="idx-74373888">&#09;</a> which specifies the lower and upper bounds on variables respectively. </p>
+</dd>
+</dl>
+
+<p> Please note the unconventional notation using <span class="math"><span class="mn">0</span></span> as the first index rather than <span class="math"><span class="mn">1</span></span>. Hence, <span class="math"><img src="math/math17.png" alt="[[MathCmd 17]]"/></span> is the first element in variable vector <span class="math"><span class="mi">x</span></span>. This convention has been adapted from C arrays which are indexed from 0.</p>
+
+<div>
+<h2><a name="245098544">5.2.1. Linear optimization example: lo1</a></h2>
+
+<p> <a name="idx-74350464">&#09;</a> The following is an example of a linear optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math18.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccl}\nonumber{}\mbox{maximize} & 3x_{0} & + & 1x_{1} & + & 5x_{2} & + & 1x_{3} &  & \\\nonumber{}\mbox{subject to} & 3x_{0} & + & 1x_{1} & + & 2x_{2} &  &  & = & 30,\\\nonumber{} & 2x_{0} & + & 1x_{1} & + & 3x_{2} & + & 1x_{3} & \geq{} & 15,\\\nonumber{} &  &  & 2x_{1} &  &  & + & 3x_{3} & \leq{} & 25,\end{array}\end{math}"/></td>
+<td>(5.2.4)</td></tr>
+</tbody>
+</table>
+
+<p>having the bounds </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math19.png" alt="\begin{math}\nonumber{}\begin{array}{ccccc}\nonumber{}0 & \leq{} & x_{0} & \leq{} & \infty ,\\\nonumber{}0 & \leq{} & x_{1} & \leq{} & 10,\\\nonumber{}0 & \leq{} & x_{2} & \leq{} & \infty ,\\\nonumber{}0 & \leq{} & x_{3} & \leq{} & \infty .\end{array}\end{math}"/></td>
+<td>(5.2.5)</td></tr>
+</tbody>
+</table>
+
+<div>
+<h3><a name="245099264">5.2.1.1. Solving the problem</a></h3>
+
+<p>To solve the problem above we go through the following steps: </p>
+
+<ol class="enumerate">
+<li>Create an environment. </li>
+<li>Create an optimization task. </li>
+<li>Load a problem into the task object. </li>
+<li>Optimization. </li>
+<li>Extracting the solution. </li>
+</ol>
+
+<p>Below we explain each of these steps. For the complete source code see section <a title="5.2.1.2. Source code for lo1" href="node007.html#ref-lo1-source">5.2.1.2</a>. The code can also be found in:</p>
+
+<pre class="verbatim">    mosek\6\tools\examples\c\lo1.c
+</pre>
+
+<dl class="description">
+<dt>Create an environment.</dt>
+<dd>
+<p> Before setting up the optimization problem, a MOSEK environment must be created and initialized. This is done in the lines:</p>
+
+<div class="verbatimcode">r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+
+<span class="comment">/* Directs the env log stream to the 'printstr' function. */</span>
+<span class="keyword">if</span> ( r==MSK_RES_OK )
+  MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+
+<span class="comment">/* Initialize the environment. */</span>
+<span class="keyword">if</span> ( r==MSK_RES_OK )
+  r = MSK_initenv(env);
+</div>
+
+<p>We connect a call-back function to the environment log stream. In this case the call-back function simply prints messages to the standard output stream.</p>
+</dd>
+<dt>Create an optimization task.</dt>
+<dd>
+<p> Next, an empty task object is created:</p>
+
+<div class="verbatimcode"><span class="comment">/* Create the optimization task. */</span>
+r = MSK_maketask(env,NUMCON,NUMVAR,&amp;task);
+
+<span class="comment">/* Directs the log task stream to the 'printstr' function. */</span>
+<span class="keyword">if</span> ( r==MSK_RES_OK )
+  MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+</div>
+
+<p>We also connect a call-back function to the task log stream. Messages related to the task are passed to the call-back function. In this case the stream call-back function writes its messages to the standard output stream.</p>
+</dd>
+<dt>Load a problem into the task object.</dt>
+<dd>
+<p> First an estimate of the size of the input data is set. This is done to increase the speed of inputting data and is optional.</p>
+
+<div class="verbatimcode"><span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_putmaxnumvar(task,NUMVAR);
+
+<span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_putmaxnumcon(task,NUMCON);
+
+<span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_putmaxnumanz(task,NUMANZ);
+</div>
+
+<p>Before any problem data can be set, variables and constraints must be added to the problem via calls to the function <a href="node017.html#common-func*mosek*task*append"><tt class="tt">MSK_append</tt></a>.</p>
+
+<div class="verbatimcode"><span class="comment">/* Append 'NUMCON' empty constraints.
+ The constraints will initially have no bounds. */</span>
+<span class="keyword">if</span> ( r == MSK_RES_OK )
+  r = MSK_append(task,MSK_ACC_CON,NUMCON);
+
+<span class="comment">/* Append 'NUMVAR' variables.
+ The variables will initially be fixed at zero (x=0). */</span>
+<span class="keyword">if</span> ( r == MSK_RES_OK )
+  r = MSK_append(task,MSK_ACC_VAR,NUMVAR);
+</div>
+
+<p>New variables can now be referenced from other functions with indexes in <span class="math"><img src="math/math20.png" alt="[[MathCmd 20]]"/></span> and new constraints can be referenced with indexes in <span class="math"><img src="math/math21.png" alt="[[MathCmd 21]]"/></span>. More variables / constraints can be appended later as needed, these will be assigned indexes from <span class="math"><img src="math/math22.png" alt="[[MathCmd 22]]"/></span> / <span class="math"><img src="math/math23.png" alt="[[MathCmd 23]]"/></span> and up.</p>
+
+<p>Next step is to set the problem data. We loop over each variable index <span class="math"><img src="math/math24.png" alt="[[MathCmd 24]]"/></span> calling functions to set problem data. We first set the objective coefficient <span class="math"><img src="math/math25.png" alt="[[MathCmd 25]]"/></span> by calling the function <a href="node017.html#common-func*mosek*task*putcj"><tt class="tt">MSK_putcj</tt></a>.</p>
+
+<div class="verbatimcode"><span class="comment">/* Set the linear term c_j in the objective.*/</span>
+<span class="keyword">if</span>(r == MSK_RES_OK)
+  r = MSK_putcj(task,j,c[j]);
+</div>
+
+<p>The bounds on variables are stored in the arrays</p>
+
+<div class="verbatimcode">MSKboundkeye bkx<span class="brackets">[]</span>  = {MSK_BK_LO,     MSK_BK_RA, MSK_BK_LO,     MSK_BK_LO     };
+<span class="type">double</span>       blx<span class="brackets">[]</span>  = {0.0,           0.0,       0.0,           0.0           };
+<span class="type">double</span>       bux<span class="brackets">[]</span>  = {+MSK_INFINITY, 10.0,      +MSK_INFINITY, +MSK_INFINITY };
+</div>
+
+<p>and are set with calls to <a href="node017.html#common-func*mosek*task*putbound"><tt class="tt">MSK_putbound</tt></a>.</p>
+
+<div class="verbatimcode"><span class="comment">/* Set the bounds on variable j.
+ blx[j] &lt;= x_j &lt;= bux[j] */</span>
+<span class="keyword">if</span>(r == MSK_RES_OK)
+  r = MSK_putbound(task,
+                   MSK_ACC_VAR, <span class="comment">/* Put bounds on variables.*/</span>
+                   j,           <span class="comment">/* Index of variable.*/</span>
+                   bkx[j],      <span class="comment">/* Bound key.*/</span>
+                   blx[j],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                   bux[j]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+</div>
+
+<p>The <em>Bound key</em> stored in <tt class="tt">bkx</tt> specify the type of the bound according to Table <a href="node007.html#CH:API:TAB:BOUNDKEYS2">5.1</a>.  </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Bound key </td>
+<td valign="top" style="border-top:1px solid black;"> Type of bound </td>
+<td valign="top" style="border-top:1px solid black;"> Lower bound </td>
+<td valign="top" style="border-top:1px solid black;"> Upper bound </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> <a href="node020.html#common-const*mosek*boundkey*fx"><tt class="tt">MSK_BK_FX</tt></a> </td>
+<td valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math26.png" alt="[[MathCmd 26]]"/></span></td>
+<td valign="top" style="border-top:1px solid black;"> Finite </td>
+<td valign="top" style="border-top:1px solid black;"> Identical to the lower bound </td></tr><tr class="evenrow">
+<td valign="top"><a href="node020.html#common-const*mosek*boundkey*fr"><tt class="tt">MSK_BK_FR</tt></a> </td>
+<td valign="top"> Free </td>
+<td valign="top"> Minus infinity </td>
+<td valign="top"> Plus infinity </td></tr><tr class="oddrow">
+<td valign="top"><a href="node020.html#common-const*mosek*boundkey*lo"><tt class="tt">MSK_BK_LO</tt></a> </td>
+<td valign="top"> <span class="math"><img src="math/math27.png" alt="[[MathCmd 27]]"/></span> </td>
+<td valign="top"> Finite </td>
+<td valign="top"> Plus infinity </td></tr><tr class="evenrow">
+<td valign="top"><a href="node020.html#common-const*mosek*boundkey*ra"><tt class="tt">MSK_BK_RA</tt></a> </td>
+<td valign="top"> <span class="math"><img src="math/math28.png" alt="[[MathCmd 28]]"/></span> </td>
+<td valign="top"> Finite </td>
+<td valign="top"> Finite </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><a href="node020.html#common-const*mosek*boundkey*up"><tt class="tt">MSK_BK_UP</tt></a> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <span class="math"><img src="math/math29.png" alt="[[MathCmd 29]]"/></span> </td>
+<td valign="top" style="border-bottom:1px solid black;"> Minus infinity </td>
+<td valign="top" style="border-bottom:1px solid black;"> Finite </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;5.1: Interpretation of the bound keys.</span>
+<br/>
+<p> <a name="CH:API:TAB:BOUNDKEYS2">&#09;</a> </p>
+</center></td></tr></table>
+</td></tr></table>
+
+<p>  For instance <tt class="tt">bkx[0]=</tt> <a href="node020.html#common-const*mosek*boundkey*lo"><tt class="tt">MSK_BK_LO</tt></a> means that <span class="math"><img src="math/math30.png" alt="[[MathCmd 30]]"/></span>. Finally, the numerical values of the bounds on variables are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math31.png" alt="\begin{math}\nonumber{}l_{j}^{x}=\mathtt{blx[j]}\end{math}"/></td>
+<td>(5.2.6)</td></tr>
+</tbody>
+</table>
+
+<p>  and  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math32.png" alt="\begin{math}\nonumber{}u_{j}^{x}=\mathtt{bux[j]}.\end{math}"/></td>
+<td>(5.2.7)</td></tr>
+</tbody>
+</table>
+
+<p> Recall that in our example the <span class="math"><span class="mi">A</span></span> matrix is given by  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math33.png" alt="\begin{displaymath}\nonumber{}A=\left[\begin{array}{cccc}\nonumber{}3 & 1 & 2 & 0\\\nonumber{}2 & 1 & 3 & 1\\\nonumber{}0 & 2 & 0 & 3\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This matrix is stored in sparse format in the arrays:</p>
+
+<div class="verbatimcode">MSKlidxt     aptrb<span class="brackets">[]</span> = {0, 2, 5, 7};
+MSKlidxt     aptre<span class="brackets">[]</span> = {2, 5, 7, 9};
+MSKidxt      asub<span class="brackets">[]</span> = { 0, 1,
+                        0, 1, 2,
+                        0, 1,
+                        1, 2};
+<span class="type">double</span>       aval<span class="brackets">[]</span> = { 3.0, 2.0,
+                        1.0, 1.0, 2.0,
+                        2.0, 3.0,
+                        1.0, 3.0};
+</div>
+
+<p>The <tt class="tt">ptrb</tt>, <tt class="tt">ptre</tt>, <tt class="tt">asub</tt>, and <tt class="tt">aval</tt> arguments define the constraint matrix <span class="math"><span class="mi">A</span></span> in the column ordered sparse format (for details, see Section <a title="5.8.3.2. Row or column ordered sparse matrix" href="node007.html#sec-intro-subsubsec-cmo-rmo-matrix">5.8.3.2</a>).</p>
+
+<p>Using the function <a href="node017.html#common-func*mosek*task*putavec"><tt class="tt">MSK_putavec</tt></a> we set column <span class="math"><span class="mi">j</span></span> of <span class="math"><span class="mi">A</span></span></p>
+
+<div class="verbatimcode"><span class="comment">/* Input column j of A */</span>
+<span class="keyword">if</span>(r == MSK_RES_OK)
+  r = MSK_putavec(task,
+                  MSK_ACC_VAR,       <span class="comment">/* Input columns of A.*/</span>
+                  j,                 <span class="comment">/* Variable (column) index.*/</span>
+                  aptre[j]-aptrb[j], <span class="comment">/* Number of non-zeros in column j.*/</span>
+                  asub+aptrb[j],     <span class="comment">/* Pointer to row indexes of column j.*/</span>
+                  aval+aptrb[j]);    <span class="comment">/* Pointer to Values of column j.*/</span>
+</div>
+
+<p>Alternatively, the same <span class="math"><span class="mi">A</span></span> matrix can be set one row at a time; please see section <a title="5.2.2. Row-wise input" href="node007.html#ref-lo2-ex">5.2.2</a> for an example.</p>
+
+<p>Finally, the bounds on each constraint are set by looping over each constraint index <span class="math"><img src="math/math34.png" alt="[[MathCmd 34]]"/></span></p>
+
+<div class="verbatimcode"><span class="comment">/* Set the bounds on constraints.
+   for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+<span class="keyword">for</span>(i=0; i&lt;NUMCON &amp;&amp; r==MSK_RES_OK; ++i)
+  r = MSK_putbound(task,
+                   MSK_ACC_CON, <span class="comment">/* Put bounds on constraints.*/</span>
+                   i,           <span class="comment">/* Index of constraint.*/</span>
+                   bkc[i],      <span class="comment">/* Bound key.*/</span>
+                   blc[i],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                   buc[i]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+</div>
+</dd>
+<dt>Optimization:</dt>
+<dd>
+<p> After the problem is set-up the task can be optimized by calling the function <a href="node017.html#common-func*mosek*task*optimizetrm"><tt class="tt">MSK_optimizetrm</tt></a>.</p>
+
+<div class="verbatimcode">r = MSK_optimizetrm(task,&amp;trmcode);
+</div>
+</dd>
+<dt>Extracting the solution.</dt>
+<dd>
+<p> After optimizing the status of the solution is examined with a call to <a href="node017.html#common-func*mosek*task*getsolutionstatus"><tt class="tt">MSK_getsolutionstatus</tt></a>. If the solution status is reported as <a href="node020.html#common-const*mosek*solsta*optimal"><tt class="tt">MSK_SOL_STA_OPTIMAL</tt></a> or <a href="node020.html#common-const*mosek*solsta*near-optimal"><tt class="tt">MSK_SOL_STA_NEAR_OPTIMAL</tt></a> the solution is extracted in the lines below:</p>
+
+<div class="verbatimcode">MSK_getsolutionslice(task,
+                     MSK_SOL_BAS,    <span class="comment">/* Request the basic solution. */</span>
+                     MSK_SOL_ITEM_XX,<span class="comment">/* Which part of solution.     */</span>
+                     0,              <span class="comment">/* Index of first variable.    */</span>
+                     NUMVAR,         <span class="comment">/* Index of last variable+1.   */</span>
+                     xx);
+</div>
+
+<p> The <a href="node017.html#common-func*mosek*task*getsolutionslice"><tt class="tt">MSK_getsolutionslice</tt></a> function obtains a &#8220;slice&#8221; of the solution. MOSEK may compute several solutions depending on the optimizer employed. In this example the <em>basic solution</em> is requested by setting the second argument to <a href="node020.html#common-const*mosek*soltype*bas"><tt class="tt">MSK_SOL_BAS</tt></a>. The third argument <a href="node020.html#common-const*mosek*solitem*xx"><tt class="tt">MSK_SOL_ITEM_XX</tt></a> specifies that we want the variable values of the solution. The two following arguments <tt class="tt">0</tt> and <tt class="tt">NUMVAR</tt> specifies the range of variable values we want.</p>
+
+<p>The range specified is the first index (here &#8220;<tt class="tt">0</tt>&#8221;) up to but not including the second index (<tt class="tt">here &#8220;<tt class="tt">NUMVAR</tt>&#8221;</tt>).</p>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h3><a name="245159336">5.2.1.2. Source code for lo1</a></h3>
+
+<p> <a name="ref-lo1-source">&#09;</a></p>
+
+<p><a name="idx-75946464">&#09;</a> <a name="idx-75946536">&#09;</a></p>
+
+<p><a name="idx-75947904">&#09;</a> <a name="idx-75947976">&#09;</a></p>
+
+<div class="verbatimcode"><span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File:      lo1.c
+
+  Purpose:   To demonstrate how to solve a small linear
+             optimization problem using the MOSEK C API.
+*/</span>
+
+<span class="preprocessor">#include</span> &lt;stdio.h&gt;
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>" 
+
+<span class="comment">/* This function prints log output from MOSEK to the terminal. */</span>
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printstr(<span class="type">void</span> *handle,
+                            <span class="type">char</span> str<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",str);
+} <span class="comment">/* printstr */</span>
+
+<span class="preprocessor">#define</span> NUMVAR 4
+<span class="preprocessor">#define</span> NUMCON 3
+<span class="preprocessor">#define</span> NUMANZ 9
+
+<span class="type">int</span> main(<span class="type">int</span> argc,<span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+  MSKrescodee  r;
+  MSKidxt i,j;
+  <span class="type">double</span>       c<span class="brackets">[]</span>    = {3.0, 1.0, 5.0, 1.0};
+
+  <span class="comment">/* Below is the sparse representation of the A
+     matrix stored by column. */</span>
+  MSKlidxt     aptrb<span class="brackets">[]</span> = {0, 2, 5, 7};
+  MSKlidxt     aptre<span class="brackets">[]</span> = {2, 5, 7, 9};
+  MSKidxt      asub<span class="brackets">[]</span> = { 0, 1,
+                          0, 1, 2,
+                          0, 1,
+                          1, 2};
+  <span class="type">double</span>       aval<span class="brackets">[]</span> = { 3.0, 2.0,
+                          1.0, 1.0, 2.0,
+                          2.0, 3.0,
+                          1.0, 3.0};
+
+  <span class="comment">/* Bounds on constraints. */</span>
+  MSKboundkeye bkc<span class="brackets">[]</span>  = {MSK_BK_FX, MSK_BK_LO,     MSK_BK_UP    };
+  <span class="type">double</span>       blc<span class="brackets">[]</span>  = {30.0,      15.0,          -MSK_INFINITY};
+  <span class="type">double</span>       buc<span class="brackets">[]</span>  = {30.0,      +MSK_INFINITY, 25.0         };
+  <span class="comment">/* Bounds on variables. */</span>
+  MSKboundkeye bkx<span class="brackets">[]</span>  = {MSK_BK_LO,     MSK_BK_RA, MSK_BK_LO,     MSK_BK_LO     };
+  <span class="type">double</span>       blx<span class="brackets">[]</span>  = {0.0,           0.0,       0.0,           0.0           };
+  <span class="type">double</span>       bux<span class="brackets">[]</span>  = {+MSK_INFINITY, 10.0,      +MSK_INFINITY, +MSK_INFINITY };
+  <span class="type">double</span> xx[NUMVAR];               
+  MSKenv_t     env  = <span class="keyword">NULL</span>;
+  MSKtask_t    task = <span class="keyword">NULL</span>; 
+  
+  <span class="comment">/* Create the mosek environment. */</span>
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+  
+  <span class="comment">/* Directs the env log stream to the 'printstr' function. */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+  
+  <span class="comment">/* Initialize the environment. */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_initenv(env);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Create the optimization task. */</span>
+    r = MSK_maketask(env,NUMCON,NUMVAR,&amp;task);
+
+    <span class="comment">/* Directs the log task stream to the 'printstr' function. */</span>
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+      MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+
+    <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+     This is done to increase the speed of inputting data. 
+     However, it is optional. */</span>
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumvar(task,NUMVAR);
+  
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumcon(task,NUMCON);
+    
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumanz(task,NUMANZ);
+
+    <span class="comment">/* Append 'NUMCON' empty constraints.
+     The constraints will initially have no bounds. */</span>
+    <span class="keyword">if</span> ( r == MSK_RES_OK )
+      r = MSK_append(task,MSK_ACC_CON,NUMCON);
+
+    <span class="comment">/* Append 'NUMVAR' variables.
+     The variables will initially be fixed at zero (x=0). */</span>
+    <span class="keyword">if</span> ( r == MSK_RES_OK )
+      r = MSK_append(task,MSK_ACC_VAR,NUMVAR);
+
+    <span class="comment">/* Optionally add a constant term to the objective. */</span>
+    <span class="keyword">if</span> ( r ==MSK_RES_OK )
+      r = MSK_putcfix(task,0.0);
+    <span class="keyword">for</span>(j=0; j&lt;NUMVAR &amp;&amp; r == MSK_RES_OK; ++j)
+    {
+      <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putcj(task,j,c[j]);
+
+      <span class="comment">/* Set the bounds on variable j.
+       blx[j] &lt;= x_j &lt;= bux[j] */</span>
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putbound(task,
+                         MSK_ACC_VAR, <span class="comment">/* Put bounds on variables.*/</span>
+                         j,           <span class="comment">/* Index of variable.*/</span>
+                         bkx[j],      <span class="comment">/* Bound key.*/</span>
+                         blx[j],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                         bux[j]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+
+      <span class="comment">/* Input column j of A */</span>   
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putavec(task,
+                        MSK_ACC_VAR,       <span class="comment">/* Input columns of A.*/</span>
+                        j,                 <span class="comment">/* Variable (column) index.*/</span>
+                        aptre[j]-aptrb[j], <span class="comment">/* Number of non-zeros in column j.*/</span>
+                        asub+aptrb[j],     <span class="comment">/* Pointer to row indexes of column j.*/</span>
+                        aval+aptrb[j]);    <span class="comment">/* Pointer to Values of column j.*/</span>
+      
+    }
+
+    <span class="comment">/* Set the bounds on constraints.
+       for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+    <span class="keyword">for</span>(i=0; i&lt;NUMCON &amp;&amp; r==MSK_RES_OK; ++i)
+      r = MSK_putbound(task,
+                       MSK_ACC_CON, <span class="comment">/* Put bounds on constraints.*/</span>
+                       i,           <span class="comment">/* Index of constraint.*/</span>
+                       bkc[i],      <span class="comment">/* Bound key.*/</span>
+                       blc[i],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                       buc[i]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+
+    <span class="comment">/* Maximize objective function. */</span>
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putobjsense(task,
+                          MSK_OBJECTIVE_SENSE_MAXIMIZE);
+
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+    {
+      MSKrescodee trmcode;
+    
+      <span class="comment">/* Run optimizer */</span>
+      r = MSK_optimizetrm(task,&amp;trmcode);
+
+      <span class="comment">/* Print a summary containing information
+       about the solution for debugging purposes. */</span>
+      MSK_solutionsummary (task,MSK_STREAM_LOG);
+     
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        MSKsolstae solsta;
+        <span class="type">int</span> j;
+        MSK_getsolutionstatus (task,
+                               MSK_SOL_BAS,
+                               <span class="keyword">NULL</span>,
+                               &amp;solsta);
+        <span class="keyword">switch</span>(solsta)
+        {
+          case MSK_SOL_STA_OPTIMAL:   
+          case MSK_SOL_STA_NEAR_OPTIMAL:
+            MSK_getsolutionslice(task,
+                                 MSK_SOL_BAS,    <span class="comment">/* Request the basic solution. */</span>
+                                 MSK_SOL_ITEM_XX,<span class="comment">/* Which part of solution.     */</span>
+                                 0,              <span class="comment">/* Index of first variable.    */</span>
+                                 NUMVAR,         <span class="comment">/* Index of last variable+1.   */</span>
+                                 xx);
+      
+            printf("<span class="string">Optimal primal solution\n</span>");
+            <span class="keyword">for</span>(j=0; j&lt;NUMVAR; ++j)
+              printf("<span class="string">x[%d]: %e\n</span>",j,xx[j]);
+          
+            <span class="keyword">break</span>;
+          case MSK_SOL_STA_DUAL_INFEAS_CER:
+          case MSK_SOL_STA_PRIM_INFEAS_CER:
+          case MSK_SOL_STA_NEAR_DUAL_INFEAS_CER:
+          case MSK_SOL_STA_NEAR_PRIM_INFEAS_CER:  
+            printf("<span class="string">Primal or dual infeasibility certificate found.\n</span>");
+            <span class="keyword">break</span>;
+            
+          case MSK_SOL_STA_UNKNOWN:
+            printf("<span class="string">The status of the solution could not be determined.\n</span>");
+            <span class="keyword">break</span>;
+          <span class="keyword">default</span>:
+            printf("<span class="string">Other solution status.</span>");
+            <span class="keyword">break</span>;
+        }
+      }
+      <span class="keyword">else</span>
+      {
+        printf("<span class="string">Error while optimizing.\n</span>");
+      }
+    }
+    
+    <span class="keyword">if</span> (r != MSK_RES_OK)
+    {
+      <span class="comment">/* In case of an error print error code and description. */</span>      
+      <span class="type">char</span> symname[MSK_MAX_STR_LEN];
+      <span class="type">char</span> desc[MSK_MAX_STR_LEN];
+      
+      printf("<span class="string">An error occurred while optimizing.\n</span>");     
+      MSK_getcodedesc (r,
+                       symname,
+                       desc);
+      printf("<span class="string">Error %s - '%s'\n</span>",symname,desc);
+    }
+    
+    MSK_deletetask(&amp;task);
+    
+    MSK_deleteenv(&amp;env);
+  }
+    
+  <span class="keyword">return</span> r;
+}
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="245165016">5.2.2. Row-wise input</a></h2>
+
+<p> <a name="ref-lo2-ex">&#09;</a> <a name="idx-75950992">&#09;</a> In the previous example the <span class="math"><span class="mi">A</span></span> matrix is set one column at a time. Alternatively the same matrix can be set one row at a time or the two methods can be mixed as in the example in section <a title="5.6. Problem modification and reoptimization" href="node007.html#ch:intro:sec:reopt">5.6</a>. The following example show how to set the <span class="math"><span class="mi">A</span></span> matrix by rows.</p>
+
+<p>The source code for this example can be found in:</p>
+
+<pre class="verbatim">    mosek\6\tools\examples\c\lo2.c
+</pre>
+
+<p><a name="idx-75949696">&#09;</a></p>
+
+<div class="verbatimcode"><span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File:      lo2.c
+
+  Purpose:   To demonstrate how to solve a small linear
+             optimization problem using the MOSEK C API.
+*/</span>
+
+<span class="preprocessor">#include</span> &lt;stdio.h&gt;
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>" 
+
+<span class="comment">/* This function prints log output from MOSEK to the terminal. */</span>
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printstr(<span class="type">void</span> *handle,
+                            <span class="type">char</span> str<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",str);
+} <span class="comment">/* printstr */</span>
+
+<span class="preprocessor">#define</span> NUMVAR 4
+<span class="preprocessor">#define</span> NUMCON 3
+<span class="preprocessor">#define</span> NUMANZ 9
+
+<span class="type">int</span> main(<span class="type">int</span> argc,<span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+  MSKrescodee  r;
+  MSKidxt i,j;
+  <span class="type">double</span>       c<span class="brackets">[]</span>    = {3.0, 1.0, 5.0, 1.0};
+
+  <span class="comment">/* Below is the sparse representation of the A
+     matrix stored by row. */</span>
+  MSKlidxt     aptrb<span class="brackets">[]</span> = {0, 3, 7};
+  MSKlidxt     aptre<span class="brackets">[]</span> = {3, 7, 9};
+  MSKidxt      asub<span class="brackets">[]</span> = { 0,1,2,
+                          0,1,2,3,
+                          1,3};    
+  <span class="type">double</span>       aval<span class="brackets">[]</span> = { 3.0, 1.0, 2.0,
+                          2.0, 1.0, 3.0, 1.0,
+                          2.0, 3.0};  
+  <span class="comment">/* Bounds on constraints. */</span>
+  MSKboundkeye bkc<span class="brackets">[]</span>  = {MSK_BK_FX, MSK_BK_LO,     MSK_BK_UP    };
+  <span class="type">double</span>       blc<span class="brackets">[]</span>  = {30.0,      15.0,          -MSK_INFINITY};
+  <span class="type">double</span>       buc<span class="brackets">[]</span>  = {30.0,      +MSK_INFINITY, 25.0         };
+  <span class="comment">/* Bounds on variables. */</span>
+  MSKboundkeye bkx<span class="brackets">[]</span>  = {MSK_BK_LO,     MSK_BK_RA, MSK_BK_LO,     MSK_BK_LO     };
+  <span class="type">double</span>       blx<span class="brackets">[]</span>  = {0.0,           0.0,       0.0,           0.0           };
+  <span class="type">double</span>       bux<span class="brackets">[]</span>  = {+MSK_INFINITY, 10.0,      +MSK_INFINITY, +MSK_INFINITY };
+
+  <span class="type">double</span> xx[NUMVAR];               
+  MSKenv_t     env  = <span class="keyword">NULL</span>;
+  MSKtask_t    task = <span class="keyword">NULL</span>; 
+  
+  <span class="comment">/* Create the mosek environment. */</span>
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+  
+  <span class="comment">/* Directs the env log stream to the 'printstr' function. */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+  
+  <span class="comment">/* Initialize the environment. */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_initenv(env);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Create the optimization task. */</span>
+    r = MSK_maketask(env,NUMCON,NUMVAR,&amp;task);
+
+    <span class="comment">/* Directs the log task stream to the 'printstr' function. */</span>
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+      MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+
+    <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+     This is done to increase the speed of inputting data. 
+     However, it is optional. */</span>
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumvar(task,NUMVAR);
+  
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumcon(task,NUMCON);
+    
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumanz(task,NUMANZ);
+
+    <span class="comment">/* Append 'NUMCON' empty constraints.
+     The constraints will initially have no bounds. */</span>
+    <span class="keyword">if</span> ( r == MSK_RES_OK )
+      r = MSK_append(task,MSK_ACC_CON,NUMCON);
+
+    <span class="comment">/* Append 'NUMVAR' variables.
+     The variables will initially be fixed at zero (x=0). */</span>
+    <span class="keyword">if</span> ( r == MSK_RES_OK )
+      r = MSK_append(task,MSK_ACC_VAR,NUMVAR);
+
+    <span class="comment">/* Optionally add a constant term to the objective. */</span>
+    <span class="keyword">if</span> ( r ==MSK_RES_OK )
+      r = MSK_putcfix(task,0.0);
+    <span class="keyword">for</span>(j=0; j&lt;NUMVAR &amp;&amp; r == MSK_RES_OK; ++j)
+    {
+      <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putcj(task,j,c[j]);
+
+      <span class="comment">/* Set the bounds on variable j.
+       blx[j] &lt;= x_j &lt;= bux[j] */</span>
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putbound(task,
+                         MSK_ACC_VAR, <span class="comment">/* Put bounds on variables.*/</span>
+                         j,           <span class="comment">/* Index of variable.*/</span>
+                         bkx[j],      <span class="comment">/* Bound key.*/</span>
+                         blx[j],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                         bux[j]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+    }
+
+    <span class="comment">/* Set the bounds on constraints.
+       for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+    <span class="keyword">for</span>(i=0; i&lt;NUMCON &amp;&amp; r==MSK_RES_OK; ++i)
+    {  
+      r = MSK_putbound(task,
+                       MSK_ACC_CON, <span class="comment">/* Put bounds on constraints.*/</span>
+                       i,           <span class="comment">/* Index of constraint.*/</span>
+                       bkc[i],      <span class="comment">/* Bound key.*/</span>
+                       blc[i],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                       buc[i]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+      <span class="comment">/* Input column j of A */</span>   
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putavec(task,
+                        MSK_ACC_CON,       <span class="comment">/* Input row of A.*/</span>
+                        i,                 <span class="comment">/* Row index.*/</span>
+                        aptre[i]-aptrb[i], <span class="comment">/* Number of non-zeros in row i.*/</span>
+                        asub+aptrb[i],     <span class="comment">/* Pointer to column indexes of row i.*/</span>
+                        aval+aptrb[i]);    <span class="comment">/* Pointer to Values of row i.*/</span>      
+    }
+
+    <span class="comment">/* Maximize objective function. */</span>
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putobjsense(task,
+                          MSK_OBJECTIVE_SENSE_MAXIMIZE);
+
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+    {
+      MSKrescodee trmcode;
+    
+      <span class="comment">/* Run optimizer */</span>
+      r = MSK_optimizetrm(task,&amp;trmcode);
+
+      <span class="comment">/* Print a summary containing information
+       about the solution for debugging purposes. */</span>
+      MSK_solutionsummary (task,MSK_STREAM_LOG);
+     
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        MSKsolstae solsta;
+        <span class="type">int</span> j;
+        MSK_getsolutionstatus (task,
+                               MSK_SOL_BAS,
+                               <span class="keyword">NULL</span>,
+                               &amp;solsta);
+        <span class="keyword">switch</span>(solsta)
+        {
+          case MSK_SOL_STA_OPTIMAL:   
+          case MSK_SOL_STA_NEAR_OPTIMAL:
+            MSK_getsolutionslice(task,
+                                 MSK_SOL_BAS,    <span class="comment">/* Request the basic solution. */</span>
+                                 MSK_SOL_ITEM_XX,<span class="comment">/* Which part of solution.     */</span>
+                                 0,              <span class="comment">/* Index of first variable.    */</span>
+                                 NUMVAR,         <span class="comment">/* Index of last variable+1.   */</span>
+                                 xx);
+      
+            printf("<span class="string">Optimal primal solution\n</span>");
+            <span class="keyword">for</span>(j=0; j&lt;NUMVAR; ++j)
+              printf("<span class="string">x[%d]: %e\n</span>",j,xx[j]);
+          
+            <span class="keyword">break</span>;
+          case MSK_SOL_STA_DUAL_INFEAS_CER:
+          case MSK_SOL_STA_PRIM_INFEAS_CER:
+          case MSK_SOL_STA_NEAR_DUAL_INFEAS_CER:
+          case MSK_SOL_STA_NEAR_PRIM_INFEAS_CER:  
+            printf("<span class="string">Primal or dual infeasibility certificate found.\n</span>");
+            <span class="keyword">break</span>;
+            
+          case MSK_SOL_STA_UNKNOWN:
+            printf("<span class="string">The status of the solution could not be determined.\n</span>");
+            <span class="keyword">break</span>;
+          <span class="keyword">default</span>:
+            printf("<span class="string">Other solution status.</span>");
+            <span class="keyword">break</span>;
+        }
+      }
+      <span class="keyword">else</span>
+      {
+        printf("<span class="string">Error while optimizing.\n</span>");
+      }
+    }
+    
+    <span class="keyword">if</span> (r != MSK_RES_OK)
+    {
+      <span class="comment">/* In case of an error print error code and description. */</span>      
+      <span class="type">char</span> symname[MSK_MAX_STR_LEN];
+      <span class="type">char</span> desc[MSK_MAX_STR_LEN];
+      
+      printf("<span class="string">An error occurred while optimizing.\n</span>");     
+      MSK_getcodedesc (r,
+                       symname,
+                       desc);
+      printf("<span class="string">Error %s - '%s'\n</span>",symname,desc);
+    }
+    
+    MSK_deletetask(&amp;task);
+    
+    MSK_deleteenv(&amp;env);
+  }
+    
+  <span class="keyword">return</span> r;
+}
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="245168032">5.3. Quadratic optimization</a></h1>
+
+<p><a name="sec:quadratic-opt">&#09;</a> <a name="idx-75954224">&#09;</a> <a name="idx-75951784">&#09;</a> <a name="idx-75950272">&#09;</a></p>
+
+<p>MOSEK can solve quadratic and quadratically constrained convex problems. This class of problems can be formulated as follows: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math35.png" alt="\begin{math}\nonumber{}\begin{array}{lrcccll}\nonumber{}\mbox{minimize} &  &  & \frac{1}{2}x^{T}Q^{o}x+c^{T}x+c^{f} &  &  & \\\nonumber{}\mbox{subject to} & l_{k}^{c} & \leq{} & \frac{1}{2}x^{T}Q^{k}x+\sum \limits _{{j=0}}^{{n-1}}a_{{k,j}}x_{j} & \leq{} & u_{k}^{c}, & k=0,\ldots ,m-1,\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x}, & j=0,\ldots ,n-1.\end{array}\end{math}"/></td>
+<td>(5.3.1)</td></tr>
+</tbody>
+</table>
+
+<p>Without loss of generality it is assumed that <span class="math"><img src="math/math36.png" alt="[[MathCmd 36]]"/></span> and <span class="math"><img src="math/math37.png" alt="[[MathCmd 37]]"/></span> are all symmetric because </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math38.png" alt="\begin{displaymath}\nonumber{}x^{T}Qx=0.5x^{T}(Q+Q^{T})x.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This implies that a non-symmetric <span class="math"><span class="mi">Q</span></span> can be replaced by the symmetric matrix <span class="math"><img src="math/math39.png" alt="[[MathCmd 39]]"/></span>.</p>
+
+<p><a name="ch-api-ex-sec-convexity">&#09;</a></p>
+
+<p>The problem is required to be convex. More precisely, the matrix <span class="math"><img src="math/math36.png" alt="[[MathCmd 36]]"/></span> must be positive semi-definite and the <span class="math"><span class="mi">k</span></span>th constraint must be of the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math41.png" alt="\begin{math}\nonumber{}l_{k}^{c}\leq{}\frac{1}{2}x^{T}Q^{k}x+\sum \limits _{{j=0}}^{{n-1}}a_{{k,j}}x_{j}\end{math}"/></td>
+<td><a name="ch-api-ex-convex-qcqo-less">&#09;</a>(5.3.2)</td></tr>
+</tbody>
+</table>
+
+<p>with a negative semi-definite <span class="math"><img src="math/math37.png" alt="[[MathCmd 37]]"/></span> or of the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math43.png" alt="\begin{math}\nonumber{}\frac{1}{2}x^{T}Q^{k}x+\sum \limits _{{j=0}}^{{n-1}}a_{{k,j}}x_{j}\leq{}u_{k}^{c}.\end{math}"/></td>
+<td><a name="ch-api-ex-convex-qcqo-greater">&#09;</a>(5.3.3)</td></tr>
+</tbody>
+</table>
+
+<p>with a positive semi-definite <span class="math"><img src="math/math37.png" alt="[[MathCmd 37]]"/></span>. This implies that quadratic equalities are <em>not</em> allowed. Specifying a non-convex problem will result in an error when the optimizer is called.</p>
+
+<div>
+<h2><a name="245182264">5.3.1. Example: Quadratic objective</a></h2>
+
+<p> <a name="idx-75970536">&#09;</a> <a name="idx-75971328">&#09;</a> <a name="chap:mosekapi:sec:quadratic_objective">&#09;</a> <a name="idx-75972760">&#09;</a></p>
+
+<p>The following is an example if a quadratic, linearly constrained problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math45.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}\mbox{minimize} &  &  & x_{1}^{2}+0.1x_{2}^{2}+x_{3}^{2}-x_{1}x_{3}-x_{2} & \\\nonumber{}\mbox{subject to} & 1 & \leq{} & x_{1}+x_{2}+x_{3} & \\\nonumber{} &  &  & x\geq{}0 &\end{array}\end{math}"/></td>
+<td>(5.3.4)</td></tr>
+</tbody>
+</table>
+
+<p>This can be written equivalently as </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math46.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & 1/2x^{T}Q^{o}x+c^{T}x &  & \\\nonumber{}\mbox{subject to} & Ax & \geq{} & b\\\nonumber{} & x & \geq{} & 0,\end{array}\end{math}"/></td>
+<td>(5.3.5)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math47.png" alt="\begin{math}\nonumber{}Q^{o}=\left[\begin{array}{ccc}\nonumber{}2 & 0 & -1\\\nonumber{}0 & 0.2 & 0\\\nonumber{}-1 & 0 & 2\end{array}\right],\quad{}c=\left[\begin{array}{c}\nonumber{}0\\\nonumber{}-1\\\nonumber{}0\end{array}\right],\quad{}A=\left[\begin{array}{ccc}\nonumber{}1 & 1 & 1\end{array}\right],\mbox{ and }b=1.\end{math}"/></td>
+<td>(5.3.6)</td></tr>
+</tbody>
+</table>
+
+<p>Please note that MOSEK always assumes that there is a <span class="math"><span class="mn">1</span><span class="mo">/</span><span class="mn">2</span></span> in front of the <span class="math"><img src="math/math48.png" alt="[[MathCmd 48]]"/></span> term in the objective. Therefore, the <span class="math"><span class="mn">1</span></span> in front of <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span> becomes <span class="math"><span class="mn">2</span></span> in <span class="math"><span class="mi">Q</span></span>, i.e. <span class="math"><img src="math/math50.png" alt="[[MathCmd 50]]"/></span>.</p>
+
+<div>
+<h3><a name="245205688">5.3.1.1. Source code</a></h3>
+
+<p><a name="idx-75990008">&#09;</a></p>
+
+<div class="verbatimcode"><span class="comment">/* 
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      qo1.c
+
+   Purpose: To demonstrate how to solve a quadratic optimization
+              problem using the MOSEK API.
+ */</span>
+ 
+<span class="preprocessor">#include</span> &lt;stdio.h&gt;
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>" <span class="comment">/* Include the MOSEK definition file. */</span>
+
+<span class="preprocessor">#define</span> NUMCON 1   <span class="comment">/* Number of constraints.             */</span>
+<span class="preprocessor">#define</span> NUMVAR 3   <span class="comment">/* Number of variables.               */</span>
+<span class="preprocessor">#define</span> NUMANZ 3   <span class="comment">/* Number of non-zeros in A.           */</span>
+<span class="preprocessor">#define</span> NUMQNZ 4   <span class="comment">/* Number of non-zeros in Q.           */</span>
+
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printstr(<span class="type">void</span> *handle,
+                            <span class="type">char</span> str<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",str);
+} <span class="comment">/* printstr */</span>
+
+<span class="type">int</span> main(<span class="type">int</span> argc,<span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+
+  <span class="type">double</span>        c<span class="brackets">[]</span>   = {0.0,-1.0,0.0};
+
+  MSKboundkeye  bkc<span class="brackets">[]</span> = {MSK_BK_LO};
+  <span class="type">double</span>        blc<span class="brackets">[]</span> = {1.0};
+  <span class="type">double</span>        buc<span class="brackets">[]</span> = {+MSK_INFINITY}; 
+    
+  MSKboundkeye  bkx<span class="brackets">[]</span> = {MSK_BK_LO,
+                         MSK_BK_LO,
+                         MSK_BK_LO};
+  <span class="type">double</span>        blx<span class="brackets">[]</span> = {0.0,
+                         0.0,
+                         0.0};
+  <span class="type">double</span>        bux<span class="brackets">[]</span> = {+MSK_INFINITY,
+                         +MSK_INFINITY,
+                         +MSK_INFINITY};
+  
+  MSKintt       aptrb<span class="brackets">[]</span> = {0, 1, 2 };
+  MSKintt       aptre<span class="brackets">[]</span> = {1, 2, 3};
+  MSKidxt       asub<span class="brackets">[]</span> = {0,   0,   0};
+  <span class="type">double</span>        aval<span class="brackets">[]</span> = {1.0, 1.0, 1.0};
+  
+  MSKidxt       qsubi[NUMQNZ];
+  MSKidxt       qsubj[NUMQNZ];
+  <span class="type">double</span>        qval[NUMQNZ];
+  
+  MSKidxt       i,j;
+  <span class="type">double</span>        xx[NUMVAR];
+
+  MSKenv_t      env;
+  MSKtask_t     task;
+  MSKrescodee   r;
+  
+  <span class="comment">/* Create the mosek environment. */</span>
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+
+  <span class="comment">/* Check whether the return code is ok. */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Directs the log stream to the 'printstr' function. */</span>
+    MSK_linkfunctoenvstream(env,
+                            MSK_STREAM_LOG,
+                            <span class="keyword">NULL</span>,
+                            printstr);
+  }
+
+  <span class="comment">/* Initialize the environment. */</span>   
+  r = MSK_initenv(env);
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  { 
+  
+  <span class="comment">/* Create the optimization task. */</span>
+    r = MSK_maketask(env,NUMCON,NUMVAR,&amp;task);
+
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+    {
+      r = MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+      
+      <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+       This is done to increase the speed of inputting data. 
+       However, it is optional. */</span>
+      <span class="keyword">if</span> (r == MSK_RES_OK)
+        r = MSK_putmaxnumvar(task,NUMVAR);
+    
+      <span class="keyword">if</span> (r == MSK_RES_OK)
+        r = MSK_putmaxnumcon(task,NUMCON);
+      
+      <span class="keyword">if</span> (r == MSK_RES_OK)
+        r = MSK_putmaxnumanz(task,NUMANZ);
+  
+      <span class="comment">/* Append 'NUMCON' empty constraints.
+       The constraints will initially have no bounds. */</span>
+      <span class="keyword">if</span> ( r == MSK_RES_OK )
+        r = MSK_append(task,MSK_ACC_CON,NUMCON);
+  
+      <span class="comment">/* Append 'NUMVAR' variables.
+       The variables will initially be fixed at zero (x=0). */</span>
+      <span class="keyword">if</span> ( r == MSK_RES_OK )
+        r = MSK_append(task,MSK_ACC_VAR,NUMVAR);
+  
+      <span class="comment">/* Optionally add a constant term to the objective. */</span>
+      <span class="keyword">if</span> ( r ==MSK_RES_OK )
+        r = MSK_putcfix(task,0.0);
+      <span class="keyword">for</span>(j=0; j&lt;NUMVAR &amp;&amp; r == MSK_RES_OK; ++j)
+      {
+        <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+        <span class="keyword">if</span>(r == MSK_RES_OK)
+          r = MSK_putcj(task,j,c[j]);
+  
+        <span class="comment">/* Set the bounds on variable j.
+         blx[j] &lt;= x_j &lt;= bux[j] */</span>
+        <span class="keyword">if</span>(r == MSK_RES_OK)
+          r = MSK_putbound(task,
+                           MSK_ACC_VAR, <span class="comment">/* Put bounds on variables.*/</span>
+                           j,           <span class="comment">/* Index of variable.*/</span>
+                           bkx[j],      <span class="comment">/* Bound key.*/</span>
+                           blx[j],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                           bux[j]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+  
+        <span class="comment">/* Input column j of A */</span>   
+        <span class="keyword">if</span>(r == MSK_RES_OK)
+          r = MSK_putavec(task,
+                          MSK_ACC_VAR,       <span class="comment">/* Input columns of A.*/</span>
+                          j,                 <span class="comment">/* Variable (column) index.*/</span>
+                          aptre[j]-aptrb[j], <span class="comment">/* Number of non-zeros in column j.*/</span>
+                          asub+aptrb[j],     <span class="comment">/* Pointer to row indexes of column j.*/</span>
+                          aval+aptrb[j]);    <span class="comment">/* Pointer to Values of column j.*/</span>
+        
+      }
+  
+      <span class="comment">/* Set the bounds on constraints.
+         for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+      <span class="keyword">for</span>(i=0; i&lt;NUMCON &amp;&amp; r==MSK_RES_OK; ++i)
+        r = MSK_putbound(task,
+                         MSK_ACC_CON, <span class="comment">/* Put bounds on constraints.*/</span>
+                         i,           <span class="comment">/* Index of constraint.*/</span>
+                         bkc[i],      <span class="comment">/* Bound key.*/</span>
+                         blc[i],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                         buc[i]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        <span class="comment">/*
+         * The lower triangular part of the Q
+         * matrix in the objective is specified.
+         */</span>
+
+        qsubi[0] = 0;   qsubj[0] = 0;  qval[0] = 2.0;
+        qsubi[1] = 1;   qsubj[1] = 1;  qval[1] = 0.2;
+        qsubi[2] = 2;   qsubj[2] = 0;  qval[2] = -1.0;
+        qsubi[3] = 2;   qsubj[3] = 2;  qval[3] = 2.0;
+
+        <span class="comment">/* Input the Q for the objective. */</span>
+
+        r = MSK_putqobj(task,NUMQNZ,qsubi,qsubj,qval);
+      }
+
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        MSKrescodee trmcode;
+        
+        <span class="comment">/* Run optimizer */</span>
+        r = MSK_optimizetrm(task,&amp;trmcode);
+
+        <span class="comment">/* Print a summary containing information
+           about the solution for debugging purposes*/</span>
+        MSK_solutionsummary (task,MSK_STREAM_LOG);
+        
+        <span class="keyword">if</span> ( r==MSK_RES_OK )
+        {
+          MSKsolstae solsta;
+          <span class="type">int</span> j;
+          
+          MSK_getsolutionstatus (task,
+                                 MSK_SOL_ITR,
+                                 <span class="keyword">NULL</span>,
+                                 &amp;solsta);
+          
+          <span class="keyword">switch</span>(solsta)
+          {
+            case MSK_SOL_STA_OPTIMAL:   
+            case MSK_SOL_STA_NEAR_OPTIMAL:
+              MSK_getsolutionslice(task,
+                                   MSK_SOL_ITR,    <span class="comment">/* Request the interior solution. */</span>
+                                   MSK_SOL_ITEM_XX,<span class="comment">/* Which part of solution.     */</span>
+                                   0,              <span class="comment">/* Index of first variable.    */</span>
+                                   NUMVAR,         <span class="comment">/* Index of last variable+1.   */</span>
+                                   xx);
+              
+              printf("<span class="string">Optimal primal solution\n</span>");
+              <span class="keyword">for</span>(j=0; j&lt;NUMVAR; ++j)
+                printf("<span class="string">x[%d]: %e\n</span>",j,xx[j]);
+              
+              <span class="keyword">break</span>;
+            case MSK_SOL_STA_DUAL_INFEAS_CER:
+            case MSK_SOL_STA_PRIM_INFEAS_CER:
+            case MSK_SOL_STA_NEAR_DUAL_INFEAS_CER:
+            case MSK_SOL_STA_NEAR_PRIM_INFEAS_CER:  
+              printf("<span class="string">Primal or dual infeasibility certificate found.\n</span>");
+              <span class="keyword">break</span>;
+              
+            case MSK_SOL_STA_UNKNOWN:
+              printf("<span class="string">The status of the solution could not be determined.\n</span>");
+              <span class="keyword">break</span>;
+            <span class="keyword">default</span>:
+              printf("<span class="string">Other solution status.</span>");
+              <span class="keyword">break</span>;
+          }
+        }
+        <span class="keyword">else</span>
+        {
+          printf("<span class="string">Error while optimizing.\n</span>");
+        }
+      }
+    
+      <span class="keyword">if</span> (r != MSK_RES_OK)
+      {
+        <span class="comment">/* In case of an error print error code and description. */</span>      
+        <span class="type">char</span> symname[MSK_MAX_STR_LEN];
+        <span class="type">char</span> desc[MSK_MAX_STR_LEN];
+        
+        printf("<span class="string">An error occurred while optimizing.\n</span>");     
+        MSK_getcodedesc (r,
+                         symname,
+                         desc);
+        printf("<span class="string">Error %s - '%s'\n</span>",symname,desc);
+      }
+    }
+  }
+  MSK_deletetask(&amp;task);
+  MSK_deleteenv(&amp;env);
+
+  <span class="keyword">return</span> (r);
+} <span class="comment">/* main */</span>
+</div>
+
+</div>
+
+<div>
+<h3><a name="245205904">5.3.1.2. Example code comments</a></h3>
+
+<p> Most of the functionality in this example has already been explained for the linear optimization example in Section <a title="5.2. Linear optimization" href="node007.html#chap-apiintro-sec-linear-optimization">5.2</a> and it will not be repeated here.</p>
+
+<p>This example introduces one new function, <a href="node017.html#common-func*mosek*task*putqobj"><tt class="tt">MSK_putqobj</tt></a>, which is used to input the quadratic terms of the objective function.</p>
+
+<p>Since <span class="math"><img src="math/math36.png" alt="[[MathCmd 36]]"/></span> is symmetric only the lower triangular part of <span class="math"><img src="math/math36.png" alt="[[MathCmd 36]]"/></span> is inputted. The upper part of <span class="math"><img src="math/math36.png" alt="[[MathCmd 36]]"/></span> is computed by MOSEK using the relation </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math54.png" alt="\begin{displaymath}\nonumber{}Q^{o}_{{ij}}=Q^{o}_{{ji}}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Entries from the upper part may <em>not</em> appear in the input.</p>
+
+<p>The lower triangular part of the matrix <span class="math"><img src="math/math36.png" alt="[[MathCmd 36]]"/></span> is specified using an unordered sparse triplet format (for details, see Section <a title="5.8.3. Matrix formats" href="node007.html#sec-matrix-formats">5.8.3</a>):</p>
+
+<div class="verbatimcode">qsubi[0] = 0;   qsubj[0] = 0;  qval[0] = 2.0;
+qsubi[1] = 1;   qsubj[1] = 1;  qval[1] = 0.2;
+qsubi[2] = 2;   qsubj[2] = 0;  qval[2] = -1.0;
+qsubi[3] = 2;   qsubj[3] = 2;  qval[3] = 2.0;
+</div>
+
+<p>Please note that </p>
+
+<ul class="itemize">
+<li>only non-zero elements are specified (any element not specified is 0 by definition), </li>
+<li>the order of the non-zero elements is insignificant, and </li>
+<li><em>only</em> the lower triangular part should be specified. </li>
+</ul>
+
+<p>Finally, the matrix <span class="math"><img src="math/math36.png" alt="[[MathCmd 36]]"/></span> is loaded into the task:</p>
+
+<div class="verbatimcode">r = MSK_putqobj(task,NUMQNZ,qsubi,qsubj,qval);
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="245211648">5.3.2. Example: Quadratic constraints</a></h2>
+
+<p> <a name="idx-75996840">&#09;</a> <a name="idx-75995976">&#09;</a> <a name="chap:mosekapi:sec:quadratic_constraint">&#09;</a> In this section describes how to solve a problem with quadratic constraints. Please note that quadratic constraints are subject to the convexity requirement <a href="node007.html#ch-api-ex-convex-qcqo-less">(5.3.2)</a>.</p>
+
+<p>Consider the problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math57.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}\mbox{minimize} &  &  & x_{1}^{2}+0.1x_{2}^{2}+x_{3}^{2}-x_{1}x_{3}-x_{2} & \\\nonumber{}\mbox{subject to} & 1 & \leq{} & x_{1}+x_{2}+x_{3}-x_{1}^{2}-x_{2}^{2}-0.1x_{3}^{2}+0.2x_{1}x_{3}, & \\\nonumber{} &  &  & x\geq{}0. &\end{array}\end{math}"/></td>
+<td>(5.3.7)</td></tr>
+</tbody>
+</table>
+
+<p>This is equivalent to</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math58.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & 1/2x^{T}Q^{o}x+c^{T}x &  & \\\nonumber{}\mbox{subject to} & 1/2x^{T}Q^{0}x+Ax & \geq{} & b,\end{array}\end{math}"/></td>
+<td>(5.3.8)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math59.png" alt="\begin{math}\nonumber{}Q^{o}=\left[\begin{array}{ccc}\nonumber{}2 & 0 & -1\\\nonumber{}0 & 0.2 & 0\\\nonumber{}-1 & 0 & 2\end{array}\right],\quad{}c=\left[\begin{array}{c}\nonumber{}0\\\nonumber{}-1\\\nonumber{}0\end{array}\right],\quad{}A=\left[\begin{array}{ccc}\nonumber{}1 & 1 & 1\end{array}\right],\quad{}b=1.\end{math}"/></td>
+<td>(5.3.9)</td></tr>
+</tbody>
+</table>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math60.png" alt="\begin{math}\nonumber{}Q^{0}=\left[\begin{array}{ccc}\nonumber{}-2 & 0 & 0.2\\\nonumber{}0 & -2 & 0\\\nonumber{}0.2 & 0 & -0.2\end{array}\right].\end{math}"/></td>
+<td>(5.3.10)</td></tr>
+</tbody>
+</table>
+
+<div>
+<h3><a name="256953520">5.3.2.1. Source code</a></h3>
+
+<div class="verbatimcode"><span class="comment">/* 
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      qcqo1.c
+
+   Purpose:   To demonstrate how to solve a quadratic
+              optimization problem using the MOSEK API.
+
+              minimize  x_1^2 + 0.1 x_2^2 +  x_3^2 - x_1 x_3 - x_2 
+              s.t 1 &lt;=  x_1 + x_2 + x_3 - x_1^2 - x_2^2 - 0.1 x_3^2 + 0.2 x_1 x_3 
+              x &gt;= 0              
+                       
+ */</span>
+
+<span class="preprocessor">#include</span> &lt;stdio.h&gt;
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>" <span class="comment">/* Include the MOSEK definition file. */</span>
+
+<span class="preprocessor">#define</span> NUMCON 1   <span class="comment">/* Number of constraints.             */</span>
+<span class="preprocessor">#define</span> NUMVAR 3   <span class="comment">/* Number of variables.               */</span>
+<span class="preprocessor">#define</span> NUMANZ 3   <span class="comment">/* Number of non-zeros in A.          */</span>
+<span class="preprocessor">#define</span> NUMQNZ 4   <span class="comment">/* Number of non-zeros in Q.          */</span>
+
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printstr(<span class="type">void</span> *handle,
+                            <span class="type">char</span> str<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",str);
+} <span class="comment">/* printstr */</span>
+
+<span class="type">int</span> main(<span class="type">int</span> argc,<span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+  
+  MSKrescodee  r;
+  
+  <span class="type">double</span>       c<span class="brackets">[]</span>    = {0.0,-1.0,0.0};
+    
+  MSKboundkeye bkc<span class="brackets">[]</span>  = {MSK_BK_LO};
+  <span class="type">double</span>       blc<span class="brackets">[]</span>  = {1.0};
+  <span class="type">double</span>       buc<span class="brackets">[]</span>  = {+MSK_INFINITY}; 
+    
+  MSKboundkeye bkx<span class="brackets">[]</span>  = {MSK_BK_LO,
+                         MSK_BK_LO,
+                         MSK_BK_LO};
+  <span class="type">double</span>       blx<span class="brackets">[]</span>  = {0.0,
+                         0.0,
+                         0.0};
+  <span class="type">double</span>       bux<span class="brackets">[]</span>  = {+MSK_INFINITY,
+                         +MSK_INFINITY,
+                         +MSK_INFINITY};
+  
+  MSKlidxt     aptrb<span class="brackets">[]</span> = {0, 1, 2 };
+  MSKlidxt     aptre<span class="brackets">[]</span> = {1, 2, 3};
+  MSKidxt      asub<span class="brackets">[]</span> = { 0,   0,   0};
+  <span class="type">double</span>       aval<span class="brackets">[]</span> = { 1.0, 1.0, 1.0};
+  
+  MSKidxt      qsubi[NUMQNZ];
+  MSKidxt      qsubj[NUMQNZ];
+  <span class="type">double</span>       qval[NUMQNZ];
+  
+  MSKidxt      j,i;
+  <span class="type">double</span>       xx[NUMVAR];
+  MSKenv_t     env;
+  MSKtask_t    task;
+
+  <span class="comment">/* Create the mosek environment. */</span>
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+
+  <span class="comment">/* Check whether the return code is ok. */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Directs the log stream to the 'printstr' function. */</span>
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+  }
+
+  <span class="comment">/* Initialize the environment. */</span>   
+  r = MSK_initenv(env);
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {   
+  <span class="comment">/* Create the optimization task. */</span>
+    r = MSK_maketask(env,NUMCON,NUMVAR,&amp;task);
+
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+    {
+      r = MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+ 
+      
+    <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+     This is done to increase the speed of inputting data. 
+     However, it is optional. */</span>
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumvar(task,NUMVAR);
+  
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumcon(task,NUMCON);
+    
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumanz(task,NUMANZ);
+
+    <span class="comment">/* Append 'NUMCON' empty constraints.
+     The constraints will initially have no bounds. */</span>
+    <span class="keyword">if</span> ( r == MSK_RES_OK )
+      r = MSK_append(task,MSK_ACC_CON,NUMCON);
+
+    <span class="comment">/* Append 'NUMVAR' variables.
+     The variables will initially be fixed at zero (x=0). */</span>
+    <span class="keyword">if</span> ( r == MSK_RES_OK )
+      r = MSK_append(task,MSK_ACC_VAR,NUMVAR);
+
+    <span class="comment">/* Optionally add a constant term to the objective. */</span>
+    <span class="keyword">if</span> ( r ==MSK_RES_OK )
+      r = MSK_putcfix(task,0.0);
+    <span class="keyword">for</span>(j=0; j&lt;NUMVAR &amp;&amp; r == MSK_RES_OK; ++j)
+    {
+      <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putcj(task,j,c[j]);
+
+      <span class="comment">/* Set the bounds on variable j.
+       blx[j] &lt;= x_j &lt;= bux[j] */</span>
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putbound(task,
+                         MSK_ACC_VAR, <span class="comment">/* Put bounds on variables.*/</span>
+                         j,           <span class="comment">/* Index of variable.*/</span>
+                         bkx[j],      <span class="comment">/* Bound key.*/</span>
+                         blx[j],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                         bux[j]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+
+      <span class="comment">/* Input column j of A */</span>   
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putavec(task,
+                        MSK_ACC_VAR,       <span class="comment">/* Input columns of A.*/</span>
+                        j,                 <span class="comment">/* Variable (column) index.*/</span>
+                        aptre[j]-aptrb[j], <span class="comment">/* Number of non-zeros in column j.*/</span>
+                        asub+aptrb[j],     <span class="comment">/* Pointer to row indexes of column j.*/</span>
+                        aval+aptrb[j]);    <span class="comment">/* Pointer to Values of column j.*/</span>
+      
+    }
+
+    <span class="comment">/* Set the bounds on constraints.
+       for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+    <span class="keyword">for</span>(i=0; i&lt;NUMCON &amp;&amp; r==MSK_RES_OK; ++i)
+      r = MSK_putbound(task,
+                       MSK_ACC_CON, <span class="comment">/* Put bounds on constraints.*/</span>
+                       i,           <span class="comment">/* Index of constraint.*/</span>
+                       bkc[i],      <span class="comment">/* Bound key.*/</span>
+                       blc[i],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                       buc[i]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        <span class="comment">/*
+         * The lower triangular part of the Q^o
+         * matrix in the objective is specified.
+         */</span>
+
+        qsubi[0] = 0;   qsubj[0] = 0;  qval[0] = 2.0;
+        qsubi[1] = 1;   qsubj[1] = 1;  qval[1] = 0.2;
+        qsubi[2] = 2;   qsubj[2] = 0;  qval[2] = -1.0;
+        qsubi[3] = 2;   qsubj[3] = 2;  qval[3] = 2.0;
+
+        <span class="comment">/* Input the Q^o for the objective. */</span>
+
+        r = MSK_putqobj(task,NUMQNZ,qsubi,qsubj,qval);
+      }
+
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+         <span class="comment">/*
+         * The lower triangular part of the Q^0
+         * matrix in the first constraint is specified.
+         This corresponds to adding the term
+         - x_1^2 - x_2^2 - 0.1 x_3^2 + 0.2 x_1 x_3
+         */</span>
+        
+        qsubi[0] = 0;   qsubj[0] = 0;  qval[0] = -2.0;
+        qsubi[1] = 1;   qsubj[1] = 1;  qval[1] = -2.0;
+        qsubi[2] = 2;   qsubj[2] = 2;  qval[2] = -0.2;
+        qsubi[3] = 2;   qsubj[3] = 0;  qval[3] = 0.2;
+
+        <span class="comment">/* Put Q^0 in constraint with index 0. */</span>
+
+         r = MSK_putqconk(task,
+                          0,
+                          4,
+                          qsubi, 
+                          qsubj, 
+                          qval); 
+      }
+
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+        r = MSK_putobjsense(task, MSK_OBJECTIVE_SENSE_MINIMIZE);      
+
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        MSKrescodee trmcode;
+        
+        <span class="comment">/* Run optimizer */</span>
+        r = MSK_optimizetrm(task,&amp;trmcode);
+
+        <span class="comment">/* Print a summary containing information
+           about the solution for debugging purposes*/</span>
+        MSK_solutionsummary (task,MSK_STREAM_LOG);
+        
+        <span class="keyword">if</span> ( r==MSK_RES_OK )
+        {
+          MSKsolstae solsta;
+          <span class="type">int</span> j;
+          
+          MSK_getsolutionstatus (task,
+                                 MSK_SOL_ITR,
+                                 <span class="keyword">NULL</span>,
+                                 &amp;solsta);
+          
+          <span class="keyword">switch</span>(solsta)
+          {
+            case MSK_SOL_STA_OPTIMAL:   
+            case MSK_SOL_STA_NEAR_OPTIMAL:
+              MSK_getsolutionslice(task,
+                                   MSK_SOL_ITR,    <span class="comment">/* Request the interior solution. */</span>
+                                   MSK_SOL_ITEM_XX,<span class="comment">/* Which part of solution.     */</span>
+                                   0,              <span class="comment">/* Index of first variable.    */</span>
+                                   NUMVAR,         <span class="comment">/* Index of last variable+1.   */</span>
+                                   xx);
+              
+              printf("<span class="string">Optimal primal solution\n</span>");
+              <span class="keyword">for</span>(j=0; j&lt;NUMVAR; ++j)
+                printf("<span class="string">x[%d]: %e\n</span>",j,xx[j]);
+              
+              <span class="keyword">break</span>;
+            case MSK_SOL_STA_DUAL_INFEAS_CER:
+            case MSK_SOL_STA_PRIM_INFEAS_CER:
+            case MSK_SOL_STA_NEAR_DUAL_INFEAS_CER:
+            case MSK_SOL_STA_NEAR_PRIM_INFEAS_CER:  
+              printf("<span class="string">Primal or dual infeasibility certificate found.\n</span>");
+              <span class="keyword">break</span>;
+              
+            case MSK_SOL_STA_UNKNOWN:
+              printf("<span class="string">The status of the solution could not be determined.\n</span>");
+              <span class="keyword">break</span>;
+            <span class="keyword">default</span>:
+              printf("<span class="string">Other solution status.</span>");
+              <span class="keyword">break</span>;
+          }
+        }
+        <span class="keyword">else</span>
+        {
+          printf("<span class="string">Error while optimizing.\n</span>");
+        }
+      }
+    
+      <span class="keyword">if</span> (r != MSK_RES_OK)
+      {
+        <span class="comment">/* In case of an error print error code and description. */</span>      
+        <span class="type">char</span> symname[MSK_MAX_STR_LEN];
+        <span class="type">char</span> desc[MSK_MAX_STR_LEN];
+        
+        printf("<span class="string">An error occurred while optimizing.\n</span>");     
+        MSK_getcodedesc (r,
+                         symname,
+                         desc);
+        printf("<span class="string">Error %s - '%s'\n</span>",symname,desc);
+      }
+    }
+ 
+    MSK_deletetask(&amp;task);
+  }
+  MSK_deleteenv(&amp;env);
+
+  <span class="keyword">return</span> ( r );
+} <span class="comment">/* main */</span>
+</div>
+
+<p>The only new function introduced in this example is <a href="node017.html#common-func*mosek*task*putqconk"><tt class="tt">MSK_putqconk</tt></a>, which is used to add quadratic terms to the constraints. While <a href="node017.html#common-func*mosek*task*putqconk"><tt class="tt">MSK_putqconk</tt></a> add quadratic terms to a specific constraint, it is also possible to input all quadratic terms in all constraints in one chunk using the <a href="node017.html#common-func*mosek*task*putqcon"><tt class="tt">MSK_putqcon</tt></a> function.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="256960704">5.4. Conic optimization</a></h1>
+
+<p> <a name="sec:conic-opt">&#09;</a><a name="common-sec:conic-opt"></a> <a name="idx-76036288">&#09;</a> <a name="idx-76035496">&#09;</a> <a name="idx-76036648">&#09;</a></p>
+
+<p>Conic problems are a generalization of linear problems, allowing constraints of the type </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math61.png" alt="\begin{displaymath}\nonumber{}x\in{}\mathcal{C}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math62.png" alt="[[MathCmd 62]]"/></span> is a convex cone.</p>
+
+<p>MOSEK can solve conic optimization problems of the following form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math63.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\\\nonumber{} &  &  & x\in{}\mathcal{C} &  &\end{array}\end{math}"/></td>
+<td><a name="ch-matlab-sec-conicoptimization-eq-primal">&#09;</a>(5.4.1)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math62.png" alt="[[MathCmd 62]]"/></span> is a cone. <span class="math"><img src="math/math62.png" alt="[[MathCmd 62]]"/></span> can be a product of cones, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math66.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}=\mathcal{C}_{0}\times \cdots \times \mathcal{C}_{{p-1}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>in which case <span class="math"><img src="math/math67.png" alt="[[MathCmd 67]]"/></span> means <span class="math"><img src="math/math68.png" alt="[[MathCmd 68]]"/></span>. Please note that the set of real numbers <span class="math"><img src="math/math69.png" alt="[[MathCmd 69]]"/></span> is itself a cone, so linear variables are still allowed.</p>
+
+<p>MOSEK supports two specific cones apart from the real numbers: </p>
+
+<ul class="itemize">
+<li>
+<p>The quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math70.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n_{t}}}:x_{1}\geq{}\sqrt{\sum \limits _{{j=2}}^{{n^{t}}}x_{j}^{2}}\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The rotated quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math71.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n_{t}}}:2x_{1}x_{2}\geq{}\sum \limits _{{j=3}}^{{n^{t}}}x_{j}^{2},~x_{1},x_{2}\geq{}0\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<p> When creating a conic problem in MOSEK, each cone is defined by a <em>cone type</em> (quadratic or rotated quadratic cone) and a list of variable indexes. To summarize: </p>
+
+<ul class="itemize">
+<li>In MOSEK all variables belong to the set <span class="math"><img src="math/math69.png" alt="[[MathCmd 69]]"/></span> of reals, unless they are explicitly declared as belonging to a cone. </li>
+<li>Each variable may belong to one cone <em>at most</em>. </li>
+</ul>
+
+<div>
+<h2><a name="256977808">5.4.1. Example: cqo1</a></h2>
+
+<p> The problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math73.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} & x_{4}+x_{5} &  & \\\nonumber{}\mbox{subject to} & x_{0}+x_{1}+x_{2}+x_{3} & = & 1,\\\nonumber{} & x_{0},x_{1},x_{2},x_{3} & \geq{} & 0,\\\nonumber{} & x_{4}\geq{}\sqrt{x_{0}^{2} + x_{2}^{2}}, &  & \\\nonumber{} & x_{5}\geq{}\sqrt{x_{1}^{2} + x_{3}^{2}} &  &\end{array}\end{math}"/></td>
+<td><a name="ch-matlab-sec-conic-eq-ex1">&#09;</a>(5.4.2)</td></tr>
+</tbody>
+</table>
+
+<p>is an example of a conic quadratic optimization problem. The problem includes a set of linear constraints and two quadratic cones.</p>
+
+<div>
+<h3><a name="256978024">5.4.1.1. Source code</a></h3>
+
+<p> <a name="idx-76079048">&#09;</a><a name="idx-76078976">&#09;</a></p>
+
+<p><a name="idx-76074664">&#09;</a></p>
+
+<div class="verbatimcode"><span class="comment">/* 
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      cqo1.c
+
+   Purpose:   To demonstrate how to solve a small conic quadratic
+              optimization problem using the MOSEK API.
+ */</span>
+
+<span class="preprocessor">#include</span> &lt;stdio.h&gt;
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>" <span class="comment">/* Include the MOSEK definition file. */</span>
+
+<span class="preprocessor">#define</span> NUMCON 1   <span class="comment">/* Number of constraints.             */</span>
+<span class="preprocessor">#define</span> NUMVAR 6   <span class="comment">/* Number of variables.               */</span>
+<span class="preprocessor">#define</span> NUMANZ 4   <span class="comment">/* Number of non-zeros in A.          */</span>
+
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printstr(<span class="type">void</span> *handle,
+                            <span class="type">char</span> str<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",str);
+} <span class="comment">/* printstr */</span>
+
+<span class="type">int</span> main(<span class="type">int</span> argc,<span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+  MSKrescodee  r;
+  
+  MSKboundkeye bkc<span class="brackets">[]</span> = { MSK_BK_FX };
+  <span class="type">double</span>       blc<span class="brackets">[]</span> = { 1.0 };
+  <span class="type">double</span>       buc<span class="brackets">[]</span> = { 1.0 };
+  
+  MSKboundkeye bkx<span class="brackets">[]</span> = {MSK_BK_LO,
+                        MSK_BK_LO,
+                        MSK_BK_LO,
+                        MSK_BK_LO,
+                        MSK_BK_FR,
+                        MSK_BK_FR};
+  <span class="type">double</span>       blx<span class="brackets">[]</span> = {0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        -MSK_INFINITY,
+                        -MSK_INFINITY};
+  <span class="type">double</span>       bux<span class="brackets">[]</span> = {+MSK_INFINITY,
+                        +MSK_INFINITY,
+                        +MSK_INFINITY,
+                        +MSK_INFINITY,
+                        +MSK_INFINITY,
+                        +MSK_INFINITY};
+  
+  <span class="type">double</span>       c<span class="brackets">[]</span>   = {0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0,
+                        1.0};
+
+  MSKintt     aptrb<span class="brackets">[]</span> = {0, 1, 2, 3, 5, 5};
+  MSKintt     aptre<span class="brackets">[]</span> = {1, 2, 3, 4, 5, 5};
+  <span class="type">double</span>      aval<span class="brackets">[]</span> = {1.0, 1.0, 1.0, 1.0};
+  MSKidxt     asub<span class="brackets">[]</span> = {0, 0, 0, 0};
+   
+  MSKidxt     i,j,csub[3];
+  <span class="type">double</span>      xx[NUMVAR];
+  MSKenv_t    env;
+  MSKtask_t   task;
+
+  <span class="comment">/* Create the mosek environment. */</span>
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+  <span class="comment">/* Check if return code is ok. */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Directs the log stream to the 
+       'printstr' function. */</span>
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+  }
+
+  <span class="comment">/* Initialize the environment. */</span>   
+  <span class="keyword">if</span> ( r==MSK_RES_OK ) 
+    r = MSK_initenv(env);
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Create the optimization task. */</span>
+    r = MSK_maketask(env,NUMCON,NUMVAR,&amp;task);
+
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+    {
+      MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+       
+      <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+     This is done to increase the speed of inputting data. 
+     However, it is optional. */</span>
+      <span class="keyword">if</span> (r == MSK_RES_OK)
+        r = MSK_putmaxnumvar(task,NUMVAR);
+      
+      <span class="keyword">if</span> (r == MSK_RES_OK)
+        r = MSK_putmaxnumcon(task,NUMCON);
+      
+      <span class="keyword">if</span> (r == MSK_RES_OK)
+        r = MSK_putmaxnumanz(task,NUMANZ);
+
+      <span class="comment">/* Append 'NUMCON' empty constraints.
+     The constraints will initially have no bounds. */</span>
+      <span class="keyword">if</span> ( r == MSK_RES_OK )
+        r = MSK_append(task,MSK_ACC_CON,NUMCON);
+
+      <span class="comment">/* Append 'NUMVAR' variables.
+     The variables will initially be fixed at zero (x=0). */</span>
+      <span class="keyword">if</span> ( r == MSK_RES_OK )
+        r = MSK_append(task,MSK_ACC_VAR,NUMVAR);
+
+      <span class="comment">/* Optionally add a constant term to the objective. */</span>
+      <span class="keyword">if</span> ( r ==MSK_RES_OK )
+        r = MSK_putcfix(task,0.0);
+      <span class="keyword">for</span>(j=0; j&lt;NUMVAR &amp;&amp; r == MSK_RES_OK; ++j)
+      {
+        <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+        <span class="keyword">if</span>(r == MSK_RES_OK)
+          r = MSK_putcj(task,j,c[j]);
+
+        <span class="comment">/* Set the bounds on variable j.
+       blx[j] &lt;= x_j &lt;= bux[j] */</span>
+        <span class="keyword">if</span>(r == MSK_RES_OK)
+          r = MSK_putbound(task,
+                           MSK_ACC_VAR, <span class="comment">/* Put bounds on variables.*/</span>
+                           j,           <span class="comment">/* Index of variable.*/</span>
+                           bkx[j],      <span class="comment">/* Bound key.*/</span>
+                           blx[j],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                           bux[j]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+
+        <span class="comment">/* Input column j of A */</span>   
+        <span class="keyword">if</span>(r == MSK_RES_OK)
+          r = MSK_putavec(task,
+                          MSK_ACC_VAR,       <span class="comment">/* Input columns of A.*/</span>
+                          j,                 <span class="comment">/* Variable (column) index.*/</span>
+                          aptre[j]-aptrb[j], <span class="comment">/* Number of non-zeros in column j.*/</span>
+                          asub+aptrb[j],     <span class="comment">/* Pointer to row indexes of column j.*/</span>
+                          aval+aptrb[j]);    <span class="comment">/* Pointer to Values of column j.*/</span>
+      
+      }
+
+      <span class="comment">/* Set the bounds on constraints.
+       for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+      <span class="keyword">for</span>(i=0; i&lt;NUMCON &amp;&amp; r==MSK_RES_OK; ++i)
+        r = MSK_putbound(task,
+                        MSK_ACC_CON, <span class="comment">/* Put bounds on constraints.*/</span>
+                        i,           <span class="comment">/* Index of constraint.*/</span>
+                        bkc[i],      <span class="comment">/* Bound key.*/</span>
+                        blc[i],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                        buc[i]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+                 
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        <span class="comment">/* Append the first cone. */</span>
+        csub[0] = 4;
+        csub[1] = 0;
+        csub[2] = 2;
+        r = MSK_appendcone(task,
+                           MSK_CT_QUAD,
+                           0.0, <span class="comment">/* For future use only, can be set to 0.0 */</span>
+                           3,
+                           csub);
+      }
+
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        <span class="comment">/* Append the second cone. */</span>
+        csub[0] = 5;
+        csub[1] = 1;
+        csub[2] = 3;
+
+        r       =  MSK_appendcone(task,
+                                  MSK_CT_QUAD,
+                                  0.0,
+                                  3,
+                                  csub);
+      }
+
+
+      <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        MSKrescodee trmcode;
+        
+        <span class="comment">/* Run optimizer */</span>
+        r = MSK_optimizetrm(task,&amp;trmcode);
+
+        <span class="comment">/* Print a summary containing information
+           about the solution for debugging purposes*/</span>
+        MSK_solutionsummary (task,MSK_STREAM_LOG);
+        
+        <span class="keyword">if</span> ( r==MSK_RES_OK )
+        {
+          MSKsolstae solsta;
+          MSKidxt    j;
+          
+          MSK_getsolutionstatus (task,
+                                 MSK_SOL_ITR,
+                                 <span class="keyword">NULL</span>,
+                                 &amp;solsta);
+          
+          <span class="keyword">switch</span>(solsta)
+          {
+            case MSK_SOL_STA_OPTIMAL:   
+            case MSK_SOL_STA_NEAR_OPTIMAL:
+              MSK_getsolutionslice(task,
+                                   MSK_SOL_ITR,    <span class="comment">/* Request the interior solution. */</span>
+                                   MSK_SOL_ITEM_XX,<span class="comment">/* Which part of solution.     */</span>
+                                   0,              <span class="comment">/* Index of first variable.    */</span>
+                                   NUMVAR,         <span class="comment">/* Index of last variable+1.   */</span>
+                                   xx);
+              
+              printf("<span class="string">Optimal primal solution\n</span>");
+              <span class="keyword">for</span>(j=0; j&lt;NUMVAR; ++j)
+                printf("<span class="string">x[%d]: %e\n</span>",j,xx[j]);
+              
+              <span class="keyword">break</span>;
+            case MSK_SOL_STA_DUAL_INFEAS_CER:
+            case MSK_SOL_STA_PRIM_INFEAS_CER:
+            case MSK_SOL_STA_NEAR_DUAL_INFEAS_CER:
+            case MSK_SOL_STA_NEAR_PRIM_INFEAS_CER:  
+              printf("<span class="string">Primal or dual infeasibility certificate found.\n</span>");
+              <span class="keyword">break</span>;
+              
+            case MSK_SOL_STA_UNKNOWN:
+              printf("<span class="string">The status of the solution could not be determined.\n</span>");
+              <span class="keyword">break</span>;
+            <span class="keyword">default</span>:
+              printf("<span class="string">Other solution status.</span>");
+              <span class="keyword">break</span>;
+          }
+        }
+        <span class="keyword">else</span>
+        {
+          printf("<span class="string">Error while optimizing.\n</span>");
+        }
+      }
+    
+      <span class="keyword">if</span> (r != MSK_RES_OK)
+      {
+        <span class="comment">/* In case of an error print error code and description. */</span>      
+        <span class="type">char</span> symname[MSK_MAX_STR_LEN];
+        <span class="type">char</span> desc[MSK_MAX_STR_LEN];
+        
+        printf("<span class="string">An error occurred while optimizing.\n</span>");     
+        MSK_getcodedesc (r,
+                         symname,
+                         desc);
+        printf("<span class="string">Error %s - '%s'\n</span>",symname,desc);
+      }
+    }
+    <span class="comment">/* Delete the task and the associated data. */</span>
+    MSK_deletetask(&amp;task);
+  }
+ 
+  <span class="comment">/* Delete the environment and the associated data. */</span>
+  MSK_deleteenv(&amp;env);
+
+  <span class="keyword">return</span> ( r );
+} <span class="comment">/* main */</span>
+</div>
+
+</div>
+
+<div>
+<h3><a name="256989520">5.4.1.2. Source code comments</a></h3>
+
+<p>The only new function introduced in the example is <a href="node017.html#common-func*mosek*task*appendcone"><tt class="tt">MSK_appendcone</tt></a>, which is called here:</p>
+
+<div class="verbatimcode">r = MSK_appendcone(task,
+                   MSK_CT_QUAD,
+                   0.0, <span class="comment">/* For future use only, can be set to 0.0 */</span>
+                   3,
+                   csub);
+</div>
+
+<p>Here <a href="node020.html#common-const*mosek*conetype*quad"><tt class="tt">MSK_CT_QUAD</tt></a> defines the cone type, in this case it is a <em>quadratic cone</em>. The cone parameter <tt class="tt">0.0</tt> is currently not used by MOSEK &mdash; simply passing <span class="math"><span class="mn">0.0</span></span> will work.</p>
+
+<p>The next argument denotes the number of variables in the cone, in this case 3, and the last argument is a list of indexes of the variables in the cone.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="256991176">5.5. Integer optimization</a></h1>
+
+<p> <a name="idx-76096864">&#09;</a><a name="idx-76097656">&#09;</a><a name="idx-76098304">&#09;</a><a name="idx-76098952">&#09;</a></p>
+
+<p>An optimization problem where one or more of the variables are constrained to integer values is denoted an integer optimization problem.</p>
+
+<div>
+<h2><a name="256989664">5.5.1. Example: milo1</a></h2>
+
+<p>In this section the example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math74.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & x_{0}+0.64x_{1} &  & \\\nonumber{}\mbox{subject to} & 50x_{0}+31x_{1} & \leq{} & 250,\\\nonumber{} & 3x_{0}-2x_{1} & \geq{} & -4,\\\nonumber{} & x_{0},x_{1}\geq{}0 &  & \mbox{and integer}\end{array}\end{math}"/></td>
+<td><a name="ch-apiex-sec-int-opt">&#09;</a>(5.5.1)</td></tr>
+</tbody>
+</table>
+
+<p>is used to demonstrate how to solve a problem with integer variables.</p>
+
+<div>
+<h3><a name="256991528">5.5.1.1. Source code</a></h3>
+
+<p>The example (<a href="node007.html#ch-apiex-sec-int-opt">5.5.1</a>) is almost identical to a linear optimization problem except for some variables being integer constrained. Therefore, only the specification of the integer constraints requires something new compared to the linear optimization problem discussed previously. In MOSEK these constraints are specified using the function <a href="node017.html#common-func*mosek*task*putvartype"><tt class="tt">MSK_putvartype</tt></a> as shown in the code:</p>
+
+<div class="verbatimcode"><span class="keyword">for</span>(j=0; j&lt;NUMVAR &amp;&amp; r == MSK_RES_OK; ++j)
+  r = MSK_putvartype(task,j,MSK_VAR_TYPE_INT);
+</div>
+
+<p>The complete source for the example is listed below.</p>
+
+<p><a name="idx-76094208">&#09;</a></p>
+
+<div class="verbatimcode"><span class="comment">/* 
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      milo1.c
+
+   Purpose:   To demonstrate how to solve a small mixed
+              integer linear optimization problem using 
+              the MOSEK API.
+*/</span>
+
+<span class="preprocessor">#include</span> &lt;stdio.h&gt;
+ 
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>" <span class="comment">/* Include the MOSEK definition file. */</span>
+
+<span class="preprocessor">#define</span> NUMCON 2   <span class="comment">/* Number of constraints.             */</span>
+<span class="preprocessor">#define</span> NUMVAR 2   <span class="comment">/* Number of variables.               */</span>
+<span class="preprocessor">#define</span> NUMANZ 4   <span class="comment">/* Number of non-zeros in A.          */</span>
+
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printstr(<span class="type">void</span> *handle,
+                            <span class="type">char</span> str<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",str);
+} <span class="comment">/* printstr */</span>
+
+<span class="type">int</span> main(<span class="type">int</span> argc,<span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+  MSKrescodee  r;
+  <span class="type">double</span>       c<span class="brackets">[]</span>   = {  1.0, 0.64 };
+  MSKboundkeye bkc<span class="brackets">[]</span> = { MSK_BK_UP,    MSK_BK_LO };
+  <span class="type">double</span>       blc<span class="brackets">[]</span> = { -MSK_INFINITY,-4.0 };
+  <span class="type">double</span>       buc<span class="brackets">[]</span> = { 250.0,        MSK_INFINITY };
+
+  MSKboundkeye bkx<span class="brackets">[]</span> = { MSK_BK_LO,    MSK_BK_LO };
+  <span class="type">double</span>       blx<span class="brackets">[]</span> = { 0.0,          0.0 };
+  <span class="type">double</span>       bux<span class="brackets">[]</span> = { MSK_INFINITY, MSK_INFINITY };
+  
+
+  MSKintt      aptrb<span class="brackets">[]</span> = { 0, 2 };
+  MSKintt      aptre<span class="brackets">[]</span> = { 2, 4 };
+  MSKidxt      asub<span class="brackets">[]</span> = { 0,    1,   0,    1 };
+  <span class="type">double</span>       aval<span class="brackets">[]</span> = { 50.0, 3.0, 31.0, -2.0 };
+  MSKidxt      i,j;
+
+  <span class="type">double</span>       xx[NUMVAR];
+  MSKenv_t     env;
+  MSKtask_t    task;
+
+  <span class="comment">/* Create the mosek environment. */</span>
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+
+  <span class="comment">/* Initialize the environment. */</span>   
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_initenv(env);
+
+  <span class="comment">/* Check if return code is ok. */</span>
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  {
+    <span class="comment">/* Directs the log stream to the 'printstr' function. */</span>
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+
+    <span class="comment">/* Create the optimization task. */</span>
+    r = MSK_maketask(env,NUMCON,NUMVAR,&amp;task);
+
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+      r = MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+        <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+     This is done to increase the speed of inputting data. 
+     However, it is optional. */</span>
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumvar(task,NUMVAR);
+  
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumcon(task,NUMCON);
+    
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_putmaxnumanz(task,NUMANZ);
+
+    <span class="comment">/* Append 'NUMCON' empty constraints.
+     The constraints will initially have no bounds. */</span>
+    <span class="keyword">if</span> ( r == MSK_RES_OK )
+      r = MSK_append(task,MSK_ACC_CON,NUMCON);
+
+    <span class="comment">/* Append 'NUMVAR' variables.
+     The variables will initially be fixed at zero (x=0). */</span>
+    <span class="keyword">if</span> ( r == MSK_RES_OK )
+      r = MSK_append(task,MSK_ACC_VAR,NUMVAR);
+
+    <span class="comment">/* Optionally add a constant term to the objective. */</span>
+    <span class="keyword">if</span> ( r ==MSK_RES_OK )
+      r = MSK_putcfix(task,0.0);
+    <span class="keyword">for</span>(j=0; j&lt;NUMVAR &amp;&amp; r == MSK_RES_OK; ++j)
+    {
+      <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putcj(task,j,c[j]);
+
+      <span class="comment">/* Set the bounds on variable j.
+       blx[j] &lt;= x_j &lt;= bux[j] */</span>
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putbound(task,
+                         MSK_ACC_VAR, <span class="comment">/* Put bounds on variables.*/</span>
+                         j,           <span class="comment">/* Index of variable.*/</span>
+                         bkx[j],      <span class="comment">/* Bound key.*/</span>
+                         blx[j],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                         bux[j]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+
+      <span class="comment">/* Input column j of A */</span>   
+      <span class="keyword">if</span>(r == MSK_RES_OK)
+        r = MSK_putavec(task,
+                        MSK_ACC_VAR,       <span class="comment">/* Input columns of A.*/</span>
+                        j,                 <span class="comment">/* Variable (column) index.*/</span>
+                        aptre[j]-aptrb[j], <span class="comment">/* Number of non-zeros in column j.*/</span>
+                        asub+aptrb[j],     <span class="comment">/* Pointer to row indexes of column j.*/</span>
+                        aval+aptrb[j]);    <span class="comment">/* Pointer to Values of column j.*/</span>
+      
+    }
+
+    <span class="comment">/* Set the bounds on constraints.
+       for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+    <span class="keyword">for</span>(i=0; i&lt;NUMCON &amp;&amp; r==MSK_RES_OK; ++i)
+      r = MSK_putbound(task,
+                       MSK_ACC_CON, <span class="comment">/* Put bounds on constraints.*/</span>
+                       i,           <span class="comment">/* Index of constraint.*/</span>
+                       bkc[i],      <span class="comment">/* Bound key.*/</span>
+                       blc[i],      <span class="comment">/* Numerical value of lower bound.*/</span>
+                       buc[i]);     <span class="comment">/* Numerical value of upper bound.*/</span>
+    
+    <span class="comment">/* Specify integer variables. */</span>
+    <span class="keyword">for</span>(j=0; j&lt;NUMVAR &amp;&amp; r == MSK_RES_OK; ++j)
+      r = MSK_putvartype(task,j,MSK_VAR_TYPE_INT);
+    
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+      r =  MSK_putobjsense(task,
+                           MSK_OBJECTIVE_SENSE_MAXIMIZE);
+    
+    <span class="keyword">if</span> ( r==MSK_RES_OK )
+      {
+        MSKrescodee trmcode;
+        
+        <span class="comment">/* Run optimizer */</span>
+        r = MSK_optimizetrm(task,&amp;trmcode);
+
+        <span class="comment">/* Print a summary containing information
+           about the solution for debugging purposes*/</span>
+        MSK_solutionsummary (task,MSK_STREAM_LOG);
+        
+        <span class="keyword">if</span> ( r==MSK_RES_OK )
+        {
+          MSKsolstae solsta;
+          <span class="type">int</span> j;
+          
+          MSK_getsolutionstatus (task,
+                                 MSK_SOL_ITG,
+                                 <span class="keyword">NULL</span>,
+                                 &amp;solsta);
+          
+          <span class="keyword">switch</span>(solsta)
+          {
+            case MSK_SOL_STA_INTEGER_OPTIMAL:   
+            case MSK_SOL_STA_NEAR_INTEGER_OPTIMAL :
+              MSK_getsolutionslice(task,
+                                   MSK_SOL_ITG,    <span class="comment">/* Request the integer */</span>
+                                   MSK_SOL_ITEM_XX,<span class="comment">/* Which part of solution.     */</span>
+                                   0,              <span class="comment">/* Index of first variable.    */</span>
+                                   NUMVAR,         <span class="comment">/* Index of last variable+1.   */</span>
+                                   xx);
+              
+              printf("<span class="string">Optimal solution.\n</span>");
+              <span class="keyword">for</span>(j=0; j&lt;NUMVAR; ++j)
+                printf("<span class="string">x[%d]: %e\n</span>",j,xx[j]);
+              
+              <span class="keyword">break</span>;
+            case MSK_SOL_STA_PRIM_FEAS:
+              <span class="comment">/* A feasible but not necessarily optimal solution was located. */</span>
+              MSK_getsolutionslice(task,
+                                   MSK_SOL_ITG,    <span class="comment">/* Request the integer.*/</span>
+                                   MSK_SOL_ITEM_XX,<span class="comment">/* Which part of solution.     */</span>
+                                   0,              <span class="comment">/* Index of first variable.    */</span>
+                                   NUMVAR,         <span class="comment">/* Index of last variable+1.   */</span>
+                                   xx);
+              printf("<span class="string">Feasible solution.\n</span>");
+              <span class="keyword">for</span>(j=0; j&lt;NUMVAR; ++j)
+                printf("<span class="string">x[%d]: %e\n</span>",j,xx[j]);
+              <span class="keyword">break</span>;
+            case MSK_SOL_STA_UNKNOWN:
+              printf("<span class="string">The status of the solution could not be determined.\n</span>");
+              <span class="keyword">break</span>;
+            <span class="keyword">default</span>:
+              printf("<span class="string">Other solution status.</span>");
+              <span class="keyword">break</span>;
+          }
+        }
+        <span class="keyword">else</span>
+        {
+          printf("<span class="string">Error while optimizing.\n</span>");
+        }
+      }
+    
+      <span class="keyword">if</span> (r != MSK_RES_OK)
+      {
+        <span class="comment">/* In case of an error print error code and description. */</span>      
+        <span class="type">char</span> symname[MSK_MAX_STR_LEN];
+        <span class="type">char</span> desc[MSK_MAX_STR_LEN];
+        
+        printf("<span class="string">An error occurred while optimizing.\n</span>");     
+        MSK_getcodedesc (r,
+                         symname,
+                         desc);
+        printf("<span class="string">Error %s - '%s'\n</span>",symname,desc);
+      }
+  }
+    
+  MSK_deletetask(&amp;task);
+  MSK_deleteenv(&amp;env);
+
+  printf("<span class="string">Return code: %d.\n</span>",r);
+
+  <span class="keyword">return</span> ( r );
+} <span class="comment">/* main */</span>
+</div>
+
+</div>
+
+<div>
+<h3><a name="257002168">5.5.1.2. Code comments</a></h3>
+
+<p> Please note that when <a href="node017.html#common-func*mosek*task*getsolutionslice"><tt class="tt">MSK_getsolutionslice</tt></a> is called, the integer solution is requested by using <a href="node020.html#common-const*mosek*soltype*itg"><tt class="tt">MSK_SOL_ITG</tt></a>. No dual solution is defined for integer optimization problems.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="257001520">5.5.2. Specifying an initial solution</a></h2>
+
+<p> <a name="sec-mip-intro-init-mip">&#09;</a> Integer optimization problems are generally hard to solve, but the solution time can often be reduced by providing an initial solution for the solver. Solution values can be set using <a href="node017.html#common-func*mosek*task*putsolution"><tt class="tt">MSK_putsolution</tt></a> (for inputting a whole solution) or <a href="node017.html#common-func*mosek*task*putsolutioni"><tt class="tt">MSK_putsolutioni</tt></a> (for inputting solution values related to a single variable or constraint).</p>
+
+<p>It is not necessary to specify the whole solution. By setting the <a href="node018.html#common-const*mosek*iparam*mio-construct-sol"><tt class="tt">MSK_IPAR_MIO_CONSTRUCT_SOL</tt></a> parameter to <a href="node020.html#common-const*mosek*onoffkey*on"><tt class="tt">MSK_ON</tt></a> and inputting values for the integer variables only, will force MOSEK to compute the remaining continuous variable values.</p>
+
+<p>If the specified integer solution is infeasible or incomplete, MOSEK will simply ignore it.</p>
+
+</div>
+
+<div>
+<h2><a name="257002600">5.5.3. Example: Specifying an integer solution</a></h2>
+
+<p> Consider the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math75.png" alt="\begin{math}\nonumber{}\begin{array}{ll}\nonumber{}\mbox{maximize} & 7x_{0}+10x_{1}+x_{2}+5x_{3}\\\nonumber{}\mbox{subject to} & x_{0}+x_{1}+x_{2}+x_{3}\leq{}2.5\\\nonumber{} & x_{0},x_{1},x_{2}\mathrm{integer},\quad{}x_{0},x_{1},x_{2},x_{3}\geq{}0\end{array}\end{math}"/></td>
+<td>(5.5.2)</td></tr>
+</tbody>
+</table>
+
+<p>The following example demonstrates how to optimize the problem using a feasible starting solution generated by selecting the integer values as <span class="math"><img src="math/math76.png" alt="[[MathCmd 76]]"/></span>.</p>
+
+<p><a name="idx-76073368">&#09;</a></p>
+
+<div class="verbatimcode"><span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      mioinitsol.c
+
+   Purpose:   To demonstrate how to solve a MIP with a start guess.
+ 
+ */</span>
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>"
+<span class="preprocessor">#include</span> &lt;stdio.h&gt;
+
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printstr(<span class="type">void</span> *handle,
+                            <span class="type">char</span> str<span class="brackets">[]</span>)
+{
+  printf("<span class="string">%s</span>",str);
+} <span class="comment">/* printstr */</span>
+
+<span class="preprocessor">#define</span> NUMVAR     4
+<span class="preprocessor">#define</span> NUMCON     1
+<span class="preprocessor">#define</span> NUMINTVAR  3
+
+
+<span class="type">int</span> main(<span class="type">int</span> argc,<span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+  <span class="type">char</span>         buffer[512];
+
+  MSKrescodee  r;
+  
+  MSKenv_t     env;
+  MSKtask_t    task;
+
+  <span class="type">double</span>       c<span class="brackets">[]</span> = { 7.0, 10.0, 1.0, 5.0 };
+  
+  MSKboundkeye bkc<span class="brackets">[]</span> = {MSK_BK_UP};
+  <span class="type">double</span>       blc<span class="brackets">[]</span> = {-MSK_INFINITY};
+  <span class="type">double</span>       buc<span class="brackets">[]</span> = {2.5};
+  
+  MSKboundkeye bkx<span class="brackets">[]</span> = {MSK_BK_LO, MSK_BK_LO, MSK_BK_LO,MSK_BK_LO};
+  <span class="type">double</span>       blx<span class="brackets">[]</span> = {0.0,       0.0,       0.0,      0.0      };
+  <span class="type">double</span>       bux<span class="brackets">[]</span> = {MSK_INFINITY,MSK_INFINITY,MSK_INFINITY,MSK_INFINITY};
+      
+  MSKlidxt     ptrb<span class="brackets">[]</span> = {0,1,2,3};
+  MSKlidxt     ptre<span class="brackets">[]</span> = {1,2,3,4};
+  <span class="type">double</span>       aval<span class="brackets">[]</span> = {1.0, 1.0, 1.0, 1.0};
+  MSKidxt      asub<span class="brackets">[]</span> = {0,   0,   0,   0  };
+  MSKidxt      intsub<span class="brackets">[]</span> = {0,1,2};
+  MSKidxt      j;
+   
+  r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>); 
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+  { 
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+  }
+
+  r = MSK_initenv(env);
+
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    r = MSK_maketask(env,0,0,&amp;task);
+  
+  <span class="keyword">if</span> ( r==MSK_RES_OK )
+    MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_inputdata(task,
+                      NUMCON,NUMVAR,
+                      NUMCON,NUMVAR,
+                      c,
+                      0.0,
+                      ptrb,
+                      ptre,
+                      asub,
+                      aval,
+                      bkc,
+                      blc,
+                      buc,
+                      bkx,
+                      blx,
+                      bux);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    MSK_putobjsense(task,MSK_OBJECTIVE_SENSE_MAXIMIZE);
+          
+  <span class="keyword">for</span>(j=0; j&lt;NUMINTVAR &amp;&amp; r == MSK_RES_OK; ++j)
+    r = MSK_putvartype(task,intsub[j],MSK_VAR_TYPE_INT);
+
+        
+  <span class="comment">/* Construct an initial feasible solution from the
+     values of the integer variables specified */</span>
+  
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_putintparam(task,MSK_IPAR_MIO_CONSTRUCT_SOL,MSK_ON);
+
+  <span class="comment">/* Set status of all variables to unknown */</span>
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_makesolutionstatusunknown(task, MSK_SOL_ITG);
+
+  <span class="comment">/* Assign values 1,1,0 to integer variables */</span>
+   
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_putsolutioni (
+                          task,
+                          MSK_ACC_VAR,
+                          0,
+                          MSK_SOL_ITG, 
+                          MSK_SK_SUPBAS, 
+                          0.0,
+                          0.0,
+                          0.0,
+                          0.0);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_putsolutioni (
+                          task,
+                          MSK_ACC_VAR,
+                          1,
+                          MSK_SOL_ITG, 
+                          MSK_SK_SUPBAS, 
+                          2.0,
+                          0.0,
+                          0.0,
+                          0.0); 
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_putsolutioni (
+                          task,
+                          MSK_ACC_VAR,
+                          2,
+                          MSK_SOL_ITG, 
+                          MSK_SK_SUPBAS, 
+                          0.0,
+                          0.0,
+                          0.0,
+                          0.0);
+    
+  <span class="comment">/* solve */</span>
+    
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_optimize(task); 
+  
+  <span class="comment">/* Did mosek construct a feasible initial solution ? */</span>
+ 
+  {
+    <span class="type">int</span> isok;
+     
+    <span class="keyword">if</span> (r == MSK_RES_OK)
+      r = MSK_getintinf(task,MSK_IINF_MIO_CONSTRUCT_SOLUTION,&amp;isok);
+
+    <span class="keyword">if</span> ( isok&gt;0 &amp;&amp; r == MSK_RES_OK)
+      printf("<span class="string">MOSEK constructed a feasible initial soulution.\n</span>");    
+  }
+  <span class="comment">/* Delete the task. */</span>
+  
+  MSK_deletetask(&amp;task);
+  
+  MSK_deleteenv(&amp;env);
+  
+  printf("<span class="string">Return code: %d\n</span>",r);
+  <span class="keyword">if</span> ( r!=MSK_RES_OK )
+  {
+    MSK_getcodedisc(r,buffer,<span class="keyword">NULL</span>);
+    printf("<span class="string">Description: %s\n</span>",buffer);
+  }
+
+  <span class="keyword">return</span> (r);
+}
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="257007912">5.6. Problem modification and reoptimization</a></h1>
+
+<p> <a name="ch:intro:sec:reopt">&#09;</a></p>
+
+<p>Often one might want to solve not just a single optimization problem, but a sequence of problem, each differing only slightly from the previous one. This section demonstrates how to modify and reoptimize an existing problem. The example we study is a simple production planning model.</p>
+
+<div>
+<h2><a name="257003104">5.6.1. A production planning problem</a></h2>
+
+<p> A company manufactures three types of products. Suppose the stages of manufacturing can be split into three parts, namely Assembly, Polishing and Packing. In the table below we show the time required for each stage as well as the profit associated with each product.</p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Product no. </td>
+<td valign="top" style="border-top:1px solid black;"> Assembly (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Polishing (minutes)</td>
+<td valign="top" style="border-top:1px solid black;"> Packing (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Profit ($) </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> 0 </td>
+<td valign="top" style="border-top:1px solid black;"> 2 </td>
+<td valign="top" style="border-top:1px solid black;"> 3 </td>
+<td valign="top" style="border-top:1px solid black;"> 2 </td>
+<td valign="top" style="border-top:1px solid black;"> 1.50 </td></tr><tr class="evenrow">
+<td valign="top">1 </td>
+<td valign="top"> 4 </td>
+<td valign="top"> 2 </td>
+<td valign="top"> 3 </td>
+<td valign="top"> 2.50 </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;">2 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 3 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 3 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 2 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 3.00 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>With the current resources available, the company has <span class="math"><span class="mn">100</span><span class="mo">,</span><span class="mn">000</span></span> minutes of assembly time, <span class="math"><span class="mn">50</span><span class="mo">,</span><span class="mn">000</span></span> minutes of polishing time and <span class="math"><span class="mn">60</span><span class="mo">,</span><span class="mn">000</span></span> minutes of packing time available per year.</p>
+
+<p>Now the question is how many items of each product the company should produce each year in order to maximize profit?</p>
+
+<p>Denoting the number of items of each type by <span class="math"><img src="math/math77.png" alt="[[MathCmd 77]]"/></span> and <span class="math"><img src="math/math78.png" alt="[[MathCmd 78]]"/></span>, this problem can be formulated as the linear optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math79.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccl}\nonumber{}\mbox{maximize} & 1.5x_{0} & + & 2.5x_{1} & + & 3.0x_{2} &  & \\\nonumber{}\mbox{subject to} & 2x_{0} & + & 4x_{1} & + & 3x_{2} & \leq{} & 100000,\\\nonumber{} & 3x_{0} & + & 2x_{1} & + & 3x_{2} & \leq{} & 50000,\\\nonumber{} & 2x_{0} & + & 3x_{1} & + & 2x_{2} & \leq{} & 60000,\end{array}\end{math}"/></td>
+<td>(5.6.1)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math80.png" alt="\begin{math}\nonumber{}x_{0},x_{1},x_{2}\geq{}0.\end{math}"/></td>
+<td>(5.6.2)</td></tr>
+</tbody>
+</table>
+
+<p>The following code loads this problem into the optimization task.</p>
+
+<div class="verbatimcode">MSKrescodee  r;
+MSKidxt      i,j;
+<span class="type">double</span>       c<span class="brackets">[]</span>    = {1.5, 2.5, 3.0};
+MSKlidxt     ptrb<span class="brackets">[]</span> = {0, 3, 6};
+MSKlidxt     ptre<span class="brackets">[]</span> = {3, 6, 9};
+
+MSKidxt      asub<span class="brackets">[]</span> = { 0, 1, 2,
+                        0, 1, 2,
+                        0, 1, 2};
+
+<span class="type">double</span>       aval<span class="brackets">[]</span> = { 2.0, 3.0, 2.0,
+                        4.0, 2.0, 3.0,
+                        3.0, 3.0, 2.0};
+
+MSKboundkeye bkc<span class="brackets">[]</span>  = {MSK_BK_UP, MSK_BK_UP, MSK_BK_UP    };
+<span class="type">double</span>       blc<span class="brackets">[]</span>  = {-MSK_INFINITY, -MSK_INFINITY, -MSK_INFINITY};
+<span class="type">double</span>       buc<span class="brackets">[]</span>  = {100000, 50000, 60000};
+
+MSKboundkeye bkx<span class="brackets">[]</span>  = {MSK_BK_LO,     MSK_BK_LO,    MSK_BK_LO};
+<span class="type">double</span>       blx<span class="brackets">[]</span>  = {0.0,           0.0,          0.0,};
+<span class="type">double</span>       bux<span class="brackets">[]</span>  = {+MSK_INFINITY, +MSK_INFINITY,+MSK_INFINITY};
+
+<span class="type">double</span>       xx[NUMVAR];
+
+MSKenv_t     env;
+MSKtask_t    task;
+MSKintt      numvar,numcon;
+
+<span class="comment">/* Create the mosek environment. */</span>
+r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>);
+
+<span class="comment">/* Check if return code is ok. */</span>
+<span class="keyword">if</span> ( r==MSK_RES_OK )
+{
+  <span class="comment">/* Directs the env log stream to the
+     'printstr' function. */</span>
+  MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+}
+
+<span class="comment">/* Initialize the environment. */</span>
+r = MSK_initenv(env);
+
+<span class="keyword">if</span> ( r==MSK_RES_OK )
+{
+  <span class="comment">/* Create the optimization task. */</span>
+  r = MSK_maketask(env,NUMCON,NUMVAR,&amp;task);
+
+  <span class="comment">/* Directs the log task stream to the
+     'printstr' function. */</span>
+
+  MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+
+  <span class="comment">/* Give MOSEK an estimate of the size of the input data. This is
+     done to increase the efficiency of inputting data, however it is
+     optional.*/</span>
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_putmaxnumvar(task,NUMVAR);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_putmaxnumcon(task,NUMCON);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_putmaxnumanz(task,NUMANZ);
+
+  <span class="comment">/* Append the constraints. */</span>
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_append(task,MSK_ACC_CON,NUMCON);
+
+  <span class="comment">/* Append the variables. */</span>
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_append(task,MSK_ACC_VAR,NUMVAR);
+
+  <span class="comment">/* Put C. */</span>
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_putcfix(task, 0.0);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    <span class="keyword">for</span>(j=0; j&lt;NUMVAR; ++j)
+      r = MSK_putcj(task,j,c[j]);
+
+  <span class="comment">/* Put constraint bounds. */</span>
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    <span class="keyword">for</span>(i=0; i&lt;NUMCON; ++i)
+      r = MSK_putbound(task,MSK_ACC_CON,i,bkc[i],blc[i],buc[i]);
+
+  <span class="comment">/* Put variable bounds. */</span>
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    <span class="keyword">for</span>(j=0; j&lt;NUMVAR; ++j)
+      r = MSK_putbound(task,MSK_ACC_VAR,j,bkx[j],blx[j],bux[j]);
+
+  <span class="comment">/* Put A. */</span>
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    <span class="keyword">if</span> ( NUMCON&gt;0 )
+      <span class="keyword">for</span>(j=0; j&lt;NUMVAR; ++j)
+        r = MSK_putavec(task,
+                        MSK_ACC_VAR,
+                        j,
+                        ptre[j]-ptrb[j],
+                        asub+ptrb[j],
+                        aval+ptrb[j]);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_putobjsense(task,
+                        MSK_OBJECTIVE_SENSE_MAXIMIZE);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    r = MSK_optimizetrm(task,<span class="keyword">NULL</span>);
+
+  <span class="keyword">if</span> (r == MSK_RES_OK)
+    MSK_getsolutionslice(task,
+                         MSK_SOL_BAS,       <span class="comment">/* Basic solution.       */</span>
+                         MSK_SOL_ITEM_XX,   <span class="comment">/* Which part of solution.  */</span>
+                         0,                 <span class="comment">/* Index of first variable. */</span>
+                         NUMVAR,            <span class="comment">/* Index of last variable+1 */</span>
+                         xx);
+</div>
+
+</div>
+
+<div>
+<h2><a name="257037736">5.6.2. Changing the <span class="math"><span class="mi">A</span></span> matrix</a></h2>
+
+<p>Suppose we want to change the time required for assembly of product <span class="math"><span class="mn">0</span></span> to <span class="math"><span class="mn">3</span></span> minutes. This corresponds to setting <span class="math"><img src="math/math81.png" alt="[[MathCmd 81]]"/></span>, which is done by calling the function <a href="node017.html#common-func*mosek*task*putaij"><tt class="tt">MSK_putaij</tt></a> as shown below.</p>
+
+<div class="verbatimcode"><span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_putaij(task, 0, 0, 3.0);
+</div>
+
+<p>The problem now has the form: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math82.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccl}\nonumber{}\mbox{maximize} & 1.5x_{0} & + & 2.5x_{1} & + & 3.0x_{2} &  & \\\nonumber{}\mbox{subject to} & 3x_{0} & + & 4x_{1} & + & 3x_{2} & \leq{} & 100000,\\\nonumber{} & 3x_{0} & + & 2x_{1} & + & 3x_{2} & \leq{} & 50000,\\\nonumber{} & 2x_{0} & + & 3x_{1} & + & 2x_{2} & \leq{} & 60000,\end{array}\end{math}"/></td>
+<td><a name="eq-production-1">&#09;</a>(5.6.3)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math80.png" alt="\begin{math}\nonumber{}x_{0},x_{1},x_{2}\geq{}0.\end{math}"/></td>
+<td>(5.6.4)</td></tr>
+</tbody>
+</table>
+
+<p> After changing the <span class="math"><span class="mi">A</span></span> matrix we can find the new optimal solution by calling</p>
+
+<p><a href="node017.html#common-func*mosek*task*optimize"><tt class="tt">MSK_optimize</tt></a></p>
+
+<p>again</p>
+
+</div>
+
+<div>
+<h2><a name="257054552">5.6.3. Appending variables</a></h2>
+
+<p>We now want to add a new product with the following data:</p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Product no. </td>
+<td valign="top" style="border-top:1px solid black;"> Assembly (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Polishing (minutes)</td>
+<td valign="top" style="border-top:1px solid black;"> Packing (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Profit ($) </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;">3 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 4 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 0 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 1 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 1.00 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>This corresponds to creating a new variable <span class="math"><img src="math/math84.png" alt="[[MathCmd 84]]"/></span>, appending a new column to the <span class="math"><span class="mi">A</span></span> matrix and setting a new value in the objective. We do this in the following code.</p>
+
+<div class="verbatimcode"><span class="comment">/* Append a new variable x_3 to the problem */</span>
+<span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_append(task,MSK_ACC_VAR,1);
+
+<span class="comment">/* Get index of new variable, this should be 3 */</span>
+<span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_getnumvar(task,&amp;numvar);
+
+<span class="comment">/* Set bounds on new variable */</span>
+<span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_putbound(task,
+                   MSK_ACC_VAR,
+                   numvar-1,
+                   MSK_BK_LO,
+                   0,
+                   +MSK_INFINITY);
+
+<span class="comment">/* Change objective */</span>
+<span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_putcj(task,numvar-1,1.0);
+
+<span class="comment">/* Put new values in the A matrix */</span>
+<span class="keyword">if</span> (r == MSK_RES_OK)
+{
+  MSKidxt acolsub<span class="brackets">[]</span> = {0,   2};
+  <span class="type">double</span>  acolval<span class="brackets">[]</span> =  {4.0, 1.0};
+
+   r = MSK_putavec(task,
+                   MSK_ACC_VAR,
+                   numvar-1, <span class="comment">/* column index */</span>
+                   2, <span class="comment">/* num nz in column*/</span>
+                   acolsub,
+                   acolval);
+}
+</div>
+
+<p>After this operation the problem looks this way: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math85.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccl}\nonumber{}\mbox{maximize} & 1.5x_{0} & + & 2.5x_{1} & + & 3.0x_{2} & + & 1.0x_{3} &  & \\\nonumber{}\mbox{subject to} & 3x_{0} & + & 4x_{1} & + & 3x_{2} & + & 4x_{3} & \leq{} & 100000,\\\nonumber{} & 3x_{0} & + & 2x_{1} & + & 3x_{2} &  &  & \leq{} & 50000,\\\nonumber{} & 2x_{0} & + & 3x_{1} & + & 2x_{2} & + & 1x_{3} & \leq{} & 60000,\end{array}\end{math}"/></td>
+<td><a name="eq-production-2">&#09;</a>(5.6.5)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math86.png" alt="\begin{math}\nonumber{}x_{0},x_{1},x_{2},x_{3}\geq{}0.\end{math}"/></td>
+<td>(5.6.6)</td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h2><a name="257050024">5.6.4. Reoptimization</a></h2>
+
+<p> When</p>
+
+<p><a href="node017.html#common-func*mosek*task*optimize"><tt class="tt">MSK_optimize</tt></a></p>
+
+<p>is called MOSEK will store the optimal solution internally. After a task has been modified and</p>
+
+<p><a href="node017.html#common-func*mosek*task*optimize"><tt class="tt">MSK_optimize</tt></a></p>
+
+<p>is called again the solution will automatically be used to reduce solution time of the new problem, if possible.</p>
+
+<p>In this case an optimal solution to problem <a href="node007.html#eq-production-1">(5.6.3)</a> was found and then added a column was added to get <a href="node007.html#eq-production-2">(5.6.5)</a>. The simplex optimizer is well suited for exploiting an existing primal or dual feasible solution. Hence, the subsequent code instructs MOSEK to choose the simplex optimizer freely when optimizing.</p>
+
+<div class="verbatimcode"><span class="comment">/* Change optimizer to free simplex and reoptimize */</span>
+<span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_putintparam(task,MSK_IPAR_OPTIMIZER,MSK_OPTIMIZER_FREE_SIMPLEX);
+
+<span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_optimizetrm(task,<span class="keyword">NULL</span>);
+</div>
+
+</div>
+
+<div>
+<h2><a name="257080928">5.6.5. Appending constraints</a></h2>
+
+<p>Now suppose we want to add a new stage to the production called &#8220;Quality control&#8221; for which <span class="math"><span class="mn">30000</span></span> minutes are available. The time requirement for this stage is shown below:</p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Product no. </td>
+<td valign="top" style="border-top:1px solid black;"> Quality control (minutes) </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> 0 </td>
+<td valign="top" style="border-top:1px solid black;"> 1 </td></tr><tr class="evenrow">
+<td valign="top">1 </td>
+<td valign="top"> 2 </td></tr><tr class="oddrow">
+<td valign="top">2 </td>
+<td valign="top"> 1 </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;">3 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 1 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>This corresponds to adding the constraint </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math87.png" alt="\begin{math}\nonumber{}x_{0}+2x_{1}+x_{2}+x_{3}\leq{}30000\end{math}"/></td>
+<td>(5.6.7)</td></tr>
+</tbody>
+</table>
+
+<p>to the problem which is done in the following code:</p>
+
+<div class="verbatimcode"><span class="comment">/* Append a new constraint */</span>
+<span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_append(task,MSK_ACC_CON,1);
+
+<span class="comment">/* Get index of new constraint, this should be 4 */</span>
+<span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_getnumcon(task,&amp;numcon);
+
+<span class="comment">/* Set bounds on new constraint */</span>
+<span class="keyword">if</span> (r == MSK_RES_OK)
+  r = MSK_putbound(task,
+                   MSK_ACC_CON,
+                   numcon-1,
+                   MSK_BK_UP,
+                   -MSK_INFINITY,
+                   30000);
+
+<span class="comment">/* Put new values in the A matrix */</span>
+<span class="keyword">if</span> (r == MSK_RES_OK)
+{
+  MSKidxt arowsub<span class="brackets">[]</span> = {0,   1,   2,   3  };
+  <span class="type">double</span> arowval<span class="brackets">[]</span> =  {1.0, 2.0, 1.0, 1.0};
+
+  r = MSK_putavec(task,
+                  MSK_ACC_CON,
+                  numcon-1, <span class="comment">/* row index */</span>
+                  4, <span class="comment">/* num nz in row*/</span>
+                  arowsub,
+                  arowval);
+}
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="257087680">5.7. Efficiency considerations</a></h1>
+
+<p>Although MOSEK is implemented to handle memory efficiently, the user may have valuable knowledge about a problem, which could be used to improve the performance of MOSEK. This section discusses some tricks and general advice that hopefully make MOSEK process your problem faster.</p>
+
+<dl class="description">
+<dt>Avoid memory fragmentation:</dt>
+<dd>
+<p> MOSEK stores the optimization problem in internal data structures in the memory. Initially MOSEK will allocate structures of a certain size, and as more items are added to the problem the structures are reallocated. For large problems the same structures may be reallocated many times causing memory fragmentation. One way to avoid this is to give MOSEK an estimated size of your problem using the functions: </p>
+
+<ul class="itemize">
+<li><a href="node017.html#common-func*mosek*task*putmaxnumvar"><tt class="tt">MSK_putmaxnumvar</tt></a>. Estimate for the number of variables. </li>
+<li><a href="node017.html#common-func*mosek*task*putmaxnumcon"><tt class="tt">MSK_putmaxnumcon</tt></a>. Estimate for the number of constraints. </li>
+<li><a href="node017.html#common-func*mosek*task*putmaxnumcone"><tt class="tt">MSK_putmaxnumcone</tt></a>. Estimate for the number of cones.</li>
+<li><a href="node017.html#common-func*mosek*task*putmaxnumanz"><tt class="tt">MSK_putmaxnumanz</tt></a>. Estimate for the number of non-zeros in <span class="math"><span class="mi">A</span></span>. </li>
+<li><a href="node017.html#common-func*mosek*task*putmaxnumqnz"><tt class="tt">MSK_putmaxnumqnz</tt></a>. Estimate for the number of non-zeros in the quadratic terms.</li>
+</ul>
+
+<p>None of these functions change the problem, they only give hints to the eventual dimension of the problem. If the problem ends up growing larger than this, the estimates are automatically increased.</p>
+</dd>
+<dt>Tune the reallocation process:</dt>
+<dd>
+<p> It is possible to obtain information about how often MOSEK reallocates storage for the <span class="math"><span class="mi">A</span></span> matrix by inspecting <a href="node020.html#common-const*mosek*iinfitem*sto-num-a-realloc"><tt class="tt">MSK_IINF_STO_NUM_A_REALLOC</tt></a>.  A large value indicates that <tt class="tt">maxnumanz</tt> has been reestimated many times and that the initial estimate should be increased.</p>
+</dd>
+<dt>Do not mix <tt class="tt">put-</tt> and <tt class="tt">get-</tt> functions:</dt>
+<dd>
+<p> For instance, the functions <a href="node017.html#common-func*mosek*task*putavec"><tt class="tt">MSK_putavec</tt></a> and <a href="node017.html#common-func*mosek*task*getavec"><tt class="tt">MSK_getavec</tt></a>. MOSEK will queue <tt class="tt">put-</tt> commands internally until a <tt class="tt">get-</tt> function is called. If every <tt class="tt">put-</tt> function call is followed by a <tt class="tt">get-</tt> function call, the queue will have to be flushed often, decreasing efficiency.</p>
+
+<p>In general <tt class="tt">get-</tt> commands should not be called often during problem setup.</p>
+</dd>
+<dt>Use the LIFO principle when removing constraints and variables:</dt>
+<dd>
+<p>MOSEK can more efficiently remove constraints and variables with a high index than a small index.</p>
+
+<p>An alternative to removing a constraint or a variable is to fix it at 0, and set all relevant coefficients to 0. Generally this will not have any impact on the optimization speed.</p>
+</dd>
+<dt>Add more constraints and variables than you need (now):</dt>
+<dd>
+<p> The cost of adding one constraint or one variable is about the same as adding many of them. Therefore, it may be worthwhile to add many variables instead of one. Initially fix the unused variable at zero, and then later unfix them as needed. Similarly, you can add multiple free constraints and then use them as needed.</p>
+</dd>
+<dt>Use one environment (env) only:</dt>
+<dd>
+<p> If possible share the environment (<tt class="tt">env</tt>) between several tasks. For most applications you need to create only a single <tt class="tt">env</tt>.</p>
+</dd>
+<dt>Do not remove basic variables:</dt>
+<dd>
+<p> When doing reoptimizations, instead of removing a basic variable it may be more efficient to fix the variable at zero and then remove it when the problem is reoptimized and it has left the basis. This makes it easier for MOSEK to restart the simplex optimizer. </p>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h1><a name="257094432">5.8. Conventions employed in the API</a></h1>
+
+<p> <a name="chap-apiintro-sec-prog-conv">&#09;</a></p>
+
+<div>
+<h2><a name="257087752">5.8.1. Naming conventions for arguments</a></h2>
+
+<p> In the definition of the MOSEK C API a consistent naming convention has been used. This implies that whenever for example <tt class="tt">numcon</tt> is an argument in a function definition it indicates the number of constraints.</p>
+
+<p>In Table <a href="node007.html#TAB:CNAMES">5.2</a> the variable names used to specify the problem parameters are listed. </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> C name </td>
+<td valign="top" style="border-top:1px solid black;"> C type </td>
+<td valign="top" style="border-top:1px solid black;"> Dimension </td>
+<td valign="top" style="border-top:1px solid black;"> Related problem </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td valign="top"> </td>
+<td valign="top"> </td>
+<td valign="top"> parameter </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"><tt class="tt">numcon</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">int</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> </td>
+<td valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">m</span></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">numvar</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><span class="mi">n</span></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">numcone</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><span class="mi">t</span></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">numqonz</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><img src="math/math88.png" alt="[[MathCmd 88]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qosubi</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numqonz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math88.png" alt="[[MathCmd 88]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qosubj</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numqonz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math88.png" alt="[[MathCmd 88]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qoval</tt> </td>
+<td valign="top"> <tt class="tt">double*</tt> </td>
+<td valign="top"> <tt class="tt">numqonz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math88.png" alt="[[MathCmd 88]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">c</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math92.png" alt="[[MathCmd 92]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">cfix</tt> </td>
+<td valign="top"> <tt class="tt">double</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><img src="math/math10.png" alt="[[MathCmd 10]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">numqcnz</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><img src="math/math94.png" alt="[[MathCmd 94]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qcsubk</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">qcnz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math94.png" alt="[[MathCmd 94]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qcsubi</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">qcnz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math94.png" alt="[[MathCmd 94]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qcsubj</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">qcnz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math94.png" alt="[[MathCmd 94]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qcval</tt> </td>
+<td valign="top"> <tt class="tt">double*</tt> </td>
+<td valign="top"> <tt class="tt">qcnz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math94.png" alt="[[MathCmd 94]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">aptrb</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math99.png" alt="[[MathCmd 99]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">aptre</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math99.png" alt="[[MathCmd 99]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">asub</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">aptre[numvar-1]</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math99.png" alt="[[MathCmd 99]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">aval</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">aptre[numvar-1]</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math99.png" alt="[[MathCmd 99]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">bkc</tt> </td>
+<td valign="top"> <tt class="tt">MSKboundkeye*</tt> </td>
+<td valign="top"> <tt class="tt">numcon</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math103.png" alt="[[MathCmd 103]]"/></span> and <span class="math"><img src="math/math104.png" alt="[[MathCmd 104]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">blc</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">numcon</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math103.png" alt="[[MathCmd 103]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">buc</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">numcon</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math104.png" alt="[[MathCmd 104]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">bkx</tt> </td>
+<td valign="top"> <tt class="tt">MSKboundkeye *</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math107.png" alt="[[MathCmd 107]]"/></span> and <span class="math"><img src="math/math108.png" alt="[[MathCmd 108]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">blx</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math107.png" alt="[[MathCmd 107]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">bux</tt> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <tt class="tt">double[]</tt> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <tt class="tt">numvar</tt> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <span class="math"><img src="math/math108.png" alt="[[MathCmd 108]]"/></span> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;5.2: <a name="TAB:CNAMES">&#09;</a>Naming convention used in MOSEK</span>
+<br/></center></td></tr></table>
+</td></tr></table>
+
+<p> The relation between the variable names and the problem parameters is as follows: </p>
+
+<ul class="itemize">
+<li>
+<p>The quadratic terms in the objective:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math111.png" alt="\begin{math}\nonumber{}q_{{\mathtt{qosubi[t]},\mathtt{qosubj[t]}}}^{o}=\mathtt{qoval[t]},~t=0,\ldots ,\mathtt{numqonz}-1.\end{math}"/></td>
+<td><a name="EQ:QODEF">&#09;</a>(5.8.1)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The linear terms in the objective:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math112.png" alt="\begin{math}\nonumber{}c_{j}=\mathtt{c[j]},~j=0,\ldots ,\mathtt{numvar}-1\end{math}"/></td>
+<td><a name="CH:API:EQ:DEFCJ">&#09;</a>(5.8.2)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The fixed term in the objective: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math113.png" alt="\begin{math}\nonumber{}c^{f}=\mathtt{cfix}.\end{math}"/></td>
+<td>(5.8.3)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The quadratic terms in the constraints:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math114.png" alt="\begin{math}\nonumber{}q_{{\mathtt{qcsubi[t]},\mathtt{qcsubj[t]}}}^{\mathtt{qcsubk[t]}}=\mathtt{qcval[t]},~t=0,\ldots ,\mathtt{numqcnz}-1.\end{math}"/></td>
+<td><a name="EQ:QCDEF">&#09;</a>(5.8.4)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The linear terms in the constraints: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math115.png" alt="\begin{math}\nonumber{}\begin{array}{rl}\nonumber{}a_{{\mathtt{asub[t],j}}}=\mathtt{aval[t]}, & t=\mathtt{ptrb[j]},\ldots ,\mathtt{ptre[j]}-1,\\\nonumber{} & j=0,\ldots ,\mathtt{numvar}-1.\end{array}\end{math}"/></td>
+<td><a name="EQ:ADEF">&#09;</a>(5.8.5)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The bounds on the constraints are specified using the variables <tt class="tt">bkc</tt>, <tt class="tt">blc</tt>, and <tt class="tt">buc</tt>. The components of the integer array <tt class="tt">bkc</tt> specify the bound type according to Table <a href="node007.html#CH:API:TAB:BOUNDKEYS">5.3</a>.  </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Symbolic constant </td>
+<td valign="top" style="border-top:1px solid black;"> Lower bound </td>
+<td valign="top" style="border-top:1px solid black;"> Upper bound </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> <a href="node020.html#common-const*mosek*boundkey*fx"><tt class="tt">MSK_BK_FX</tt></a> </td>
+<td valign="top" style="border-top:1px solid black;"> finite </td>
+<td valign="top" style="border-top:1px solid black;"> identical to the lower bound </td></tr><tr class="evenrow">
+<td valign="top"><a href="node020.html#common-const*mosek*boundkey*fr"><tt class="tt">MSK_BK_FR</tt></a> </td>
+<td valign="top"> minus infinity </td>
+<td valign="top"> plus infinity </td></tr><tr class="oddrow">
+<td valign="top"><a href="node020.html#common-const*mosek*boundkey*lo"><tt class="tt">MSK_BK_LO</tt></a> </td>
+<td valign="top"> finite </td>
+<td valign="top"> plus infinity </td></tr><tr class="evenrow">
+<td valign="top"><a href="node020.html#common-const*mosek*boundkey*ra"><tt class="tt">MSK_BK_RA</tt></a> </td>
+<td valign="top"> finite </td>
+<td valign="top"> finite </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><a href="node020.html#common-const*mosek*boundkey*up"><tt class="tt">MSK_BK_UP</tt></a> </td>
+<td valign="top" style="border-bottom:1px solid black;"> minus infinity </td>
+<td valign="top" style="border-bottom:1px solid black;"> finite </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;5.3: Interpretation of the bound keys.</span>
+<br/>
+<p> <a name="CH:API:TAB:BOUNDKEYS">&#09;</a> </p>
+</center></td></tr></table>
+</td></tr></table>
+
+<p>  For instance <tt class="tt">bkc[2]=</tt><a href="node020.html#common-const*mosek*boundkey*lo"><tt class="tt">MSK_BK_LO</tt></a> means that <span class="math"><img src="math/math116.png" alt="[[MathCmd 116]]"/></span> and <span class="math"><img src="math/math117.png" alt="[[MathCmd 117]]"/></span>. Finally, the numerical values of the bounds are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math118.png" alt="\begin{math}\nonumber{}l_{k}^{c}=\mathtt{blc[k]},~k=0,\ldots ,\mathtt{numcon}-1\end{math}"/></td>
+<td>(5.8.6)</td></tr>
+</tbody>
+</table>
+
+<p>  and  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math119.png" alt="\begin{math}\nonumber{}u_{k}^{c}=\mathtt{buc[k]},~k=0,\ldots ,\mathtt{numcon}-1.\end{math}"/></td>
+<td>(5.8.7)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The bounds on the variables are specified using the variables <tt class="tt">bkx</tt>, <tt class="tt">blx</tt>, and <tt class="tt">bux</tt>. The components in the integer array <tt class="tt">bkx</tt> specify the bound type according to Table <a href="node007.html#CH:API:TAB:BOUNDKEYS">5.3</a>. The numerical values for the lower bounds on the variables are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math120.png" alt="\begin{math}\nonumber{}l_{j}^{x}=\mathtt{blx[j]},~j=0,\ldots ,\mathtt{numvar}-1.\end{math}"/></td>
+<td>(5.8.8)</td></tr>
+</tbody>
+</table>
+
+<p>  The numerical values for the upper bounds on the variables are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math121.png" alt="\begin{math}\nonumber{}u_{j}^{x}=\mathtt{bux[j]},~j=0,\ldots ,\mathtt{numvar}-1.\end{math}"/></td>
+<td>(5.8.9)</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<div>
+<h3><a name="257198632">5.8.1.1. Bounds</a></h3>
+
+<p> A bound on a variable or on a constraint in MOSEK consists of a <em>bound key</em>, as defined in Table <a href="node007.html#CH:API:TAB:BOUNDKEYS">5.3</a>, a lower bound value and an upper bound value. Even if a variable or constraint is bounded only from below, e.g. <span class="math"><span class="mi">x</span>&ge;<span class="mn">0</span></span>, both bounds are inputted or extracted; the value inputted as upper bound for <span class="math"><span class="mo">(</span><span class="mi">x</span>&ge;<span class="mn">0</span><span class="mo">)</span></span> is ignored.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="257200352">5.8.2. Vector formats</a></h2>
+
+<p> <a name="sec-vector-formats">&#09;</a> Three different vector formats are used in the MOSEK API: </p>
+
+<dl class="description">
+<dt>Full vector:</dt>
+<dd>
+<p> <a name="idx-77870936">&#09;</a> This is simply an array where the first element corresponds to the first item, the second element to the second item etc. For example to get the linear coefficients of the objective in <tt class="tt">task</tt>, one would write</p>
+
+<div class="verbatimcode">MSKrealt * c = MSK_calloctask(task, numvar, sizeof(MSKrealt));
+MSK_getc(task,c);
+</div>
+
+<p>where <tt class="tt">numvar</tt> is the number of variables in the problem. </p>
+</dd>
+<dt>Vector slice:</dt>
+<dd>
+<p> A vector slice is a range of values. For example, to get the bounds associated constraint 3 through 10 (both inclusive) one would write</p>
+
+<div class="verbatimcode">MSKrealt * upper_bound   = MSK_calloctask(task,8,sizeof(MSKrealt));
+MSKrealt * lower_bound   = MSK_calloctask(task,8,sizeof(MSKrealt));
+MSKboundkeye * bound_key = MSK_calloctask(task,8,sizeof(MSKboundkeye));
+MSK_getboundslice(task,MSK_ACC_CON, 2,10,
+                  bound_key,lower_bound,upper_bound);
+</div>
+
+<p>Please note that items in MOSEK are numbered from <span class="math"><span class="mn">0</span></span>, so that the index of the first item is <span class="math"><span class="mn">0</span></span>, and the index of the <span class="math"><span class="mi">n</span></span>'th item is <span class="math"><span class="mi">n</span><span class="mo">-</span><span class="mn">1</span></span>. </p>
+</dd>
+<dt>Sparse vector:</dt>
+<dd>
+<p> <a name="idx-77948040">&#09;</a> <a name="idx-77948832">&#09;</a> A sparse vector is given as an array of indexes and an array of values. For example, to input a set of bounds associated with constraints number 1, 6, 3, and 9, one might write</p>
+
+<div class="verbatimcode">MSKidxt bound_index<span class="brackets">[]</span>    = {         1,         6,         3,         9 };
+MSKboundkeye bound_key<span class="brackets">[]</span> = { MSK_BK_FR, MSK_BK_LO, MSK_BK_UP, MSK_BK_FX };
+MSKrealt lower_bound<span class="brackets">[]</span>   = {       0.0,     -10.0,       0.0,       5.0 };
+MSKrealt upper_bound<span class="brackets">[]</span>   = {       0.0,       0.0,       6.0,       5.0 };
+MSK_putboundlist(task,MSK_ACC_CON, 4, bound_index,
+                  bound_key,lower_bound,upper_bound);
+</div>
+
+<p>Note that the list of indexes need not be ordered. </p>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h2><a name="257203448">5.8.3. Matrix formats</a></h2>
+
+<p> <a name="sec-matrix-formats">&#09;</a></p>
+
+<p>The coefficient matrices in a problem are inputted and extracted in a sparse format, either as complete or a partial matrices. Basically there are two different formats for this.</p>
+
+<div>
+<h3><a name="257200568">5.8.3.1. Unordered triplets</a></h3>
+
+<p> <a name="sec-intro-subsubsec-triplets">&#09;</a> <a name="idx-77954584">&#09;</a> In unordered triplet format each entry is defined as a row index, a column index and a coefficient. For example, to input the <span class="math"><span class="mi">A</span></span> matrix coefficients for <span class="math"><img src="math/math122.png" alt="[[MathCmd 122]]"/></span>, <span class="math"><img src="math/math123.png" alt="[[MathCmd 123]]"/></span>, and <span class="math"><img src="math/math124.png" alt="[[MathCmd 124]]"/></span>, one would write as follows:</p>
+
+<div class="verbatimcode">MSKidxt subi<span class="brackets">[]</span> = {   1,   3,   5 };
+MSKidxt subj<span class="brackets">[]</span> = {   2,   3,   4 };
+MSKrealt cof<span class="brackets">[]</span> = { 1.1, 4.3, 0.2 };
+MSK_putaijlist(task,3, subi,subj,cof);
+</div>
+
+<p>Please note that in some cases (like <a href="node017.html#common-func*mosek*task*putaijlist"><tt class="tt">MSK_putaijlist</tt></a>) <em>only</em> the specified indexes remain modified &mdash; all other are unchanged. In other cases (such as <a href="node017.html#common-func*mosek*task*putqconk"><tt class="tt">MSK_putqconk</tt></a>) the triplet format is used to modify <em>all</em> entries &mdash; entries that are not specified are set to <span class="math"><span class="mn">0</span></span>.</p>
+
+</div>
+
+<div>
+<h3><a name="257205960">5.8.3.2. Row or column ordered sparse matrix</a></h3>
+
+<p> <a name="sec-intro-subsubsec-cmo-rmo-matrix">&#09;</a> <a name="idx-77953864">&#09;</a> <a name="idx-77949624">&#09;</a>In a sparse matrix format only the non-zero entries of the matrix are stored. MOSEK uses a sparse matrix format ordered either by rows or columns. In the column-wise format the position of the non-zeros are given as a list of row indexes. In the row-wise format the position of the non-zeros are given as a list of column indexes. Values of the non-zero entries are given in column or row order.</p>
+
+<p>A sparse matrix in column ordered format consists of: </p>
+
+<dl class="description">
+<dt><tt class="tt">asub</tt>:</dt>
+<dd>
+<p> List of row indexes.</p>
+</dd>
+<dt><tt class="tt">aval</tt>:</dt>
+<dd>
+<p> List of non-zero entries of <span class="math"><span class="mi">A</span></span> ordered by columns.</p>
+</dd>
+<dt><tt class="tt">ptrb</tt>:</dt>
+<dd>
+<p> Where <tt class="tt">ptrb[j]</tt> is the position of the first value/index in <tt class="tt">aval</tt> / <tt class="tt">asub</tt> for column <span class="math"><span class="mi">j</span></span>.</p>
+</dd>
+<dt><tt class="tt">ptre</tt>:</dt>
+<dd>
+<p> Where <tt class="tt">ptre[j]</tt> is the position of the last value/index plus one in <tt class="tt">aval</tt> / <tt class="tt">asub</tt> for column <span class="math"><span class="mi">j</span></span>. </p>
+</dd>
+</dl>
+
+<p>The values of a matrix A with <tt class="tt">numcol</tt> columns are assigned so that for </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math125.png" alt="\begin{displaymath}\nonumber{}j=0,\ldots ,\mathtt{numcol}-1.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>We define </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math126.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}a_{{\mathtt{asub}[k],j}}=\mathtt{aval}[k],\quad{}k=\mathtt{ptrb}[j],\ldots ,\mathtt{ptre}[j]-1.\end{array}\end{math}"/></td>
+<td>(5.8.10)</td></tr>
+</tbody>
+</table>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td><center>
+<p> <img src="graphics/sparse_format.png"/> </p>
+</center><span class="caption">Figure&nbsp;5.1: The matrix <span class="math"><span class="mi">A</span></span> (<a href="node007.html#ch-tutorial-matrix-ex">5.8.11</a>) represented in column ordered sparse matrix format.</span>
+<br/>
+<p> <a name="ch-tutorial-fig-sparse-matrix">&#09;</a> </p>
+</td></tr></table>
+
+</div>
+
+<p>As an example consider the matrix </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math127.png" alt="\begin{math}\nonumber{}A=\left[\begin{array}{ccccc}\nonumber{}1.1 &  & 1.3 & 1.4 & \\\nonumber{} & 2.2 &  &  & 2.5\\\nonumber{}3.1 &  &  & 3.4 & \\\nonumber{} &  & 4.4 &  &\end{array}\right].\end{math}"/></td>
+<td><a name="ch-tutorial-matrix-ex">&#09;</a>(5.8.11)</td></tr>
+</tbody>
+</table>
+
+<p>which can be represented in the column ordered sparse matrix format as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math128.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lcl}\nonumber{}\mathtt{ptrb} & = & [0,2,3,5,7],\\\nonumber{}\mathtt{ptre} & = & [2,3,5,7,8],\\\nonumber{}\mathtt{asub} & = & [0,2,1,0,3,0,2,1],\\\nonumber{}\mathtt{aval} & = & [1.1,3.1,2.2,1.3,4.4,1.4,3.4,2.5].\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Fig. <a href="node007.html#ch-tutorial-fig-sparse-matrix">5.1</a> illustrates how the matrix <span class="math"><span class="mi">A</span></span> (<a href="node007.html#ch-tutorial-matrix-ex">5.8.11</a>) is represented in column ordered sparse matrix format.</p>
+
+</div>
+
+<div>
+<h3><a name="258913416">5.8.3.3. Row ordered sparse matrix</a></h3>
+
+<p>The matrix <span class="math"><span class="mi">A</span></span> (<a href="node007.html#ch-tutorial-matrix-ex">5.8.11</a>) can also be represented in the row ordered sparse matrix format as:</p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math129.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lcl}\nonumber{}\mathtt{ptrb} & = & [0,3,5,7],\\\nonumber{}\mathtt{ptre} & = & [3,5,7,8],\\\nonumber{}\mathtt{asub} & = & [0,2,3,1,4,0,3,2],\\\nonumber{}\mathtt{aval} & = & [1.1,1.3,1.4,2.2,2.5,3.1,3.4,4.4].\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="258921824">5.9. The license system</a></h1>
+
+<p>By default a license token is checked out when <a href="node017.html#common-func*mosek*task*optimizetrm"><tt class="tt">MSK_optimizetrm</tt></a> is first called and is returned when the MOSEK environment is deleted. Calling <a href="node017.html#common-func*mosek*task*optimizetrm"><tt class="tt">MSK_optimizetrm</tt></a> from different threads using the same MOSEK environment only consumes one license token.</p>
+
+<p>To change the license systems behavior to returning the license token after each call to <a href="node017.html#common-func*mosek*task*optimizetrm"><tt class="tt">MSK_optimizetrm</tt></a> set the parameter <a href="node018.html#common-const*mosek*iparam*cache-license"><tt class="tt">MSK_IPAR_CACHE_LICENSE</tt></a> to <a href="node020.html#common-const*mosek*onoffkey*off"><tt class="tt">MSK_OFF</tt></a>. Please note that there is a small overhead associated with setting this parameter, since checking out a license token from the license server can take a small amount of time.</p>
+
+<p>Additionally license checkout and checkin can be controlled manually with the functions <a href="node017.html#common-func*mosek*env*checkinlicense"><tt class="tt">MSK_checkinlicense</tt></a> and <a href="node017.html#common-func*mosek*env*checkoutlicense"><tt class="tt">MSK_checkoutlicense</tt></a>.</p>
+
+<div>
+<h2><a name="258913488">5.9.1. Waiting for a free license</a></h2>
+
+<p>By default an error will be returned if no license token is available. By setting the parameter <a href="node018.html#common-const*mosek*iparam*license-wait"><tt class="tt">MSK_IPAR_LICENSE_WAIT</tt></a> MOSEK can be instructed to wait until a license token is available.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node006.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 4. Testing installation and compiling examples" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node008.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  6. Advanced API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node006.html" target="_self">4. Testing installation and compiling examples</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node008.html" target="_self">6. Advanced API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:50:19 2012</div>
+</body></html>

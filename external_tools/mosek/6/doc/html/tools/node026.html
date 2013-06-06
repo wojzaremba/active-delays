@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>J. Problem analyzer examples</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node025.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : I. Symbolic constants reference" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization tools manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node027.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  Bibliography" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node025.html" target="_self">I. Symbolic constants reference</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node027.html" target="_self">Bibliography</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="283325648">J. Problem analyzer examples</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node026.html#283320192" target="_self">J.1. air04</a></li>
+<li><a href="node026.html#283326584" target="_self">J.2. arki001</a></li>
+<li><a href="node026.html#283326872" target="_self">J.3. Problem with both linear and quadratic constraints</a></li>
+<li><a href="node026.html#283327160" target="_self">J.4. Problem with both linear and conic constraints</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="app-sec-paexamples">&#09;</a> This appendix presents a few examples of the output produced by the problem analyzer described in Section <a title="12.1. The problem analyzer" href="node014.html#ch_analyzers_sec_problem">12.1</a>. The first two problems are taken from the MIPLIB 2003 collection, <a href="http://miplib.zib.de/">http://miplib.zib.de/</a>.</p>
+
+<div>
+<h1><a name="283320192">J.1. air04</a></h1>
+
+<p><small class="footnotesize">
+<pre class="verbatim">Analyzing the problem
+
+Constraints               Bounds                    Variables
+ fixed   : all             ranged  : all             bin : all
+
+-------------------------------------------------------------------------------
+
+Objective, min cx
+   range: min |c|: 31.0000     max |c|: 2258.00
+ distrib:        |c|        vars
+           [31, 100)         176
+        [100, 1e+03)        8084
+   [1e+03, 2.26e+03]         644
+
+-------------------------------------------------------------------------------
+
+Constraint matrix A has
+       823 rows (constraints)
+      8904 columns (variables)
+     72965 (0.995703%) nonzero entries (coefficients)
+
+Row nonzeros, A_i
+   range: min A_i: 2 (0.0224618%)    max A_i: 368 (4.13297%)
+ distrib:        A_i        rows       rows%        acc%
+                   2           2        0.24        0.24
+              [3, 7]           4        0.49        0.73
+             [8, 15]          19        2.31        3.04
+            [16, 31]          80        9.72       12.76
+            [32, 63]         236       28.68       41.43
+           [64, 127]         289       35.12       76.55
+          [128, 255]         186       22.60       99.15
+          [256, 368]           7        0.85      100.00
+
+Column nonzeros, A|j
+   range: min A|j: 2 (0.243013%)    max A|j: 15 (1.8226%)
+ distrib:        A|j        cols       cols%        acc%
+                   2         118        1.33        1.33
+              [3, 7]        2853       32.04       33.37
+             [8, 15]        5933       66.63      100.00
+
+A nonzeros, A(ij)
+   range: all |A(ij)| = 1.00000
+
+-------------------------------------------------------------------------------
+
+Constraint bounds, lb &lt;= Ax &lt;= ub
+ distrib:        |b|             lbs             ubs
+             [1, 10]             823             823
+
+Variable bounds, lb &lt;= x &lt;= ub
+ distrib:        |b|             lbs             ubs
+                   0            8904    
+             [1, 10]                            8904
+
+-------------------------------------------------------------------------------
+</pre>
+</small></p>
+
+</div>
+
+<div>
+<h1><a name="283326584">J.2. arki001</a></h1>
+
+<p><small class="footnotesize">
+<pre class="verbatim">Analyzing the problem
+
+Constraints               Bounds                    Variables
+ lower bd:        82       lower bd:        38       cont:       850
+ upper bd:       946       fixed   :       353       bin :       415
+ fixed   :        20       free    :         1       int :       123
+                           ranged  :       996       
+
+-------------------------------------------------------------------------------
+
+Objective, min cx
+   range: all |c| in {0.00000, 1.00000}
+ distrib:        |c|        vars
+                   0        1387
+                   1           1
+
+-------------------------------------------------------------------------------
+
+Constraint matrix A has
+      1048 rows (constraints)
+      1388 columns (variables)
+     20439 (1.40511%) nonzero entries (coefficients)
+
+Row nonzeros, A_i
+   range: min A_i: 1 (0.0720461%)    max A_i: 1046 (75.3602%)
+ distrib:        A_i        rows       rows%        acc%
+                   1          29        2.77        2.77
+                   2         476       45.42       48.19
+              [3, 7]          49        4.68       52.86
+             [8, 15]          56        5.34       58.21
+            [16, 31]          64        6.11       64.31
+            [32, 63]         373       35.59       99.90
+        [1024, 1046]           1        0.10      100.00
+
+Column nonzeros, A|j
+   range: min A|j: 1 (0.0954198%)    max A|j: 29 (2.76718%)
+ distrib:        A|j        cols       cols%        acc%
+                   1         381       27.45       27.45
+                   2          19        1.37       28.82
+              [3, 7]          38        2.74       31.56
+             [8, 15]         233       16.79       48.34
+            [16, 29]         717       51.66      100.00
+
+A nonzeros, A(ij)
+   range: min |A(ij)|: 0.000200000     max |A(ij)|: 2.33067e+07
+ distrib:      A(ij)      coeffs
+     [0.0002, 0.001)         167
+       [0.001, 0.01)        1049
+         [0.01, 0.1)        4553
+            [0.1, 1)        8840
+             [1, 10)        3822
+           [10, 100)         630
+        [100, 1e+03)         267
+      [1e+03, 1e+04)         699
+      [1e+04, 1e+05)         291
+      [1e+05, 1e+06)          83
+      [1e+06, 1e+07)          19
+   [1e+07, 2.33e+07]          19
+
+-------------------------------------------------------------------------------
+
+Constraint bounds, lb &lt;= Ax &lt;= ub
+ distrib:        |b|             lbs             ubs
+            [0.1, 1)                             386
+             [1, 10)                              74
+           [10, 100)             101             456
+         [100, 1000)                              34
+       [1000, 10000)                              15
+     [100000, 1e+06]               1               1
+
+Variable bounds, lb &lt;= x &lt;= ub
+ distrib:        |b|             lbs             ubs
+                   0             974             323
+       [0.001, 0.01)                              19
+            [0.1, 1)             370              57
+             [1, 10)              41             704
+           [10, 100]               2             246
+
+-------------------------------------------------------------------------------
+</pre>
+</small></p>
+
+</div>
+
+<div>
+<h1><a name="283326872">J.3. Problem with both linear and quadratic constraints</a></h1>
+
+<p><small class="footnotesize">
+<pre class="verbatim">Analyzing the problem
+
+Constraints               Bounds                    Variables
+ lower bd:        40       upper bd:         1       cont: all
+ upper bd:       121       fixed   :       204       
+ fixed   :      5480       free    :      5600       
+ ranged  :       161       ranged  :        40       
+
+-------------------------------------------------------------------------------
+
+Objective, maximize cx
+   range: all |c| in {0.00000, 15.4737}
+ distrib:        |c|        vars
+                   0        5844
+             15.4737           1
+
+-------------------------------------------------------------------------------
+
+Constraint matrix A has
+      5802 rows (constraints)
+      5845 columns (variables)
+      6480 (0.0191079%) nonzero entries (coefficients)
+
+Row nonzeros, A_i
+   range: min A_i: 0 (0%)    max A_i: 3 (0.0513259%)
+ distrib:        A_i        rows       rows%        acc%
+                   0          80        1.38        1.38
+                   1        5003       86.23       87.61
+                   2         680       11.72       99.33
+                   3          39        0.67      100.00
+0/80 empty rows have quadratic terms
+
+Column nonzeros, A|j
+   range: min A|j: 0 (0%)    max A|j: 15 (0.258532%)
+ distrib:        A|j        cols       cols%        acc%
+                   0         204        3.49        3.49
+                   1        5521       94.46       97.95
+                   2          40        0.68       98.63
+              [3, 7]          40        0.68       99.32
+             [8, 15]          40        0.68      100.00
+0/204 empty columns correspond to variables used in conic
+ and/or quadratic expressions only
+
+A nonzeros, A(ij)
+   range: min |A(ij)|: 2.02410e-05     max |A(ij)|: 35.8400
+ distrib:      A(ij)      coeffs
+  [2.02e-05, 0.0001)          40
+     [0.0001, 0.001)         118
+       [0.001, 0.01)         305
+         [0.01, 0.1)         176
+            [0.1, 1)          40
+             [1, 10)        5721
+          [10, 35.8]          80
+
+-------------------------------------------------------------------------------
+
+Constraint bounds, lb &lt;= Ax &lt;= ub
+ distrib:        |b|             lbs             ubs
+                   0            5481            5600
+       [1000, 10000)                               1
+     [10000, 100000)               2               1
+      [1e+06, 1e+07)              78              40
+      [1e+08, 1e+09]             120             120
+
+Variable bounds, lb &lt;= x &lt;= ub
+ distrib:        |b|             lbs             ubs
+                   0             243             203
+            [0.1, 1)               1               1
+      [1e+06, 1e+07)                              40
+      [1e+11, 1e+12]                               1
+
+-------------------------------------------------------------------------------
+
+Quadratic constraints: 121
+
+Gradient nonzeros, Qx
+   range: min Qx: 1 (0.0171086%)    max Qx: 2720 (46.5355%)
+ distrib:         Qx        cons       cons%        acc%
+                   1          40       33.06       33.06
+           [64, 127]          80       66.12       99.17
+        [2048, 2720]           1        0.83      100.00
+
+-------------------------------------------------------------------------------
+
+</pre>
+</small></p>
+
+</div>
+
+<div>
+<h1><a name="283327160">J.4. Problem with both linear and conic constraints</a></h1>
+
+<p><small class="footnotesize">
+<pre class="verbatim">Analyzing the problem
+
+Constraints               Bounds                    Variables
+ upper bd:      3600       fixed   :      3601       cont: all
+ fixed   :     21760       free    :     28802       
+
+-------------------------------------------------------------------------------
+
+Objective, minimize cx
+   range: all |c| in {0.00000, 1.00000}
+ distrib:        |c|        vars
+                   0       32402
+                   1           1
+
+-------------------------------------------------------------------------------
+
+Constraint matrix A has
+     25360 rows (constraints)
+     32403 columns (variables)
+     93339 (0.0113587%) nonzero entries (coefficients)
+
+Row nonzeros, A_i
+   range: min A_i: 1 (0.00308613%)    max A_i: 8 (0.0246891%)
+ distrib:        A_i        rows       rows%        acc%
+                   1        3600       14.20       14.20
+                   2       10803       42.60       56.79
+              [3, 7]        3995       15.75       72.55
+                   8        6962       27.45      100.00
+
+Column nonzeros, A|j
+   range: min A|j: 0 (0%)    max A|j: 61 (0.240536%)
+ distrib:        A|j        cols       cols%        acc%
+                   0        3602       11.12       11.12
+                   1       10800       33.33       44.45
+                   2        7200       22.22       66.67
+              [3, 7]        7279       22.46       89.13
+             [8, 15]        3521       10.87      100.00
+            [32, 61]           1        0.00      100.00
+3600/3602 empty columns correspond to variables used in conic
+ and/or quadratic constraints only
+
+A nonzeros, A(ij)
+   range: min |A(ij)|: 0.00833333     max |A(ij)|: 1.00000
+ distrib:      A(ij)      coeffs
+     [0.00833, 0.01)       57280
+         [0.01, 0.1)          59
+            [0.1, 1]       36000
+
+-------------------------------------------------------------------------------
+
+Constraint bounds, lb &lt;= Ax &lt;= ub
+ distrib:        |b|             lbs             ubs
+                   0           21760           21760
+            [0.1, 1]                            3600
+
+Variable bounds, lb &lt;= x &lt;= ub
+ distrib:        |b|             lbs             ubs
+             [1, 10]            3601            3601
+
+-------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------
+
+Rotated quadratic cones: 3600
+                 dim        RQCs
+                   4        3600
+
+</pre>
+</small></p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node025.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : I. Symbolic constants reference" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization tools manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node027.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  Bibliography" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node025.html" target="_self">I. Symbolic constants reference</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node027.html" target="_self">Bibliography</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:02:22 2012</div>
+</body></html>

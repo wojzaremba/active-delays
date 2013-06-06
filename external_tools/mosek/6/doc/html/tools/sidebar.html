@@ -1,0 +1,2292 @@
+<html>
+<head>
+  <title>Table of Contents</title>
+  <style>
+    body { background-color : rgb(240,240,240); color : rgb(0,64,92); font-family : sans-serif; }
+    a:link    { text-decoration : none; color: rgb(0,64,92); }
+    a:visited { text-decoration : none; color: rgb(0,64,92); }
+    a:hover   { background-color : rgb(40,40,40); color: rgb(192,192,255); }
+    #tocbox    { font-family : sans-serif; }
+    #tocbox ul { font-size : small; list-style: none; margin-left : 1em; padding-left : 0; }
+    .toc-lvl0 li { font-weight: bolder; }
+    .toc-lvl2 li { font-size : smaller; font-weight : normal; }
+    #idxbox ul { font-size : small; list-style: none; margin-left : 1em; padding-left : 0; }
+    .sidebarbuttons td { margin : 3px; background-color : rgb(153, 178, 188); font-weight : bolder; font-family: sans-serif; border : solid medium; border-color: rgb(229,235,238) rgb(229,235,238) rgb(76,121,138) rgb(76,121,138); }
+    .sidebarbuttons a:link    { color : rgb(0,64,92); font-weight : bolder; }
+    .sidebarbuttons a:visited { color : rgb(0,64,92); font-weight : bolder; }
+    .sidebarbuttons a:hover   { color: white; background-color : rgb(0,64,92); font-weight : bolder; }
+  </style>
+  <script language="Javascript">
+    function showhide(id1,id2)
+    {
+      var elm = document.getElementById(id1);
+      elm.style.display = "block";
+      var elm = document.getElementById(id2);
+      elm.style.display = "none";
+    }
+  </script>
+</head>
+<body>
+<div class="sidebarbuttons">
+<table width="100%">
+  <tr>
+    <td width="50%" align=center colspan="2"><a href="../../../help/index.html" target="_top">All Manuals</a></td>
+  </tr>
+  <tr>
+    <td width="50%" align=center><a href="javascript:showhide('tocbox','idxbox')">Contents</a></td>
+    <td width="50%" align=center><a href="javascript:showhide('idxbox','tocbox')">Index</a></td>
+  </tr>
+</table>
+</div>
+<div id="tocbox">
+<ul class="toc-lvl0">
+  <li><a href="index.html#232922360" target="mainbox">The MOSEK optimization tools manual.  Version 6.0 (Revision 137).</a></li>
+  <ul class="toc-lvl1">
+    <li><a href="node001.html#238867016" target="mainbox">Contact information</a></li>
+    <li><a href="node002.html#140347968583872" target="mainbox">License agreement</a></li>
+    <li><a href="node003.html#238867232" target="mainbox">1. Changes and new features in MOSEK</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node003.html#238867664" target="mainbox">1.1. Compilers used to build MOSEK</a></li>
+      <li><a href="node003.html#238904816" target="mainbox">1.2. General changes</a></li>
+      <li><a href="node003.html#238906688" target="mainbox">1.3. Optimizers</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node003.html#238905824" target="mainbox">1.3.1. Interior point optimizer</a></li>
+        <li><a href="node003.html#238907120" target="mainbox">1.3.2. The simplex optimizers</a></li>
+        <li><a href="node003.html#238907472" target="mainbox">1.3.3. Mixed-integer optimizer</a></li>
+      </ul>
+      <li><a href="node003.html#238908120" target="mainbox">1.4. License system</a></li>
+      <li><a href="node003.html#238909344" target="mainbox">1.5. Other changes</a></li>
+      <li><a href="node003.html#238910496" target="mainbox">1.6. Interfaces</a></li>
+      <li><a href="node003.html#238911432" target="mainbox">1.7. Platform changes</a></li>
+    </ul>
+    <li><a href="node004.html#238913008" target="mainbox">2. The MOSEK optimization tools</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node004.html#238911568" target="mainbox">2.1. What is MOSEK</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node004.html#238916888" target="mainbox">2.1.1. Interfaces</a></li>
+      </ul>
+      <li><a href="node004.html#238921272" target="mainbox">2.2. How to use this manual</a></li>
+    </ul>
+    <li><a href="node005.html#238923216" target="mainbox">3. Getting support and help</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node005.html#238922352" target="mainbox">3.1. MOSEK documentation</a></li>
+      <li><a href="node005.html#238924360" target="mainbox">3.2. Additional reading</a></li>
+    </ul>
+    <li><a href="node006.html#238922784" target="mainbox">4. Using the MOSEK command line tool</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node006.html#238926160" target="mainbox">4.1. Getting started</a></li>
+      <li><a href="node006.html#238929608" target="mainbox">4.2. Examples</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node006.html#238926304" target="mainbox">4.2.1. Linear optimization</a></li>
+        <li><a href="node006.html#238954544" target="mainbox">4.2.2. Quadratic optimization</a></li>
+        <li><a href="node006.html#238971432" target="mainbox">4.2.3. Conic optimization</a></li>
+      </ul>
+      <li><a href="node006.html#238999600" target="mainbox">4.3. Passing options to the command line tool</a></li>
+      <li><a href="node006.html#239000896" target="mainbox">4.4. Reading and writing problem data files</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node006.html#239024104" target="mainbox">4.4.1. Reading compressed data files</a></li>
+        <li><a href="node006.html#239025832" target="mainbox">4.4.2. Converting from one format and to another</a></li>
+      </ul>
+      <li><a href="node006.html#239023384" target="mainbox">4.5. Hot-start</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node006.html#239022376" target="mainbox">4.5.1. An example</a></li>
+      </ul>
+      <li><a href="node006.html#240595384" target="mainbox">4.6. Further information</a></li>
+      <li><a href="node006.html#239024392" target="mainbox">4.7. Solution file filtering</a></li>
+    </ul>
+    <li><a href="node007.html#240596824" target="mainbox">5. MOSEK and AMPL</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node007.html#240596248" target="mainbox">5.1. Invoking the AMPL shell</a></li>
+      <li><a href="node007.html#240596968" target="mainbox">5.2. Applicability</a></li>
+      <li><a href="node007.html#240596320" target="mainbox">5.3. An example</a></li>
+      <li><a href="node007.html#240598048" target="mainbox">5.4. Determining the outcome of an optimization</a></li>
+      <li><a href="node007.html#240599768" target="mainbox">5.5. Optimizer options</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node007.html#240598912" target="mainbox">5.5.1. The MOSEK parameter database</a></li>
+        <li><a href="node007.html#240617736" target="mainbox">5.5.2. Options</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node007.html#240598984" target="mainbox">5.5.2.1. <tt class="tt">outlev</tt></a></li>
+          <li><a href="node007.html#240619032" target="mainbox">5.5.2.2. <tt class="tt">wantsol</tt></a></li>
+        </ul>
+      </ul>
+      <li><a href="node007.html#240619744" target="mainbox">5.6. Constraint and variable names</a></li>
+      <li><a href="node007.html#240620392" target="mainbox">5.7. Which solution is returned to AMPL</a></li>
+      <li><a href="node007.html#240619960" target="mainbox">5.8. Hot-start</a></li>
+      <li><a href="node007.html#240622768" target="mainbox">5.9. Conic constraints</a></li>
+      <li><a href="node007.html#240633760" target="mainbox">5.10. Sensitivity analysis</a></li>
+      <li><a href="node007.html#240637784" target="mainbox">5.11. Using the command line version of the AMPL interface</a></li>
+    </ul>
+    <li><a href="node008.html#240642600" target="mainbox">6. MOSEK and GAMS</a></li>
+    <li><a href="node009.html#240638864" target="mainbox">7. MOSEK and MATLAB</a></li>
+    <li><a href="node010.html#240642816" target="mainbox">8. Interfaces to MOSEK</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node010.html#240643248" target="mainbox">8.1. The optimizer API</a></li>
+    </ul>
+    <li><a href="node011.html#240645472" target="mainbox">9. Modelling</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node011.html#240647920" target="mainbox">9.1. Linear optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node011.html#240661784" target="mainbox">9.1.1. Duality for linear optimization</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node011.html#240675224" target="mainbox">9.1.1.1. A primal-dual feasible solution</a></li>
+          <li><a href="node011.html#240677736" target="mainbox">9.1.1.2. An optimal solution</a></li>
+          <li><a href="node011.html#240689096" target="mainbox">9.1.1.3. Primal infeasible problems</a></li>
+          <li><a href="node011.html#240698576" target="mainbox">9.1.1.4. Dual infeasible problems</a></li>
+        </ul>
+        <li><a href="node011.html#240722360" target="mainbox">9.1.2. Primal and dual infeasible case</a></li>
+      </ul>
+      <li><a href="node011.html#240722720" target="mainbox">9.2. Quadratic and quadratically constrained optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node011.html#240738032" target="mainbox">9.2.1. A general recommendation</a></li>
+        <li><a href="node011.html#240738384" target="mainbox">9.2.2. Reformulating as a separable quadratic problem</a></li>
+      </ul>
+      <li><a href="node011.html#240768568" target="mainbox">9.3. Conic optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node011.html#240786392" target="mainbox">9.3.1. Duality for conic optimization</a></li>
+        <li><a href="node011.html#240802344" target="mainbox">9.3.2. Infeasibility</a></li>
+        <li><a href="node011.html#240786464" target="mainbox">9.3.3. Examples</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node011.html#240802416" target="mainbox">9.3.3.1. Quadratic objective and constraints</a></li>
+          <li><a href="node011.html#242567504" target="mainbox">9.3.3.2. Minimizing a sum of norms</a></li>
+          <li><a href="node011.html#242611264" target="mainbox">9.3.3.3. Modelling polynomial terms using conic optimization</a></li>
+          <li><a href="node011.html#242677880" target="mainbox">9.3.3.4. Optimization with rational polynomials</a></li>
+          <li><a href="node011.html#242681832" target="mainbox">9.3.3.5. Convex increasing power functions</a></li>
+          <li><a href="node011.html#242688440" target="mainbox">9.3.3.6. Decreasing power functions</a></li>
+          <li><a href="node011.html#242694336" target="mainbox">9.3.3.7. Minimizing general polynomials</a></li>
+          <li><a href="node011.html#242713016" target="mainbox">9.3.3.8. Further reading</a></li>
+        </ul>
+        <li><a href="node011.html#242713232" target="mainbox">9.3.4. Potential pitfalls in conic optimization</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node011.html#242713088" target="mainbox">9.3.4.1. Non-attainment in the primal problem</a></li>
+          <li><a href="node011.html#242724736" target="mainbox">9.3.4.2. Non-attainment in the dual problem</a></li>
+        </ul>
+      </ul>
+      <li><a href="node011.html#242759872" target="mainbox">9.4. Nonlinear convex optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node011.html#242779128" target="mainbox">9.4.1. Duality</a></li>
+      </ul>
+      <li><a href="node011.html#242810960" target="mainbox">9.5. Recommendations</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node011.html#242814128" target="mainbox">9.5.1. Avoid near infeasible models</a></li>
+      </ul>
+      <li><a href="node011.html#244460288" target="mainbox">9.6. Examples continued</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node011.html#242814272" target="mainbox">9.6.1. The absolute value</a></li>
+        <li><a href="node011.html#244461440" target="mainbox">9.6.2. The Markowitz portfolio model</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node011.html#244473512" target="mainbox">9.6.2.1. Minimizing variance for a given return</a></li>
+          <li><a href="node011.html#244488240" target="mainbox">9.6.2.2. Conic quadratic reformulation</a></li>
+          <li><a href="node011.html#244500312" target="mainbox">9.6.2.3. Transaction costs with market impact term</a></li>
+          <li><a href="node011.html#244539544" target="mainbox">9.6.2.4. Further reading</a></li>
+        </ul>
+      </ul>
+    </ul>
+    <li><a href="node012.html#244540408" target="mainbox">10. The optimizers for continuous problems</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node012.html#244539616" target="mainbox">10.1. How an optimizer works</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node012.html#244540912" target="mainbox">10.1.1. Presolve</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node012.html#244543000" target="mainbox">10.1.1.1. Eliminator</a></li>
+          <li><a href="node012.html#244548168" target="mainbox">10.1.1.2. Linear dependency checker</a></li>
+        </ul>
+        <li><a href="node012.html#244556000" target="mainbox">10.1.2. Dualizer</a></li>
+        <li><a href="node012.html#244556432" target="mainbox">10.1.3. Scaling</a></li>
+        <li><a href="node012.html#244557440" target="mainbox">10.1.4. Using multiple CPU's</a></li>
+      </ul>
+      <li><a href="node012.html#244559168" target="mainbox">10.2. Linear optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node012.html#244557656" target="mainbox">10.2.1. Optimizer selection</a></li>
+        <li><a href="node012.html#244559600" target="mainbox">10.2.2. The interior-point optimizer</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node012.html#244595312" target="mainbox">10.2.2.1. Interior-point termination criterion</a></li>
+          <li><a href="node012.html#244612848" target="mainbox">10.2.2.2. Basis identification</a></li>
+          <li><a href="node012.html#244617296" target="mainbox">10.2.2.3. The interior-point log</a></li>
+        </ul>
+        <li><a href="node012.html#244624272" target="mainbox">10.2.3. The simplex based optimizer</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node012.html#244617512" target="mainbox">10.2.3.1. Simplex termination criterion</a></li>
+          <li><a href="node012.html#244626640" target="mainbox">10.2.3.2. Starting from an existing solution</a></li>
+          <li><a href="node012.html#244627360" target="mainbox">10.2.3.3. Numerical difficulties in the simplex optimizers</a></li>
+        </ul>
+        <li><a href="node012.html#244632824" target="mainbox">10.2.4. The interior-point or the simplex optimizer?</a></li>
+        <li><a href="node012.html#244633472" target="mainbox">10.2.5. The primal or the dual simplex variant?</a></li>
+      </ul>
+      <li><a href="node012.html#244634616" target="mainbox">10.3. Linear network optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node012.html#244633752" target="mainbox">10.3.1. Network flow problems</a></li>
+        <li><a href="node012.html#244637208" target="mainbox">10.3.2. Embedded network problems</a></li>
+      </ul>
+      <li><a href="node012.html#244639216" target="mainbox">10.4. Conic optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node012.html#244637640" target="mainbox">10.4.1. The interior-point optimizer</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node012.html#244639432" target="mainbox">10.4.1.1. Interior-point termination criteria</a></li>
+        </ul>
+      </ul>
+      <li><a href="node012.html#244649856" target="mainbox">10.5. Nonlinear convex optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node012.html#244639864" target="mainbox">10.5.1. The interior-point optimizer</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node012.html#244649928" target="mainbox">10.5.1.1. The convexity requirement</a></li>
+          <li><a href="node012.html#244650424" target="mainbox">10.5.1.2. The differentiabilty requirement</a></li>
+          <li><a href="node012.html#244652872" target="mainbox">10.5.1.3. Interior-point termination criteria</a></li>
+        </ul>
+      </ul>
+      <li><a href="node012.html#244671336" target="mainbox">10.6. Solving problems in parallel</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node012.html#244662496" target="mainbox">10.6.1. Thread safety</a></li>
+        <li><a href="node012.html#244671480" target="mainbox">10.6.2. The parallelized interior-point optimizer</a></li>
+        <li><a href="node012.html#244671840" target="mainbox">10.6.3. The concurrent optimizer</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node012.html#244684992" target="mainbox">10.6.3.1. Concurrent optimization from the command line</a></li>
+        </ul>
+      </ul>
+      <li><a href="node012.html#244686432" target="mainbox">10.7. Understanding solution quality</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node012.html#244687792" target="mainbox">10.7.1. The solution summary</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node012.html#244686648" target="mainbox">10.7.1.1. The optimal case</a></li>
+          <li><a href="node012.html#244692104" target="mainbox">10.7.1.2. The primal infeasible case</a></li>
+        </ul>
+      </ul>
+    </ul>
+    <li><a href="node013.html#244699432" target="mainbox">11. The optimizer for mixed integer problems</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node013.html#244700944" target="mainbox">11.1. Some notation</a></li>
+      <li><a href="node013.html#246427592" target="mainbox">11.2. An important fact about integer optimization problems</a></li>
+      <li><a href="node013.html#246428160" target="mainbox">11.3. How the integer optimizer works</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node013.html#246428520" target="mainbox">11.3.1. Presolve</a></li>
+        <li><a href="node013.html#246428304" target="mainbox">11.3.2. Heuristic</a></li>
+        <li><a href="node013.html#246430608" target="mainbox">11.3.3. The optimization phase</a></li>
+      </ul>
+      <li><a href="node013.html#246431472" target="mainbox">11.4. Termination criterion</a></li>
+      <li><a href="node013.html#246453168" target="mainbox">11.5. How to speed up the solution process</a></li>
+      <li><a href="node013.html#246453672" target="mainbox">11.6. Understanding solution quality</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node013.html#246455184" target="mainbox">11.6.1. Solutionsummary</a></li>
+      </ul>
+    </ul>
+    <li><a href="node014.html#246458488" target="mainbox">12. The analyzers</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node014.html#246455400" target="mainbox">12.1. The problem analyzer</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node014.html#246460496" target="mainbox">12.1.1. General characteristics</a></li>
+        <li><a href="node014.html#246468832" target="mainbox">12.1.2. Objective</a></li>
+        <li><a href="node014.html#246471640" target="mainbox">12.1.3. Linear constraints</a></li>
+        <li><a href="node014.html#246473000" target="mainbox">12.1.4. Constraint and variable bounds</a></li>
+        <li><a href="node014.html#246473360" target="mainbox">12.1.5. Quadratic constraints</a></li>
+        <li><a href="node014.html#246474296" target="mainbox">12.1.6. Conic constraints</a></li>
+      </ul>
+      <li><a href="node014.html#246476024" target="mainbox">12.2. Analyzing infeasible problems</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node014.html#246477240" target="mainbox">12.2.1. Example: Primal infeasibility</a></li>
+        <li><a href="node014.html#246480480" target="mainbox">12.2.2. Locating the cause of primal infeasibility</a></li>
+        <li><a href="node014.html#246550184" target="mainbox">12.2.3. Locating the cause of dual infeasibility</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node014.html#246535592" target="mainbox">12.2.3.1. A cautious note</a></li>
+        </ul>
+        <li><a href="node014.html#246506488" target="mainbox">12.2.4. The infeasibility report</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node014.html#246534800" target="mainbox">12.2.4.1. Example: Primal infeasibility</a></li>
+          <li><a href="node014.html#246559880" target="mainbox">12.2.4.2. Example: Dual infeasibility</a></li>
+        </ul>
+        <li><a href="node014.html#246570880" target="mainbox">12.2.5. Theory concerning infeasible problems</a></li>
+        <li><a href="node014.html#246593512" target="mainbox">12.2.6. The certificate of primal infeasibility</a></li>
+        <li><a href="node014.html#246608888" target="mainbox">12.2.7. The certificate of dual infeasibility</a></li>
+      </ul>
+    </ul>
+    <li><a href="node015.html#246640152" target="mainbox">13. Feasibility repair</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node015.html#246608960" target="mainbox">13.1. The main idea</a></li>
+      <li><a href="node015.html#248362696" target="mainbox">13.2. Feasibility repair in MOSEK</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node015.html#246609032" target="mainbox">13.2.1. Usage of negative weights</a></li>
+        <li><a href="node015.html#248363272" target="mainbox">13.2.2. Automatical naming</a></li>
+        <li><a href="node015.html#248366576" target="mainbox">13.2.3. An example</a></li>
+      </ul>
+    </ul>
+    <li><a href="node016.html#248390144" target="mainbox">14. Sensitivity analysis</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node016.html#248366792" target="mainbox">14.1. Introduction</a></li>
+      <li><a href="node016.html#248389928" target="mainbox">14.2. Restrictions</a></li>
+      <li><a href="node016.html#248367008" target="mainbox">14.3. References</a></li>
+      <li><a href="node016.html#248392232" target="mainbox">14.4. Sensitivity analysis for linear problems</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node016.html#248392376" target="mainbox">14.4.1. The optimal objective value function</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node016.html#248429960" target="mainbox">14.4.1.1. Equality constraints</a></li>
+        </ul>
+        <li><a href="node016.html#248431392" target="mainbox">14.4.2. The basis type sensitivity analysis</a></li>
+        <li><a href="node016.html#248433480" target="mainbox">14.4.3. The optimal partition type sensitivity analysis</a></li>
+        <li><a href="node016.html#248542704" target="mainbox">14.4.4. An example</a></li>
+      </ul>
+      <li><a href="node016.html#250405232" target="mainbox">14.5. Sensitivity analysis with the command line tool</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node016.html#250407608" target="mainbox">14.5.1. Sensitivity analysis specification file</a></li>
+        <li><a href="node016.html#250410048" target="mainbox">14.5.2. Example: Sensitivity analysis from command line</a></li>
+        <li><a href="node016.html#250415224" target="mainbox">14.5.3. Controlling log output</a></li>
+      </ul>
+    </ul>
+    <li><a href="node017.html#250419464" target="mainbox">A. MOSEK command line tool reference</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node017.html#250415728" target="mainbox">A.1. Introduction</a></li>
+      <li><a href="node017.html#250421832" target="mainbox">A.2. Command line arguments</a></li>
+      <li><a href="node017.html#250437712" target="mainbox">A.3. The parameter file</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node017.html#250439368" target="mainbox">A.3.1. Using the parameter file</a></li>
+      </ul>
+    </ul>
+    <li><a href="node018.html#250441880" target="mainbox">B. The MPS file format</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node018.html#250439656" target="mainbox">B.1. The MPS file format</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node018.html#250461648" target="mainbox">B.1.1. An example</a></li>
+        <li><a href="node018.html#250462008" target="mainbox">B.1.2. <tt class="tt">NAME</tt></a></li>
+        <li><a href="node018.html#250463584" target="mainbox">B.1.3. <tt class="tt">OBJSENSE</tt> (optional)</a></li>
+        <li><a href="node018.html#250464664" target="mainbox">B.1.4. <tt class="tt">OBJNAME</tt> (optional)</a></li>
+        <li><a href="node018.html#250465744" target="mainbox">B.1.5. <tt class="tt">ROWS</tt></a></li>
+        <li><a href="node018.html#252208912" target="mainbox">B.1.6. <tt class="tt">COLUMNS</tt></a></li>
+        <li><a href="node018.html#252233992" target="mainbox">B.1.7. <tt class="tt">RHS</tt> (optional)</a></li>
+        <li><a href="node018.html#252271936" target="mainbox">B.1.8. <tt class="tt">RANGES</tt> (optional)</a></li>
+        <li><a href="node018.html#252314832" target="mainbox">B.1.9. <tt class="tt">QSECTION</tt> (optional)</a></li>
+        <li><a href="node018.html#252348464" target="mainbox">B.1.10. <tt class="tt">BOUNDS</tt> (optional)</a></li>
+        <li><a href="node018.html#252403368" target="mainbox">B.1.11. <tt class="tt">CSECTION</tt> (optional)</a></li>
+        <li><a href="node018.html#252449496" target="mainbox">B.1.12. <tt class="tt">ENDATA</tt></a></li>
+      </ul>
+      <li><a href="node018.html#254070936" target="mainbox">B.2. Integer variables</a></li>
+      <li><a href="node018.html#254077480" target="mainbox">B.3. General limitations</a></li>
+      <li><a href="node018.html#254079200" target="mainbox">B.4. Interpretation of the MPS format</a></li>
+      <li><a href="node018.html#254081072" target="mainbox">B.5. The free MPS format</a></li>
+    </ul>
+    <li><a href="node019.html#254083224" target="mainbox">C. The LP file format</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node019.html#254081648" target="mainbox">C.1. A warning</a></li>
+      <li><a href="node019.html#254083656" target="mainbox">C.2. The LP file format</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node019.html#254101696" target="mainbox">C.2.1. The sections</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node019.html#254084304" target="mainbox">C.2.1.1. The objective</a></li>
+          <li><a href="node019.html#254106800" target="mainbox">C.2.1.2. The constraints</a></li>
+          <li><a href="node019.html#254114560" target="mainbox">C.2.1.3. Bounds</a></li>
+          <li><a href="node019.html#254120952" target="mainbox">C.2.1.4. Variable types</a></li>
+          <li><a href="node019.html#254123544" target="mainbox">C.2.1.5. Terminating section</a></li>
+          <li><a href="node019.html#254122104" target="mainbox">C.2.1.6. An example</a></li>
+        </ul>
+        <li><a href="node019.html#254125768" target="mainbox">C.2.2. LP format peculiarities</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node019.html#254125552" target="mainbox">C.2.2.1. Comments</a></li>
+          <li><a href="node019.html#254127064" target="mainbox">C.2.2.2. Names</a></li>
+          <li><a href="node019.html#254129504" target="mainbox">C.2.2.3. Variable bounds</a></li>
+          <li><a href="node019.html#254130080" target="mainbox">C.2.2.4. MOSEK specific extensions to the LP format</a></li>
+        </ul>
+        <li><a href="node019.html#254132520" target="mainbox">C.2.3. The strict LP format</a></li>
+        <li><a href="node019.html#254134752" target="mainbox">C.2.4. Formatting of an LP file</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node019.html#254136192" target="mainbox">C.2.4.1. Speeding up file reading</a></li>
+          <li><a href="node019.html#254136760" target="mainbox">C.2.4.2. Unnamed constraints</a></li>
+        </ul>
+      </ul>
+    </ul>
+    <li><a href="node020.html#254139352" target="mainbox">D. The OPF format</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node020.html#254137408" target="mainbox">D.1. Intended use</a></li>
+      <li><a href="node020.html#254141144" target="mainbox">D.2. The file format</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node020.html#254142008" target="mainbox">D.2.1. Sections</a></li>
+        <li><a href="node020.html#254160624" target="mainbox">D.2.2. Numbers</a></li>
+        <li><a href="node020.html#254162416" target="mainbox">D.2.3. Names</a></li>
+      </ul>
+      <li><a href="node020.html#254164144" target="mainbox">D.3. Parameters section</a></li>
+      <li><a href="node020.html#254165504" target="mainbox">D.4. Writing OPF files from MOSEK</a></li>
+      <li><a href="node020.html#254168096" target="mainbox">D.5. Examples</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node020.html#254165720" target="mainbox">D.5.1. Linear example <tt class="tt">lo1.opf</tt></a></li>
+        <li><a href="node020.html#254190440" target="mainbox">D.5.2. Quadratic example <tt class="tt">qo1.opf</tt></a></li>
+        <li><a href="node020.html#254196552" target="mainbox">D.5.3. Conic quadratic example <tt class="tt">cqo1.opf</tt></a></li>
+        <li><a href="node020.html#254213224" target="mainbox">D.5.4. Mixed integer example <tt class="tt">milo1.opf</tt></a></li>
+      </ul>
+    </ul>
+    <li><a href="node021.html#254221416" target="mainbox">E. The XML (OSiL) format</a></li>
+    <li><a href="node022.html#254222280" target="mainbox">F. The solution file format</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node022.html#254224360" target="mainbox">F.1. The basic and interior solution files</a></li>
+      <li><a href="node022.html#254245416" target="mainbox">F.2. The integer solution file</a></li>
+    </ul>
+    <li><a href="node023.html#254246496" target="mainbox">G. The ORD file format</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node023.html#254248288" target="mainbox">G.1. An example</a></li>
+    </ul>
+    <li><a href="node024.html#254248720" target="mainbox">H. Parameters reference</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node024.html#254248504" target="mainbox">H.1. Parameter groups</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node024.html#254250016" target="mainbox">H.1.1. Logging parameters.</a></li>
+        <li><a href="node024.html#254256408" target="mainbox">H.1.2. Basis identification parameters.</a></li>
+        <li><a href="node024.html#254258568" target="mainbox">H.1.3. The Interior-point method parameters.</a></li>
+        <li><a href="node024.html#254268408" target="mainbox">H.1.4. Simplex optimizer parameters.</a></li>
+        <li><a href="node024.html#254275168" target="mainbox">H.1.5. Primal simplex optimizer parameters.</a></li>
+        <li><a href="node024.html#254276528" target="mainbox">H.1.6. Dual simplex optimizer parameters.</a></li>
+        <li><a href="node024.html#254277824" target="mainbox">H.1.7. Network simplex optimizer parameters.</a></li>
+        <li><a href="node024.html#254279336" target="mainbox">H.1.8. Nonlinear convex method parameters.</a></li>
+        <li><a href="node024.html#254282424" target="mainbox">H.1.9. The conic interior-point method parameters.</a></li>
+        <li><a href="node024.html#254284432" target="mainbox">H.1.10. The mixed-integer optimization parameters.</a></li>
+        <li><a href="node024.html#254293056" target="mainbox">H.1.11. Presolve parameters.</a></li>
+        <li><a href="node024.html#254295864" target="mainbox">H.1.12. Termination criterion parameters.</a></li>
+        <li><a href="node024.html#254303912" target="mainbox">H.1.13. Progress call-back parameters.</a></li>
+        <li><a href="node024.html#254304912" target="mainbox">H.1.14. Non-convex solver parameters.</a></li>
+        <li><a href="node024.html#254306208" target="mainbox">H.1.15. Feasibility repair parameters.</a></li>
+        <li><a href="node024.html#254306856" target="mainbox">H.1.16. Optimization system parameters.</a></li>
+        <li><a href="node024.html#254309872" target="mainbox">H.1.17. Output information parameters.</a></li>
+        <li><a href="node024.html#254316488" target="mainbox">H.1.18. Extra information about the optimization problem.</a></li>
+        <li><a href="node024.html#254317200" target="mainbox">H.1.19. Overall solver parameters.</a></li>
+        <li><a href="node024.html#254322016" target="mainbox">H.1.20. Behavior of the optimization task.</a></li>
+        <li><a href="node024.html#254326112" target="mainbox">H.1.21. Data input/output parameters.</a></li>
+        <li><a href="node024.html#256643944" target="mainbox">H.1.22. Analysis parameters.</a></li>
+        <li><a href="node024.html#256645240" target="mainbox">H.1.23. Solution input/output parameters.</a></li>
+        <li><a href="node024.html#256650704" target="mainbox">H.1.24. Infeasibility report parameters.</a></li>
+        <li><a href="node024.html#256651920" target="mainbox">H.1.25. License manager parameters.</a></li>
+        <li><a href="node024.html#256653864" target="mainbox">H.1.26. Data check parameters.</a></li>
+        <li><a href="node024.html#256657312" target="mainbox">H.1.27. Debugging parameters.</a></li>
+      </ul>
+      <li><a href="node024.html#256658680" target="mainbox">H.2. Double parameters</a></li>
+      <li><a href="node024.html#256835168" target="mainbox">H.3. Integer parameters</a></li>
+      <li><a href="node024.html#262551888" target="mainbox">H.4. String parameter types</a></li>
+    </ul>
+    <li><a href="node025.html#262618072" target="mainbox">I. Symbolic constants reference</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node025.html#262552032" target="mainbox">I.1. Constraint or variable access modes</a></li>
+      <li><a href="node025.html#262625904" target="mainbox">I.2. Function opcode</a></li>
+      <li><a href="node025.html#262649544" target="mainbox">I.3. Function operand type</a></li>
+      <li><a href="node025.html#262658096" target="mainbox">I.4. Basis identification</a></li>
+      <li><a href="node025.html#262671824" target="mainbox">I.5. Bound keys</a></li>
+      <li><a href="node025.html#262685040" target="mainbox">I.6. Specifies the branching direction.</a></li>
+      <li><a href="node025.html#262692304" target="mainbox">I.7. Progress call-back codes</a></li>
+      <li><a href="node025.html#264782840" target="mainbox">I.8. Types of convexity checks.</a></li>
+      <li><a href="node025.html#266068480" target="mainbox">I.9. Compression types</a></li>
+      <li><a href="node025.html#265016816" target="mainbox">I.10. Cone types</a></li>
+      <li><a href="node025.html#264991376" target="mainbox">I.11. CPU type</a></li>
+      <li><a href="node025.html#264975568" target="mainbox">I.12. Data format types</a></li>
+      <li><a href="node025.html#266094424" target="mainbox">I.13. Double information items</a></li>
+      <li><a href="node025.html#266118640" target="mainbox">I.14. Double parameters</a></li>
+      <li><a href="node025.html#266273640" target="mainbox">I.15. Feasibility repair types</a></li>
+      <li><a href="node025.html#268581776" target="mainbox">I.16. License feature</a></li>
+      <li><a href="node025.html#268535280" target="mainbox">I.17. Integer information items.</a></li>
+      <li><a href="node025.html#268629632" target="mainbox">I.18. Information item types</a></li>
+      <li><a href="node025.html#270491448" target="mainbox">I.19. Input/output modes</a></li>
+      <li><a href="node025.html#270455800" target="mainbox">I.20. Integer parameters</a></li>
+      <li><a href="node025.html#270582416" target="mainbox">I.21. Language selection constants</a></li>
+      <li><a href="node025.html#274346568" target="mainbox">I.22. Long integer information items.</a></li>
+      <li><a href="node025.html#274324512" target="mainbox">I.23. Mark</a></li>
+      <li><a href="node025.html#274195232" target="mainbox">I.24. Continuous mixed-integer solution type</a></li>
+      <li><a href="node025.html#273135232" target="mainbox">I.25. Integer restrictions</a></li>
+      <li><a href="node025.html#273101672" target="mainbox">I.26. Mixed-integer node selection types</a></li>
+      <li><a href="node025.html#273028304" target="mainbox">I.27. MPS file format type</a></li>
+      <li><a href="node025.html#272999704" target="mainbox">I.28. Message keys</a></li>
+      <li><a href="node025.html#272963632" target="mainbox">I.29. Network detection method</a></li>
+      <li><a href="node025.html#272929208" target="mainbox">I.30. Objective sense types</a></li>
+      <li><a href="node025.html#272893352" target="mainbox">I.31. On/off</a></li>
+      <li><a href="node025.html#270606560" target="mainbox">I.32. Optimizer types</a></li>
+      <li><a href="node025.html#274359504" target="mainbox">I.33. Ordering strategies</a></li>
+      <li><a href="node025.html#276268240" target="mainbox">I.34. Parameter type</a></li>
+      <li><a href="node025.html#276277872" target="mainbox">I.35. Presolve method.</a></li>
+      <li><a href="node025.html#276285776" target="mainbox">I.36. Problem data items</a></li>
+      <li><a href="node025.html#276294256" target="mainbox">I.37. Problem types</a></li>
+      <li><a href="node025.html#276311504" target="mainbox">I.38. Problem status keys</a></li>
+      <li><a href="node025.html#276296840" target="mainbox">I.39. Interpretation of quadratic terms in MPS files</a></li>
+      <li><a href="node025.html#276347792" target="mainbox">I.40. Response codes</a></li>
+      <li><a href="node025.html#276518096" target="mainbox">I.41. Response code type</a></li>
+      <li><a href="node025.html#283191416" target="mainbox">I.42. Scaling type</a></li>
+      <li><a href="node025.html#283172736" target="mainbox">I.43. Scaling type</a></li>
+      <li><a href="node025.html#282114168" target="mainbox">I.44. Sensitivity types</a></li>
+      <li><a href="node025.html#282093040" target="mainbox">I.45. Degeneracy strategies</a></li>
+      <li><a href="node025.html#282029592" target="mainbox">I.46. Exploit duplicate columns.</a></li>
+      <li><a href="node025.html#281998544" target="mainbox">I.47. Hot-start type employed by the simplex optimizer</a></li>
+      <li><a href="node025.html#281962472" target="mainbox">I.48. Problem reformulation.</a></li>
+      <li><a href="node025.html#281913968" target="mainbox">I.49. Simplex selection strategy</a></li>
+      <li><a href="node025.html#280839592" target="mainbox">I.50. Solution items</a></li>
+      <li><a href="node025.html#280748832" target="mainbox">I.51. Solution status keys</a></li>
+      <li><a href="node025.html#280827520" target="mainbox">I.52. Solution types</a></li>
+      <li><a href="node025.html#279664544" target="mainbox">I.53. Solve primal or dual form</a></li>
+      <li><a href="node025.html#279628472" target="mainbox">I.54. String parameter types</a></li>
+      <li><a href="node025.html#279567032" target="mainbox">I.55. Status keys</a></li>
+      <li><a href="node025.html#283288496" target="mainbox">I.56. Starting point types</a></li>
+      <li><a href="node025.html#283297552" target="mainbox">I.57. Stream types</a></li>
+      <li><a href="node025.html#283308400" target="mainbox">I.58. Integer values</a></li>
+      <li><a href="node025.html#283313360" target="mainbox">I.59. Variable types</a></li>
+      <li><a href="node025.html#283319472" target="mainbox">I.60. XML writer output mode</a></li>
+    </ul>
+    <li><a href="node026.html#283325648" target="mainbox">J. Problem analyzer examples</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node026.html#283320192" target="mainbox">J.1. air04</a></li>
+      <li><a href="node026.html#283326584" target="mainbox">J.2. arki001</a></li>
+      <li><a href="node026.html#283326872" target="mainbox">J.3. Problem with both linear and quadratic constraints</a></li>
+      <li><a href="node026.html#283327160" target="mainbox">J.4. Problem with both linear and conic constraints</a></li>
+    </ul>
+    <li><a href="node027.html#283328312" target="mainbox">Bibliography</a></li>
+    <li><a href="node028.html#283327448" target="mainbox">Index</a></li>
+  </ul>
+</ul>
+</div>
+<div id="idxbox" style="display:none;">
+<ul class="idx-lvl0">
+<a href="#index-letter-@">@</a> | <a href="#index-letter-A">A</a> | <a href="#index-letter-B">B</a> | <a href="#index-letter-C">C</a> | <a href="#index-letter-D">D</a> | <a href="#index-letter-E">E</a> | <a href="#index-letter-F">F</a> | <a href="#index-letter-G">G</a> | <a href="#index-letter-H">H</a> | <a href="#index-letter-I">I</a> | <a href="#index-letter-J">J</a> | <a href="#index-letter-K">K</a> | <a href="#index-letter-L">L</a> | <a href="#index-letter-M">M</a> | <a href="#index-letter-N">N</a> | <a href="#index-letter-O">O</a> | <a href="#index-letter-P">P</a> | <a href="#index-letter-Q">Q</a> | <a href="#index-letter-R">R</a> | <a href="#index-letter-S">S</a> | <a href="#index-letter-T">T</a> | <a href="#index-letter-U">U</a> | <a href="#index-letter-V">V</a> | <a href="#index-letter-W">W</a> | <a href="#index-letter-X">X</a> | <a href="#index-letter-Y">Y</a>
+<br/><hr/><br/>
+
+
+  <li> 
+  <ul class="idx-lvl1">
+<a name="index-letter-@" style="font-weight : bolder; font-size : larger;">@</a> <a name="index-letter-A" style="font-weight : bolder; font-size : larger;">A</a><br>
+
+    <li> <a href="node011.html#idx-91860360" target="mainbox">absolute value</a>
+    <li> <a href="node024.html#idx-129059080" target="mainbox">alloc_add_qnz (parameter)</a>
+    <li> AMPL
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-86923816" target="mainbox">outlev</a>
+      <li> <a href="node007.html#idx-86919648" target="mainbox">wantsol</a>
+    </ul>
+    <li> <a href="node024.html#idx-129058936" target="mainbox">ana_sol_basis (parameter)</a>
+    <li> <a href="node024.html#idx-118254408" target="mainbox">ana_sol_infeas_tol (parameter)</a>
+    <li> <a href="node024.html#idx-129080136" target="mainbox">ana_sol_print_violated (parameter)</a>
+    <li> arguments
+    <ul class="idx-lvl2">
+      <li> <a href="node017.html#idx-99559544" target="mainbox">command line tool</a>
+    </ul>
+    <li> <a href="node024.html#idx-129090912" target="mainbox">auto_sort_a_before_opt (parameter)</a>
+    <li> <a href="node024.html#idx-129099608" target="mainbox">auto_update_sol_info (parameter)</a>
+<hr>
+
+<a name="index-letter-B" style="font-weight : bolder; font-size : larger;">B</a><br>
+
+    <li> <a href="node024.html#idx-149161096" target="mainbox">bas_sol_file_name (parameter)</a>
+    <li> <a href="node012.html#idx-93563504" target="mainbox">basis identification</a>
+    <li> <a href="node024.html#idx-118265184" target="mainbox">basis_rel_tol_s (parameter)</a>
+    <li> <a href="node024.html#idx-129124976" target="mainbox">basis_solve_use_plus_one (parameter)</a>
+    <li> <a href="node024.html#idx-118267776" target="mainbox">basis_tol_s (parameter)</a>
+    <li> <a href="node024.html#idx-118273448" target="mainbox">basis_tol_x (parameter)</a>
+    <li> <a href="node024.html#idx-129140712" target="mainbox">bi_clean_optimizer (parameter)</a>
+    <li> <a href="node024.html#idx-129166800" target="mainbox">bi_ignore_max_iter (parameter)</a>
+    <li> <a href="node024.html#idx-129189864" target="mainbox">bi_ignore_num_error (parameter)</a>
+    <li> <a href="node024.html#idx-129214080" target="mainbox">bi_max_iterations (parameter)</a>
+    <li> <a href="node011.html#idx-87024776" target="mainbox">bounds, infinite</a>
+<hr>
+
+<a name="index-letter-C" style="font-weight : bolder; font-size : larger;">C</a><br>
+
+    <li> <a href="node024.html#idx-129216880" target="mainbox">cache_license (parameter)</a>
+    <li> <a href="node024.html#idx-129234848" target="mainbox">cache_size_l1 (parameter)</a>
+    <li> <a href="node024.html#idx-129237648" target="mainbox">cache_size_l2 (parameter)</a>
+    <li> <a href="node024.html#idx-118283152" target="mainbox">callback_freq (parameter)</a>
+    <li> certificate
+    <ul class="idx-lvl2">
+      <li> <a href="node011.html#idx-88432224" target="mainbox">dual</a>
+      <li> <a href="node011.html#idx-87072992" target="mainbox">primal</a>
+    </ul>
+    <li> <a href="node024.html#idx-129214368" target="mainbox">check_convexity (parameter)</a>
+    <li> <a href="node024.html#idx-118293280" target="mainbox">check_convexity_rel_tol (parameter)</a>
+    <li> <a href="node024.html#idx-130841488" target="mainbox">check_task_data (parameter)</a>
+    <li> <a href="node017.html#idx-99551064" target="mainbox">command line tool</a>
+    <li> <a href="node006.html#idx-85350952" target="mainbox">command line tool</a>
+    <li> <a href="node011.html#idx-87061424" target="mainbox">complementarity conditions</a>
+    <li> <a href="node012.html#idx-95233376" target="mainbox">concurrent optimization</a>
+    <li> <a href="node012.html#idx-95221664" target="mainbox">concurrent solution</a>
+    <li> <a href="node024.html#idx-130853056" target="mainbox">concurrent_num_optimizers (parameter)</a>
+    <li> <a href="node024.html#idx-130852768" target="mainbox">concurrent_priority_dual_simplex (parameter)</a>
+    <li> <a href="node024.html#idx-130873752" target="mainbox">concurrent_priority_free_simplex (parameter)</a>
+    <li> <a href="node024.html#idx-130889200" target="mainbox">concurrent_priority_intpnt (parameter)</a>
+    <li> <a href="node024.html#idx-130907528" target="mainbox">concurrent_priority_primal_simplex (parameter)</a>
+    <li> conic
+    <ul class="idx-lvl2">
+      <li> <a href="node011.html#idx-88532176" target="mainbox">optimization</a>
+      <li> <a href="node011.html#idx-88530744" target="mainbox">problem</a>
+    </ul>
+    <li> <a href="node011.html#idx-88613808" target="mainbox">conic modelling</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node011.html#idx-88665048" target="mainbox">minimizing norms, example</a>
+      <li> <a href="node011.html#idx-90261696" target="mainbox">pitfalls</a>
+      <li> <a href="node011.html#idx-88606480" target="mainbox">quadratic objective, example</a>
+      <li> risk and market impact, example
+      <ul class="idx-lvl3">
+        <li> <a href="node011.html#idx-91871928" target="mainbox">Markowitz model, example</a>
+      </ul>
+    </ul>
+    <li> constraint
+    <ul class="idx-lvl2">
+      <li> <a href="node011.html#idx-90334200" target="mainbox">matrix</a>
+      <li> <a href="node018.html#idx-102294232" target="mainbox">matrix</a>
+      <li> <a href="node011.html#idx-87005232" target="mainbox">matrix</a>
+      <li> <a href="node011.html#idx-88482592" target="mainbox">quadratic</a>
+      <li> <a href="node011.html#idx-88456656" target="mainbox">quadratic</a>
+    </ul>
+    <li> constraints
+    <ul class="idx-lvl2">
+      <li> <a href="node018.html#idx-102293448" target="mainbox">lower limit</a>
+      <li> <a href="node011.html#idx-87007600" target="mainbox">lower limit</a>
+      <li> <a href="node011.html#idx-90335496" target="mainbox">lower limit</a>
+      <li> <a href="node011.html#idx-87009256" target="mainbox">upper limit</a>
+      <li> <a href="node018.html#idx-102290280" target="mainbox">upper limit</a>
+      <li> <a href="node011.html#idx-90337792" target="mainbox">upper limit</a>
+    </ul>
+    <li> <a href="node013.html#idx-95318456" target="mainbox">continuous relaxation</a>
+    <li> <a href="node024.html#idx-130914424" target="mainbox">cpu_type (parameter)</a>
+<hr>
+
+<a name="index-letter-D" style="font-weight : bolder; font-size : larger;">D</a><br>
+
+    <li> <a href="node024.html#idx-130955384" target="mainbox">data_check (parameter)</a>
+    <li> <a href="node024.html#idx-149164616" target="mainbox">data_file_name (parameter)</a>
+    <li> <a href="node024.html#idx-118316136" target="mainbox">data_tol_aij (parameter)</a>
+    <li> <a href="node024.html#idx-118322528" target="mainbox">data_tol_aij_huge (parameter)</a>
+    <li> <a href="node024.html#idx-118334456" target="mainbox">data_tol_aij_large (parameter)</a>
+    <li> <a href="node024.html#idx-118343296" target="mainbox">data_tol_bound_inf (parameter)</a>
+    <li> <a href="node024.html#idx-118359176" target="mainbox">data_tol_bound_wrn (parameter)</a>
+    <li> <a href="node024.html#idx-118370384" target="mainbox">data_tol_c_huge (parameter)</a>
+    <li> <a href="node024.html#idx-118383032" target="mainbox">data_tol_cj_large (parameter)</a>
+    <li> <a href="node024.html#idx-118391224" target="mainbox">data_tol_qij (parameter)</a>
+    <li> <a href="node024.html#idx-118407040" target="mainbox">data_tol_x (parameter)</a>
+    <li> <a href="node024.html#idx-149181360" target="mainbox">debug_file_name (parameter)</a>
+    <li> <a href="node011.html#idx-88432512" target="mainbox">dual certificate</a>
+    <li> <a href="node011.html#idx-87033832" target="mainbox">dual infeasible</a>
+    <li> <a href="node011.html#idx-87030240" target="mainbox">dual infeasible</a>
+    <li> <a href="node011.html#idx-87057184" target="mainbox">duality gap (linear problem)</a>
+    <li> <a href="node012.html#idx-92034112" target="mainbox">dualizer</a>
+<hr>
+
+<a name="index-letter-E" style="font-weight : bolder; font-size : larger;">E</a><br>
+
+    <li> <a href="node012.html#idx-92003936" target="mainbox">eliminator</a>
+    <li> <a href="node012.html#idx-93659080" target="mainbox">Embedded network flow problems</a>
+<hr>
+
+<a name="index-letter-F" style="font-weight : bolder; font-size : larger;">F</a><br>
+
+    <li> <a href="node011.html#idx-87016800" target="mainbox">feasible, primal</a>
+    <li> <a href="node024.html#idx-149177480" target="mainbox">feasrepair_name_prefix (parameter)</a>
+    <li> <a href="node024.html#idx-149210176" target="mainbox">feasrepair_name_separator (parameter)</a>
+    <li> <a href="node024.html#idx-149210896" target="mainbox">feasrepair_name_wsumviol (parameter)</a>
+    <li> <a href="node024.html#idx-130923984" target="mainbox">feasrepair_optimize (parameter)</a>
+    <li> <a href="node024.html#idx-120032216" target="mainbox">feasrepair_tol (parameter)</a>
+<hr>
+
+<a name="index-letter-G" style="font-weight : bolder; font-size : larger;">G</a> <a name="index-letter-H" style="font-weight : bolder; font-size : larger;">H</a><br>
+
+    <li> <a href="node005.html#idx-85308624" target="mainbox">help desk</a>
+    <li> <a href="node012.html#idx-93620776" target="mainbox">hot-start</a>
+<hr>
+
+<a name="index-letter-I" style="font-weight : bolder; font-size : larger;">I</a><br>
+
+    <li> <a href="node024.html#idx-130987288" target="mainbox">infeas_generic_names (parameter)</a>
+    <li> <a href="node024.html#idx-130998072" target="mainbox">infeas_prefer_primal (parameter)</a>
+    <li> <a href="node024.html#idx-130999144" target="mainbox">infeas_report_auto (parameter)</a>
+    <li> <a href="node024.html#idx-131023792" target="mainbox">infeas_report_level (parameter)</a>
+    <li> <a href="node014.html#idx-97186448" target="mainbox">infeasible</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node011.html#idx-88428840" target="mainbox">dual</a>
+      <li> <a href="node011.html#idx-87069976" target="mainbox">primal</a>
+    </ul>
+    <li> <a href="node014.html#idx-97105824" target="mainbox">infeasible problems</a>
+    <li> <a href="node011.html#idx-87034336" target="mainbox">infeasible, dual</a>
+    <li> <a href="node011.html#idx-86965640" target="mainbox">infeasible, primal</a>
+    <li> <a href="node011.html#idx-87023984" target="mainbox">infinite bounds</a>
+    <li> <a href="node024.html#idx-149235040" target="mainbox">int_sol_file_name (parameter)</a>
+    <li> <a href="node013.html#idx-95313720" target="mainbox">integer optimization</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node013.html#idx-95319824" target="mainbox">relaxation</a>
+    </ul>
+    <li> <a href="node012.html#idx-92063072" target="mainbox">interior-point optimizer</a>
+    <li> <a href="node012.html#idx-95163888" target="mainbox">interior-point optimizer</a>
+    <li> <a href="node012.html#idx-95144560" target="mainbox">interior-point optimizer</a>
+    <li> <a href="node012.html#idx-93661664" target="mainbox">interior-point or simplex optimizer</a>
+    <li> <a href="node024.html#idx-131025808" target="mainbox">intpnt_basis (parameter)</a>
+    <li> <a href="node024.html#idx-120038032" target="mainbox">intpnt_co_tol_dfeas (parameter)</a>
+    <li> <a href="node024.html#idx-120052336" target="mainbox">intpnt_co_tol_infeas (parameter)</a>
+    <li> <a href="node024.html#idx-120049176" target="mainbox">intpnt_co_tol_mu_red (parameter)</a>
+    <li> <a href="node024.html#idx-120080936" target="mainbox">intpnt_co_tol_near_rel (parameter)</a>
+    <li> <a href="node024.html#idx-120081944" target="mainbox">intpnt_co_tol_pfeas (parameter)</a>
+    <li> <a href="node024.html#idx-120118952" target="mainbox">intpnt_co_tol_rel_gap (parameter)</a>
+    <li> <a href="node024.html#idx-131062384" target="mainbox">intpnt_diff_step (parameter)</a>
+    <li> <a href="node024.html#idx-131072512" target="mainbox">intpnt_factor_debug_lvl (parameter)</a>
+    <li> <a href="node024.html#idx-131066552" target="mainbox">intpnt_factor_method (parameter)</a>
+    <li> <a href="node024.html#idx-131091848" target="mainbox">intpnt_max_iterations (parameter)</a>
+    <li> <a href="node024.html#idx-132585376" target="mainbox">intpnt_max_num_cor (parameter)</a>
+    <li> <a href="node024.html#idx-132600248" target="mainbox">intpnt_max_num_refinement_steps (parameter)</a>
+    <li> <a href="node024.html#idx-120115928" target="mainbox">intpnt_nl_merit_bal (parameter)</a>
+    <li> <a href="node024.html#idx-120116864" target="mainbox">intpnt_nl_tol_dfeas (parameter)</a>
+    <li> <a href="node024.html#idx-120157176" target="mainbox">intpnt_nl_tol_mu_red (parameter)</a>
+    <li> <a href="node024.html#idx-120138352" target="mainbox">intpnt_nl_tol_near_rel (parameter)</a>
+    <li> <a href="node024.html#idx-120183552" target="mainbox">intpnt_nl_tol_pfeas (parameter)</a>
+    <li> <a href="node024.html#idx-120191816" target="mainbox">intpnt_nl_tol_rel_gap (parameter)</a>
+    <li> <a href="node024.html#idx-120207264" target="mainbox">intpnt_nl_tol_rel_step (parameter)</a>
+    <li> <a href="node024.html#idx-132612752" target="mainbox">intpnt_num_threads (parameter)</a>
+    <li> <a href="node024.html#idx-132620584" target="mainbox">intpnt_off_col_trh (parameter)</a>
+    <li> <a href="node024.html#idx-132635680" target="mainbox">intpnt_order_method (parameter)</a>
+    <li> <a href="node024.html#idx-132666936" target="mainbox">intpnt_regularization_use (parameter)</a>
+    <li> <a href="node024.html#idx-132681384" target="mainbox">intpnt_scaling (parameter)</a>
+    <li> <a href="node024.html#idx-132706960" target="mainbox">intpnt_solve_form (parameter)</a>
+    <li> <a href="node024.html#idx-132727800" target="mainbox">intpnt_starting_point (parameter)</a>
+    <li> <a href="node024.html#idx-120237952" target="mainbox">intpnt_tol_dfeas (parameter)</a>
+    <li> <a href="node024.html#idx-120232776" target="mainbox">intpnt_tol_dsafe (parameter)</a>
+    <li> <a href="node024.html#idx-120239168" target="mainbox">intpnt_tol_infeas (parameter)</a>
+    <li> <a href="node024.html#idx-120254264" target="mainbox">intpnt_tol_mu_red (parameter)</a>
+    <li> <a href="node024.html#idx-120219336" target="mainbox">intpnt_tol_path (parameter)</a>
+    <li> <a href="node024.html#idx-121651496" target="mainbox">intpnt_tol_pfeas (parameter)</a>
+    <li> <a href="node024.html#idx-120269424" target="mainbox">intpnt_tol_psafe (parameter)</a>
+    <li> <a href="node024.html#idx-121675216" target="mainbox">intpnt_tol_rel_gap (parameter)</a>
+    <li> <a href="node024.html#idx-121672768" target="mainbox">intpnt_tol_rel_step (parameter)</a>
+    <li> <a href="node024.html#idx-121696624" target="mainbox">intpnt_tol_step_size (parameter)</a>
+    <li> <a href="node024.html#idx-149236624" target="mainbox">itr_sol_file_name (parameter)</a>
+<hr>
+
+<a name="index-letter-J" style="font-weight : bolder; font-size : larger;">J</a> <a name="index-letter-K" style="font-weight : bolder; font-size : larger;">K</a> <a name="index-letter-L" style="font-weight : bolder; font-size : larger;">L</a><br>
+
+    <li> <a href="node024.html#idx-132744688" target="mainbox">lic_trh_expiry_wrn (parameter)</a>
+    <li> <a href="node024.html#idx-132752664" target="mainbox">license_allow_overuse (parameter)</a>
+    <li> <a href="node024.html#idx-132776304" target="mainbox">license_cache_time (parameter)</a>
+    <li> <a href="node024.html#idx-132778320" target="mainbox">license_check_time (parameter)</a>
+    <li> <a href="node024.html#idx-132763448" target="mainbox">license_debug (parameter)</a>
+    <li> <a href="node024.html#idx-132804192" target="mainbox">license_pause_time (parameter)</a>
+    <li> <a href="node024.html#idx-131031984" target="mainbox">license_suppress_expire_wrns (parameter)</a>
+    <li> <a href="node024.html#idx-134294632" target="mainbox">license_wait (parameter)</a>
+    <li> <a href="node012.html#idx-92013848" target="mainbox">linear dependency check</a>
+    <li> <a href="node011.html#idx-86971744" target="mainbox">linear problem</a>
+    <li> <a href="node016.html#idx-98822336" target="mainbox">linearity interval</a>
+    <li> <a href="node024.html#idx-134300520" target="mainbox">log (parameter)</a>
+    <li> <a href="node024.html#idx-134322872" target="mainbox">log_bi (parameter)</a>
+    <li> <a href="node024.html#idx-134295848" target="mainbox">log_bi_freq (parameter)</a>
+    <li> <a href="node024.html#idx-134335520" target="mainbox">log_check_convexity (parameter)</a>
+    <li> <a href="node024.html#idx-134353552" target="mainbox">log_concurrent (parameter)</a>
+    <li> <a href="node024.html#idx-134331280" target="mainbox">log_cut_second_opt (parameter)</a>
+    <li> <a href="node024.html#idx-134386248" target="mainbox">log_factor (parameter)</a>
+    <li> <a href="node024.html#idx-134385320" target="mainbox">log_feasrepair (parameter)</a>
+    <li> <a href="node024.html#idx-134418160" target="mainbox">log_file (parameter)</a>
+    <li> <a href="node024.html#idx-134417512" target="mainbox">log_head (parameter)</a>
+    <li> <a href="node024.html#idx-134444168" target="mainbox">log_infeas_ana (parameter)</a>
+    <li> <a href="node024.html#idx-134457752" target="mainbox">log_intpnt (parameter)</a>
+    <li> <a href="node024.html#idx-134473488" target="mainbox">log_mio (parameter)</a>
+    <li> <a href="node024.html#idx-134476648" target="mainbox">log_mio_freq (parameter)</a>
+    <li> <a href="node024.html#idx-134495048" target="mainbox">log_nonconvex (parameter)</a>
+    <li> <a href="node024.html#idx-134504528" target="mainbox">log_optimizer (parameter)</a>
+    <li> <a href="node024.html#idx-134523360" target="mainbox">log_order (parameter)</a>
+    <li> <a href="node024.html#idx-134526592" target="mainbox">log_param (parameter)</a>
+    <li> <a href="node024.html#idx-134506544" target="mainbox">log_presolve (parameter)</a>
+    <li> <a href="node024.html#idx-134544056" target="mainbox">log_response (parameter)</a>
+    <li> <a href="node024.html#idx-134537800" target="mainbox">log_sensitivity (parameter)</a>
+    <li> <a href="node024.html#idx-135926848" target="mainbox">log_sensitivity_opt (parameter)</a>
+    <li> <a href="node024.html#idx-135943016" target="mainbox">log_sim (parameter)</a>
+    <li> <a href="node024.html#idx-135960840" target="mainbox">log_sim_freq (parameter)</a>
+    <li> <a href="node024.html#idx-135965512" target="mainbox">log_sim_minor (parameter)</a>
+    <li> <a href="node024.html#idx-135970896" target="mainbox">log_sim_network_freq (parameter)</a>
+    <li> <a href="node024.html#idx-135985416" target="mainbox">log_storage (parameter)</a>
+    <li> <a href="node024.html#idx-121698640" target="mainbox">lower_obj_cut (parameter)</a>
+    <li> <a href="node024.html#idx-121738448" target="mainbox">lower_obj_cut_finite_trh (parameter)</a>
+    <li> <a href="node019.html#idx-103999608" target="mainbox">LP format</a>
+    <li> <a href="node024.html#idx-136000504" target="mainbox">lp_write_ignore_incompatible_items (parameter)</a>
+<hr>
+
+<a name="index-letter-M" style="font-weight : bolder; font-size : larger;">M</a><br>
+
+    <li> <a href="node024.html#idx-136022856" target="mainbox">max_num_warnings (parameter)</a>
+    <li> <a href="node024.html#idx-136024720" target="mainbox">mio_branch_dir (parameter)</a>
+    <li> <a href="node024.html#idx-136051312" target="mainbox">mio_branch_priorities_use (parameter)</a>
+    <li> <a href="node024.html#idx-136063240" target="mainbox">mio_construct_sol (parameter)</a>
+    <li> <a href="node024.html#idx-136075312" target="mainbox">mio_cont_sol (parameter)</a>
+    <li> <a href="node024.html#idx-136103624" target="mainbox">mio_cut_level_root (parameter)</a>
+    <li> <a href="node024.html#idx-136114400" target="mainbox">mio_cut_level_tree (parameter)</a>
+    <li> <a href="node024.html#idx-121675928" target="mainbox">mio_disable_term_time (parameter)</a>
+    <li> <a href="node024.html#idx-136117280" target="mainbox">mio_feaspump_level (parameter)</a>
+    <li> <a href="node024.html#idx-136127120" target="mainbox">mio_heuristic_level (parameter)</a>
+    <li> <a href="node024.html#idx-121780776" target="mainbox">mio_heuristic_time (parameter)</a>
+    <li> <a href="node024.html#idx-136144224" target="mainbox">mio_hotstart (parameter)</a>
+    <li> <a href="node024.html#idx-136166000" target="mainbox">mio_keep_basis (parameter)</a>
+    <li> <a href="node024.html#idx-135992096" target="mainbox">mio_local_branch_number (parameter)</a>
+    <li> <a href="node024.html#idx-126853632" target="mainbox">mio_max_num_branches (parameter)</a>
+    <li> <a href="node024.html#idx-126879864" target="mainbox">mio_max_num_relaxs (parameter)</a>
+    <li> <a href="node024.html#idx-126893520" target="mainbox">mio_max_num_solutions (parameter)</a>
+    <li> <a href="node024.html#idx-121780848" target="mainbox">mio_max_time (parameter)</a>
+    <li> <a href="node024.html#idx-121807936" target="mainbox">mio_max_time_aprx_opt (parameter)</a>
+    <li> <a href="node024.html#idx-126898760" target="mainbox">mio_mode (parameter)</a>
+    <li> <a href="node024.html#idx-121802048" target="mainbox">mio_near_tol_abs_gap (parameter)</a>
+    <li> <a href="node024.html#idx-121857664" target="mainbox">mio_near_tol_rel_gap (parameter)</a>
+    <li> <a href="node024.html#idx-126932104" target="mainbox">mio_node_optimizer (parameter)</a>
+    <li> <a href="node024.html#idx-126963080" target="mainbox">mio_node_selection (parameter)</a>
+    <li> <a href="node024.html#idx-126983344" target="mainbox">mio_optimizer_mode (parameter)</a>
+    <li> <a href="node024.html#idx-126972488" target="mainbox">mio_presolve_aggregate (parameter)</a>
+    <li> <a href="node024.html#idx-127000800" target="mainbox">mio_presolve_probing (parameter)</a>
+    <li> <a href="node024.html#idx-127023368" target="mainbox">mio_presolve_use (parameter)</a>
+    <li> <a href="node024.html#idx-121876776" target="mainbox">mio_rel_add_cut_limited (parameter)</a>
+    <li> <a href="node024.html#idx-121876848" target="mainbox">mio_rel_gap_const (parameter)</a>
+    <li> <a href="node024.html#idx-127038384" target="mainbox">mio_root_optimizer (parameter)</a>
+    <li> <a href="node024.html#idx-127070152" target="mainbox">mio_strong_branch (parameter)</a>
+    <li> <a href="node024.html#idx-121874480" target="mainbox">mio_tol_abs_gap (parameter)</a>
+    <li> <a href="node024.html#idx-121900280" target="mainbox">mio_tol_abs_relax_int (parameter)</a>
+    <li> <a href="node024.html#idx-121898768" target="mainbox">mio_tol_feas (parameter)</a>
+    <li> <a href="node024.html#idx-123408536" target="mainbox">mio_tol_rel_gap (parameter)</a>
+    <li> <a href="node024.html#idx-123399992" target="mainbox">mio_tol_rel_relax_int (parameter)</a>
+    <li> <a href="node024.html#idx-123429952" target="mainbox">mio_tol_x (parameter)</a>
+    <li> <a href="node013.html#idx-95314432" target="mainbox">mixed-integer optimization</a>
+    <li> modelling
+    <ul class="idx-lvl2">
+      <li> <a href="node011.html#idx-91859568" target="mainbox">absolute value</a>
+      <li> <a href="node011.html#idx-88612520" target="mainbox">in cones</a>
+      <li> <a href="node011.html#idx-91915904" target="mainbox">market impact term</a>
+      <li> <a href="node011.html#idx-91895640" target="mainbox">Markowitz portfolio optimization</a>
+      <li> <a href="node011.html#idx-88665984" target="mainbox">minimizing a sum of norms</a>
+      <li> <a href="node011.html#idx-91872576" target="mainbox">portfolio optimization</a>
+      <li> <a href="node011.html#idx-91915112" target="mainbox">transaction costs</a>
+    </ul>
+    <li> <a href="node018.html#idx-102297112" target="mainbox">MPS format</a>
+    <li> <a href="node018.html#idx-102301496" target="mainbox">MPS format</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node018.html#idx-103843816" target="mainbox">BOUNDS</a>
+      <li> <a href="node018.html#idx-102385424" target="mainbox">COLUMNS</a>
+      <li> <a href="node018.html#idx-103996736" target="mainbox">free</a>
+      <li> <a href="node018.html#idx-102339000" target="mainbox">NAME</a>
+      <li> <a href="node018.html#idx-102328368" target="mainbox">OBJNAME</a>
+      <li> <a href="node018.html#idx-102344536" target="mainbox">OBJSENSE</a>
+      <li> <a href="node018.html#idx-102474672" target="mainbox">QSECTION</a>
+      <li> <a href="node018.html#idx-102439968" target="mainbox">RANGES</a>
+      <li> <a href="node018.html#idx-102404320" target="mainbox">RHS</a>
+      <li> <a href="node018.html#idx-102353880" target="mainbox">ROWS</a>
+    </ul>
+<hr>
+
+<a name="index-letter-N" style="font-weight : bolder; font-size : larger;">N</a><br>
+
+    <li> Network flow problems
+    <ul class="idx-lvl2">
+      <li> <a href="node012.html#idx-93648224" target="mainbox">embedded</a>
+      <li> <a href="node012.html#idx-95112584" target="mainbox">optimizing</a>
+    </ul>
+    <li> <a href="node024.html#idx-127073096" target="mainbox">nonconvex_max_iterations (parameter)</a>
+    <li> <a href="node024.html#idx-123410984" target="mainbox">nonconvex_tol_feas (parameter)</a>
+    <li> <a href="node024.html#idx-123454744" target="mainbox">nonconvex_tol_opt (parameter)</a>
+<hr>
+
+<a name="index-letter-O" style="font-weight : bolder; font-size : larger;">O</a><br>
+
+    <li> objective
+    <ul class="idx-lvl2">
+      <li> <a href="node011.html#idx-88463768" target="mainbox">quadratic</a>
+      <li> <a href="node011.html#idx-87001568" target="mainbox">vector</a>
+    </ul>
+    <li> <a href="node011.html#idx-90330752" target="mainbox">objective vector</a>
+    <li> <a href="node024.html#idx-127059728" target="mainbox">objective_sense (parameter)</a>
+    <li> <a href="node020.html#idx-103142392" target="mainbox">OPF format</a>
+    <li> <a href="node024.html#idx-138577032" target="mainbox">opf_max_terms_per_line (parameter)</a>
+    <li> <a href="node024.html#idx-138580120" target="mainbox">opf_write_header (parameter)</a>
+    <li> <a href="node024.html#idx-138601968" target="mainbox">opf_write_hints (parameter)</a>
+    <li> <a href="node024.html#idx-138608864" target="mainbox">opf_write_parameters (parameter)</a>
+    <li> <a href="node024.html#idx-138635528" target="mainbox">opf_write_problem (parameter)</a>
+    <li> <a href="node024.html#idx-138596720" target="mainbox">opf_write_sol_bas (parameter)</a>
+    <li> <a href="node024.html#idx-138658232" target="mainbox">opf_write_sol_itg (parameter)</a>
+    <li> <a href="node024.html#idx-138690216" target="mainbox">opf_write_sol_itr (parameter)</a>
+    <li> <a href="node024.html#idx-138707456" target="mainbox">opf_write_solutions (parameter)</a>
+    <li> <a href="node011.html#idx-87059272" target="mainbox">optimal solution</a>
+    <li> optimization
+    <ul class="idx-lvl2">
+      <li> <a href="node011.html#idx-88531528" target="mainbox">conic</a>
+      <li> <a href="node013.html#idx-95312280" target="mainbox">integer</a>
+      <li> <a href="node013.html#idx-95313072" target="mainbox">mixed-integer</a>
+    </ul>
+    <li> <a href="node024.html#idx-138715936" target="mainbox">optimizer (parameter)</a>
+    <li> <a href="node024.html#idx-123453312" target="mainbox">optimizer_max_time (parameter)</a>
+    <li> optimizers
+    <ul class="idx-lvl2">
+      <li> <a href="node012.html#idx-95234888" target="mainbox">concurrent</a>
+      <li> <a href="node012.html#idx-95143120" target="mainbox">conic interior-point</a>
+      <li> <a href="node012.html#idx-95162880" target="mainbox">convex interior-point</a>
+      <li> <a href="node012.html#idx-92059696" target="mainbox">linear interior-point</a>
+      <li> <a href="node012.html#idx-95225616" target="mainbox">parallel</a>
+      <li> <a href="node012.html#idx-93604968" target="mainbox">simplex</a>
+    </ul>
+    <li> Optimizing
+    <ul class="idx-lvl2">
+      <li> <a href="node012.html#idx-95111936" target="mainbox">network flow problems</a>
+    </ul>
+    <li> <a href="node023.html#idx-107160424" target="mainbox">ORD format</a>
+<hr>
+
+<a name="index-letter-P" style="font-weight : bolder; font-size : larger;">P</a><br>
+
+    <li> <a href="node012.html#idx-95220800" target="mainbox">parallel extensions</a>
+    <li> <a href="node012.html#idx-92061920" target="mainbox">parallel interior-point</a>
+    <li> parallel optimizers
+    <ul class="idx-lvl2">
+      <li> <a href="node012.html#idx-92062208" target="mainbox">interior point</a>
+    </ul>
+    <li> <a href="node012.html#idx-95222312" target="mainbox">parallel solution</a>
+    <li> <a href="node024.html#idx-149252360" target="mainbox">param_comment_sign (parameter)</a>
+    <li> <a href="node024.html#idx-138749568" target="mainbox">param_read_case_name (parameter)</a>
+    <li> <a href="node024.html#idx-149257104" target="mainbox">param_read_file_name (parameter)</a>
+    <li> <a href="node024.html#idx-138761280" target="mainbox">param_read_ign_error (parameter)</a>
+    <li> <a href="node024.html#idx-150885656" target="mainbox">param_write_file_name (parameter)</a>
+    <li> <a href="node017.html#idx-102280008" target="mainbox">parameter file</a>
+    <li> <a href="node024.html#idx-107164808" target="mainbox">parameters</a>
+    <li> <a href="node012.html#idx-91994736" target="mainbox">presolve</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node012.html#idx-92004008" target="mainbox">eliminator</a>
+      <li> <a href="node012.html#idx-92013776" target="mainbox">linear dependency check</a>
+    </ul>
+    <li> <a href="node024.html#idx-138777520" target="mainbox">presolve_elim_fill (parameter)</a>
+    <li> <a href="node024.html#idx-138769760" target="mainbox">presolve_eliminator_max_num_tries (parameter)</a>
+    <li> <a href="node024.html#idx-138792904" target="mainbox">presolve_eliminator_use (parameter)</a>
+    <li> <a href="node024.html#idx-140345784" target="mainbox">presolve_level (parameter)</a>
+    <li> <a href="node024.html#idx-140347800" target="mainbox">presolve_lindep_use (parameter)</a>
+    <li> <a href="node024.html#idx-140372448" target="mainbox">presolve_lindep_work_lim (parameter)</a>
+    <li> <a href="node024.html#idx-123480328" target="mainbox">presolve_tol_aij (parameter)</a>
+    <li> <a href="node024.html#idx-123483704" target="mainbox">presolve_tol_lin_dep (parameter)</a>
+    <li> <a href="node024.html#idx-123509720" target="mainbox">presolve_tol_s (parameter)</a>
+    <li> <a href="node024.html#idx-123511296" target="mainbox">presolve_tol_x (parameter)</a>
+    <li> <a href="node024.html#idx-140372160" target="mainbox">presolve_use (parameter)</a>
+    <li> <a href="node011.html#idx-87072920" target="mainbox">primal certificate</a>
+    <li> <a href="node011.html#idx-87016008" target="mainbox">primal feasible</a>
+    <li> <a href="node011.html#idx-86987552" target="mainbox">primal infeasible</a>
+    <li> <a href="node011.html#idx-87069256" target="mainbox">primal infeasible</a>
+    <li> <a href="node011.html#idx-87031104" target="mainbox">primal-dual solution</a>
+<hr>
+
+<a name="index-letter-Q" style="font-weight : bolder; font-size : larger;">Q</a><br>
+
+    <li> <a href="node024.html#idx-123521864" target="mainbox">qcqo_reformulate_rel_drop_tol (parameter)</a>
+    <li> <a href="node024.html#idx-140390552" target="mainbox">qo_separable_reformulation (parameter)</a>
+    <li> <a href="node011.html#idx-88459096" target="mainbox">quadratic constraint</a>
+    <li> <a href="node011.html#idx-88482016" target="mainbox">quadratic constraint</a>
+    <li> <a href="node011.html#idx-88464416" target="mainbox">quadratic objective</a>
+    <li> <a href="node011.html#idx-88460608" target="mainbox">quadratic optimization</a>
+<hr>
+
+<a name="index-letter-R" style="font-weight : bolder; font-size : larger;">R</a><br>
+
+    <li> <a href="node024.html#idx-140430728" target="mainbox">read_add_anz (parameter)</a>
+    <li> <a href="node024.html#idx-140425912" target="mainbox">read_add_con (parameter)</a>
+    <li> <a href="node024.html#idx-140432808" target="mainbox">read_add_cone (parameter)</a>
+    <li> <a href="node024.html#idx-140451424" target="mainbox">read_add_qnz (parameter)</a>
+    <li> <a href="node024.html#idx-140418008" target="mainbox">read_add_var (parameter)</a>
+    <li> <a href="node024.html#idx-140472192" target="mainbox">read_anz (parameter)</a>
+    <li> <a href="node024.html#idx-140463424" target="mainbox">read_con (parameter)</a>
+    <li> <a href="node024.html#idx-140497408" target="mainbox">read_cone (parameter)</a>
+    <li> <a href="node024.html#idx-140497552" target="mainbox">read_data_compressed (parameter)</a>
+    <li> <a href="node024.html#idx-140519688" target="mainbox">read_data_format (parameter)</a>
+    <li> <a href="node024.html#idx-140549944" target="mainbox">read_keep_free_con (parameter)</a>
+    <li> <a href="node024.html#idx-140567184" target="mainbox">read_lp_drop_new_vars_in_bou (parameter)</a>
+    <li> <a href="node024.html#idx-140581848" target="mainbox">read_lp_quoted_names (parameter)</a>
+    <li> <a href="node024.html#idx-150896792" target="mainbox">read_mps_bou_name (parameter)</a>
+    <li> <a href="node024.html#idx-141970464" target="mainbox">read_mps_format (parameter)</a>
+    <li> <a href="node024.html#idx-141997480" target="mainbox">read_mps_keep_int (parameter)</a>
+    <li> <a href="node024.html#idx-150902976" target="mainbox">read_mps_obj_name (parameter)</a>
+    <li> <a href="node024.html#idx-142014800" target="mainbox">read_mps_obj_sense (parameter)</a>
+    <li> <a href="node024.html#idx-141968880" target="mainbox">read_mps_quoted_names (parameter)</a>
+    <li> <a href="node024.html#idx-150918424" target="mainbox">read_mps_ran_name (parameter)</a>
+    <li> <a href="node024.html#idx-142050944" target="mainbox">read_mps_relax (parameter)</a>
+    <li> <a href="node024.html#idx-150930568" target="mainbox">read_mps_rhs_name (parameter)</a>
+    <li> <a href="node024.html#idx-142066392" target="mainbox">read_mps_width (parameter)</a>
+    <li> <a href="node024.html#idx-142068408" target="mainbox">read_q_mode (parameter)</a>
+    <li> <a href="node024.html#idx-142108576" target="mainbox">read_qnz (parameter)</a>
+    <li> <a href="node024.html#idx-142107064" target="mainbox">read_task_ignore_param (parameter)</a>
+    <li> <a href="node024.html#idx-142131144" target="mainbox">read_var (parameter)</a>
+    <li> <a href="node013.html#idx-95319176" target="mainbox">relaxation, continuous</a>
+<hr>
+
+<a name="index-letter-S" style="font-weight : bolder; font-size : larger;">S</a><br>
+
+    <li> <a href="node012.html#idx-92043672" target="mainbox">scaling</a>
+    <li> <a href="node016.html#idx-98787408" target="mainbox">sensitivity analysis</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node016.html#idx-98849280" target="mainbox">basis type</a>
+      <li> <a href="node016.html#idx-98856328" target="mainbox">optimal partition type</a>
+    </ul>
+    <li> <a href="node024.html#idx-142132936" target="mainbox">sensitivity_all (parameter)</a>
+    <li> <a href="node024.html#idx-150942064" target="mainbox">sensitivity_file_name (parameter)</a>
+    <li> <a href="node024.html#idx-142154424" target="mainbox">sensitivity_optimizer (parameter)</a>
+    <li> <a href="node024.html#idx-150955144" target="mainbox">sensitivity_res_file_name (parameter)</a>
+    <li> <a href="node024.html#idx-142170592" target="mainbox">sensitivity_type (parameter)</a>
+    <li> <a href="node016.html#idx-98829736" target="mainbox">shadow price</a>
+    <li> <a href="node024.html#idx-142204728" target="mainbox">sim_basis_factor_use (parameter)</a>
+    <li> <a href="node024.html#idx-142212272" target="mainbox">sim_degen (parameter)</a>
+    <li> <a href="node024.html#idx-142209248" target="mainbox">sim_dual_crash (parameter)</a>
+    <li> <a href="node024.html#idx-143740080" target="mainbox">sim_dual_phaseone_method (parameter)</a>
+    <li> <a href="node024.html#idx-143754808" target="mainbox">sim_dual_restrict_selection (parameter)</a>
+    <li> <a href="node024.html#idx-143766448" target="mainbox">sim_dual_selection (parameter)</a>
+    <li> <a href="node024.html#idx-143801232" target="mainbox">sim_exploit_dupvec (parameter)</a>
+    <li> <a href="node024.html#idx-143821136" target="mainbox">sim_hotstart (parameter)</a>
+    <li> <a href="node024.html#idx-143790304" target="mainbox">sim_hotstart_lu (parameter)</a>
+    <li> <a href="node024.html#idx-143853184" target="mainbox">sim_integer (parameter)</a>
+    <li> <a href="node024.html#idx-123536808" target="mainbox">sim_lu_tol_rel_piv (parameter)</a>
+    <li> <a href="node024.html#idx-143854480" target="mainbox">sim_max_iterations (parameter)</a>
+    <li> <a href="node024.html#idx-143882720" target="mainbox">sim_max_num_setbacks (parameter)</a>
+    <li> <a href="node024.html#idx-143885736" target="mainbox">sim_network_detect (parameter)</a>
+    <li> <a href="node024.html#idx-143903056" target="mainbox">sim_network_detect_hotstart (parameter)</a>
+    <li> <a href="node024.html#idx-126839408" target="mainbox">sim_network_detect_method (parameter)</a>
+    <li> <a href="node024.html#idx-143925904" target="mainbox">sim_non_singular (parameter)</a>
+    <li> <a href="node024.html#idx-143953792" target="mainbox">sim_primal_crash (parameter)</a>
+    <li> <a href="node024.html#idx-143955584" target="mainbox">sim_primal_phaseone_method (parameter)</a>
+    <li> <a href="node024.html#idx-143962264" target="mainbox">sim_primal_restrict_selection (parameter)</a>
+    <li> <a href="node024.html#idx-143977576" target="mainbox">sim_primal_selection (parameter)</a>
+    <li> <a href="node024.html#idx-145334712" target="mainbox">sim_refactor_freq (parameter)</a>
+    <li> <a href="node024.html#idx-143968736" target="mainbox">sim_reformulation (parameter)</a>
+    <li> <a href="node024.html#idx-145377976" target="mainbox">sim_save_lu (parameter)</a>
+    <li> <a href="node024.html#idx-145394432" target="mainbox">sim_scaling (parameter)</a>
+    <li> <a href="node024.html#idx-145412896" target="mainbox">sim_scaling_method (parameter)</a>
+    <li> <a href="node024.html#idx-145427200" target="mainbox">sim_solve_form (parameter)</a>
+    <li> <a href="node024.html#idx-145440920" target="mainbox">sim_stability_priority (parameter)</a>
+    <li> <a href="node024.html#idx-145430288" target="mainbox">sim_switch_optimizer (parameter)</a>
+    <li> <a href="node012.html#idx-93604104" target="mainbox">simplex optimizer</a>
+    <li> <a href="node024.html#idx-123552472" target="mainbox">simplex_abs_tol_piv (parameter)</a>
+    <li> <a href="node024.html#idx-145465072" target="mainbox">sol_filter_keep_basic (parameter)</a>
+    <li> <a href="node024.html#idx-145490576" target="mainbox">sol_filter_keep_ranged (parameter)</a>
+    <li> <a href="node024.html#idx-150963624" target="mainbox">sol_filter_xc_low (parameter)</a>
+    <li> <a href="node024.html#idx-150977280" target="mainbox">sol_filter_xc_upr (parameter)</a>
+    <li> <a href="node024.html#idx-150988560" target="mainbox">sol_filter_xx_low (parameter)</a>
+    <li> <a href="node024.html#idx-151001280" target="mainbox">sol_filter_xx_upr (parameter)</a>
+    <li> <a href="node024.html#idx-145501504" target="mainbox">sol_quoted_names (parameter)</a>
+    <li> <a href="node024.html#idx-145510344" target="mainbox">sol_read_name_width (parameter)</a>
+    <li> <a href="node024.html#idx-145513648" target="mainbox">sol_read_width (parameter)</a>
+    <li> <a href="node011.html#idx-87060064" target="mainbox">solution, optimal</a>
+    <li> <a href="node011.html#idx-87029448" target="mainbox">solution, primal-dual</a>
+    <li> <a href="node024.html#idx-145539656" target="mainbox">solution_callback (parameter)</a>
+    <li> <a href="node024.html#idx-150999264" target="mainbox">stat_file_name (parameter)</a>
+    <li> <a href="node024.html#idx-151032968" target="mainbox">stat_key (parameter)</a>
+    <li> <a href="node024.html#idx-151013424" target="mainbox">stat_name (parameter)</a>
+    <li> symbolic constants
+    <ul class="idx-lvl2">
+      <li> <a href="node025.html#idx-151080400" target="mainbox">MSK_ACC_CON</a>
+      <li> <a href="node025.html#idx-151095848" target="mainbox">MSK_ACC_VAR</a>
+      <li> <a href="node025.html#idx-151095056" target="mainbox">MSK_ADOP_ADD</a>
+      <li> <a href="node025.html#idx-152610936" target="mainbox">MSK_ADOP_DIV</a>
+      <li> <a href="node025.html#idx-152597640" target="mainbox">MSK_ADOP_EXP</a>
+      <li> <a href="node025.html#idx-152597208" target="mainbox">MSK_ADOP_LOG</a>
+      <li> <a href="node025.html#idx-152604256" target="mainbox">MSK_ADOP_MUL</a>
+      <li> <a href="node025.html#idx-151111440" target="mainbox">MSK_ADOP_POW</a>
+      <li> <a href="node025.html#idx-151110648" target="mainbox">MSK_ADOP_RET</a>
+      <li> <a href="node025.html#idx-151108856" target="mainbox">MSK_ADOP_SUB</a>
+      <li> <a href="node025.html#idx-152637240" target="mainbox">MSK_ADOPTYPE_CONSTANT</a>
+      <li> <a href="node025.html#idx-152630624" target="mainbox">MSK_ADOPTYPE_NONE</a>
+      <li> <a href="node025.html#idx-152634792" target="mainbox">MSK_ADOPTYPE_REFERENCE</a>
+      <li> <a href="node025.html#idx-152619776" target="mainbox">MSK_ADOPTYPE_VARIABLE</a>
+      <li> <a href="node025.html#idx-152644784" target="mainbox">MSK_BI_ALWAYS</a>
+      <li> <a href="node025.html#idx-152656640" target="mainbox">MSK_BI_IF_FEASIBLE</a>
+      <li> <a href="node025.html#idx-152658936" target="mainbox">MSK_BI_NEVER</a>
+      <li> <a href="node025.html#idx-152652184" target="mainbox">MSK_BI_NO_ERROR</a>
+      <li> <a href="node025.html#idx-152664112" target="mainbox">MSK_BI_OTHER</a>
+      <li> <a href="node025.html#idx-152684808" target="mainbox">MSK_BK_FR</a>
+      <li> <a href="node025.html#idx-152670504" target="mainbox">MSK_BK_FX</a>
+      <li> <a href="node025.html#idx-152681216" target="mainbox">MSK_BK_LO</a>
+      <li> <a href="node025.html#idx-152696304" target="mainbox">MSK_BK_RA</a>
+      <li> <a href="node025.html#idx-152664976" target="mainbox">MSK_BK_UP</a>
+      <li> <a href="node025.html#idx-152694512" target="mainbox">MSK_BRANCH_DIR_DOWN</a>
+      <li> <a href="node025.html#idx-152676976" target="mainbox">MSK_BRANCH_DIR_FREE</a>
+      <li> <a href="node025.html#idx-152704352" target="mainbox">MSK_BRANCH_DIR_UP</a>
+      <li> <a href="node025.html#idx-158021248" target="mainbox">MSK_CALLBACK_BEGIN_BI</a>
+      <li> <a href="node025.html#idx-152839088" target="mainbox">MSK_CALLBACK_BEGIN_CONCURRENT</a>
+      <li> <a href="node025.html#idx-154394920" target="mainbox">MSK_CALLBACK_BEGIN_CONIC</a>
+      <li> <a href="node025.html#idx-152824720" target="mainbox">MSK_CALLBACK_BEGIN_DUAL_BI</a>
+      <li> <a href="node025.html#idx-152824288" target="mainbox">MSK_CALLBACK_BEGIN_DUAL_SENSITIVITY</a>
+      <li> <a href="node025.html#idx-154500128" target="mainbox">MSK_CALLBACK_BEGIN_DUAL_SETUP_BI</a>
+      <li> <a href="node025.html#idx-156271104" target="mainbox">MSK_CALLBACK_BEGIN_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156417272" target="mainbox">MSK_CALLBACK_BEGIN_DUAL_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-152816600" target="mainbox">MSK_CALLBACK_BEGIN_FULL_CONVEXITY_CHECK</a>
+      <li> <a href="node025.html#idx-156377240" target="mainbox">MSK_CALLBACK_BEGIN_INFEAS_ANA</a>
+      <li> <a href="node025.html#idx-157955208" target="mainbox">MSK_CALLBACK_BEGIN_INTPNT</a>
+      <li> <a href="node025.html#idx-154384000" target="mainbox">MSK_CALLBACK_BEGIN_LICENSE_WAIT</a>
+      <li> <a href="node025.html#idx-158071264" target="mainbox">MSK_CALLBACK_BEGIN_MIO</a>
+      <li> <a href="node025.html#idx-152765216" target="mainbox">MSK_CALLBACK_BEGIN_NETWORK_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-158083336" target="mainbox">MSK_CALLBACK_BEGIN_NETWORK_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-154456504" target="mainbox">MSK_CALLBACK_BEGIN_NETWORK_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156212184" target="mainbox">MSK_CALLBACK_BEGIN_NONCONVEX</a>
+      <li> <a href="node025.html#idx-156288424" target="mainbox">MSK_CALLBACK_BEGIN_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-158028432" target="mainbox">MSK_CALLBACK_BEGIN_PRESOLVE</a>
+      <li> <a href="node025.html#idx-152843112" target="mainbox">MSK_CALLBACK_BEGIN_PRIMAL_BI</a>
+      <li> <a href="node025.html#idx-156400096" target="mainbox">MSK_CALLBACK_BEGIN_PRIMAL_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-152731872" target="mainbox">MSK_CALLBACK_BEGIN_PRIMAL_DUAL_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-156408216" target="mainbox">MSK_CALLBACK_BEGIN_PRIMAL_SENSITIVITY</a>
+      <li> <a href="node025.html#idx-156292160" target="mainbox">MSK_CALLBACK_BEGIN_PRIMAL_SETUP_BI</a>
+      <li> <a href="node025.html#idx-156240856" target="mainbox">MSK_CALLBACK_BEGIN_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-154607128" target="mainbox">MSK_CALLBACK_BEGIN_PRIMAL_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-154480864" target="mainbox">MSK_CALLBACK_BEGIN_QCQO_REFORMULATE</a>
+      <li> <a href="node025.html#idx-154511984" target="mainbox">MSK_CALLBACK_BEGIN_READ</a>
+      <li> <a href="node025.html#idx-156377816" target="mainbox">MSK_CALLBACK_BEGIN_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156451688" target="mainbox">MSK_CALLBACK_BEGIN_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-154577952" target="mainbox">MSK_CALLBACK_BEGIN_SIMPLEX_NETWORK_DETECT</a>
+      <li> <a href="node025.html#idx-156360648" target="mainbox">MSK_CALLBACK_BEGIN_WRITE</a>
+      <li> <a href="node025.html#idx-154405632" target="mainbox">MSK_CALLBACK_CONIC</a>
+      <li> <a href="node025.html#idx-156225480" target="mainbox">MSK_CALLBACK_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156324064" target="mainbox">MSK_CALLBACK_END_BI</a>
+      <li> <a href="node025.html#idx-152773624" target="mainbox">MSK_CALLBACK_END_CONCURRENT</a>
+      <li> <a href="node025.html#idx-154464200" target="mainbox">MSK_CALLBACK_END_CONIC</a>
+      <li> <a href="node025.html#idx-154567168" target="mainbox">MSK_CALLBACK_END_DUAL_BI</a>
+      <li> <a href="node025.html#idx-154475768" target="mainbox">MSK_CALLBACK_END_DUAL_SENSITIVITY</a>
+      <li> <a href="node025.html#idx-156343184" target="mainbox">MSK_CALLBACK_END_DUAL_SETUP_BI</a>
+      <li> <a href="node025.html#idx-156437248" target="mainbox">MSK_CALLBACK_END_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-154521400" target="mainbox">MSK_CALLBACK_END_DUAL_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-158047120" target="mainbox">MSK_CALLBACK_END_FULL_CONVEXITY_CHECK</a>
+      <li> <a href="node025.html#idx-154546904" target="mainbox">MSK_CALLBACK_END_INFEAS_ANA</a>
+      <li> <a href="node025.html#idx-152724328" target="mainbox">MSK_CALLBACK_END_INTPNT</a>
+      <li> <a href="node025.html#idx-154529520" target="mainbox">MSK_CALLBACK_END_LICENSE_WAIT</a>
+      <li> <a href="node025.html#idx-152748184" target="mainbox">MSK_CALLBACK_END_MIO</a>
+      <li> <a href="node025.html#idx-152799280" target="mainbox">MSK_CALLBACK_END_NETWORK_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-152719656" target="mainbox">MSK_CALLBACK_END_NETWORK_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-154397800" target="mainbox">MSK_CALLBACK_END_NETWORK_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156284184" target="mainbox">MSK_CALLBACK_END_NONCONVEX</a>
+      <li> <a href="node025.html#idx-154430856" target="mainbox">MSK_CALLBACK_END_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-156384648" target="mainbox">MSK_CALLBACK_END_PRESOLVE</a>
+      <li> <a href="node025.html#idx-157970656" target="mainbox">MSK_CALLBACK_END_PRIMAL_BI</a>
+      <li> <a href="node025.html#idx-158000192" target="mainbox">MSK_CALLBACK_END_PRIMAL_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156316304" target="mainbox">MSK_CALLBACK_END_PRIMAL_DUAL_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-156350008" target="mainbox">MSK_CALLBACK_END_PRIMAL_SENSITIVITY</a>
+      <li> <a href="node025.html#idx-156352168" target="mainbox">MSK_CALLBACK_END_PRIMAL_SETUP_BI</a>
+      <li> <a href="node025.html#idx-156315800" target="mainbox">MSK_CALLBACK_END_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-154494952" target="mainbox">MSK_CALLBACK_END_PRIMAL_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-156388744" target="mainbox">MSK_CALLBACK_END_QCQO_REFORMULATE</a>
+      <li> <a href="node025.html#idx-154591104" target="mainbox">MSK_CALLBACK_END_READ</a>
+      <li> <a href="node025.html#idx-157963544" target="mainbox">MSK_CALLBACK_END_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156368336" target="mainbox">MSK_CALLBACK_END_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-152790296" target="mainbox">MSK_CALLBACK_END_SIMPLEX_NETWORK_DETECT</a>
+      <li> <a href="node025.html#idx-156434304" target="mainbox">MSK_CALLBACK_END_WRITE</a>
+      <li> <a href="node025.html#idx-156326224" target="mainbox">MSK_CALLBACK_IM_BI</a>
+      <li> <a href="node025.html#idx-158012696" target="mainbox">MSK_CALLBACK_IM_CONIC</a>
+      <li> <a href="node025.html#idx-152777864" target="mainbox">MSK_CALLBACK_IM_DUAL_BI</a>
+      <li> <a href="node025.html#idx-157952336" target="mainbox">MSK_CALLBACK_IM_DUAL_SENSIVITY</a>
+      <li> <a href="node025.html#idx-154375808" target="mainbox">MSK_CALLBACK_IM_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156233312" target="mainbox">MSK_CALLBACK_IM_FULL_CONVEXITY_CHECK</a>
+      <li> <a href="node025.html#idx-152807688" target="mainbox">MSK_CALLBACK_IM_INTPNT</a>
+      <li> <a href="node025.html#idx-154455936" target="mainbox">MSK_CALLBACK_IM_LICENSE_WAIT</a>
+      <li> <a href="node025.html#idx-154487408" target="mainbox">MSK_CALLBACK_IM_LU</a>
+      <li> <a href="node025.html#idx-157978568" target="mainbox">MSK_CALLBACK_IM_MIO</a>
+      <li> <a href="node025.html#idx-158029224" target="mainbox">MSK_CALLBACK_IM_MIO_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-157991136" target="mainbox">MSK_CALLBACK_IM_MIO_INTPNT</a>
+      <li> <a href="node025.html#idx-157998040" target="mainbox">MSK_CALLBACK_IM_MIO_PRESOLVE</a>
+      <li> <a href="node025.html#idx-152834992" target="mainbox">MSK_CALLBACK_IM_MIO_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156334200" target="mainbox">MSK_CALLBACK_IM_NETWORK_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-154367184" target="mainbox">MSK_CALLBACK_IM_NETWORK_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156308688" target="mainbox">MSK_CALLBACK_IM_NONCONVEX</a>
+      <li> <a href="node025.html#idx-158055528" target="mainbox">MSK_CALLBACK_IM_ORDER</a>
+      <li> <a href="node025.html#idx-154537496" target="mainbox">MSK_CALLBACK_IM_PRESOLVE</a>
+      <li> <a href="node025.html#idx-158062640" target="mainbox">MSK_CALLBACK_IM_PRIMAL_BI</a>
+      <li> <a href="node025.html#idx-156215776" target="mainbox">MSK_CALLBACK_IM_PRIMAL_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156426392" target="mainbox">MSK_CALLBACK_IM_PRIMAL_SENSIVITY</a>
+      <li> <a href="node025.html#idx-152768312" target="mainbox">MSK_CALLBACK_IM_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-154412672" target="mainbox">MSK_CALLBACK_IM_QO_REFORMULATE</a>
+      <li> <a href="node025.html#idx-154437392" target="mainbox">MSK_CALLBACK_IM_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156254432" target="mainbox">MSK_CALLBACK_IM_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-154554736" target="mainbox">MSK_CALLBACK_INTPNT</a>
+      <li> <a href="node025.html#idx-152780672" target="mainbox">MSK_CALLBACK_NEW_INT_MIO</a>
+      <li> <a href="node025.html#idx-154540224" target="mainbox">MSK_CALLBACK_NONCOVEX</a>
+      <li> <a href="node025.html#idx-156241864" target="mainbox">MSK_CALLBACK_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-156391904" target="mainbox">MSK_CALLBACK_QCONE</a>
+      <li> <a href="node025.html#idx-156206288" target="mainbox">MSK_CALLBACK_READ_ADD_ANZ</a>
+      <li> <a href="node025.html#idx-154598072" target="mainbox">MSK_CALLBACK_READ_ADD_CONES</a>
+      <li> <a href="node025.html#idx-152742512" target="mainbox">MSK_CALLBACK_READ_ADD_CONS</a>
+      <li> <a href="node025.html#idx-154358632" target="mainbox">MSK_CALLBACK_READ_ADD_QNZ</a>
+      <li> <a href="node025.html#idx-154503072" target="mainbox">MSK_CALLBACK_READ_ADD_VARS</a>
+      <li> <a href="node025.html#idx-154448888" target="mainbox">MSK_CALLBACK_READ_OPF</a>
+      <li> <a href="node025.html#idx-154511264" target="mainbox">MSK_CALLBACK_READ_OPF_SECTION</a>
+      <li> <a href="node025.html#idx-154367616" target="mainbox">MSK_CALLBACK_UPDATE_DUAL_BI</a>
+      <li> <a href="node025.html#idx-157976912" target="mainbox">MSK_CALLBACK_UPDATE_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-154418568" target="mainbox">MSK_CALLBACK_UPDATE_DUAL_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-154472032" target="mainbox">MSK_CALLBACK_UPDATE_NETWORK_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-158020312" target="mainbox">MSK_CALLBACK_UPDATE_NETWORK_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-154582984" target="mainbox">MSK_CALLBACK_UPDATE_NONCONVEX</a>
+      <li> <a href="node025.html#idx-154428408" target="mainbox">MSK_CALLBACK_UPDATE_PRESOLVE</a>
+      <li> <a href="node025.html#idx-154561712" target="mainbox">MSK_CALLBACK_UPDATE_PRIMAL_BI</a>
+      <li> <a href="node025.html#idx-156443568" target="mainbox">MSK_CALLBACK_UPDATE_PRIMAL_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-154569472" target="mainbox">MSK_CALLBACK_UPDATE_PRIMAL_DUAL_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-156211680" target="mainbox">MSK_CALLBACK_UPDATE_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-152751568" target="mainbox">MSK_CALLBACK_UPDATE_PRIMAL_SIMPLEX_BI</a>
+      <li> <a href="node025.html#idx-158037632" target="mainbox">MSK_CALLBACK_WRITE_OPF</a>
+      <li> <a href="node025.html#idx-158104608" target="mainbox">MSK_CHECK_CONVEXITY_FULL</a>
+      <li> <a href="node025.html#idx-158093256" target="mainbox">MSK_CHECK_CONVEXITY_NONE</a>
+      <li> <a href="node025.html#idx-158069032" target="mainbox">MSK_CHECK_CONVEXITY_SIMPLE</a>
+      <li> <a href="node025.html#idx-158119984" target="mainbox">MSK_COMPRESS_FREE</a>
+      <li> <a href="node025.html#idx-158115024" target="mainbox">MSK_COMPRESS_GZIP</a>
+      <li> <a href="node025.html#idx-158098424" target="mainbox">MSK_COMPRESS_NONE</a>
+      <li> <a href="node025.html#idx-158182504" target="mainbox">MSK_CPU_AMD_ATHLON</a>
+      <li> <a href="node025.html#idx-158118544" target="mainbox">MSK_CPU_AMD_OPTERON</a>
+      <li> <a href="node025.html#idx-158157856" target="mainbox">MSK_CPU_GENERIC</a>
+      <li> <a href="node025.html#idx-158189976" target="mainbox">MSK_CPU_HP_PARISC20</a>
+      <li> <a href="node025.html#idx-158203848" target="mainbox">MSK_CPU_INTEL_CORE2</a>
+      <li> <a href="node025.html#idx-158174528" target="mainbox">MSK_CPU_INTEL_ITANIUM2</a>
+      <li> <a href="node025.html#idx-158196512" target="mainbox">MSK_CPU_INTEL_P3</a>
+      <li> <a href="node025.html#idx-158172224" target="mainbox">MSK_CPU_INTEL_P4</a>
+      <li> <a href="node025.html#idx-158150600" target="mainbox">MSK_CPU_INTEL_PM</a>
+      <li> <a href="node025.html#idx-158139096" target="mainbox">MSK_CPU_POWERPC_G5</a>
+      <li> <a href="node025.html#idx-158162312" target="mainbox">MSK_CPU_UNKNOWN</a>
+      <li> <a href="node025.html#idx-158130472" target="mainbox">MSK_CT_QUAD</a>
+      <li> <a href="node025.html#idx-158137088" target="mainbox">MSK_CT_RQUAD</a>
+      <li> <a href="node025.html#idx-159755512" target="mainbox">MSK_DATA_FORMAT_EXTENSION</a>
+      <li> <a href="node025.html#idx-159742864" target="mainbox">MSK_DATA_FORMAT_FREE_MPS</a>
+      <li> <a href="node025.html#idx-159757880" target="mainbox">MSK_DATA_FORMAT_LP</a>
+      <li> <a href="node025.html#idx-159774624" target="mainbox">MSK_DATA_FORMAT_MBT</a>
+      <li> <a href="node025.html#idx-159762984" target="mainbox">MSK_DATA_FORMAT_MPS</a>
+      <li> <a href="node025.html#idx-159782600" target="mainbox">MSK_DATA_FORMAT_OP</a>
+      <li> <a href="node025.html#idx-158204776" target="mainbox">MSK_DATA_FORMAT_XML</a>
+      <li> <a href="node025.html#idx-161496384" target="mainbox">MSK_DINF_BI_CLEAN_DUAL_TIME</a>
+      <li> <a href="node025.html#idx-161513056" target="mainbox">MSK_DINF_BI_CLEAN_PRIMAL_DUAL_TIME</a>
+      <li> <a href="node025.html#idx-161577152" target="mainbox">MSK_DINF_BI_CLEAN_PRIMAL_TIME</a>
+      <li> <a href="node025.html#idx-161366744" target="mainbox">MSK_DINF_BI_CLEAN_TIME</a>
+      <li> <a href="node025.html#idx-159844616" target="mainbox">MSK_DINF_BI_DUAL_TIME</a>
+      <li> <a href="node025.html#idx-161540576" target="mainbox">MSK_DINF_BI_PRIMAL_TIME</a>
+      <li> <a href="node025.html#idx-161504864" target="mainbox">MSK_DINF_BI_TIME</a>
+      <li> <a href="node025.html#idx-161416688" target="mainbox">MSK_DINF_CONCURRENT_TIME</a>
+      <li> <a href="node025.html#idx-161370552" target="mainbox">MSK_DINF_INTPNT_DUAL_FEAS</a>
+      <li> <a href="node025.html#idx-159966488" target="mainbox">MSK_DINF_INTPNT_DUAL_OBJ</a>
+      <li> <a href="node025.html#idx-159829024" target="mainbox">MSK_DINF_INTPNT_FACTOR_NUM_FLOPS</a>
+      <li> <a href="node025.html#idx-161424664" target="mainbox">MSK_DINF_INTPNT_KAP_DIV_TAU</a>
+      <li> <a href="node025.html#idx-161530656" target="mainbox">MSK_DINF_INTPNT_ORDER_TIME</a>
+      <li> <a href="node025.html#idx-159792160" target="mainbox">MSK_DINF_INTPNT_PRIMAL_FEAS</a>
+      <li> <a href="node025.html#idx-161522464" target="mainbox">MSK_DINF_INTPNT_PRIMAL_OBJ</a>
+      <li> <a href="node025.html#idx-159975040" target="mainbox">MSK_DINF_INTPNT_TIME</a>
+      <li> <a href="node025.html#idx-159983016" target="mainbox">MSK_DINF_MIO_CONSTRUCT_SOLUTION_OBJ</a>
+      <li> <a href="node025.html#idx-159920856" target="mainbox">MSK_DINF_MIO_HEURISTIC_TIME</a>
+      <li> <a href="node025.html#idx-161549632" target="mainbox">MSK_DINF_MIO_OBJ_ABS_GAP</a>
+      <li> <a href="node025.html#idx-161430200" target="mainbox">MSK_DINF_MIO_OBJ_BOUND</a>
+      <li> <a href="node025.html#idx-161452832" target="mainbox">MSK_DINF_MIO_OBJ_INT</a>
+      <li> <a href="node025.html#idx-159896496" target="mainbox">MSK_DINF_MIO_OBJ_REL_GAP</a>
+      <li> <a href="node025.html#idx-159815944" target="mainbox">MSK_DINF_MIO_OPTIMIZER_TIME</a>
+      <li> <a href="node025.html#idx-161589440" target="mainbox">MSK_DINF_MIO_ROOT_OPTIMIZER_TIME</a>
+      <li> <a href="node025.html#idx-159918200" target="mainbox">MSK_DINF_MIO_ROOT_PRESOLVE_TIME</a>
+      <li> <a href="node025.html#idx-159837504" target="mainbox">MSK_DINF_MIO_TIME</a>
+      <li> <a href="node025.html#idx-161460096" target="mainbox">MSK_DINF_MIO_USER_OBJ_CUT</a>
+      <li> <a href="node025.html#idx-159944288" target="mainbox">MSK_DINF_OPTIMIZER_TIME</a>
+      <li> <a href="node025.html#idx-159818816" target="mainbox">MSK_DINF_PRESOLVE_ELI_TIME</a>
+      <li> <a href="node025.html#idx-159861576" target="mainbox">MSK_DINF_PRESOLVE_LINDEP_TIME</a>
+      <li> <a href="node025.html#idx-159858056" target="mainbox">MSK_DINF_PRESOLVE_TIME</a>
+      <li> <a href="node025.html#idx-161389240" target="mainbox">MSK_DINF_QCQO_REFORMULATE_TIME</a>
+      <li> <a href="node025.html#idx-159811704" target="mainbox">MSK_DINF_RD_TIME</a>
+      <li> <a href="node025.html#idx-159866176" target="mainbox">MSK_DINF_SIM_DUAL_TIME</a>
+      <li> <a href="node025.html#idx-159948600" target="mainbox">MSK_DINF_SIM_FEAS</a>
+      <li> <a href="node025.html#idx-161444640" target="mainbox">MSK_DINF_SIM_NETWORK_DUAL_TIME</a>
+      <li> <a href="node025.html#idx-161361504" target="mainbox">MSK_DINF_SIM_NETWORK_PRIMAL_TIME</a>
+      <li> <a href="node025.html#idx-159825288" target="mainbox">MSK_DINF_SIM_NETWORK_TIME</a>
+      <li> <a href="node025.html#idx-159888520" target="mainbox">MSK_DINF_SIM_OBJ</a>
+      <li> <a href="node025.html#idx-161571904" target="mainbox">MSK_DINF_SIM_PRIMAL_DUAL_TIME</a>
+      <li> <a href="node025.html#idx-161352448" target="mainbox">MSK_DINF_SIM_PRIMAL_TIME</a>
+      <li> <a href="node025.html#idx-161355824" target="mainbox">MSK_DINF_SIM_TIME</a>
+      <li> <a href="node025.html#idx-161491208" target="mainbox">MSK_DINF_SOL_BAS_DUAL_OBJ</a>
+      <li> <a href="node025.html#idx-161469216" target="mainbox">MSK_DINF_SOL_BAS_MAX_DBI</a>
+      <li> <a href="node025.html#idx-161530296" target="mainbox">MSK_DINF_SOL_BAS_MAX_DEQI</a>
+      <li> <a href="node025.html#idx-159919496" target="mainbox">MSK_DINF_SOL_BAS_MAX_PBI</a>
+      <li> <a href="node025.html#idx-161482296" target="mainbox">MSK_DINF_SOL_BAS_MAX_PEQI</a>
+      <li> <a href="node025.html#idx-161369840" target="mainbox">MSK_DINF_SOL_BAS_MAX_PINTI</a>
+      <li> <a href="node025.html#idx-159908640" target="mainbox">MSK_DINF_SOL_BAS_PRIMAL_OBJ</a>
+      <li> <a href="node025.html#idx-161406632" target="mainbox">MSK_DINF_SOL_INT_MAX_PBI</a>
+      <li> <a href="node025.html#idx-161429912" target="mainbox">MSK_DINF_SOL_INT_MAX_PEQI</a>
+      <li> <a href="node025.html#idx-161379536" target="mainbox">MSK_DINF_SOL_INT_MAX_PINTI</a>
+      <li> <a href="node025.html#idx-161532456" target="mainbox">MSK_DINF_SOL_INT_PRIMAL_OBJ</a>
+      <li> <a href="node025.html#idx-161398296" target="mainbox">MSK_DINF_SOL_ITR_DUAL_OBJ</a>
+      <li> <a href="node025.html#idx-161580456" target="mainbox">MSK_DINF_SOL_ITR_MAX_DBI</a>
+      <li> <a href="node025.html#idx-159952264" target="mainbox">MSK_DINF_SOL_ITR_MAX_DCNI</a>
+      <li> <a href="node025.html#idx-159992648" target="mainbox">MSK_DINF_SOL_ITR_MAX_DEQI</a>
+      <li> <a href="node025.html#idx-159912448" target="mainbox">MSK_DINF_SOL_ITR_MAX_PBI</a>
+      <li> <a href="node025.html#idx-159803224" target="mainbox">MSK_DINF_SOL_ITR_MAX_PCNI</a>
+      <li> <a href="node025.html#idx-161562208" target="mainbox">MSK_DINF_SOL_ITR_MAX_PEQI</a>
+      <li> <a href="node025.html#idx-159880040" target="mainbox">MSK_DINF_SOL_ITR_MAX_PINTI</a>
+      <li> <a href="node025.html#idx-161435520" target="mainbox">MSK_DINF_SOL_ITR_PRIMAL_OBJ</a>
+      <li> <a href="node025.html#idx-163425888" target="mainbox">MSK_DPAR_ANA_SOL_INFEAS_TOL</a>
+      <li> <a href="node025.html#idx-165230784" target="mainbox">MSK_DPAR_BASIS_REL_TOL_S</a>
+      <li> <a href="node025.html#idx-163261544" target="mainbox">MSK_DPAR_BASIS_TOL_S</a>
+      <li> <a href="node025.html#idx-165274112" target="mainbox">MSK_DPAR_BASIS_TOL_X</a>
+      <li> <a href="node025.html#idx-165303864" target="mainbox">MSK_DPAR_CALLBACK_FREQ</a>
+      <li> <a href="node025.html#idx-163345616" target="mainbox">MSK_DPAR_CHECK_CONVEXITY_REL_TOL</a>
+      <li> <a href="node025.html#idx-163384208" target="mainbox">MSK_DPAR_DATA_TOL_AIJ</a>
+      <li> <a href="node025.html#idx-165288344" target="mainbox">MSK_DPAR_DATA_TOL_AIJ_HUGE</a>
+      <li> <a href="node025.html#idx-163296032" target="mainbox">MSK_DPAR_DATA_TOL_AIJ_LARGE</a>
+      <li> <a href="node025.html#idx-165298048" target="mainbox">MSK_DPAR_DATA_TOL_BOUND_INF</a>
+      <li> <a href="node025.html#idx-165266712" target="mainbox">MSK_DPAR_DATA_TOL_BOUND_WRN</a>
+      <li> <a href="node025.html#idx-163505432" target="mainbox">MSK_DPAR_DATA_TOL_C_HUGE</a>
+      <li> <a href="node025.html#idx-165209872" target="mainbox">MSK_DPAR_DATA_TOL_CJ_LARGE</a>
+      <li> <a href="node025.html#idx-165347552" target="mainbox">MSK_DPAR_DATA_TOL_QIJ</a>
+      <li> <a href="node025.html#idx-163419416" target="mainbox">MSK_DPAR_DATA_TOL_X</a>
+      <li> <a href="node025.html#idx-163356184" target="mainbox">MSK_DPAR_FEASREPAIR_TOL</a>
+      <li> <a href="node025.html#idx-163288920" target="mainbox">MSK_DPAR_INTPNT_CO_TOL_DFEAS</a>
+      <li> <a href="node025.html#idx-165237896" target="mainbox">MSK_DPAR_INTPNT_CO_TOL_INFEAS</a>
+      <li> <a href="node025.html#idx-163445576" target="mainbox">MSK_DPAR_INTPNT_CO_TOL_MU_RED</a>
+      <li> <a href="node025.html#idx-165311120" target="mainbox">MSK_DPAR_INTPNT_CO_TOL_NEAR_REL</a>
+      <li> <a href="node025.html#idx-165383416" target="mainbox">MSK_DPAR_INTPNT_CO_TOL_PFEAS</a>
+      <li> <a href="node025.html#idx-163453480" target="mainbox">MSK_DPAR_INTPNT_CO_TOL_REL_GAP</a>
+      <li> <a href="node025.html#idx-165267864" target="mainbox">MSK_DPAR_INTPNT_NL_MERIT_BAL</a>
+      <li> <a href="node025.html#idx-165328296" target="mainbox">MSK_DPAR_INTPNT_NL_TOL_DFEAS</a>
+      <li> <a href="node025.html#idx-163360064" target="mainbox">MSK_DPAR_INTPNT_NL_TOL_MU_RED</a>
+      <li> <a href="node025.html#idx-163410504" target="mainbox">MSK_DPAR_INTPNT_NL_TOL_NEAR_REL</a>
+      <li> <a href="node025.html#idx-165321184" target="mainbox">MSK_DPAR_INTPNT_NL_TOL_PFEAS</a>
+      <li> <a href="node025.html#idx-165375080" target="mainbox">MSK_DPAR_INTPNT_NL_TOL_REL_GAP</a>
+      <li> <a href="node025.html#idx-165212960" target="mainbox">MSK_DPAR_INTPNT_NL_TOL_REL_STEP</a>
+      <li> <a href="node025.html#idx-165341592" target="mainbox">MSK_DPAR_INTPNT_TOL_DFEAS</a>
+      <li> <a href="node025.html#idx-163391176" target="mainbox">MSK_DPAR_INTPNT_TOL_DSAFE</a>
+      <li> <a href="node025.html#idx-163403752" target="mainbox">MSK_DPAR_INTPNT_TOL_INFEAS</a>
+      <li> <a href="node025.html#idx-163438248" target="mainbox">MSK_DPAR_INTPNT_TOL_MU_RED</a>
+      <li> <a href="node025.html#idx-165262976" target="mainbox">MSK_DPAR_INTPNT_TOL_PATH</a>
+      <li> <a href="node025.html#idx-165223600" target="mainbox">MSK_DPAR_INTPNT_TOL_PFEAS</a>
+      <li> <a href="node025.html#idx-165304368" target="mainbox">MSK_DPAR_INTPNT_TOL_PSAFE</a>
+      <li> <a href="node025.html#idx-165281232" target="mainbox">MSK_DPAR_INTPNT_TOL_REL_GAP</a>
+      <li> <a href="node025.html#idx-163502272" target="mainbox">MSK_DPAR_INTPNT_TOL_REL_STEP</a>
+      <li> <a href="node025.html#idx-161598424" target="mainbox">MSK_DPAR_INTPNT_TOL_STEP_SIZE</a>
+      <li> <a href="node025.html#idx-163460952" target="mainbox">MSK_DPAR_LOWER_OBJ_CUT</a>
+      <li> <a href="node025.html#idx-161597776" target="mainbox">MSK_DPAR_LOWER_OBJ_CUT_FINITE_TRH</a>
+      <li> <a href="node025.html#idx-163473384" target="mainbox">MSK_DPAR_MIO_DISABLE_TERM_TIME</a>
+      <li> <a href="node025.html#idx-163338432" target="mainbox">MSK_DPAR_MIO_HEURISTIC_TIME</a>
+      <li> <a href="node025.html#idx-163255288" target="mainbox">MSK_DPAR_MIO_MAX_TIME</a>
+      <li> <a href="node025.html#idx-165253992" target="mainbox">MSK_DPAR_MIO_MAX_TIME_APRX_OPT</a>
+      <li> <a href="node025.html#idx-165311768" target="mainbox">MSK_DPAR_MIO_NEAR_TOL_ABS_GAP</a>
+      <li> <a href="node025.html#idx-163372064" target="mainbox">MSK_DPAR_MIO_NEAR_TOL_REL_GAP</a>
+      <li> <a href="node025.html#idx-163433216" target="mainbox">MSK_DPAR_MIO_REL_ADD_CUT_LIMITED</a>
+      <li> <a href="node025.html#idx-165197296" target="mainbox">MSK_DPAR_MIO_REL_GAP_CONST</a>
+      <li> <a href="node025.html#idx-163302864" target="mainbox">MSK_DPAR_MIO_TOL_ABS_GAP</a>
+      <li> <a href="node025.html#idx-163315440" target="mainbox">MSK_DPAR_MIO_TOL_ABS_RELAX_INT</a>
+      <li> <a href="node025.html#idx-163397432" target="mainbox">MSK_DPAR_MIO_TOL_FEAS</a>
+      <li> <a href="node025.html#idx-165334696" target="mainbox">MSK_DPAR_MIO_TOL_REL_GAP</a>
+      <li> <a href="node025.html#idx-165355888" target="mainbox">MSK_DPAR_MIO_TOL_REL_RELAX_INT</a>
+      <li> <a href="node025.html#idx-163508520" target="mainbox">MSK_DPAR_MIO_TOL_X</a>
+      <li> <a href="node025.html#idx-163326288" target="mainbox">MSK_DPAR_NONCONVEX_TOL_FEAS</a>
+      <li> <a href="node025.html#idx-163324488" target="mainbox">MSK_DPAR_NONCONVEX_TOL_OPT</a>
+      <li> <a href="node025.html#idx-163413096" target="mainbox">MSK_DPAR_OPTIMIZER_MAX_TIME</a>
+      <li> <a href="node025.html#idx-165246808" target="mainbox">MSK_DPAR_PRESOLVE_TOL_AIJ</a>
+      <li> <a href="node025.html#idx-165194208" target="mainbox">MSK_DPAR_PRESOLVE_TOL_LIN_DEP</a>
+      <li> <a href="node025.html#idx-163267864" target="mainbox">MSK_DPAR_PRESOLVE_TOL_S</a>
+      <li> <a href="node025.html#idx-163344824" target="mainbox">MSK_DPAR_PRESOLVE_TOL_X</a>
+      <li> <a href="node025.html#idx-165365736" target="mainbox">MSK_DPAR_QCQO_REFORMULATE_REL_DROP_TOL</a>
+      <li> <a href="node025.html#idx-165200888" target="mainbox">MSK_DPAR_SIM_LU_TOL_REL_PIV</a>
+      <li> <a href="node025.html#idx-163331536" target="mainbox">MSK_DPAR_SIMPLEX_ABS_TOL_PIV</a>
+      <li> <a href="node025.html#idx-163274552" target="mainbox">MSK_DPAR_UPPER_OBJ_CUT</a>
+      <li> <a href="node025.html#idx-163287768" target="mainbox">MSK_DPAR_UPPER_OBJ_CUT_FINITE_TRH</a>
+      <li> <a href="node025.html#idx-165397424" target="mainbox">MSK_FEASREPAIR_OPTIMIZE_COMBINED</a>
+      <li> <a href="node025.html#idx-165389952" target="mainbox">MSK_FEASREPAIR_OPTIMIZE_NONE</a>
+      <li> <a href="node025.html#idx-165404256" target="mainbox">MSK_FEASREPAIR_OPTIMIZE_PENALTY</a>
+      <li> <a href="node025.html#idx-165415176" target="mainbox">MSK_FEATURE_PTOM</a>
+      <li> <a href="node025.html#idx-165392536" target="mainbox">MSK_FEATURE_PTON</a>
+      <li> <a href="node025.html#idx-165436088" target="mainbox">MSK_FEATURE_PTOX</a>
+      <li> <a href="node025.html#idx-165429472" target="mainbox">MSK_FEATURE_PTS</a>
+      <li> <a href="node025.html#idx-167094752" target="mainbox">MSK_IINF_ANA_PRO_NUM_CON</a>
+      <li> <a href="node025.html#idx-169000544" target="mainbox">MSK_IINF_ANA_PRO_NUM_CON_EQ</a>
+      <li> <a href="node025.html#idx-167263048" target="mainbox">MSK_IINF_ANA_PRO_NUM_CON_FR</a>
+      <li> <a href="node025.html#idx-168894832" target="mainbox">MSK_IINF_ANA_PRO_NUM_CON_LO</a>
+      <li> <a href="node025.html#idx-170776264" target="mainbox">MSK_IINF_ANA_PRO_NUM_CON_RA</a>
+      <li> <a href="node025.html#idx-167217632" target="mainbox">MSK_IINF_ANA_PRO_NUM_CON_UP</a>
+      <li> <a href="node025.html#idx-168793800" target="mainbox">MSK_IINF_ANA_PRO_NUM_VAR</a>
+      <li> <a href="node025.html#idx-170644616" target="mainbox">MSK_IINF_ANA_PRO_NUM_VAR_BIN</a>
+      <li> <a href="node025.html#idx-167154752" target="mainbox">MSK_IINF_ANA_PRO_NUM_VAR_CONT</a>
+      <li> <a href="node025.html#idx-170715256" target="mainbox">MSK_IINF_ANA_PRO_NUM_VAR_EQ</a>
+      <li> <a href="node025.html#idx-170623848" target="mainbox">MSK_IINF_ANA_PRO_NUM_VAR_FR</a>
+      <li> <a href="node025.html#idx-167146344" target="mainbox">MSK_IINF_ANA_PRO_NUM_VAR_INT</a>
+      <li> <a href="node025.html#idx-168864584" target="mainbox">MSK_IINF_ANA_PRO_NUM_VAR_LO</a>
+      <li> <a href="node025.html#idx-169007224" target="mainbox">MSK_IINF_ANA_PRO_NUM_VAR_RA</a>
+      <li> <a href="node025.html#idx-170652736" target="mainbox">MSK_IINF_ANA_PRO_NUM_VAR_UP</a>
+      <li> <a href="node025.html#idx-168838064" target="mainbox">MSK_IINF_CACHE_SIZE_L1</a>
+      <li> <a href="node025.html#idx-168846256" target="mainbox">MSK_IINF_CACHE_SIZE_L2</a>
+      <li> <a href="node025.html#idx-170703904" target="mainbox">MSK_IINF_CONCURRENT_FASTEST_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-168992496" target="mainbox">MSK_IINF_CPU_TYPE</a>
+      <li> <a href="node025.html#idx-167137080" target="mainbox">MSK_IINF_INTPNT_FACTOR_NUM_OFFCOL</a>
+      <li> <a href="node025.html#idx-167137792" target="mainbox">MSK_IINF_INTPNT_ITER</a>
+      <li> <a href="node025.html#idx-170686080" target="mainbox">MSK_IINF_INTPNT_NUM_THREADS</a>
+      <li> <a href="node025.html#idx-167238544" target="mainbox">MSK_IINF_INTPNT_SOLVE_DUAL</a>
+      <li> <a href="node025.html#idx-168795744" target="mainbox">MSK_IINF_MIO_CONSTRUCT_SOLUTION</a>
+      <li> <a href="node025.html#idx-170677888" target="mainbox">MSK_IINF_MIO_INITIAL_SOLUTION</a>
+      <li> <a href="node025.html#idx-170634056" target="mainbox">MSK_IINF_MIO_NUM_ACTIVE_NODES</a>
+      <li> <a href="node025.html#idx-168928104" target="mainbox">MSK_IINF_MIO_NUM_BRANCH</a>
+      <li> <a href="node025.html#idx-167095256" target="mainbox">MSK_IINF_MIO_NUMCON</a>
+      <li> <a href="node025.html#idx-168787552" target="mainbox">MSK_IINF_MIO_NUM_CUTS</a>
+      <li> <a href="node025.html#idx-167292800" target="mainbox">MSK_IINF_MIO_NUMINT</a>
+      <li> <a href="node025.html#idx-168956128" target="mainbox">MSK_IINF_MIO_NUM_INT_SOLUTIONS</a>
+      <li> <a href="node025.html#idx-168949808" target="mainbox">MSK_IINF_MIO_NUM_RELAX</a>
+      <li> <a href="node025.html#idx-168780504" target="mainbox">MSK_IINF_MIO_NUMVAR</a>
+      <li> <a href="node025.html#idx-167193416" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_BASIS_CUTS</a>
+      <li> <a href="node025.html#idx-168924512" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_BRANCH</a>
+      <li> <a href="node025.html#idx-167296896" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_CARDGUB_CUTS</a>
+      <li> <a href="node025.html#idx-167227192" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_CLIQUE_CUTS</a>
+      <li> <a href="node025.html#idx-170761968" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_COEF_REDC_CUTS</a>
+      <li> <a href="node025.html#idx-168757080" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_CONTRA_CUTS</a>
+      <li> <a href="node025.html#idx-170786472" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_CUTS</a>
+      <li> <a href="node025.html#idx-170751976" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_DISAGG_CUTS</a>
+      <li> <a href="node025.html#idx-168971656" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_FLOW_COVER_CUTS</a>
+      <li> <a href="node025.html#idx-168960872" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_GCD_CUTS</a>
+      <li> <a href="node025.html#idx-170740192" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_GOMORY_CUTS</a>
+      <li> <a href="node025.html#idx-168879096" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_GUB_COVER_CUTS</a>
+      <li> <a href="node025.html#idx-167183856" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_KNAPSUR_COVER_CUTS</a>
+      <li> <a href="node025.html#idx-167110704" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_LATTICE_CUTS</a>
+      <li> <a href="node025.html#idx-168874424" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_LIFT_CUTS</a>
+      <li> <a href="node025.html#idx-167077576" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_OBJ_CUTS</a>
+      <li> <a href="node025.html#idx-168767072" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_PLAN_LOC_CUTS</a>
+      <li> <a href="node025.html#idx-170643040" target="mainbox">MSK_IINF_MIO_TOTAL_NUM_RELAX</a>
+      <li> <a href="node025.html#idx-170731640" target="mainbox">MSK_IINF_MIO_USER_OBJ_CUT</a>
+      <li> <a href="node025.html#idx-167236528" target="mainbox">MSK_IINF_OPTIMIZE_RESPONSE</a>
+      <li> <a href="node025.html#idx-170794448" target="mainbox">MSK_IINF_OPT_NUMCON</a>
+      <li> <a href="node025.html#idx-167102728" target="mainbox">MSK_IINF_OPT_NUMVAR</a>
+      <li> <a href="node025.html#idx-170614656" target="mainbox">MSK_IINF_RD_NUMCON</a>
+      <li> <a href="node025.html#idx-170606672" target="mainbox">MSK_IINF_RD_NUMCONE</a>
+      <li> <a href="node025.html#idx-165433000" target="mainbox">MSK_IINF_RD_NUMINTVAR</a>
+      <li> <a href="node025.html#idx-167130248" target="mainbox">MSK_IINF_RD_NUMQ</a>
+      <li> <a href="node025.html#idx-168841944" target="mainbox">MSK_IINF_RD_NUMVAR</a>
+      <li> <a href="node025.html#idx-167265344" target="mainbox">MSK_IINF_RD_PROTYPE</a>
+      <li> <a href="node025.html#idx-167173152" target="mainbox">MSK_IINF_SIM_DUAL_DEG_ITER</a>
+      <li> <a href="node025.html#idx-170651304" target="mainbox">MSK_IINF_SIM_DUAL_HOTSTART</a>
+      <li> <a href="node025.html#idx-170695136" target="mainbox">MSK_IINF_SIM_DUAL_HOTSTART_LU</a>
+      <li> <a href="node025.html#idx-168777920" target="mainbox">MSK_IINF_SIM_DUAL_INF_ITER</a>
+      <li> <a href="node025.html#idx-167164096" target="mainbox">MSK_IINF_SIM_DUAL_ITER</a>
+      <li> <a href="node025.html#idx-168826784" target="mainbox">MSK_IINF_SIM_NETWORK_DUAL_DEG_ITER</a>
+      <li> <a href="node025.html#idx-167247600" target="mainbox">MSK_IINF_SIM_NETWORK_DUAL_HOTSTART</a>
+      <li> <a href="node025.html#idx-168906904" target="mainbox">MSK_IINF_SIM_NETWORK_DUAL_HOTSTART_LU</a>
+      <li> <a href="node025.html#idx-167143832" target="mainbox">MSK_IINF_SIM_NETWORK_DUAL_INF_ITER</a>
+      <li> <a href="node025.html#idx-170706704" target="mainbox">MSK_IINF_SIM_NETWORK_DUAL_ITER</a>
+      <li> <a href="node025.html#idx-167120480" target="mainbox">MSK_IINF_SIM_NETWORK_PRIMAL_DEG_ITER</a>
+      <li> <a href="node025.html#idx-170749896" target="mainbox">MSK_IINF_SIM_NETWORK_PRIMAL_HOTSTART</a>
+      <li> <a href="node025.html#idx-170654392" target="mainbox">MSK_IINF_SIM_NETWORK_PRIMAL_HOTSTART_LU</a>
+      <li> <a href="node025.html#idx-168916680" target="mainbox">MSK_IINF_SIM_NETWORK_PRIMAL_INF_ITER</a>
+      <li> <a href="node025.html#idx-168886144" target="mainbox">MSK_IINF_SIM_NETWORK_PRIMAL_ITER</a>
+      <li> <a href="node025.html#idx-167182488" target="mainbox">MSK_IINF_SIM_NUMCON</a>
+      <li> <a href="node025.html#idx-167098848" target="mainbox">MSK_IINF_SIM_NUMVAR</a>
+      <li> <a href="node025.html#idx-170783592" target="mainbox">MSK_IINF_SIM_PRIMAL_DEG_ITER</a>
+      <li> <a href="node025.html#idx-168854808" target="mainbox">MSK_IINF_SIM_PRIMAL_DUAL_DEG_ITER</a>
+      <li> <a href="node025.html#idx-167230424" target="mainbox">MSK_IINF_SIM_PRIMAL_DUAL_HOTSTART</a>
+      <li> <a href="node025.html#idx-167282952" target="mainbox">MSK_IINF_SIM_PRIMAL_DUAL_HOTSTART_LU</a>
+      <li> <a href="node025.html#idx-170772384" target="mainbox">MSK_IINF_SIM_PRIMAL_DUAL_INF_ITER</a>
+      <li> <a href="node025.html#idx-167209080" target="mainbox">MSK_IINF_SIM_PRIMAL_DUAL_ITER</a>
+      <li> <a href="node025.html#idx-168909208" target="mainbox">MSK_IINF_SIM_PRIMAL_HOTSTART</a>
+      <li> <a href="node025.html#idx-168980352" target="mainbox">MSK_IINF_SIM_PRIMAL_HOTSTART_LU</a>
+      <li> <a href="node025.html#idx-170606032" target="mainbox">MSK_IINF_SIM_PRIMAL_INF_ITER</a>
+      <li> <a href="node025.html#idx-170659640" target="mainbox">MSK_IINF_SIM_PRIMAL_ITER</a>
+      <li> <a href="node025.html#idx-167082608" target="mainbox">MSK_IINF_SIM_SOLVE_DUAL</a>
+      <li> <a href="node025.html#idx-168877160" target="mainbox">MSK_IINF_SOL_BAS_PROSTA</a>
+      <li> <a href="node025.html#idx-167060688" target="mainbox">MSK_IINF_SOL_BAS_SOLSTA</a>
+      <li> <a href="node025.html#idx-168818160" target="mainbox">MSK_IINF_SOL_INT_PROSTA</a>
+      <li> <a href="node025.html#idx-168829152" target="mainbox">MSK_IINF_SOL_INT_SOLSTA</a>
+      <li> <a href="node025.html#idx-167256792" target="mainbox">MSK_IINF_SOL_ITR_PROSTA</a>
+      <li> <a href="node025.html#idx-167272392" target="mainbox">MSK_IINF_SOL_ITR_SOLSTA</a>
+      <li> <a href="node025.html#idx-168806808" target="mainbox">MSK_IINF_STO_NUM_A_CACHE_FLUSHES</a>
+      <li> <a href="node025.html#idx-168937160" target="mainbox">MSK_IINF_STO_NUM_A_REALLOC</a>
+      <li> <a href="node025.html#idx-167069744" target="mainbox">MSK_IINF_STO_NUM_A_TRANSPOSES</a>
+      <li> <a href="node025.html#idx-170806304" target="mainbox">MSK_INF_DOU_TYPE</a>
+      <li> <a href="node025.html#idx-170821248" target="mainbox">MSK_INF_INT_TYPE</a>
+      <li> <a href="node025.html#idx-170813776" target="mainbox">MSK_INF_LINT_TYPE</a>
+      <li> <a href="node025.html#idx-170823264" target="mainbox">MSK_IOMODE_READ</a>
+      <li> <a href="node025.html#idx-170836624" target="mainbox">MSK_IOMODE_READWRITE</a>
+      <li> <a href="node025.html#idx-170829944" target="mainbox">MSK_IOMODE_WRITE</a>
+      <li> <a href="node025.html#idx-178418248" target="mainbox">MSK_IPAR_ALLOC_ADD_QNZ</a>
+      <li> <a href="node025.html#idx-174619032" target="mainbox">MSK_IPAR_ANA_SOL_BASIS</a>
+      <li> <a href="node025.html#idx-174528272" target="mainbox">MSK_IPAR_ANA_SOL_PRINT_VIOLATED</a>
+      <li> <a href="node025.html#idx-178486232" target="mainbox">MSK_IPAR_AUTO_SORT_A_BEFORE_OPT</a>
+      <li> <a href="node025.html#idx-174466544" target="mainbox">MSK_IPAR_AUTO_UPDATE_SOL_INFO</a>
+      <li> <a href="node025.html#idx-174498448" target="mainbox">MSK_IPAR_BASIS_SOLVE_USE_PLUS_ONE</a>
+      <li> <a href="node025.html#idx-178265192" target="mainbox">MSK_IPAR_BI_CLEAN_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-176609904" target="mainbox">MSK_IPAR_BI_IGNORE_MAX_ITER</a>
+      <li> <a href="node025.html#idx-174509664" target="mainbox">MSK_IPAR_BI_IGNORE_NUM_ERROR</a>
+      <li> <a href="node025.html#idx-176490976" target="mainbox">MSK_IPAR_BI_MAX_ITERATIONS</a>
+      <li> <a href="node025.html#idx-176567288" target="mainbox">MSK_IPAR_CACHE_LICENSE</a>
+      <li> <a href="node025.html#idx-178506856" target="mainbox">MSK_IPAR_CACHE_SIZE_L1</a>
+      <li> <a href="node025.html#idx-180219776" target="mainbox">MSK_IPAR_CACHE_SIZE_L2</a>
+      <li> <a href="node025.html#idx-174655248" target="mainbox">MSK_IPAR_CHECK_CONVEXITY</a>
+      <li> <a href="node025.html#idx-172638792" target="mainbox">MSK_IPAR_CHECK_TASK_DATA</a>
+      <li> <a href="node025.html#idx-174634408" target="mainbox">MSK_IPAR_CONCURRENT_NUM_OPTIMIZERS</a>
+      <li> <a href="node025.html#idx-172684640" target="mainbox">MSK_IPAR_CONCURRENT_PRIORITY_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-178372480" target="mainbox">MSK_IPAR_CONCURRENT_PRIORITY_FREE_SIMPLEX</a>
+      <li> <a href="node025.html#idx-178367232" target="mainbox">MSK_IPAR_CONCURRENT_PRIORITY_INTPNT</a>
+      <li> <a href="node025.html#idx-176556224" target="mainbox">MSK_IPAR_CONCURRENT_PRIORITY_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-174574840" target="mainbox">MSK_IPAR_CPU_TYPE</a>
+      <li> <a href="node025.html#idx-178366080" target="mainbox">MSK_IPAR_DATA_CHECK</a>
+      <li> <a href="node025.html#idx-174447432" target="mainbox">MSK_IPAR_FEASREPAIR_OPTIMIZE</a>
+      <li> <a href="node025.html#idx-180192896" target="mainbox">MSK_IPAR_INFEAS_GENERIC_NAMES</a>
+      <li> <a href="node025.html#idx-178274816" target="mainbox">MSK_IPAR_INFEAS_PREFER_PRIMAL</a>
+      <li> <a href="node025.html#idx-172466904" target="mainbox">MSK_IPAR_INFEAS_REPORT_AUTO</a>
+      <li> <a href="node025.html#idx-180211368" target="mainbox">MSK_IPAR_INFEAS_REPORT_LEVEL</a>
+      <li> <a href="node025.html#idx-178296880" target="mainbox">MSK_IPAR_INTPNT_BASIS</a>
+      <li> <a href="node025.html#idx-176540920" target="mainbox">MSK_IPAR_INTPNT_DIFF_STEP</a>
+      <li> <a href="node025.html#idx-176453248" target="mainbox">MSK_IPAR_INTPNT_FACTOR_DEBUG_LVL</a>
+      <li> <a href="node025.html#idx-180267704" target="mainbox">MSK_IPAR_INTPNT_FACTOR_METHOD</a>
+      <li> <a href="node025.html#idx-174538192" target="mainbox">MSK_IPAR_INTPNT_MAX_ITERATIONS</a>
+      <li> <a href="node025.html#idx-174590936" target="mainbox">MSK_IPAR_INTPNT_MAX_NUM_COR</a>
+      <li> <a href="node025.html#idx-174520008" target="mainbox">MSK_IPAR_INTPNT_MAX_NUM_REFINEMENT_STEPS</a>
+      <li> <a href="node025.html#idx-178460648" target="mainbox">MSK_IPAR_INTPNT_NUM_THREADS</a>
+      <li> <a href="node025.html#idx-172524896" target="mainbox">MSK_IPAR_INTPNT_OFF_COL_TRH</a>
+      <li> <a href="node025.html#idx-172560328" target="mainbox">MSK_IPAR_INTPNT_ORDER_METHOD</a>
+      <li> <a href="node025.html#idx-176665592" target="mainbox">MSK_IPAR_INTPNT_REGULARIZATION_USE</a>
+      <li> <a href="node025.html#idx-180324328" target="mainbox">MSK_IPAR_INTPNT_SCALING</a>
+      <li> <a href="node025.html#idx-176619888" target="mainbox">MSK_IPAR_INTPNT_SOLVE_FORM</a>
+      <li> <a href="node025.html#idx-176543720" target="mainbox">MSK_IPAR_INTPNT_STARTING_POINT</a>
+      <li> <a href="node025.html#idx-178277768" target="mainbox">MSK_IPAR_LICENSE_ALLOW_OVERUSE</a>
+      <li> <a href="node025.html#idx-176470496" target="mainbox">MSK_IPAR_LICENSE_CACHE_TIME</a>
+      <li> <a href="node025.html#idx-176532296" target="mainbox">MSK_IPAR_LICENSE_CHECK_TIME</a>
+      <li> <a href="node025.html#idx-174607464" target="mainbox">MSK_IPAR_LICENSE_DEBUG</a>
+      <li> <a href="node025.html#idx-176460936" target="mainbox">MSK_IPAR_LICENSE_PAUSE_TIME</a>
+      <li> <a href="node025.html#idx-180173064" target="mainbox">MSK_IPAR_LICENSE_SUPPRESS_EXPIRE_WRNS</a>
+      <li> <a href="node025.html#idx-174612424" target="mainbox">MSK_IPAR_LICENSE_WAIT</a>
+      <li> <a href="node025.html#idx-174422424" target="mainbox">MSK_IPAR_LIC_TRH_EXPIRY_WRN</a>
+      <li> <a href="node025.html#idx-176549328" target="mainbox">MSK_IPAR_LOG</a>
+      <li> <a href="node025.html#idx-174584896" target="mainbox">MSK_IPAR_LOG_BI</a>
+      <li> <a href="node025.html#idx-172677456" target="mainbox">MSK_IPAR_LOG_BI_FREQ</a>
+      <li> <a href="node025.html#idx-180250960" target="mainbox">MSK_IPAR_LOG_CHECK_CONVEXITY</a>
+      <li> <a href="node025.html#idx-174555008" target="mainbox">MSK_IPAR_LOG_CONCURRENT</a>
+      <li> <a href="node025.html#idx-178314776" target="mainbox">MSK_IPAR_LOG_CUT_SECOND_OPT</a>
+      <li> <a href="node025.html#idx-174460440" target="mainbox">MSK_IPAR_LOG_FACTOR</a>
+      <li> <a href="node025.html#idx-176627656" target="mainbox">MSK_IPAR_LOG_FEASREPAIR</a>
+      <li> <a href="node025.html#idx-178386200" target="mainbox">MSK_IPAR_LOG_FILE</a>
+      <li> <a href="node025.html#idx-180282432" target="mainbox">MSK_IPAR_LOG_HEAD</a>
+      <li> <a href="node025.html#idx-172586552" target="mainbox">MSK_IPAR_LOG_INFEAS_ANA</a>
+      <li> <a href="node025.html#idx-176420624" target="mainbox">MSK_IPAR_LOG_INTPNT</a>
+      <li> <a href="node025.html#idx-176426088" target="mainbox">MSK_IPAR_LOG_MIO</a>
+      <li> <a href="node025.html#idx-172618744" target="mainbox">MSK_IPAR_LOG_MIO_FREQ</a>
+      <li> <a href="node025.html#idx-174421632" target="mainbox">MSK_IPAR_LOG_NONCONVEX</a>
+      <li> <a href="node025.html#idx-178448360" target="mainbox">MSK_IPAR_LOG_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-174487096" target="mainbox">MSK_IPAR_LOG_ORDER</a>
+      <li> <a href="node025.html#idx-176432696" target="mainbox">MSK_IPAR_LOG_PARAM</a>
+      <li> <a href="node025.html#idx-172691112" target="mainbox">MSK_IPAR_LOG_PRESOLVE</a>
+      <li> <a href="node025.html#idx-180206192" target="mainbox">MSK_IPAR_LOG_RESPONSE</a>
+      <li> <a href="node025.html#idx-172561112" target="mainbox">MSK_IPAR_LOG_SENSITIVITY</a>
+      <li> <a href="node025.html#idx-172491480" target="mainbox">MSK_IPAR_LOG_SENSITIVITY_OPT</a>
+      <li> <a href="node025.html#idx-172686080" target="mainbox">MSK_IPAR_LOG_SIM</a>
+      <li> <a href="node025.html#idx-174440392" target="mainbox">MSK_IPAR_LOG_SIM_FREQ</a>
+      <li> <a href="node025.html#idx-174560752" target="mainbox">MSK_IPAR_LOG_SIM_MINOR</a>
+      <li> <a href="node025.html#idx-176573544" target="mainbox">MSK_IPAR_LOG_SIM_NETWORK_FREQ</a>
+      <li> <a href="node025.html#idx-178295800" target="mainbox">MSK_IPAR_LOG_STORAGE</a>
+      <li> <a href="node025.html#idx-174667176" target="mainbox">MSK_IPAR_LP_WRITE_IGNORE_INCOMPATIBLE_ITEMS</a>
+      <li> <a href="node025.html#idx-178519288" target="mainbox">MSK_IPAR_MAX_NUM_WARNINGS</a>
+      <li> <a href="node025.html#idx-176446064" target="mainbox">MSK_IPAR_MIO_BRANCH_DIR</a>
+      <li> <a href="node025.html#idx-172514696" target="mainbox">MSK_IPAR_MIO_BRANCH_PRIORITIES_USE</a>
+      <li> <a href="node025.html#idx-178475520" target="mainbox">MSK_IPAR_MIO_CONSTRUCT_SOL</a>
+      <li> <a href="node025.html#idx-176530496" target="mainbox">MSK_IPAR_MIO_CONT_SOL</a>
+      <li> <a href="node025.html#idx-174493136" target="mainbox">MSK_IPAR_MIO_CUT_LEVEL_ROOT</a>
+      <li> <a href="node025.html#idx-172521808" target="mainbox">MSK_IPAR_MIO_CUT_LEVEL_TREE</a>
+      <li> <a href="node025.html#idx-178516624" target="mainbox">MSK_IPAR_MIO_FEASPUMP_LEVEL</a>
+      <li> <a href="node025.html#idx-180315632" target="mainbox">MSK_IPAR_MIO_HEURISTIC_LEVEL</a>
+      <li> <a href="node025.html#idx-178427880" target="mainbox">MSK_IPAR_MIO_HOTSTART</a>
+      <li> <a href="node025.html#idx-180310816" target="mainbox">MSK_IPAR_MIO_KEEP_BASIS</a>
+      <li> <a href="node025.html#idx-172665168" target="mainbox">MSK_IPAR_MIO_LOCAL_BRANCH_NUMBER</a>
+      <li> <a href="node025.html#idx-178445200" target="mainbox">MSK_IPAR_MIO_MAX_NUM_BRANCHES</a>
+      <li> <a href="node025.html#idx-180301624" target="mainbox">MSK_IPAR_MIO_MAX_NUM_RELAXS</a>
+      <li> <a href="node025.html#idx-178328352" target="mainbox">MSK_IPAR_MIO_MAX_NUM_SOLUTIONS</a>
+      <li> <a href="node025.html#idx-172714104" target="mainbox">MSK_IPAR_MIO_MODE</a>
+      <li> <a href="node025.html#idx-172473160" target="mainbox">MSK_IPAR_MIO_NODE_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-174521088" target="mainbox">MSK_IPAR_MIO_NODE_SELECTION</a>
+      <li> <a href="node025.html#idx-176414016" target="mainbox">MSK_IPAR_MIO_OPTIMIZER_MODE</a>
+      <li> <a href="node025.html#idx-176475312" target="mainbox">MSK_IPAR_MIO_PRESOLVE_AGGREGATE</a>
+      <li> <a href="node025.html#idx-178271512" target="mainbox">MSK_IPAR_MIO_PRESOLVE_PROBING</a>
+      <li> <a href="node025.html#idx-178301408" target="mainbox">MSK_IPAR_MIO_PRESOLVE_USE</a>
+      <li> <a href="node025.html#idx-172645048" target="mainbox">MSK_IPAR_MIO_ROOT_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-178475088" target="mainbox">MSK_IPAR_MIO_STRONG_BRANCH</a>
+      <li> <a href="node025.html#idx-172657984" target="mainbox">MSK_IPAR_NONCONVEX_MAX_ITERATIONS</a>
+      <li> <a href="node025.html#idx-176514112" target="mainbox">MSK_IPAR_OBJECTIVE_SENSE</a>
+      <li> <a href="node025.html#idx-176643392" target="mainbox">MSK_IPAR_OPF_MAX_TERMS_PER_LINE</a>
+      <li> <a href="node025.html#idx-176524176" target="mainbox">MSK_IPAR_OPF_WRITE_HEADER</a>
+      <li> <a href="node025.html#idx-178410704" target="mainbox">MSK_IPAR_OPF_WRITE_HINTS</a>
+      <li> <a href="node025.html#idx-172542144" target="mainbox">MSK_IPAR_OPF_WRITE_PARAMETERS</a>
+      <li> <a href="node025.html#idx-180244704" target="mainbox">MSK_IPAR_OPF_WRITE_PROBLEM</a>
+      <li> <a href="node025.html#idx-172619464" target="mainbox">MSK_IPAR_OPF_WRITE_SOL_BAS</a>
+      <li> <a href="node025.html#idx-172498600" target="mainbox">MSK_IPAR_OPF_WRITE_SOL_ITG</a>
+      <li> <a href="node025.html#idx-172567512" target="mainbox">MSK_IPAR_OPF_WRITE_SOL_ITR</a>
+      <li> <a href="node025.html#idx-176503552" target="mainbox">MSK_IPAR_OPF_WRITE_SOLUTIONS</a>
+      <li> <a href="node025.html#idx-178494280" target="mainbox">MSK_IPAR_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-178434920" target="mainbox">MSK_IPAR_PARAM_READ_CASE_NAME</a>
+      <li> <a href="node025.html#idx-176517992" target="mainbox">MSK_IPAR_PARAM_READ_IGN_ERROR</a>
+      <li> <a href="node025.html#idx-172634408" target="mainbox">MSK_IPAR_PRESOLVE_ELIM_FILL</a>
+      <li> <a href="node025.html#idx-174611992" target="mainbox">MSK_IPAR_PRESOLVE_ELIMINATOR_MAX_NUM_TRIES</a>
+      <li> <a href="node025.html#idx-178394536" target="mainbox">MSK_IPAR_PRESOLVE_ELIMINATOR_USE</a>
+      <li> <a href="node025.html#idx-170836120" target="mainbox">MSK_IPAR_PRESOLVE_LEVEL</a>
+      <li> <a href="node025.html#idx-176510808" target="mainbox">MSK_IPAR_PRESOLVE_LINDEP_USE</a>
+      <li> <a href="node025.html#idx-174542288" target="mainbox">MSK_IPAR_PRESOLVE_LINDEP_WORK_LIM</a>
+      <li> <a href="node025.html#idx-172486240" target="mainbox">MSK_IPAR_PRESOLVE_USE</a>
+      <li> <a href="node025.html#idx-174660424" target="mainbox">MSK_IPAR_QO_SEPARABLE_REFORMULATION</a>
+      <li> <a href="node025.html#idx-172553640" target="mainbox">MSK_IPAR_READ_ADD_ANZ</a>
+      <li> <a href="node025.html#idx-174548968" target="mainbox">MSK_IPAR_READ_ADD_CON</a>
+      <li> <a href="node025.html#idx-170828432" target="mainbox">MSK_IPAR_READ_ADD_CONE</a>
+      <li> <a href="node025.html#idx-172696352" target="mainbox">MSK_IPAR_READ_ADD_QNZ</a>
+      <li> <a href="node025.html#idx-172479696" target="mainbox">MSK_IPAR_READ_ADD_VAR</a>
+      <li> <a href="node025.html#idx-172707640" target="mainbox">MSK_IPAR_READ_ANZ</a>
+      <li> <a href="node025.html#idx-172548752" target="mainbox">MSK_IPAR_READ_CON</a>
+      <li> <a href="node025.html#idx-178514256" target="mainbox">MSK_IPAR_READ_CONE</a>
+      <li> <a href="node025.html#idx-180233280" target="mainbox">MSK_IPAR_READ_DATA_COMPRESSED</a>
+      <li> <a href="node025.html#idx-180257496" target="mainbox">MSK_IPAR_READ_DATA_FORMAT</a>
+      <li> <a href="node025.html#idx-178379664" target="mainbox">MSK_IPAR_READ_KEEP_FREE_CON</a>
+      <li> <a href="node025.html#idx-172720072" target="mainbox">MSK_IPAR_READ_LP_DROP_NEW_VARS_IN_BOU</a>
+      <li> <a href="node025.html#idx-178308592" target="mainbox">MSK_IPAR_READ_LP_QUOTED_NAMES</a>
+      <li> <a href="node025.html#idx-178433056" target="mainbox">MSK_IPAR_READ_MPS_FORMAT</a>
+      <li> <a href="node025.html#idx-178330512" target="mainbox">MSK_IPAR_READ_MPS_KEEP_INT</a>
+      <li> <a href="node025.html#idx-176560752" target="mainbox">MSK_IPAR_READ_MPS_OBJ_SENSE</a>
+      <li> <a href="node025.html#idx-178441824" target="mainbox">MSK_IPAR_READ_MPS_QUOTED_NAMES</a>
+      <li> <a href="node025.html#idx-172535464" target="mainbox">MSK_IPAR_READ_MPS_RELAX</a>
+      <li> <a href="node025.html#idx-174474592" target="mainbox">MSK_IPAR_READ_MPS_WIDTH</a>
+      <li> <a href="node025.html#idx-180220344" target="mainbox">MSK_IPAR_READ_Q_MODE</a>
+      <li> <a href="node025.html#idx-172580376" target="mainbox">MSK_IPAR_READ_QNZ</a>
+      <li> <a href="node025.html#idx-174671704" target="mainbox">MSK_IPAR_READ_TASK_IGNORE_PARAM</a>
+      <li> <a href="node025.html#idx-180272808" target="mainbox">MSK_IPAR_READ_VAR</a>
+      <li> <a href="node025.html#idx-176603008" target="mainbox">MSK_IPAR_SENSITIVITY_ALL</a>
+      <li> <a href="node025.html#idx-178352072" target="mainbox">MSK_IPAR_SENSITIVITY_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-172606240" target="mainbox">MSK_IPAR_SENSITIVITY_TYPE</a>
+      <li> <a href="node025.html#idx-176658336" target="mainbox">MSK_IPAR_SIM_BASIS_FACTOR_USE</a>
+      <li> <a href="node025.html#idx-178404960" target="mainbox">MSK_IPAR_SIM_DEGEN</a>
+      <li> <a href="node025.html#idx-180263752" target="mainbox">MSK_IPAR_SIM_DUAL_CRASH</a>
+      <li> <a href="node025.html#idx-178494928" target="mainbox">MSK_IPAR_SIM_DUAL_PHASEONE_METHOD</a>
+      <li> <a href="node025.html#idx-172612280" target="mainbox">MSK_IPAR_SIM_DUAL_RESTRICT_SELECTION</a>
+      <li> <a href="node025.html#idx-174647200" target="mainbox">MSK_IPAR_SIM_DUAL_SELECTION</a>
+      <li> <a href="node025.html#idx-176439808" target="mainbox">MSK_IPAR_SIM_EXPLOIT_DUPVEC</a>
+      <li> <a href="node025.html#idx-176431048" target="mainbox">MSK_IPAR_SIM_HOTSTART</a>
+      <li> <a href="node025.html#idx-176497296" target="mainbox">MSK_IPAR_SIM_HOTSTART_LU</a>
+      <li> <a href="node025.html#idx-178501464" target="mainbox">MSK_IPAR_SIM_INTEGER</a>
+      <li> <a href="node025.html#idx-174567008" target="mainbox">MSK_IPAR_SIM_MAX_ITERATIONS</a>
+      <li> <a href="node025.html#idx-178349624" target="mainbox">MSK_IPAR_SIM_MAX_NUM_SETBACKS</a>
+      <li> <a href="node025.html#idx-180199152" target="mainbox">MSK_IPAR_SIM_NETWORK_DETECT</a>
+      <li> <a href="node025.html#idx-176501320" target="mainbox">MSK_IPAR_SIM_NETWORK_DETECT_HOTSTART</a>
+      <li> <a href="node025.html#idx-180225664" target="mainbox">MSK_IPAR_SIM_NETWORK_DETECT_METHOD</a>
+      <li> <a href="node025.html#idx-178392600" target="mainbox">MSK_IPAR_SIM_NON_SINGULAR</a>
+      <li> <a href="node025.html#idx-178468984" target="mainbox">MSK_IPAR_SIM_PRIMAL_CRASH</a>
+      <li> <a href="node025.html#idx-170848056" target="mainbox">MSK_IPAR_SIM_PRIMAL_PHASEONE_METHOD</a>
+      <li> <a href="node025.html#idx-178507504" target="mainbox">MSK_IPAR_SIM_PRIMAL_RESTRICT_SELECTION</a>
+      <li> <a href="node025.html#idx-172592808" target="mainbox">MSK_IPAR_SIM_PRIMAL_SELECTION</a>
+      <li> <a href="node025.html#idx-174640664" target="mainbox">MSK_IPAR_SIM_REFACTOR_FREQ</a>
+      <li> <a href="node025.html#idx-180279704" target="mainbox">MSK_IPAR_SIM_REFORMULATION</a>
+      <li> <a href="node025.html#idx-180293072" target="mainbox">MSK_IPAR_SIM_SAVE_LU</a>
+      <li> <a href="node025.html#idx-176589064" target="mainbox">MSK_IPAR_SIM_SCALING</a>
+      <li> <a href="node025.html#idx-174434136" target="mainbox">MSK_IPAR_SIM_SCALING_METHOD</a>
+      <li> <a href="node025.html#idx-174611920" target="mainbox">MSK_IPAR_SIM_SOLVE_FORM</a>
+      <li> <a href="node025.html#idx-170843384" target="mainbox">MSK_IPAR_SIM_STABILITY_PRIORITY</a>
+      <li> <a href="node025.html#idx-180226960" target="mainbox">MSK_IPAR_SIM_SWITCH_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-180309384" target="mainbox">MSK_IPAR_SOL_FILTER_KEEP_BASIC</a>
+      <li> <a href="node025.html#idx-176605232" target="mainbox">MSK_IPAR_SOL_FILTER_KEEP_RANGED</a>
+      <li> <a href="node025.html#idx-176452456" target="mainbox">MSK_IPAR_SOL_QUOTED_NAMES</a>
+      <li> <a href="node025.html#idx-174599848" target="mainbox">MSK_IPAR_SOL_READ_NAME_WIDTH</a>
+      <li> <a href="node025.html#idx-174534312" target="mainbox">MSK_IPAR_SOL_READ_WIDTH</a>
+      <li> <a href="node025.html#idx-174428960" target="mainbox">MSK_IPAR_SOLUTION_CALLBACK</a>
+      <li> <a href="node025.html#idx-174481280" target="mainbox">MSK_IPAR_TIMING_LEVEL</a>
+      <li> <a href="node025.html#idx-172671920" target="mainbox">MSK_IPAR_WARNING_LEVEL</a>
+      <li> <a href="node025.html#idx-180185568" target="mainbox">MSK_IPAR_WRITE_BAS_CONSTRAINTS</a>
+      <li> <a href="node025.html#idx-172507576" target="mainbox">MSK_IPAR_WRITE_BAS_HEAD</a>
+      <li> <a href="node025.html#idx-178289192" target="mainbox">MSK_IPAR_WRITE_BAS_VARIABLES</a>
+      <li> <a href="node025.html#idx-172493280" target="mainbox">MSK_IPAR_WRITE_DATA_COMPRESSED</a>
+      <li> <a href="node025.html#idx-174650576" target="mainbox">MSK_IPAR_WRITE_DATA_FORMAT</a>
+      <li> <a href="node025.html#idx-178398920" target="mainbox">MSK_IPAR_WRITE_DATA_PARAM</a>
+      <li> <a href="node025.html#idx-172651368" target="mainbox">MSK_IPAR_WRITE_FREE_CON</a>
+      <li> <a href="node025.html#idx-172671416" target="mainbox">MSK_IPAR_WRITE_GENERIC_NAMES</a>
+      <li> <a href="node025.html#idx-174628160" target="mainbox">MSK_IPAR_WRITE_GENERIC_NAMES_IO</a>
+      <li> <a href="node025.html#idx-172599128" target="mainbox">MSK_IPAR_WRITE_INT_CONSTRAINTS</a>
+      <li> <a href="node025.html#idx-176537400" target="mainbox">MSK_IPAR_WRITE_INT_HEAD</a>
+      <li> <a href="node025.html#idx-172548248" target="mainbox">MSK_IPAR_WRITE_INT_VARIABLES</a>
+      <li> <a href="node025.html#idx-174592440" target="mainbox">MSK_IPAR_WRITE_LP_LINE_WIDTH</a>
+      <li> <a href="node025.html#idx-174453536" target="mainbox">MSK_IPAR_WRITE_LP_QUOTED_NAMES</a>
+      <li> <a href="node025.html#idx-172586120" target="mainbox">MSK_IPAR_WRITE_LP_STRICT_FORMAT</a>
+      <li> <a href="node025.html#idx-176594672" target="mainbox">MSK_IPAR_WRITE_LP_TERMS_PER_LINE</a>
+      <li> <a href="node025.html#idx-178357888" target="mainbox">MSK_IPAR_WRITE_MPS_INT</a>
+      <li> <a href="node025.html#idx-178454400" target="mainbox">MSK_IPAR_WRITE_MPS_OBJ_SENSE</a>
+      <li> <a href="node025.html#idx-174434856" target="mainbox">MSK_IPAR_WRITE_MPS_QUOTED_NAMES</a>
+      <li> <a href="node025.html#idx-170854952" target="mainbox">MSK_IPAR_WRITE_MPS_STRICT</a>
+      <li> <a href="node025.html#idx-176651152" target="mainbox">MSK_IPAR_WRITE_PRECISION</a>
+      <li> <a href="node025.html#idx-172695920" target="mainbox">MSK_IPAR_WRITE_SOL_CONSTRAINTS</a>
+      <li> <a href="node025.html#idx-180179312" target="mainbox">MSK_IPAR_WRITE_SOL_HEAD</a>
+      <li> <a href="node025.html#idx-178346104" target="mainbox">MSK_IPAR_WRITE_SOL_VARIABLES</a>
+      <li> <a href="node025.html#idx-176482496" target="mainbox">MSK_IPAR_WRITE_TASK_INC_SOL</a>
+      <li> <a href="node025.html#idx-176657256" target="mainbox">MSK_IPAR_WRITE_XML_MODE</a>
+      <li> <a href="node025.html#idx-180334888" target="mainbox">MSK_LANG_DAN</a>
+      <li> <a href="node025.html#idx-180341504" target="mainbox">MSK_LANG_ENG</a>
+      <li> <a href="node025.html#idx-207130920" target="mainbox">MSK_LICENSE_BUFFER_LENGTH</a>
+      <li> <a href="node025.html#idx-182047664" target="mainbox">MSK_LIINF_BI_CLEAN_DUAL_DEG_ITER</a>
+      <li> <a href="node025.html#idx-180391304" target="mainbox">MSK_LIINF_BI_CLEAN_DUAL_ITER</a>
+      <li> <a href="node025.html#idx-180384616" target="mainbox">MSK_LIINF_BI_CLEAN_PRIMAL_DEG_ITER</a>
+      <li> <a href="node025.html#idx-180374992" target="mainbox">MSK_LIINF_BI_CLEAN_PRIMAL_DUAL_DEG_ITER</a>
+      <li> <a href="node025.html#idx-180363344" target="mainbox">MSK_LIINF_BI_CLEAN_PRIMAL_DUAL_ITER</a>
+      <li> <a href="node025.html#idx-182066640" target="mainbox">MSK_LIINF_BI_CLEAN_PRIMAL_DUAL_SUB_ITER</a>
+      <li> <a href="node025.html#idx-180330720" target="mainbox">MSK_LIINF_BI_CLEAN_PRIMAL_ITER</a>
+      <li> <a href="node025.html#idx-180409768" target="mainbox">MSK_LIINF_BI_DUAL_ITER</a>
+      <li> <a href="node025.html#idx-180411712" target="mainbox">MSK_LIINF_BI_PRIMAL_ITER</a>
+      <li> <a href="node025.html#idx-180354440" target="mainbox">MSK_LIINF_INTPNT_FACTOR_NUM_NZ</a>
+      <li> <a href="node025.html#idx-180362560" target="mainbox">MSK_LIINF_MIO_INTPNT_ITER</a>
+      <li> <a href="node025.html#idx-182057008" target="mainbox">MSK_LIINF_MIO_SIMPLEX_ITER</a>
+      <li> <a href="node025.html#idx-180404096" target="mainbox">MSK_LIINF_RD_NUMANZ</a>
+      <li> <a href="node025.html#idx-180397192" target="mainbox">MSK_LIINF_RD_NUMQNZ</a>
+      <li> <a href="node025.html#idx-182072744" target="mainbox">MSK_MARK_LO</a>
+      <li> <a href="node025.html#idx-182079360" target="mainbox">MSK_MARK_UP</a>
+      <li> <a href="node025.html#idx-207135736" target="mainbox">MSK_MAX_STR_LEN</a>
+      <li> <a href="node025.html#idx-182080216" target="mainbox">MSK_MIO_CONT_SOL_ITG</a>
+      <li> <a href="node025.html#idx-182125560" target="mainbox">MSK_MIO_CONT_SOL_ITG_REL</a>
+      <li> <a href="node025.html#idx-182103720" target="mainbox">MSK_MIO_CONT_SOL_NONE</a>
+      <li> <a href="node025.html#idx-182112408" target="mainbox">MSK_MIO_CONT_SOL_ROOT</a>
+      <li> <a href="node025.html#idx-182131096" target="mainbox">MSK_MIO_MODE_IGNORED</a>
+      <li> <a href="node025.html#idx-182138568" target="mainbox">MSK_MIO_MODE_LAZY</a>
+      <li> <a href="node025.html#idx-182150136" target="mainbox">MSK_MIO_MODE_SATISFIED</a>
+      <li> <a href="node025.html#idx-182197064" target="mainbox">MSK_MIO_NODE_SELECTION_BEST</a>
+      <li> <a href="node025.html#idx-182205328" target="mainbox">MSK_MIO_NODE_SELECTION_FIRST</a>
+      <li> <a href="node025.html#idx-182178952" target="mainbox">MSK_MIO_NODE_SELECTION_FREE</a>
+      <li> <a href="node025.html#idx-182170688" target="mainbox">MSK_MIO_NODE_SELECTION_HYBRID</a>
+      <li> <a href="node025.html#idx-182162496" target="mainbox">MSK_MIO_NODE_SELECTION_PSEUDO</a>
+      <li> <a href="node025.html#idx-182143744" target="mainbox">MSK_MIO_NODE_SELECTION_WORST</a>
+      <li> <a href="node025.html#idx-182229976" target="mainbox">MSK_MPS_FORMAT_FREE</a>
+      <li> <a href="node025.html#idx-182222504" target="mainbox">MSK_MPS_FORMAT_RELAXED</a>
+      <li> <a href="node025.html#idx-182176296" target="mainbox">MSK_MPS_FORMAT_STRICT</a>
+      <li> <a href="node025.html#idx-182258000" target="mainbox">MSK_MSG_MPS_SELECTED</a>
+      <li> <a href="node025.html#idx-182195840" target="mainbox">MSK_MSG_READING_FILE</a>
+      <li> <a href="node025.html#idx-182246432" target="mainbox">MSK_MSG_WRITING_FILE</a>
+      <li> <a href="node025.html#idx-180417096" target="mainbox">MSK_NETWORK_DETECT_ADVANCED</a>
+      <li> <a href="node025.html#idx-182275392" target="mainbox">MSK_NETWORK_DETECT_FREE</a>
+      <li> <a href="node025.html#idx-182269136" target="mainbox">MSK_NETWORK_DETECT_SIMPLE</a>
+      <li> <a href="node025.html#idx-182263392" target="mainbox">MSK_OBJECTIVE_SENSE_MAXIMIZE</a>
+      <li> <a href="node025.html#idx-182286600" target="mainbox">MSK_OBJECTIVE_SENSE_MINIMIZE</a>
+      <li> <a href="node025.html#idx-182290840" target="mainbox">MSK_OBJECTIVE_SENSE_UNDEFINED</a>
+      <li> <a href="node025.html#idx-183579640" target="mainbox">MSK_OFF</a>
+      <li> <a href="node025.html#idx-183573752" target="mainbox">MSK_ON</a>
+      <li> <a href="node025.html#idx-183586328" target="mainbox">MSK_OPTIMIZER_CONCURRENT</a>
+      <li> <a href="node025.html#idx-183617944" target="mainbox">MSK_OPTIMIZER_CONIC</a>
+      <li> <a href="node025.html#idx-183601056" target="mainbox">MSK_OPTIMIZER_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-183605584" target="mainbox">MSK_OPTIMIZER_FREE</a>
+      <li> <a href="node025.html#idx-183637560" target="mainbox">MSK_OPTIMIZER_FREE_SIMPLEX</a>
+      <li> <a href="node025.html#idx-183573032" target="mainbox">MSK_OPTIMIZER_INTPNT</a>
+      <li> <a href="node025.html#idx-183593656" target="mainbox">MSK_OPTIMIZER_MIXED_INT</a>
+      <li> <a href="node025.html#idx-183624552" target="mainbox">MSK_OPTIMIZER_NONCONVEX</a>
+      <li> <a href="node025.html#idx-182273160" target="mainbox">MSK_OPTIMIZER_PRIMAL_DUAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-183617440" target="mainbox">MSK_OPTIMIZER_PRIMAL_SIMPLEX</a>
+      <li> <a href="node025.html#idx-183631168" target="mainbox">MSK_OPTIMIZER_QCONE</a>
+      <li> <a href="node025.html#idx-183618736" target="mainbox">MSK_ORDER_METHOD_APPMINLOC1</a>
+      <li> <a href="node025.html#idx-183655528" target="mainbox">MSK_ORDER_METHOD_APPMINLOC2</a>
+      <li> <a href="node025.html#idx-183678160" target="mainbox">MSK_ORDER_METHOD_FREE</a>
+      <li> <a href="node025.html#idx-183672704" target="mainbox">MSK_ORDER_METHOD_GRAPHPAR1</a>
+      <li> <a href="node025.html#idx-183666088" target="mainbox">MSK_ORDER_METHOD_GRAPHPAR2</a>
+      <li> <a href="node025.html#idx-183648128" target="mainbox">MSK_ORDER_METHOD_NONE</a>
+      <li> <a href="node025.html#idx-183703672" target="mainbox">MSK_PAR_DOU_TYPE</a>
+      <li> <a href="node025.html#idx-183698712" target="mainbox">MSK_PAR_INT_TYPE</a>
+      <li> <a href="node025.html#idx-183688872" target="mainbox">MSK_PAR_INVALID_TYPE</a>
+      <li> <a href="node025.html#idx-183696272" target="mainbox">MSK_PAR_STR_TYPE</a>
+      <li> <a href="node025.html#idx-183757712" target="mainbox">MSK_PI_CON</a>
+      <li> <a href="node025.html#idx-183751096" target="mainbox">MSK_PI_CONE</a>
+      <li> <a href="node025.html#idx-183744416" target="mainbox">MSK_PI_VAR</a>
+      <li> <a href="node025.html#idx-183733496" target="mainbox">MSK_PRESOLVE_MODE_FREE</a>
+      <li> <a href="node025.html#idx-183725520" target="mainbox">MSK_PRESOLVE_MODE_OFF</a>
+      <li> <a href="node025.html#idx-183718616" target="mainbox">MSK_PRESOLVE_MODE_ON</a>
+      <li> <a href="node025.html#idx-183781640" target="mainbox">MSK_PROBTYPE_CONIC</a>
+      <li> <a href="node025.html#idx-183788320" target="mainbox">MSK_PROBTYPE_GECO</a>
+      <li> <a href="node025.html#idx-183774960" target="mainbox">MSK_PROBTYPE_LO</a>
+      <li> <a href="node025.html#idx-183774168" target="mainbox">MSK_PROBTYPE_MIXED</a>
+      <li> <a href="node025.html#idx-183743624" target="mainbox">MSK_PROBTYPE_QCQO</a>
+      <li> <a href="node025.html#idx-183802336" target="mainbox">MSK_PROBTYPE_QO</a>
+      <li> <a href="node025.html#idx-185296512" target="mainbox">MSK_PRO_STA_DUAL_FEAS</a>
+      <li> <a href="node025.html#idx-185279264" target="mainbox">MSK_PRO_STA_DUAL_INFEAS</a>
+      <li> <a href="node025.html#idx-183585608" target="mainbox">MSK_PRO_STA_ILL_POSED</a>
+      <li> <a href="node025.html#idx-185257568" target="mainbox">MSK_PRO_STA_NEAR_DUAL_FEAS</a>
+      <li> <a href="node025.html#idx-185240680" target="mainbox">MSK_PRO_STA_NEAR_PRIM_AND_DUAL_FEAS</a>
+      <li> <a href="node025.html#idx-185288320" target="mainbox">MSK_PRO_STA_NEAR_PRIM_FEAS</a>
+      <li> <a href="node025.html#idx-185272584" target="mainbox">MSK_PRO_STA_PRIM_AND_DUAL_FEAS</a>
+      <li> <a href="node025.html#idx-183813472" target="mainbox">MSK_PRO_STA_PRIM_AND_DUAL_INFEAS</a>
+      <li> <a href="node025.html#idx-185245352" target="mainbox">MSK_PRO_STA_PRIM_FEAS</a>
+      <li> <a href="node025.html#idx-183811752" target="mainbox">MSK_PRO_STA_PRIM_INFEAS</a>
+      <li> <a href="node025.html#idx-185266120" target="mainbox">MSK_PRO_STA_PRIM_INFEAS_OR_UNBOUNDED</a>
+      <li> <a href="node025.html#idx-185238232" target="mainbox">MSK_PRO_STA_UNKNOWN</a>
+      <li> <a href="node025.html#idx-185302408" target="mainbox">MSK_Q_READ_ADD</a>
+      <li> <a href="node025.html#idx-185309592" target="mainbox">MSK_Q_READ_DROP_LOWER</a>
+      <li> <a href="node025.html#idx-185317856" target="mainbox">MSK_Q_READ_DROP_UPPER</a>
+      <li> <a href="node025.html#idx-187327480" target="mainbox">MSK_RES_ERR_AD_INVALID_CODELIST</a>
+      <li> <a href="node025.html#idx-199985056" target="mainbox">MSK_RES_ERR_AD_INVALID_OPERAND</a>
+      <li> <a href="node025.html#idx-201928144" target="mainbox">MSK_RES_ERR_AD_INVALID_OPERATOR</a>
+      <li> <a href="node025.html#idx-198292472" target="mainbox">MSK_RES_ERR_AD_MISSING_OPERAND</a>
+      <li> <a href="node025.html#idx-194363544" target="mainbox">MSK_RES_ERR_AD_MISSING_RETURN</a>
+      <li> <a href="node025.html#idx-192596880" target="mainbox">MSK_RES_ERR_API_ARRAY_TOO_SMALL</a>
+      <li> <a href="node025.html#idx-198091984" target="mainbox">MSK_RES_ERR_API_CB_CONNECT</a>
+      <li> <a href="node025.html#idx-192484128" target="mainbox">MSK_RES_ERR_API_FATAL_ERROR</a>
+      <li> <a href="node025.html#idx-194498784" target="mainbox">MSK_RES_ERR_API_INTERNAL</a>
+      <li> <a href="node025.html#idx-198266536" target="mainbox">MSK_RES_ERR_ARGUMENT_DIMENSION</a>
+      <li> <a href="node025.html#idx-196304552" target="mainbox">MSK_RES_ERR_ARGUMENT_LENNEQ</a>
+      <li> <a href="node025.html#idx-189029480" target="mainbox">MSK_RES_ERR_ARGUMENT_PERM_ARRAY</a>
+      <li> <a href="node025.html#idx-187297664" target="mainbox">MSK_RES_ERR_ARGUMENT_TYPE</a>
+      <li> <a href="node025.html#idx-200089544" target="mainbox">MSK_RES_ERR_BASIS</a>
+      <li> <a href="node025.html#idx-187128504" target="mainbox">MSK_RES_ERR_BASIS_FACTOR</a>
+      <li> <a href="node025.html#idx-198063816" target="mainbox">MSK_RES_ERR_BASIS_SINGULAR</a>
+      <li> <a href="node025.html#idx-196286872" target="mainbox">MSK_RES_ERR_BLANK_NAME</a>
+      <li> <a href="node025.html#idx-192683616" target="mainbox">MSK_RES_ERR_CANNOT_CLONE_NL</a>
+      <li> <a href="node025.html#idx-190907672" target="mainbox">MSK_RES_ERR_CANNOT_HANDLE_NL</a>
+      <li> <a href="node025.html#idx-192480824" target="mainbox">MSK_RES_ERR_CONCURRENT_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-190744192" target="mainbox">MSK_RES_ERR_CONE_INDEX</a>
+      <li> <a href="node025.html#idx-196244328" target="mainbox">MSK_RES_ERR_CONE_OVERLAP</a>
+      <li> <a href="node025.html#idx-190930672" target="mainbox">MSK_RES_ERR_CONE_REP_VAR</a>
+      <li> <a href="node025.html#idx-201848016" target="mainbox">MSK_RES_ERR_CONE_SIZE</a>
+      <li> <a href="node025.html#idx-196182528" target="mainbox">MSK_RES_ERR_CONE_TYPE</a>
+      <li> <a href="node025.html#idx-201734696" target="mainbox">MSK_RES_ERR_CONE_TYPE_STR</a>
+      <li> <a href="node025.html#idx-194407600" target="mainbox">MSK_RES_ERR_CON_Q_NOT_NSD</a>
+      <li> <a href="node025.html#idx-189106368" target="mainbox">MSK_RES_ERR_CON_Q_NOT_PSD</a>
+      <li> <a href="node025.html#idx-189002888" target="mainbox">MSK_RES_ERR_DATA_FILE_EXT</a>
+      <li> <a href="node025.html#idx-196394664" target="mainbox">MSK_RES_ERR_DUP_NAME</a>
+      <li> <a href="node025.html#idx-187317784" target="mainbox">MSK_RES_ERR_END_OF_FILE</a>
+      <li> <a href="node025.html#idx-189125840" target="mainbox">MSK_RES_ERR_FACTOR</a>
+      <li> <a href="node025.html#idx-187175208" target="mainbox">MSK_RES_ERR_FEASREPAIR_CANNOT_RELAX</a>
+      <li> <a href="node025.html#idx-194524944" target="mainbox">MSK_RES_ERR_FEASREPAIR_INCONSISTENT_BOUND</a>
+      <li> <a href="node025.html#idx-192548232" target="mainbox">MSK_RES_ERR_FEASREPAIR_SOLVING_RELAXED</a>
+      <li> <a href="node025.html#idx-198111672" target="mainbox">MSK_RES_ERR_FILE_LICENSE</a>
+      <li> <a href="node025.html#idx-192444464" target="mainbox">MSK_RES_ERR_FILE_OPEN</a>
+      <li> <a href="node025.html#idx-192578048" target="mainbox">MSK_RES_ERR_FILE_READ</a>
+      <li> <a href="node025.html#idx-190831072" target="mainbox">MSK_RES_ERR_FILE_WRITE</a>
+      <li> <a href="node025.html#idx-199951928" target="mainbox">MSK_RES_ERR_FIRST</a>
+      <li> <a href="node025.html#idx-189012952" target="mainbox">MSK_RES_ERR_FIRSTI</a>
+      <li> <a href="node025.html#idx-189048376" target="mainbox">MSK_RES_ERR_FIRSTJ</a>
+      <li> <a href="node025.html#idx-194475576" target="mainbox">MSK_RES_ERR_FIXED_BOUND_VALUES</a>
+      <li> <a href="node025.html#idx-201803176" target="mainbox">MSK_RES_ERR_FLEXLM</a>
+      <li> <a href="node025.html#idx-198204736" target="mainbox">MSK_RES_ERR_HUGE_AIJ</a>
+      <li> <a href="node025.html#idx-201897528" target="mainbox">MSK_RES_ERR_HUGE_C</a>
+      <li> <a href="node025.html#idx-196213360" target="mainbox">MSK_RES_ERR_IDENTICAL_TASKS</a>
+      <li> <a href="node025.html#idx-196314536" target="mainbox">MSK_RES_ERR_IN_ARGUMENT</a>
+      <li> <a href="node025.html#idx-187091496" target="mainbox">MSK_RES_ERR_INDEX</a>
+      <li> <a href="node025.html#idx-201723848" target="mainbox">MSK_RES_ERR_INDEX_ARR_IS_TOO_LARGE</a>
+      <li> <a href="node025.html#idx-192557000" target="mainbox">MSK_RES_ERR_INDEX_ARR_IS_TOO_SMALL</a>
+      <li> <a href="node025.html#idx-187140288" target="mainbox">MSK_RES_ERR_INDEX_IS_TOO_LARGE</a>
+      <li> <a href="node025.html#idx-185340488" target="mainbox">MSK_RES_ERR_INDEX_IS_TOO_SMALL</a>
+      <li> <a href="node025.html#idx-189053840" target="mainbox">MSK_RES_ERR_INF_DOU_INDEX</a>
+      <li> <a href="node025.html#idx-199983472" target="mainbox">MSK_RES_ERR_INF_DOU_NAME</a>
+      <li> <a href="node025.html#idx-194381512" target="mainbox">MSK_RES_ERR_INFEAS_UNDEFINED</a>
+      <li> <a href="node025.html#idx-192631296" target="mainbox">MSK_RES_ERR_INFINITE_BOUND</a>
+      <li> <a href="node025.html#idx-192569216" target="mainbox">MSK_RES_ERR_INF_INT_INDEX</a>
+      <li> <a href="node025.html#idx-194463144" target="mainbox">MSK_RES_ERR_INF_INT_NAME</a>
+      <li> <a href="node025.html#idx-187208624" target="mainbox">MSK_RES_ERR_INF_LINT_INDEX</a>
+      <li> <a href="node025.html#idx-185484424" target="mainbox">MSK_RES_ERR_INF_LINT_NAME</a>
+      <li> <a href="node025.html#idx-190821224" target="mainbox">MSK_RES_ERR_INF_TYPE</a>
+      <li> <a href="node025.html#idx-203513152" target="mainbox">MSK_RES_ERR_INT64_TO_INT32_CAST</a>
+      <li> <a href="node025.html#idx-187131808" target="mainbox">MSK_RES_ERR_INTERNAL</a>
+      <li> <a href="node025.html#idx-196344360" target="mainbox">MSK_RES_ERR_INTERNAL_TEST_FAILED</a>
+      <li> <a href="node025.html#idx-192666440" target="mainbox">MSK_RES_ERR_INVALID_ACCMODE</a>
+      <li> <a href="node025.html#idx-199884600" target="mainbox">MSK_RES_ERR_INVALID_AMPL_STUB</a>
+      <li> <a href="node025.html#idx-194530120" target="mainbox">MSK_RES_ERR_INVALID_BRANCH_DIRECTION</a>
+      <li> <a href="node025.html#idx-189133816" target="mainbox">MSK_RES_ERR_INVALID_BRANCH_PRIORITY</a>
+      <li> <a href="node025.html#idx-196292120" target="mainbox">MSK_RES_ERR_INVALID_COMPRESSION</a>
+      <li> <a href="node025.html#idx-190861040" target="mainbox">MSK_RES_ERR_INVALID_FILE_NAME</a>
+      <li> <a href="node025.html#idx-198213360" target="mainbox">MSK_RES_ERR_INVALID_FORMAT_TYPE</a>
+      <li> <a href="node025.html#idx-194403000" target="mainbox">MSK_RES_ERR_INVALID_IOMODE</a>
+      <li> <a href="node025.html#idx-194440656" target="mainbox">MSK_RES_ERR_INVALID_MBT_FILE</a>
+      <li> <a href="node025.html#idx-185416304" target="mainbox">MSK_RES_ERR_INVALID_NAME_IN_SOL_FILE</a>
+      <li> <a href="node025.html#idx-198081856" target="mainbox">MSK_RES_ERR_INVALID_OBJECTIVE_SENSE</a>
+      <li> <a href="node025.html#idx-190924992" target="mainbox">MSK_RES_ERR_INVALID_OBJ_NAME</a>
+      <li> <a href="node025.html#idx-198199488" target="mainbox">MSK_RES_ERR_INVALID_SOL_FILE_NAME</a>
+      <li> <a href="node025.html#idx-192675208" target="mainbox">MSK_RES_ERR_INVALID_STREAM</a>
+      <li> <a href="node025.html#idx-201826744" target="mainbox">MSK_RES_ERR_INVALID_SURPLUS</a>
+      <li> <a href="node025.html#idx-190927864" target="mainbox">MSK_RES_ERR_INVALID_TASK</a>
+      <li> <a href="node025.html#idx-203492600" target="mainbox">MSK_RES_ERR_INVALID_UTF8</a>
+      <li> <a href="node025.html#idx-187298448" target="mainbox">MSK_RES_ERR_INVALID_WCHAR</a>
+      <li> <a href="node025.html#idx-198100104" target="mainbox">MSK_RES_ERR_INV_APTRE</a>
+      <li> <a href="node025.html#idx-201806120" target="mainbox">MSK_RES_ERR_INV_BK</a>
+      <li> <a href="node025.html#idx-196192592" target="mainbox">MSK_RES_ERR_INV_BKC</a>
+      <li> <a href="node025.html#idx-200096584" target="mainbox">MSK_RES_ERR_INV_BKX</a>
+      <li> <a href="node025.html#idx-199987072" target="mainbox">MSK_RES_ERR_INV_CONE_TYPE</a>
+      <li> <a href="node025.html#idx-198188928" target="mainbox">MSK_RES_ERR_INV_CONE_TYPE_STR</a>
+      <li> <a href="node025.html#idx-185342720" target="mainbox">MSK_RES_ERR_INV_MARKI</a>
+      <li> <a href="node025.html#idx-201944456" target="mainbox">MSK_RES_ERR_INV_MARKJ</a>
+      <li> <a href="node025.html#idx-194362184" target="mainbox">MSK_RES_ERR_INV_NAME_ITEM</a>
+      <li> <a href="node025.html#idx-189185128" target="mainbox">MSK_RES_ERR_INV_NUMI</a>
+      <li> <a href="node025.html#idx-189109744" target="mainbox">MSK_RES_ERR_INV_NUMJ</a>
+      <li> <a href="node025.html#idx-192494840" target="mainbox">MSK_RES_ERR_INV_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-185360184" target="mainbox">MSK_RES_ERR_INV_PROBLEM</a>
+      <li> <a href="node025.html#idx-201733544" target="mainbox">MSK_RES_ERR_INV_QCON_SUBI</a>
+      <li> <a href="node025.html#idx-187285232" target="mainbox">MSK_RES_ERR_INV_QCON_SUBJ</a>
+      <li> <a href="node025.html#idx-187275168" target="mainbox">MSK_RES_ERR_INV_QCON_SUBK</a>
+      <li> <a href="node025.html#idx-190723568" target="mainbox">MSK_RES_ERR_INV_QCON_VAL</a>
+      <li> <a href="node025.html#idx-196240304" target="mainbox">MSK_RES_ERR_INV_QOBJ_SUBI</a>
+      <li> <a href="node025.html#idx-196204736" target="mainbox">MSK_RES_ERR_INV_QOBJ_SUBJ</a>
+      <li> <a href="node025.html#idx-192617936" target="mainbox">MSK_RES_ERR_INV_QOBJ_VAL</a>
+      <li> <a href="node025.html#idx-200015384" target="mainbox">MSK_RES_ERR_INV_SK</a>
+      <li> <a href="node025.html#idx-187088336" target="mainbox">MSK_RES_ERR_INV_SKC</a>
+      <li> <a href="node025.html#idx-185467608" target="mainbox">MSK_RES_ERR_INV_SKN</a>
+      <li> <a href="node025.html#idx-199937848" target="mainbox">MSK_RES_ERR_INV_SK_STR</a>
+      <li> <a href="node025.html#idx-185368448" target="mainbox">MSK_RES_ERR_INV_SKX</a>
+      <li> <a href="node025.html#idx-201756184" target="mainbox">MSK_RES_ERR_INV_VAR_TYPE</a>
+      <li> <a href="node025.html#idx-192656808" target="mainbox">MSK_RES_ERR_LAST</a>
+      <li> <a href="node025.html#idx-189069360" target="mainbox">MSK_RES_ERR_LASTI</a>
+      <li> <a href="node025.html#idx-185448928" target="mainbox">MSK_RES_ERR_LASTJ</a>
+      <li> <a href="node025.html#idx-189021504" target="mainbox">MSK_RES_ERR_LICENSE</a>
+      <li> <a href="node025.html#idx-196222416" target="mainbox">MSK_RES_ERR_LICENSE_CANNOT_ALLOCATE</a>
+      <li> <a href="node025.html#idx-201775800" target="mainbox">MSK_RES_ERR_LICENSE_CANNOT_CONNECT</a>
+      <li> <a href="node025.html#idx-185368088" target="mainbox">MSK_RES_ERR_LICENSE_EXPIRED</a>
+      <li> <a href="node025.html#idx-192528680" target="mainbox">MSK_RES_ERR_LICENSE_FEATURE</a>
+      <li> <a href="node025.html#idx-194341560" target="mainbox">MSK_RES_ERR_LICENSE_INVALID_HOSTID</a>
+      <li> <a href="node025.html#idx-194406520" target="mainbox">MSK_RES_ERR_LICENSE_MAX</a>
+      <li> <a href="node025.html#idx-187306784" target="mainbox">MSK_RES_ERR_LICENSE_MOSEKLM_DAEMON</a>
+      <li> <a href="node025.html#idx-190700144" target="mainbox">MSK_RES_ERR_LICENSE_NO_SERVER_SUPPORT</a>
+      <li> <a href="node025.html#idx-200033560" target="mainbox">MSK_RES_ERR_LICENSE_SERVER</a>
+      <li> <a href="node025.html#idx-194332576" target="mainbox">MSK_RES_ERR_LICENSE_SERVER_VERSION</a>
+      <li> <a href="node025.html#idx-189154944" target="mainbox">MSK_RES_ERR_LICENSE_VERSION</a>
+      <li> <a href="node025.html#idx-192486072" target="mainbox">MSK_RES_ERR_LINK_FILE_DLL</a>
+      <li> <a href="node025.html#idx-190768192" target="mainbox">MSK_RES_ERR_LIVING_TASKS</a>
+      <li> <a href="node025.html#idx-189221344" target="mainbox">MSK_RES_ERR_LP_DUP_SLACK_NAME</a>
+      <li> <a href="node025.html#idx-192657960" target="mainbox">MSK_RES_ERR_LP_EMPTY</a>
+      <li> <a href="node025.html#idx-201759344" target="mainbox">MSK_RES_ERR_LP_FILE_FORMAT</a>
+      <li> <a href="node025.html#idx-198119864" target="mainbox">MSK_RES_ERR_LP_FORMAT</a>
+      <li> <a href="node025.html#idx-198072872" target="mainbox">MSK_RES_ERR_LP_FREE_CONSTRAINT</a>
+      <li> <a href="node025.html#idx-187171184" target="mainbox">MSK_RES_ERR_LP_INCOMPATIBLE</a>
+      <li> <a href="node025.html#idx-190801824" target="mainbox">MSK_RES_ERR_LP_INVALID_CON_NAME</a>
+      <li> <a href="node025.html#idx-187150064" target="mainbox">MSK_RES_ERR_LP_INVALID_VAR_NAME</a>
+      <li> <a href="node025.html#idx-189122176" target="mainbox">MSK_RES_ERR_LP_WRITE_CONIC_PROBLEM</a>
+      <li> <a href="node025.html#idx-198142288" target="mainbox">MSK_RES_ERR_LP_WRITE_GECO_PROBLEM</a>
+      <li> <a href="node025.html#idx-187108816" target="mainbox">MSK_RES_ERR_LU_MAX_NUM_TRIES</a>
+      <li> <a href="node025.html#idx-189167952" target="mainbox">MSK_RES_ERR_MAXNUMCON</a>
+      <li> <a href="node025.html#idx-190776672" target="mainbox">MSK_RES_ERR_MAXNUMCONE</a>
+      <li> <a href="node025.html#idx-190898832" target="mainbox">MSK_RES_ERR_MAXNUMQNZ</a>
+      <li> <a href="node025.html#idx-196330488" target="mainbox">MSK_RES_ERR_MAXNUMVAR</a>
+      <li> <a href="node025.html#idx-194311160" target="mainbox">MSK_RES_ERR_MBT_INCOMPATIBLE</a>
+      <li> <a href="node025.html#idx-185355224" target="mainbox">MSK_RES_ERR_MIO_NO_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-196275808" target="mainbox">MSK_RES_ERR_MIO_NOT_LOADED</a>
+      <li> <a href="node025.html#idx-187084600" target="mainbox">MSK_RES_ERR_MISSING_LICENSE_FILE</a>
+      <li> <a href="node025.html#idx-187179376" target="mainbox">MSK_RES_ERR_MIXED_PROBLEM</a>
+      <li> <a href="node025.html#idx-198143368" target="mainbox">MSK_RES_ERR_MPS_CONE_OVERLAP</a>
+      <li> <a href="node025.html#idx-198245336" target="mainbox">MSK_RES_ERR_MPS_CONE_REPEAT</a>
+      <li> <a href="node025.html#idx-201864544" target="mainbox">MSK_RES_ERR_MPS_CONE_TYPE</a>
+      <li> <a href="node025.html#idx-189203808" target="mainbox">MSK_RES_ERR_MPS_FILE</a>
+      <li> <a href="node025.html#idx-201710984" target="mainbox">MSK_RES_ERR_MPS_INVALID_OBJ_NAME</a>
+      <li> <a href="node025.html#idx-196375904" target="mainbox">MSK_RES_ERR_MPS_INVALID_OBJSENSE</a>
+      <li> <a href="node025.html#idx-200055984" target="mainbox">MSK_RES_ERR_MPS_INV_BOUND_KEY</a>
+      <li> <a href="node025.html#idx-194443744" target="mainbox">MSK_RES_ERR_MPS_INV_CON_KEY</a>
+      <li> <a href="node025.html#idx-196339184" target="mainbox">MSK_RES_ERR_MPS_INV_FIELD</a>
+      <li> <a href="node025.html#idx-199996192" target="mainbox">MSK_RES_ERR_MPS_INV_MARKER</a>
+      <li> <a href="node025.html#idx-200079696" target="mainbox">MSK_RES_ERR_MPS_INV_SEC_NAME</a>
+      <li> <a href="node025.html#idx-194411624" target="mainbox">MSK_RES_ERR_MPS_INV_SEC_ORDER</a>
+      <li> <a href="node025.html#idx-194337824" target="mainbox">MSK_RES_ERR_MPS_MUL_CON_NAME</a>
+      <li> <a href="node025.html#idx-196403072" target="mainbox">MSK_RES_ERR_MPS_MUL_CSEC</a>
+      <li> <a href="node025.html#idx-185418096" target="mainbox">MSK_RES_ERR_MPS_MUL_QOBJ</a>
+      <li> <a href="node025.html#idx-199956312" target="mainbox">MSK_RES_ERR_MPS_MUL_QSEC</a>
+      <li> <a href="node025.html#idx-192604136" target="mainbox">MSK_RES_ERR_MPS_NO_OBJECTIVE</a>
+      <li> <a href="node025.html#idx-190785296" target="mainbox">MSK_RES_ERR_MPS_NULL_CON_NAME</a>
+      <li> <a href="node025.html#idx-194319784" target="mainbox">MSK_RES_ERR_MPS_NULL_VAR_NAME</a>
+      <li> <a href="node025.html#idx-198301456" target="mainbox">MSK_RES_ERR_MPS_SPLITTED_VAR</a>
+      <li> <a href="node025.html#idx-190811600" target="mainbox">MSK_RES_ERR_MPS_TAB_IN_FIELD2</a>
+      <li> <a href="node025.html#idx-201792976" target="mainbox">MSK_RES_ERR_MPS_TAB_IN_FIELD3</a>
+      <li> <a href="node025.html#idx-190859096" target="mainbox">MSK_RES_ERR_MPS_TAB_IN_FIELD5</a>
+      <li> <a href="node025.html#idx-203500504" target="mainbox">MSK_RES_ERR_MPS_UNDEF_CON_NAME</a>
+      <li> <a href="node025.html#idx-187244768" target="mainbox">MSK_RES_ERR_MPS_UNDEF_VAR_NAME</a>
+      <li> <a href="node025.html#idx-185406312" target="mainbox">MSK_RES_ERR_MUL_A_ELEMENT</a>
+      <li> <a href="node025.html#idx-201747200" target="mainbox">MSK_RES_ERR_NAME_IS_NULL</a>
+      <li> <a href="node025.html#idx-196173696" target="mainbox">MSK_RES_ERR_NAME_MAX_LEN</a>
+      <li> <a href="node025.html#idx-201858152" target="mainbox">MSK_RES_ERR_NAN_IN_AIJ</a>
+      <li> <a href="node025.html#idx-190679304" target="mainbox">MSK_RES_ERR_NAN_IN_BLC</a>
+      <li> <a href="node025.html#idx-199904648" target="mainbox">MSK_RES_ERR_NAN_IN_BLX</a>
+      <li> <a href="node025.html#idx-187323672" target="mainbox">MSK_RES_ERR_NAN_IN_BUC</a>
+      <li> <a href="node025.html#idx-200066256" target="mainbox">MSK_RES_ERR_NAN_IN_BUX</a>
+      <li> <a href="node025.html#idx-190757704" target="mainbox">MSK_RES_ERR_NAN_IN_C</a>
+      <li> <a href="node025.html#idx-200065104" target="mainbox">MSK_RES_ERR_NAN_IN_DOUBLE_DATA</a>
+      <li> <a href="node025.html#idx-200007120" target="mainbox">MSK_RES_ERR_NEGATIVE_APPEND</a>
+      <li> <a href="node025.html#idx-187266112" target="mainbox">MSK_RES_ERR_NEGATIVE_SURPLUS</a>
+      <li> <a href="node025.html#idx-199946680" target="mainbox">MSK_RES_ERR_NEWER_DLL</a>
+      <li> <a href="node025.html#idx-190909400" target="mainbox">MSK_RES_ERR_NO_BASIS_SOL</a>
+      <li> <a href="node025.html#idx-187160912" target="mainbox">MSK_RES_ERR_NO_DUAL_FOR_ITG_SOL</a>
+      <li> <a href="node025.html#idx-185393952" target="mainbox">MSK_RES_ERR_NO_DUAL_INFEAS_CER</a>
+      <li> <a href="node025.html#idx-185429384" target="mainbox">MSK_RES_ERR_NO_INIT_ENV</a>
+      <li> <a href="node025.html#idx-196423336" target="mainbox">MSK_RES_ERR_NONCONVEX</a>
+      <li> <a href="node025.html#idx-188993832" target="mainbox">MSK_RES_ERR_NONLINEAR_EQUALITY</a>
+      <li> <a href="node025.html#idx-189193320" target="mainbox">MSK_RES_ERR_NONLINEAR_RANGED</a>
+      <li> <a href="node025.html#idx-203522992" target="mainbox">MSK_RES_ERR_NO_OPTIMIZER_VAR_TYPE</a>
+      <li> <a href="node025.html#idx-189226448" target="mainbox">MSK_RES_ERR_NO_PRIMAL_INFEAS_CER</a>
+      <li> <a href="node025.html#idx-201918008" target="mainbox">MSK_RES_ERR_NO_SOLUTION_IN_CALLBACK</a>
+      <li> <a href="node025.html#idx-189017840" target="mainbox">MSK_RES_ERR_NR_ARGUMENTS</a>
+      <li> <a href="node025.html#idx-196347376" target="mainbox">MSK_RES_ERR_NULL_ENV</a>
+      <li> <a href="node025.html#idx-192472632" target="mainbox">MSK_RES_ERR_NULL_POINTER</a>
+      <li> <a href="node025.html#idx-196273648" target="mainbox">MSK_RES_ERR_NULL_TASK</a>
+      <li> <a href="node025.html#idx-194304048" target="mainbox">MSK_RES_ERR_NUMCONLIM</a>
+      <li> <a href="node025.html#idx-199942656" target="mainbox">MSK_RES_ERR_NUMVARLIM</a>
+      <li> <a href="node025.html#idx-199892720" target="mainbox">MSK_RES_ERR_OBJECTIVE_RANGE</a>
+      <li> <a href="node025.html#idx-192461280" target="mainbox">MSK_RES_ERR_OBJ_Q_NOT_NSD</a>
+      <li> <a href="node025.html#idx-185459488" target="mainbox">MSK_RES_ERR_OBJ_Q_NOT_PSD</a>
+      <li> <a href="node025.html#idx-198228232" target="mainbox">MSK_RES_ERR_OLDER_DLL</a>
+      <li> <a href="node025.html#idx-192639560" target="mainbox">MSK_RES_ERR_OPEN_DL</a>
+      <li> <a href="node025.html#idx-196384024" target="mainbox">MSK_RES_ERR_OPF_FORMAT</a>
+      <li> <a href="node025.html#idx-201815176" target="mainbox">MSK_RES_ERR_OPF_NEW_VARIABLE</a>
+      <li> <a href="node025.html#idx-190740168" target="mainbox">MSK_RES_ERR_OPF_PREMATURE_EOF</a>
+      <li> <a href="node025.html#idx-198105424" target="mainbox">MSK_RES_ERR_OPTIMIZER_LICENSE</a>
+      <li> <a href="node025.html#idx-190921616" target="mainbox">MSK_RES_ERR_ORD_INVALID</a>
+      <li> <a href="node025.html#idx-201912192" target="mainbox">MSK_RES_ERR_ORD_INVALID_BRANCH_DIR</a>
+      <li> <a href="node025.html#idx-187164072" target="mainbox">MSK_RES_ERR_OVERFLOW</a>
+      <li> <a href="node025.html#idx-189011008" target="mainbox">MSK_RES_ERR_PARAM_INDEX</a>
+      <li> <a href="node025.html#idx-198178648" target="mainbox">MSK_RES_ERR_PARAM_IS_TOO_LARGE</a>
+      <li> <a href="node025.html#idx-189142368" target="mainbox">MSK_RES_ERR_PARAM_IS_TOO_SMALL</a>
+      <li> <a href="node025.html#idx-187216456" target="mainbox">MSK_RES_ERR_PARAM_NAME</a>
+      <li> <a href="node025.html#idx-190713224" target="mainbox">MSK_RES_ERR_PARAM_NAME_DOU</a>
+      <li> <a href="node025.html#idx-187190592" target="mainbox">MSK_RES_ERR_PARAM_NAME_INT</a>
+      <li> <a href="node025.html#idx-192519848" target="mainbox">MSK_RES_ERR_PARAM_NAME_STR</a>
+      <li> <a href="node025.html#idx-185331864" target="mainbox">MSK_RES_ERR_PARAM_TYPE</a>
+      <li> <a href="node025.html#idx-201700344" target="mainbox">MSK_RES_ERR_PARAM_VALUE_STR</a>
+      <li> <a href="node025.html#idx-198232256" target="mainbox">MSK_RES_ERR_PLATFORM_NOT_LICENSED</a>
+      <li> <a href="node025.html#idx-198170672" target="mainbox">MSK_RES_ERR_POSTSOLVE</a>
+      <li> <a href="node025.html#idx-200023576" target="mainbox">MSK_RES_ERR_PROB_LICENSE</a>
+      <li> <a href="node025.html#idx-198190864" target="mainbox">MSK_RES_ERR_PRO_ITEM</a>
+      <li> <a href="node025.html#idx-201886968" target="mainbox">MSK_RES_ERR_QCON_SUBI_TOO_LARGE</a>
+      <li> <a href="node025.html#idx-198148608" target="mainbox">MSK_RES_ERR_QCON_SUBI_TOO_SMALL</a>
+      <li> <a href="node025.html#idx-190792840" target="mainbox">MSK_RES_ERR_QCON_UPPER_TRIANGLE</a>
+      <li> <a href="node025.html#idx-190879720" target="mainbox">MSK_RES_ERR_QOBJ_UPPER_TRIANGLE</a>
+      <li> <a href="node025.html#idx-198151488" target="mainbox">MSK_RES_ERR_READ_FORMAT</a>
+      <li> <a href="node025.html#idx-199859016" target="mainbox">MSK_RES_ERR_READ_LP_MISSING_END_TAG</a>
+      <li> <a href="node025.html#idx-189175712" target="mainbox">MSK_RES_ERR_READ_LP_NONEXISTING_NAME</a>
+      <li> <a href="node025.html#idx-192503248" target="mainbox">MSK_RES_ERR_REMOVE_CONE_VARIABLE</a>
+      <li> <a href="node025.html#idx-198285576" target="mainbox">MSK_RES_ERR_SEN_BOUND_INVALID_LO</a>
+      <li> <a href="node025.html#idx-194493616" target="mainbox">MSK_RES_ERR_SEN_BOUND_INVALID_UP</a>
+      <li> <a href="node025.html#idx-190714512" target="mainbox">MSK_RES_ERR_SEN_FORMAT</a>
+      <li> <a href="node025.html#idx-185458560" target="mainbox">MSK_RES_ERR_SEN_INDEX_INVALID</a>
+      <li> <a href="node025.html#idx-190691592" target="mainbox">MSK_RES_ERR_SEN_INDEX_RANGE</a>
+      <li> <a href="node025.html#idx-194489232" target="mainbox">MSK_RES_ERR_SEN_INVALID_REGEXP</a>
+      <li> <a href="node025.html#idx-190682536" target="mainbox">MSK_RES_ERR_SEN_NUMERICAL</a>
+      <li> <a href="node025.html#idx-187198928" target="mainbox">MSK_RES_ERR_SEN_SOLUTION_STATUS</a>
+      <li> <a href="node025.html#idx-198259560" target="mainbox">MSK_RES_ERR_SEN_UNDEF_NAME</a>
+      <li> <a href="node025.html#idx-201878344" target="mainbox">MSK_RES_ERR_SIZE_LICENSE</a>
+      <li> <a href="node025.html#idx-198105352" target="mainbox">MSK_RES_ERR_SIZE_LICENSE_CON</a>
+      <li> <a href="node025.html#idx-203489360" target="mainbox">MSK_RES_ERR_SIZE_LICENSE_INTVAR</a>
+      <li> <a href="node025.html#idx-189091640" target="mainbox">MSK_RES_ERR_SIZE_LICENSE_NUMCORES</a>
+      <li> <a href="node025.html#idx-192667088" target="mainbox">MSK_RES_ERR_SIZE_LICENSE_VAR</a>
+      <li> <a href="node025.html#idx-187099040" target="mainbox">MSK_RES_ERR_SOL_FILE_INVALID_NUMBER</a>
+      <li> <a href="node025.html#idx-198128416" target="mainbox">MSK_RES_ERR_SOLITEM</a>
+      <li> <a href="node025.html#idx-192547152" target="mainbox">MSK_RES_ERR_SOLVER_PROBTYPE</a>
+      <li> <a href="node025.html#idx-196323088" target="mainbox">MSK_RES_ERR_SPACE</a>
+      <li> <a href="node025.html#idx-199846440" target="mainbox">MSK_RES_ERR_SPACE_LEAKING</a>
+      <li> <a href="node025.html#idx-187234136" target="mainbox">MSK_RES_ERR_SPACE_NO_INFO</a>
+      <li> <a href="node025.html#idx-198258840" target="mainbox">MSK_RES_ERR_THREAD_COND_INIT</a>
+      <li> <a href="node025.html#idx-190890352" target="mainbox">MSK_RES_ERR_THREAD_CREATE</a>
+      <li> <a href="node025.html#idx-192691088" target="mainbox">MSK_RES_ERR_THREAD_MUTEX_INIT</a>
+      <li> <a href="node025.html#idx-192648328" target="mainbox">MSK_RES_ERR_THREAD_MUTEX_LOCK</a>
+      <li> <a href="node025.html#idx-189186992" target="mainbox">MSK_RES_ERR_THREAD_MUTEX_UNLOCK</a>
+      <li> <a href="node025.html#idx-196295928" target="mainbox">MSK_RES_ERR_TOO_SMALL_MAXNUMANZ</a>
+      <li> <a href="node025.html#idx-198052392" target="mainbox">MSK_RES_ERR_UNB_STEP_SIZE</a>
+      <li> <a href="node025.html#idx-201899760" target="mainbox">MSK_RES_ERR_UNDEFINED_OBJECTIVE_SENSE</a>
+      <li> <a href="node025.html#idx-185438648" target="mainbox">MSK_RES_ERR_UNDEF_SOLUTION</a>
+      <li> <a href="node025.html#idx-189165008" target="mainbox">MSK_RES_ERR_UNKNOWN</a>
+      <li> <a href="node025.html#idx-194547440" target="mainbox">MSK_RES_ERR_USER_FUNC_RET</a>
+      <li> <a href="node025.html#idx-189082080" target="mainbox">MSK_RES_ERR_USER_FUNC_RET_DATA</a>
+      <li> <a href="node025.html#idx-190831864" target="mainbox">MSK_RES_ERR_USER_NLO_EVAL</a>
+      <li> <a href="node025.html#idx-192586672" target="mainbox">MSK_RES_ERR_USER_NLO_EVAL_HESSUBI</a>
+      <li> <a href="node025.html#idx-192589408" target="mainbox">MSK_RES_ERR_USER_NLO_EVAL_HESSUBJ</a>
+      <li> <a href="node025.html#idx-189057432" target="mainbox">MSK_RES_ERR_USER_NLO_FUNC</a>
+      <li> <a href="node025.html#idx-199896096" target="mainbox">MSK_RES_ERR_WHICHITEM_NOT_ALLOWED</a>
+      <li> <a href="node025.html#idx-199914848" target="mainbox">MSK_RES_ERR_WHICHSOL</a>
+      <li> <a href="node025.html#idx-189236720" target="mainbox">MSK_RES_ERR_WRITE_LP_FORMAT</a>
+      <li> <a href="node025.html#idx-200039096" target="mainbox">MSK_RES_ERR_WRITE_LP_NON_UNIQUE_NAME</a>
+      <li> <a href="node025.html#idx-196266248" target="mainbox">MSK_RES_ERR_WRITE_MPS_INVALID_NAME</a>
+      <li> <a href="node025.html#idx-189213440" target="mainbox">MSK_RES_ERR_WRITE_OPF_INVALID_VAR_NAME</a>
+      <li> <a href="node025.html#idx-201936264" target="mainbox">MSK_RES_ERR_WRITING_FILE</a>
+      <li> <a href="node025.html#idx-194452872" target="mainbox">MSK_RES_ERR_XML_INVALID_PROBLEM_TYPE</a>
+      <li> <a href="node025.html#idx-194538024" target="mainbox">MSK_RES_ERR_Y_IS_UNDEFINED</a>
+      <li> <a href="node025.html#idx-196421608" target="mainbox">MSK_RES_OK</a>
+      <li> <a href="node025.html#idx-203507688" target="mainbox">MSK_RESPONSE_ERR</a>
+      <li> <a href="node025.html#idx-203553104" target="mainbox">MSK_RESPONSE_OK</a>
+      <li> <a href="node025.html#idx-203539808" target="mainbox">MSK_RESPONSE_TRM</a>
+      <li> <a href="node025.html#idx-203546424" target="mainbox">MSK_RESPONSE_UNK</a>
+      <li> <a href="node025.html#idx-203510128" target="mainbox">MSK_RESPONSE_WRN</a>
+      <li> <a href="node025.html#idx-192607368" target="mainbox">MSK_RES_TRM_INTERNAL</a>
+      <li> <a href="node025.html#idx-201866920" target="mainbox">MSK_RES_TRM_INTERNAL_STOP</a>
+      <li> <a href="node025.html#idx-201907880" target="mainbox">MSK_RES_TRM_MAX_ITERATIONS</a>
+      <li> <a href="node025.html#idx-196201648" target="mainbox">MSK_RES_TRM_MAX_NUM_SETBACKS</a>
+      <li> <a href="node025.html#idx-199868216" target="mainbox">MSK_RES_TRM_MAX_TIME</a>
+      <li> <a href="node025.html#idx-185393304" target="mainbox">MSK_RES_TRM_MIO_NEAR_ABS_GAP</a>
+      <li> <a href="node025.html#idx-199974136" target="mainbox">MSK_RES_TRM_MIO_NEAR_REL_GAP</a>
+      <li> <a href="node025.html#idx-185384688" target="mainbox">MSK_RES_TRM_MIO_NUM_BRANCHES</a>
+      <li> <a href="node025.html#idx-187172984" target="mainbox">MSK_RES_TRM_MIO_NUM_RELAXS</a>
+      <li> <a href="node025.html#idx-194483696" target="mainbox">MSK_RES_TRM_NUMERICAL_PROBLEM</a>
+      <li> <a href="node025.html#idx-196204808" target="mainbox">MSK_RES_TRM_NUM_MAX_NUM_INT_SOLUTIONS</a>
+      <li> <a href="node025.html#idx-201784352" target="mainbox">MSK_RES_TRM_OBJECTIVE_RANGE</a>
+      <li> <a href="node025.html#idx-198162840" target="mainbox">MSK_RES_TRM_STALL</a>
+      <li> <a href="node025.html#idx-194369080" target="mainbox">MSK_RES_TRM_USER_BREAK</a>
+      <li> <a href="node025.html#idx-194422616" target="mainbox">MSK_RES_TRM_USER_CALLBACK</a>
+      <li> <a href="node025.html#idx-196230968" target="mainbox">MSK_RES_WRN_ANA_ALMOST_INT_BOUNDS</a>
+      <li> <a href="node025.html#idx-187078560" target="mainbox">MSK_RES_WRN_ANA_CLOSE_BOUNDS</a>
+      <li> <a href="node025.html#idx-194390568" target="mainbox">MSK_RES_WRN_ANA_C_ZERO</a>
+      <li> <a href="node025.html#idx-201702432" target="mainbox">MSK_RES_WRN_ANA_EMPTY_COLS</a>
+      <li> <a href="node025.html#idx-196386472" target="mainbox">MSK_RES_WRN_ANA_LARGE_BOUNDS</a>
+      <li> <a href="node025.html#idx-196252952" target="mainbox">MSK_RES_WRN_CONSTRUCT_INVALID_SOL_ITG</a>
+      <li> <a href="node025.html#idx-199858224" target="mainbox">MSK_RES_WRN_CONSTRUCT_NO_SOL_ITG</a>
+      <li> <a href="node025.html#idx-194431672" target="mainbox">MSK_RES_WRN_CONSTRUCT_SOLUTION_INFEAS</a>
+      <li> <a href="node025.html#idx-187123328" target="mainbox">MSK_RES_WRN_DROPPED_NZ_QOBJ</a>
+      <li> <a href="node025.html#idx-199926056" target="mainbox">MSK_RES_WRN_ELIMINATOR_SPACE</a>
+      <li> <a href="node025.html#idx-199965512" target="mainbox">MSK_RES_WRN_EMPTY_NAME</a>
+      <li> <a href="node025.html#idx-192452656" target="mainbox">MSK_RES_WRN_IGNORE_INTEGER</a>
+      <li> <a href="node025.html#idx-190839264" target="mainbox">MSK_RES_WRN_INCOMPLETE_LINEAR_DEPENDENCY_CHECK</a>
+      <li> <a href="node025.html#idx-192511656" target="mainbox">MSK_RES_WRN_LARGE_AIJ</a>
+      <li> <a href="node025.html#idx-196395448" target="mainbox">MSK_RES_WRN_LARGE_BOUND</a>
+      <li> <a href="node025.html#idx-198221552" target="mainbox">MSK_RES_WRN_LARGE_CJ</a>
+      <li> <a href="node025.html#idx-194353200" target="mainbox">MSK_RES_WRN_LARGE_CON_FX</a>
+      <li> <a href="node025.html#idx-194494048" target="mainbox">MSK_RES_WRN_LARGE_LO_BOUND</a>
+      <li> <a href="node025.html#idx-194373392" target="mainbox">MSK_RES_WRN_LARGE_UP_BOUND</a>
+      <li> <a href="node025.html#idx-196283568" target="mainbox">MSK_RES_WRN_LICENSE_EXPIRE</a>
+      <li> <a href="node025.html#idx-187258712" target="mainbox">MSK_RES_WRN_LICENSE_FEATURE_EXPIRE</a>
+      <li> <a href="node025.html#idx-196366848" target="mainbox">MSK_RES_WRN_LICENSE_SERVER</a>
+      <li> <a href="node025.html#idx-189015392" target="mainbox">MSK_RES_WRN_LP_DROP_VARIABLE</a>
+      <li> <a href="node025.html#idx-199941584" target="mainbox">MSK_RES_WRN_LP_OLD_QUAD_FORMAT</a>
+      <li> <a href="node025.html#idx-190785944" target="mainbox">MSK_RES_WRN_MIO_INFEASIBLE_FINAL</a>
+      <li> <a href="node025.html#idx-194322304" target="mainbox">MSK_RES_WRN_MPS_SPLIT_BOU_VECTOR</a>
+      <li> <a href="node025.html#idx-198275800" target="mainbox">MSK_RES_WRN_MPS_SPLIT_RAN_VECTOR</a>
+      <li> <a href="node025.html#idx-194511504" target="mainbox">MSK_RES_WRN_MPS_SPLIT_RHS_VECTOR</a>
+      <li> <a href="node025.html#idx-201835800" target="mainbox">MSK_RES_WRN_NAME_MAX_LEN</a>
+      <li> <a href="node025.html#idx-192537736" target="mainbox">MSK_RES_WRN_NO_GLOBAL_OPTIMIZER</a>
+      <li> <a href="node025.html#idx-187254544" target="mainbox">MSK_RES_WRN_NZ_IN_UPR_TRI</a>
+      <li> <a href="node025.html#idx-196415360" target="mainbox">MSK_RES_WRN_OPEN_PARAM_FILE</a>
+      <li> <a href="node025.html#idx-185352064" target="mainbox">MSK_RES_WRN_PRESOLVE_BAD_PRECISION</a>
+      <li> <a href="node025.html#idx-201916072" target="mainbox">MSK_RES_WRN_PRESOLVE_OUTOFSPACE</a>
+      <li> <a href="node025.html#idx-200055480" target="mainbox">MSK_RES_WRN_SOL_FILE_IGNORED_CON</a>
+      <li> <a href="node025.html#idx-185304920" target="mainbox">MSK_RES_WRN_SOL_FILE_IGNORED_VAR</a>
+      <li> <a href="node025.html#idx-192598816" target="mainbox">MSK_RES_WRN_SOL_FILTER</a>
+      <li> <a href="node025.html#idx-189232984" target="mainbox">MSK_RES_WRN_SPAR_MAX_LEN</a>
+      <li> <a href="node025.html#idx-200042184" target="mainbox">MSK_RES_WRN_TOO_FEW_BASIS_VARS</a>
+      <li> <a href="node025.html#idx-187219768" target="mainbox">MSK_RES_WRN_TOO_MANY_BASIS_VARS</a>
+      <li> <a href="node025.html#idx-201746048" target="mainbox">MSK_RES_WRN_UNDEF_SOL_FILE_NAME</a>
+      <li> <a href="node025.html#idx-190849968" target="mainbox">MSK_RES_WRN_USING_GENERIC_NAMES</a>
+      <li> <a href="node025.html#idx-190870736" target="mainbox">MSK_RES_WRN_WRITE_DISCARDED_CFIX</a>
+      <li> <a href="node025.html#idx-189111688" target="mainbox">MSK_RES_WRN_ZERO_AIJ</a>
+      <li> <a href="node025.html#idx-190821656" target="mainbox">MSK_RES_WRN_ZEROS_IN_SPARSE_COL</a>
+      <li> <a href="node025.html#idx-187259072" target="mainbox">MSK_RES_WRN_ZEROS_IN_SPARSE_ROW</a>
+      <li> <a href="node025.html#idx-203603120" target="mainbox">MSK_SCALING_AGGRESSIVE</a>
+      <li> <a href="node025.html#idx-203609800" target="mainbox">MSK_SCALING_FREE</a>
+      <li> <a href="node025.html#idx-203583072" target="mainbox">MSK_SCALING_METHOD_FREE</a>
+      <li> <a href="node025.html#idx-203575096" target="mainbox">MSK_SCALING_METHOD_POW2</a>
+      <li> <a href="node025.html#idx-203596576" target="mainbox">MSK_SCALING_MODERATE</a>
+      <li> <a href="node025.html#idx-203569128" target="mainbox">MSK_SCALING_NONE</a>
+      <li> <a href="node025.html#idx-203633368" target="mainbox">MSK_SENSITIVITY_TYPE_BASIS</a>
+      <li> <a href="node025.html#idx-203624888" target="mainbox">MSK_SENSITIVITY_TYPE_OPTIMAL_PARTITION</a>
+      <li> <a href="node025.html#idx-203663192" target="mainbox">MSK_SIM_DEGEN_AGGRESSIVE</a>
+      <li> <a href="node025.html#idx-203670736" target="mainbox">MSK_SIM_DEGEN_FREE</a>
+      <li> <a href="node025.html#idx-203655720" target="mainbox">MSK_SIM_DEGEN_MINIMUM</a>
+      <li> <a href="node025.html#idx-203597368" target="mainbox">MSK_SIM_DEGEN_MODERATE</a>
+      <li> <a href="node025.html#idx-203644584" target="mainbox">MSK_SIM_DEGEN_NONE</a>
+      <li> <a href="node025.html#idx-203692008" target="mainbox">MSK_SIM_EXPLOIT_DUPVEC_FREE</a>
+      <li> <a href="node025.html#idx-203683744" target="mainbox">MSK_SIM_EXPLOIT_DUPVEC_OFF</a>
+      <li> <a href="node025.html#idx-201848736" target="mainbox">MSK_SIM_EXPLOIT_DUPVEC_ON</a>
+      <li> <a href="node025.html#idx-203712416" target="mainbox">MSK_SIM_HOTSTART_FREE</a>
+      <li> <a href="node025.html#idx-203658160" target="mainbox">MSK_SIM_HOTSTART_NONE</a>
+      <li> <a href="node025.html#idx-203703864" target="mainbox">MSK_SIM_HOTSTART_STATUS_KEYS</a>
+      <li> <a href="node025.html#idx-203722408" target="mainbox">MSK_SIM_REFORMULATION_AGGRESSIVE</a>
+      <li> <a href="node025.html#idx-203737424" target="mainbox">MSK_SIM_REFORMULATION_FREE</a>
+      <li> <a href="node025.html#idx-203729952" target="mainbox">MSK_SIM_REFORMULATION_OFF</a>
+      <li> <a href="node025.html#idx-203711408" target="mainbox">MSK_SIM_REFORMULATION_ON</a>
+      <li> <a href="node025.html#idx-205184176" target="mainbox">MSK_SIM_SELECTION_ASE</a>
+      <li> <a href="node025.html#idx-205181944" target="mainbox">MSK_SIM_SELECTION_DEVEX</a>
+      <li> <a href="node025.html#idx-205176200" target="mainbox">MSK_SIM_SELECTION_FREE</a>
+      <li> <a href="node025.html#idx-203731168" target="mainbox">MSK_SIM_SELECTION_FULL</a>
+      <li> <a href="node025.html#idx-205169296" target="mainbox">MSK_SIM_SELECTION_PARTIAL</a>
+      <li> <a href="node025.html#idx-205191072" target="mainbox">MSK_SIM_SELECTION_SE</a>
+      <li> <a href="node025.html#idx-207032688" target="mainbox">MSK_SK_BAS</a>
+      <li> <a href="node025.html#idx-207015664" target="mainbox">MSK_SK_FIX</a>
+      <li> <a href="node025.html#idx-207045192" target="mainbox">MSK_SK_INF</a>
+      <li> <a href="node025.html#idx-207038512" target="mainbox">MSK_SK_LOW</a>
+      <li> <a href="node025.html#idx-207026008" target="mainbox">MSK_SK_SUPBAS</a>
+      <li> <a href="node025.html#idx-207051808" target="mainbox">MSK_SK_UNK</a>
+      <li> <a href="node025.html#idx-207036928" target="mainbox">MSK_SK_UPR</a>
+      <li> <a href="node025.html#idx-205376688" target="mainbox">MSK_SOL_BAS</a>
+      <li> <a href="node025.html#idx-205241736" target="mainbox">MSK_SOL_ITEM_SLC</a>
+      <li> <a href="node025.html#idx-205228008" target="mainbox">MSK_SOL_ITEM_SLX</a>
+      <li> <a href="node025.html#idx-205227072" target="mainbox">MSK_SOL_ITEM_SNX</a>
+      <li> <a href="node025.html#idx-205206304" target="mainbox">MSK_SOL_ITEM_SUC</a>
+      <li> <a href="node025.html#idx-205235480" target="mainbox">MSK_SOL_ITEM_SUX</a>
+      <li> <a href="node025.html#idx-205205016" target="mainbox">MSK_SOL_ITEM_XC</a>
+      <li> <a href="node025.html#idx-205198256" target="mainbox">MSK_SOL_ITEM_XX</a>
+      <li> <a href="node025.html#idx-205220536" target="mainbox">MSK_SOL_ITEM_Y</a>
+      <li> <a href="node025.html#idx-205350096" target="mainbox">MSK_SOL_ITG</a>
+      <li> <a href="node025.html#idx-205370072" target="mainbox">MSK_SOL_ITR</a>
+      <li> <a href="node025.html#idx-205354192" target="mainbox">MSK_SOL_STA_DUAL_FEAS</a>
+      <li> <a href="node025.html#idx-205257976" target="mainbox">MSK_SOL_STA_DUAL_INFEAS_CER</a>
+      <li> <a href="node025.html#idx-205312224" target="mainbox">MSK_SOL_STA_INTEGER_OPTIMAL</a>
+      <li> <a href="node025.html#idx-205303392" target="mainbox">MSK_SOL_STA_NEAR_DUAL_FEAS</a>
+      <li> <a href="node025.html#idx-205272056" target="mainbox">MSK_SOL_STA_NEAR_DUAL_INFEAS_CER</a>
+      <li> <a href="node025.html#idx-205295056" target="mainbox">MSK_SOL_STA_NEAR_INTEGER_OPTIMAL</a>
+      <li> <a href="node025.html#idx-205274720" target="mainbox">MSK_SOL_STA_NEAR_OPTIMAL</a>
+      <li> <a href="node025.html#idx-205324232" target="mainbox">MSK_SOL_STA_NEAR_PRIM_AND_DUAL_FEAS</a>
+      <li> <a href="node025.html#idx-205346000" target="mainbox">MSK_SOL_STA_NEAR_PRIM_FEAS</a>
+      <li> <a href="node025.html#idx-205283128" target="mainbox">MSK_SOL_STA_NEAR_PRIM_INFEAS_CER</a>
+      <li> <a href="node025.html#idx-205334576" target="mainbox">MSK_SOL_STA_OPTIMAL</a>
+      <li> <a href="node025.html#idx-205324872" target="mainbox">MSK_SOL_STA_PRIM_AND_DUAL_FEAS</a>
+      <li> <a href="node025.html#idx-205276656" target="mainbox">MSK_SOL_STA_PRIM_FEAS</a>
+      <li> <a href="node025.html#idx-205266312" target="mainbox">MSK_SOL_STA_PRIM_INFEAS_CER</a>
+      <li> <a href="node025.html#idx-205236632" target="mainbox">MSK_SOL_STA_UNKNOWN</a>
+      <li> <a href="node025.html#idx-203744752" target="mainbox">MSK_SOLVE_DUAL</a>
+      <li> <a href="node025.html#idx-205406936" target="mainbox">MSK_SOLVE_FREE</a>
+      <li> <a href="node025.html#idx-205374168" target="mainbox">MSK_SOLVE_PRIMAL</a>
+      <li> <a href="node025.html#idx-205404712" target="mainbox">MSK_SPAR_BAS_SOL_FILE_NAME</a>
+      <li> <a href="node025.html#idx-206929072" target="mainbox">MSK_SPAR_DATA_FILE_NAME</a>
+      <li> <a href="node025.html#idx-206993528" target="mainbox">MSK_SPAR_DEBUG_FILE_NAME</a>
+      <li> <a href="node025.html#idx-205420448" target="mainbox">MSK_SPAR_FEASREPAIR_NAME_PREFIX</a>
+      <li> <a href="node025.html#idx-206896520" target="mainbox">MSK_SPAR_FEASREPAIR_NAME_SEPARATOR</a>
+      <li> <a href="node025.html#idx-206889112" target="mainbox">MSK_SPAR_FEASREPAIR_NAME_WSUMVIOL</a>
+      <li> <a href="node025.html#idx-206904856" target="mainbox">MSK_SPAR_INT_SOL_FILE_NAME</a>
+      <li> <a href="node025.html#idx-206979016" target="mainbox">MSK_SPAR_ITR_SOL_FILE_NAME</a>
+      <li> <a href="node025.html#idx-205413696" target="mainbox">MSK_SPAR_PARAM_COMMENT_SIGN</a>
+      <li> <a href="node025.html#idx-206978512" target="mainbox">MSK_SPAR_PARAM_READ_FILE_NAME</a>
+      <li> <a href="node025.html#idx-206894360" target="mainbox">MSK_SPAR_PARAM_WRITE_FILE_NAME</a>
+      <li> <a href="node025.html#idx-206956664" target="mainbox">MSK_SPAR_READ_MPS_BOU_NAME</a>
+      <li> <a href="node025.html#idx-206882864" target="mainbox">MSK_SPAR_READ_MPS_OBJ_NAME</a>
+      <li> <a href="node025.html#idx-206936256" target="mainbox">MSK_SPAR_READ_MPS_RAN_NAME</a>
+      <li> <a href="node025.html#idx-206913048" target="mainbox">MSK_SPAR_READ_MPS_RHS_NAME</a>
+      <li> <a href="node025.html#idx-206986992" target="mainbox">MSK_SPAR_SENSITIVITY_FILE_NAME</a>
+      <li> <a href="node025.html#idx-207001144" target="mainbox">MSK_SPAR_SENSITIVITY_RES_FILE_NAME</a>
+      <li> <a href="node025.html#idx-206943368" target="mainbox">MSK_SPAR_SOL_FILTER_XC_LOW</a>
+      <li> <a href="node025.html#idx-206952640" target="mainbox">MSK_SPAR_SOL_FILTER_XC_UPR</a>
+      <li> <a href="node025.html#idx-207011640" target="mainbox">MSK_SPAR_SOL_FILTER_XX_LOW</a>
+      <li> <a href="node025.html#idx-206963776" target="mainbox">MSK_SPAR_SOL_FILTER_XX_UPR</a>
+      <li> <a href="node025.html#idx-206919944" target="mainbox">MSK_SPAR_STAT_FILE_NAME</a>
+      <li> <a href="node025.html#idx-207003592" target="mainbox">MSK_SPAR_STAT_KEY</a>
+      <li> <a href="node025.html#idx-206972472" target="mainbox">MSK_SPAR_STAT_NAME</a>
+      <li> <a href="node025.html#idx-206923464" target="mainbox">MSK_SPAR_WRITE_LP_GEN_VAR_NAME</a>
+      <li> <a href="node025.html#idx-207078392" target="mainbox">MSK_STARTING_POINT_CONSTANT</a>
+      <li> <a href="node025.html#idx-207089176" target="mainbox">MSK_STARTING_POINT_FREE</a>
+      <li> <a href="node025.html#idx-207074152" target="mainbox">MSK_STARTING_POINT_GUESS</a>
+      <li> <a href="node025.html#idx-207081200" target="mainbox">MSK_STARTING_POINT_SATISFY_BOUNDS</a>
+      <li> <a href="node025.html#idx-207124672" target="mainbox">MSK_STREAM_ERR</a>
+      <li> <a href="node025.html#idx-207088672" target="mainbox">MSK_STREAM_LOG</a>
+      <li> <a href="node025.html#idx-207104192" target="mainbox">MSK_STREAM_MSG</a>
+      <li> <a href="node025.html#idx-207114968" target="mainbox">MSK_STREAM_WRN</a>
+      <li> <a href="node025.html#idx-208706448" target="mainbox">MSK_VAR_TYPE_CONT</a>
+      <li> <a href="node025.html#idx-208699048" target="mainbox">MSK_VAR_TYPE_INT</a>
+      <li> <a href="node025.html#idx-208701416" target="mainbox">MSK_WRITE_XML_MODE_COL</a>
+      <li> <a href="node025.html#idx-208715000" target="mainbox">MSK_WRITE_XML_MODE_ROW</a>
+    </ul>
+<hr>
+
+<a name="index-letter-T" style="font-weight : bolder; font-size : larger;">T</a><br>
+
+    <li> <a href="node024.html#idx-145549216" target="mainbox">timing_level (parameter)</a>
+<hr>
+
+<a name="index-letter-U" style="font-weight : bolder; font-size : larger;">U</a><br>
+
+    <li> <a href="node024.html#idx-123554776" target="mainbox">upper_obj_cut (parameter)</a>
+    <li> <a href="node024.html#idx-123590992" target="mainbox">upper_obj_cut_finite_trh (parameter)</a>
+<hr>
+
+<a name="index-letter-V" style="font-weight : bolder; font-size : larger;">V</a><br>
+
+    <li> variables
+    <ul class="idx-lvl2">
+      <li> <a href="node011.html#idx-86999120" target="mainbox">decision</a>
+      <li> <a href="node018.html#idx-102312488" target="mainbox">decision</a>
+      <li> <a href="node011.html#idx-90313648" target="mainbox">decision</a>
+      <li> <a href="node011.html#idx-87011768" target="mainbox">lower limit</a>
+      <li> <a href="node011.html#idx-90340024" target="mainbox">lower limit</a>
+      <li> <a href="node018.html#idx-102316008" target="mainbox">lower limit</a>
+      <li> <a href="node011.html#idx-90342320" target="mainbox">upper limit</a>
+      <li> <a href="node011.html#idx-87014216" target="mainbox">upper limit</a>
+      <li> <a href="node018.html#idx-102322400" target="mainbox">upper limit</a>
+    </ul>
+<hr>
+
+<a name="index-letter-W" style="font-weight : bolder; font-size : larger;">W</a><br>
+
+    <li> <a href="node024.html#idx-145560496" target="mainbox">warning_level (parameter)</a>
+    <li> <a href="node024.html#idx-145561936" target="mainbox">write_bas_constraints (parameter)</a>
+    <li> <a href="node024.html#idx-145579256" target="mainbox">write_bas_head (parameter)</a>
+    <li> <a href="node024.html#idx-147181440" target="mainbox">write_bas_variables (parameter)</a>
+    <li> <a href="node024.html#idx-147182512" target="mainbox">write_data_compressed (parameter)</a>
+    <li> <a href="node024.html#idx-145570776" target="mainbox">write_data_format (parameter)</a>
+    <li> <a href="node024.html#idx-147230448" target="mainbox">write_data_param (parameter)</a>
+    <li> <a href="node024.html#idx-147239136" target="mainbox">write_free_con (parameter)</a>
+    <li> <a href="node024.html#idx-147260264" target="mainbox">write_generic_names (parameter)</a>
+    <li> <a href="node024.html#idx-147270688" target="mainbox">write_generic_names_io (parameter)</a>
+    <li> <a href="node024.html#idx-147277728" target="mainbox">write_int_constraints (parameter)</a>
+    <li> <a href="node024.html#idx-147296624" target="mainbox">write_int_head (parameter)</a>
+    <li> <a href="node024.html#idx-147294328" target="mainbox">write_int_variables (parameter)</a>
+    <li> <a href="node024.html#idx-151056824" target="mainbox">write_lp_gen_var_name (parameter)</a>
+    <li> <a href="node024.html#idx-147340248" target="mainbox">write_lp_line_width (parameter)</a>
+    <li> <a href="node024.html#idx-147335648" target="mainbox">write_lp_quoted_names (parameter)</a>
+    <li> <a href="node024.html#idx-147361088" target="mainbox">write_lp_strict_format (parameter)</a>
+    <li> <a href="node024.html#idx-147372728" target="mainbox">write_lp_terms_per_line (parameter)</a>
+    <li> <a href="node024.html#idx-147374808" target="mainbox">write_mps_int (parameter)</a>
+    <li> <a href="node024.html#idx-147400752" target="mainbox">write_mps_obj_sense (parameter)</a>
+    <li> <a href="node024.html#idx-147380056" target="mainbox">write_mps_quoted_names (parameter)</a>
+    <li> <a href="node024.html#idx-147429352" target="mainbox">write_mps_strict (parameter)</a>
+    <li> <a href="node024.html#idx-149009184" target="mainbox">write_precision (parameter)</a>
+    <li> <a href="node024.html#idx-149012704" target="mainbox">write_sol_constraints (parameter)</a>
+    <li> <a href="node024.html#idx-149032904" target="mainbox">write_sol_head (parameter)</a>
+    <li> <a href="node024.html#idx-149029088" target="mainbox">write_sol_variables (parameter)</a>
+    <li> <a href="node024.html#idx-149062432" target="mainbox">write_task_inc_sol (parameter)</a>
+    <li> <a href="node024.html#idx-149072712" target="mainbox">write_xml_mode (parameter)</a>
+<hr>
+
+<a name="index-letter-X" style="font-weight : bolder; font-size : larger;">X</a><br>
+
+    <li> <a href="node021.html#idx-103324200" target="mainbox">xml format</a>
+<hr>
+
+<a name="index-letter-Y" style="font-weight : bolder; font-size : larger;">Y</a><br>
+
+<hr>
+
+  </ul>
+</ul>
+</div>
+</body>
+</html>

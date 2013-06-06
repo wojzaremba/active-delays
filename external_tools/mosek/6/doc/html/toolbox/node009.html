@@ -1,0 +1,2945 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>7. A guided tour</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node008.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 6. MOSEK / MATLAB integration" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node010.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  8. Command reference" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node008.html" target="_self">6. MOSEK / MATLAB integration</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node010.html" target="_self">8. Command reference</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="235104160">7. A guided tour</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node009.html#235102864" target="_self">7.1. Introduction</a></li>
+<li><a href="node009.html#235105024" target="_self">7.2. The tour starts</a></li>
+<li><a href="node009.html#235109192" target="_self">7.3. The MOSEK terminolgy</a></li>
+<li><a href="node009.html#235111200" target="_self">7.4. Linear optimization</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#235111776" target="_self">7.4.1. Using <tt class="tt">msklpopt</tt></a></li>
+<li><a href="node009.html#235139296" target="_self">7.4.2. Using <tt class="tt">mosekopt</tt></a></li>
+</ul>
+</li>
+<li><a href="node009.html#235149360" target="_self">7.5. Convex quadratic optimization</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#235181624" target="_self">7.5.1. Two important assumptions</a></li>
+<li><a href="node009.html#235184712" target="_self">7.5.2. Using <tt class="tt">mskqpopt</tt></a></li>
+<li><a href="node009.html#235187520" target="_self">7.5.3. Using <tt class="tt">mosekopt</tt></a></li>
+</ul>
+</li>
+<li><a href="node009.html#235193480" target="_self">7.6. Conic optimization</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#235195352" target="_self">7.6.1. The conic optimization problem</a></li>
+<li><a href="node009.html#235219208" target="_self">7.6.2. Solving an example</a></li>
+<li><a href="node009.html#235234368" target="_self">7.6.3. Quadratic and conic optimization</a></li>
+<li><a href="node009.html#235273968" target="_self">7.6.4. Conic duality and the dual solution</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#235287760" target="_self">7.6.4.1. How to obtain the dual solution</a></li>
+</ul>
+</li>
+<li><a href="node009.html#235287976" target="_self">7.6.5. Setting accuracy parameters for the conic optimizer</a></li>
+</ul>
+</li>
+<li><a href="node009.html#235288984" target="_self">7.7. Quadratically constrained optimization</a></li>
+<li><a href="node009.html#243929456" target="_self">7.8. Linear least squares and related norm minimization problems</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#243930968" target="_self">7.8.1. The case of the 2 norm</a></li>
+<li><a href="node009.html#243937080" target="_self">7.8.2. The case of the infinity norm</a></li>
+<li><a href="node009.html#243950152" target="_self">7.8.3. The case of the 1-norm</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#243969704" target="_self">7.8.3.1. A better formulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node009.html#243990608" target="_self">7.9. More about solving linear least squares problems</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#244031432" target="_self">7.9.1. Using conic optimization on linear least squares problems</a></li>
+</ul>
+</li>
+<li><a href="node009.html#244074472" target="_self">7.10. Entropy optimization</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#244031568" target="_self">7.10.1. Using <tt class="tt">mskenopt</tt></a></li>
+</ul>
+</li>
+<li><a href="node009.html#244096752" target="_self">7.11. Geometric optimization</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#244115792" target="_self">7.11.1. Using <tt class="tt">mskgpopt</tt></a></li>
+<li><a href="node009.html#244141016" target="_self">7.11.2. Comments</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#244115864" target="_self">7.11.2.1. Solving large scale problems</a></li>
+<li><a href="node009.html#244144752" target="_self">7.11.2.2. Preprocessing tip</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node009.html#244148488" target="_self">7.12. Separable convex optimization</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#244168968" target="_self">7.12.1. Using <tt class="tt">mskscopt</tt></a></li>
+</ul>
+</li>
+<li><a href="node009.html#245827128" target="_self">7.13. Mixed-integer optimization</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#244169112" target="_self">7.13.1. Solving an example</a></li>
+<li><a href="node009.html#245839344" target="_self">7.13.2. Speeding up the solution of a mixed-integer problem</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#244169184" target="_self">7.13.2.1. Specifying an initial feasible solution</a></li>
+<li><a href="node009.html#245849336" target="_self">7.13.2.2. Using branching priorities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node009.html#245851488" target="_self">7.14. Sensitivity analysis</a></li>
+<li><a href="node009.html#245918968" target="_self">7.15. Inspecting a problem</a></li>
+<li><a href="node009.html#245916952" target="_self">7.16. The solutions</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#245911424" target="_self">7.16.1. The constraint and variable status keys</a></li>
+</ul>
+</li>
+<li><a href="node009.html#245944760" target="_self">7.17. Viewing the task information</a></li>
+<li><a href="node009.html#245945624" target="_self">7.18. Inspecting and setting parameters</a></li>
+<li><a href="node009.html#245946056" target="_self">7.19. Advanced start (hot-start)</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#245945696" target="_self">7.19.1. Some examples using hot-start</a></li>
+<li><a href="node009.html#245962728" target="_self">7.19.2. Adding a new variable</a></li>
+<li><a href="node009.html#245978896" target="_self">7.19.3. Fixing a variable</a></li>
+<li><a href="node009.html#245979472" target="_self">7.19.4. Adding a new constraint</a></li>
+<li><a href="node009.html#245979904" target="_self">7.19.5. Using numeric values to represent status key codes</a></li>
+</ul>
+</li>
+<li><a href="node009.html#245981056" target="_self">7.20. Using names</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#245981840" target="_self">7.20.1. Blanks in names</a></li>
+</ul>
+</li>
+<li><a href="node009.html#245983568" target="_self">7.21. MPS files</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#245982056" target="_self">7.21.1. Reading an MPS file</a></li>
+<li><a href="node009.html#245988816" target="_self">7.21.2. Writing a MPS files</a></li>
+</ul>
+</li>
+<li><a href="node009.html#245991472" target="_self">7.22. User call-back functions</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#245989032" target="_self">7.22.1. Log printing via call-back function</a></li>
+<li><a href="node009.html#245998080" target="_self">7.22.2. The iteration call-back function</a></li>
+</ul>
+</li>
+<li><a href="node009.html#246002896" target="_self">7.23. The license system</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="CH:MATLAB">&#09;</a> <a name="idx-71900696">&#09;</a> </p>
+
+<div>
+<h1><a name="235102864">7.1. Introduction</a></h1>
+
+<p> One of the big advantages of MATLAB is that it makes it very easy to do experiments and try out things without doing a lot of programming. The MOSEK optimization toolbox has been designed with this in mind. Hence, it should be very easy to solve optimization problems using MOSEK.</p>
+
+<p>Moreover, a guided tour to the optimization toolbox has been designed to introduce the toolbox by examples. After having studyied these examples, the reader should be able to solve his or her own optimization problems without much further effort. Nevertheless, for the user interested in exploiting the toolbox to the limits, a detailed discussion and command reference are provided in the following chapters.</p>
+
+</div>
+
+<div>
+<h1><a name="235105024">7.2. The tour starts</a></h1>
+
+<p> The MOSEK optimization toolbox consists of two layers of functions. The procedures in the top layer are application specific functions which have an easy-to-use interface. Currently, there are five procedures in the top layer: </p>
+
+<dl class="description">
+<dt><tt class="tt">msklpopt</tt></dt>
+<dd>
+<p> Performs linear optimization. </p>
+</dd>
+<dt><tt class="tt">mskqpopt</tt></dt>
+<dd>
+<p> Performs quadratic optimization. </p>
+</dd>
+<dt><tt class="tt">mskenopt</tt></dt>
+<dd>
+<p> Performs entropy optimization. </p>
+</dd>
+<dt><tt class="tt">mskgpopt</tt></dt>
+<dd>
+<p> Performs geometric optimization (posynomial case). </p>
+</dd>
+<dt><tt class="tt">mskscopt</tt></dt>
+<dd>
+<p> Performs separable convex optimization. </p>
+</dd>
+</dl>
+
+<p> The bottom layer of the MOSEK optimization toolbox consists of one procedure named <tt class="tt">mosekopt</tt>. This procedure provides a very flexible and powerful interface to the MOSEK optimization package. However, the price for this flexibility is a more complicated calling procedure.</p>
+
+<p>For compatibility with the MATLAB optimization toolbox MOSEK also provides an implementation of <tt class="tt">linprog</tt>, <tt class="tt">quadprog</tt> and so forth. For details about these functions we refer the reader to Chapter <a title="8. Command reference" href="node010.html#CH:CMDREF">8</a>.</p>
+
+<p>In the following sections usage of the MOSEK optimization toolbox is demonstrated using examples. Most of these examples are available in </p>
+
+<pre class="verbatim">mosek\6\toolbox\examp\
+</pre>
+
+</div>
+
+<div>
+<h1><a name="235109192">7.3. The MOSEK terminolgy</a></h1>
+
+<p> First, some MOSEK terminology is introduced which will make the following sections easy to understand.</p>
+
+<p>The MOSEK optimization toolbox can solve different classes of optimization problems such as linear, quadratic, conic, and mixed-integer optimization problems. Each of these problems is solved by one of the optimizers in MOSEK. Indeed MOSEK includes the following optimizers: </p>
+
+<ul class="itemize">
+<li>Interior-point optimizer. </li>
+<li>Conic interior-point optimizer. </li>
+<li>Primal simplex optimizer. </li>
+<li>Mixed-integer optimizer. </li>
+</ul>
+
+<p> Depending on the optimizer different solution types may be produced, e.g. the interior-point optimizers produce a general interior-point solution whereas the simplex optimizer produces a basic solution.</p>
+
+</div>
+
+<div>
+<h1><a name="235111200">7.4. Linear optimization</a></h1>
+
+<p>The first example is the linear optimization problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math3.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & x_{1}+2x_{2} &  & \\\nonumber{}\mbox{subject to} & 4 & \leq{} & x_{1}+x_{3} & \leq{} & 6,\\\nonumber{} & 1 & \leq{} & x_{1}+x_{2}, &  & \\\nonumber{} &  &  & 0\leq{}x_{1},x_{2},x_{3.} &  &\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:LP1">&#09;</a>(7.4.1)</td></tr>
+</tbody>
+</table>
+
+<div>
+<h2><a name="235111776">7.4.1. Using <tt class="tt">msklpopt</tt></a></h2>
+
+<p> <a name="idx-71937920">&#09;</a></p>
+
+<p>A linear optimization problem such as (<a href="node009.html#CH:MATLAB:EQ:LP1">7.4.1</a>) can be solved using the <tt class="tt">msklpopt</tt> function which is designed for solving the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math4.png" alt="\begin{math}\nonumber{}\begin{array}{llcccc}\nonumber{}\mbox{minimize} &  &  & c^{T}x &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x}.\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:MSKLP1">&#09;</a>(7.4.2)</td></tr>
+</tbody>
+</table>
+
+<p><span class="math"><img src="math/math5.png" alt="[[MathCmd 5]]"/></span> and <span class="math"><img src="math/math6.png" alt="[[MathCmd 6]]"/></span> are called constraint bounds whereas <span class="math"><img src="math/math7.png" alt="[[MathCmd 7]]"/></span> and <span class="math"><img src="math/math8.png" alt="[[MathCmd 8]]"/></span> are variable bounds.</p>
+
+<p>The first step in solving the example (<a href="node009.html#CH:MATLAB:EQ:LP1">7.4.1</a>) is to setup the data for problem (<a href="node009.html#CH:MATLAB:EQ:MSKLP1">7.4.2</a>) i.e. the <span class="math"><span class="mi">c</span><span class="mo">,</span></span> <span class="math"><span class="mi">A</span></span>, etc. Afterwards the problem is solved using an appropriate call to <tt class="tt">msklpopt</tt>. </p>
+
+<pre class="verbatimcode">% lo1.m 
+
+c     = [1 2 0]';
+a     = [[1 0 1];[1 1 0]];
+blc   = [4 1]';
+buc   = [6 inf]';
+blx   = sparse(3,1);
+bux   = [];
+[res] = msklpopt(c,a,blc,buc,blx,bux);
+sol   = res.sol;
+
+% Interior-point solution.
+
+sol.itr.xx'      % x solution.
+sol.itr.sux'     % Dual variables corresponding to buc.
+sol.itr.slx'     % Dual variables corresponding to blx.
+
+% Basic solution.
+
+sol.bas.xx'      % x solution in basic solution.
+</pre>
+
+<p>Please note that </p>
+
+<ul class="itemize">
+<li>Infinite bounds are specified using -<tt class="tt">inf</tt> and <tt class="tt">inf</tt>. Moreover, the <tt class="tt">bux = []</tt> means that all upper bounds <span class="math"><img src="math/math8.png" alt="[[MathCmd 8]]"/></span> are plus infinite.</li>
+<li>The <tt class="tt">[res] = msklpopt(c,a,blc,buc)</tt> call implies that the lower and upper bounds on <span class="math"><span class="mi">x</span></span> are minus and plus infinity respectively.</li>
+<li>The lines after the <tt class="tt">msklpopt</tt> call can be omitted, but the purpose of those lines is to display different parts of the solutions. The <tt class="tt">res.sol</tt> field contains one or more solutions. In this case both the interior-point solution (<tt class="tt">sol.itr</tt>) and the basic solution (<tt class="tt">sol.bas</tt>) are defined. </li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="235139296">7.4.2. Using <tt class="tt">mosekopt</tt></a></h2>
+
+<p> The <tt class="tt">msklpopt</tt> function is in fact just a wrapper around the real optimization routine <tt class="tt">mosekopt</tt>. Therefore, an alternative to using the <tt class="tt">msklpopt</tt> is to call <tt class="tt">mosekopt</tt> directly. In general, the syntax for a <tt class="tt">mosekopt</tt> call is </p>
+
+<pre class="verbatim">[rcode,res] = mosekopt(cmd,prob,param) 
+</pre>
+
+<p>The arguments <tt class="tt">prob</tt> and <tt class="tt">param</tt> are optional. The purpose of the arguments are as follows: </p>
+
+<dl class="description">
+<dt><tt class="tt">cmd</tt></dt>
+<dd>
+<p> A string telling <tt class="tt">mosekopt</tt> what to do, e.g. <tt class="tt">'minimize info'</tt> tells <tt class="tt">mosekopt</tt> that the objective should be minimized and information about the optimization should be returned.</p>
+</dd>
+<dt><tt class="tt">prob</tt></dt>
+<dd>
+<p> A MATLAB structure specifying the problem that should be optimized.</p>
+</dd>
+<dt><tt class="tt">param</tt></dt>
+<dd>
+<p> A MATLAB structure specifying parameters controlling the behavior of the MOSEK optimizer. However, in general it should not be necessary to change the parameters. </p>
+</dd>
+</dl>
+
+<p> The following MATLAB commands demonstrate how to set up the <tt class="tt">prob</tt> structure for the example (<a href="node009.html#CH:MATLAB:EQ:LP1">7.4.1</a>) and solve the problem using <tt class="tt">mosekopt</tt>: </p>
+
+<pre class="verbatimcode">% lo2.m
+
+clear prob;
+
+% Specify the c vector.
+prob.c = [ 1 2 0]';
+
+% Specify a in sparse format.
+subi   = [1 2 2 1];
+subj   = [1 1 2 3];
+valij  = [1.0 1.0 1.0 1.0];
+
+prob.a = sparse(subi,subj,valij);
+
+% Specify lower bounds of the constraints.
+prob.blc  = [4.0 1.0]';
+
+% Specify  upper bounds of the constraints.
+prob.buc  = [6.0 inf]';
+
+% Specify lower bounds of the variables.
+prob.blx  = sparse(3,1);
+
+% Specify upper bounds of the variables.
+prob.bux = [];   % There are no bounds.
+
+% Perform the optimization.
+[r,res] = mosekopt('minimize',prob); 
+
+% Show the optimal x solution.
+res.sol.bas.xx
+</pre>
+
+<p>Please note that </p>
+
+<ul class="itemize">
+<li>A MATLAB structure named <tt class="tt">prob</tt> containing all the relevant problem data is defined.</li>
+<li>All fields of this structure are optional except <tt class="tt">prob.a</tt> which is required to be a <b>sparse</b> matrix.</li>
+<li>Different parts of the solution can be viewed by inspecting the solution field <tt class="tt">res.sol</tt>. </li>
+</ul>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="235149360">7.5. Convex quadratic optimization</a></h1>
+
+<p> A frequently occurring problem type is the quadratic optimization problem which consists of minimizing a quadratic objective function subject to linear constraints. One example of such a problem is:</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math10.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}\mbox{minimize} &  &  & x_{1}^{2}+0.1x_{2}^{2}+x_{3}^{2}-x_{1}x_{3}-x_{2} & \\\nonumber{}\mbox{subject to} & 1 & \leq{} & x_{1}+x_{2}+x_{3} & \\\nonumber{} &  &  & x\geq{}0. &\end{array}\end{math}"/></td>
+<td><a name="ch-matlab-sec-qo-eq-ex1">&#09;</a>(7.5.1)</td></tr>
+</tbody>
+</table>
+
+<p>In general, a quadratic optimization problem has the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math11.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & \frac{1}{2}x^{T}Qx+c^{T}x &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax, & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:QP2">&#09;</a>(7.5.2)</td></tr>
+</tbody>
+</table>
+
+<p>which for the example (<a href="node009.html#ch-matlab-sec-qo-eq-ex1">7.5.1</a>) implies that </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math12.png" alt="\begin{math}\nonumber{}Q=\left[\begin{array}{ccc}\nonumber{}2 & 0 & -1\\\nonumber{}0 & 0.2 & 0\\\nonumber{}-1 & 0 & 2\end{array}\right],\quad{}c=\left[\begin{array}{c}\nonumber{}0\\\nonumber{}-1\\\nonumber{}0\end{array}\right],\quad{}A=\left[\begin{array}{ccc}\nonumber{}1 & 1 & 1\end{array}\right],\end{math}"/></td>
+<td>(7.5.3)</td></tr>
+</tbody>
+</table>
+
+<p>and that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math13.png" alt="\begin{displaymath}\nonumber{}l^{c}=1,\quad{}u^{c}=\infty ,\quad{}l^{x}=\left[\begin{array}{c}\nonumber{}0\\\nonumber{}0\\\nonumber{}0\end{array}\right]\mbox{ and }u^{x}=\left[\begin{array}{c}\nonumber{}\infty \\\nonumber{}\infty\end{array}\right]\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Please note the explicit <span class="math"><img src="math/math14.png" alt="[[MathCmd 14]]"/></span> in the objective function of (<a href="node009.html#CH:MATLAB:EQ:QP2">7.5.2</a>) which implies that diagonal elements must be doubled in <span class="math"><span class="mi">Q</span></span>, i.e. <span class="math"><img src="math/math15.png" alt="[[MathCmd 15]]"/></span>, whereas the coefficient in (<a href="node009.html#ch-matlab-sec-qo-eq-ex1">7.5.1</a>) is 1 in front of <span class="math"><img src="math/math16.png" alt="[[MathCmd 16]]"/></span>.</p>
+
+<div>
+<h2><a name="235181624">7.5.1. Two important assumptions</a></h2>
+
+<p> MOSEK assumes that the <span class="math"><span class="mi">Q</span></span> matrix is symmetric, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math17.png" alt="\begin{displaymath}\nonumber{}Q=Q^{T}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and that <span class="math"><span class="mi">Q</span></span> is <i>positive semi-definite</i><a name="idx-71996336">&#09;</a>. A matrix is positive semi-definite if the smallest eigenvalue of the matrix is nonnegative. An alternative statement of the positive semi-definite requirement is </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math18.png" alt="\begin{displaymath}\nonumber{}x^{T}Qx\geq{}0,~\forall x.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>If <span class="math"><span class="mi">Q</span></span> is not positive semi-definite, then MOSEK will not produce reliable results or work at all.</p>
+
+<p>One way of checking whether <span class="math"><span class="mi">Q</span></span> is positive semi-definite is to check whether all the eigenvalues of <span class="math"><span class="mi">Q</span></span> are nonnegative. The MATLAB command <tt class="tt">eig</tt> computes all eigenvalues of a matrix.</p>
+
+</div>
+
+<div>
+<h2><a name="235184712">7.5.2. Using <tt class="tt">mskqpopt</tt></a></h2>
+
+<p> <a name="idx-73190720">&#09;</a></p>
+
+<p>The subsequent MATLAB statements solve the problem (<a href="node009.html#ch-matlab-sec-qo-eq-ex1">7.5.1</a>) using the <tt class="tt">mskqpopt</tt> MOSEK function </p>
+
+<pre class="verbatimcode">% qo1.m
+
+% Set up Q.
+q     = [[2 0 -1];[0 0.2 0];[-1 0 2]];
+
+% Set up the linear part of the problem.
+c     = [0 -1 0]';
+a     = ones(1,3);
+blc   = [1.0];
+buc   = [inf];
+blx   = sparse(3,1);
+bux   = [];
+
+% Optimize the problem.
+[res] = mskqpopt(q,c,a,blc,buc,blx,bux);
+
+% Show the primal solution.
+res.sol.itr.xx
+</pre>
+
+<p>It should be clear that the format for calling <tt class="tt">mskqpopt</tt> is very similar to calling <tt class="tt">msklpopt</tt> except that the <span class="math"><span class="mi">Q</span></span> matrix is included as the first argument of the call. Similarly, the solution can be inspected by viewing the <tt class="tt">res.sol</tt> field.</p>
+
+</div>
+
+<div>
+<h2><a name="235187520">7.5.3. Using <tt class="tt">mosekopt</tt></a></h2>
+
+<p> The following sequence of MATLAB commands solves the quadratic optimization example by calling <tt class="tt">mosekopt</tt> directly. </p>
+
+<pre class="verbatimcode">% qo2.m
+
+clear prob;
+
+% c vector.
+prob.c = [0 -1 0]';
+
+% Define the data.
+
+% First the lower triangular part of q in the objective 
+% is specified in a sparse format. The format is:
+%
+%   Q(prob.qosubi(t),prob.qosubj(t)) = prob.qoval(t), t=1,...,4
+
+prob.qosubi = [ 1  3 2   3]';
+prob.qosubj = [ 1  1 2   3]';
+prob.qoval  = [ 2 -1 0.2 2]';
+
+% a, the constraint matrix
+subi  = ones(3,1);
+subj  = 1:3;
+valij = ones(3,1);
+
+prob.a = sparse(subi,subj,valij);
+
+% Lower bounds of constraints.
+prob.blc  = [1.0]';
+
+% Upper bounds of constraints.
+prob.buc  = [inf]';
+
+% Lower bounds of variables.
+prob.blx  = sparse(3,1);
+
+% Upper bounds of variables.
+prob.bux = [];   % There are no bounds.
+
+[r,res] = mosekopt('minimize',prob);
+
+% Display return code.
+fprintf('Return code: %d\n',r);
+
+% Display primal solution for the constraints.
+res.sol.itr.xc'
+
+% Display primal solution for the variables.
+res.sol.itr.xx'
+</pre>
+
+<p>This sequence of commands looks much like the one that was used to solve the linear optimization example using <tt class="tt">mosekopt</tt> except that the definition of the <span class="math"><span class="mi">Q</span></span> matrix in <tt class="tt">prob</tt>. <tt class="tt">mosekopt</tt> requires that <span class="math"><span class="mi">Q</span></span> is specified in a sparse format. Indeed the vectors <tt class="tt">qosubi</tt>, <tt class="tt">qosubj</tt>, and <tt class="tt">qoval</tt> are used to specify the coefficients of <span class="math"><span class="mi">Q</span></span> in the objective using the principle </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math19.png" alt="\begin{displaymath}\nonumber{}Q_{{\mbox{{qosubi(t)}},\mbox{{qosubj(t)}}}}=\mbox{{qoval(t)}},\quad{}\mbox{for}~t=1,\ldots ,\mbox{length}(\mbox{{qosubi}}).\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>An important observation is that due to <span class="math"><span class="mi">Q</span></span> being symmetric, only the lower triangular part of <span class="math"><span class="mi">Q</span></span> should be specified.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="235193480">7.6. Conic optimization</a></h1>
+
+<p> <a name="idx-73222768">&#09;</a> <a name="idx-73223488">&#09;</a> <a name="idx-73224136">&#09;</a></p>
+
+<p>One way of generalizing a linear optimization problem is to include a constraint of the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math20.png" alt="\begin{displaymath}\nonumber{}x\in{}\mathcal{C}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>in the problem definition where <span class="math"><img src="math/math21.png" alt="[[MathCmd 21]]"/></span> is required to be a <i>convex cone</i>. The resulting class of problems is known as <i>conic optimization</i>.</p>
+
+<p>MOSEK can solve a subset of all conic problems and subsequently it is demonstrated how to solve this subset using the <tt class="tt">mosekopt</tt> toolbox function.</p>
+
+<div>
+<h2><a name="235195352">7.6.1. The conic optimization problem</a></h2>
+
+<p> A conic optimization problem has the following form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math22.png" alt="\begin{math}\nonumber{}\begin{array}{lcccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c}, & \\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x}, & \\\nonumber{} &  &  & x\in{}\mathcal{C}, &  &  &\end{array}\end{math}"/></td>
+<td><a name="ch-matlab-sec-conicoptimization-eq-primal">&#09;</a>(7.6.1)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math21.png" alt="[[MathCmd 21]]"/></span> must satisfy the following requirements. Let </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math24.png" alt="\begin{displaymath}\nonumber{}x^{t}\in{}\mathbb{R}^{{n^{t}}},~t=1,\ldots ,k\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>be vectors comprised of parts of the decision variable vector <span class="math"><span class="mi">x</span></span> such that each decision variable is a member of exactly <b>one</b> <span class="math"><img src="math/math25.png" alt="[[MathCmd 25]]"/></span> vector, e.g.: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math26.png" alt="\begin{displaymath}\nonumber{}x^{1}=\left[\begin{array}{c}\nonumber{}x_{1}\\\nonumber{}x_{4}\\\nonumber{}x_{7}\end{array}\right]\mbox{ and }x^{2}=\left[\begin{array}{c}\nonumber{}x_{6}\\\nonumber{}x_{5}\\\nonumber{}x_{{3}}\\\nonumber{}x_{2}\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Next, define </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math27.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}:=\left\lbrace{}x\in{}\mathbb{R}^{n}:~x^{t}\in{}\mathcal{C}_{t},~t=1,2,\ldots ,k\right\rbrace{}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math28.png" alt="[[MathCmd 28]]"/></span> must have one of the following forms. </p>
+
+<ul class="itemize">
+<li>
+<p><span class="math"><img src="math/math29.png" alt="[[MathCmd 29]]"/></span> set: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math30.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math31.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:x_{1}\geq{}\sqrt{\sum \limits _{{j=2}}^{{n^{t}}}x_{j}^{2}}\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Rotated quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math32.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:2x_{1}x_{2}\geq{}\sum \limits _{{j=3}}^{{n^{t}}}x_{j}^{2},~x_{1},x_{2}\geq{}0\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<p> A variable is by default members of the <span class="math"><img src="math/math29.png" alt="[[MathCmd 29]]"/></span> set unless it explicitly belongs to a specific cone.</p>
+
+<p>Although the cones MOSEK can handle give rise to a limited class of conic problems it includes linear, quadratic, quadratically constrained optimization, and other classes of nonlinear convex optimization problems. See Section <a title="10.3. Conic optimization" href="node012.html#ch-use-sec-conicoptimization">10.3</a> for a discussion.</p>
+
+</div>
+
+<div>
+<h2><a name="235219208">7.6.2. Solving an example</a></h2>
+
+<p>The problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math34.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} & x_{5}+x_{6} &  & \\\nonumber{}\mbox{subject to} & x_{1}+x_{2}+x_{3}+x_{4} & = & 1,\\\nonumber{} & x_{1},x_{2},x_{3},x_{4} & \geq{} & 0,\\\nonumber{} & x_{5}\geq{}\sqrt{x_{1}^{2} + x_{3}^{2}}, &  & \\\nonumber{} & x_{6}\geq{}\sqrt{x_{2}^{2} + x_{4}^{2}} &  &\end{array}\end{math}"/></td>
+<td><a name="ch-matlab-sec-conic-eq-ex1">&#09;</a>(7.6.2)</td></tr>
+</tbody>
+</table>
+
+<p>is an example of a conic quadratic optimization problem. The problem involves some linear constraints and two quadratic cones. The linear constraints are specified as if the problem was a linear problem whereas the cones are specified using a MATLAB cell array named <tt class="tt">cones</tt>. <tt class="tt">cones</tt> must contain one cell per cone, where a cell must contain the two fields <tt class="tt">type</tt> and <tt class="tt">sub</tt>. <tt class="tt">type</tt> is used to specify the type of the cone and <tt class="tt">sub</tt> is used to specify the member variables of the cone.</p>
+
+<p>The following MATLAB code demonstrates how to solve the example (<a href="node009.html#ch-matlab-sec-conic-eq-ex1">7.6.2</a>) using MOSEK. </p>
+
+<pre class="verbatimcode">% cqo1.m
+
+clear prob;
+
+% Specify the non-confic part of the problem.
+
+prob.c   = [0 0 0 0 1 1];
+prob.a   = sparse([1 1 1 1 0 0]);
+prob.blc = 1;
+prob.buc = 1;
+prob.blx = [0 0 0 0 -inf -inf];
+prob.bux = inf*ones(6,1);
+
+% Specify the cones.
+% Define an empty cell array names 'cones' containing one cell per cone.
+ 
+prob.cones   = cell(2,1);
+
+% The first cone is specified.
+
+prob.cones{1}.type = 'MSK_CT_QUAD';
+prob.cones{1}.sub  = [5 3 1];
+
+% The second cone is specified.
+
+prob.cones{2}.type = 'MSK_CT_QUAD';
+prob.cones{2}.sub  = [6 2 4];
+
+% The field 'type' specifies the cone type, i.e. whether it is quadratic cone
+% or rotated quadratic cone. The keys for the two cone types are MSK_CT_QUAD
+% MSK_CT_RQUAD respectively.
+%
+% The field 'sub' specifies the members of the cone, i.e. the above definitions
+% imply that x(5) &gt;= sqrt(x(3)^2+x(1)^2) and x(6) * x(2) &gt;= x(4)^2.
+
+% Optimize the problem. 
+
+[r,res]=mosekopt('minimize',prob);
+
+% Display the primal solution.
+
+res.sol.itr.xx'
+</pre>
+
+<p>Note in partiucular that: </p>
+
+<ul class="itemize">
+<li>No variable can be member of more than one cone. This is not serious restriction &mdash; see the following section.</li>
+<li>The <span class="math"><img src="math/math29.png" alt="[[MathCmd 29]]"/></span> set is not specified explicitly. </li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="235234368">7.6.3. Quadratic and conic optimization</a></h2>
+
+<p> The example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math36.png" alt="\begin{math}\nonumber{}\begin{array}{llcl}\nonumber{}\mbox{minimize} & x_{1}+x_{2}+x_{3} &  & \\\nonumber{}\mbox{subject to} & x_{1}^{2}+x_{2}^{2}+x_{3}^{2} & \leq{} & 1,\\\nonumber{} & x_{1}+0.5x_{2}^{2}+x_{3} & \leq{} & 0.5\end{array}\end{math}"/></td>
+<td><a name="ch-matlab-sec-conic-eq-qcqo">&#09;</a>(7.6.3)</td></tr>
+</tbody>
+</table>
+
+<p>is not a conic quadratic optimization problem but can easily be reformulated as such.</p>
+
+<p>Indeed the first constraint is equivalent to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math37.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}x_{4} & \geq{} & \sqrt{x_{1}^{2} + x_{2}^{2} + x_{3}^{2}},\\\nonumber{}x_{4} & = & 1\end{array}\end{math}"/></td>
+<td>(7.6.4)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math38.png" alt="[[MathCmd 38]]"/></span> is a new variable. This is a quadratic cone and a linear constraint. The second constraint in (<a href="node009.html#ch-matlab-sec-conic-eq-qcqo">7.6.3</a>) is equivalent to </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math39.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}x_{1}+x_{3}+x_{5} & = & 0.5,\\\nonumber{}x_{2}-x_{7} & = & 0,\\\nonumber{}x_{5} & \geq{} & 0,\\\nonumber{}x_{6} & = & 1,\\\nonumber{}x_{7}^{2} & \leq{} & 2x_{5}x_{6},\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>because this implies that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math40.png" alt="\begin{displaymath}\nonumber{}x_{5}\geq{}0.5x_{7}^{2}=0.5x_{2}^{2.}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math41.png" alt="\begin{displaymath}\nonumber{}x_{1}+0.5x_{2}^{2}+x_{3}\leq{}x_{1}+x_{3}+x_{5}=0.5.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> Please note that no variable can occur in more than one cone and therefore the additional constraint </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math42.png" alt="\begin{displaymath}\nonumber{}x_{2}=x_{7}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is introduced and <span class="math"><img src="math/math43.png" alt="[[MathCmd 43]]"/></span> is included in the second conic constraint instead of <span class="math"><img src="math/math44.png" alt="[[MathCmd 44]]"/></span>. Using this &#8220;trick&#8221; it is always possible to obtain a formulation where no variable occurs in more than one cone.</p>
+
+<p>Therefore, the example (<a href="node009.html#ch-matlab-sec-conic-eq-qcqo">7.6.3</a>) is equivalent to the conic quadratic optimization problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math45.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & x_{1}+x_{2}+x_{3} &  & \\\nonumber{}\mbox{subject to} & x_{1}+x_{3}+x_{5} & = & 0.5,\\\nonumber{} & x_{2}-x_{7} & = & 0,\\\nonumber{} & x_{4} & = & 1,\\\nonumber{} & x_{5} & \geq{} & 0,\\\nonumber{} & x_{6} & = & 1,\\\nonumber{} & x_{4}\geq{}\sqrt{x_{1}^{2} + x_{2}^{2} + x_{3}^{2}}, &  & \\\nonumber{} & 2x_{5}x_{6}\geq{}x_{7}^{2.} &  &\end{array}\end{math}"/></td>
+<td>(7.6.5)</td></tr>
+</tbody>
+</table>
+
+<p>This problem can be solved using MOSEK as follows: </p>
+
+<pre class="verbatimcode">% cqo2.m
+
+% Set up the non-conic part of the problem.
+
+prob          = [];
+prob.c        = [1 1 1 0 0 0 0]';
+prob.a        = sparse([[1 0 1 0 1 0 0];...
+                        [0 1 0 0 0 0 -1]]);
+prob.blc      = [0.5 0];
+prob.buc      = [0.5 0];
+prob.blx      = [-inf -inf -inf 1 -inf 1 -inf];
+prob.bux      = [inf   inf  inf 1  inf 1  inf];
+
+% Set up the cone information.
+
+prob.cones         = cell(2,1);
+prob.cones{1}.type = 'MSK_CT_QUAD';
+prob.cones{1}.sub  = [4 1 2 3];
+prob.cones{2}.type = 'MSK_CT_RQUAD';
+prob.cones{2}.sub  = [5 6 7];
+
+[r,res]       = mosekopt('minimize',prob);
+
+% Display the solution.
+res.sol.itr.xx'
+</pre>
+
+</div>
+
+<div>
+<h2><a name="235273968">7.6.4. Conic duality and the dual solution</a></h2>
+
+<p>The dual problem corresponding to the conic optimization problem (<a href="node009.html#ch-matlab-sec-conicoptimization-eq-primal">7.6.1</a>) is given by </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math46.png" alt="\begin{math}\nonumber{}\begin{array}{lcccccl}\nonumber{}\mbox{maximize} & (l^{c})^{T}s_{l}^{c}-(u^{c})^{T}s_{u}^{c} &  & \\\nonumber{} & +(l^{x})^{T}s_{l}^{x}-(u^{x})^{T}s_{u}^{x}+c^{f} &  & \\\nonumber{}\mbox{subject to} & -y+s_{l}^{c}-s_{u}^{c} & = & 0,\\\nonumber{} & A^{T}y+s_{l}^{x}-s_{u}^{x}+s_{n}^{x} & = & c,\\\nonumber{} & s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x} & \geq{} & 0,\\\nonumber{} & s_{n}^{x}\in{}\mathcal{C}^{*} &  &\end{array}\end{math}"/></td>
+<td>(7.6.6)</td></tr>
+</tbody>
+</table>
+
+<p>where the dual cone <span class="math"><img src="math/math47.png" alt="[[MathCmd 47]]"/></span> is defined as follows. Let <span class="math"><img src="math/math48.png" alt="[[MathCmd 48]]"/></span> be partitioned similar to <span class="math"><span class="mi">x</span></span>, i.e. if <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span> is a member of <span class="math"><img src="math/math25.png" alt="[[MathCmd 25]]"/></span>, then <span class="math"><img src="math/math51.png" alt="[[MathCmd 51]]"/></span> is a member of <span class="math"><img src="math/math52.png" alt="[[MathCmd 52]]"/></span> as well. Now, the dual cone is defined by </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math53.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}^{*}:=\left\lbrace{}s_{n}^{x}\in{}\mathbb{R}^{{n^{t}}}:~(s_{n}^{x})^{t}\in{}\mathcal{C}^{*}_{t},~t=1,\ldots ,k\right\rbrace{}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where the type of <span class="math"><img src="math/math54.png" alt="[[MathCmd 54]]"/></span> is dependent on the type of <span class="math"><img src="math/math28.png" alt="[[MathCmd 28]]"/></span>. For the cone types MOSEK can handle the relation between the primal and dual cones is given as follows: </p>
+
+<ul class="itemize">
+<li>
+<p><span class="math"><img src="math/math29.png" alt="[[MathCmd 29]]"/></span> set: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math57.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}\right\rbrace{}\quad{}\Leftrightarrow \quad{}\mathcal{C}^{*}_{t}:=\left\lbrace{}s\in{}\mathbb{R}^{{n^{t}}}:~s=0\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math58.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}:=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:x_{1}\geq{}\sqrt{\sum \limits _{{j=2}}^{{n^{t}}}x_{j}^{2}}\right\rbrace{}\quad{}\Leftrightarrow \quad{}\mathcal{C}^{*}_{t}=\mathcal{C}_{t}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Rotated quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math59.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}:=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:2x_{1}x_{2}\geq{}\sum \limits _{{j=3}}^{{n^{t}}}x_{j}^{2},~x_{1},x_{2}\geq{}0\right\rbrace{}\quad{}\Leftrightarrow \quad{}\mathcal{C}^{*}_{t}=\mathcal{C}_{t}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<p> For a more detailed discussion about conic duality see Section <a title="10.3. Conic optimization" href="node012.html#ch-use-sec-conicoptimization">10.3</a>.</p>
+
+<div>
+<h3><a name="235287760">7.6.4.1. How to obtain the dual solution</a></h3>
+
+<p> When solving a conic optimization problem using MOSEK, the dual solution is available. The following MATLAB code fragment shows where the dual solution is stored. </p>
+
+<pre class="verbatimcode">% cqo3.m
+
+[r,res]=mosekopt('minimize',prob);
+
+% Solution record.
+res.sol
+
+% Dual variables for lower
+% bounds of constraints.
+res.sol.itr.slc'
+
+% Dual variables for upper
+% bounds of constraints.
+res.sol.itr.suc'
+
+% Dual variables for lower
+% bounds on variables.
+res.sol.itr.slx'
+
+% Dual variables for upper
+% bounds on variables.
+res.sol.itr.sux'
+
+% Dual variables with respect
+% to the conic constraints.
+res.sol.itr.snx'
+</pre>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="235287976">7.6.5. Setting accuracy parameters for the conic optimizer</a></h2>
+
+<p> Three parameters control the accuracy of the solution obtained by the conic interior-point optimizer. The following example demonstrates which parameters should be reduced to obtain a more accurate solution, if required. </p>
+
+<pre class="verbatimcode">% How to change the parameters that controls
+% the accuracy of a solution computed by the conic
+% optimizer.
+
+param = [];
+
+% Primal feasibility tolerance for the primal solution
+param.MSK_DPAR_INTPNT_CO_TOL_PFEAS = 1.0e-8;
+
+% Dual feasibility tolerance for the dual solution
+param.MSK_DPAR_INTPNT_CO_TOL_DFEAS = 1.0e-8;
+
+% Relative primal-dual gap tolerance.
+param.MSK_DPAR_INTPNT_CO_TOL_REL_GAP = 1.0e-8;
+
+[r,res]=mosekopt('minimize',prob,param);
+</pre>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="235288984">7.7. Quadratically constrained optimization</a></h1>
+
+<p> In the previous section a quadratically constrained optimization problem was solved using the conic optimizer. It is also possible to solve such a problem directly. An example of such an optimization problem is </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math60.png" alt="\begin{math}\nonumber{}\begin{array}{llcl}\nonumber{}\mbox{minimize} & x_{1}+x_{2}+x_{3} &  & \\\nonumber{}\mbox{subject to} & x_{1}^{2}+x_{2}^{2}+x_{3}^{2} & \leq{} & 1,\\\nonumber{} & x_{1}+0.1x_{2}^{2}+x_{3} & \leq{} & 0.5.\end{array}\end{math}"/></td>
+<td>(7.7.1)</td></tr>
+</tbody>
+</table>
+
+<p>Please note that there are quadratic terms in both constraints. This problem can be solved using <tt class="tt">mosekopt</tt> as follows: </p>
+
+<pre class="verbatimcode">% qco1.m
+
+clear prob;
+
+% Specify the linear objective terms.
+prob.c      = ones(3,1);
+
+% Specify the quadratic objective terms.
+prob.qcsubk = [1   1   1   2  ]';
+prob.qcsubi = [1   2   3   2  ]';
+prob.qcsubj = [1   2   3   2  ]';
+prob.qcval  = [2.0 2.0 2.0 0.2]';
+
+% Specify the linear constraint matrix
+prob.a      = [sparse(1,3);sparse([1 0 1])];
+
+prob.buc    = [1 0.5]';
+
+[r,res]     = mosekopt('minimize',prob);
+
+% Display the solution.
+fprintf('\nx:');
+fprintf(' %-.4e',res.sol.itr.xx');
+fprintf('\n||x||: %-.4e',norm(res.sol.itr.xx));
+</pre>
+
+<p>Note that the quadratic terms in the constraints are specified using the fields <tt class="tt">prob.qcsubk</tt>, <tt class="tt">prob.qcsubi</tt>, <tt class="tt">prob.qcsubj</tt>, and <tt class="tt">prob.qcval</tt> as follows </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math61.png" alt="\begin{displaymath}\nonumber{}Q_{{\mbox{{qcsubi(t)}},\mbox{{qcsubj(t)}}}}^{{\mbox{{qcsubk(t)}}}}=\mbox{{qcval(t)}},\quad{}\mbox{for}\quad{}t=1,\ldots ,\mbox{length}(\mbox{{qcsubk}})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math62.png" alt="[[MathCmd 62]]"/></span> is the quadratic term in the <span class="math"><span class="mi">k</span></span>th constraint. Also note that only the lower triangular part of the <span class="math"><img src="math/math63.png" alt="[[MathCmd 63]]"/></span>s should be specified.</p>
+
+</div>
+
+<div>
+<h1><a name="243929456">7.8. Linear least squares and related norm minimization problems</a></h1>
+
+<p>A frequently occurring problem in statistics and in many other areas of science is the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math64.png" alt="\begin{math}\nonumber{}\mbox{minimize}\quad{}\left\|Fx-b\right\|\end{math}"/></td>
+<td><a name="NRMMIN">&#09;</a>(7.8.1)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><span class="mi">F</span></span> and <span class="math"><span class="mi">b</span></span> are a matrix and vector of appropriate dimensions. <span class="math"><span class="mi">x</span></span> is the vector decision variables.</p>
+
+<p>Typically, the norm used is the 1-norm, the 2-norm, or the infinity norm.</p>
+
+<div>
+<h2><a name="243930968">7.8.1. The case of the 2 norm</a></h2>
+
+<p> Initially let us focus on the 2 norm. In this case (<a href="node009.html#NRMMIN">7.8.1</a>) is identical to the quadratic optimization problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math65.png" alt="\begin{math}\nonumber{}\mbox{minimize}\quad{}1/2x^{T}F^{T}Fx+1/2b^{T}b-b^{T}Fx\end{math}"/></td>
+<td><a name="QPEQV">&#09;</a>(7.8.2)</td></tr>
+</tbody>
+</table>
+
+<p>in the sense that the set of optimal solutions for the two problems coincides. This fact follows from </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math66.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}\left\|Fx-b\right\|^{2} & = & (Fx-b)^{T}(Fx-b)\\\nonumber{} &  & x^{T}F^{T}Fx+b^{T}b+2b^{T}Fx.\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> Subsequently, it is demonstrated how the quadratic optimization problem (<a href="node009.html#QPEQV">7.8.2</a>) is solved using <tt class="tt">mosekopt</tt>. In the example the problem data is read from a file, then data for the problem (<a href="node009.html#QPEQV">7.8.2</a>) is constructed and finally the problem is solved. </p>
+
+<pre class="verbatimcode">% nrm1.m
+
+% Read data from 'afiro.mps'.
+[r,res] = mosekopt('read(afiro.mps)');
+
+% Get data for the problem
+%             minimize ||f x - b||_2
+f = res.prob.a';
+b = res.prob.c;
+
+% Solve the problem
+%             minimize 0.5 xf'fx+0.5*b'*b-(f'*b)'*x
+
+% Clear prob
+clear prob;
+
+% Compute the fixed term in the objective.
+prob.cfix = 0.5*b'*b
+
+% Create the linear objective terms
+prob.c = -f'*b;
+
+% Create the quadratic terms. Please note that only the lower triangular
+% part of f'*f is used.
+[prob.qosubi,prob.qosubj,prob.qoval] = find(sparse(tril(f'*f)))
+
+% Obtain the matrix dimensions.
+[m,n]   = size(f);
+
+% Specify a.
+prob.a  = sparse(0,n);
+
+[r,res] = mosekopt('minimize',prob);
+
+% The optimality conditions are f'*(f x - b) = 0.
+% Check if they are satisfied:
+
+fprintf('\nnorm(f^T(fx-b)): %e',norm(f'*(f*res.sol.itr.xx-b)));
+</pre>
+
+<p>Often the <span class="math"><span class="mi">x</span></span> variables must be within some bounds or satisfy some additional linear constraints. These requirements can easily be incorporated into the problem (<a href="node009.html#QPEQV">7.8.2</a>). E.g. the constraint <span class="math"><img src="math/math67.png" alt="[[MathCmd 67]]"/></span> can be modeled as follows </p>
+
+<pre class="verbatimcode">% nrm2.m. Continuation of nrm1.m.
+
+% Assume that the same objective should be
+% minimized subject to -1 &lt;= x &lt;= 1
+
+prob.blx = -ones(n,1);
+prob.bux = ones(n,1);
+
+[r,res] = mosekopt('minimize',prob);
+
+% Check if the solution is feasible.
+norm(res.sol.itr.xx,inf)
+</pre>
+
+</div>
+
+<div>
+<h2><a name="243937080">7.8.2. The case of the infinity norm</a></h2>
+
+<p> In some applications of the norm minimization problem (<a href="node009.html#NRMMIN">7.8.1</a>) it is better to use the infinity norm than the 2 norm. However, the problem (<a href="node009.html#NRMMIN">7.8.1</a>) stated as an infinity norm problem is equivalent to the linear optimization problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math68.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & \tau  &  & \\\nonumber{}\mbox{subject to} & Fx+\tau e-b & \geq{} & 0,\\\nonumber{} & Fx-\tau e-b & \leq{} & 0,\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-nrminf-eq-prob">&#09;</a>(7.8.3)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><span class="mi">e</span></span> is the vector of ones of appropriate dimension. This implies that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math69.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}\tau e & \geq{} & Fx-b\\\nonumber{}\tau e & \geq{} & -(Fx-b)\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and hence at optimum </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math70.png" alt="\begin{displaymath}\nonumber{}\tau ^{*}=\left\|Fx^{*}-b\right\|_{\infty }\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>holds.</p>
+
+<p>The problem (<a href="node009.html#ch-use-sec-nrminf-eq-prob">7.8.3</a>) is straightforward to solve. </p>
+
+<pre class="verbatimcode">% nrm3.m. Continuation of nrm1.m.
+
+% Let x(n+1) play the role as tau, then the problem is
+% solved as follows.
+
+clear prob;
+
+prob.c   = sparse(n+1,1,1.0,n+1,1);
+prob.a   = [[f,ones(m,1)];[f,-ones(m,1)]];
+prob.blc = [b            ; -inf*ones(m,1)];
+prob.buc = [inf*ones(m,1); b             ];
+
+[r,res]  = mosekopt('minimize',prob);
+
+% The optimal objective value is given by:
+norm(f*res.sol.itr.xx(1:n)-b,inf) 
+</pre>
+
+</div>
+
+<div>
+<h2><a name="243950152">7.8.3. The case of the 1-norm</a></h2>
+
+<p> By definition, for the 1-norm we have that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math71.png" alt="\begin{displaymath}\nonumber{}\left\|Fx-b\right\|_{1}=\sum _{{i=1}}^{m}|f_{{i:}}x-b_{i}|.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Therefore, the norm minimization problem can be formulated as follows </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math72.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{i=1}}^{m}t_{i} &  &  & \\\nonumber{}\mbox{subject to} & |f_{{i:}}x-b_{i}| & = & t_{i}, & i=1,\ldots ,m,\end{array}\end{math}"/></td>
+<td>(7.8.4)</td></tr>
+</tbody>
+</table>
+
+<p>which in turn is equivalent to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math73.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{i=1}}^{m}t_{i} &  &  & \\\nonumber{}\mbox{subject to} & f_{{i:}}x-b_{i} & \leq{} & t_{i}, & i=1,\ldots ,m,\\\nonumber{} & -(f_{{i:}}x-b_{i}) & \leq{} & t_{i}, & i=1,\ldots ,m.\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-nrm1-eq-prob">&#09;</a>(7.8.5)</td></tr>
+</tbody>
+</table>
+
+<p>The reader should verify that this is really the case.</p>
+
+<p>In matrix notation this problem can be expressed as follows </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math74.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & e^{T}t &  & \\\nonumber{}\mbox{subject to} & Fx-te & \leq{} & b,\\\nonumber{} & Fx+te & \geq{} & b,\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:CH:MATLAB:EQ:NRM1">&#09;</a>(7.8.6)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math75.png" alt="[[MathCmd 75]]"/></span>. Next, this problem is solved. </p>
+
+<pre class="verbatimcode">% nrm4.m. Continuation of nrm1.m.
+
+% Let x(n:(m+n)) play the role as t. Now,
+% the problem can be solved as follows
+
+clear prob;
+
+prob.c   = [sparse(n,1)   ; ones(m,1)];
+prob.a   = [[f,-speye(m)] ; [f,speye(m)]];
+prob.blc = [-inf*ones(m,1); b];
+prob.buc = [b             ; inf*ones(m,1)];
+
+[r,res]  = mosekopt('minimize',prob);
+
+% The optimal objective value is given by:
+norm(f*res.sol.itr.xx(1:n)-b,1) 
+</pre>
+
+<div>
+<h3><a name="243969704">7.8.3.1. A better formulation</a></h3>
+
+<p>It is possible to improve upon the formulation of the problem (<a href="node009.html#ch-use-sec-nrm1-eq-prob">7.8.5</a>). Indeed problem (<a href="node009.html#ch-use-sec-nrm1-eq-prob">7.8.5</a>) is equivalent to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math76.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{i=1}}^{m}t_{i} &  &  & \\\nonumber{}\mbox{subject to} & f_{{i:}}x-b_{i}-t_{i}+v_{i} & = & 0, & i=1,\ldots ,m,\\\nonumber{} & -(f_{{i:}}x-b_{i})-t_{i} & \leq{} & 0, & i=1,\ldots ,m,\\\nonumber{} & v_{i}\geq{}0, &  &  & i=1,\ldots ,m.\end{array}\end{math}"/></td>
+<td><a name="CH-GUITOUR-F1">&#09;</a>(7.8.7)</td></tr>
+</tbody>
+</table>
+
+<p>After eliminating the <span class="math"><span class="mi">t</span></span> variables then this problem is equivalent to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math77.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{i=1}}^{m}(f_{{i:}}x-b_{i}+v_{i}) &  &  & \\\nonumber{}\mbox{subject to} & -2(f_{{i:}}x-b_{i})-v_{i} & \leq{} & 0, & i=1,\ldots ,m,\\\nonumber{} & v_{i}\geq{}0, &  &  & i=1,\ldots ,m.\end{array}\end{math}"/></td>
+<td><a name="CH-GUITOUR-F2">&#09;</a>(7.8.8)</td></tr>
+</tbody>
+</table>
+
+<p>Please note that this problem has only half the number of general constraints than problem (<a href="node009.html#ch-use-sec-nrm1-eq-prob">7.8.5</a>) since we have replaced constraints of the general form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math78.png" alt="\begin{displaymath}\nonumber{}f_{{i:}}x\leq{}b_{i}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>with simpler constraints </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math79.png" alt="\begin{displaymath}\nonumber{}v_{i}\geq{}0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which MOSEK treats in a special and highly efficient way. Furthermore MOSEK stores only the non-zeros in the coefficient matrix of the constraints. This implies that the problem (<a href="node009.html#CH-GUITOUR-F2">7.8.8</a>) is likely to require much less space than the problem (<a href="node009.html#CH-GUITOUR-F1">7.8.7</a>).</p>
+
+<p>It is left as an exercise for the reader to implement this formulation in MATLAB.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="243990608">7.9. More about solving linear least squares problems</a></h1>
+
+<p>Linear least squares problems with and without linear side constraints appear very frequently in practice and it is therefore important to know how such problems are solved efficiently using MOSEK.</p>
+
+<p>Now, assume that the problem of interest is the linear least squares problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math80.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} & \frac{1}{2}\left\|Fx-f\right\|_{2}^{2} &  & \\\nonumber{}\mbox{subject to} & Ax & = & b,\\\nonumber{} & l^{x}\leq{}x\leq{}u^{x}, &  &\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:GLSQ">&#09;</a>(7.9.1)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><span class="mi">F</span></span> and <span class="math"><span class="mi">A</span></span> are matrices and the remaining quantities are vectors. <span class="math"><span class="mi">x</span></span> is the vector of decision variables. The problem (<a href="node009.html#CH:MATLAB:EQ:GLSQ">7.9.1</a>) as stated is a convex quadratic optimization problem and can be solved as such.</p>
+
+<p>However, if <span class="math"><span class="mi">F</span></span> has much fewer rows than columns then it will usually be more efficient to solve the equivalent problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math81.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} & \frac{1}{2}\left\|z\right\|_{2}^{2} &  & \\\nonumber{}\mbox{subject to} & Ax & = & b,\\\nonumber{} & Fx-z & = & f,\\\nonumber{} & l^{x}\leq{}x\leq{}u^{x}. &  &\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:GLSQS">&#09;</a>(7.9.2)</td></tr>
+</tbody>
+</table>
+
+<p>Please note that a number of new constraints and variables has been introduced which of course seems to be disadvantageous but on the other hand the Hessian of the objective in problem (<a href="node009.html#CH:MATLAB:EQ:GLSQS">7.9.2</a>) is much sparser than in problem (<a href="node009.html#CH:MATLAB:EQ:GLSQ">7.9.1</a>). Frequently this turns out to be more important for the computational efficiency and therefore the latter formulation is usually the better one.</p>
+
+<p>If <span class="math"><span class="mi">F</span></span> has many more rows than columns, then formulation (<a href="node009.html#CH:MATLAB:EQ:GLSQS">7.9.2</a>) is not attractive whereas the corresponding dual problem is. Using the duality theory outlined in Section <a title="10.4.1. Duality" href="node012.html#ch-use-sec-nlodual">10.4.1</a> we obtain the dual problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math82.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{maximize} & b^{T}y+f^{T}\bar{y} &  & \\\nonumber{} & +(l^{x})^{T}s_{l}^{x}+(u^{x})^{T}s_{u}^{x} &  & \\\nonumber{} & -\frac{1}{2}\left\|z\right\|_{2}^{2} &  & \\\nonumber{}\mbox{subject to} & A^{T}y+F^{T}\bar{y}+s_{l}^{x}-s_{u}^{x} & = & 0,\\\nonumber{} & z-\bar{y} & = & 0,\\\nonumber{} & s_{l}^{x},s_{u}^{x}\geq{}0 &  &\end{array}\end{math}"/></td>
+<td>(7.9.3)</td></tr>
+</tbody>
+</table>
+
+<p>which can be simplified to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math83.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{maximize} & b^{T}y+f^{T}z &  & \\\nonumber{} & +(l^{x})^{T}s_{l}^{x}+(u^{x})^{T}s_{u}^{x} &  & \\\nonumber{} & -\frac{1}{2}\left\|z\right\|_{2}^{2} &  & \\\nonumber{}\mbox{subject to} & A^{T}y+F^{T}z+s_{l}^{x}-s_{u}^{x} & = & 0,\\\nonumber{} & s_{l}^{x},s_{u}^{x}\geq{}0 &  &\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:GLSQSDUAL">&#09;</a>(7.9.4)</td></tr>
+</tbody>
+</table>
+
+<p>after eliminating the <span class="math"><img src="math/math84.png" alt="[[MathCmd 84]]"/></span> variables. Here we use the convention that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math85.png" alt="\begin{displaymath}\nonumber{}l_{j}^{x}=-\infty ~\Rightarrow (s_{l}^{x})_{j}=0\quad{}\mbox{and}\quad{}u_{j}^{x}=\infty \Rightarrow (s_{u}^{x})_{j}=0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>In practice such fixed variables in <span class="math"><img src="math/math86.png" alt="[[MathCmd 86]]"/></span> and <span class="math"><img src="math/math87.png" alt="[[MathCmd 87]]"/></span> should be removed from the problem.</p>
+
+<p>Given our assumptions the dual problem (<a href="node009.html#CH:MATLAB:EQ:GLSQSDUAL">7.9.4</a>) will have much fewer constraints than the primal problem (<a href="node009.html#CH:MATLAB:EQ:GLSQS">7.9.2</a>); in general, the fewer constraints a problem contains, the more efficient MOSEK tends to be. A question is: If the dual problem (<a href="node009.html#CH:MATLAB:EQ:GLSQSDUAL">7.9.4</a>) is solved instead of the primal problem (<a href="node009.html#CH:MATLAB:EQ:GLSQS">7.9.2</a>), how is the optimal <span class="math"><span class="mi">x</span></span> solution obtained? It turns out that the dual variables corresponding to the constraint </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math88.png" alt="\begin{displaymath}\nonumber{}A^{T}y+F^{T}z+s_{l}^{x}-s_{u}^{x}=0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>are the optimal <span class="math"><span class="mi">x</span></span> solution. Therefore, due to the fact that MOSEK always reports this information as the </p>
+
+<pre class="verbatim">res.sol.itr.y
+</pre>
+
+<p> vector, the optimal <span class="math"><span class="mi">x</span></span> solution can easily be obtained.</p>
+
+<p>In the following code fragment it is investigated whether it is attractive to solve the dual rather than the primal problem for a concrete numerical example. This example has no linear equalities and <span class="math"><span class="mi">F</span></span> is a <span class="math"><span class="mn">2000</span></span> by <span class="math"><span class="mn">400</span></span> matrix. </p>
+
+<pre class="verbatimcode">% nrm5.m
+
+% Read data from a file.
+[rcode,res] = mosekopt('read(lsqpd.mps) echo(0)');
+
+% Define the problem data.
+F           = res.prob.a;
+f           = res.prob.blc;
+blx         = res.prob.blx;
+bux         = [];
+
+% In this case there are no linear constraints
+% First we solve the primal problem:
+%
+% minimize   0.5|| z ||^2
+% subject to F x - z = f
+%            l &lt;= x &lt;= u
+
+% Note that m&raquo;n
+[m,n]       = size(F);
+
+prob        = [];
+
+prob.qosubi = n+(1:m);
+prob.qosubj = n+(1:m);
+prob.qoval  = ones(m,1);
+prob.a      = [F,-speye(m,m)];
+prob.blc    = f;
+prob.buc    = f;
+prob.blx    = [blx;-inf*ones(m,1)];
+prob.bux    = bux;
+
+
+fprintf('m=%d  n=%d\n',m,n);
+
+fprintf('First try\n');
+
+tic
+[rcode,res] = mosekopt('minimize echo(0)',prob);
+
+% Display the solution time.
+fprintf('Time           : %-.2f\n',toc);
+
+try 
+  % x solution:
+  x = res.sol.itr.xx;
+
+  % objective value:
+  fprintf('Objective value: %-6e\n',norm(F*x(1:n)-f)^2);
+
+  % Check feasibility.
+  fprintf('Feasibility    : %-6e\n',min(x(1:n)-blx(1:n)));
+catch
+  fprintf('MSKERROR: Could not get solution')
+end
+
+% Clear prob.
+prob=[];
+
+%
+% Next, we solve the dual problem.
+
+% Index of lower bounds that are finite:
+lfin        = find(blx&gt;-inf);
+
+% Index of upper bounds that are finite:
+ufin        = find(bux&lt;inf);
+
+prob.qosubi = 1:m;
+prob.qosubj = 1:m;
+prob.qoval  = -ones(m,1);
+prob.c      = [f;blx(lfin);-bux(ufin)];
+prob.a      = [F',...
+               sparse(lfin,(1:length(lfin))',...
+                      ones(length(lfin),1),...
+                      n,length(lfin)),...
+               sparse(ufin,(1:length(ufin))',...
+                      -ones(length(ufin),1),...
+                      n,length(ufin))];
+prob.blc    = sparse(n,1);
+prob.buc    = sparse(n,1);
+prob.blx    = [-inf*ones(m,1);...
+               sparse(length(lfin)+length(ufin),1)];
+prob.bux    = [];
+
+fprintf('\n\nSecond try\n');
+tic
+[rcode,res] = mosekopt('maximize echo(0)',prob);
+
+% Display the solution time.
+fprintf('Time           : %-.2f\n',toc);
+
+try
+  % x solution:
+  x = res.sol.itr.y;
+
+  % objective value:
+  fprintf('Objective value: %-6e\n',...
+          norm(F*x(1:n)-f)^2);
+
+  % Check feasibility.
+  fprintf('Feasibility    : %-6e\n',...
+          min(x(1:n)-blx(1:n)));
+catch
+  fprintf('MSKERROR: Could not get solution')
+end
+</pre>
+
+<p>Here is the output produced: </p>
+
+<pre class="verbatim">m=2000  n=400
+First try
+Time           : 2.07
+Objective value: 2.257945e+001
+Feasibility    : 1.466434e-009
+
+
+Second try
+Time           : 0.47
+Objective value: 2.257945e+001
+Feasibility    : 2.379134e-009 </pre>
+
+<p>Both formulations produced a strictly feasible solution having the same objective value. Moreover, using the dual formulation leads to a reduction in the solution time by about a factor 5: In this case we can conclude that the dual formulation is far superior to the primal formulation of the problem.</p>
+
+<div>
+<h2><a name="244031432">7.9.1. Using conic optimization on linear least squares problems</a></h2>
+
+<p> Linear least squares problems can also be solved using conic optimization because the linear least squares problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math89.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} & \left\|Fx-f\right\|_{2} &  & \\\nonumber{}\mbox{subject to} & Ax & = & b,\\\nonumber{} & l^{x}\leq{}x\leq{}u^{x} &  &\end{array}\end{math}"/></td>
+<td>(7.9.5)</td></tr>
+</tbody>
+</table>
+
+<p>is equivalent to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math90.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} &  &  & t &  & \\\nonumber{}\mbox{subject to} &  &  & Ax & = & b,\\\nonumber{} &  &  & Fx-z & = & f,\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\\\nonumber{} &  &  & \left\|z\right\|_{2}\leq{}t. &  &\end{array}\end{math}"/></td>
+<td>(7.9.6)</td></tr>
+</tbody>
+</table>
+
+<p>This problem is a conic quadratic optimization problem having one quadratic cone and the corresponding dual problem is </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math91.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & b^{T}y+f^{T}\bar{y}+(l^{x})^{T}s_{l}^{x}-(u^{x})^{T}s_{u}^{x} &  & \\\nonumber{}\mbox{subject to} & A^{T}y+F^{T}\bar{y}+s_{l}^{x}-s_{u}^{x} & = & 0,\\\nonumber{} & -\bar{y}+s_{z} & = & 0,\\\nonumber{} & s_{t} & = & 1,\\\nonumber{} & \left\|s_{z}\right\|\leq{}s_{t}, &  & \\\nonumber{} & s_{l}^{x},s_{u}^{x}\geq{}0 &  &\end{array}\end{math}"/></td>
+<td>(7.9.7)</td></tr>
+</tbody>
+</table>
+
+<p>which can be reduced to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math92.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & b^{T}y+f^{T}s_{z}+(l^{x})^{T}s_{l}^{x}-(u^{x})^{T}s_{u}^{x} &  & \\\nonumber{}\mbox{subject to} & A^{T}y-F^{T}\bar{s}_{z}+s_{l}^{x}-s_{u}^{x} & = & 0,\\\nonumber{} & s_{t} & = & 1,\\\nonumber{} & \left\|s_{z}\right\|\leq{}s_{t}, &  & \\\nonumber{} & s_{l}^{x},s_{u}^{x}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td>(7.9.8)</td></tr>
+</tbody>
+</table>
+
+<p> Often the dual problem has much fewer constraints than the primal problem. In such cases it will be more efficient to solve the dual problem and obtain the primal solution <span class="math"><span class="mi">x</span></span> as the dual solution of the dual problem.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="244074472">7.10. Entropy optimization</a></h1>
+
+<div>
+<h2><a name="244031568">7.10.1. Using <tt class="tt">mskenopt</tt></a></h2>
+
+<p> <a name="idx-75013440">&#09;</a></p>
+
+<p>An entropy optimization problem has the following form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math93.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & \sum \limits _{{j=1}}^{n}d_{j}x_{j}\ln (x_{j})+c^{T}x &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} &  &  & 0\leq{}x, &  &\end{array}\end{math}"/></td>
+<td>(7.10.1)</td></tr>
+</tbody>
+</table>
+
+<p>where all the components of <span class="math"><span class="mi">d</span></span> must be nonnegative, i.e. <span class="math"><img src="math/math94.png" alt="[[MathCmd 94]]"/></span>. An example of an entropy optimization problem is </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math95.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & x_{1}\ln (x_{1})-x_{1}+x_{2}\ln (x_{2}) &  & \\\nonumber{}\mbox{subject to} & 1 & \leq{} & x_{1}+x_{2} & \leq{} & 1,\\\nonumber{} &  &  & 0\leq{}x_{1},x_{2.} &  &\end{array}\end{math}"/></td>
+<td>(7.10.2)</td></tr>
+</tbody>
+</table>
+
+<p>This problem can be solved using the <tt class="tt">mskenopt</tt> command as follows </p>
+
+<pre class="verbatimcode">d     = [1 1]';
+c     = [-1 0]';
+a     = [1 1];
+blc   = 1;
+buc   = 1;
+[res] = mskenopt(d,c,a,blc,buc);
+res.sol.itr.xx;
+</pre>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="244096752">7.11. Geometric optimization</a></h1>
+
+<p> <a name="idx-75027664">&#09;</a></p>
+
+<p>A so-called geometric optimization problem can be stated as follows </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math96.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{k\in{}J_{0}}}c_{k}\prod \limits _{{j=1}}^{n}t_{j}^{{a_{{kj}}}} &  &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{k\in{}J_{i}}}c_{k}\prod \limits _{{j=1}}^{n}t_{j}^{{a_{{kj}}}} & \leq{} & 1, & i=1,\ldots ,m,\\\nonumber{} & t>0, &  &  &\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:PGP">&#09;</a>(7.11.1)</td></tr>
+</tbody>
+</table>
+
+<p>where it is assumed that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math97.png" alt="\begin{displaymath}\nonumber{}\cup _{{k=0}}^{m}J_{k}=\lbrace{}1,\ldots ,T\rbrace{}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and if <span class="math"><img src="math/math98.png" alt="[[MathCmd 98]]"/></span>, then </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math99.png" alt="\begin{displaymath}\nonumber{}J_{i}\cap J_{j}=\emptyset .\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Hence, <span class="math"><span class="mi">A</span></span> is a <span class="math"><img src="math/math100.png" alt="[[MathCmd 100]]"/></span> matrix and <span class="math"><span class="mi">c</span></span> is a vector of length <span class="math"><span class="mi">t</span></span>. In general, the problem (<a href="node009.html#CH:MATLAB:EQ:PGP">7.11.1</a>) is very hard to solve, but the posynomial case where </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math101.png" alt="\begin{displaymath}\nonumber{}c>0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is relatively easy. Using the variable transformation </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math102.png" alt="\begin{math}\nonumber{}t_{j}=e^{{x_{j}}}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:GPTRANS">&#09;</a>(7.11.2)</td></tr>
+</tbody>
+</table>
+
+<p>we obtain the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math103.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{k\in{}J_{0}}}c_{k}e^{{a_{{k:}}x}} &  &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{k\in{}J_{i}}}c_{k}e^{{a_{{k:}}x}} & \leq{} & 1, & i=1,\ldots ,m,\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:PGP1">&#09;</a>(7.11.3)</td></tr>
+</tbody>
+</table>
+
+<p>which is convex in <span class="math"><span class="mi">x</span></span> for <span class="math"><span class="mi">c</span><span class="mo">&gt;</span><span class="mn">0</span></span>. We apply the <span class="math"><img src="math/math104.png" alt="[[MathCmd 104]]"/></span> function to obtain the equivalent problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math105.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \log (\sum \limits _{{k\in{}J_{0}}}c_{k}e^{{a_{{k:}}x}}) &  &  & \\\nonumber{}\mbox{subject to} & \log (\sum \limits _{{k\in{}J_{i}}}c_{k}e^{{a_{{k:}}x}}) & \leq{} & \log (1), & i=1,\ldots ,m,\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:PGP2">&#09;</a>(7.11.4)</td></tr>
+</tbody>
+</table>
+
+<p>which is also a convex optimization problem since <span class="math"><img src="math/math104.png" alt="[[MathCmd 104]]"/></span> is strictly increasing. Hence, the problem (<a href="node009.html#CH:MATLAB:EQ:PGP2">7.11.4</a>) can be solved by MOSEK.</p>
+
+<p>For further details about geometric optimization we refer the reader to [<a href="node024.html#BAZARAA:93:A" class="citation">17</a>, pp. 531-538].</p>
+
+<div>
+<h2><a name="244115792">7.11.1. Using <tt class="tt">mskgpopt</tt></a></h2>
+
+<p> <a name="idx-75055400">&#09;</a></p>
+
+<p>MOSEK cannot handle a geometric optimization problem directly, but the transformation (<a href="node009.html#CH:MATLAB:EQ:PGP2">7.11.4</a>) can be solved using the MOSEK optimization toolbox function <tt class="tt">mskgpopt</tt>. Please note that the solution to the transformed problem can easily be converted into a solution to the original geometric optimization problem using relation (<a href="node009.html#CH:MATLAB:EQ:GPTRANS">7.11.2</a>).</p>
+
+<p>Subsequently, we will use the example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math107.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} & 40t_{1}^{{-1}}t_{2}^{{-1/2}}t_{3}^{{-1}}+20t_{1}t_{3}+40t_{1}t_{2}t_{3} &  & \\\nonumber{}\mbox{subject to} & \frac{1}{3}t_{1}^{{-2}}t_{2}^{{-2}}+\frac{4}{3}t_{2}^{{1/2}}t_{3}^{{-1}} & \leq{} & 1,\\\nonumber{} & 0<t_{1},t_{2},t_{3} &  &\end{array}\end{math}"/></td>
+<td>(7.11.5)</td></tr>
+</tbody>
+</table>
+
+<p>to demonstrate how a geometric optimization problem is solved using <tt class="tt">mskgpopt</tt>. Please note that both the objective and the constraint functions consist of a sum of simple terms. These terms can be specified completely using the matrix </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math108.png" alt="\begin{displaymath}\nonumber{}A=\left[\begin{array}{ccc}\nonumber{}-1 & -0.5 & -1\\\nonumber{}1 & 0 & 1\\\nonumber{}1 & 1 & 1\\\nonumber{}-2 & -2 & 0\\\nonumber{}0 & 0.5 & -1\end{array}\right],\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and the vectors </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math109.png" alt="\begin{displaymath}\nonumber{}c=\left[\begin{array}{c}\nonumber{}40\\\nonumber{}20\\\nonumber{}40\\\nonumber{}\frac{1}{3}\end{array}\right]~\mbox{and}~\mathrm{map}=\left[\begin{array}{c}\nonumber{}0\\\nonumber{}0\\\nonumber{}0\\\nonumber{}1\\\nonumber{}1\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The interpretation is this: Each row of <span class="math"><span class="mi">A</span><span class="mo">,</span><span class="mi">c</span></span> describes one term, e.g. the first row of <span class="math"><span class="mi">A</span></span> and the first element of <span class="math"><span class="mi">c</span></span> describe the first term in the objective function. The vector <span class="math"><img src="math/math110.png" alt="[[MathCmd 110]]"/></span> indicated whether a term belongs to the objective or to a constraint. If <span class="math"><img src="math/math111.png" alt="[[MathCmd 111]]"/></span> equals zero, the <span class="math"><span class="mi">k</span></span>th term belongs to the objective function, otherwise it belongs to the <span class="math"><img src="math/math111.png" alt="[[MathCmd 111]]"/></span>th constraint.</p>
+
+<p>The following MATLAB code demonstrates how the example is solved using <tt class="tt">mskgpopt</tt>. </p>
+
+<pre class="verbatimcode">% go1.m
+
+c     = [40 20 40 1/3 4/3]';
+a     = sparse([[-1  -0.5  -1];[1 0 1];...
+                [1 1 1];[-2 -2 0];[0 0.5 -1]]);
+map   = [0 0 0 1 1]';
+[res] = mskgpopt(c,a,map);
+
+fprintf('\nPrimal optimal solution to original gp:');
+fprintf(' %e',exp(res.sol.itr.xx));
+fprintf('\n\n');
+
+% Compute the optimal objective value and
+% the constraint activities.
+v = c.*exp(a*res.sol.itr.xx);
+
+% Add appropriate terms together.
+f = sparse(map+1,1:5,ones(size(map)))*v;
+
+% First objective value. Then constraint values.
+fprintf('Objective value: %e\n',log(f(1)));
+fprintf('Constraint values:');
+fprintf(' %e',log(f(2:end)));
+fprintf('\n\n');
+
+% Dual multipliers (should be negative)
+fprintf('Dual variables (should be negative):');
+fprintf(' %e',res.sol.itr.y);
+fprintf('\n\n');
+</pre>
+
+<p>The code also computes the objective value and the constraint values at the optimal solution. Moreover, the optimal dual Lagrange multipliers for the constraints are shown and the gradient of the Lagrange function at the optimal point is computed.</p>
+
+</div>
+
+<div>
+<h2><a name="244141016">7.11.2. Comments</a></h2>
+
+<div>
+<h3><a name="244115864">7.11.2.1. Solving large scale problems</a></h3>
+
+<p> If you want to solve a large problem, i.e. a problem where <span class="math"><span class="mi">A</span></span> has large dimensions, then <span class="math"><span class="mi">A</span></span> must be sparse or you will run out of space. Recall that a sparse matrix contains few non-zero elements, so if <span class="math"><span class="mi">A</span></span> is a sparse matrix, you should construct it using MATLAB's <tt class="tt">sparse</tt> sparse as follows </p>
+
+<pre class="verbatim">A = sparse(subi,subj,valij);
+</pre>
+
+<p>where </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math113.png" alt="\begin{displaymath}\nonumber{}a_{{\mathtt{subi}[k],\mathtt{subj}[k]}}=\mathtt{valij}[k].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>For further details on the <tt class="tt">sparse</tt> function, please enter </p>
+
+<pre class="verbatim">help sparse
+</pre>
+
+<p>in MATLAB.</p>
+
+</div>
+
+<div>
+<h3><a name="244144752">7.11.2.2. Preprocessing tip</a></h3>
+
+<p> Before solving a geometric optimization problem it is worthwhile to check if a column of the <span class="math"><span class="mi">A</span></span> matrix inputted to <tt class="tt">mskgpopt</tt> contains only positive elements. If this is the case, the corresponding variable <span class="math"><img src="math/math114.png" alt="[[MathCmd 114]]"/></span> can take the value zero in the optimal solution: This may cause problems for MOSEK so it is better to remove such variables from the problem &mdash; doing so will have no influence on the optimal solution.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="244148488">7.12. Separable convex optimization</a></h1>
+
+<p> <a name="idx-75082496">&#09;</a> <a name="CH:MATLAB:SEC:SEPCONOPT">&#09;</a> This section discusses separable convex nonlinear optimization problems. A general separable nonlinear optimization problem can be specified as follows: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math115.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} &  &  & f(x)+c^{T}x &  & \\\nonumber{}\mbox{subject to } &  &  & g(x)+Ax-x^{c} & = & 0,\\\nonumber{} & l^{c} & \leq{} & x^{c} & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:SEC:SEPCONOPT:EQ:NLOPT">&#09;</a>(7.12.1)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<ul class="itemize">
+<li><span class="math"><span class="mi">m</span></span> is the number of constraints. </li>
+<li><span class="math"><span class="mi">n</span></span> is the number of decision variables. </li>
+<li><span class="math"><img src="math/math116.png" alt="[[MathCmd 116]]"/></span> is a vector of decision variables. </li>
+<li><span class="math"><img src="math/math117.png" alt="[[MathCmd 117]]"/></span> is a vector of slack variables. </li>
+<li><span class="math"><img src="math/math118.png" alt="[[MathCmd 118]]"/></span> is the linear part of the objective function. </li>
+<li><span class="math"><img src="math/math119.png" alt="[[MathCmd 119]]"/></span> is the constraint matrix. </li>
+<li><span class="math"><img src="math/math120.png" alt="[[MathCmd 120]]"/></span> is the lower limit on the activity for the constraints. </li>
+<li><span class="math"><img src="math/math121.png" alt="[[MathCmd 121]]"/></span> is the upper limit on the activity for the constraints. </li>
+<li><span class="math"><img src="math/math122.png" alt="[[MathCmd 122]]"/></span> is the lower limit on the activity for the variables. </li>
+<li><span class="math"><img src="math/math123.png" alt="[[MathCmd 123]]"/></span> is the upper limit on the activity for the variables. </li>
+<li><span class="math"><img src="math/math124.png" alt="[[MathCmd 124]]"/></span> is a nonlinear function. </li>
+<li><span class="math"><img src="math/math125.png" alt="[[MathCmd 125]]"/></span> is a nonlinear vector function. </li>
+</ul>
+
+<p>This implies that the <span class="math"><span class="mi">i</span></span>th constraint essentially has the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math126.png" alt="\begin{displaymath}\nonumber{}l_{i}^{c}\leq{}g_{i}(x)+\sum \limits _{{j=1}}^{n}a_{{ij}}x_{j}\leq{}u_{i}^{c}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>when the <span class="math"><img src="math/math127.png" alt="[[MathCmd 127]]"/></span> variable has been eliminated.</p>
+
+<p>The problem (<a href="node009.html#CH:MATLAB:SEC:SEPCONOPT:EQ:NLOPT">7.12.1</a>) must satisfy the three important requirements: </p>
+
+<ol class="enumerate">
+<li>
+<p>Separability: This requirement implies that all nonlinear functions can be written on the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math128.png" alt="\begin{displaymath}\nonumber{}f(x)=\sum \limits _{{j=1}}^{n}f^{j}(x_{j})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> and </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math129.png" alt="\begin{displaymath}\nonumber{}g_{i}(x)=\sum \limits _{{j=1}}^{n}g_{i}^{j}(x_{j}).\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> Hence, the nonlinear functions can be written as a sum of functions which depends on only one variable.</p>
+</li>
+<li>
+<p>Differentiability: All functions should be twice differentiable for all <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span> satisfying </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math131.png" alt="\begin{displaymath}\nonumber{}l_{j}^{x}<x<u_{j}^{x}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> if <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span> occurs in at least one nonlinear function. Hence, if <span class="math"><img src="math/math133.png" alt="[[MathCmd 133]]"/></span> appears in the problem, then the lower bound on <span class="math"><img src="math/math44.png" alt="[[MathCmd 44]]"/></span> should be 0.</p>
+</li>
+<li>Convexity: The problem should be a convex optimization problem. See Section <a title="10.4. Nonlinear convex optimization" href="node012.html#ch-use-sec-nlo">10.4</a> for a discussion of this requirement. </li>
+</ol>
+
+<div>
+<h2><a name="244168968">7.12.1. Using <tt class="tt">mskscopt</tt></a></h2>
+
+<p> <a name="idx-75129416">&#09;</a></p>
+
+<p>Subsequently, we will use the following example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math135.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & x_{1}-\ln (x_{1}+2x_{2}) &  & \\\nonumber{}\mbox{subject to} & x_{1}^{2}+x_{2}^{2} & \leq{} & 1\end{array}\end{math}"/></td>
+<td><a name="SEC:MSKSCOPT:PRO1">&#09;</a>(7.12.2)</td></tr>
+</tbody>
+</table>
+
+<p>to demonstrate solving a convex separable optimization problem using the MOSEK optimization toolbox function <tt class="tt">mskscopt</tt>.</p>
+
+<p>First, note that the problem (<a href="node009.html#SEC:MSKSCOPT:PRO1">7.12.2</a>) is not a separable optimization problem due to the fact that the logarithmic term in objective is not a function of a single variable. However, by introducing one additional constraint and variable the problem can be made separable as follows </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math136.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & x_{1}-\ln (x_{3}) &  & \\\nonumber{}\mbox{subject to} & x_{1}^{2}+x_{2}^{2} & \leq{} & 1,\\\nonumber{} & x_{1}+2x_{2}-x_{3} & = & 0,\\\nonumber{} & x_{3}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td><a name="SEC:MSKSCOPT:PRO2">&#09;</a>(7.12.3)</td></tr>
+</tbody>
+</table>
+
+<p>This problem is separable and equivalent to the previous problem. Moreover, note that all nonlinear functions are well defined for values of <span class="math"><span class="mi">x</span></span> satisfying the variable bounds strictly, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math137.png" alt="\begin{displaymath}\nonumber{}x_{3}>0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This (almost) makes sure that function evaluation errors will not occur during the optimization process since MOSEK will only evaluate <span class="math"><img src="math/math138.png" alt="[[MathCmd 138]]"/></span> for <span class="math"><img src="math/math139.png" alt="[[MathCmd 139]]"/></span>.</p>
+
+<p>When using the <tt class="tt">mskscopt</tt> function to solve problem (<a href="node009.html#SEC:MSKSCOPT:PRO2">7.12.3</a>), the linear part of the problem, such as a <span class="math"><span class="mi">c</span></span> and <span class="math"><span class="mi">A</span></span>, is specified as usual using MATLAB vectors and matrices. However, the nonlinear functions must be specified using five arrays which in the case of problem (<a href="node009.html#SEC:MSKSCOPT:PRO2">7.12.3</a>) can have the form </p>
+
+<pre class="verbatim">opr  = ['log'; 'pow'; 'pow'];
+opri = [0;     1;     1    ];
+oprj = [3;     1;     2    ];
+oprf = [-1;    1;     1    ];
+oprg = [0;     2;     2;   ];
+</pre>
+
+<p>Hence, <tt class="tt">opr(k,:)</tt> specifies the type of a nonlinear function, <tt class="tt">opri(k)</tt> specifies in which constraint the nonlinear function should be added (zero means objective), and <tt class="tt">oprj(k)</tt> means that the nonlinear function should be applied to <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span>. Finally, <tt class="tt">oprf(k)</tt> and <tt class="tt">oprg(k)</tt> are parameters used by the <tt class="tt">mskscopt</tt> function according to the table: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">opr(k,:)</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">opri(k)</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">oprj(k)</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">oprf(k)</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">oprg(k)</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> function </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"><tt class="tt">ent</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> i </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> j </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> (not used) </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math141.png" alt="[[MathCmd 141]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">exp</tt> </td>
+<td align="center" valign="top"> i </td>
+<td align="center" valign="top"> j </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">g</span></span> </td>
+<td align="center" valign="top"> <span class="math"><img src="math/math142.png" alt="[[MathCmd 142]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">log</tt> </td>
+<td align="center" valign="top"> i </td>
+<td align="center" valign="top"> j </td>
+<td align="center" valign="top"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top"> (not used) </td>
+<td align="center" valign="top"> <span class="math"><img src="math/math143.png" alt="[[MathCmd 143]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">pow</tt> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> i </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> j </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mi">f</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mi">g</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><img src="math/math144.png" alt="[[MathCmd 144]]"/></span> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>The <span class="math"><span class="mi">i</span></span> value indicates which constraint the nonlinear function belongs to. However, if <span class="math"><span class="mi">i</span></span> is identical to zero, then the function belongs to the objective. Using this notation a separable convex optimization problem can be solved with the function: </p>
+
+<pre class="verbatim">mskscopt(opr,
+         opri,
+         oprj,
+         oprf,
+         oprg,
+         c,
+         a,
+         blc,
+         buc,
+         blx,
+         bux)
+</pre>
+
+<p>All the elements for solving a separable convex nonlinear optimization problem have now been discussed and therefore we will conclude this section by showing the MATLAB code that will solve the example problem (<a href="node009.html#SEC:MSKSCOPT:PRO2">7.12.3</a>). </p>
+
+<pre class="verbatimcode">% sco1.m
+
+% Specify the linear part of the problem.
+
+c           = [1;0;0];
+a           = sparse([[0 0 0];[1 2 -1]]);
+blc         = [-inf; 0];
+buc         = [1;0];
+blx         = [-inf;-inf;0];
+
+% Specify the nonlinear part.
+
+opr         = ['log'; 'pow'; 'pow'];
+opri        = [0;     1;     1    ];
+oprj        = [3;     1;     2    ];
+oprf        = [-1;    1;     1    ];
+oprg        = [0;     2;     2    ];
+
+% Call the optimizer.
+% Note that bux is an optional parameter which should be added if the variables
+% have an upper bound. 
+
+[res]       = mskscopt(opr,opri,oprj,oprf,oprg,c,a,blc,buc,blx); 
+                                                                 
+
+% Print the solution.
+res.sol.itr.xx
+</pre>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="245827128">7.13. Mixed-integer optimization</a></h1>
+
+<p> Up until now it has been assumed that the variables in an optimization problem are continuous. Hence, it has been assumed that any value between the bounds on a variable is feasible. In many cases this is not a valid assumption because some variables are integer-constrained. E.g. a variable may denote the number of persons assigned to a given job and it may not be possible to assign a fractional person.</p>
+
+<p>Using a mixed-integer optimizer MOSEK is capable of solving linear and quadratic optimization problems where one or more of the variables are integer-constrained. </p>
+
+<div>
+<h2><a name="244169112">7.13.1. Solving an example</a></h2>
+
+<p>Using the example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math145.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & -2x_{1}-3x_{2} &  & \\\nonumber{}\mbox{subject to } & 195x_{1}+273x_{2} & \leq{} & 1365,\\\nonumber{} & 4x_{1}+40x_{2} & \leq{} & 140,\\\nonumber{} & x_{1}\leq{}4, &  & \\\nonumber{} & x_{1},x_{2}\geq{}0, &  & \mbox{ and integer}\end{array}\end{math}"/></td>
+<td><a name="ch-matlabuse-sec-mio-ex1">&#09;</a>(7.13.1)</td></tr>
+</tbody>
+</table>
+
+<p>we will demonstrate how to solve an integer optimization problem using MOSEK. </p>
+
+<pre class="verbatimcode">% milo1.m
+
+% Specify the linear problem data as if
+% the problem is a linear optimization
+% problem.
+
+clear prob       
+prob.c        = [-2 -3];
+prob.a        = sparse([[195 273];[4 40]]);
+prob.blc      = -[inf inf];
+prob.buc      = [1365 140];
+prob.blx      = [0 0];
+prob.bux      = [4 inf];
+
+% Specify indexes of variables that are integer
+% constrained.
+
+prob.ints.sub = [1 2];
+
+% Optimize the problem.
+[r,res] = mosekopt('minimize',prob);
+
+try 
+  % Display the optimal solution.
+  res.sol.int
+  res.sol.int.xx'
+catch
+  fprintf('MSKERROR: Could not get solution')
+end
+</pre>
+
+<p>Please note that compared to a linear optimization problem with no integer-constrained variables: </p>
+
+<ul class="itemize">
+<li>The <tt class="tt">prob.ints.sub</tt> field is used to specify the indexes of the variables that are integer-constrained. </li>
+<li>The optimal integer solution is returned in the <tt class="tt">res.sol.int</tt> MATLAB structure. </li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="245839344">7.13.2. Speeding up the solution of a mixed-integer problem</a></h2>
+
+<p> In general, a mixed-integer optimization problem can be very difficult to solve. Therefore, in some cases it may be necessary to improve upon the problem formulation and &#8220;assist&#8221; the mixed-integer optimizer.</p>
+
+<p>How to obtain a good problem formulation is beyond the scope of this section and the reader is referred to [<a href="node024.html#WOLSEY:98:A" class="citation">18</a>]. However, two methods for assisting the mixed-integer optimizer are discussed subsequently.</p>
+
+<div>
+<h3><a name="244169184">7.13.2.1. Specifying an initial feasible solution</a></h3>
+
+<p> In many cases a good feasible integer solution to the optimization problem may be known. If this is the case, it is worthwhile to inform the mixed-integer optimizer since this will reduce the solution space searched by the optimizer.</p>
+
+<p>Consider the problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math146.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & 7x_{0}+10x_{1}+x_{2}+5x_{3} &  & \\\nonumber{}\mbox{subject to} & x_{0}+x_{1}+x_{2}+x_{3} & \leq{} & 2.5\\\nonumber{} & x_{3}\geq{}0 &  & \\\nonumber{} & x_{0},x_{1},x_{2}\geq{}0 &  & \mbox{and integer},\end{array}\end{math}"/></td>
+<td>(7.13.2)</td></tr>
+</tbody>
+</table>
+
+<p>where only some of the variables are integer and the remaining are continuous. A feasible solution to this problem is: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math147.png" alt="\begin{math}\nonumber{}x_{0}=0,x_{1}=2,x_{2}=0,x_{3}=0.5\end{math}"/></td>
+<td>(7.13.3)</td></tr>
+</tbody>
+</table>
+
+<p>The following example demonstrates how to input this initial solution to MOSEK. </p>
+
+<pre class="verbatimcode">% milo2.m
+
+clear prob
+clear param
+[r,res]         = mosekopt('symbcon');
+sc              = res.symbcon;
+
+
+prob.c          = [7 10 1 5];
+prob.a          = sparse([1 1 1 1 ]);
+prob.blc        = -[inf];
+prob.buc        = [2.5];
+prob.blx        = [0 0 0 0];
+prob.bux        = [inf inf inf inf];
+prob.ints.sub   = [1 2 3];
+
+prob.sol.int.xx = [0 2 0 0.5]';
+
+% Optionally set status keys too. 
+% prob.sol.int.skx = [sc.MSK_SK_SUPBAS;sc.MSK_SK_SUPBAS;...
+%                     sc.MSK_SK_SUPBAS;sc.MSK_SK_BAS] 
+% prob.sol.int.skc = [sc.MSK_SK_UPR]
+
+[r,res] = mosekopt('maximize',prob);
+
+try
+  % Display the optimal solution.
+  res.sol.int.xx'
+catch
+  fprintf('MSKERROR: Could not get solution')
+end
+</pre>
+
+<p>It is also possible to specify only the values of the integer variables and then let MOSEK compute values for the remaining continuous variables in order to obtain a feasible solution. If the <a href="node021.html#common-const*mosek*iparam*mio-construct-sol"><tt class="tt">MSK_IPAR_MIO_CONSTRUCT_SOL</tt></a> parameter is set to <a href="node022.html#common-const*mosek*onoffkey*on"><tt class="tt">MSK_ON</tt></a> then MOSEK triesl to compute a feasible solution from the specified values of the integer variables. MOSEK generates the feasible solution by temporarily fixing all integer variables to the specified values and then optimizing the resulting continuous linear optimization problem. Hence, using this feature it is necessary to specify only the values of <tt class="tt">prob.sol.int.xx</tt> corresponding to the integer-constrained variables.</p>
+
+<p>Suppose it is known that <span class="math"><img src="math/math148.png" alt="[[MathCmd 148]]"/></span> are candidates for good integer values to our problem, then the following example demonstrates how to optimize the problem (<a href="#ch-matlabuse-sec-mio-ex2"></a>) using a feasible starting solution generated from the integer values as <span class="math"><img src="math/math148.png" alt="[[MathCmd 148]]"/></span>. </p>
+
+<pre class="verbatimcode">% milo3.m
+
+[r,res]       = mosekopt('symbcon');
+sc            = res.symbcon;
+
+clear prob
+
+prob.c        = [7 10 1 5];
+prob.a        = sparse([1 1 1 1 ]);
+prob.blc      = -[inf];
+prob.buc      = [2.5];
+prob.blx      = [0 0 0 0];
+prob.bux      = [inf inf inf inf];
+prob.ints.sub = [1 2 3];
+
+% Values for the integer variables are specified.
+prob.sol.int.xx  = [0 2 0 0]';
+
+% Tell Mosek to construct a feasible solution from a given integer
+% value. 
+param.MSK_IPAR_MIO_CONSTRUCT_SOL = sc.MSK_ON;
+
+[r,res] = mosekopt('maximize',prob,param);
+
+try
+  % Display the optimal solution.
+  res.sol.int.xx'
+catch
+  fprintf('MSKERROR: Could not get solution')
+end
+</pre>
+
+</div>
+
+<div>
+<h3><a name="245849336">7.13.2.2. Using branching priorities</a></h3>
+
+<p> The mixed-integer optimizer in MOSEK employs the so-called <i>branch-and-bound</i> algorithm to search for the optimal solution. See [<a href="node024.html#WOLSEY:98:A" class="citation">18</a>, pp. 91-112] for details about the branch-and-bound algorithm. The branch-and-bound algorithm can benefit from knowing about priorities of the integer variables.</p>
+
+<p>E.g. in an optimization model some integer variables may denote which factories to build and other variables which products to make in the factories. It seems natural to decide upon which factories to build first and then decide upon which products to make in which factories. Hence, some integer variables are more important than others.</p>
+
+<p>In MOSEK it is possible to assign priorities to all the integer variables. The higher priority assigned to a variable the more important the variable is considered by the branch-and-bound algorithm. Priorities are specified using the <tt class="tt">prob.ints.pri</tt> field as follows: </p>
+
+<pre class="verbatim">prob.ints.sub = [4 1 2 3];  % Integer variables.
+prob.ints.pri = [5 10 2 4]; % Priorities.
+</pre>
+
+<p>This implies that variable 4 has priority 5, variable 1 has priority 10 and so forth.</p>
+
+<p>An example of the usage of priorities can be seen in [<a href="node024.html#WOLSEY:98:A" class="citation">18</a>, pp. 232-235].</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="245851488">7.14. Sensitivity analysis</a></h1>
+
+<p> Given an optimization problem it is often useful to obtain information about how the optimal objective value changes when a problem parameter is perturbed. E.g. the objective function may reflect the price of a raw material such as oil which may not be known with certainty. Therefore, it is interesting to know how the optimal objective value changes as the oil price changes.</p>
+
+<p>Analyzing how the optimal objective value changes when the problem data is changed is called sensitivity analysis.</p>
+
+<p>Consider the problem:</p>
+
+<p>minimize </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math150.png" alt="\begin{math}\nonumber{}\begin{array}{ccccccccccccccl}\nonumber{}1x_{{11}} & + & 2x_{{12}} & + & 5x_{{23}} & + & 2x_{{24}} & + & 1x_{{31}} & + & 2x_{{33}} & + & 1x_{{34}}\end{array}\end{math}"/></td>
+<td>(7.14.1)</td></tr>
+</tbody>
+</table>
+
+<p>subject to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math151.png" alt="\begin{math}\nonumber{}\begin{array}{ccccccccccccccl}\nonumber{}x_{{11}} & + & x_{{12}} &  &  &  &  &  &  &  &  &  &  & \leq{} & 400,\\\nonumber{} &  &  &  & x_{{23}} & + & x_{{24}} &  &  &  &  &  &  & \leq{} & 1200,\\\nonumber{} &  &  &  &  &  &  &  & x_{{31}} & + & x_{{33}} & + & x_{{34}} & \leq{} & 1000,\\\nonumber{}x_{{11}} &  &  &  &  &  &  & + & x_{{31}} &  &  &  &  & = & 800,\\\nonumber{} &  & x_{{12}} &  &  &  &  &  &  &  &  &  &  & = & 100,\\\nonumber{} &  &  &  & x_{{23}} & + &  &  &  &  & x_{{33}} &  &  & = & 500,\\\nonumber{} &  &  &  &  &  & x_{{24}} & + &  &  &  &  & x_{{34}} & = & 500,\\\nonumber{}x_{{11}}, &  & x_{{12}}, &  & x_{{23}}, &  & x_{{24}}, &  & x_{{31}}, &  & x_{{33}}, &  & x_{{34}} & \geq{} & 0.\end{array}\end{math}"/></td>
+<td>(7.14.2)</td></tr>
+</tbody>
+</table>
+
+<p>The example below demonstrate how sensitivity analysis can answer questions of the type: What happens to the optimal solution if we decrease the upper bound of the first constraint with 1? For more information on sensitivity analysis see Chapter <a title="14. Sensitivity analysis" href="node016.html#chap-sensitivity-analysis">14</a>.</p>
+
+<pre class="verbatimcode">% sensitivity2.m
+
+% Setup problem data.
+clear prob
+prob.a = sparse([1,    1,    0,    0,    0,    0,    0;
+                 0,    0,    1,    1,    0,    0,    0;
+                 0,    0,    0,    0,    1,    1,    1;
+                 1,    0,    0,    0,    1,    0,    0;
+                 0,    1,    0,    0,    0,    0,    0;
+                 0,    0,    1,    0,    0,    1,    0;
+                 0,    0,    0,    1,    0,    0,    1]);
+
+prob.c =  [1,2,5,2,1,2,1];
+prob.blc = [-Inf,-Inf,-Inf,800,100,500, 500];
+prob.buc =[400,1200,1000,800,100,500,500];
+prob.bux(1:7) = Inf; 
+prob.blx(1:7) = 0;
+
+% Analyze upper bound of constraint 1.
+prob.prisen.cons.subu = [1];  
+
+[r,res] = mosekopt('minimize echo(0)',prob); 
+fprintf ('Optimal objective value: %e\n',prob.c * res.sol.bas.xx  );
+fprintf('Sensitivity results for constraint 1:');
+res.prisen.cons
+
+% If we change the upper bound of constraint 1 with a
+% value v in [res.prisen.cons.lr_bu(1),res.prisen.cons.rr_bu(1)] 
+% then the optimal objective changes with - v * ls_bu(0) 
+% e.g. changing prob.buc(1) with -1
+prob.buc(1) =  prob.buc(1) - 1;
+new_sol_predicted = prob.c * res.sol.bas.xx  + 1 * res.prisen.cons.ls_bu(1);
+fprintf ('New optimal objective after changing bound predicted to:%e\n', ...
+         new_sol_predicted);
+[r,res] = mosekopt('minimize echo(0)',prob); 
+fprintf ('New optimal objective value: %e\n',prob.c * res.sol.bas.xx  );
+</pre>
+
+<p>The output from running the example is given below:</p>
+
+<pre class="verbatim">Optimal objective value: 3.000000e+03
+Sensitivity results for constraint 1:
+ans =
+
+    lr_bl: []
+    rr_bl: []
+    ls_bl: []
+    rs_bl: []
+    lr_bu: -300
+    rr_bu: 0
+    ls_bu: 3
+    rs_bu: 3
+
+New optimal objective after changing bound predicted to:3.003000e+03
+New optimal objective value: 3.003000e+03
+</pre>
+
+</div>
+
+<div>
+<h1><a name="245918968">7.15. Inspecting a problem</a></h1>
+
+<p> The problem analyzer (discussed in detail in Sec.&nbsp;<a title="13.1. The problem analyzer" href="node015.html#ch_analyzers_sec_problem">13.1</a>) provides useful diagnostics about an optimization problem, and is quick way to verify that a model has been specified correctly. For example, executing the command </p>
+
+<pre class="verbatim">mosekopt('anapro',prob)
+</pre>
+
+<p>will generate a report looking like </p>
+
+<pre class="verbatim">Constraints               Bounds                    Variables
+ upper bd:        19       lower bd: all             cont: all
+ fixed   :         8                                          
+
+-------------------------------------------------------------------------------
+
+Objective, cx
+   range: min |c|: 0.00000   min |c|&gt;0: 0.320000     max |c|: 10.0000
+ distrib:        |c|        vars                                     
+                   0          27                                     
+           [0.32, 1)           4                                     
+             [1, 10]           1                                     
+
+-------------------------------------------------------------------------------
+
+Constraint matrix A has
+        27 rows (constraints)
+        32 columns (variables)
+        83 (9.60648%) nonzero entries (coefficients)
+
+Row nonzeros, A_i
+   range: min A_i: 1 (3.125%)    max A_i: 9 (28.125%)
+ distrib:        A_i        rows       rows%        acc%
+                   1           2        7.41        7.41
+                   2          16       59.26       66.67
+              [3, 7]           8       29.63       96.30
+              [8, 9]           1        3.70      100.00
+
+Column nonzeros, A|j
+   range: min A|j: 1 (3.7037%)    max A|j: 4 (14.8148%)
+ distrib:        A|j        cols       cols%        acc%
+                   1           1        3.12        3.12
+                   2          21       65.62       68.75
+              [3, 4]          10       31.25      100.00
+
+A nonzeros, A(ij)
+   range: min |A(ij)|: 0.107000     max |A(ij)|: 2.42900
+ distrib:      A(ij)      coeffs
+          [0.107, 1)          17
+           [1, 2.43]          66
+
+-------------------------------------------------------------------------------
+
+Constraint bounds, lb &lt;= Ax &lt;= ub
+ distrib:        |b|             lbs             ubs
+                   0               7              20
+           [10, 100)               1               3
+         [100, 1000]                               4
+
+Variable bounds, lb &lt;= x &lt;= ub
+ distrib:        |b|             lbs             ubs
+                   0              32
+</pre>
+
+<p>The report provides an overview of the objective function, the number of constraints and bounds, as well as sparsity information and distributions of nonzero elements.</p>
+
+</div>
+
+<div>
+<h1><a name="245916952">7.16. The solutions</a></h1>
+
+<p> Whenever an optimization problem is solved using MOSEK, one or more optimal solutions are reported depending on which optimizer is used. These solutions are available in the </p>
+
+<pre class="verbatim">res.sol
+</pre>
+
+<p>structure, which has one or more of the subfields </p>
+
+<pre class="verbatim">res.sol.itr  % Interior solution.
+res.sol.bas  % Basic    solution.
+res.sol.int  % Integer  solution.
+</pre>
+
+<p>The interior (point) solution is an arbitrary optimal solution which is computed using the interior-point optimizer. The basic solution is available only for linear problems and is produced by the simplex optimizer or the basis identification process which is an add-on to the interior-point optimizer. Finally, the integer solution is available only for problems having integer-constrained variables and is computed using the integer optimizer.</p>
+
+<p>Each of the three solutions may contain one or more of the following subfields: </p>
+
+<dl class="description">
+<dt><tt class="tt">.prosta</tt></dt>
+<dd>
+<p> Problem status. See Appendix <a title="F.38. Problem status keys" href="node022.html#constclass*mosek*prosta">F.38</a>. </p>
+</dd>
+<dt><tt class="tt">.solsta</tt></dt>
+<dd>
+<p> Solution status. See Appendix <a title="F.51. Solution status keys" href="node022.html#constclass*mosek*solsta">F.51</a>.</p>
+</dd>
+<dt><tt class="tt">.skc</tt></dt>
+<dd>
+<p> Constraint status keys. See Tablen <a href="node009.html#CH:MAT:SEC:USE:TAB:CONVARSTAKEY">7.1</a> below.</p>
+</dd>
+<dt><tt class="tt">.skx</tt></dt>
+<dd>
+<p> Variable status keys. See Table <a href="node009.html#CH:MAT:SEC:USE:TAB:CONVARSTAKEY">7.1</a> below.</p>
+</dd>
+<dt><tt class="tt">.xc</tt></dt>
+<dd>
+<p> Constraint activities.</p>
+</dd>
+<dt><tt class="tt">.xx</tt></dt>
+<dd>
+<p> Variable activities.</p>
+</dd>
+<dt><tt class="tt">.y</tt></dt>
+<dd>
+<p> Identical to <tt class="tt">-.slc+.suc</tt>.</p>
+</dd>
+<dt><tt class="tt">.slc</tt></dt>
+<dd>
+<p> Dual variables corresponding to lower constraint bounds.</p>
+</dd>
+<dt><tt class="tt">.suc</tt></dt>
+<dd>
+<p> Dual variables corresponding to upper constraint bounds.</p>
+</dd>
+<dt><tt class="tt">.slx</tt></dt>
+<dd>
+<p> Dual variables corresponding to lower variable bounds.</p>
+</dd>
+<dt><tt class="tt">.sux</tt></dt>
+<dd>
+<p> Dual variables corresponding to upper variable bounds.</p>
+</dd>
+<dt><tt class="tt">.snx</tt></dt>
+<dd>
+<p> Dual variables corresponding to the conic constraints. </p>
+</dd>
+</dl>
+
+<div>
+<h2><a name="245911424">7.16.1. The constraint and variable status keys</a></h2>
+
+<p> <a name="CH:MAT:SEC:USE:CONVARKEY">&#09;</a></p>
+
+<p>In a solution both constraints and variables are assigned a status key which indicates whether the constraint or variable is at its lower limit, its upper limit, is super basic and so forth in the optimal solution. For interior-point solutions these status keys are only indicators which the optimizer produces.</p>
+
+<p>In Table <a href="node009.html#CH:MAT:SEC:USE:TAB:CONVARSTAKEY">7.1</a> the possible values for the status keys are shown accompanied with an interpretation of the key.  </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td align="center" valign="top" style="border-top:1px solid black;">  Symbolic </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Numeric </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> String </td>
+<td valign="top" style="border-top:1px solid black;"> Interpretation </td></tr><tr class="oddrow">
+<td align="center" valign="top">constant </td>
+<td align="center" valign="top"> constant </td>
+<td align="center" valign="top"> code </td>
+<td valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">MSK_SK_UNK</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 0 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <tt class="tt">UN</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> Unknown status </td></tr><tr class="oddrow">
+<td align="center" valign="top"><tt class="tt">MSK_SK_BAS</tt> </td>
+<td align="center" valign="top"> 1 </td>
+<td align="center" valign="top"> <tt class="tt">BS</tt> </td>
+<td valign="top"> Is basic </td></tr><tr class="evenrow">
+<td align="center" valign="top"><tt class="tt">MSK_SK_SUPBAS</tt> </td>
+<td align="center" valign="top"> 2 </td>
+<td align="center" valign="top"> <tt class="tt">SB</tt> </td>
+<td valign="top"> Is superbasic </td></tr><tr class="oddrow">
+<td align="center" valign="top"><tt class="tt">MSK_SK_LOW</tt> </td>
+<td align="center" valign="top"> 3 </td>
+<td align="center" valign="top"> <tt class="tt">LL</tt> </td>
+<td valign="top"> Is at the lower limit (bound) </td></tr><tr class="evenrow">
+<td align="center" valign="top"><tt class="tt">MSK_SK_UPR</tt> </td>
+<td align="center" valign="top"> 4 </td>
+<td align="center" valign="top"> <tt class="tt">UL</tt> </td>
+<td valign="top"> Is at the upper limit (bound) </td></tr><tr class="oddrow">
+<td align="center" valign="top"><tt class="tt">MSK_SK_FIX</tt> </td>
+<td align="center" valign="top"> 5 </td>
+<td align="center" valign="top"> <tt class="tt">EQ</tt> </td>
+<td valign="top"> Lower limit is identical to upper limit </td></tr><tr class="evenrow">
+<td align="center" valign="top"><tt class="tt">MSK_SK_INF</tt> </td>
+<td align="center" valign="top"> 6 </td>
+<td align="center" valign="top"> <tt class="tt">**</tt> </td>
+<td valign="top"> Is infeasible i.e. the lower limit is </td></tr><tr class="oddrow">
+<td align="center" valign="top" style="border-bottom:1px solid black;">&#160;</td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> </td>
+<td valign="top" style="border-bottom:1px solid black;"> greater than the upper limit. </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;7.1: Constraint and variable status keys.</span>
+<br/>
+<p> <a name="CH:MAT:SEC:USE:TAB:CONVARSTAKEY">&#09;</a> </p>
+</center></td></tr></table>
+</td></tr></table>
+
+<p> By default the constraint and variable status keys are reported using string codes but it is easy to have MOSEK report the numeric codes instead. Indeed in the example  </p>
+
+<pre class="verbatim">% Status keys in string format.
+[rcode,res]=mosekopt('minimize statuskeys(0)',prob);
+res.sol.skc(1)
+res.sol.prosta </pre>
+
+<p>  the status keys are represented using string codes whereas in the example </p>
+
+<pre class="verbatim">% Status keys in string format.
+[rcode,res]=mosekopt('minimize statuskeys(1)',prob);
+res.sol.skc(1)
+res.sol.prosta </pre>
+
+<p>  the status keys are represented using numeric codes.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="245944760">7.17. Viewing the task information</a></h1>
+
+<p> In MOSEK the optimization problem and the related instructions with respect to the optimization process are called an optimization task or for short a task. Whenever MOSEK performs operations on a task it stores information in the task information database. Examples of information that is stored are the number of interior-point iterations performed to solve the problem and time spent doing the optimization.</p>
+
+<p>All the items stored in the task information database are listed in Appendixes <a title="F.13. Double information items" href="node022.html#constclass*mosek*dinfitem">F.13</a> and <a title="F.17. Integer information items." href="node022.html#constclass*mosek*iinfitem">F.17</a>. It is possible to see the whole or part of the task information database from within MATLAB. </p>
+
+<pre class="verbatimcode">% Solve a problem and obtain
+% the task information database.
+[r,res]=mosekopt('minimize info',prob);
+
+% View one item
+res.info.MSK_IINF_INTPNT_ITER
+
+% View the whole database
+res.info
+</pre>
+
+</div>
+
+<div>
+<h1><a name="245945624">7.18. Inspecting and setting parameters</a></h1>
+
+<p> <a name="SEC:VIEWSETPARAM">&#09;</a> A large number of parameters controls the behavior of MOSEK, e.g. there is a parameter controlling which optimizer is used, one that limits the maximum number of iterations allowed, and several parameters specifying the termination tolerance. All these parameters are stored in a database internally in MOSEK. The complete parameter database can be obtained and viewed using the commands: </p>
+
+<pre class="verbatim">[r,res]=mosekopt('param');
+res.param </pre>
+
+<p>We will not describe the purpose of each parameter here but instead refer the reader to Appendix <a title="E. Parameters" href="node021.html#APP:CH:PARAM">E</a> where all the parameters are presented in detail.</p>
+
+<p>In general, it should not be necessary to change any of the parameters but if required, it is easily done. In the following example code it is demonstrated how to modify a few parameters and afterwards performing the optimization using these parameters. </p>
+
+<pre class="verbatimcode">% Obtain all symbolic constants
+% defined by MOSEK.
+
+[r,res]  = mosekopt('symbcon');
+sc       = res.symbcon;
+
+param    = [];
+
+% Basis identification is unnecessary.
+param.MSK_IPAR_INTPNT_BASIS   = sc.MSK_OFF;
+
+% Alternatively you can use
+%
+%  param.MSK_IPAR_INTPNT_BASIS   = 'MSK_OFF';
+%
+
+% Use another termination tolerance.
+param.MSK_DPAR_INTPNT_TOLRGAP = 1.0e-9;
+
+% Perform optimization using the
+% modified parameters.
+
+[r,res] =  mosekopt('minimize',prob,param);
+</pre>
+
+</div>
+
+<div>
+<h1><a name="245946056">7.19. Advanced start (hot-start)</a></h1>
+
+<p> In practice it frequently occurs that when an optimization problem has been solved, then the same problem slightly modified should be reoptimized. Moreover, if it is just a small the modification, it can be expected that the optimal solution to the original problem is a good approximation to the modified problem. Therefore, it should be efficient to start the optimization of the modified problem from the previous optimal solution.</p>
+
+<p>Currently, the interior-point optimizer in MOSEK <b>cannot</b> take advantage of a previous optimal solution, however, the simplex optimizer can exploit any basic solution.</p>
+
+<div>
+<h2><a name="245945696">7.19.1. Some examples using hot-start</a></h2>
+
+<p> Using the example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math152.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & x_{1}+2x_{2} &  & \\\nonumber{}\mbox{subject to} & 4 & \leq{} & x_{1}+x_{3} & \leq{} & 6,\\\nonumber{} & 1 & \leq{} & x_{1}+x_{2}, &  & \\\nonumber{} &  &  & 0\leq{}x_{1},x_{2},x_{3} &  &\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:ADVLP">&#09;</a>(7.19.1)</td></tr>
+</tbody>
+</table>
+
+<p>the hot-start facility using the simplex optimizer will be demonstrated. A quick inspection of the problem indicates that <span class="math"><img src="math/math153.png" alt="[[MathCmd 153]]"/></span> is an optimal solution. Hence, it seems to be a good idea to let the initial basis consist of <span class="math"><img src="math/math154.png" alt="[[MathCmd 154]]"/></span> and <span class="math"><img src="math/math155.png" alt="[[MathCmd 155]]"/></span> and all the other variables be at their lower bounds. This idea is used in the example code: </p>
+
+<pre class="verbatimcode">% advs1.m
+
+clear prob param bas
+
+% Specify an initial basic solution.
+bas.skc      = ['LL';'LL'];
+bas.skx      = ['BS';'LL';'BS'];
+bas.xc       = [4 1]';
+bas.xx       = [1 3 0]';
+
+prob.sol.bas = bas;
+
+% Specify the problem data.
+prob.c       = [ 1 2 0]';
+subi         = [1 2 2 1];
+subj         = [1 1 2 3];
+valij        = [1.0 1.0 1.0 1.0];
+prob.a       = sparse(subi,subj,valij);
+prob.blc     = [4.0 1.0]';
+prob.buc     = [6.0 inf]';
+prob.blx     = sparse(3,1);
+prob.bux     = [];
+
+% Use the primal simplex optimizer.
+param.MSK_IPAR_OPTIMIZER = 'MSK_OPTIMIZER_PRIMAL_SIMPLEX';
+[r,res] = mosekopt('minimize',prob,param)
+</pre>
+
+<p>Some comments: </p>
+
+<ul class="itemize">
+<li>In the example the dual solution is defined. This is acceptable because the primal simplex optimizer is used for the reoptimization and it does not exploit a dual solution. In the future MOSEK will also contain a dual simplex optimizer and if that optimizer is used, it will be important that a &#8220;good&#8221; dual solution is specified.</li>
+<li>The status keys <tt class="tt">bas.skc</tt> and <tt class="tt">bas.skx</tt> must contain only the entries <tt class="tt">BS</tt>, <tt class="tt">EQ</tt>, <tt class="tt">LL</tt>, <tt class="tt">UL</tt>, and <tt class="tt">SB</tt>. Moreover, e.g. <tt class="tt">EQ</tt> must be specified only for a fixed constraint or variable. <tt class="tt">LL</tt> and <tt class="tt">UL</tt> can be used only for a variable that has a finite lower or upper bound respectively.</li>
+<li>The number of constraints and variables defined to be basic must correspond exactly to the number of constraints, i.e. the row dimension of <span class="math"><span class="mi">A</span></span>. </li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="245962728">7.19.2. Adding a new variable</a></h2>
+
+<p> Next, assume that the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math156.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & x_{1}+2x_{2}-x_{4} &  & \\\nonumber{}\mbox{subject to} & 4 & \leq{} & x_{1}+x_{3}+x_{4} & \leq{} & 6,\\\nonumber{} & 1 & \leq{} & x_{1}+x_{2}, &  & \\\nonumber{} &  &  & 0\leq{}x_{1},x_{2},x_{3},x_{4.} &  &\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:ADVLP2">&#09;</a>(7.19.2)</td></tr>
+</tbody>
+</table>
+
+<p>should be solved. It is identical to the problem (<a href="node009.html#CH:MATLAB:EQ:ADVLP">7.19.1</a>) except that a new variable <span class="math"><img src="math/math38.png" alt="[[MathCmd 38]]"/></span> has been added. In continuation of the previous example this problem can be solved as follows (using hot-start): </p>
+
+<pre class="verbatimcode">% advs2.m. Continuation of advs1.m.
+
+prob.c       = [prob.c;-1.0];
+prob.a       = [prob.a,sparse([1.0 0.0]')];
+prob.blx     = sparse(4,1);
+
+% Reuse the old optimal basic solution.
+bas          = res.sol.bas;
+
+% Add to the status key.
+bas.skx      = [res.sol.bas.skx;'LL'];
+
+% The new variable is at it lower bound.
+bas.xx       = [res.sol.bas.xx;0.0];
+bas.slx      = [res.sol.bas.slx;0.0];
+bas.sux      = [res.sol.bas.sux;0.0];
+
+prob.sol.bas = bas;
+
+[rcode,res]  = mosekopt('minimize',prob,param);
+
+% The new primal optimal solution
+res.sol.bas.xx'
+</pre>
+
+</div>
+
+<div>
+<h2><a name="245978896">7.19.3. Fixing a variable</a></h2>
+
+<p> In e.g. branch-and-bound methods for integer programming problems it is necessary to reoptimize the problem after a variable has been fixed to a value. This can easily be achieved as follows: </p>
+
+<pre class="verbatimcode">% advs3.m. Continuation of advs2.m.
+
+prob.blx(4)  = 1;
+prob.bux     = [inf inf inf 1]';
+
+% Reuse the basis.
+prob.sol.bas = res.sol.bas;
+
+[rcode,res]  = mosekopt('minimize',prob,param);
+
+% Display the optimal solution.
+res.sol.bas.xx'
+</pre>
+
+<p>The <span class="math"><img src="math/math38.png" alt="[[MathCmd 38]]"/></span> variable is simply fixed at the value 1 and the problem is reoptimized. Please note that the basis from the previous optimization can immediately be reused.</p>
+
+</div>
+
+<div>
+<h2><a name="245979472">7.19.4. Adding a new constraint</a></h2>
+
+<p> Now, assume that the constraint </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math159.png" alt="\begin{math}\nonumber{}x_{1}+x_{2}\geq{}2\end{math}"/></td>
+<td>(7.19.3)</td></tr>
+</tbody>
+</table>
+
+<p>should be added to the problem and the problem should be reoptimized. The following example demonstrates how to do this. </p>
+
+<pre class="verbatimcode">% advs4.m. A continuation of advs3.m. 
+
+% Modify the problem.
+prob.a       = [prob.a;sparse([1.0 1.0 0.0 0.0])];
+prob.blc     = [prob.blc;2.0];
+prob.buc     = [prob.buc;inf];
+
+% Obtain the previous optimal basis.
+bas          = res.sol.bas;
+
+% Set the solution to the modified problem.
+bas.skc      = [bas.skc;'BS'];
+bas.xc       = [bas.xc;bas.xx(1)+bas.xx(2)];
+bas.y        = [bas.y;0.0];
+bas.slc      = [bas.slc;0.0];
+bas.suc      = [bas.suc;0.0];
+
+% Reuse the basis.
+prob.sol.bas = bas;
+
+% Reoptimize.
+[rcode,res]  = mosekopt('minimize',prob,param);
+
+res.sol.bas.xx' 
+</pre>
+
+<p>Please note that the slack variable corresponding to the new constraint are declared basic. This implies that the new basis is nonsingular and can be reused.</p>
+
+</div>
+
+<div>
+<h2><a name="245979904">7.19.5. Using numeric values to represent status key codes</a></h2>
+
+<p> In the previous examples the constraint and variable status keys are represented using string codes. Although the status keys are easy to read they are sometimes difficult to work with in a program. Therefore, the status keys can also be represented using numeric values as demonstrated in the example: </p>
+
+<pre class="verbatimcode">% sk1.m
+
+% Obtain all symbolic constants
+% defined in MOSEK.
+
+clear prob bas;
+
+[r,res]  = mosekopt('symbcon');
+sc       = res.symbcon;
+
+% Specify an initial basic solution.
+% Please note that symbolic constants are used.
+% I.e. sc.MSK_SK_LOW instead of 4.
+bas.skc      = [sc.MSK_SK_LOW;sc.MSK_SK_LOW];
+bas.skx      = [sc.MSK_SK_BAS;sc.MSK_SK_LOW;sc.MSK_SK_BAS];
+bas.xc       = [4 1]';
+bas.xx       = [1 3 0]';
+prob.sol.bas = bas;
+
+% Specify the problem data.
+prob.c   = [ 1 2 0]';
+subi     = [1 2 2 1];
+subj     = [1 1 2 3];
+valij    = [1.0 1.0 1.0 1.0];
+prob.a   = sparse(subi,subj,valij);
+prob.blc = [4.0 1.0]';
+prob.buc = [6.0 inf]';
+prob.blx = sparse(3,1);
+prob.bux = [];
+
+% Use the primal simplex optimizer.
+clear param;
+param.MSK_IPAR_OPTIMIZER = sc.MSK_OPTIMIZER_PRIMAL_SIMPLEX;
+
+[r,res] = mosekopt('minimize statuskeys(1)',prob,param)
+
+% Status keys will be numeric now i.e.
+
+res.sol.bas.skc'
+
+% is a vector of numeric values.
+</pre>
+
+<p>Please note that using the commands </p>
+
+<pre class="verbatim">[r,res]  = mosekopt('symbcon');
+sc       = res.symbcon;
+</pre>
+
+<p>all the symbolic constants defined within MOSEK are obtained and used in the lines </p>
+
+<pre class="verbatim">bas.skc  = [sc.MSK_SK_LOW;sc.MSK_SK_LOW];
+bas.skx  = [sc.MSK_SK_BAS;sc.MSK_SK_LOW;sc.MSK_SK_BAS]; 
+</pre>
+
+<p>These two lines are in fact equivalent to </p>
+
+<pre class="verbatim">bas.skc  = [1;1];
+bas.skx  = [3;1;3];
+</pre>
+
+<p>However, it is <b>not</b> recommended to specify the constraint and variable status keys this way because it is less readable and portable. Indeed if e.g. MOSEK later changes the definition that <span class="math"><span class="mn">1</span></span> is equivalent to <tt class="tt">`LL'</tt>, all programs using numerical keys will be incorrect whereas using the symbolic constants the programs remain correct.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="245981056">7.20. Using names</a></h1>
+
+<p> In MOSEK it is possible to give the objective, each constraint, each variable, and each cone a name. In generalm such names are not really needed except in connection with reading and writing MPS files. See Section <a title="7.21. MPS files" href="node009.html#ch-guidedtour-sec-mpsfiles">7.21</a> for details.</p>
+
+<p>All the names are specified in the <tt class="tt">prob.names</tt> structure. </p>
+
+<pre class="verbatimcode">% The problem is named.
+prob.names.name   = 'CQO example';
+
+% Objective name.
+prob.names.obj    = 'cost';
+
+% The two constraints are named.
+prob.names.con{1} = 'constraint_1';
+prob.names.con{2} = 'constraint_2';
+
+% The six variables are named.
+prob.names.var    = cell(6,1);
+for j=1:6
+  prob.names.var{j} = sprintf('x%d',j);
+end
+
+% Finally the two cones are named.
+prob.names.cone{1} = 'cone_a';
+prob.names.cone{2} = 'cone_b';
+</pre>
+
+<div>
+<h2><a name="245981840">7.20.1. Blanks in names</a></h2>
+
+<p> Although it is allowed to use blanks (spaces) in names it is not recommended to do so except for the problem name. In general, avoid names like &#8220;<tt class="tt">x 1</tt>&#8221; or &#8220;<tt class="tt">con 1</tt>&#8221;.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="245983568">7.21. MPS files</a></h1>
+
+<p> <a name="ch-guidedtour-sec-mpsfiles">&#09;</a> An industry standard format for storing linear optimization problems in an ASCII file is the so-called MPS format. For readers not familiar with the MPS format a specification of the MPS format supported by MOSEK can be seen in Appendix <a title="A. The MPS file format" href="node017.html#app-sec-mpsformat">A</a>.</p>
+
+<p>The advantage of the MPS format is that problems stored in this format can be read by any commercial optimization software, so it facilitates communication of optimization problems.</p>
+
+<div>
+<h2><a name="245982056">7.21.1. Reading an MPS file</a></h2>
+
+<p> It is possible to use <tt class="tt">mosekopt</tt> to read an MPS file containing the problem data. In this case <tt class="tt">mosekopt</tt> reads data from an MPS file and returns both the problem data and the optimal solution, if required. Assume that <tt class="tt">afiro.mps</tt> is the MPS file from which <tt class="tt">mosekopt</tt> should read the problem data, then this task is performed using the command </p>
+
+<pre class="verbatim">[r,res] = mosekopt('read(afiro.mps'));
+</pre>
+
+<p>In this case <tt class="tt">res.prob</tt> will contain several fields with the problem data. E.g. </p>
+
+<pre class="verbatim">res.prob.c'
+</pre>
+
+<p>will display the <span class="math"><span class="mi">c</span></span>-vector.</p>
+
+<p>The names used in the MPS file is also available in the <tt class="tt">prob.names</tt> structure. </p>
+
+<pre class="verbatim">% All names.
+prob.names
+
+% Constraint names.
+prob.names.con
+</pre>
+
+<p> The quadratic terms of a problem can be accessed and displayed in a similar manner: </p>
+
+<pre class="verbatimcode">% mpsrd.m
+
+% Read data from the file wp12-20.mps.
+
+[r,res] = mosekopt('read(wp12-20.mps)');
+
+% Looking at the problem data
+prob = res.prob;
+clear res;
+
+% Form the quadratic term in the objective.
+q = sparse(prob.qosubi,prob.qosubj,prob.qoval);
+
+% Get a graphical picture.
+spy(q) % Notice that only the lower triangular part is defined.
+</pre>
+
+</div>
+
+<div>
+<h2><a name="245988816">7.21.2. Writing a MPS files</a></h2>
+
+<p> It is possible to write an MPS file using MOSEK. To write a problem contained in a MATLAB structure <tt class="tt">prob</tt> to the file &#8220;<tt class="tt">datafile.mps</tt>&#8221;, use the command: </p>
+
+<pre class="verbatim">% Write the data defined by prob to an MPS file
+% named datafile.mps
+mosekopt('write(datafile.mps)',prob);
+</pre>
+
+<p> If the <tt class="tt">prob.names</tt> field is defined, MOSEK will use those names when writing the MPS file, otherwise MOSEK will use generic (automatically generated) names.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="245991472">7.22. User call-back functions</a></h1>
+
+<p> <a name="ch-gt-sec-callback">&#09;</a> <a name="idx-76874960">&#09;</a> A call-back function is a user-defined MATLAB function to be called by MOSEK on a given event. The optimization toolbox supports two types of call-back functions which are presented below.</p>
+
+<div>
+<h2><a name="245989032">7.22.1. Log printing via call-back function</a></h2>
+
+<p> <a name="idx-76871728">&#09;</a> When using <tt class="tt">mosekopt</tt> it is possible to control the amount of information that <tt class="tt">mosekopt</tt> prints to the screen, e.g. </p>
+
+<pre class="verbatim">[r,res] = mosekopt('minimize echo(0)',prob)
+</pre>
+
+<p>forces <tt class="tt">mosekopt</tt> to not print log information &mdash; the string <tt class="tt">echo(0)</tt> indicates that no output should be printed during optimization. A high value in the <tt class="tt">echo(n)</tt> command, e.g. <tt class="tt">echo(3)</tt>, forces MOSEK to display more log information.</p>
+
+<p>It is possible to redirect the MOSEK log printing almost anywhere using a user-defined log call-back function. It works as follows. Create an m-file to handle the log output, similar to: </p>
+
+<pre class="verbatimcode">function myprint(handle,str)
+% handle: Is user defined data structure
+% str   : Is a log string.
+%
+
+fprintf(handle,'%s',str); 
+</pre>
+
+<p>The name and actions of the function are not important, but its argument list must be identical to the example: It must accept two arguments. The first argument, <tt class="tt">handle</tt>, is a user-defined MATLAB structure and the second argument, <tt class="tt">str</tt>, is a text string. In the example above <tt class="tt">myprint</tt> prints the string to a file defined by <tt class="tt">handle</tt>.</p>
+
+<p>The following code fragment shows how to tell MOSEK to send log output to the <tt class="tt">myprint</tt> function. </p>
+
+<pre class="verbatimcode">%
+% In this example the MOSEK log info
+% should be printed to the screen and to a file named
+% mosek.log.
+%
+
+fid                = fopen('mosek.log','wt');
+callback.log       = 'myprint';
+callback.loghandle = fid;
+
+%
+% The 'handle' argument in myprint() will be identical to
+% callback.loghandle when called.
+%
+
+mosekopt('minimize',prob,[],callback);
+</pre>
+
+</div>
+
+<div>
+<h2><a name="245998080">7.22.2. The iteration call-back function</a></h2>
+
+<p> <a name="idx-78109584">&#09;</a> It is possible to specify a function to be called frequently during the optimization. Typically this call-back function is used to display information about the optimization process or to terminate it.</p>
+
+<p>The iteration call-back function has the following form: </p>
+
+<pre class="verbatimcode">function [r] =  myiter(handle,where,info)
+% handle: Is a user-defined data structure.
+% where : Is an integer indicating from where in the optimization
+%         process the callback was invoked.
+% info  : A MATLAB structure containing information about the state of the
+%         optimization.
+
+r = 0;   % r should always be assigned a value.
+
+if handle.symbcon.MSK_CALLBACK_BEGIN_INTPNT==where
+    fprintf('Interior point optimizer started\n');
+end
+
+
+% Print primal objective
+fprintf('Interior-point primal obj.: %e\n',info.MSK_DINF_INTPNT_PRIMAL_OBJ);
+
+% Terminate when cputime &gt; handle.maxtime
+if info.MSK_DINF_INTPNT_TIME &gt; handle.maxtime
+      r = 1;
+else
+  r = 0;
+end
+     
+
+if handle.symbcon. MSK_CALLBACK_END_INTPNT==where
+    fprintf('Interior-point optimizer terminated\n');
+end
+</pre>
+
+<p>The function accepts three arguments: The first argument, <tt class="tt">handle</tt>, is a user-defined MATLAB structure, the second argument, <tt class="tt">where</tt>, indicates from where in the optimization process the call-back was invoked and the third argument, <tt class="tt">info</tt>, is a structure containing information about the process. For details about <tt class="tt">info</tt> see Section <a title="8.1.7. info" href="node010.html#ch-ref-dat-info">8.1.7</a>g If the function returns a non-zero value, MOSEK will terminate the optimization process immediately.</p>
+
+<p>In order to inform MOSEK about the iteration call-back function the fields <tt class="tt">iter</tt> and <tt class="tt">iterhandle</tt> are initialized as shown in the following example. </p>
+
+<pre class="verbatimcode">[r,res]             = mosekopt('symbcon');
+data.maxtime        = 100.0;
+data.symbcon        = res.symbcon;
+
+callback.iter       = 'myiter';
+callback.iterhandle = data;
+
+mosekopt('minimize',prob,[],callback);
+</pre>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="246002896">7.23. The license system</a></h1>
+
+<p>By default a license token remains checked out for the duration of the matlab session. This can be changed such that the license is returned after each call to mosek by setting the parameter <a href="node021.html#common-const*mosek*iparam*cache-license"><tt class="tt">MSK_IPAR_CACHE_LICENSE</tt></a>.</p>
+
+<pre class="verbatim">param.MSK_IPAR_CACHE_LICENSE = 'MSK_OFF'; %set parameter.
+[r,res] = mosekopt('minimize',prob,param); %call mosek.
+</pre>
+
+<p> By default an error will be returned if no license token is available. By setting the parameter <a href="node021.html#common-const*mosek*iparam*license-wait"><tt class="tt">MSK_IPAR_LICENSE_WAIT</tt></a> mosek can be instructed to wait until a license token is available.</p>
+
+<pre class="verbatim">param.MSK_IPAR_LICENSE_WAIT = 'MSK_ON'; %set parameter.
+[r,res] = mosekopt('minimize',prob,param); %call mosek.
+</pre>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node008.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 6. MOSEK / MATLAB integration" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node010.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  8. Command reference" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node008.html" target="_self">6. MOSEK / MATLAB integration</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node010.html" target="_self">8. Command reference</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:58:20 2012</div>
+</body></html>

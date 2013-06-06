@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>6. Advanced API tutorial</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. Basic API tutorial" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. Modelling" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">7. Modelling</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="215090960">6. Advanced API tutorial</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node008.html#215082048" target="_self">6.1. Linear network flow problems</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#215106120" target="_self">6.1.1. A linear network flow problem example</a>
+<ul class="toc-level-3">
+<li><a href="node008.html#215138032" target="_self">6.1.1.1. Source code</a></li>
+<li><a href="node008.html#215136304" target="_self">6.1.1.2. Example code comments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node008.html#215132352" target="_self">6.2. Embedded network flow problems</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#215236552" target="_self">6.2.1. Example: Exploit embedded network flow structure in the simplex optimizer</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> This chapter provides information about additional problem classes and functionality provided in the Java API.</p>
+
+<div>
+<h1><a name="215082048">6.1. Linear network flow problems</a></h1>
+
+<p> <a name="chap-apiintro-sec-linear-network-optimization">&#09;</a>  <a name="idx-71238216">&#09;</a></p>
+
+<p>Network flow problems are a special class of linear optimization problems which has many applications. A network consists of a set of points connected by a set of lines. Usually the points and lines are called <em>nodes</em> and <em>arcs</em>. Arcs may have an direction on them. The network is directed if all arcs are directed. The class of network flow problems is defined as follows.
+<br/>Let <span class="math"><img src="math/math125.png" alt="[[MathCmd 125]]"/></span> be a directed network of nodes <span class="math"><img src="math/math126.png" alt="[[MathCmd 126]]"/></span> and arcs <span class="math"><img src="math/math127.png" alt="[[MathCmd 127]]"/></span>. Associated with every arc <span class="math"><img src="math/math128.png" alt="[[MathCmd 128]]"/></span> is a cost <span class="math"><img src="math/math129.png" alt="[[MathCmd 129]]"/></span> and a capacity <span class="math"><img src="math/math130.png" alt="[[MathCmd 130]]"/></span>. Moreover, associated with each node <span class="math"><img src="math/math131.png" alt="[[MathCmd 131]]"/></span> in the network is a lower limit <span class="math"><img src="math/math132.png" alt="[[MathCmd 132]]"/></span> and an upper limit <span class="math"><img src="math/math133.png" alt="[[MathCmd 133]]"/></span> on the demand (supply) of the node. The minimum cost of a network flow problem can be stated as follows: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math134.png" alt="\begin{math}\nonumber{}\begin{array}{lcccccl}\nonumber{}\mbox{minimize} &  &  & \sum \limits _{{(i,j)\in{}\mathcal{A}}}c_{{ij}}x_{{ij}} &  &  & \\\nonumber{}\mbox{subject to} & l^{c}_{{i}} & \leq{} & \sum \limits _{{\lbrace{}j:(i,j)\in{}\mathcal{A}\rbrace{}}}x_{{ij}}-\sum \limits _{{\lbrace{}j:(j,i)\in{}\mathcal{A}\rbrace{}}}x_{{ji}} & \leq{} & u^{c}_{{i}} & \forall i\in{}\mathcal{N},\\\nonumber{} & l^{x}_{{ij}} & \leq{} & x_{{ij}} & \leq{} & u^{x}_{{ij}} & \forall (i,j)\in{}\mathcal{A}.\end{array}\end{math}"/></td>
+<td><a name="pure-network-flow-problem">&#09;</a>(6.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>A classical example of a network flow problem is the transportation problem where the objective is to distribute goods from warehouses to customers at lowest possible total cost, see [<a href="node028.html#AHUJA:89:A" class="citation">7</a>] for a detailed application reference.</p>
+
+<p>The above graph formulation of the network flow problem implies the structural properties. Each variable appears in exactly two constraints with a numerical value of either <span class="math"><img src="math/math135.png" alt="[[MathCmd 135]]"/></span> or <span class="math"><img src="math/math136.png" alt="[[MathCmd 136]]"/></span>.</p>
+
+<p>It is well-known that problems with network flow structure can be solved efficiently with a specialized version of the simplex method. MOSEK includes such a network simplex implementation which can be called either directly using <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a> or indirectly by letting the standard simplex optimizer extract the embedded network. This section shows how to solve a network problem by a direct call to <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a>. For further details on how to exploit embedded network in the standard simplex optimizer, see Section <a title="8.3.1. Network flow problems" href="node010.html#solving-network-problems">8.3.1</a>.</p>
+
+<div>
+<h2><a name="215106120">6.1.1. A linear network flow problem example</a></h2>
+
+<p> <a name="chap-apiintro-sec-linear-network-example">&#09;</a> <a name="idx-72657376">&#09;</a> The following is an example of a linear network optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math137.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & x_{0} &  &  & + & x_{2} & + &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & -x_{0} &  &  &  &  & + & x_{3} &  &  &  &  & = & 1,\\\nonumber{} &  &  &  &  & x_{2} & - & x_{3} & + & x_{4} & + & x_{5} & = & -2,\\\nonumber{} & x_{0} & - & x_{1} &  &  &  &  & - & x_{4} & - & x_{5} & = & 0,\\\nonumber{} &  &  & x_{1} & - & x_{2} & + &  &  &  &  &  & = & 0,\end{array}\end{math}"/></td>
+<td><a name="net-prob">&#09;</a>(6.1.2)</td></tr>
+</tbody>
+</table>
+
+<p>having the bounds <span class="math"><img src="math/math138.png" alt="[[MathCmd 138]]"/></span>.</p>
+
+<p>The corresponding graph <span class="math"><img src="math/math125.png" alt="[[MathCmd 125]]"/></span> is displayed in fig.<a href="node008.html#fig-network">6.1</a>.</p>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td><center>
+<p> <img src="graphics/network.png"/> </p>
+<span class="caption">Figure&nbsp;6.1: Simple network.</span>
+<br/>
+<p> <a name="fig-network">&#09;</a> </p>
+</center></td></tr></table>
+
+</div>
+
+<div>
+<h3><a name="215138032">6.1.1.1. Source code</a></h3>
+
+<p> <a name="idx-72673184">&#09;</a><a name="sec:network1-source">&#09;</a></p>
+
+<p>In this section we will show how to solve (<a href="node008.html#net-prob">6.1.2</a>) with the network optimizer.</p>
+
+<p>The Java program included below, which solves this problem, is distributed with MOSEK and can be found in the directory</p>
+
+<pre class="verbatim">  mosek\6\tools\examples\java
+</pre>
+
+<p><a name="idx-72668944">&#09;</a> <a name="idx-72668296">&#09;</a> <a name="idx-72665280">&#09;</a> <a name="idx-72661184">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File:    network1.java
+
+  Demonstrates a simple use of the network optimizer.
+
+   Purpose: 1. Specify data for a network.
+            2. Solve the network problem with the network optimizer.
+*/</span>
+
+<span class="keyword">package</span> network1;
+
+
+class msgclass <span class="keyword">extends</span> mosek.Stream {
+    <span class="keyword">public</span> msgclass ()
+    {
+        <span class="keyword">super</span> ();
+    }
+
+    <span class="keyword">public</span> <span class="type">void</span> stream (<span class="type">String</span> msg)
+    {
+        System.out.print (msg);
+    }
+}
+
+<span class="keyword">public</span> class network1
+{
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMCON = 4;
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMVAR = 6;
+
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> main (<span class="type">String</span><span class="brackets">[]</span> args)
+  {
+    <span class="type">double</span>
+        infinity = 0;
+
+    <span class="type">double</span> cc<span class="brackets">[]</span>    = {0.0, 0.0, 0.0, 0.0};
+
+    <span class="type">double</span> cx<span class="brackets">[]</span>    = {1.0, 0.0, 1.0, 0.0, -1.0, 1.0};
+
+    mosek.Env.boundkey bkc<span class="brackets">[]</span>  
+                   = {mosek.Env.boundkey.fx,
+                      mosek.Env.boundkey.fx,
+                      mosek.Env.boundkey.fx,
+                      mosek.Env.boundkey.fx};
+
+    <span class="type">double</span>  blc<span class="brackets">[]</span>  = {1.0,
+                      1.0,
+                      -2.0,
+                      0.0};
+
+    <span class="type">double</span>  buc<span class="brackets">[]</span>  = {1.0,
+                      1.0,
+                      -2.0,
+                      0.0};
+
+    mosek.Env.boundkey bkx<span class="brackets">[]</span>  
+                   = {mosek.Env.boundkey.lo,
+                      mosek.Env.boundkey.lo,
+                      mosek.Env.boundkey.lo,
+                      mosek.Env.boundkey.lo,
+                      mosek.Env.boundkey.lo,
+                      mosek.Env.boundkey.lo};
+
+    <span class="type">double</span>  blx<span class="brackets">[]</span>  = {0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0};
+
+    <span class="type">double</span>  bux<span class="brackets">[]</span>  = {+infinity,
+                      +infinity,
+                      +infinity,
+                      +infinity,
+                      +infinity,
+                      +infinity};
+
+    <span class="type">int</span>  from<span class="brackets">[]</span>  = {0,
+                    2,
+                    3,
+                    1,
+                    1,
+                    1};
+
+    <span class="type">int</span>  to<span class="brackets">[]</span>  = {2,
+                  3,
+                  1,
+                  0,
+                  2,
+                  2};
+
+    <span class="comment">// Specify solution data</span>
+    <span class="type">double</span><span class="brackets">[]</span> xc   = <span class="keyword">new</span> <span class="type">double</span>[NUMCON];
+    <span class="type">double</span><span class="brackets">[]</span> xx   = <span class="keyword">new</span> <span class="type">double</span>[NUMVAR];
+    <span class="type">double</span><span class="brackets">[]</span> y    = <span class="keyword">new</span> <span class="type">double</span>[NUMCON];
+    <span class="type">double</span><span class="brackets">[]</span> slc  = <span class="keyword">new</span> <span class="type">double</span>[NUMCON];
+    <span class="type">double</span><span class="brackets">[]</span> suc  = <span class="keyword">new</span> <span class="type">double</span>[NUMCON];
+    <span class="type">double</span><span class="brackets">[]</span> slx  = <span class="keyword">new</span> <span class="type">double</span>[NUMVAR];
+    <span class="type">double</span><span class="brackets">[]</span> sux  = <span class="keyword">new</span> <span class="type">double</span>[NUMVAR];
+
+    mosek.Env.stakey<span class="brackets">[]</span> skc  = <span class="keyword">new</span> mosek.Env.stakey[NUMCON]; 
+    mosek.Env.stakey<span class="brackets">[]</span> skx  = <span class="keyword">new</span> mosek.Env.stakey[NUMVAR];
+    <span class="keyword">for</span> (<span class="type">int</span> i = 0; i &lt; NUMCON; ++i) skc[i] = mosek.Env.stakey.unk;
+    <span class="keyword">for</span> (<span class="type">int</span> i = 0; i &lt; NUMVAR; ++i) skx[i] = mosek.Env.stakey.unk;
+
+    mosek.Env
+        env = <span class="keyword">null</span>;
+    mosek.Task
+        dummytask = <span class="keyword">null</span>;
+
+    mosek.Env.solsta<span class="brackets">[]</span>
+        solsta    = <span class="keyword">new</span> mosek.Env.solsta[1];
+
+    mosek.Env.prosta<span class="brackets">[]</span>    
+        prosta    = <span class="keyword">new</span> mosek.Env.prosta[1];
+
+    <span class="keyword">try</span>
+    {
+      <span class="comment">// Make mosek environment. </span>
+      env  = <span class="keyword">new</span> mosek.Env ();
+
+      <span class="comment">// Direct the env log stream to the user specified</span>
+      <span class="comment">// method env_msg_obj.print</span>
+      msgclass env_msg_obj = <span class="keyword">new</span> msgclass ();
+
+      env.set_Stream (mosek.Env.streamtype.log,env_msg_obj);
+      <span class="comment">// Initialize the environment.</span>
+      env.init ();
+
+      <span class="comment">// Create a task object linked with the environment env.</span>
+      dummytask = <span class="keyword">new</span> mosek.Task (env, NUMCON, NUMVAR);
+
+      <span class="comment">// Directs the log task stream to the user specified</span>
+      <span class="comment">// method task_msg_obj.print</span>
+      msgclass task_msg_obj = <span class="keyword">new</span> msgclass ();
+      dummytask.set_Stream (mosek.Env.streamtype.log,task_msg_obj);
+      
+      <span class="comment">// Set the problem to be maximized</span>
+      dummytask.putobjsense(mosek.Env.objsense.maximize);
+      
+      <span class="comment">// Solve the network problem</span>
+      dummytask.netoptimize(cc,
+                            cx,
+                            bkc,
+                            blc,
+                            buc,
+                            bkx,
+                            blx,
+                            bux,
+                            from,
+                            to,
+                            prosta,
+                            solsta,
+                            false,
+                            skc,
+                            skx,
+                            xc,
+                            xx,
+                            y,
+                            slc,
+                            suc,
+                            slx,
+                            sux);
+
+      <span class="keyword">switch</span> (solsta[0])
+      {
+        <span class="keyword">case</span> optimal:
+          System.out.println("<span class="string">Embedded network problem is optimal</span>");
+          <span class="keyword">break</span>;
+        <span class="keyword">case</span> prim_infeas_cer:
+          System.out.println("<span class="string">Embedded network problem is primal infeasible</span>");
+          <span class="keyword">break</span>;
+        <span class="keyword">case</span> dual_infeas_cer:
+          System.out.println("<span class="string">Embedded network problem is dual infeasible</span>");
+          <span class="keyword">break</span>;
+        <span class="keyword">default</span>:
+          System.out.println("<span class="string">Embedded network problem solsta : </span>" + solsta[0]);
+          <span class="keyword">break</span>;
+      }
+    }
+    <span class="keyword">catch</span> (Exception e)
+    <span class="comment">/* Catch both mosek.Error and mosek.Warning */</span>
+    {
+        System.out.println ("<span class="string">An error or warning was encountered</span>");
+        System.out.println (e.getMessage ());
+    }
+  
+    <span class="comment">// Dispose of task end environment</span>
+    <span class="keyword">if</span> (dummytask != <span class="keyword">null</span>) dummytask.dispose ();
+    <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.dispose ();
+  }
+}
+</div>
+
+</div>
+
+<div>
+<h3><a name="215136304">6.1.1.2. Example code comments</a></h3>
+
+<p> There are a few important differences between the linear network optimization example in section <a title="6.1.1.1. Source code" href="node008.html#sec:network1-source">6.1.1.1</a> and the general linear optimization problem in section <a title="5.2. Linear optimization" href="node007.html#chap-apiintro-sec-linear-optimization">5.2</a>. </p>
+
+<ul class="itemize">
+<li>MOSEK allows that network problems can be inputted and optimized using one function call to the function <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a>. This is more efficient and uses less memory than a call to the standard optimizer. </li>
+<li>Since we know that each column of matrix <span class="math"><span class="mi">A</span></span> has two non-zeroes, it can be stored in two arrays, <tt class="tt">from</tt> and <tt class="tt">to</tt>, specifying the origin and destination of the arcs (variables), see graph in fig.fig-network. </li>
+<li>The solution is written directly to <tt class="tt">skc</tt>, <tt class="tt">skx</tt>, <tt class="tt">xc</tt>, <tt class="tt">xx</tt>, <tt class="tt">y</tt>, <tt class="tt">slc</tt>, <tt class="tt">suc</tt>, <tt class="tt">slx</tt> and <tt class="tt">sux</tt> by <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a>. </li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="215132352">6.2. Embedded network flow problems</a></h1>
+
+<p> <a name="advanced-embedded-network">&#09;</a>  <a name="idx-72694672">&#09;</a></p>
+
+<p>Often problems contains both large parts with network structure and some non-network constraints or variables &mdash; such problems are said to have <em>embedded network structure</em>.</p>
+
+<p>A linear optimization with embedded network structure problem can be written as : <a name="idx-72688848">&#09;</a> </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math140.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  & \\\nonumber{}\mbox{subject to} & l^{c}_{N} & \leq{} & Nx & \leq{} & u^{c}_{N},\\\nonumber{} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\end{array}\end{math}"/></td>
+<td><a name="embedded-network-specs">&#09;</a>(6.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>Where the constraints</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math141.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}l^{c}_{N} & \leq{} & Nx & \leq{} & u^{c}_{N}\end{array}\end{math}"/></td>
+<td>(6.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>defines a network as explained in section <a title="6.1. Linear network flow problems" href="node008.html#chap-apiintro-sec-linear-network-optimization">6.1</a>, and the constraints</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math142.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}l^{c} & \leq{} & Ax & \leq{} & u^{c}\end{array}\end{math}"/></td>
+<td>(6.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>defines the general non-network linear constraints. As an example consider the small linear optimization problem</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math143.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & -x_{0} &  &  & + & x_{2} &  &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & 0.50x_{0} &  &  &  &  & + & 0.50x_{3} &  &  &  &  & = & 0.5,\\\nonumber{} &  &  &  &  & 0.50x_{2} & - & 0.50x_{3} & + & 0.50x_{4} & + & 0.50x_{5} & = & -1,\\\nonumber{} & -0.25x_{0} & + & -2.50x_{1} & + &  &  &  & - & 0.25x_{4} & - & 0.25x_{5} & = & 0,\\\nonumber{} &  &  & 2.50x_{1} & - & 0.25x_{2} &  &  &  &  &  &  & = & 0,\\\nonumber{} &  & - & x_{1} & + & x_{2} & + & x_{3} &  &  & + & x_{5} & \geq{} & 6,\end{array}\end{math}"/></td>
+<td><a name="net-em-prob">&#09;</a>(6.2.4)</td></tr>
+</tbody>
+</table>
+
+<p>with the bounds </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math144.png" alt="\begin{displaymath}\nonumber{}-\infty \leq{}x_{0}\leq{}0,0\leq{}x_{j}\leq{}\infty \mbox{ for }j=1\ldots 5.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> Recalling the network flow problem structural properties from section <a href="node008.html#pure-network-flow-problem">6.1.1</a>, each variable should appear in exactly two constraints with coefficients of either <span class="math"><img src="math/math135.png" alt="[[MathCmd 135]]"/></span> or <span class="math"><img src="math/math136.png" alt="[[MathCmd 136]]"/></span>.</p>
+
+<p>At first glance it does not seem to contain any network structure, but if we scale constraints 1-4 by respectively 2.0, 2.0, 4.0, 4.0 and columns 1-2 by -1.0, 0.1 we get the following problem :</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math147.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & x_{0} &  &  & + & x_{2} & + &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & -x_{0} &  &  &  &  & + & x_{3} &  &  &  &  & = & 1,\\\nonumber{} &  &  &  &  & x_{2} & - & x_{3} & + & x_{4} & + & x_{5} & = & -2,\\\nonumber{} & x_{0} & - & x_{1} &  &  &  &  & - & x_{4} & - & x_{5} & = & 0,\\\nonumber{} &  &  & x_{1} & - & x_{2} & + &  &  &  &  &  & = & 0,\\\nonumber{} &  &  & x_{1} & + & x_{2} & + & x_{3} &  &  & + & x_{5} & \geq{} & 6,\end{array}\end{math}"/></td>
+<td>(6.2.5)</td></tr>
+</tbody>
+</table>
+
+<p>with the bounds </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math148.png" alt="\begin{displaymath}\nonumber{}0\leq{}x_{j}\leq{}\infty \mbox{ for }j=0\ldots 5.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> This corresponds to the network flow problem in section <a title="6.1.1. A linear network flow problem example" href="node008.html#chap-apiintro-sec-linear-network-example">6.1.1</a> plus one extra non-network constraint. We cannot use the network optimizer directly on the above problem since the last constraint destroys the network property. Finding the largest possible network structure in a linear optimization problem is computationally difficult, so MOSEK offers a heuristic <a href="node016.html#common-func*mosek*task*netextraction"><tt class="tt">Task.netextraction</tt></a> that attempts to find suitable scaling factors maximizing numbers of network constraints and variables. Assuming that the embedded network structure is dominant and the problem has few non-network constraints, we can exploit this structure and potentially speed up the optimization. Since the network constraints can be handled efficiently by the specialized network optimizer, the following idea is used: </p>
+
+<ul class="itemize">
+<li>Disregard the non-network constraints and optimize the network problem. </li>
+<li>Use the network solution to hot-start the standard dual simplex optimizer. </li>
+</ul>
+
+<p>An embedded network can be exploited by this scheme in two ways: </p>
+
+<ul class="itemize">
+<li>Use the extraction heuristics directly by the <a href="node016.html#common-func*mosek*task*netextraction"><tt class="tt">Task.netextraction</tt></a> function and optimize with the <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a> function. </li>
+<li>Let the simplex optimizer exploit embedded network structure automatically. </li>
+</ul>
+
+<p> The first method is more difficult than the second, but also offers much more flexibility. In <a title="6.2.1. Example: Exploit embedded network flow structure in the simplex optimizer" href="node008.html#network-advanced-example">6.2.1</a> the first method is demonstrated by a code example below. For further details on exploiting embedded network structure in the standard simplex optimizer, see section <a title="8.3.1. Network flow problems" href="node010.html#solving-network-problems">8.3.1</a>.</p>
+
+<div>
+<h2><a name="215236552">6.2.1. Example: Exploit embedded network flow structure in the simplex optimizer</a></h2>
+
+<p> <a name="idx-72711344">&#09;</a> <a name="network-advanced-example">&#09;</a></p>
+
+<p>MOSEK is distributed with some network examples which can be found in the directory</p>
+
+<pre class="verbatim">  mosek\6\tools\examples 
+</pre>
+
+<p> The example given in this section demonstrates how to extract and optimize embedded network structure in a arbitrary linear optimization problem. The following idea is used</p>
+
+<ul class="itemize">
+<li>Read an arbitrary linear optimization problem into a task. </li>
+<li>Use the <a href="node016.html#common-func*mosek*task*netextraction"><tt class="tt">Task.netextraction</tt></a> function to extract embedded network structure. </li>
+<li>Optimize the network problem using the <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a> function. </li>
+</ul>
+
+<p><a name="idx-72724848">&#09;</a> <a name="idx-72724920">&#09;</a> <a name="idx-72736352">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File:    network2.java
+
+  Demonstrates a simple use of network structure in a model.
+
+   Purpose: 1. Read an optimization problem from an
+               user specified MPS file.
+            2. Extract the embedded network.
+            3. Solve the embedded network with the network optimizer.
+
+   Note that the general simplex optimizer called though MSK_optimize can also extract 
+   embedded network and solve it with the network optimizer. The direct call to the 
+   network optimizer, which is demonstrated here, is offered as an option to save 
+   memory and overhead when solving either many or large network problems.
+*/</span>
+
+<span class="keyword">package</span> network2;
+
+<span class="keyword">import</span> mosek.*;
+
+class msgclass <span class="keyword">extends</span> mosek.Stream {
+    <span class="keyword">public</span> msgclass ()
+    {
+        <span class="keyword">super</span> ();
+    }
+
+    <span class="keyword">public</span> <span class="type">void</span> stream (<span class="type">String</span> msg)
+    {
+        System.out.print (msg);
+    }
+}
+
+<span class="keyword">public</span> class network2
+{
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> main (<span class="type">String</span><span class="brackets">[]</span> args)
+  {
+    <span class="keyword">if</span> (args.length != 1)
+    {
+      System.out.println ("<span class="string">Wrong arguments. The syntax is:</span>");
+      System.out.println ("<span class="string">network2 inputfile</span>");
+    }
+    <span class="keyword">else</span>
+    {
+      mosek.Env
+          env = <span class="keyword">null</span>;
+      mosek.Task
+          task = <span class="keyword">null</span>, dummytask = <span class="keyword">null</span>;
+  
+      mosek.Env.solsta<span class="brackets">[]</span>
+          solsta    = <span class="keyword">new</span> mosek.Env.solsta[1];
+  
+      mosek.Env.prosta<span class="brackets">[]</span>    
+          prosta    = <span class="keyword">new</span> mosek.Env.prosta[1];
+  
+      <span class="keyword">try</span>
+      {
+        <span class="comment">// Make mosek environment. </span>
+        env  = <span class="keyword">new</span> mosek.Env ();
+  
+        <span class="comment">// Direct the env log stream to the user specified</span>
+        <span class="comment">// method env_msg_obj.print</span>
+        msgclass env_msg_obj = <span class="keyword">new</span> msgclass ();
+  
+        env.set_Stream (mosek.Env.streamtype.log,env_msg_obj);
+        <span class="comment">// Initialize the environment.</span>
+        env.init ();
+  
+        <span class="comment">// Create a task object linked with the environment env.</span>
+        <span class="comment">//  We create it initially with 0 variables and 0 columns, </span>
+        <span class="comment">//  since we don't know the size of the problem.</span>
+        task = <span class="keyword">new</span> mosek.Task (env, 0,0);
+  
+        task.readdata (args[0]);
+  
+        <span class="type">int</span> numcon,numvar;
+        <span class="type">int</span><span class="brackets">[]</span> netnumcon = <span class="keyword">new</span> <span class="type">int</span>[1];
+        <span class="type">int</span><span class="brackets">[]</span> netnumvar = <span class="keyword">new</span> <span class="type">int</span>[1];
+  
+        numcon = task.getnumcon ();
+        numvar = task.getnumvar ();
+  
+        <span class="comment">// Specify network data</span>
+        <span class="type">int</span><span class="brackets">[]</span> rmap        = <span class="keyword">new</span> <span class="type">int</span>[numcon];
+        <span class="type">int</span><span class="brackets">[]</span> cmap        = <span class="keyword">new</span> <span class="type">int</span>[numvar];
+        <span class="type">int</span><span class="brackets">[]</span> netcon      = <span class="keyword">new</span> <span class="type">int</span>[numcon];
+        <span class="type">int</span><span class="brackets">[]</span> netvar      = <span class="keyword">new</span> <span class="type">int</span>[numvar];
+        <span class="type">int</span><span class="brackets">[]</span> from        = <span class="keyword">new</span> <span class="type">int</span>[numvar];
+        <span class="type">int</span><span class="brackets">[]</span> to          = <span class="keyword">new</span> <span class="type">int</span>[numvar];
+  
+        <span class="comment">// Specify network scaling factors</span>
+        <span class="type">double</span><span class="brackets">[]</span> scalcon  = <span class="keyword">new</span> <span class="type">double</span>[numcon];
+        <span class="type">double</span><span class="brackets">[]</span> scalvar  = <span class="keyword">new</span> <span class="type">double</span>[numvar];
+  
+        <span class="comment">// Specify objective and bounds</span>
+        <span class="type">double</span><span class="brackets">[]</span> cc       = <span class="keyword">new</span> <span class="type">double</span>[numcon];
+        <span class="type">double</span><span class="brackets">[]</span> cx       = <span class="keyword">new</span> <span class="type">double</span>[numvar];
+        <span class="type">double</span><span class="brackets">[]</span> blc      = <span class="keyword">new</span> <span class="type">double</span>[numcon];
+        <span class="type">double</span><span class="brackets">[]</span> buc      = <span class="keyword">new</span> <span class="type">double</span>[numcon];
+        <span class="type">double</span><span class="brackets">[]</span> blx      = <span class="keyword">new</span> <span class="type">double</span>[numvar];
+        <span class="type">double</span><span class="brackets">[]</span> bux      = <span class="keyword">new</span> <span class="type">double</span>[numvar];
+  
+        <span class="comment">// Specify bound keys</span>
+        mosek.Env.boundkey<span class="brackets">[]</span> bkc = <span class="keyword">new</span> mosek.Env.boundkey[numcon];
+        mosek.Env.boundkey<span class="brackets">[]</span> bkx = <span class="keyword">new</span> mosek.Env.boundkey[numvar];
+  
+        <span class="comment">// Specify solution data</span>
+        <span class="type">double</span><span class="brackets">[]</span> xc   = <span class="keyword">new</span> <span class="type">double</span>[numcon];
+        <span class="type">double</span><span class="brackets">[]</span> xx   = <span class="keyword">new</span> <span class="type">double</span>[numvar];
+        <span class="type">double</span><span class="brackets">[]</span> y    = <span class="keyword">new</span> <span class="type">double</span>[numcon];
+        <span class="type">double</span><span class="brackets">[]</span> slc  = <span class="keyword">new</span> <span class="type">double</span>[numcon];
+        <span class="type">double</span><span class="brackets">[]</span> suc  = <span class="keyword">new</span> <span class="type">double</span>[numcon];
+        <span class="type">double</span><span class="brackets">[]</span> slx  = <span class="keyword">new</span> <span class="type">double</span>[numvar];
+        <span class="type">double</span><span class="brackets">[]</span> sux  = <span class="keyword">new</span> <span class="type">double</span>[numvar];
+  
+        mosek.Env.stakey<span class="brackets">[]</span> skc  = <span class="keyword">new</span> mosek.Env.stakey[numcon];
+        mosek.Env.stakey<span class="brackets">[]</span> skx  = <span class="keyword">new</span> mosek.Env.stakey[numvar];
+  
+        <span class="keyword">for</span>( <span class="type">int</span> i = 0; i &lt; numcon; ++i )
+        {
+          skc[i] = mosek.Env.stakey.unk;
+        }
+
+        <span class="keyword">for</span>( <span class="type">int</span> j = 0; j &lt; numvar; ++j )
+        {
+          skx[j] = mosek.Env.stakey.unk;
+        }
+
+        <span class="comment">/* We just use zero cost on slacks */</span>
+        <span class="keyword">for</span>( <span class="type">int</span> i = 0; i &lt; numcon; ++i )
+          cc[i] = 0.0;
+  
+          <span class="comment">// Extract embedded network </span>
+          task.netextraction(netnumcon,
+                             netnumvar,
+                             netcon,
+                             netvar,
+                             scalcon,
+                             scalvar,
+                             cx,
+                             bkc,
+                             blc,
+                             buc,
+                             bkx,
+                             blx,
+                             bux,
+                             from,
+                             to);
+          
+        System.out.println ("<span class="string">network extraction :</span>");
+        System.out.println ("<span class="string">numcon : </span>" + numcon + "<span class="string"> netnumcon : </span>" + netnumcon[0]);
+        System.out.println ("<span class="string">numvar : </span>" + numvar + "<span class="string"> netnumvar : </span>" + netnumvar[0]);
+  
+        <span class="comment">// Create a task object linked with the environment env.</span>
+        dummytask = <span class="keyword">new</span> mosek.Task (env, netnumcon[0], netnumvar[0]);
+  
+        <span class="comment">// Directs the log task stream to the user specified</span>
+        <span class="comment">// method task_msg_obj.print</span>
+        msgclass task_msg_obj = <span class="keyword">new</span> msgclass ();
+        dummytask.set_Stream (mosek.Env.streamtype.log,task_msg_obj);
+              
+        <span class="comment">// Solve the network problem</span>
+        dummytask.netoptimize(cc,
+                                cx,
+                                bkc,
+                                blc,
+                                buc,
+                                bkx,
+                                blx,
+                                bux,
+                                from,
+                                to,
+                                prosta,
+                                solsta,
+                                false,
+                                skc,
+                                skx,
+                                xc,
+                                xx, 
+                                y,
+                                slc,
+                                suc,
+                                slx,
+                                sux);
+        
+          <span class="keyword">if</span> ( solsta[0] == mosek.Env.solsta.optimal )
+          {
+            System.out.println("<span class="string">Embedded network problem is optimal</span>");
+          }
+          <span class="keyword">else</span> <span class="keyword">if</span> ( solsta[0] == mosek.Env.solsta.prim_infeas_cer )
+          {
+            System.out.println("<span class="string">Embedded network problem is primal infeasible</span>");
+          }
+          <span class="keyword">else</span> <span class="keyword">if</span> ( solsta[0] == mosek.Env.solsta.dual_infeas_cer )
+          {
+            System.out.println("<span class="string">Embedded network problem is dual infeasible</span>");
+          }
+          <span class="keyword">else</span>
+          {
+            System.out.println("<span class="string">Embedded network problem solsta : </span>"+solsta[0]);
+          }
+      }
+      <span class="keyword">catch</span> (mosek.ArrayLengthException e)
+      {
+          System.out.println ("<span class="string">Error: An array was too short</span>");
+          System.out.println (e.toString ());
+      }
+      <span class="keyword">catch</span> (java.lang.Exception e)
+      <span class="comment">/* Catch both mosek.Error and mosek.Warning */</span>
+      {
+          System.out.println ("<span class="string">An error or warning was encountered</span>");
+          System.out.println (e.getMessage ());
+      }
+    
+      <span class="comment">// Dispose of task end environment</span>
+      <span class="keyword">if</span> (dummytask != <span class="keyword">null</span>) dummytask.dispose ();
+      <span class="keyword">if</span> (task != <span class="keyword">null</span>)  task.dispose ();
+      <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.dispose ();
+    }
+  }
+}
+</div>
+
+<p>In the above example we only optimize the embedded network problem. We still need to use the found network solution as a hot-start for the simplex optimizer and solve the original problem. This involves unscaling the network solution back to same unit measure as the original problem. In the example</p>
+
+<pre class="verbatim">  mosek\6\tools\examples\java\network3.java 
+</pre>
+
+<p>we show how to convert the network solution into a valid hot-start for the simplex optimizer.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. Basic API tutorial" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. Modelling" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">7. Modelling</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:42:13 2012</div>
+</body></html>

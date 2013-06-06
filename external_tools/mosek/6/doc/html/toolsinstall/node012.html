@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>B. Operating system environment variables</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node011.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : A. Manual installation instructions" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node013.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  Index" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node011.html" target="_self">A. Manual installation instructions</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node013.html" target="_self">Index</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="139655402518000">B. Operating system environment variables</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node012.html#139655402516920" target="_self">B.1. Windows NT/2000</a></li>
+<li><a href="node012.html#139655402518648" target="_self">B.2. Windows XP</a></li>
+<li><a href="node012.html#139655402520728" target="_self">B.3. MAC OSX</a></li>
+<li><a href="node012.html#139655402521520" target="_self">B.4. UNIX</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="app-osenvvar">&#09;</a></p>
+
+<p>This appendix discusses how to add and modify operating system environment variables for different operating systems.</p>
+
+<div>
+<h1><a name="139655402516920">B.1. Windows NT/2000</a></h1>
+
+<p>On Windows NT/2000 choose the system icon from </p>
+
+<pre class="verbatim">\start\Settings\Control Panel\
+</pre>
+
+<p>Next choose the environment tab. This tab allows you to add new environment variables and to modify existing environment variables.</p>
+
+</div>
+
+<div>
+<h1><a name="139655402518648">B.2. Windows XP</a></h1>
+
+<ol class="enumerate">
+<li>Right-click on the <i>My computer</i> icon in the start menu.</li>
+<li>Choose <i>Properties</i>.</li>
+<li>Choose <i>Advanced</i> tab.</li>
+<li>Choose <i>Environment variables</i>.</li>
+<li>You can now add new variables or modify an existing variable. </li>
+</ol>
+
+</div>
+
+<div>
+<h1><a name="139655402520728">B.3. MAC OSX</a></h1>
+
+<p>Usually you can setup operating system variables on MAC OSX as you would do under UNIX as explained in Section <a title="B.4. UNIX" href="node012.html#osenvvar-unix">B.4</a>.</p>
+
+<p>Sometimes it necessary to create a file named </p>
+
+<pre class="verbatim">$HOME/.MacOSX/environment.plist
+</pre>
+
+<p>  or if the file exists you should add some lines to the above file. An example <tt class="tt">enviroment.plist</tt> file is shown below </p>
+
+<pre class="verbatim">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC 
+  "-//Apple Computer//DTD PLIST 1.0//EN" 
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;MOSEKLM_LICENSE_FILE&lt;/key&gt;
+    &lt;string&gt;/home/user/mosek/4/licenses/mosek.lic&lt;/string&gt;
+    &lt;key&gt;PYTHONPATH&lt;/key&gt;
+    &lt;string&gt;/home/user/mosek/4/tools/platform/osx32x86/bin&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</pre>
+
+<p>Please note that in more recent version os OS X, the library search path <tt class="tt">DYLD_LIBRARY_PATH</tt> cannot be set in <tt class="tt">environment.plist</tt>.</p>
+
+<p>For further explenation see <a href="http://developer.apple.com/qa/qa2001/qa1067.html">http://developer.apple.com/qa/qa2001/qa1067.html</a>.</p>
+
+</div>
+
+<div>
+<h1><a name="139655402521520">B.4. UNIX</a></h1>
+
+<p> <a name="osenvvar-unix">&#09;</a></p>
+
+<p>How to set and modify operating system environment variables in a UNIX environment is dependent on shell. For <tt class="tt">csh</tt> and <tt class="tt">tcsh</tt> environment variables are defined using the command </p>
+
+<pre class="verbatim">setenv MYVAR some_value
+</pre>
+
+<p>whereas in <tt class="tt">bash</tt> and <tt class="tt">sh</tt> shells environment variables are defined using the commands </p>
+
+<pre class="verbatim">export MYVAR=some_value
+</pre>
+
+<p><a name="idx-139655403134848">&#09;</a></p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node011.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : A. Manual installation instructions" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node013.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  Index" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node011.html" target="_self">A. Manual installation instructions</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node013.html" target="_self">Index</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:04:21 2012</div>
+</body></html>

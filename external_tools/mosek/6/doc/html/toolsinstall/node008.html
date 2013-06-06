@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>7. Obtaining the host ID and hostname</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 6. Dongle installation and usage" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  8. License server installation" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">6. Dongle installation and usage</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">8. License server installation</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="139655402967264">7. Obtaining the host ID and hostname</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node008.html#139655402966120" target="_self">7.1. Windows</a></li>
+<li><a href="node008.html#139655402970576" target="_self">7.2. LINUX/UNIX/MAC OSX</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#139655402966336" target="_self">7.2.1. Default (Ethernet address) HOSTID</a></li>
+<li><a href="node008.html#139655402972440" target="_self">7.2.2. Dongle HOSTID</a></li>
+<li><a href="node008.html#139655402971432" target="_self">7.2.3. HOSTNAME</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="ch-hostid">&#09;</a> <a name="idx-139655403430328">&#09;</a></p>
+
+<div>
+<h1><a name="139655402966120">7.1. Windows</a></h1>
+
+<p>If you have purchased a USB dongle, first install the dongle software. See Chapter <a title="6. Dongle installation and usage" href="node007.html#ch-dongle-install-usage">6</a> for installation instructions. To obtain the host ID/hostname:</p>
+
+<ul class="itemize">
+<li>If you are using a dongle, then insert the dongle.</li>
+<li>
+<p>In the start menu below All programs select <span style="background-color:#cccccc"><b><span class="sf">Mosek Optimization tools 6.0</span></b></span> and click on <span style="background-color:#cccccc"><b><span class="sf">Generate HOSTID</span></b></span>. MOSEK will display the HOSTNAME and the HOSTID and generate a <tt class="tt">hostid.txt</tt> file in the users home directory e.g </p>
+
+<pre class="verbatim">  c:\Users\&lt;user&gt;\hostid.txt 
+</pre>
+
+<p>where <tt class="tt">&lt;user&gt;</tt> is your user name.</p>
+<center>
+<p> <img src="graphics/generate_hostid.png"/> </p>
+</center></li>
+<li>Please send the <tt class="tt">hostid.txt</tt> file when you asked for the hostname and host ID. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="139655402970576">7.2. LINUX/UNIX/MAC OSX</a></h1>
+
+<div>
+<h2><a name="139655402966336">7.2.1. Default (Ethernet address) HOSTID</a></h2>
+
+<p>If you did not purchase a dongle the <tt class="tt">host ID</tt> is obtained as follows:</p>
+
+<p>Open a terminal and execute the command: </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt;/mosek/6/tools/platform/&lt;PLATFORM&gt;/bin/lmutil lmhostid
+</pre>
+
+<p>An example output is </p>
+
+<pre class="verbatim">lmutil - Copyright (c) 1989-2006 Macrovision Europe Ltd. 
+and/or Macrovision Corporation. All Rights Reserved.
+The FLEXnet host ID of this machine is "00001a1a5a6a"
+</pre>
+
+<p>In this case the <tt class="tt">host ID</tt> is 00001a1a5a6a.</p>
+
+</div>
+
+<div>
+<h2><a name="139655402972440">7.2.2. Dongle HOSTID</a></h2>
+
+<p>If you have purchased a USB dongle, then first install the dongle software. See Chapter <a title="6. Dongle installation and usage" href="node007.html#ch-dongle-install-usage">6</a> for installation instructions. Next insert the dongle and obtain the host ID using the command </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt;/mosek/6/tools/platform/&lt;PLATFORM&gt;/bin/lmutil lmhostid -flexid
+</pre>
+
+</div>
+
+<div>
+<h2><a name="139655402971432">7.2.3. HOSTNAME</a></h2>
+
+<p>To obtain the host name open a shell and execute the command: </p>
+
+<pre class="verbatim">hostname
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 6. Dongle installation and usage" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  8. License server installation" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">6. Dongle installation and usage</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">8. License server installation</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:04:21 2012</div>
+</body></html>

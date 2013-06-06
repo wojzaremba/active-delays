@@ -1,0 +1,3082 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>5. Basic API tutorial</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node006.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 4. Testing installation and running examples" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Python API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node008.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  6. Advanced API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node006.html" target="_self">4. Testing installation and running examples</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node008.html" target="_self">6. Advanced API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="218361800">5. Basic API tutorial</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node007.html#218359424" target="_self">5.1. The basics</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#218366104" target="_self">5.1.1. The environment and the task</a></li>
+<li><a href="node007.html#218367976" target="_self">5.1.2. A simple working example</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#218369704" target="_self">5.1.2.1. Writing a problem to a file</a></li>
+<li><a href="node007.html#218370416" target="_self">5.1.2.2. Inputting and outputting problem data</a></li>
+<li><a href="node007.html#218371496" target="_self">5.1.2.3. Setting parameters</a></li>
+</ul>
+</li>
+<li><a href="node007.html#218370848" target="_self">5.1.3. Compiling and running examples</a></li>
+</ul>
+</li>
+<li><a href="node007.html#218372792" target="_self">5.2. Linear optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#218389968" target="_self">5.2.1. Linear optimization example: lo1</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#218390752" target="_self">5.2.1.1. Solving the problem</a></li>
+<li><a href="node007.html#218449464" target="_self">5.2.1.2. Source code for lo1</a></li>
+</ul>
+</li>
+<li><a href="node007.html#218455504" target="_self">5.2.2. Row-wise input</a></li>
+</ul>
+</li>
+<li><a href="node007.html#218458592" target="_self">5.3. Quadratic optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#218472888" target="_self">5.3.1. Example: Quadratic objective</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#218496248" target="_self">5.3.1.1. Source code</a></li>
+<li><a href="node007.html#218496464" target="_self">5.3.1.2. Example code comments</a></li>
+</ul>
+</li>
+<li><a href="node007.html#218502208" target="_self">5.3.2. Example: Quadratic constraints</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#218525424" target="_self">5.3.2.1. Source code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#218532824" target="_self">5.4. Conic optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#219680424" target="_self">5.4.1. Example: cqo1</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#219680640" target="_self">5.4.1.1. Source code</a></li>
+<li><a href="node007.html#219691416" target="_self">5.4.1.2. Source code comments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#219693856" target="_self">5.5. Integer optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#219692136" target="_self">5.5.1. Example: milo1</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#219694144" target="_self">5.5.1.1. Source code</a></li>
+<li><a href="node007.html#219704784" target="_self">5.5.1.2. Code comments</a></li>
+</ul>
+</li>
+<li><a href="node007.html#219704136" target="_self">5.5.2. Specifying an initial solution</a></li>
+<li><a href="node007.html#219705216" target="_self">5.5.3. Example: Specifying an integer solution</a></li>
+</ul>
+</li>
+<li><a href="node007.html#219710456" target="_self">5.6. Problem modification and reoptimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#219705784" target="_self">5.6.1. A production planning problem</a></li>
+<li><a href="node007.html#219740352" target="_self">5.6.2. Changing the <span class="math"><span class="mi">A</span></span> matrix</a></li>
+<li><a href="node007.html#219757168" target="_self">5.6.3. Appending variables</a></li>
+<li><a href="node007.html#219762840" target="_self">5.6.4. Reoptimization</a></li>
+<li><a href="node007.html#219783320" target="_self">5.6.5. Appending constraints</a></li>
+</ul>
+</li>
+<li><a href="node007.html#219790296" target="_self">5.7. Efficiency considerations</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#219797048" target="_self">5.7.1. API overhead</a></li>
+</ul>
+</li>
+<li><a href="node007.html#219799136" target="_self">5.8. Conventions employed in the API</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#219797192" target="_self">5.8.1. Naming conventions for arguments</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#219890392" target="_self">5.8.1.1. Bounds</a></li>
+</ul>
+</li>
+<li><a href="node007.html#219892048" target="_self">5.8.2. Vector formats</a></li>
+<li><a href="node007.html#219895208" target="_self">5.8.3. Matrix formats</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#219892264" target="_self">5.8.3.1. Unordered triplets</a></li>
+<li><a href="node007.html#219897656" target="_self">5.8.3.2. Row or column ordered sparse matrix</a></li>
+<li><a href="node007.html#219921656" target="_self">5.8.3.3. Row ordered sparse matrix</a></li>
+</ul>
+</li>
+<li><a href="node007.html#219929992" target="_self">5.8.4. Array objects</a></li>
+<li><a href="node007.html#219932000" target="_self">5.8.5. Typical problems using the Python API</a></li>
+</ul>
+</li>
+<li><a href="node007.html#219934376" target="_self">5.9. The license system</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#219932432" target="_self">5.9.1. Waiting for a free license</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="chap:using-mosek-interface">&#09;</a> In this chapter the reader will learn how to build a simple application that uses MOSEK.</p>
+
+<p>A number of examples is provided to demonstrate the functionality required for solving linear, quadratic, and conic problems as well as mixed integer problems.</p>
+
+<p>Please note that the section on linear optimization also describes most of the basic functionality that is not specific to linear problems. Hence, it is recommended to read Section <a title="5.2. Linear optimization" href="node007.html#chap-apiintro-sec-linear-optimization">5.2</a> before reading the rest of this chapter.</p>
+
+<div>
+<h1><a name="218359424">5.1. The basics</a></h1>
+
+<p>A typical program using the MOSEK Python interface can be described shortly: </p>
+
+<ol class="enumerate">
+<li>Create a handle to the MOSEK functionality.</li>
+<li>Create an environment (<tt class="tt">mosek.Env</tt>) object.</li>
+<li>Set up some environment specific data and initialize the environment object.</li>
+<li>Create a task (<tt class="tt">mosek.Task</tt>) object.</li>
+<li>Load a problem into the task object.</li>
+<li>Optimize the problem.</li>
+<li>Fetch the result.</li>
+</ol>
+
+<div>
+<h2><a name="218366104">5.1.1. The environment and the task</a></h2>
+
+<p> The first MOSEK related step in any program that employs MOSEK is to create an environment (<tt class="tt">mosek.Env</tt>) object. The environment contains environment specific data such as information about the license file, streams for environment messages etc. Before creating any task objects, the environment must be initialized using <a href="node016.html#common-func*mosek*env*initenv"><tt class="tt">Env.initenv</tt></a>. When this is done one or more task (<tt class="tt">mosek.Task</tt>) objects can be created. Each task is associated with a single environment and defines a complete optimization problem as well as task message streams and optimization parameters.</p>
+
+<p> In Python creation of an environment and a task would look something like this: </p>
+
+<pre class="verbatimcode">import mosek
+
+# Create an environment
+env = mosek.Env()
+
+# You may connect streams and other callbacks to env here.
+
+# Initialize the environment
+env.init()
+# Create a task
+task = env.Task()
+
+...
+# Load a problem into the task, optimize etc.
+...
+# Fetch a solution from the task.
+</pre>
+
+<p>Please note that an environment should, if possible, be shared between multiple tasks.</p>
+
+</div>
+
+<div>
+<h2><a name="218367976">5.1.2. A simple working example</a></h2>
+
+<p>The following simple example shows a working Python program which </p>
+
+<ul class="itemize">
+<li>creates an environment and a task,</li>
+<li>reads a problem from a file,</li>
+<li>optimizes the problem, and</li>
+<li>writes the solution to a file. </li>
+</ul>
+
+<p> <a name="idx-75748200">&#09;</a> <a name="idx-75834144">&#09;</a></p>
+
+<p><a name="idx-75835512">&#09;</a> <a name="idx-75835584">&#09;</a> <a name="idx-75836304">&#09;</a></p>
+
+<p><a name="idx-75837520">&#09;</a> <a name="idx-75837592">&#09;</a> <a name="idx-75838384">&#09;</a> <a name="idx-75838960">&#09;</a> <a name="idx-75839608">&#09;</a> <a name="idx-75840832">&#09;</a> <a name="idx-75841336">&#09;</a> <a name="idx-75842048">&#09;</a> <a name="idx-75843344">&#09;</a> <a name="idx-75844496">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">#</span>
+<span class="comment"># Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.</span>
+<span class="comment">#</span>
+<span class="comment"># File:    simple.py</span>
+<span class="comment">#</span>
+<span class="comment"># Purpose: Demonstrates a very simple example using MOSEK by</span>
+<span class="comment"># reading a problem file, solving the problem and</span>
+<span class="comment"># writing the solution to a file.</span>
+<span class="comment">#</span>
+
+<span class="keyword">import</span> mosek
+<span class="keyword">import</span> sys
+
+<span class="keyword">if</span> len(sys.argv) &lt;= 1:
+    <span class="keyword">print</span> "<span class="string">Missing argument. The syntax is:</span>"
+    <span class="keyword">print</span> "<span class="string"> simple inputfile [ solutionfile ]</span>"
+<span class="keyword">else</span>:
+    <span class="comment"># Make mosek environment. </span>
+    env  = mosek.Env ()
+    
+    <span class="comment"># Initialize the environment.</span>
+    env.init ()
+
+    <span class="comment"># Create a task object linked with the environment env.</span>
+    <span class="comment">#  We create it initially with 0 variables and 0 columns, </span>
+    <span class="comment">#  since we don't know the size of the problem.</span>
+    task = env.Task (0,0)
+
+    <span class="comment"># We assume that a problem file was given as the first command</span>
+    <span class="comment"># line argument (received in `args')</span>
+    task.readdata (sys.argv[1])
+
+    <span class="comment"># Solve the problem</span>
+    task.optimize()
+
+    <span class="comment"># Print a summary of the solution</span>
+    task.solutionsummary(mosek.streamtype.log)
+
+    <span class="comment"># If an output file was specified, write a solution</span>
+    <span class="keyword">if</span> len(sys.argv) &gt; 2:
+      <span class="comment"># We define the output format to be OPF, and tell MOSEK to</span>
+      <span class="comment"># leave out parameters and problem data from the output file.</span>
+      task.putintparam (mosek.iparam.write_data_format,    mosek.dataformat.op)
+      task.putintparam (mosek.iparam.opf_write_solutions,  mosek.onoffkey.on)
+      task.putintparam (mosek.iparam.opf_write_hints,      mosek.onoffkey.off)
+      task.putintparam (mosek.iparam.opf_write_parameters, mosek.onoffkey.off)
+      task.putintparam (mosek.iparam.opf_write_problem,    mosek.onoffkey.off)
+
+      task.writedata(sys.argv[2])
+</div>
+
+<div>
+<h3><a name="218369704">5.1.2.1. Writing a problem to a file</a></h3>
+
+<p>It is frequently beneficial to write a problem to a file that can be stored for later use or inspected visually. The <a href="node016.html#common-func*mosek*task*writedata"><tt class="tt">Task.writedata</tt></a> function is used write a problem to a file as follows</p>
+
+<div class="verbatimcode">task.writedata(sys.argv[2])
+</div>
+
+<p>By default the extension of the filename is the format written. I.e. the filename <tt class="tt">somename.opf</tt> implies the file is written in the OPF format.</p>
+
+<p>Similarly, the function <a href="node016.html#common-func*mosek*task*readdata"><tt class="tt">Task.readdata</tt></a> reads a problem from a file:</p>
+
+<div class="verbatimcode">task.readdata (sys.argv[1])
+</div>
+
+</div>
+
+<div>
+<h3><a name="218370416">5.1.2.2. Inputting and outputting problem data</a></h3>
+
+<p>An optimization problem consists of several components; objective, objective sense, constraints, variable bounds etc. Therefore, the task (<tt class="tt">mosek.Task</tt>) provides a number of methods to operate on the task specific data, all of which are listed in Section <a title="14.6. Class mosek.Task" href="node016.html#apiclass*mosek*task">14.6</a>.</p>
+
+</div>
+
+<div>
+<h3><a name="218371496">5.1.2.3. Setting parameters</a></h3>
+
+<p>Apart from the problem data, the task contains a number of parameters defining the behavior of MOSEK. For example the <a href="node017.html#common-const*mosek*iparam*optimizer"><tt class="tt">mosek.iparam.optimizer</tt></a> parameter defines which optimizer to use. A complete list of all parameters are listed in Chapter <a title="15. Parameter reference" href="node017.html#chap-paramref">15</a>.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="218370848">5.1.3. Compiling and running examples</a></h2>
+
+<p>All examples presented in this chapter are distributed with MOSEK and are available in the directory </p>
+
+<pre class="verbatim"> mosek/6/tools/examples/ 
+</pre>
+
+<p>in the MOSEK installation. Chapter <a title="4. Testing installation and running examples" href="node006.html#started-chap-iterface-intro-sec-compile-and-run">4</a> describes how to compile and run the examples.</p>
+
+<p>It is recommended to copy examples to a different directory before modifying and compiling them.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="218372792">5.2. Linear optimization</a></h1>
+
+<p> <a name="chap-apiintro-sec-linear-optimization">&#09;</a> <a name="idx-75866192">&#09;</a> The simplest optimization problem is a purely linear problem. A <em>linear optimization problem</em> is a problem of the following form:</p>
+
+<p>Minimize or maximize the objective function </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math1.png" alt="\begin{math}\nonumber{}\sum _{{j=0}}^{{n-1}}c_{j}x_{j}+c^{f}\end{math}"/></td>
+<td><a name="chap-using-mosek-api-sec-lo-eq1">&#09;</a>(5.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>subject to the linear constraints </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math2.png" alt="\begin{math}\nonumber{}l_{k}^{c}\leq{}\sum _{{j=0}}^{{n-1}}a_{{kj}}x_{j}\leq{}u_{k}^{c},~k=0,\ldots ,m-1,\end{math}"/></td>
+<td><a name="chap-using-mosek-api-sec-lo-eq2">&#09;</a>(5.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>and the bounds </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math3.png" alt="\begin{math}\nonumber{}l_{j}^{x}\leq{}x_{j}\leq{}u_{j}^{x},~j=0,\ldots ,n-1,\end{math}"/></td>
+<td><a name="chap-using-mosek-api-sec-lo-eq3">&#09;</a>(5.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>where we have used the problem elements </p>
+
+<dl class="description">
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">m</span></span> and <span class="math"><span class="mi">n</span></span>, <a name="idx-75875536">&#09;</a> <a name="idx-75876040">&#09;</a> which are the number of constraints and variables respectively, </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">x</span></span>, <a name="idx-75877552">&#09;</a> which is the variable vector of length <span class="math"><span class="mi">n</span></span>, </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">c</span></span>, <a name="idx-75879128">&#09;</a> which is a coefficient vector of size <span class="math"><span class="mi">n</span></span> </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math4.png" alt="\begin{displaymath}\nonumber{}c=\left[\begin{array}{c}\nonumber{}c_{0}\\\nonumber{}\vdots \\\nonumber{}c_{{n-1}}\end{array}\right],\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><img src="math/math5.png" alt="[[MathCmd 5]]"/></span>, which is a constant, </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">A</span></span>, <a name="idx-75870288">&#09;</a> which is a <span class="math"><img src="math/math6.png" alt="[[MathCmd 6]]"/></span> matrix of coefficients is given by  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math7.png" alt="\begin{displaymath}\nonumber{}A=\left[\begin{array}{ccc}\nonumber{}a_{{0,0}} & \cdots  & a_{{0,(n-1)}}\\\nonumber{}\vdots  & \cdots  & \vdots \\\nonumber{}a_{{(m-1),0}} & \cdots  & a_{{(m-1),(n-1)}}\end{array}\right],\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><img src="math/math8.png" alt="[[MathCmd 8]]"/></span> and <span class="math"><img src="math/math9.png" alt="[[MathCmd 9]]"/></span>, <a name="idx-75851536">&#09;</a> <a name="idx-75883080">&#09;</a> which specify the lower and upper bounds on constraints respectively, and </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><img src="math/math10.png" alt="[[MathCmd 10]]"/></span> and <span class="math"><img src="math/math11.png" alt="[[MathCmd 11]]"/></span>, <a name="idx-75884808">&#09;</a> <a name="idx-75885312">&#09;</a> which specifies the lower and upper bounds on variables respectively. </p>
+</dd>
+</dl>
+
+<p> Please note the unconventional notation using <span class="math"><span class="mn">0</span></span> as the first index rather than <span class="math"><span class="mn">1</span></span>. Hence, <span class="math"><img src="math/math12.png" alt="[[MathCmd 12]]"/></span> is the first element in variable vector <span class="math"><span class="mi">x</span></span>. This convention has been adapted from Python arrays which are indexed from 0.</p>
+
+<div>
+<h2><a name="218389968">5.2.1. Linear optimization example: lo1</a></h2>
+
+<p> <a name="idx-75889048">&#09;</a> The following is an example of a linear optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math13.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccl}\nonumber{}\mbox{maximize} & 3x_{0} & + & 1x_{1} & + & 5x_{2} & + & 1x_{3} &  & \\\nonumber{}\mbox{subject to} & 3x_{0} & + & 1x_{1} & + & 2x_{2} &  &  & = & 30,\\\nonumber{} & 2x_{0} & + & 1x_{1} & + & 3x_{2} & + & 1x_{3} & \geq{} & 15,\\\nonumber{} &  &  & 2x_{1} &  &  & + & 3x_{3} & \leq{} & 25,\end{array}\end{math}"/></td>
+<td>(5.2.4)</td></tr>
+</tbody>
+</table>
+
+<p>having the bounds </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math14.png" alt="\begin{math}\nonumber{}\begin{array}{ccccc}\nonumber{}0 & \leq{} & x_{0} & \leq{} & \infty ,\\\nonumber{}0 & \leq{} & x_{1} & \leq{} & 10,\\\nonumber{}0 & \leq{} & x_{2} & \leq{} & \infty ,\\\nonumber{}0 & \leq{} & x_{3} & \leq{} & \infty .\end{array}\end{math}"/></td>
+<td>(5.2.5)</td></tr>
+</tbody>
+</table>
+
+<div>
+<h3><a name="218390752">5.2.1.1. Solving the problem</a></h3>
+
+<p>To solve the problem above we go through the following steps: </p>
+
+<ol class="enumerate">
+<li>Create an environment. </li>
+<li>Create an optimization task. </li>
+<li>Load a problem into the task object. </li>
+<li>Optimization. </li>
+<li>Extracting the solution. </li>
+</ol>
+
+<p>Below we explain each of these steps. For the complete source code see section <a title="5.2.1.2. Source code for lo1" href="node007.html#ref-lo1-source">5.2.1.2</a>. The code can also be found in:</p>
+
+<pre class="verbatim">    mosek\6\tools\examples\python\lo1.py
+</pre>
+
+<dl class="description">
+<dt>Create an environment.</dt>
+<dd>
+<p> Before setting up the optimization problem, a MOSEK environment must be created and initialized. This is done in the lines:</p>
+
+<div class="verbatimcode"><span class="comment"># Make a MOSEK environment</span>
+env = mosek.Env ()
+<span class="comment"># Attach a printer to the environment</span>
+env.set_Stream (mosek.streamtype.log, streamprinter)
+</div>
+
+<p>We connect a call-back function to the environment log stream. In this case the call-back function simply prints messages to the standard output stream.</p>
+</dd>
+<dt>Create an optimization task.</dt>
+<dd>
+<p> Next, an empty task object is created:</p>
+
+<div class="verbatimcode"><span class="comment"># Create a task</span>
+task = env.Task(0,0)
+<span class="comment"># Attach a printer to the task</span>
+task.set_Stream (mosek.streamtype.log, streamprinter)
+</div>
+
+<p>We also connect a call-back function to the task log stream. Messages related to the task are passed to the call-back function. In this case the stream call-back function writes its messages to the standard output stream.</p>
+</dd>
+<dt>Load a problem into the task object.</dt>
+<dd>
+<p> First an estimate of the size of the input data is set. This is done to increase the speed of inputting data and is optional.</p>
+
+<div class="verbatimcode">task.putmaxnumvar(NUMVAR)
+task.putmaxnumcon(NUMCON)
+task.putmaxnumanz(NUMANZ)
+</div>
+
+<p>Before any problem data can be set, variables and constraints must be added to the problem via calls to the function <a href="node016.html#common-func*mosek*task*append"><tt class="tt">Task.append</tt></a>.</p>
+
+<div class="verbatimcode"><span class="comment"># Append 'NUMCON' empty constraints.</span>
+<span class="comment"># The constraints will initially have no bounds.</span>
+task.append(mosek.accmode.con,NUMCON)
+
+<span class="comment">#Append 'NUMVAR' variables.</span>
+<span class="comment"># The variables will initially be fixed at zero (x=0).</span>
+task.append(mosek.accmode.var,NUMVAR)
+</div>
+
+<p>New variables can now be referenced from other functions with indexes in <span class="math"><img src="math/math15.png" alt="[[MathCmd 15]]"/></span> and new constraints can be referenced with indexes in <span class="math"><img src="math/math16.png" alt="[[MathCmd 16]]"/></span>. More variables / constraints can be appended later as needed, these will be assigned indexes from <span class="math"><img src="math/math17.png" alt="[[MathCmd 17]]"/></span> / <span class="math"><img src="math/math18.png" alt="[[MathCmd 18]]"/></span> and up.</p>
+
+<p>Next step is to set the problem data. We loop over each variable index <span class="math"><img src="math/math19.png" alt="[[MathCmd 19]]"/></span> calling functions to set problem data. We first set the objective coefficient <span class="math"><img src="math/math20.png" alt="[[MathCmd 20]]"/></span> by calling the function <a href="node016.html#common-func*mosek*task*putcj"><tt class="tt">Task.putcj</tt></a>.</p>
+
+<div class="verbatimcode"><span class="comment"># Set the linear term c_j in the objective.</span>
+task.putcj(j,c[j])
+</div>
+
+<p>The bounds on variables are stored in the arrays</p>
+
+<div class="verbatimcode"><span class="comment"># Bound keys for variables</span>
+bkx = [mosek.boundkey.lo,
+       mosek.boundkey.ra,
+       mosek.boundkey.lo,
+       mosek.boundkey.lo]
+<span class="comment"># Bound values for variables</span>
+blx = [ 0.0,  0.0,  0.0,  0.0]
+bux = [+inf, 10.0, +inf, +inf]
+</div>
+
+<p>and are set with calls to <a href="node016.html#common-func*mosek*task*putbound"><tt class="tt">Task.putbound</tt></a>.</p>
+
+<div class="verbatimcode"><span class="comment"># Set the bounds on variable j</span>
+<span class="comment"># blx[j] &lt;= x_j &lt;= bux[j]</span>
+task.putbound(mosek.accmode.var,j,bkx[j],blx[j],bux[j])
+</div>
+
+<p>The <em>Bound key</em> stored in <tt class="tt">bkx</tt> specify the type of the bound according to Table <a href="node007.html#CH:API:TAB:BOUNDKEYS2">5.1</a>.  </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Bound key </td>
+<td valign="top" style="border-top:1px solid black;"> Type of bound </td>
+<td valign="top" style="border-top:1px solid black;"> Lower bound </td>
+<td valign="top" style="border-top:1px solid black;"> Upper bound </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> <a href="node019.html#common-const*mosek*boundkey*fx"><tt class="tt">mosek.boundkey.fx</tt></a> </td>
+<td valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math21.png" alt="[[MathCmd 21]]"/></span></td>
+<td valign="top" style="border-top:1px solid black;"> Finite </td>
+<td valign="top" style="border-top:1px solid black;"> Identical to the lower bound </td></tr><tr class="evenrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*fr"><tt class="tt">mosek.boundkey.fr</tt></a> </td>
+<td valign="top"> Free </td>
+<td valign="top"> Minus infinity </td>
+<td valign="top"> Plus infinity </td></tr><tr class="oddrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*lo"><tt class="tt">mosek.boundkey.lo</tt></a> </td>
+<td valign="top"> <span class="math"><img src="math/math22.png" alt="[[MathCmd 22]]"/></span> </td>
+<td valign="top"> Finite </td>
+<td valign="top"> Plus infinity </td></tr><tr class="evenrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*ra"><tt class="tt">mosek.boundkey.ra</tt></a> </td>
+<td valign="top"> <span class="math"><img src="math/math23.png" alt="[[MathCmd 23]]"/></span> </td>
+<td valign="top"> Finite </td>
+<td valign="top"> Finite </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><a href="node019.html#common-const*mosek*boundkey*up"><tt class="tt">mosek.boundkey.up</tt></a> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <span class="math"><img src="math/math24.png" alt="[[MathCmd 24]]"/></span> </td>
+<td valign="top" style="border-bottom:1px solid black;"> Minus infinity </td>
+<td valign="top" style="border-bottom:1px solid black;"> Finite </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;5.1: Interpretation of the bound keys.</span>
+<br/>
+<p> <a name="CH:API:TAB:BOUNDKEYS2">&#09;</a> </p>
+</center></td></tr></table>
+</td></tr></table>
+
+<p>  For instance <tt class="tt">bkx[0]=</tt> <a href="node019.html#common-const*mosek*boundkey*lo"><tt class="tt">mosek.boundkey.lo</tt></a> means that <span class="math"><img src="math/math25.png" alt="[[MathCmd 25]]"/></span>. Finally, the numerical values of the bounds on variables are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math26.png" alt="\begin{math}\nonumber{}l_{j}^{x}=\mathtt{blx[j]}\end{math}"/></td>
+<td>(5.2.6)</td></tr>
+</tbody>
+</table>
+
+<p>  and  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math27.png" alt="\begin{math}\nonumber{}u_{j}^{x}=\mathtt{bux[j]}.\end{math}"/></td>
+<td>(5.2.7)</td></tr>
+</tbody>
+</table>
+
+<p> Recall that in our example the <span class="math"><span class="mi">A</span></span> matrix is given by  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math28.png" alt="\begin{displaymath}\nonumber{}A=\left[\begin{array}{cccc}\nonumber{}3 & 1 & 2 & 0\\\nonumber{}2 & 1 & 3 & 1\\\nonumber{}0 & 2 & 0 & 3\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This matrix is stored in sparse format in the arrays:</p>
+
+<div class="verbatimcode">asub = [ <span class="type">array</span>([0, 1]),
+         <span class="type">array</span>([0, 1, 2]),
+         <span class="type">array</span>([0, 1]),
+         <span class="type">array</span>([1, 2])]
+aval = [ <span class="type">array</span>([3.0, 2.0]),
+         <span class="type">array</span>([1.0, 1.0, 2.0]),
+         <span class="type">array</span>([2.0, 3.0]),
+         <span class="type">array</span>([1.0, 3.0]) ]
+</div>
+
+<p>The array <tt class="tt">aval[j]</tt> contains the non-zero values of column <span class="math"><span class="mi">j</span></span> and <tt class="tt">asub[j]</tt> contains the row index of these non-zeros.</p>
+
+<p>Using the function <a href="node016.html#common-func*mosek*task*putavec"><tt class="tt">Task.putavec</tt></a> we set column <span class="math"><span class="mi">j</span></span> of <span class="math"><span class="mi">A</span></span></p>
+
+<div class="verbatimcode"><span class="comment"># Input column j of A</span>
+task.putavec(mosek.accmode.var,  <span class="comment"># Input columns of A.</span>
+             j,                  <span class="comment"># Variable (column) index.</span>
+             asub[j],            <span class="comment"># Row index of non-zeros in column j.</span>
+             aval[j])            <span class="comment"># Non-zero Values of column j.</span>
+</div>
+
+<p>Alternatively, the same <span class="math"><span class="mi">A</span></span> matrix can be set one row at a time; please see section <a title="5.2.2. Row-wise input" href="node007.html#ref-lo2-ex">5.2.2</a> for an example.</p>
+
+<p>Finally, the bounds on each constraint are set by looping over each constraint index <span class="math"><img src="math/math29.png" alt="[[MathCmd 29]]"/></span></p>
+
+<div class="verbatimcode"><span class="keyword">for</span> i <span class="keyword">in</span> range(NUMCON):
+  task.putbound(mosek.accmode.con,i,bkc[i],blc[i],buc[i])
+</div>
+</dd>
+<dt>Optimization:</dt>
+<dd>
+<p> After the problem is set-up the task can be optimized by calling the function <a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a>.</p>
+
+<div class="verbatimcode">task.optimize()
+</div>
+</dd>
+<dt>Extracting the solution.</dt>
+<dd>
+<p> After optimizing the status of the solution is examined with a call to <a href="node016.html#common-func*mosek*task*getsolutionstatus"><tt class="tt">Task.getsolutionstatus</tt></a>. If the solution status is reported as <a href="node019.html#common-const*mosek*solsta*optimal"><tt class="tt">mosek.solsta.optimal</tt></a> or <a href="node019.html#common-const*mosek*solsta*near-optimal"><tt class="tt">mosek.solsta.near_optimal</tt></a> the solution is extracted in the lines below:</p>
+
+<div class="verbatimcode"><span class="comment"># Output a solution</span>
+xx = zeros(NUMVAR, <span class="type">float</span>)
+task.getsolutionslice(mosek.soltype.bas,
+                      mosek.solitem.xx,
+                      0,NUMVAR,
+                      xx)
+</div>
+
+<p>The <a href="node016.html#common-func*mosek*task*getsolutionslice"><tt class="tt">Task.getsolutionslice</tt></a> function obtains a &#8220;slice&#8221; of the solution. MOSEK may compute several solutions depending on the optimizer employed. In this example the <em>basic solution</em> is requested by setting the first argument to <a href="node019.html#common-const*mosek*soltype*bas"><tt class="tt">mosek.soltype.bas</tt></a>. The second argument <a href="node019.html#common-const*mosek*solitem*xx"><tt class="tt">mosek.solitem.xx</tt></a> specifies that we want the variable values of the solution. The two following arguments <tt class="tt">0</tt> and <tt class="tt">NUMVAR</tt> specifies the range of variable values we want.</p>
+
+<p>The range specified is the first index (here &#8220;<tt class="tt">0</tt>&#8221;) up to but not including the second index (<tt class="tt">here &#8220;<tt class="tt">NUMVAR</tt>&#8221;</tt>).</p>
+</dd>
+<dt>Catching exceptions:</dt>
+<dd>
+<p> We cache any exceptions thrown by mosek in the lines:</p>
+
+<div class="verbatimcode"><span class="keyword">except</span> mosek.Exception, e:
+    <span class="keyword">print</span> "<span class="string">ERROR: %s</span>" % <span class="type">str</span>(e.errno)
+    <span class="keyword">if</span> e.msg <span class="keyword">is</span> <span class="keyword">not</span> <span class="type">None</span>:
+        <span class="keyword">print</span> "<span class="string">\t%s</span>" % e.msg
+        sys.exit(1)
+</div>
+
+<p>The types of exceptions that MOSEK can throw can be seen in <a title="14.4. Class mosek.Error" href="node016.html#apiclass*mosek*error">14.4</a> and <a title="14.7. Class mosek.Warning" href="node016.html#apiclass*mosek*warning">14.7</a>.</p>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h3><a name="218449464">5.2.1.2. Source code for lo1</a></h3>
+
+<p> <a name="ref-lo1-source">&#09;</a></p>
+
+<p><a name="idx-77251720">&#09;</a> <a name="idx-77250640">&#09;</a></p>
+
+<p><a name="idx-77245328">&#09;</a> <a name="idx-77245472">&#09;</a></p>
+
+<p><a name="idx-77243384">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">#</span>
+<span class="comment">#  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.</span>
+<span class="comment">#</span>
+<span class="comment">#  File:    lo1.py</span>
+<span class="comment">#</span>
+<span class="comment">#  Purpose: Demonstrates how to solve small linear</span>
+<span class="comment">#           optimization problem using the MOSEK Python API.</span>
+<span class="comment">##</span>
+
+<span class="keyword">import</span> sys
+
+<span class="keyword">import</span> mosek
+
+
+<span class="comment"># If numpy is installed, use that, otherwise use the </span>
+<span class="comment"># Mosek's array module.</span>
+<span class="keyword">try</span>:
+    <span class="keyword">from</span> numpy <span class="keyword">import</span> <span class="type">array</span>,zeros,ones
+<span class="keyword">except</span> ImportError:
+    <span class="keyword">from</span> mosek.<span class="type">array</span> <span class="keyword">import</span> <span class="type">array</span>, zeros, ones
+
+<span class="comment"># Since the actual value of Infinity is ignores, we define it solely</span>
+<span class="comment"># for symbolic purposes:</span>
+inf = 0.0
+
+<span class="comment"># Define a stream printer to grab output from MOSEK</span>
+<span class="keyword">def</span> streamprinter(text):
+    sys.stdout.write(text)
+    sys.stdout.flush()
+
+<span class="comment"># We might write everything directly as a script, but it looks nicer</span>
+<span class="comment"># to create a function.</span>
+<span class="keyword">def</span> main ():
+  <span class="comment"># Make a MOSEK environment</span>
+  env = mosek.Env ()
+  <span class="comment"># Attach a printer to the environment</span>
+  env.set_Stream (mosek.streamtype.log, streamprinter)
+  <span class="comment"># Create a task</span>
+  task = env.Task(0,0)
+  <span class="comment"># Attach a printer to the task</span>
+  task.set_Stream (mosek.streamtype.log, streamprinter)
+  <span class="comment"># Bound keys for constraints</span>
+  bkc = [mosek.boundkey.fx,
+         mosek.boundkey.lo,
+         mosek.boundkey.up]
+  <span class="comment"># Bound values for constraints</span>
+  blc = [30.0, 15.0, -inf]
+  buc = [30.0, +inf, 25.0]
+  <span class="comment"># Bound keys for variables</span>
+  bkx = [mosek.boundkey.lo,
+         mosek.boundkey.ra,
+         mosek.boundkey.lo,
+         mosek.boundkey.lo]
+  <span class="comment"># Bound values for variables</span>
+  blx = [ 0.0,  0.0,  0.0,  0.0]
+  bux = [+inf, 10.0, +inf, +inf]
+  <span class="comment"># Objective coefficients</span>
+
+  c = [ 3.0, 1.0, 5.0, 1.0 ] 
+
+  <span class="comment"># Below is the sparse representation of the A</span>
+  <span class="comment"># matrix stored by column. </span>
+  asub = [ <span class="type">array</span>([0, 1]),
+           <span class="type">array</span>([0, 1, 2]),
+           <span class="type">array</span>([0, 1]),
+           <span class="type">array</span>([1, 2])]
+  aval = [ <span class="type">array</span>([3.0, 2.0]),
+           <span class="type">array</span>([1.0, 1.0, 2.0]),
+           <span class="type">array</span>([2.0, 3.0]),
+           <span class="type">array</span>([1.0, 3.0]) ]
+  NUMVAR = len(bkx)
+  NUMCON = len(bkc)
+  NUMANZ = 9
+  <span class="comment"># Give MOSEK an estimate of the size of the input data. </span>
+  <span class="comment">#  This is done to increase the speed of inputting data. </span>
+  <span class="comment">#  However, it is optional. </span>
+  task.putmaxnumvar(NUMVAR)
+  task.putmaxnumcon(NUMCON)
+  task.putmaxnumanz(NUMANZ)
+  <span class="comment"># Append 'NUMCON' empty constraints.</span>
+  <span class="comment"># The constraints will initially have no bounds. </span>
+  task.append(mosek.accmode.con,NUMCON)
+     
+  <span class="comment">#Append 'NUMVAR' variables.</span>
+  <span class="comment"># The variables will initially be fixed at zero (x=0). </span>
+  task.append(mosek.accmode.var,NUMVAR)
+
+  <span class="comment">#Optionally add a constant term to the objective. </span>
+  task.putcfix(0.0)
+
+  <span class="keyword">for</span> j <span class="keyword">in</span> range(NUMVAR):
+    <span class="comment"># Set the linear term c_j in the objective.</span>
+    task.putcj(j,c[j])
+    <span class="comment"># Set the bounds on variable j</span>
+    <span class="comment"># blx[j] &lt;= x_j &lt;= bux[j] </span>
+    task.putbound(mosek.accmode.var,j,bkx[j],blx[j],bux[j])
+    <span class="comment"># Input column j of A </span>
+    task.putavec(mosek.accmode.var,  <span class="comment"># Input columns of A.</span>
+                 j,                  <span class="comment"># Variable (column) index.</span>
+                 asub[j],            <span class="comment"># Row index of non-zeros in column j.</span>
+                 aval[j])            <span class="comment"># Non-zero Values of column j. </span>
+  <span class="keyword">for</span> i <span class="keyword">in</span> range(NUMCON):
+    task.putbound(mosek.accmode.con,i,bkc[i],blc[i],buc[i])
+  <span class="comment"># Input the objective sense (minimize/maximize)</span>
+  task.putobjsense(mosek.objsense.maximize)
+       
+  <span class="comment"># Optimize the task</span>
+  task.optimize()
+
+  <span class="comment"># Print a summary containing information</span>
+  <span class="comment"># about the solution for debugging purposes</span>
+  task.solutionsummary(mosek.streamtype.msg)
+
+  prosta = []
+  solsta = []
+  [prosta,solsta] = task.getsolutionstatus(mosek.soltype.bas)
+  <span class="comment"># Output a solution</span>
+  xx = zeros(NUMVAR, <span class="type">float</span>)
+  task.getsolutionslice(mosek.soltype.bas,
+                        mosek.solitem.xx, 
+                        0,NUMVAR,          
+                        xx)
+  <span class="keyword">if</span> solsta == mosek.solsta.optimal <span class="keyword">or</span> solsta == mosek.solsta.near_optimal:
+      <span class="keyword">print</span>("<span class="string">Optimal solution: %s</span>" % xx)
+  <span class="keyword">elif</span> solsta == mosek.solsta.dual_infeas_cer: 
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.near_dual_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span>  solsta == mosek.solsta.near_prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> mosek.solsta.unknown:
+    <span class="keyword">print</span>("<span class="string">Unknown solution status</span>")
+  <span class="keyword">else</span>:
+    <span class="keyword">print</span>("<span class="string">Other solution status</span>")
+
+<span class="comment"># call the main function</span>
+<span class="keyword">try</span>:
+    main ()
+<span class="keyword">except</span> mosek.Exception, e:
+    <span class="keyword">print</span> "<span class="string">ERROR: %s</span>" % <span class="type">str</span>(e.errno)
+    <span class="keyword">if</span> e.msg <span class="keyword">is</span> <span class="keyword">not</span> <span class="type">None</span>:
+        <span class="keyword">print</span> "<span class="string">\t%s</span>" % e.msg
+        sys.exit(1)
+<span class="keyword">except</span>:
+    <span class="keyword">import</span> traceback
+    traceback.print_exc()
+    sys.exit(1)
+sys.exit(0)
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="218455504">5.2.2. Row-wise input</a></h2>
+
+<p> <a name="ref-lo2-ex">&#09;</a> <a name="idx-77194952">&#09;</a> In the previous example the <span class="math"><span class="mi">A</span></span> matrix is set one column at a time. Alternatively the same matrix can be set one row at a time or the two methods can be mixed as in the example in section <a title="5.6. Problem modification and reoptimization" href="node007.html#ch:intro:sec:reopt">5.6</a>. The following example show how to set the <span class="math"><span class="mi">A</span></span> matrix by rows.</p>
+
+<p>The source code for this example can be found in:</p>
+
+<pre class="verbatim">  mosek\6\tools\examples\python\lo2.py
+</pre>
+
+<p><a name="idx-77237064">&#09;</a><a name="idx-77231816">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">#</span>
+<span class="comment">#  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.</span>
+<span class="comment">#</span>
+<span class="comment">#  File:    lo2.py</span>
+<span class="comment">#</span>
+<span class="comment">#  Purpose: Demonstrates how to solve small linear</span>
+<span class="comment">#           optimization problem using the MOSEK Python API.</span>
+<span class="comment">##</span>
+
+<span class="keyword">import</span> sys
+
+<span class="keyword">import</span> mosek
+<span class="comment"># If numpy is installed, use that, otherwise use the </span>
+<span class="comment"># Mosek's array module.</span>
+<span class="keyword">try</span>:
+    <span class="keyword">from</span> numpy <span class="keyword">import</span> <span class="type">array</span>,zeros,ones
+<span class="keyword">except</span> ImportError:
+    <span class="keyword">from</span> mosek.<span class="type">array</span> <span class="keyword">import</span> <span class="type">array</span>, zeros, ones
+
+<span class="comment"># Since the actual value of Infinity is ignores, we define it solely</span>
+<span class="comment"># for symbolic purposes:</span>
+inf = 0.0
+
+<span class="comment"># Define a stream printer to grab output from MOSEK</span>
+<span class="keyword">def</span> streamprinter(text):
+    sys.stdout.write(text)
+    sys.stdout.flush()
+
+<span class="comment"># We might write everything directly as a script, but it looks nicer</span>
+<span class="comment"># to create a function.</span>
+<span class="keyword">def</span> main ():
+  <span class="comment"># Make a MOSEK environment</span>
+  env = mosek.Env ()
+  <span class="comment"># Attach a printer to the environment</span>
+  env.set_Stream (mosek.streamtype.log, streamprinter)
+  
+  <span class="comment"># Create a task</span>
+  task = env.Task(0,0)
+  <span class="comment"># Attach a printer to the task</span>
+  task.set_Stream (mosek.streamtype.log, streamprinter)
+  
+  <span class="comment"># Bound keys for constraints</span>
+  bkc = [mosek.boundkey.fx,
+         mosek.boundkey.lo,
+         mosek.boundkey.up]
+  <span class="comment"># Bound values for constraints</span>
+  blc = [30.0, 15.0, -inf]
+  buc = [30.0, +inf, 25.0]
+  <span class="comment"># Bound keys for variables</span>
+  bkx = [mosek.boundkey.lo,
+         mosek.boundkey.ra,
+         mosek.boundkey.lo,
+         mosek.boundkey.lo]
+  <span class="comment"># Bound values for variables</span>
+  blx = [ 0.0,  0.0,  0.0,  0.0]
+  bux = [+inf, 10.0, +inf, +inf]
+  <span class="comment"># Objective coefficients</span>
+
+  c = [ 3.0, 1.0, 5.0, 1.0 ] 
+
+  <span class="comment"># We input the A matrix column-wise</span>
+  <span class="comment"># asub contains row indexes</span>
+  asub = [ <span class="type">array</span>([0, 1, 2]),
+           <span class="type">array</span>([0, 1, 2, 3]),
+           <span class="type">array</span>([0, 3])]
+    <span class="comment"># acof contains coefficients</span>
+  aval = [ <span class="type">array</span>([3.0, 1.0, 2.0]),
+           <span class="type">array</span>([2.0, 1.0, 3.0, 1.0]),
+           <span class="type">array</span>([2.0, 3.0])]
+  NUMVAR = len(bkx)
+  NUMCON = len(bkc)
+  NUMANZ = 9
+  <span class="comment"># Give MOSEK an estimate of the size of the input data. </span>
+  <span class="comment">#  This is done to increase the speed of inputting data. </span>
+  <span class="comment">#  However, it is optional. </span>
+  task.putmaxnumvar(NUMVAR)
+  task.putmaxnumcon(NUMCON)
+  task.putmaxnumanz(NUMANZ)
+  <span class="comment"># Append 'NUMCON' empty constraints.</span>
+  <span class="comment"># The constraints will initially have no bounds. </span>
+  task.append(mosek.accmode.con,NUMCON)
+     
+  <span class="comment">#Append 'NUMVAR' variables.</span>
+  <span class="comment"># The variables will initially be fixed at zero (x=0). </span>
+  task.append(mosek.accmode.var,NUMVAR)
+
+  <span class="comment">#Optionally add a constant term to the objective. </span>
+  task.putcfix(0.0)
+
+  <span class="keyword">for</span> j <span class="keyword">in</span> range(NUMVAR):
+    <span class="comment"># Set the linear term c_j in the objective.</span>
+    task.putcj(j,c[j])
+    <span class="comment"># Set the bounds on variable j</span>
+    <span class="comment"># blx[j] &lt;= x_j &lt;= bux[j] </span>
+    task.putbound(mosek.accmode.var,j,bkx[j],blx[j],bux[j])
+
+  <span class="keyword">for</span> i <span class="keyword">in</span> range(NUMCON):
+    task.putbound(mosek.accmode.con,i,bkc[i],blc[i],buc[i])
+    <span class="comment"># Input row i of A </span>
+    task.putavec(mosek.accmode.con,     <span class="comment">#Input row of A.</span>
+                 i,                     <span class="comment"># Row index.</span>
+                 asub[i],               <span class="comment"># Column indexes of non-zeros in row i.</span>
+                 aval[i]);              <span class="comment"># Non-zero Values of row i. </span>
+
+
+  <span class="comment"># Input the objective sense (minimize/maximize)</span>
+  task.putobjsense(mosek.objsense.maximize)
+       
+  <span class="comment"># Optimize the task</span>
+  task.optimize()
+
+  <span class="comment"># Print a summary containing information</span>
+  <span class="comment"># about the solution for debugging purposes</span>
+  task.solutionsummary(mosek.streamtype.msg)
+
+  prosta = []
+  solsta = []
+  [prosta,solsta] = task.getsolutionstatus(mosek.soltype.bas)
+
+  <span class="comment"># Output a solution</span>
+  xx = zeros(NUMVAR, <span class="type">float</span>)
+  task.getsolutionslice(mosek.soltype.bas,
+                        mosek.solitem.xx, 
+                        0,NUMVAR,          
+                        xx)
+
+  <span class="keyword">if</span> solsta == mosek.solsta.optimal <span class="keyword">or</span> solsta == mosek.solsta.near_optimal:
+      <span class="keyword">print</span>("<span class="string">Optimal solution: %s</span>" % xx)
+  <span class="keyword">elif</span> solsta == mosek.solsta.dual_infeas_cer: 
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.near_dual_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span>  solsta == mosek.solsta.near_prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> mosek.solsta.unknown:
+    <span class="keyword">print</span>("<span class="string">Unknown solution status</span>")
+  <span class="keyword">else</span>:
+    <span class="keyword">print</span>("<span class="string">Other solution status</span>")
+
+<span class="comment"># call the main function</span>
+<span class="keyword">try</span>:
+    main ()
+<span class="keyword">except</span> mosek.Exception, (code,msg):
+    <span class="keyword">print</span> "<span class="string">ERROR: %s</span>" % <span class="type">str</span>(code)
+    <span class="keyword">if</span> msg <span class="keyword">is</span> <span class="keyword">not</span> <span class="type">None</span>:
+        <span class="keyword">print</span> "<span class="string">\t%s</span>" % msg
+        sys.exit(1)
+<span class="keyword">except</span>:
+    <span class="keyword">import</span> traceback
+    traceback.print_exc()
+    sys.exit(1)
+sys.exit(0)
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="218458592">5.3. Quadratic optimization</a></h1>
+
+<p><a name="sec:quadratic-opt">&#09;</a> <a name="idx-77275504">&#09;</a> <a name="idx-77276152">&#09;</a> <a name="idx-77276800">&#09;</a></p>
+
+<p>MOSEK can solve quadratic and quadratically constrained convex problems. This class of problems can be formulated as follows: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math30.png" alt="\begin{math}\nonumber{}\begin{array}{lrcccll}\nonumber{}\mbox{minimize} &  &  & \frac{1}{2}x^{T}Q^{o}x+c^{T}x+c^{f} &  &  & \\\nonumber{}\mbox{subject to} & l_{k}^{c} & \leq{} & \frac{1}{2}x^{T}Q^{k}x+\sum \limits _{{j=0}}^{{n-1}}a_{{k,j}}x_{j} & \leq{} & u_{k}^{c}, & k=0,\ldots ,m-1,\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x}, & j=0,\ldots ,n-1.\end{array}\end{math}"/></td>
+<td>(5.3.1)</td></tr>
+</tbody>
+</table>
+
+<p>Without loss of generality it is assumed that <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> and <span class="math"><img src="math/math32.png" alt="[[MathCmd 32]]"/></span> are all symmetric because </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math33.png" alt="\begin{displaymath}\nonumber{}x^{T}Qx=0.5x^{T}(Q+Q^{T})x.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This implies that a non-symmetric <span class="math"><span class="mi">Q</span></span> can be replaced by the symmetric matrix <span class="math"><img src="math/math34.png" alt="[[MathCmd 34]]"/></span>.</p>
+
+<p><a name="ch-api-ex-sec-convexity">&#09;</a></p>
+
+<p>The problem is required to be convex. More precisely, the matrix <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> must be positive semi-definite and the <span class="math"><span class="mi">k</span></span>th constraint must be of the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math36.png" alt="\begin{math}\nonumber{}l_{k}^{c}\leq{}\frac{1}{2}x^{T}Q^{k}x+\sum \limits _{{j=0}}^{{n-1}}a_{{k,j}}x_{j}\end{math}"/></td>
+<td><a name="ch-api-ex-convex-qcqo-less">&#09;</a>(5.3.2)</td></tr>
+</tbody>
+</table>
+
+<p>with a negative semi-definite <span class="math"><img src="math/math32.png" alt="[[MathCmd 32]]"/></span> or of the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math38.png" alt="\begin{math}\nonumber{}\frac{1}{2}x^{T}Q^{k}x+\sum \limits _{{j=0}}^{{n-1}}a_{{k,j}}x_{j}\leq{}u_{k}^{c}.\end{math}"/></td>
+<td><a name="ch-api-ex-convex-qcqo-greater">&#09;</a>(5.3.3)</td></tr>
+</tbody>
+</table>
+
+<p>with a positive semi-definite <span class="math"><img src="math/math32.png" alt="[[MathCmd 32]]"/></span>. This implies that quadratic equalities are <em>not</em> allowed. Specifying a non-convex problem will result in an error when the optimizer is called.</p>
+
+<div>
+<h2><a name="218472888">5.3.1. Example: Quadratic objective</a></h2>
+
+<p> <a name="idx-77243240">&#09;</a> <a name="idx-77253448">&#09;</a> <a name="chap:mosekapi:sec:quadratic_objective">&#09;</a> <a name="idx-77293904">&#09;</a></p>
+
+<p>The following is an example if a quadratic, linearly constrained problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math40.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}\mbox{minimize} &  &  & x_{1}^{2}+0.1x_{2}^{2}+x_{3}^{2}-x_{1}x_{3}-x_{2} & \\\nonumber{}\mbox{subject to} & 1 & \leq{} & x_{1}+x_{2}+x_{3} & \\\nonumber{} &  &  & x\geq{}0 &\end{array}\end{math}"/></td>
+<td>(5.3.4)</td></tr>
+</tbody>
+</table>
+
+<p>This can be written equivalently as </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math41.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & 1/2x^{T}Q^{o}x+c^{T}x &  & \\\nonumber{}\mbox{subject to} & Ax & \geq{} & b\\\nonumber{} & x & \geq{} & 0,\end{array}\end{math}"/></td>
+<td>(5.3.5)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math42.png" alt="\begin{math}\nonumber{}Q^{o}=\left[\begin{array}{ccc}\nonumber{}2 & 0 & -1\\\nonumber{}0 & 0.2 & 0\\\nonumber{}-1 & 0 & 2\end{array}\right],\quad{}c=\left[\begin{array}{c}\nonumber{}0\\\nonumber{}-1\\\nonumber{}0\end{array}\right],\quad{}A=\left[\begin{array}{ccc}\nonumber{}1 & 1 & 1\end{array}\right],\mbox{ and }b=1.\end{math}"/></td>
+<td>(5.3.6)</td></tr>
+</tbody>
+</table>
+
+<p>Please note that MOSEK always assumes that there is a <span class="math"><span class="mn">1</span><span class="mo">/</span><span class="mn">2</span></span> in front of the <span class="math"><img src="math/math43.png" alt="[[MathCmd 43]]"/></span> term in the objective. Therefore, the <span class="math"><span class="mn">1</span></span> in front of <span class="math"><img src="math/math44.png" alt="[[MathCmd 44]]"/></span> becomes <span class="math"><span class="mn">2</span></span> in <span class="math"><span class="mi">Q</span></span>, i.e. <span class="math"><img src="math/math45.png" alt="[[MathCmd 45]]"/></span>.</p>
+
+<div>
+<h3><a name="218496248">5.3.1.1. Source code</a></h3>
+
+<p><a name="idx-77312224">&#09;</a><a name="idx-77312296">&#09;</a> <a name="idx-77305472">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">##</span>
+<span class="comment">#   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.</span>
+<span class="comment">#</span>
+<span class="comment">#   File:    qo1.py</span>
+<span class="comment">#</span>
+<span class="comment">#   Purpose: Demonstrate how to solve a quadratic</span>
+<span class="comment">#            optimization problem using the MOSEK Python API.</span>
+<span class="comment">##</span>
+
+<span class="keyword">import</span> sys
+<span class="keyword">import</span> os
+
+<span class="keyword">import</span> mosek
+
+<span class="comment"># If numpy is installed, use that, otherwise use the </span>
+<span class="comment"># Mosek's array module.</span>
+<span class="keyword">try</span>:
+    <span class="keyword">from</span> numpy <span class="keyword">import</span> <span class="type">array</span>,zeros,ones
+<span class="keyword">except</span> ImportError:
+    <span class="keyword">from</span> mosek.<span class="type">array</span> <span class="keyword">import</span> <span class="type">array</span>, zeros, ones
+
+<span class="comment"># Since the actual value of Infinity is ignores, we define it solely</span>
+<span class="comment"># for symbolic purposes:</span>
+inf = 0.0
+
+<span class="comment"># Define a stream printer to grab output from MOSEK</span>
+<span class="keyword">def</span> streamprinter(text):
+    sys.stdout.write(text)
+    sys.stdout.flush()
+
+<span class="comment"># We might write everything directly as a script, but it looks nicer</span>
+<span class="comment"># to create a function.</span>
+<span class="keyword">def</span> main ():
+  <span class="comment"># Open MOSEK and create an environment and task</span>
+  <span class="comment"># Make a MOSEK environment</span>
+  env = mosek.Env ()
+  <span class="comment"># Attach a printer to the environment</span>
+  env.set_Stream (mosek.streamtype.log, streamprinter)
+  <span class="comment"># Create a task</span>
+  task = env.Task()
+  task.set_Stream (mosek.streamtype.log, streamprinter)
+  <span class="comment"># Set up and input bounds and linear coefficients</span>
+  bkc   = [ mosek.boundkey.lo ]
+  blc   = [ 1.0 ]
+  buc   = [ inf ]
+    
+  bkx   = [ mosek.boundkey.lo,
+            mosek.boundkey.lo,
+            mosek.boundkey.lo ]
+  blx   = [ 0.0,  0.0, 0.0 ]
+  bux   = [ inf,  inf, inf ]
+  c     = [ 0.0, -1.0, 0.0 ]
+  asub  = [ <span class="type">array</span>([0]),   <span class="type">array</span>([0]),   <span class="type">array</span>([0])  ]
+  aval  = [ <span class="type">array</span>([1.0]), <span class="type">array</span>([1.0]), <span class="type">array</span>([1.0])]
+
+  NUMVAR = len(bkx)
+  NUMCON = len(bkc)
+  NUMANZ = 3
+    
+  <span class="comment"># Give MOSEK an estimate of the size of the input data. </span>
+  <span class="comment">#  This is done to increase the speed of inputting data. </span>
+  <span class="comment">#  However, it is optional. </span>
+  task.putmaxnumvar(NUMVAR)
+  task.putmaxnumcon(NUMCON)
+  task.putmaxnumanz(NUMANZ)
+  <span class="comment"># Append 'NUMCON' empty constraints.</span>
+  <span class="comment"># The constraints will initially have no bounds.  </span>
+  task.append(mosek.accmode.con,NUMCON)
+
+  <span class="comment">#Append 'NUMVAR' variables.</span>
+  <span class="comment"># The variables will initially be fixed at zero (x=0). </span>
+  task.append(mosek.accmode.var,NUMVAR)
+  <span class="comment">#Optionally add a constant term to the objective. </span>
+  task.putcfix(0.0)
+
+  <span class="keyword">for</span> j <span class="keyword">in</span> range(NUMVAR):
+  <span class="comment"># Set the linear term c_j in the objective.</span>
+    task.putcj(j,c[j])
+    <span class="comment"># Set the bounds on variable j</span>
+    <span class="comment"># blx[j] &lt;= x_j &lt;= bux[j] </span>
+    task.putbound(mosek.accmode.var,j,bkx[j],blx[j],bux[j])
+    <span class="comment"># Input column j of A </span>
+    task.putavec(mosek.accmode.var,  <span class="comment"># Input columns of A.</span>
+                   j,                  <span class="comment"># Variable (column) index.</span>
+                  asub[j],            <span class="comment"># Row index of non-zeros in column j.</span>
+                  aval[j])            <span class="comment"># Non-zero Values of column j. </span>
+  <span class="keyword">for</span> i <span class="keyword">in</span> range(NUMCON):
+    task.putbound(mosek.accmode.con,i,bkc[i],blc[i],buc[i])
+
+  <span class="comment"># Input the objective sense (minimize/maximize)</span>
+  task.putobjsense(mosek.objsense.maximize)
+
+  <span class="comment"># Set up and input quadratic objective</span>
+  qsubi = [ 0,   1,    2,   2   ]
+  qsubj = [ 0,   1,    0,   2   ]
+  qval  = [ 2.0, 0.2, -1.0, 2.0 ]
+    
+  task.putqobj(qsubi,qsubj,qval)
+
+  task.putobjsense(mosek.objsense.minimize)
+
+  <span class="comment"># Optimize</span>
+  task.optimize()
+  <span class="comment"># Print a summary containing information</span>
+  <span class="comment"># about the solution for debugging purposes</span>
+  task.solutionsummary(mosek.streamtype.msg)
+
+  prosta = []
+  solsta = []
+  [prosta,solsta] = task.getsolutionstatus(mosek.soltype.itr)
+
+  <span class="comment"># Output a solution</span>
+  xx = zeros(NUMVAR, <span class="type">float</span>)
+  task.getsolutionslice(mosek.soltype.itr,
+                        mosek.solitem.xx, 
+                        0,NUMVAR,          
+                        xx)
+
+  <span class="keyword">if</span> solsta == mosek.solsta.optimal <span class="keyword">or</span> solsta == mosek.solsta.near_optimal:
+      <span class="keyword">print</span>("<span class="string">Optimal solution: %s</span>" % xx)
+  <span class="keyword">elif</span> solsta == mosek.solsta.dual_infeas_cer: 
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.near_dual_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span>  solsta == mosek.solsta.near_prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> mosek.solsta.unknown:
+    <span class="keyword">print</span>("<span class="string">Unknown solution status</span>")
+  <span class="keyword">else</span>:
+    <span class="keyword">print</span>("<span class="string">Other solution status</span>")
+
+<span class="comment"># call the main function</span>
+<span class="keyword">try</span>:
+    main()
+<span class="keyword">except</span> mosek.Exception, e:
+    <span class="keyword">print</span> "<span class="string">ERROR: %s</span>" % <span class="type">str</span>(e.errno)
+    <span class="keyword">if</span> e.msg <span class="keyword">is</span> <span class="keyword">not</span> <span class="type">None</span>:
+        <span class="keyword">import</span> traceback
+        traceback.print_exc()
+        <span class="keyword">print</span> "<span class="string">\t%s</span>" % e.msg
+    sys.exit(1)
+<span class="keyword">except</span>:
+    <span class="keyword">import</span> traceback
+    traceback.print_exc()
+    sys.exit(1)
+<span class="keyword">print</span> "<span class="string">Finished OK</span>"
+sys.exit(0)
+</div>
+
+</div>
+
+<div>
+<h3><a name="218496464">5.3.1.2. Example code comments</a></h3>
+
+<p> Most of the functionality in this example has already been explained for the linear optimization example in Section <a title="5.2. Linear optimization" href="node007.html#chap-apiintro-sec-linear-optimization">5.2</a> and it will not be repeated here.</p>
+
+<p>This example introduces one new function, <a href="node016.html#common-func*mosek*task*putqobj"><tt class="tt">Task.putqobj</tt></a>, which is used to input the quadratic terms of the objective function.</p>
+
+<p>Since <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> is symmetric only the lower triangular part of <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> is inputted. The upper part of <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> is computed by MOSEK using the relation </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math49.png" alt="\begin{displaymath}\nonumber{}Q^{o}_{{ij}}=Q^{o}_{{ji}}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Entries from the upper part may <em>not</em> appear in the input.</p>
+
+<p>The lower triangular part of the matrix <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> is specified using an unordered sparse triplet format (for details, see Section <a title="5.8.3. Matrix formats" href="node007.html#sec-matrix-formats">5.8.3</a>):</p>
+
+<div class="verbatimcode">qsubi = [ 0,   1,    2,   2   ]
+qsubj = [ 0,   1,    0,   2   ]
+qval  = [ 2.0, 0.2, -1.0, 2.0 ]
+</div>
+
+<p>Please note that </p>
+
+<ul class="itemize">
+<li>only non-zero elements are specified (any element not specified is 0 by definition), </li>
+<li>the order of the non-zero elements is insignificant, and </li>
+<li><em>only</em> the lower triangular part should be specified. </li>
+</ul>
+
+<p>Finally, the matrix <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> is loaded into the task:</p>
+
+<div class="verbatimcode">task.putqobj(qsubi,qsubj,qval)
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="218502208">5.3.2. Example: Quadratic constraints</a></h2>
+
+<p> <a name="idx-77332280">&#09;</a> <a name="idx-77333208">&#09;</a> <a name="chap:mosekapi:sec:quadratic_constraint">&#09;</a> In this section describes how to solve a problem with quadratic constraints. Please note that quadratic constraints are subject to the convexity requirement <a href="node007.html#ch-api-ex-convex-qcqo-less">(5.3.2)</a>.</p>
+
+<p>Consider the problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math52.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}\mbox{minimize} &  &  & x_{1}^{2}+0.1x_{2}^{2}+x_{3}^{2}-x_{1}x_{3}-x_{2} & \\\nonumber{}\mbox{subject to} & 1 & \leq{} & x_{1}+x_{2}+x_{3}-x_{1}^{2}-x_{2}^{2}-0.1x_{3}^{2}+0.2x_{1}x_{3}, & \\\nonumber{} &  &  & x\geq{}0. &\end{array}\end{math}"/></td>
+<td>(5.3.7)</td></tr>
+</tbody>
+</table>
+
+<p>This is equivalent to</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math53.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & 1/2x^{T}Q^{o}x+c^{T}x &  & \\\nonumber{}\mbox{subject to} & 1/2x^{T}Q^{0}x+Ax & \geq{} & b,\end{array}\end{math}"/></td>
+<td>(5.3.8)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math54.png" alt="\begin{math}\nonumber{}Q^{o}=\left[\begin{array}{ccc}\nonumber{}2 & 0 & -1\\\nonumber{}0 & 0.2 & 0\\\nonumber{}-1 & 0 & 2\end{array}\right],\quad{}c=\left[\begin{array}{c}\nonumber{}0\\\nonumber{}-1\\\nonumber{}0\end{array}\right],\quad{}A=\left[\begin{array}{ccc}\nonumber{}1 & 1 & 1\end{array}\right],\quad{}b=1.\end{math}"/></td>
+<td>(5.3.9)</td></tr>
+</tbody>
+</table>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math55.png" alt="\begin{math}\nonumber{}Q^{0}=\left[\begin{array}{ccc}\nonumber{}-2 & 0 & 0.2\\\nonumber{}0 & -2 & 0\\\nonumber{}0.2 & 0 & -0.2\end{array}\right].\end{math}"/></td>
+<td>(5.3.10)</td></tr>
+</tbody>
+</table>
+
+<div>
+<h3><a name="218525424">5.3.2.1. Source code</a></h3>
+
+<p><a name="idx-77349880">&#09;</a> <a name="idx-77349952">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">#</span>
+<span class="comment">#  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.</span>
+<span class="comment">#</span>
+<span class="comment">#  File:    lo2.py</span>
+<span class="comment">#</span>
+<span class="comment">#  Purpose: Demonstrates how to solve small linear</span>
+<span class="comment">#           optimization problem using the MOSEK Python API.</span>
+<span class="comment">##</span>
+
+<span class="keyword">import</span> sys
+
+<span class="keyword">import</span> mosek
+<span class="comment"># If numpy is installed, use that, otherwise use the </span>
+<span class="comment"># Mosek's array module.</span>
+<span class="keyword">try</span>:
+    <span class="keyword">from</span> numpy <span class="keyword">import</span> <span class="type">array</span>,zeros,ones
+<span class="keyword">except</span> ImportError:
+    <span class="keyword">from</span> mosek.<span class="type">array</span> <span class="keyword">import</span> <span class="type">array</span>, zeros, ones
+
+<span class="comment"># Since the actual value of Infinity is ignores, we define it solely</span>
+<span class="comment"># for symbolic purposes:</span>
+inf = 0.0
+
+<span class="comment"># Define a stream printer to grab output from MOSEK</span>
+<span class="keyword">def</span> streamprinter(text):
+    sys.stdout.write(text)
+    sys.stdout.flush()
+
+<span class="comment"># We might write everything directly as a script, but it looks nicer</span>
+<span class="comment"># to create a function.</span>
+<span class="keyword">def</span> main ():
+  <span class="comment"># Make a MOSEK environment</span>
+  env = mosek.Env ()
+  <span class="comment"># Attach a printer to the environment</span>
+  env.set_Stream (mosek.streamtype.log, streamprinter)
+  
+  <span class="comment"># Create a task</span>
+  task = env.Task(0,0)
+  <span class="comment"># Attach a printer to the task</span>
+  task.set_Stream (mosek.streamtype.log, streamprinter)
+  
+
+  <span class="comment"># Set up and input bounds and linear coefficients</span>
+  bkc   = [ mosek.boundkey.lo ]
+  blc   = [ 1.0 ]
+  buc   = [ inf ]
+    
+  bkx   = [ mosek.boundkey.lo,
+            mosek.boundkey.lo,
+            mosek.boundkey.lo ]
+  blx   = [ 0.0,  0.0, 0.0 ]
+  bux   = [ inf,  inf, inf ]
+
+  c     = [ 0.0, -1.0, 0.0 ]
+
+  asub  = [   <span class="type">array</span>([0]),   <span class="type">array</span>([0]),   <span class="type">array</span>([0]) ]
+  aval  = [  <span class="type">array</span>([1.0]),  <span class="type">array</span>([1.0]),  <span class="type">array</span>([1.0]) ]
+  
+  NUMVAR = len(bkx)
+  NUMCON = len(bkc)
+  NUMANZ = 3
+  <span class="comment"># Give MOSEK an estimate of the size of the input data. </span>
+  <span class="comment">#  This is done to increase the speed of inputting data. </span>
+  <span class="comment">#  However, it is optional. </span>
+  task.putmaxnumvar(NUMVAR)
+  task.putmaxnumcon(NUMCON)
+  task.putmaxnumanz(NUMANZ)
+  <span class="comment"># Append 'NUMCON' empty constraints.</span>
+  <span class="comment"># The constraints will initially have no bounds. </span>
+  task.append(mosek.accmode.con,NUMCON)
+     
+  <span class="comment">#Append 'NUMVAR' variables.</span>
+  <span class="comment"># The variables will initially be fixed at zero (x=0). </span>
+  task.append(mosek.accmode.var,NUMVAR)
+
+  <span class="comment">#Optionally add a constant term to the objective. </span>
+  task.putcfix(0.0)
+
+  <span class="keyword">for</span> j <span class="keyword">in</span> range(NUMVAR):
+    <span class="comment"># Set the linear term c_j in the objective.</span>
+    task.putcj(j,c[j])
+    <span class="comment"># Set the bounds on variable j</span>
+    <span class="comment"># blx[j] &lt;= x_j &lt;= bux[j] </span>
+    task.putbound(mosek.accmode.var,j,bkx[j],blx[j],bux[j])
+    <span class="comment"># Input column j of A </span>
+    task.putavec(mosek.accmode.var,  <span class="comment"># Input columns of A.</span>
+                 j,                  <span class="comment"># Variable (column) index.</span>
+                 asub[j],            <span class="comment"># Row index of non-zeros in column j.</span>
+                 aval[j])            <span class="comment"># Non-zero Values of column j. </span>
+
+  <span class="keyword">for</span> i <span class="keyword">in</span> range(NUMCON):
+    task.putbound(mosek.accmode.con,i,bkc[i],blc[i],buc[i])
+       
+  <span class="comment"># Set up and input quadratic objective</span>
+
+  qsubi = [ 0,   1,    2,   2   ]
+  qsubj = [ 0,   1,    0,   2   ]
+  qval  = [ 2.0, 0.2, -1.0, 2.0 ]
+
+  task.putqobj(qsubi,qsubj,qval)
+
+  <span class="comment"># The lower triangular part of the Q^0</span>
+  <span class="comment"># matrix in the first constraint is specified.</span>
+  <span class="comment"># This corresponds to adding the term</span>
+  <span class="comment"># - x0^2 - x1^2 - 0.1 x2^2 + 0.2 x0 x2</span>
+
+  qsubi = [  0,    1,    2,   2   ]
+  qsubj = [  0,    1,    2,   0   ]
+  qval  = [ -2.0, -2.0, -0.2, 0.2 ]
+
+  <span class="comment"># put Q^0 in constraint with index 0. </span>
+
+  task.putqconk (0, qsubi,qsubj, qval); 
+
+  <span class="comment"># Input the objective sense (minimize/maximize)</span>
+  task.putobjsense(mosek.objsense.minimize)
+       
+  <span class="comment"># Optimize the task</span>
+  task.optimize()
+
+  <span class="comment"># Print a summary containing information</span>
+  <span class="comment"># about the solution for debugging purposes</span>
+  task.solutionsummary(mosek.streamtype.msg)
+
+  prosta = []
+  solsta = []
+  [prosta,solsta] = task.getsolutionstatus(mosek.soltype.itr)
+
+  <span class="comment"># Output a solution</span>
+  xx = zeros(NUMVAR, <span class="type">float</span>)
+  task.getsolutionslice(mosek.soltype.itr,
+                        mosek.solitem.xx, 
+                        0,NUMVAR,          
+                        xx)
+
+  <span class="keyword">if</span> solsta == mosek.solsta.optimal <span class="keyword">or</span> solsta == mosek.solsta.near_optimal:
+      <span class="keyword">print</span>("<span class="string">Optimal solution: %s</span>" % xx)
+  <span class="keyword">elif</span> solsta == mosek.solsta.dual_infeas_cer: 
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.near_dual_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span>  solsta == mosek.solsta.near_prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> mosek.solsta.unknown:
+    <span class="keyword">print</span>("<span class="string">Unknown solution status</span>")
+  <span class="keyword">else</span>:
+    <span class="keyword">print</span>("<span class="string">Other solution status</span>")
+    
+<span class="comment"># call the main function</span>
+<span class="keyword">try</span>:
+    main ()
+<span class="keyword">except</span> mosek.Exception, (code,msg):
+    <span class="keyword">print</span> "<span class="string">ERROR: %s</span>" % <span class="type">str</span>(code)
+    <span class="keyword">if</span> msg <span class="keyword">is</span> <span class="keyword">not</span> <span class="type">None</span>:
+        <span class="keyword">print</span> "<span class="string">\t%s</span>" % msg
+        sys.exit(1)
+<span class="keyword">except</span>:
+    <span class="keyword">import</span> traceback
+    traceback.print_exc()
+    sys.exit(1)
+sys.exit(0)
+</div>
+
+<p>The only new function introduced in this example is <a href="node016.html#common-func*mosek*task*putqconk"><tt class="tt">Task.putqconk</tt></a>, which is used to add quadratic terms to the constraints. While <a href="node016.html#common-func*mosek*task*putqconk"><tt class="tt">Task.putqconk</tt></a> add quadratic terms to a specific constraint, it is also possible to input all quadratic terms in all constraints in one chunk using the <a href="node016.html#common-func*mosek*task*putqcon"><tt class="tt">Task.putqcon</tt></a> function.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="218532824">5.4. Conic optimization</a></h1>
+
+<p> <a name="sec:conic-opt">&#09;</a><a name="common-sec:conic-opt"></a> <a name="idx-77368568">&#09;</a> <a name="idx-77369568">&#09;</a> <a name="idx-77369784">&#09;</a></p>
+
+<p>Conic problems are a generalization of linear problems, allowing constraints of the type </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math56.png" alt="\begin{displaymath}\nonumber{}x\in{}\mathcal{C}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math57.png" alt="[[MathCmd 57]]"/></span> is a convex cone.</p>
+
+<p>MOSEK can solve conic optimization problems of the following form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math58.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\\\nonumber{} &  &  & x\in{}\mathcal{C} &  &\end{array}\end{math}"/></td>
+<td><a name="ch-matlab-sec-conicoptimization-eq-primal">&#09;</a>(5.4.1)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math57.png" alt="[[MathCmd 57]]"/></span> is a cone. <span class="math"><img src="math/math57.png" alt="[[MathCmd 57]]"/></span> can be a product of cones, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math61.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}=\mathcal{C}_{0}\times \cdots \times \mathcal{C}_{{p-1}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>in which case <span class="math"><img src="math/math62.png" alt="[[MathCmd 62]]"/></span> means <span class="math"><img src="math/math63.png" alt="[[MathCmd 63]]"/></span>. Please note that the set of real numbers <span class="math"><img src="math/math64.png" alt="[[MathCmd 64]]"/></span> is itself a cone, so linear variables are still allowed.</p>
+
+<p>MOSEK supports two specific cones apart from the real numbers: </p>
+
+<ul class="itemize">
+<li>
+<p>The quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math65.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n_{t}}}:x_{1}\geq{}\sqrt{\sum \limits _{{j=2}}^{{n^{t}}}x_{j}^{2}}\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The rotated quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math66.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n_{t}}}:2x_{1}x_{2}\geq{}\sum \limits _{{j=3}}^{{n^{t}}}x_{j}^{2},~x_{1},x_{2}\geq{}0\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<p> When creating a conic problem in MOSEK, each cone is defined by a <em>cone type</em> (quadratic or rotated quadratic cone) and a list of variable indexes. To summarize: </p>
+
+<ul class="itemize">
+<li>In MOSEK all variables belong to the set <span class="math"><img src="math/math64.png" alt="[[MathCmd 64]]"/></span> of reals, unless they are explicitly declared as belonging to a cone. </li>
+<li>Each variable may belong to one cone <em>at most</em>. </li>
+</ul>
+
+<div>
+<h2><a name="219680424">5.4.1. Example: cqo1</a></h2>
+
+<p> The problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math68.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} & x_{4}+x_{5} &  & \\\nonumber{}\mbox{subject to} & x_{0}+x_{1}+x_{2}+x_{3} & = & 1,\\\nonumber{} & x_{0},x_{1},x_{2},x_{3} & \geq{} & 0,\\\nonumber{} & x_{4}\geq{}\sqrt{x_{0}^{2} + x_{2}^{2}}, &  & \\\nonumber{} & x_{5}\geq{}\sqrt{x_{1}^{2} + x_{3}^{2}} &  &\end{array}\end{math}"/></td>
+<td><a name="ch-matlab-sec-conic-eq-ex1">&#09;</a>(5.4.2)</td></tr>
+</tbody>
+</table>
+
+<p>is an example of a conic quadratic optimization problem. The problem includes a set of linear constraints and two quadratic cones.</p>
+
+<div>
+<h3><a name="219680640">5.4.1.1. Source code</a></h3>
+
+<p> <a name="idx-77406288">&#09;</a><a name="idx-77407080">&#09;</a></p>
+
+<p><a name="idx-77408736">&#09;</a><a name="idx-77408952">&#09;</a> <a name="idx-77411176">&#09;</a> <a name="idx-77411896">&#09;</a> <a name="idx-77412256">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">#</span>
+<span class="comment">#  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.</span>
+<span class="comment">#</span>
+<span class="comment">#  File:    lo2.py</span>
+<span class="comment">#</span>
+<span class="comment">#  Purpose: Demonstrates how to solve small linear</span>
+<span class="comment">#           optimization problem using the MOSEK Python API.</span>
+<span class="comment">##</span>
+
+<span class="keyword">import</span> sys
+
+<span class="keyword">import</span> mosek
+<span class="comment"># If numpy is installed, use that, otherwise use the </span>
+<span class="comment"># Mosek's array module.</span>
+<span class="keyword">try</span>:
+    <span class="keyword">from</span> numpy <span class="keyword">import</span> <span class="type">array</span>,zeros,ones
+<span class="keyword">except</span> ImportError:
+    <span class="keyword">from</span> mosek.<span class="type">array</span> <span class="keyword">import</span> <span class="type">array</span>, zeros, ones
+
+<span class="comment"># Since the actual value of Infinity is ignores, we define it solely</span>
+<span class="comment"># for symbolic purposes:</span>
+inf = 0.0
+
+<span class="comment"># Define a stream printer to grab output from MOSEK</span>
+<span class="keyword">def</span> streamprinter(text):
+    sys.stdout.write(text)
+    sys.stdout.flush()
+
+<span class="comment"># We might write everything directly as a script, but it looks nicer</span>
+<span class="comment"># to create a function.</span>
+<span class="keyword">def</span> main ():
+  <span class="comment"># Make a MOSEK environment</span>
+  env = mosek.Env ()
+  <span class="comment"># Attach a printer to the environment</span>
+  env.set_Stream (mosek.streamtype.log, streamprinter)
+  
+  <span class="comment"># Create a task</span>
+  task = env.Task(0,0)
+  <span class="comment"># Attach a printer to the task</span>
+  task.set_Stream (mosek.streamtype.log, streamprinter)
+  
+  bkc = [ mosek.boundkey.fx ]
+  blc = [ 1.0 ]
+  buc = [ 1.0 ]
+  
+  c   = [               0.0,              0.0,              0.0,
+                        0.0,              1.0,              1.0 ]
+  bkx = [ mosek.boundkey.lo,mosek.boundkey.lo,mosek.boundkey.lo,
+          mosek.boundkey.lo,mosek.boundkey.fr,mosek.boundkey.fr ]
+  blx = [               0.0,              0.0,              0.0,
+                        0.0,             -inf,             -inf ]
+  bux = [               inf,              inf,              inf,
+                        inf,              inf,              inf ]
+  
+  asub = [ <span class="type">array</span>([0]),   <span class="type">array</span>([0]),   <span class="type">array</span>([0]),   <span class="type">array</span>([0])   ]
+  aval = [ <span class="type">array</span>([1.0]), <span class="type">array</span>([1.0]), <span class="type">array</span>([1.0]), <span class="type">array</span>([1.0]) ]
+
+
+  NUMVAR = len(bkx)
+  NUMCON = len(bkc)
+  NUMANZ = 4
+  <span class="comment"># Give MOSEK an estimate of the size of the input data. </span>
+  <span class="comment">#  This is done to increase the speed of inputting data. </span>
+  <span class="comment">#  However, it is optional. </span>
+  task.putmaxnumvar(NUMVAR)
+  task.putmaxnumcon(NUMCON)
+  task.putmaxnumanz(NUMANZ)
+  <span class="comment"># Append 'NUMCON' empty constraints.</span>
+  <span class="comment"># The constraints will initially have no bounds. </span>
+  task.append(mosek.accmode.con,NUMCON)
+     
+  <span class="comment">#Append 'NUMVAR' variables.</span>
+  <span class="comment"># The variables will initially be fixed at zero (x=0). </span>
+  task.append(mosek.accmode.var,NUMVAR)
+
+  <span class="comment">#Optionally add a constant term to the objective. </span>
+  task.putcfix(0.0)
+
+  <span class="keyword">for</span> j <span class="keyword">in</span> range(NUMVAR):
+    <span class="comment"># Set the linear term c_j in the objective.</span>
+    task.putcj(j,c[j])
+    <span class="comment"># Set the bounds on variable j</span>
+    <span class="comment"># blx[j] &lt;= x_j &lt;= bux[j] </span>
+    task.putbound(mosek.accmode.var,j,bkx[j],blx[j],bux[j])
+
+  <span class="keyword">for</span> j <span class="keyword">in</span> range(len(aval)):
+    <span class="comment"># Input column j of A </span>
+    task.putavec(mosek.accmode.var,  <span class="comment"># Input columns of A.</span>
+                 j,                  <span class="comment"># Variable (column) index.</span>
+                 asub[j],            <span class="comment"># Row index of non-zeros in column j.</span>
+                 aval[j])            <span class="comment"># Non-zero Values of column j. </span>
+  <span class="keyword">for</span> i <span class="keyword">in</span> range(NUMCON):
+    task.putbound(mosek.accmode.con,i,bkc[i],blc[i],buc[i])
+        
+  <span class="comment"># Input the cones</span>
+  task.appendcone(mosek.conetype.quad,
+                  0.0,
+                  [ 4, 0, 2 ])
+  task.appendcone(mosek.conetype.quad,
+                  0.0,
+                  [ 5, 1, 3 ])
+
+  <span class="comment"># Input the objective sense (minimize/maximize)</span>
+  task.putobjsense(mosek.objsense.minimize)
+       
+  <span class="comment"># Optimize the task</span>
+  task.optimize()
+  <span class="comment"># Print a summary containing information</span>
+  <span class="comment"># about the solution for debugging purposes</span>
+  task.solutionsummary(mosek.streamtype.msg)
+  prosta = []
+  solsta = []
+  [prosta,solsta] = task.getsolutionstatus(mosek.soltype.itr)
+
+  <span class="comment"># Output a solution</span>
+  xx = zeros(NUMVAR, <span class="type">float</span>)
+  task.getsolutionslice(mosek.soltype.itr,
+                        mosek.solitem.xx, 
+                        0,NUMVAR,          
+                        xx)
+
+  <span class="keyword">if</span> solsta == mosek.solsta.optimal <span class="keyword">or</span> solsta == mosek.solsta.near_optimal:
+      <span class="keyword">print</span>("<span class="string">Optimal solution: %s</span>" % xx)
+  <span class="keyword">elif</span> solsta == mosek.solsta.dual_infeas_cer: 
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.near_dual_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span>  solsta == mosek.solsta.near_prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> mosek.solsta.unknown:
+    <span class="keyword">print</span>("<span class="string">Unknown solution status</span>")
+  <span class="keyword">else</span>:
+    <span class="keyword">print</span>("<span class="string">Other solution status</span>")
+
+
+<span class="comment"># call the main function</span>
+<span class="keyword">try</span>:
+    main ()
+<span class="keyword">except</span> mosek.Exception, (code,msg):
+    <span class="keyword">print</span> "<span class="string">ERROR: %s</span>" % <span class="type">str</span>(code)
+    <span class="keyword">if</span> msg <span class="keyword">is</span> <span class="keyword">not</span> <span class="type">None</span>:
+        <span class="keyword">print</span> "<span class="string">\t%s</span>" % msg
+        sys.exit(1)
+<span class="keyword">except</span>:
+    <span class="keyword">import</span> traceback
+    traceback.print_exc()
+    sys.exit(1)
+sys.exit(0)
+</div>
+
+</div>
+
+<div>
+<h3><a name="219691416">5.4.1.2. Source code comments</a></h3>
+
+<p>The only new function introduced in the example is <a href="node016.html#common-func*mosek*task*appendcone"><tt class="tt">Task.appendcone</tt></a>, which is called here:</p>
+
+<div class="verbatimcode">task.appendcone(mosek.conetype.quad,
+                0.0,
+                [ 4, 0, 2 ])
+</div>
+
+<p>Here <a href="node019.html#common-const*mosek*conetype*quad"><tt class="tt">mosek.conetype.quad</tt></a> defines the cone type, in this case it is a <em>quadratic cone</em>. The cone parameter <tt class="tt">0.0</tt> is currently not used by MOSEK &mdash; simply passing <span class="math"><span class="mn">0.0</span></span> will work.</p>
+
+<p>The last argument is a list of indexes of the variables in the cone.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="219693856">5.5. Integer optimization</a></h1>
+
+<p> <a name="idx-77417144">&#09;</a><a name="idx-77416064">&#09;</a><a name="idx-77414984">&#09;</a><a name="idx-77412688">&#09;</a></p>
+
+<p>An optimization problem where one or more of the variables are constrained to integer values is denoted an integer optimization problem.</p>
+
+<div>
+<h2><a name="219692136">5.5.1. Example: milo1</a></h2>
+
+<p>In this section the example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math69.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & x_{0}+0.64x_{1} &  & \\\nonumber{}\mbox{subject to} & 50x_{0}+31x_{1} & \leq{} & 250,\\\nonumber{} & 3x_{0}-2x_{1} & \geq{} & -4,\\\nonumber{} & x_{0},x_{1}\geq{}0 &  & \mbox{and integer}\end{array}\end{math}"/></td>
+<td><a name="ch-apiex-sec-int-opt">&#09;</a>(5.5.1)</td></tr>
+</tbody>
+</table>
+
+<p>is used to demonstrate how to solve a problem with integer variables.</p>
+
+<div>
+<h3><a name="219694144">5.5.1.1. Source code</a></h3>
+
+<p>The example (<a href="node007.html#ch-apiex-sec-int-opt">5.5.1</a>) is almost identical to a linear optimization problem except for some variables being integer constrained. Therefore, only the specification of the integer constraints requires something new compared to the linear optimization problem discussed previously. In MOSEK these constraints are specified using the function <a href="node016.html#common-func*mosek*task*putvartype"><tt class="tt">Task.putvartype</tt></a> as shown in the code:</p>
+
+<div class="verbatimcode">task.putvartypelist([ 0, 1 ],
+                    [ mosek.variabletype.type_int,
+                    mosek.variabletype.type_int ])
+</div>
+
+<p>The complete source for the example is listed below.</p>
+
+<p><a name="idx-77434824">&#09;</a><a name="idx-78831840">&#09;</a> <a name="idx-78834000">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">##</span>
+<span class="comment">#    Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.</span>
+<span class="comment">#</span>
+<span class="comment">#    File:    mio1.py</span>
+<span class="comment">#</span>
+<span class="comment">#    Purpose:  Demonstrates how to solve a small mixed</span>
+<span class="comment">#              integer linear optimization problem using the MOSEK Python API.</span>
+<span class="comment">##</span>
+
+<span class="keyword">import</span> sys
+
+<span class="keyword">import</span> mosek
+<span class="comment"># If numpy is installed, use that, otherwise use the </span>
+<span class="comment"># Mosek's array module.</span>
+<span class="keyword">try</span>:
+    <span class="keyword">from</span> numpy <span class="keyword">import</span> <span class="type">array</span>,zeros,ones
+<span class="keyword">except</span> ImportError:
+    <span class="keyword">from</span> mosek.<span class="type">array</span> <span class="keyword">import</span> <span class="type">array</span>, zeros, ones
+
+<span class="comment"># Since the actual value of Infinity is ignores, we define it solely</span>
+<span class="comment"># for symbolic purposes:</span>
+inf = 0.0
+
+<span class="comment"># Define a stream printer to grab output from MOSEK</span>
+<span class="keyword">def</span> streamprinter(text):
+    sys.stdout.write(text)
+    sys.stdout.flush()
+
+<span class="comment"># We might write everything directly as a script, but it looks nicer</span>
+<span class="comment"># to create a function.</span>
+<span class="keyword">def</span> main ():
+  <span class="comment"># Make a MOSEK environment</span>
+  env = mosek.Env ()
+  <span class="comment"># Attach a printer to the environment</span>
+  env.set_Stream (mosek.streamtype.log, streamprinter)
+  
+  <span class="comment"># Create a task</span>
+  task = env.Task(0,0)
+  <span class="comment"># Attach a printer to the task</span>
+  task.set_Stream (mosek.streamtype.log, streamprinter)
+
+  bkc = [ mosek.boundkey.up, mosek.boundkey.lo  ]
+  blc = [              -inf,              -4.0  ]
+  buc = [             250.0,               inf  ]
+
+  bkx = [ mosek.boundkey.lo, mosek.boundkey.lo  ]
+  blx = [               0.0,               0.0  ]
+  bux = [               inf,               inf  ]
+
+  c   = [               1.0,               0.64 ]
+
+  asub = [  <span class="type">array</span>([0,   1]),    <span class="type">array</span>([0,    1])   ]
+  aval = [ <span class="type">array</span>([50.0, 3.0]), <span class="type">array</span>([31.0, -2.0]) ]
+
+  NUMVAR = len(bkx)
+  NUMCON = len(bkc)
+  NUMANZ = 9
+  <span class="comment"># Give MOSEK an estimate of the size of the input data. </span>
+  <span class="comment">#  This is done to increase the speed of inputting data. </span>
+  <span class="comment">#  However, it is optional. </span>
+  task.putmaxnumvar(NUMVAR)
+  task.putmaxnumcon(NUMCON)
+  task.putmaxnumanz(NUMANZ)
+  <span class="comment"># Append 'NUMCON' empty constraints.</span>
+  <span class="comment"># The constraints will initially have no bounds. </span>
+  task.append(mosek.accmode.con,NUMCON)
+     
+  <span class="comment">#Append 'NUMVAR' variables.</span>
+  <span class="comment"># The variables will initially be fixed at zero (x=0). </span>
+  task.append(mosek.accmode.var,NUMVAR)
+
+  <span class="comment">#Optionally add a constant term to the objective. </span>
+  task.putcfix(0.0)
+
+  <span class="keyword">for</span> j <span class="keyword">in</span> range(NUMVAR):
+    <span class="comment"># Set the linear term c_j in the objective.</span>
+    task.putcj(j,c[j])
+    <span class="comment"># Set the bounds on variable j</span>
+    <span class="comment"># blx[j] &lt;= x_j &lt;= bux[j] </span>
+    task.putbound(mosek.accmode.var,j,bkx[j],blx[j],bux[j])
+    <span class="comment"># Input column j of A </span>
+    task.putavec(mosek.accmode.var,  <span class="comment"># Input columns of A.</span>
+                 j,                  <span class="comment"># Variable (column) index.</span>
+                 asub[j],            <span class="comment"># Row index of non-zeros in column j.</span>
+                 aval[j])            <span class="comment"># Non-zero Values of column j. </span>
+
+  <span class="keyword">for</span> i <span class="keyword">in</span> range(NUMCON):
+    task.putbound(mosek.accmode.con,i,bkc[i],blc[i],buc[i])
+        
+  <span class="comment"># Input the objective sense (minimize/maximize)</span>
+  task.putobjsense(mosek.objsense.maximize)
+       
+  <span class="comment"># Define variables to be integers</span>
+  task.putvartypelist([ 0, 1 ],
+                      [ mosek.variabletype.type_int,
+                      mosek.variabletype.type_int ])
+        
+  <span class="comment"># Optimize the task</span>
+  task.optimize()
+
+  <span class="comment"># Print a summary containing information</span>
+  <span class="comment"># about the solution for debugging purposes</span>
+  task.solutionsummary(mosek.streamtype.msg)
+
+  prosta = []
+  solsta = []
+  [prosta,solsta] = task.getsolutionstatus(mosek.soltype.itg)
+
+  <span class="comment"># Output a solution</span>
+  xx = zeros(NUMVAR, <span class="type">float</span>)
+  task.getsolutionslice(mosek.soltype.itg,
+                        mosek.solitem.xx, 
+                        0,NUMVAR,          
+                        xx)
+
+  <span class="keyword">if</span> solsta == mosek.solsta.optimal <span class="keyword">or</span> solsta == mosek.solsta.near_optimal:
+      <span class="keyword">print</span>("<span class="string">Optimal solution: %s</span>" % xx)
+  <span class="keyword">elif</span> solsta == mosek.solsta.dual_infeas_cer: 
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> solsta == mosek.solsta.near_dual_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span>  solsta == mosek.solsta.near_prim_infeas_cer:
+      <span class="keyword">print</span>("<span class="string">Primal or dual infeasibility.\n</span>")
+  <span class="keyword">elif</span> mosek.solsta.unknown:
+    <span class="keyword">print</span>("<span class="string">Unknown solution status</span>")
+  <span class="keyword">else</span>:
+    <span class="keyword">print</span>("<span class="string">Other solution status</span>")
+
+<span class="comment"># call the main function</span>
+<span class="keyword">try</span>:
+    main ()
+<span class="keyword">except</span> mosek.Exception, (code,msg):
+    <span class="keyword">print</span> "<span class="string">ERROR: %s</span>" % <span class="type">str</span>(code)
+    <span class="keyword">if</span> msg <span class="keyword">is</span> <span class="keyword">not</span> <span class="type">None</span>:
+        <span class="keyword">print</span> "<span class="string">\t%s</span>" % msg
+        sys.exit(1)
+<span class="keyword">except</span>:
+    <span class="keyword">import</span> traceback
+    traceback.print_exc()
+    sys.exit(1)
+sys.exit(0)
+</div>
+
+</div>
+
+<div>
+<h3><a name="219704784">5.5.1.2. Code comments</a></h3>
+
+<p> Please note that when <a href="node016.html#common-func*mosek*task*getsolutionslice"><tt class="tt">Task.getsolutionslice</tt></a> is called, the integer solution is requested by using <a href="node019.html#common-const*mosek*soltype*itg"><tt class="tt">mosek.soltype.itg</tt></a>. No dual solution is defined for integer optimization problems.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="219704136">5.5.2. Specifying an initial solution</a></h2>
+
+<p> <a name="sec-mip-intro-init-mip">&#09;</a> Integer optimization problems are generally hard to solve, but the solution time can often be reduced by providing an initial solution for the solver. Solution values can be set using <a href="node016.html#common-func*mosek*task*putsolution"><tt class="tt">Task.putsolution</tt></a> (for inputting a whole solution) or <a href="node016.html#common-func*mosek*task*putsolutioni"><tt class="tt">Task.putsolutioni</tt></a> (for inputting solution values related to a single variable or constraint).</p>
+
+<p>It is not necessary to specify the whole solution. By setting the <a href="node017.html#common-const*mosek*iparam*mio-construct-sol"><tt class="tt">mosek.iparam.mio_construct_sol</tt></a> parameter to <a href="node019.html#common-const*mosek*onoffkey*on"><tt class="tt">mosek.onoffkey.on</tt></a> and inputting values for the integer variables only, will force MOSEK to compute the remaining continuous variable values.</p>
+
+<p>If the specified integer solution is infeasible or incomplete, MOSEK will simply ignore it.</p>
+
+</div>
+
+<div>
+<h2><a name="219705216">5.5.3. Example: Specifying an integer solution</a></h2>
+
+<p> Consider the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math70.png" alt="\begin{math}\nonumber{}\begin{array}{ll}\nonumber{}\mbox{maximize} & 7x_{0}+10x_{1}+x_{2}+5x_{3}\\\nonumber{}\mbox{subject to} & x_{0}+x_{1}+x_{2}+x_{3}\leq{}2.5\\\nonumber{} & x_{0},x_{1},x_{2}\mathrm{integer},\quad{}x_{0},x_{1},x_{2},x_{3}\geq{}0\end{array}\end{math}"/></td>
+<td>(5.5.2)</td></tr>
+</tbody>
+</table>
+
+<p>The following example demonstrates how to optimize the problem using a feasible starting solution generated by selecting the integer values as <span class="math"><img src="math/math71.png" alt="[[MathCmd 71]]"/></span>.</p>
+
+<p><a name="idx-78856776">&#09;</a><a name="idx-78855632">&#09;</a> <a name="idx-78852392">&#09;</a> <a name="idx-78839464">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">##</span>
+<span class="comment">#    Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.</span>
+<span class="comment">#</span>
+<span class="comment">#    File:    mioinitsol.cs</span>
+<span class="comment">#</span>
+<span class="comment">#    Purpose:  Demonstrates how to solve a small mixed</span>
+<span class="comment">#              integer linear optimization problem using the MOSEK Python API.</span>
+<span class="comment">##</span>
+
+<span class="keyword">import</span> sys
+
+<span class="keyword">import</span> mosek
+
+<span class="comment"># If numpy is installed, use that, otherwise use the </span>
+<span class="comment"># Mosek's array module.</span>
+<span class="keyword">try</span>:
+    <span class="keyword">from</span> numpy <span class="keyword">import</span> <span class="type">array</span>,zeros,ones
+<span class="keyword">except</span> ImportError:
+    <span class="keyword">from</span> mosek.<span class="type">array</span> <span class="keyword">import</span> <span class="type">array</span>, zeros, ones
+
+<span class="comment"># Since the actual value of Infinity is ignores, we define it solely</span>
+<span class="comment"># for symbolic purposes:</span>
+inf = 0.0
+
+
+<span class="comment"># Define a stream printer to grab output from MOSEK</span>
+<span class="keyword">def</span> streamprinter(text):
+    sys.stdout.write(text)
+    sys.stdout.flush()
+
+
+<span class="comment"># We might write everything directly as a script, but it looks nicer</span>
+<span class="comment"># to create a function.</span>
+<span class="keyword">def</span> main ():
+    <span class="comment"># Make a MOSEK environment</span>
+    env = mosek.Env ()
+    <span class="comment"># Attach a printer to the environment</span>
+    env.set_Stream (mosek.streamtype.log, streamprinter)
+
+    <span class="comment"># Create a task</span>
+    task = env.Task(0,0)
+    <span class="comment"># Attach a printer to the task</span>
+    task.set_Stream (mosek.streamtype.log, streamprinter)
+
+       
+    bkc  = [ mosek.boundkey.up ]
+    blc  = [ -inf,             ]
+    buc  = [ 2.5               ] 
+
+    bkx  = [ mosek.boundkey.lo,
+             mosek.boundkey.lo,
+             mosek.boundkey.lo,
+             mosek.boundkey.lo ]
+    
+    blx  = [0.0, 0.0, 0.0, 0.0 ]
+    bux  = [ inf, inf,  inf,  inf ]
+
+    c    = [ 7.0, 10.0, 1.0, 5.0 ]
+
+    asub = [  0,   0,   0,   0   ]
+    acof = [  1.0, 1.0, 1.0, 1.0]
+
+    ptrb = [ 0, 1, 2, 3 ]
+    ptre = [ 1, 2, 3, 4 ]
+
+    numvar = len(bkx)
+    numcon = len(bkc)
+
+    <span class="comment"># Input linear data</span>
+    task.inputdata(numcon,numvar,
+                   c,0.0,
+                   ptrb, ptre, asub, acof,
+                   bkc,  blc,  buc,
+                   bkx,  blx,  bux)
+
+    <span class="comment"># Input objective sense</span>
+    task.putobjsense(mosek.objsense.maximize)
+
+    <span class="comment"># Define variables to be integers</span>
+    task.putvartypelist([ 0, 1, 2 ],
+                        [ mosek.variabletype.type_int,
+                          mosek.variabletype.type_int,
+                          mosek.variabletype.type_int])
+    
+    <span class="comment"># Construct an initial feasible solution from the</span>
+    <span class="comment">#     values of the integer valuse specified </span>
+    task.putintparam(mosek.iparam.mio_construct_sol,
+                     mosek.onoffkey.on);
+
+    <span class="comment"># Set status of all variables to unknown </span>
+    task.makesolutionstatusunknown(mosek.soltype.itg);
+    
+    <span class="comment"># Assign values 1,1,0 to integer variables </span>
+    task.putsolutioni (
+        mosek.accmode.var,
+        0,
+        mosek.soltype.itg, 
+        mosek.stakey.supbas, 
+        0.0,
+        0.0,
+        0.0,
+        0.0);
+    
+    task.putsolutioni (
+        mosek.accmode.var,
+        1,
+        mosek.soltype.itg, 
+        mosek.stakey.supbas, 
+        2.0,
+        0.0,
+        0.0,
+        0.0);
+        
+        
+    task.putsolutioni (
+        mosek.accmode.var,
+        2,
+        mosek.soltype.itg, 
+        mosek.stakey.supbas, 
+        0.0,
+        0.0,
+        0.0,
+        0.0);
+
+    <span class="comment"># Optimize</span>
+    task.optimize()
+
+    <span class="keyword">if</span> task.solutiondef(mosek.soltype.itg):
+
+        <span class="comment"># Output a solution</span>
+        xx = zeros(numvar, <span class="type">float</span>)
+        task.getsolutionslice(mosek.soltype.itg,
+                              mosek.solitem.xx,
+                              0, numvar,
+                              xx)
+        <span class="keyword">print</span> "<span class="string">x =</span>", xx
+    <span class="keyword">else</span>:
+        <span class="keyword">print</span> "<span class="string">Integer solution not defined. Probably a problem with 'mosekglb' optimizer.</span>"
+
+<span class="comment"># call the main function</span>
+<span class="keyword">try</span>:
+    main ()
+<span class="keyword">except</span> mosek.Exception, e:
+    <span class="keyword">print</span> "<span class="string">ERROR: %s</span>" % <span class="type">str</span>(e.errno)
+    <span class="keyword">if</span> e.msg <span class="keyword">is</span> <span class="keyword">not</span> <span class="type">None</span>:
+        <span class="keyword">print</span> "<span class="string">\t%s</span>" % e.msg
+    sys.exit(1)
+<span class="keyword">except</span>:
+    <span class="keyword">import</span> traceback
+    traceback.print_exc()
+    sys.exit(1)
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="219710456">5.6. Problem modification and reoptimization</a></h1>
+
+<p> <a name="ch:intro:sec:reopt">&#09;</a></p>
+
+<p>Often one might want to solve not just a single optimization problem, but a sequence of problem, each differing only slightly from the previous one. This section demonstrates how to modify and reoptimize an existing problem. The example we study is a simple production planning model.</p>
+
+<div>
+<h2><a name="219705784">5.6.1. A production planning problem</a></h2>
+
+<p> A company manufactures three types of products. Suppose the stages of manufacturing can be split into three parts, namely Assembly, Polishing and Packing. In the table below we show the time required for each stage as well as the profit associated with each product.</p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Product no. </td>
+<td valign="top" style="border-top:1px solid black;"> Assembly (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Polishing (minutes)</td>
+<td valign="top" style="border-top:1px solid black;"> Packing (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Profit ($) </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> 0 </td>
+<td valign="top" style="border-top:1px solid black;"> 2 </td>
+<td valign="top" style="border-top:1px solid black;"> 3 </td>
+<td valign="top" style="border-top:1px solid black;"> 2 </td>
+<td valign="top" style="border-top:1px solid black;"> 1.50 </td></tr><tr class="evenrow">
+<td valign="top">1 </td>
+<td valign="top"> 4 </td>
+<td valign="top"> 2 </td>
+<td valign="top"> 3 </td>
+<td valign="top"> 2.50 </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;">2 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 3 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 3 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 2 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 3.00 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>With the current resources available, the company has <span class="math"><span class="mn">100</span><span class="mo">,</span><span class="mn">000</span></span> minutes of assembly time, <span class="math"><span class="mn">50</span><span class="mo">,</span><span class="mn">000</span></span> minutes of polishing time and <span class="math"><span class="mn">60</span><span class="mo">,</span><span class="mn">000</span></span> minutes of packing time available per year.</p>
+
+<p>Now the question is how many items of each product the company should produce each year in order to maximize profit?</p>
+
+<p>Denoting the number of items of each type by <span class="math"><img src="math/math72.png" alt="[[MathCmd 72]]"/></span> and <span class="math"><img src="math/math73.png" alt="[[MathCmd 73]]"/></span>, this problem can be formulated as the linear optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math74.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccl}\nonumber{}\mbox{maximize} & 1.5x_{0} & + & 2.5x_{1} & + & 3.0x_{2} &  & \\\nonumber{}\mbox{subject to} & 2x_{0} & + & 4x_{1} & + & 3x_{2} & \leq{} & 100000,\\\nonumber{} & 3x_{0} & + & 2x_{1} & + & 3x_{2} & \leq{} & 50000,\\\nonumber{} & 2x_{0} & + & 3x_{1} & + & 2x_{2} & \leq{} & 60000,\end{array}\end{math}"/></td>
+<td>(5.6.1)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math75.png" alt="\begin{math}\nonumber{}x_{0},x_{1},x_{2}\geq{}0.\end{math}"/></td>
+<td>(5.6.2)</td></tr>
+</tbody>
+</table>
+
+<p>The following code loads this problem into the optimization task.</p>
+
+<div class="verbatimcode"><span class="comment"># Create a MOSEK environment</span>
+env = mosek.Env ()
+<span class="comment"># Attach a printer to the environment</span>
+env.set_Stream (mosek.streamtype.log, streamprinter)
+<span class="comment"># Initialize the environment</span>
+env.init ()
+
+<span class="comment"># Create a task</span>
+task = env.Task(0,0)
+<span class="comment"># Attach a printer to the task</span>
+task.set_Stream (mosek.streamtype.log, streamprinter)
+
+<span class="comment"># Bound keys for constraints</span>
+bkc = [ mosek.boundkey.up,
+        mosek.boundkey.up,
+        mosek.boundkey.up]
+<span class="comment"># Bound values for constraints</span>
+blc = <span class="type">array</span> ([-inf, -inf, -inf])
+buc = <span class="type">array</span> ([100000.0 , 50000.0, 60000.0])
+
+<span class="comment"># Bound keys for variables</span>
+bkx = [ mosek.boundkey.lo,
+        mosek.boundkey.lo,
+        mosek.boundkey.lo ]
+<span class="comment"># Bound values for variables</span>
+blx = <span class="type">array</span> ([ 0.0,  0.0,  0.0])
+bux = <span class="type">array</span> ([+inf, +inf, +inf])
+
+<span class="comment"># Objective coefficients</span>
+csub = <span class="type">array</span>([   0,   1,   2 ])
+cval = <span class="type">array</span>([ 1.5, 2.5, 3.0 ])
+
+<span class="comment"># We input the A matrix column-wise</span>
+<span class="comment"># asub contains row indexes</span>
+asub = <span class="type">array</span>([ 0, 1, 2,
+               0, 1, 2,
+               0, 1, 2])
+<span class="comment"># acof contains coefficients</span>
+acof = <span class="type">array</span>([ 2.0, 3.0, 2.0,
+               4.0, 2.0, 3.0,
+               3.0, 3.0, 2.0 ])
+<span class="comment"># aptrb and aptre contains the offsets into asub and acof where</span>
+<span class="comment"># columns start and end respectively</span>
+aptrb = <span class="type">array</span>([ 0, 3, 6 ])
+aptre = <span class="type">array</span>([ 3, 6, 9 ])
+
+numvar = len(bkx)
+numcon = len(bkc)
+
+<span class="comment"># Append the constraints</span>
+task.append(mosek.accmode.con,numcon)
+
+<span class="comment"># Append the variables.</span>
+task.append(mosek.accmode.var,numvar)
+
+<span class="comment"># Input objective</span>
+task.putcfix(0.0)
+task.putclist(csub,cval)
+
+<span class="comment"># Put constraint bounds</span>
+task.putboundslice(mosek.accmode.con,
+                   0, numcon,
+                   bkc, blc, buc)
+
+<span class="comment"># Put variable bounds</span>
+task.putboundslice(mosek.accmode.var,
+                   0, numvar,
+                   bkx, blx, bux)
+
+
+
+<span class="comment"># Input A non-zeros by columns</span>
+<span class="keyword">for</span> j <span class="keyword">in</span> range(numvar):
+    ptrb,ptre = aptrb[j],aptre[j]
+    task.putavec(mosek.accmode.var,j,
+                 asub[ptrb:ptre],
+                 acof[ptrb:ptre])
+
+<span class="comment"># Input the objective sense (minimize/maximize)</span>
+task.putobjsense(mosek.objsense.maximize)
+
+
+<span class="comment"># Optimize the task</span>
+task.optimize()
+
+<span class="comment"># Output a solution</span>
+xx = zeros(numvar, <span class="type">float</span>)
+task.getsolutionslice(mosek.soltype.bas,
+                      mosek.solitem.xx,
+                      0,numvar,
+                      xx)
+<span class="keyword">print</span> "<span class="string">xx =</span>", xx
+</div>
+
+</div>
+
+<div>
+<h2><a name="219740352">5.6.2. Changing the <span class="math"><span class="mi">A</span></span> matrix</a></h2>
+
+<p>Suppose we want to change the time required for assembly of product <span class="math"><span class="mn">0</span></span> to <span class="math"><span class="mn">3</span></span> minutes. This corresponds to setting <span class="math"><img src="math/math76.png" alt="[[MathCmd 76]]"/></span>, which is done by calling the function <a href="node016.html#common-func*mosek*task*putaij"><tt class="tt">Task.putaij</tt></a> as shown below.</p>
+
+<div class="verbatimcode">task.putaij(0, 0, 3.0)
+</div>
+
+<p>The problem now has the form: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math77.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccl}\nonumber{}\mbox{maximize} & 1.5x_{0} & + & 2.5x_{1} & + & 3.0x_{2} &  & \\\nonumber{}\mbox{subject to} & 3x_{0} & + & 4x_{1} & + & 3x_{2} & \leq{} & 100000,\\\nonumber{} & 3x_{0} & + & 2x_{1} & + & 3x_{2} & \leq{} & 50000,\\\nonumber{} & 2x_{0} & + & 3x_{1} & + & 2x_{2} & \leq{} & 60000,\end{array}\end{math}"/></td>
+<td><a name="eq-production-1">&#09;</a>(5.6.3)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math75.png" alt="\begin{math}\nonumber{}x_{0},x_{1},x_{2}\geq{}0.\end{math}"/></td>
+<td>(5.6.4)</td></tr>
+</tbody>
+</table>
+
+<p> After changing the <span class="math"><span class="mi">A</span></span> matrix we can find the new optimal solution by calling</p>
+
+<p><a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a></p>
+
+<p>again</p>
+
+</div>
+
+<div>
+<h2><a name="219757168">5.6.3. Appending variables</a></h2>
+
+<p>We now want to add a new product with the following data:</p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Product no. </td>
+<td valign="top" style="border-top:1px solid black;"> Assembly (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Polishing (minutes)</td>
+<td valign="top" style="border-top:1px solid black;"> Packing (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Profit ($) </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;">3 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 4 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 0 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 1 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 1.00 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>This corresponds to creating a new variable <span class="math"><img src="math/math79.png" alt="[[MathCmd 79]]"/></span>, appending a new column to the <span class="math"><span class="mi">A</span></span> matrix and setting a new value in the objective. We do this in the following code.</p>
+
+<div class="verbatimcode"><span class="comment"># Append a new varaible x_3 to the problem */</span>
+task.append(mosek.accmode.var,1)
+
+<span class="comment"># Set bounds on new varaible</span>
+task.putbound(mosek.accmode.var,
+              task.getnumvar()-1,
+              mosek.boundkey.lo,
+              0,
+              +inf)
+
+<span class="comment"># Change objective</span>
+task.putcj(task.getnumvar()-1,1.0)
+
+<span class="comment"># Put new values in the A matrix</span>
+acolsub =   <span class="type">array</span>([0,   2])
+acolval =   <span class="type">array</span>([4.0, 1.0])
+
+task.putavec(mosek.accmode.var,
+task.getnumvar()-1, <span class="comment"># column index</span>
+            acolsub,
+            acolval)
+</div>
+
+<p>After this operation the problem looks this way: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math80.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccl}\nonumber{}\mbox{maximize} & 1.5x_{0} & + & 2.5x_{1} & + & 3.0x_{2} & + & 1.0x_{3} &  & \\\nonumber{}\mbox{subject to} & 3x_{0} & + & 4x_{1} & + & 3x_{2} & + & 4x_{3} & \leq{} & 100000,\\\nonumber{} & 3x_{0} & + & 2x_{1} & + & 3x_{2} &  &  & \leq{} & 50000,\\\nonumber{} & 2x_{0} & + & 3x_{1} & + & 2x_{2} & + & 1x_{3} & \leq{} & 60000,\end{array}\end{math}"/></td>
+<td><a name="eq-production-2">&#09;</a>(5.6.5)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math81.png" alt="\begin{math}\nonumber{}x_{0},x_{1},x_{2},x_{3}\geq{}0.\end{math}"/></td>
+<td>(5.6.6)</td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h2><a name="219762840">5.6.4. Reoptimization</a></h2>
+
+<p> When</p>
+
+<p><a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a></p>
+
+<p>is called MOSEK will store the optimal solution internally. After a task has been modified and</p>
+
+<p><a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a></p>
+
+<p>is called again the solution will automatically be used to reduce solution time of the new problem, if possible.</p>
+
+<p>In this case an optimal solution to problem <a href="node007.html#eq-production-1">(5.6.3)</a> was found and then added a column was added to get <a href="node007.html#eq-production-2">(5.6.5)</a>. The simplex optimizer is well suited for exploiting an existing primal or dual feasible solution. Hence, the subsequent code instructs MOSEK to choose the simplex optimizer freely when optimizing.</p>
+
+<div class="verbatimcode"><span class="comment"># Change optimizer to simplex free and reoptimize</span>
+task.putintparam(mosek.iparam.optimizer,mosek.optimizertype.free_simplex)
+task.optimize()
+</div>
+
+</div>
+
+<div>
+<h2><a name="219783320">5.6.5. Appending constraints</a></h2>
+
+<p>Now suppose we want to add a new stage to the production called &#8220;Quality control&#8221; for which <span class="math"><span class="mn">30000</span></span> minutes are available. The time requirement for this stage is shown below:</p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Product no. </td>
+<td valign="top" style="border-top:1px solid black;"> Quality control (minutes) </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> 0 </td>
+<td valign="top" style="border-top:1px solid black;"> 1 </td></tr><tr class="evenrow">
+<td valign="top">1 </td>
+<td valign="top"> 2 </td></tr><tr class="oddrow">
+<td valign="top">2 </td>
+<td valign="top"> 1 </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;">3 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 1 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>This corresponds to adding the constraint </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math82.png" alt="\begin{math}\nonumber{}x_{0}+2x_{1}+x_{2}+x_{3}\leq{}30000\end{math}"/></td>
+<td>(5.6.7)</td></tr>
+</tbody>
+</table>
+
+<p>to the problem which is done in the following code:</p>
+
+<div class="verbatimcode"><span class="comment"># Append a new constraint</span>
+task.append(mosek.accmode.con,1)
+
+<span class="comment"># Set bounds on new constraint</span>
+task.putbound(
+              mosek.accmode.con,
+              task.getnumcon()-1, <span class="comment"># row index</span>
+              mosek.boundkey.up,
+              -inf,
+              30000)
+
+<span class="comment"># Put new values in the A matrix</span>
+
+arowsub = <span class="type">array</span>([0,   1,   2,   3  ])
+arowval = <span class="type">array</span>([1.0, 2.0, 1.0, 1.0])
+
+task.putavec(mosek.accmode.con,
+             task.getnumcon()-1, <span class="comment"># row index</span>
+             arowsub,
+             arowval)
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="219790296">5.7. Efficiency considerations</a></h1>
+
+<p>Although MOSEK is implemented to handle memory efficiently, the user may have valuable knowledge about a problem, which could be used to improve the performance of MOSEK. This section discusses some tricks and general advice that hopefully make MOSEK process your problem faster.</p>
+
+<dl class="description">
+<dt>Avoid memory fragmentation:</dt>
+<dd>
+<p> MOSEK stores the optimization problem in internal data structures in the memory. Initially MOSEK will allocate structures of a certain size, and as more items are added to the problem the structures are reallocated. For large problems the same structures may be reallocated many times causing memory fragmentation. One way to avoid this is to give MOSEK an estimated size of your problem using the functions: </p>
+
+<ul class="itemize">
+<li><a href="node016.html#common-func*mosek*task*putmaxnumvar"><tt class="tt">Task.putmaxnumvar</tt></a>. Estimate for the number of variables. </li>
+<li><a href="node016.html#common-func*mosek*task*putmaxnumcon"><tt class="tt">Task.putmaxnumcon</tt></a>. Estimate for the number of constraints. </li>
+<li><a href="node016.html#common-func*mosek*task*putmaxnumcone"><tt class="tt">Task.putmaxnumcone</tt></a>. Estimate for the number of cones.</li>
+<li><a href="node016.html#common-func*mosek*task*putmaxnumanz64"><tt class="tt">Task.putmaxnumanz64</tt></a>. Estimate for the number of non-zeros in <span class="math"><span class="mi">A</span></span>. </li>
+<li><a href="node016.html#common-func*mosek*task*putmaxnumqnz64"><tt class="tt">Task.putmaxnumqnz64</tt></a>. Estimate for the number of non-zeros in the quadratic terms.</li>
+</ul>
+
+<p>None of these functions change the problem, they only give hints to the eventual dimension of the problem. If the problem ends up growing larger than this, the estimates are automatically increased.</p>
+</dd>
+<dt>Tune the reallocation process:</dt>
+<dd>
+<p> It is possible to obtain information about how often MOSEK reallocates storage for the <span class="math"><span class="mi">A</span></span> matrix by inspecting <a href="node019.html#common-const*mosek*iinfitem*sto-num-a-realloc"><tt class="tt">mosek.iinfitem.sto_num_a_realloc</tt></a>.  A large value indicates that <tt class="tt">maxnumanz</tt> has been reestimated many times and that the initial estimate should be increased.</p>
+</dd>
+<dt>Do not mix <tt class="tt">put-</tt> and <tt class="tt">get-</tt> functions:</dt>
+<dd>
+<p> For instance, the functions <a href="node016.html#common-func*mosek*task*putavec"><tt class="tt">Task.putavec</tt></a> and <a href="node016.html#common-func*mosek*task*getavec"><tt class="tt">Task.getavec</tt></a>. MOSEK will queue <tt class="tt">put-</tt> commands internally until a <tt class="tt">get-</tt> function is called. If every <tt class="tt">put-</tt> function call is followed by a <tt class="tt">get-</tt> function call, the queue will have to be flushed often, decreasing efficiency.</p>
+
+<p>In general <tt class="tt">get-</tt> commands should not be called often during problem setup.</p>
+</dd>
+<dt>Use the LIFO principle when removing constraints and variables:</dt>
+<dd>
+<p>MOSEK can more efficiently remove constraints and variables with a high index than a small index.</p>
+
+<p>An alternative to removing a constraint or a variable is to fix it at 0, and set all relevant coefficients to 0. Generally this will not have any impact on the optimization speed.</p>
+</dd>
+<dt>Add more constraints and variables than you need (now):</dt>
+<dd>
+<p> The cost of adding one constraint or one variable is about the same as adding many of them. Therefore, it may be worthwhile to add many variables instead of one. Initially fix the unused variable at zero, and then later unfix them as needed. Similarly, you can add multiple free constraints and then use them as needed.</p>
+</dd>
+<dt>Use one environment (env) only:</dt>
+<dd>
+<p> If possible share the environment (<tt class="tt">env</tt>) between several tasks. For most applications you need to create only a single <tt class="tt">env</tt>.</p>
+</dd>
+<dt>Do not remove basic variables:</dt>
+<dd>
+<p> When doing reoptimizations, instead of removing a basic variable it may be more efficient to fix the variable at zero and then remove it when the problem is reoptimized and it has left the basis. This makes it easier for MOSEK to restart the simplex optimizer. </p>
+</dd>
+</dl>
+
+<div>
+<h2><a name="219797048">5.7.1. API overhead</a></h2>
+
+<p> The Python interface is a thin wrapper around a native MOSEK library. The layer between the Python application and the native MOSEK library is made as thin as possible to minimize the overhead from function calls.</p>
+
+<p>The methods in <tt class="tt">mosek.Env</tt> and <tt class="tt">mosek.Task</tt> are all written in C and resides in the module <tt class="tt">pymosek</tt>. Each method converts the call parameter data structures (i.e. creates a complete copy of the data), calls a MOSEK function and converts the returned values back into Python structures.</p>
+
+<p>All data are copied <em>at least</em> once. For larger problems this may mean, that fetching or inputting large chunks of data is less expensive than fetching/inputting the same data as single values.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="219799136">5.8. Conventions employed in the API</a></h1>
+
+<p> <a name="chap-apiintro-sec-prog-conv">&#09;</a></p>
+
+<div>
+<h2><a name="219797192">5.8.1. Naming conventions for arguments</a></h2>
+
+<p> In the definition of the MOSEK Python API a consistent naming convention has been used. This implies that whenever for example <tt class="tt">numcon</tt> is an argument in a function definition it indicates the number of constraints.</p>
+
+<p>In Table <a href="node007.html#TAB:CNAMES">5.2</a> the variable names used to specify the problem parameters are listed. </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Python name </td>
+<td valign="top" style="border-top:1px solid black;"> Python type </td>
+<td valign="top" style="border-top:1px solid black;"> Dimension </td>
+<td valign="top" style="border-top:1px solid black;"> Related problem </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td valign="top"> </td>
+<td valign="top"> </td>
+<td valign="top"> parameter </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"><tt class="tt">numcon</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">int</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> </td>
+<td valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">m</span></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">numvar</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><span class="mi">n</span></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">numcone</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><span class="mi">t</span></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">numqonz</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><img src="math/math83.png" alt="[[MathCmd 83]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qosubi</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numqonz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math83.png" alt="[[MathCmd 83]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qosubj</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numqonz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math83.png" alt="[[MathCmd 83]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">c</tt> </td>
+<td valign="top"> <tt class="tt">float[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math86.png" alt="[[MathCmd 86]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">cfix</tt> </td>
+<td valign="top"> <tt class="tt">float</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><img src="math/math5.png" alt="[[MathCmd 5]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">numqcnz</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><img src="math/math88.png" alt="[[MathCmd 88]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qcsubk</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">qcnz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math88.png" alt="[[MathCmd 88]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qcsubi</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">qcnz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math88.png" alt="[[MathCmd 88]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qcsubj</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">qcnz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math88.png" alt="[[MathCmd 88]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">aptrb</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math92.png" alt="[[MathCmd 92]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">aptre</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math92.png" alt="[[MathCmd 92]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">asub</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">aptre[numvar-1]</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math92.png" alt="[[MathCmd 92]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">aval</tt> </td>
+<td valign="top"> <tt class="tt">float[]</tt> </td>
+<td valign="top"> <tt class="tt">aptre[numvar-1]</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math92.png" alt="[[MathCmd 92]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">blc</tt> </td>
+<td valign="top"> <tt class="tt">float[]</tt> </td>
+<td valign="top"> <tt class="tt">numcon</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math96.png" alt="[[MathCmd 96]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">buc</tt> </td>
+<td valign="top"> <tt class="tt">float[]</tt> </td>
+<td valign="top"> <tt class="tt">numcon</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math97.png" alt="[[MathCmd 97]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">blx</tt> </td>
+<td valign="top"> <tt class="tt">float[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math98.png" alt="[[MathCmd 98]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">bux</tt> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <tt class="tt">float[]</tt> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <tt class="tt">numvar</tt> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <span class="math"><img src="math/math99.png" alt="[[MathCmd 99]]"/></span> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;5.2: <a name="TAB:CNAMES">&#09;</a> Naming convention used in MOSEK. Here <tt class="tt">TTT[]</tt> means a <tt class="tt">Numeric.array</tt> of type <tt class="tt">TTT</tt>.</span>
+<br/></center></td></tr></table>
+</td></tr></table>
+
+<p> The relation between the variable names and the problem parameters is as follows: </p>
+
+<ul class="itemize">
+<li>
+<p>The quadratic terms in the objective:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math100.png" alt="\begin{math}\nonumber{}q_{{\mathtt{qosubi[t]},\mathtt{qosubj[t]}}}^{o}=\mathtt{qoval[t]},~t=0,\ldots ,\mathtt{numqonz}-1.\end{math}"/></td>
+<td><a name="EQ:QODEF">&#09;</a>(5.8.1)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The linear terms in the objective:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math101.png" alt="\begin{math}\nonumber{}c_{j}=\mathtt{c[j]},~j=0,\ldots ,\mathtt{numvar}-1\end{math}"/></td>
+<td><a name="CH:API:EQ:DEFCJ">&#09;</a>(5.8.2)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The fixed term in the objective: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math102.png" alt="\begin{math}\nonumber{}c^{f}=\mathtt{cfix}.\end{math}"/></td>
+<td>(5.8.3)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The quadratic terms in the constraints:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math103.png" alt="\begin{math}\nonumber{}q_{{\mathtt{qcsubi[t]},\mathtt{qcsubj[t]}}}^{\mathtt{qcsubk[t]}}=\mathtt{qcval[t]},~t=0,\ldots ,\mathtt{numqcnz}-1.\end{math}"/></td>
+<td><a name="EQ:QCDEF">&#09;</a>(5.8.4)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The linear terms in the constraints: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math104.png" alt="\begin{math}\nonumber{}\begin{array}{rl}\nonumber{}a_{{\mathtt{asub[t],j}}}=\mathtt{aval[t]}, & t=\mathtt{ptrb[j]},\ldots ,\mathtt{ptre[j]}-1,\\\nonumber{} & j=0,\ldots ,\mathtt{numvar}-1.\end{array}\end{math}"/></td>
+<td><a name="EQ:ADEF">&#09;</a>(5.8.5)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The bounds on the constraints are specified using the variables <tt class="tt">bkc</tt>, <tt class="tt">blc</tt>, and <tt class="tt">buc</tt>. The components of the integer array <tt class="tt">bkc</tt> specify the bound type according to Table <a href="node007.html#CH:API:TAB:BOUNDKEYS">5.3</a>.  </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Symbolic constant </td>
+<td valign="top" style="border-top:1px solid black;"> Lower bound </td>
+<td valign="top" style="border-top:1px solid black;"> Upper bound </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> <a href="node019.html#common-const*mosek*boundkey*fx"><tt class="tt">mosek.boundkey.fx</tt></a> </td>
+<td valign="top" style="border-top:1px solid black;"> finite </td>
+<td valign="top" style="border-top:1px solid black;"> identical to the lower bound </td></tr><tr class="evenrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*fr"><tt class="tt">mosek.boundkey.fr</tt></a> </td>
+<td valign="top"> minus infinity </td>
+<td valign="top"> plus infinity </td></tr><tr class="oddrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*lo"><tt class="tt">mosek.boundkey.lo</tt></a> </td>
+<td valign="top"> finite </td>
+<td valign="top"> plus infinity </td></tr><tr class="evenrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*ra"><tt class="tt">mosek.boundkey.ra</tt></a> </td>
+<td valign="top"> finite </td>
+<td valign="top"> finite </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><a href="node019.html#common-const*mosek*boundkey*up"><tt class="tt">mosek.boundkey.up</tt></a> </td>
+<td valign="top" style="border-bottom:1px solid black;"> minus infinity </td>
+<td valign="top" style="border-bottom:1px solid black;"> finite </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;5.3: Interpretation of the bound keys.</span>
+<br/>
+<p> <a name="CH:API:TAB:BOUNDKEYS">&#09;</a> </p>
+</center></td></tr></table>
+</td></tr></table>
+
+<p>  For instance <tt class="tt">bkc[2]=</tt><a href="node019.html#common-const*mosek*boundkey*lo"><tt class="tt">mosek.boundkey.lo</tt></a> means that <span class="math"><img src="math/math105.png" alt="[[MathCmd 105]]"/></span> and <span class="math"><img src="math/math106.png" alt="[[MathCmd 106]]"/></span>. Finally, the numerical values of the bounds are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math107.png" alt="\begin{math}\nonumber{}l_{k}^{c}=\mathtt{blc[k]},~k=0,\ldots ,\mathtt{numcon}-1\end{math}"/></td>
+<td>(5.8.6)</td></tr>
+</tbody>
+</table>
+
+<p>  and  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math108.png" alt="\begin{math}\nonumber{}u_{k}^{c}=\mathtt{buc[k]},~k=0,\ldots ,\mathtt{numcon}-1.\end{math}"/></td>
+<td>(5.8.7)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The bounds on the variables are specified using the variables <tt class="tt">bkx</tt>, <tt class="tt">blx</tt>, and <tt class="tt">bux</tt>. The components in the integer array <tt class="tt">bkx</tt> specify the bound type according to Table <a href="node007.html#CH:API:TAB:BOUNDKEYS">5.3</a>. The numerical values for the lower bounds on the variables are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math109.png" alt="\begin{math}\nonumber{}l_{j}^{x}=\mathtt{blx[j]},~j=0,\ldots ,\mathtt{numvar}-1.\end{math}"/></td>
+<td>(5.8.8)</td></tr>
+</tbody>
+</table>
+
+<p>  The numerical values for the upper bounds on the variables are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math110.png" alt="\begin{math}\nonumber{}u_{j}^{x}=\mathtt{bux[j]},~j=0,\ldots ,\mathtt{numvar}-1.\end{math}"/></td>
+<td>(5.8.9)</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<div>
+<h3><a name="219890392">5.8.1.1. Bounds</a></h3>
+
+<p> A bound on a variable or on a constraint in MOSEK consists of a <em>bound key</em>, as defined in Table <a href="node007.html#CH:API:TAB:BOUNDKEYS">5.3</a>, a lower bound value and an upper bound value. Even if a variable or constraint is bounded only from below, e.g. <span class="math"><span class="mi">x</span>&ge;<span class="mn">0</span></span>, both bounds are inputted or extracted; the value inputted as upper bound for <span class="math"><span class="mo">(</span><span class="mi">x</span>&ge;<span class="mn">0</span><span class="mo">)</span></span> is ignored.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="219892048">5.8.2. Vector formats</a></h2>
+
+<p> <a name="sec-vector-formats">&#09;</a> Three different vector formats are used in the MOSEK API: </p>
+
+<dl class="description">
+<dt>Full vector:</dt>
+<dd>
+<p> <a name="idx-80422168">&#09;</a> This is simply an array where the first element corresponds to the first item, the second element to the second item etc. For example to get the linear coefficients of the objective in <tt class="tt">task</tt>, one would write</p>
+
+<div class="verbatimcode">c = zeros(numvar,<span class="type">float</span>)
+task.getc(c)
+</div>
+
+<p>where <tt class="tt">numvar</tt> is the number of variables in the problem. </p>
+</dd>
+<dt>Vector slice:</dt>
+<dd>
+<p> A vector slice is a range of values. For example, to get the bounds associated constraint 3 through 10 (both inclusive) one would write</p>
+
+<div class="verbatimcode">upper_bound = zeros(8,<span class="type">float</span>)
+lower_bound = zeros(8,<span class="type">float</span>)
+bound_key   = <span class="type">array</span>([<span class="type">None</span>] * 8)
+
+task.getboundslice(accmode.con, 2, 10,
+                   bound_key,lower_bound,upper_bound)
+</div>
+
+<p>Please note that items in MOSEK are numbered from <span class="math"><span class="mn">0</span></span>, so that the index of the first item is <span class="math"><span class="mn">0</span></span>, and the index of the <span class="math"><span class="mi">n</span></span>'th item is <span class="math"><span class="mi">n</span><span class="mo">-</span><span class="mn">1</span></span>. </p>
+</dd>
+<dt>Sparse vector:</dt>
+<dd>
+<p> <a name="idx-80431584">&#09;</a> <a name="idx-80432376">&#09;</a> A sparse vector is given as an array of indexes and an array of values. For example, to input a set of bounds associated with constraints number 1, 6, 3, and 9, one might write</p>
+
+<div class="verbatimcode">bound_index = [          1,          6,          3,          9]
+bound_key   = [boundkey.fr,boundkey.lo,boundkey.up,boundkey.fx]
+lower_bound = [     0.0,         -10.0,        0.0,        5.0]
+upper_bound = [     0.0,           0.0,        6.0,        5.0]
+task.putboundlist(accmode.con, bound_index,
+                  bound_key,lower_bound,upper_bound)
+</div>
+
+<p>Note that the list of indexes need not be ordered. </p>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h2><a name="219895208">5.8.3. Matrix formats</a></h2>
+
+<p> <a name="sec-matrix-formats">&#09;</a></p>
+
+<p>The coefficient matrices in a problem are inputted and extracted in a sparse format, either as complete or a partial matrices. Basically there are two different formats for this.</p>
+
+<div>
+<h3><a name="219892264">5.8.3.1. Unordered triplets</a></h3>
+
+<p> <a name="sec-intro-subsubsec-triplets">&#09;</a> <a name="idx-80438192">&#09;</a> In unordered triplet format each entry is defined as a row index, a column index and a coefficient. For example, to input the <span class="math"><span class="mi">A</span></span> matrix coefficients for <span class="math"><img src="math/math111.png" alt="[[MathCmd 111]]"/></span>, <span class="math"><img src="math/math112.png" alt="[[MathCmd 112]]"/></span>, and <span class="math"><img src="math/math113.png" alt="[[MathCmd 113]]"/></span>, one would write as follows:</p>
+
+<div class="verbatimcode">subi = <span class="type">array</span>([   1,   3,   5 ])
+subj = <span class="type">array</span>([   2,   3,   4 ])
+cof  = <span class="type">array</span>([ 1.1, 4.3, 0.2 ])
+task.putaijlist(subi,subj,cof)
+</div>
+
+<p>Please note that in some cases (like <a href="node016.html#common-func*mosek*task*putaijlist"><tt class="tt">Task.putaijlist</tt></a>) <em>only</em> the specified indexes remain modified &mdash; all other are unchanged. In other cases (such as <a href="node016.html#common-func*mosek*task*putqconk"><tt class="tt">Task.putqconk</tt></a>) the triplet format is used to modify <em>all</em> entries &mdash; entries that are not specified are set to <span class="math"><span class="mn">0</span></span>.</p>
+
+</div>
+
+<div>
+<h3><a name="219897656">5.8.3.2. Row or column ordered sparse matrix</a></h3>
+
+<p> <a name="sec-intro-subsubsec-cmo-rmo-matrix">&#09;</a> <a name="idx-80444736">&#09;</a> <a name="idx-80445384">&#09;</a>In a sparse matrix format only the non-zero entries of the matrix are stored. MOSEK uses a sparse matrix format ordered either by rows or columns. In the column-wise format the position of the non-zeros are given as a list of row indexes. In the row-wise format the position of the non-zeros are given as a list of column indexes. Values of the non-zero entries are given in column or row order.</p>
+
+<p>A sparse matrix in column ordered format consists of: </p>
+
+<dl class="description">
+<dt><tt class="tt">asub</tt>:</dt>
+<dd>
+<p> List of row indexes.</p>
+</dd>
+<dt><tt class="tt">aval</tt>:</dt>
+<dd>
+<p> List of non-zero entries of <span class="math"><span class="mi">A</span></span> ordered by columns.</p>
+</dd>
+<dt><tt class="tt">ptrb</tt>:</dt>
+<dd>
+<p> Where <tt class="tt">ptrb[j]</tt> is the position of the first value/index in <tt class="tt">aval</tt> / <tt class="tt">asub</tt> for column <span class="math"><span class="mi">j</span></span>.</p>
+</dd>
+<dt><tt class="tt">ptre</tt>:</dt>
+<dd>
+<p> Where <tt class="tt">ptre[j]</tt> is the position of the last value/index plus one in <tt class="tt">aval</tt> / <tt class="tt">asub</tt> for column <span class="math"><span class="mi">j</span></span>. </p>
+</dd>
+</dl>
+
+<p>The values of a matrix A with <tt class="tt">numcol</tt> columns are assigned so that for </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math114.png" alt="\begin{displaymath}\nonumber{}j=0,\ldots ,\mathtt{numcol}-1.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>We define </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math115.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}a_{{\mathtt{asub}[k],j}}=\mathtt{aval}[k],\quad{}k=\mathtt{ptrb}[j],\ldots ,\mathtt{ptre}[j]-1.\end{array}\end{math}"/></td>
+<td>(5.8.10)</td></tr>
+</tbody>
+</table>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td><center>
+<p> <img src="graphics/sparse_format.png"/> </p>
+</center><span class="caption">Figure&nbsp;5.1: The matrix <span class="math"><span class="mi">A</span></span> (<a href="node007.html#ch-tutorial-matrix-ex">5.8.11</a>) represented in column ordered sparse matrix format.</span>
+<br/>
+<p> <a name="ch-tutorial-fig-sparse-matrix">&#09;</a> </p>
+</td></tr></table>
+
+</div>
+
+<p>As an example consider the matrix </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math116.png" alt="\begin{math}\nonumber{}A=\left[\begin{array}{ccccc}\nonumber{}1.1 &  & 1.3 & 1.4 & \\\nonumber{} & 2.2 &  &  & 2.5\\\nonumber{}3.1 &  &  & 3.4 & \\\nonumber{} &  & 4.4 &  &\end{array}\right].\end{math}"/></td>
+<td><a name="ch-tutorial-matrix-ex">&#09;</a>(5.8.11)</td></tr>
+</tbody>
+</table>
+
+<p>which can be represented in the column ordered sparse matrix format as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math117.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lcl}\nonumber{}\mathtt{ptrb} & = & [0,2,3,5,7],\\\nonumber{}\mathtt{ptre} & = & [2,3,5,7,8],\\\nonumber{}\mathtt{asub} & = & [0,2,1,0,3,0,2,1],\\\nonumber{}\mathtt{aval} & = & [1.1,3.1,2.2,1.3,4.4,1.4,3.4,2.5].\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Fig. <a href="node007.html#ch-tutorial-fig-sparse-matrix">5.1</a> illustrates how the matrix <span class="math"><span class="mi">A</span></span> (<a href="node007.html#ch-tutorial-matrix-ex">5.8.11</a>) is represented in column ordered sparse matrix format.</p>
+
+</div>
+
+<div>
+<h3><a name="219921656">5.8.3.3. Row ordered sparse matrix</a></h3>
+
+<p>The matrix <span class="math"><span class="mi">A</span></span> (<a href="node007.html#ch-tutorial-matrix-ex">5.8.11</a>) can also be represented in the row ordered sparse matrix format as:</p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math118.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lcl}\nonumber{}\mathtt{ptrb} & = & [0,3,5,7],\\\nonumber{}\mathtt{ptre} & = & [3,5,7,8],\\\nonumber{}\mathtt{asub} & = & [0,2,3,1,4,0,3,2],\\\nonumber{}\mathtt{aval} & = & [1.1,1.3,1.4,2.2,2.5,3.1,3.4,4.4].\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="219929992">5.8.4. Array objects</a></h2>
+
+<p> The MOSEK Python API provides a simple array object in the module <tt class="tt">mosekarr</tt>. This includes a one-dimensional dense array which can be of type <tt class="tt">Float</tt>, <tt class="tt">Int</tt> or <tt class="tt">Object</tt>, and a few operators and functions to create and modify array objects.</p>
+
+<p>Arrays can be constructed in several ways: </p>
+
+<div class="verbatimcode"><span class="comment"># Create an array of integers</span>
+a0 = <span class="type">array</span>([1,2,3],<span class="type">int</span>)
+<span class="comment"># Create an array of floats</span>
+a1 = <span class="type">array</span>([1,2,3],<span class="type">float</span>)
+<span class="comment"># Create an integer array of ones</span>
+a2 = ones(10)
+<span class="comment"># Create an float array of ones</span>
+a3 = ones(10,<span class="type">float</span>)
+<span class="comment"># Create a range of integers 5,6,...,9</span>
+a4 = range(5,10)
+<span class="comment"># Create and array of objects</span>
+a5 = <span class="type">array</span>(['<span class="string">a string</span>', '<span class="string">b string</span>', 10, 2.2])
+</div>
+
+<p> A limited set of operations on arrays are available - these should work more or less like the equivalent <tt class="tt">Numeric</tt> operations: </p>
+
+<div class="verbatimcode">a = ones(10,<span class="type">float</span>)
+b = 1.0 * arange(10)
+
+
+<span class="comment"># element-wise multiplication, addition and subtraction</span>
+c0 = a * b
+c1 = a + b
+c2 = a - b
+
+<span class="comment"># multiplly each element by 2.1</span>
+c4 = a * 2.1
+
+<span class="comment"># add 2 to each element</span>
+c5 = a + 2
+</div>
+
+<p>If more advanced array operations is needed, it is necessary to install the Python <tt class="tt">Numeric</tt> package.</p>
+
+</div>
+
+<div>
+<h2><a name="219932000">5.8.5. Typical problems using the Python API</a></h2>
+
+<p> Since all all type-information in Python is implicit, type-checking is performed only when required, and in certain cases it is necessary to explicitly write type information.</p>
+
+<p>The MOSEK API currently <em>only</em> supports its own array object (<tt class="tt">mosek.array.array</tt>) and Python <tt class="tt">numpy</tt> <tt class="tt">array</tt>s. Other array or list compatible objects will are accepted but are converted.</p>
+
+<p>Typically type errors occur in two situations: </p>
+
+<ul class="itemize">
+<li>An array argument did not have the right type and could not be converted. </li>
+<li>An array was expected, but the argument was not an array and not a list-compatible object. </li>
+</ul>
+
+<p> Furthermore, please note that <tt class="tt">mosek.array</tt> module only supports a limited set of array types: <tt class="tt">int32</tt>, <tt class="tt">int64</tt>, <tt class="tt">float64</tt> and <tt class="tt">bool</tt>. The numerical types support normal simple mathematical operation (addition, subtraction, multiplication etc.)</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="219934376">5.9. The license system</a></h1>
+
+<p>By default a license token is checked out when <a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a> is first called and is returned when the MOSEK environment is deleted. Calling <a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a> from different threads using the same MOSEK environment only consumes one license token.</p>
+
+<p>To change the license systems behavior to returning the license token after each call to <a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a> set the parameter <a href="node017.html#common-const*mosek*iparam*cache-license"><tt class="tt">mosek.iparam.cache_license</tt></a> to <a href="node019.html#common-const*mosek*onoffkey*off"><tt class="tt">mosek.onoffkey.off</tt></a>. Please note that there is a small overhead associated with setting this parameter, since checking out a license token from the license server can take a small amount of time.</p>
+
+<p>Additionally license checkout and checkin can be controlled manually with the functions <a href="node016.html#common-func*mosek*env*checkinlicense"><tt class="tt">Env.checkinlicense</tt></a> and <a href="node016.html#common-func*mosek*env*checkoutlicense"><tt class="tt">Env.checkoutlicense</tt></a>.</p>
+
+<div>
+<h2><a name="219932432">5.9.1. Waiting for a free license</a></h2>
+
+<p>By default an error will be returned if no license token is available. By setting the parameter <a href="node017.html#common-const*mosek*iparam*license-wait"><tt class="tt">mosek.iparam.license_wait</tt></a> MOSEK can be instructed to wait until a license token is available.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node006.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 4. Testing installation and running examples" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Python API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node008.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  6. Advanced API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node006.html" target="_self">4. Testing installation and running examples</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node008.html" target="_self">6. Advanced API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:54:29 2012</div>
+</body></html>

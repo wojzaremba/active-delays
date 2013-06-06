@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>9. The optimizer for mixed integer problems</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node010.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 8. The optimizers for continuous problems" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node012.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  10. The analyzers" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node010.html" target="_self">8. The optimizers for continuous problems</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node012.html" target="_self">10. The analyzers</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="233065288">9. The optimizer for mixed integer problems</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node011.html#233066864" target="_self">9.1. Some notation</a></li>
+<li><a href="node011.html#233097768" target="_self">9.2. An important fact about integer optimization problems</a></li>
+<li><a href="node011.html#233098272" target="_self">9.3. How the integer optimizer works</a>
+<ul class="toc-level-2">
+<li><a href="node011.html#233098632" target="_self">9.3.1. Presolve</a></li>
+<li><a href="node011.html#233098416" target="_self">9.3.2. Heuristic</a></li>
+<li><a href="node011.html#233104880" target="_self">9.3.3. The optimization phase</a></li>
+</ul>
+</li>
+<li><a href="node011.html#233105744" target="_self">9.4. Termination criterion</a></li>
+<li><a href="node011.html#233123280" target="_self">9.5. How to speed up the solution process</a></li>
+<li><a href="node011.html#233123784" target="_self">9.6. Understanding solution quality</a>
+<ul class="toc-level-2">
+<li><a href="node011.html#233125360" target="_self">9.6.1. Solutionsummary</a></li>
+<li><a href="node011.html#233126368" target="_self">9.6.2. Retrieving solution quality information with the API</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="idx-89753864">&#09;</a><a name="idx-89754656">&#09;</a><a name="idx-89755304">&#09;</a><a name="idx-89756016">&#09;</a>A problem is a mixed-integer optimization problem when one or more of the variables are constrained to be integers. The integer optimizer available in MOSEK can solve integer optimization problems involving </p>
+
+<ul class="itemize">
+<li>linear, </li>
+<li>quadratic and </li>
+<li>conic </li>
+</ul>
+
+<p>constraints. However, a problem is not allowed to have both conic constraints and quadratic objective or constraints.</p>
+
+<p>Readers unfamiliar with integer optimization are strongly recommended to consult some relevant literature, e.g. the book [<a href="node029.html#WOLSEY:98:A" class="citation">17</a>] by Wolsey is a good introduction to integer optimization.</p>
+
+<div>
+<h1><a name="233066864">9.1. Some notation</a></h1>
+
+<p> <a name="idx-89760040">&#09;</a> <a name="idx-89760760">&#09;</a> <a name="idx-89761408">&#09;</a></p>
+
+<p>In general, an integer optimization problem has the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math459.png" alt="\begin{math}\nonumber{}\begin{array}{rclccccl}\nonumber{}z^{*} & = & \mbox{minimize} &  &  & c^{T}x &  & \\\nonumber{} &  & \mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} &  &  & l^{x} & \leq{} & x & \leq{} & u^{x},\\\nonumber{} &  &  &  &  & x_{j}\in{}\mathcal{Z}, &  & \forall j\in{}\mathcal{J},\end{array}\end{math}"/></td>
+<td><a name="intopt-eq-pint">&#09;</a>(9.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math460.png" alt="[[MathCmd 460]]"/></span> is an index set specifying which variables are integer-constrained. Frequently we talk about the continuous relaxation of an integer optimization problem defined as </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math461.png" alt="\begin{math}\nonumber{}\begin{array}{rclccccl}\nonumber{}\underline{z} & = & \mbox{minimize} &  &  & c^{T}x &  & \\\nonumber{} &  & \mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} &  &  & l^{x} & \leq{} & x & \leq{} & u^{x}\end{array}\end{math}"/></td>
+<td><a name="intopt-eq-rel-pint">&#09;</a>(9.1.2)</td></tr>
+</tbody>
+</table>
+
+<p>i.e. we ignore the constraint </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math462.png" alt="\begin{displaymath}\nonumber{}x_{j}\in{}\mathcal{Z},~\forall j\in{}\mathcal{J}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Moreover, let <span class="math"><img src="math/math463.png" alt="[[MathCmd 463]]"/></span> be any feasible solution to (<a href="node011.html#intopt-eq-pint">9.1.1</a>) and define </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math464.png" alt="\begin{displaymath}\nonumber{}\overline{z}:=c^{T}\hat{x}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>It should be obvious that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math465.png" alt="\begin{displaymath}\nonumber{}\underline{z}\leq{}z^{*}\leq{}\overline{z}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>holds. This is an important observation since if we assume that it is not possible to solve the mixed-integer optimization problem within a reasonable time frame, but that a feasible solution can be found, then the natural question is: How far is the <em>obtained</em> solution from the <em>optimal</em> solution? The answer is that no feasible solution can have an objective value smaller than <span class="math"><img src="math/math466.png" alt="[[MathCmd 466]]"/></span>, which implies that the obtained solution is no further away from the optimum than <span class="math"><img src="math/math467.png" alt="[[MathCmd 467]]"/></span>.</p>
+
+</div>
+
+<div>
+<h1><a name="233097768">9.2. An important fact about integer optimization problems</a></h1>
+
+<p> It is important to understand that in a worst-case scenario, the time required to solve integer optimization problems grows exponentially with the size of the problem. For instance, assume that a problem contains <span class="math"><span class="mi">n</span></span> binary variables, then the time required to solve the problem in the worst case may be proportional to <span class="math"><img src="math/math468.png" alt="[[MathCmd 468]]"/></span>. It is a simple exercise to verify that <span class="math"><img src="math/math468.png" alt="[[MathCmd 468]]"/></span> is huge even for moderate values of <span class="math"><span class="mi">n</span></span>.</p>
+
+<p>In practice this implies that the focus should be on computing a near optimal solution quickly rather than at locating an optimal solution.</p>
+
+</div>
+
+<div>
+<h1><a name="233098272">9.3. How the integer optimizer works</a></h1>
+
+<p> The process of solving an integer optimization problem can be split in three phases: </p>
+
+<dl class="description">
+<dt>Presolve:</dt>
+<dd>
+<p> In this phase the optimizer tries to reduce the size of the problem using preprocessing techniques. Moreover, it strengthens the continuous relaxation, if possible.</p>
+</dd>
+<dt>Heuristic:</dt>
+<dd>
+<p> Using heuristics the optimizer tries to guess a good feasible solution.</p>
+</dd>
+<dt>Optimization:</dt>
+<dd>
+<p> The optimal solution is located using a variant of the branch-and-cut method. </p>
+</dd>
+</dl>
+
+<p> In some cases the integer optimizer may locate an optimal solution in the preprocessing stage or conclude that the problem is infeasible. Therefore, the heuristic and optimization stages may never be performed.</p>
+
+<div>
+<h2><a name="233098632">9.3.1. Presolve</a></h2>
+
+<p> In the preprocessing stage redundant variables and constraints are removed. The presolve stage can be turned off using the <a href="node018.html#common-const*mosek*iparam*mio-presolve-use"><tt class="tt">mosek.iparam.mio_presolve_use</tt></a> parameter.</p>
+
+</div>
+
+<div>
+<h2><a name="233098416">9.3.2. Heuristic</a></h2>
+
+<p> Initially, the integer optimizer tries to guess a good feasible solution using different heuristics: </p>
+
+<ul class="itemize">
+<li>First a very simple rounding heuristic is employed.</li>
+<li>Next, if deemed worthwhile, the <em>feasibility pump</em> heuristic is used.</li>
+<li>Finally, if the two previous stages did not produce a good initial solution, more sophisticated heuristics are used. </li>
+</ul>
+
+<p> The following parameters can be used to control the effort made by the integer optimizer to find an initial feasible solution. </p>
+
+<ul class="itemize">
+<li><a href="node018.html#common-const*mosek*iparam*mio-heuristic-level"><tt class="tt">mosek.iparam.mio_heuristic_level</tt></a>: Controls how sophisticated and computationally expensive a heuristic to employ.</li>
+<li><a href="node018.html#common-const*mosek*dparam*mio-heuristic-time"><tt class="tt">mosek.dparam.mio_heuristic_time</tt></a>: The minimum amount of time to spend in the heuristic search.</li>
+<li><a href="node018.html#common-const*mosek*iparam*mio-feaspump-level"><tt class="tt">mosek.iparam.mio_feaspump_level</tt></a>: Controls how aggressively the feasibility pump heuristic is used. </li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="233104880">9.3.3. The optimization phase</a></h2>
+
+<p>This phase solves the problem using the branch and cut algorithm.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="233105744">9.4. Termination criterion</a></h1>
+
+<p> <a name="sec-mip-term-cri">&#09;</a> In general, it is impossible to find an exact feasible and optimal solution to an integer optimization problem in a reasonable amount of time, though in many practical cases it may be possible. Therefore, the integer optimizer employs a relaxed feasibility and optimality criterion to determine when a satisfactory solution is located.</p>
+
+<p>A candidate solution, i.e. a solution to (<a href="node011.html#intopt-eq-rel-pint">9.1.2</a>), is said to be an integer feasible solution if the criterion </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math470.png" alt="\begin{displaymath}\nonumber{}\min (|x_{j}|-\lfloor x_{j}\rfloor ,\lceil x_{j}\rceil -|x_{j}|)\leq{}\max (\delta _{1},\delta _{2}|x_{j}|)~\forall j\in{}\mathcal{J}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is satisfied. Hence, such a solution is defined as a feasible solution to (<a href="node011.html#intopt-eq-pint">9.1.1</a>).</p>
+
+<p>Whenever the integer optimizer locates an integer feasible solution it will check if the criterion </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math471.png" alt="\begin{displaymath}\nonumber{}\overline{z}-\underline{z}\leq{}\max (\delta _{3},\delta _{4}\max (1,\left|\overline{z}\right|))\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is satisfied. If this is the case, the integer optimizer terminates and reports the integer feasible solution as an optimal solution. Please note that <span class="math"><img src="math/math466.png" alt="[[MathCmd 466]]"/></span> is a valid lower bound determined by the integer optimizer during the solution process, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math473.png" alt="\begin{displaymath}\nonumber{}\underline{z}\leq{}z^{*}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The lower bound <span class="math"><img src="math/math466.png" alt="[[MathCmd 466]]"/></span> normally increases during the solution process.</p>
+
+<p>The <span class="math"><img src="math/math475.png" alt="[[MathCmd 475]]"/></span> tolerances can are specified using parameters &mdash; see Table <a href="node011.html#intopt-tab-int_tol">9.1</a>. </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Tolerance </td>
+<td valign="top" style="border-top:1px solid black;"> Parameter name </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"><span class="math"><img src="math/math476.png" alt="[[MathCmd 476]]"/></span> </td>
+<td valign="top" style="border-top:1px solid black;"> <a href="node018.html#common-const*mosek*dparam*mio-tol-abs-relax-int"><tt class="tt">mosek.dparam.mio_tol_abs_relax_int</tt></a> </td></tr><tr class="evenrow">
+<td valign="top"><span class="math"><img src="math/math477.png" alt="[[MathCmd 477]]"/></span> </td>
+<td valign="top"> <a href="node018.html#common-const*mosek*dparam*mio-tol-rel-relax-int"><tt class="tt">mosek.dparam.mio_tol_rel_relax_int</tt></a> </td></tr><tr class="oddrow">
+<td valign="top"><span class="math"><img src="math/math478.png" alt="[[MathCmd 478]]"/></span> </td>
+<td valign="top"> <a href="node018.html#common-const*mosek*dparam*mio-tol-abs-gap"><tt class="tt">mosek.dparam.mio_tol_abs_gap</tt></a> </td></tr><tr class="evenrow">
+<td valign="top"><span class="math"><img src="math/math479.png" alt="[[MathCmd 479]]"/></span> </td>
+<td valign="top"> <a href="node018.html#common-const*mosek*dparam*mio-tol-rel-gap"><tt class="tt">mosek.dparam.mio_tol_rel_gap</tt></a> </td></tr><tr class="oddrow">
+<td valign="top"><span class="math"><img src="math/math480.png" alt="[[MathCmd 480]]"/></span> </td>
+<td valign="top"> <a href="node018.html#common-const*mosek*dparam*mio-near-tol-abs-gap"><tt class="tt">mosek.dparam.mio_near_tol_abs_gap</tt></a> </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;"><span class="math"><img src="math/math481.png" alt="[[MathCmd 481]]"/></span> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <a href="node018.html#common-const*mosek*dparam*mio-near-tol-rel-gap"><tt class="tt">mosek.dparam.mio_near_tol_rel_gap</tt></a> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center><span class="caption">Table&nbsp;9.1: Integer optimizer tolerances.</span>
+<br/>
+<p> <a name="intopt-tab-int_tol">&#09;</a> </p>
+</td></tr></table>
+</td></tr></table>
+
+<p>If an optimal solution cannot be located within a reasonable time, it may be advantageous to employ a relaxed termination criterion after some time. Whenever the integer optimizer locates an integer feasible solution and has spent at least the number of seconds defined by the <a href="node018.html#common-const*mosek*dparam*mio-disable-term-time"><tt class="tt">mosek.dparam.mio_disable_term_time</tt></a> parameter on solving the problem, it will check whether the criterion </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math482.png" alt="\begin{displaymath}\nonumber{}\overline{z}-\underline{z}\leq{}\max (\delta _{5},\delta _{6}\max (1,\left|\overline{z}\right|))\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is satisfied. If it is satisfied, the optimizer will report that the candidate solution is <b>near optimal</b> and then terminate. All <span class="math"><img src="math/math475.png" alt="[[MathCmd 475]]"/></span> tolerances can be adjusted using suitable parameters &mdash; see Table <a href="node011.html#intopt-tab-int_tol">9.1</a>. </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Parameter name </td>
+<td valign="top" style="border-top:1px solid black;"> Delayed </td>
+<td valign="top" style="border-top:1px solid black;"> Explanation </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"><a href="node018.html#common-const*mosek*iparam*mio-max-num-branches"><tt class="tt">mosek.iparam.mio_max_num_branches</tt></a> </td>
+<td valign="top" style="border-top:1px solid black;"> Yes </td>
+<td valign="top" style="border-top:1px solid black;"> Maximum number of branches allowed. </td></tr><tr class="evenrow">
+<td valign="top"><a href="node018.html#common-const*mosek*iparam*mio-max-num-relaxs"><tt class="tt">mosek.iparam.mio_max_num_relaxs</tt></a> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> Maximum number of relaxations allowed. </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><a href="node018.html#common-const*mosek*iparam*mio-max-num-solutions"><tt class="tt">mosek.iparam.mio_max_num_solutions</tt></a> </td>
+<td valign="top" style="border-bottom:1px solid black;"> Yes </td>
+<td valign="top" style="border-bottom:1px solid black;"> Maximum number of feasible integer solutions allowed. </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;9.2: Parameters affecting the termination of the integer optimizer.</span>
+<br/>
+<p> <a name="sec-mio-tab-term-par">&#09;</a> </p>
+</td></tr></table>
+</td></tr></table>
+
+<p>In Table <a href="node011.html#sec-mio-tab-term-par">9.2</a> some other parameters affecting the integer optimizer termination criterion are shown. Please note that if the effect of a parameter is delayed, the associated termination criterion is applied only after some time, specified by the <a href="node018.html#common-const*mosek*dparam*mio-disable-term-time"><tt class="tt">mosek.dparam.mio_disable_term_time</tt></a> parameter.</p>
+
+</div>
+
+<div>
+<h1><a name="233123280">9.5. How to speed up the solution process</a></h1>
+
+<p> As mentioned previously, in many cases it is not possible to find an optimal solution to an integer optimization problem in a reasonable amount of time. Some suggestions to reduce the solution time are: </p>
+
+<ul class="itemize">
+<li>Relax the termination criterion: In case the run time is not acceptable, the first thing to do is to relax the termination criterion &mdash; see Section <a title="9.4. Termination criterion" href="node011.html#sec-mip-term-cri">9.4</a> for details.</li>
+<li>Specify a good initial solution: In many cases a good feasible solution is either known or easily computed using problem specific knowledge. If a good feasible solution is known, it is usually worthwhile to use this as a starting point for the integer optimizer.</li>
+<li>Improve the formulation: A mixed-integer optimization problem may be impossible to solve in one form and quite easy in another form. However, it is beyond the scope of this manual to discuss good formulations for mixed-integer problems. For discussions on this topic see for example [<a href="node029.html#WOLSEY:98:A" class="citation">17</a>]. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="233123784">9.6. Understanding solution quality</a></h1>
+
+<p>To determine the quality of the solution one should check the following: </p>
+
+<ul class="itemize">
+<li>The solution status key returned by MOSEK. </li>
+<li>The <em>optimality gap</em>: A messure for how much the located solution can deviate from the optimal solution to the problem. </li>
+<li>Feasibility. How much the solution violates the constraints of the problem. </li>
+</ul>
+
+<p> The <em>optimality gap</em> is a measure for how close the solution is to the optimal solution. The optimality gap is given by </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math484.png" alt="\begin{displaymath}\nonumber{}\epsilon =|\mbox{(objective value of feasible solution)}-\mbox{(objective bound)}|.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The objective value of the solution is guarentted to be within <span class="math"><img src="math/math485.png" alt="[[MathCmd 485]]"/></span> of the optimal solution.</p>
+
+<p>The optimality gap can be retrived through the solution item <a href="node020.html#common-const*mosek*dinfitem*mio-obj-abs-gap"><tt class="tt">mosek.dinfitem.mio_obj_abs_gap</tt></a>. Often it is more meaningful to look at the optimality gap normalized with the magnitude of the solution. The relative optimality gap is available in <a href="node020.html#common-const*mosek*dinfitem*mio-obj-rel-gap"><tt class="tt">mosek.dinfitem.mio_obj_rel_gap</tt></a>.</p>
+
+<div>
+<h2><a name="233125360">9.6.1. Solutionsummary</a></h2>
+
+<p>The function <a href="node017.html#common-func*mosek*task*solutionsummary"><tt class="tt">mosek.Task.solutionsummary</tt></a> prints the most important solution information to the screen.</p>
+
+<p>After a call to the optimizer the solution summary might look like this: </p>
+
+<pre class="verbatim">Problem status  : PRIMAL_FEASIBLE
+Solution status : INTEGER_OPTIMAL
+Primal - objective: 1.2015000000e+06   eq. infeas.: 0.00e+00 max bound infeas.: 0.00e+00
+cone infeas.: 0.00e+00 integer infeas.: 0.00e+00
+</pre>
+
+<p> The second line contains the solution status key. This shows how MOSEK classified the solution. In this case it is <span class="math"><img src="math/math486.png" alt="[[MathCmd 486]]"/></span>, meaning that the solution is considered to be optimal within the selected tolerances.</p>
+
+<p>The third line contains information relating to the solution. The first number is the primal objective function. The second and third number is the maximum infeasibility in the equality constraints and bounds respectfully. The fourth and fifth number is the maximum infeasibility in the conic and integral contraints. All the numbers relating to the feasibility of the solution should be small for the solution to be valid.</p>
+
+</div>
+
+<div>
+<h2><a name="233126368">9.6.2. Retrieving solution quality information with the API</a></h2>
+
+<p>Information about the solution quality may be retrieved in the API with the help of the following functions:</p>
+
+<ul class="itemize">
+<li><a href="node017.html#common-func*mosek*task*getsolutioninf"><tt class="tt">mosek.Task.getsolutioninf</tt></a>: Obtains maximum infeasibility. </li>
+<li><a href="node017.html#common-func*mosek*task*analyzesolution"><tt class="tt">mosek.Task.analyzesolution</tt></a> Print additional information about the solution. E.g basis condition number and optionally a list of violated constraints. </li>
+<li><a href="node017.html#common-func*mosek*task*getpeqi"><tt class="tt">mosek.Task.getpeqi</tt></a>, <a href="node017.html#common-func*mosek*task*getdeqi"><tt class="tt">mosek.Task.getdeqi</tt></a>, <a href="node017.html#common-func*mosek*task*getpbi"><tt class="tt">mosek.Task.getpbi</tt></a>, <a href="node017.html#common-func*mosek*task*getdbi"><tt class="tt">mosek.Task.getdbi</tt></a>, <a href="node017.html#common-func*mosek*task*getdcni"><tt class="tt">mosek.Task.getdcni</tt></a>, <a href="node017.html#common-func*mosek*task*getpcni"><tt class="tt">mosek.Task.getpcni</tt></a>,<a href="node017.html#common-func*mosek*task*getinti"><tt class="tt">mosek.Task.getinti</tt></a>: Obtains violation of the individual constraints. </li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node010.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 8. The optimizers for continuous problems" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node012.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  10. The analyzers" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node010.html" target="_self">8. The optimizers for continuous problems</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node012.html" target="_self">10. The analyzers</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:46:05 2012</div>
+</body></html>

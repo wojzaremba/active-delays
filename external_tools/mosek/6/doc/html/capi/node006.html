@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>4. Testing installation and compiling examples</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 3. Getting support and help" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  5. Basic API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="245010232">4. Testing installation and compiling examples</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node006.html#245016192" target="_self">4.1. Setting up MOSEK</a>
+<ul class="toc-level-2">
+<li><a href="node006.html#245016624" target="_self">4.1.1. Windows: Checking the MOSEK installation</a></li>
+<li><a href="node006.html#245023016" target="_self">4.1.2. Linux: Checking the MOSEK installation</a></li>
+<li><a href="node006.html#245028048" target="_self">4.1.3. MacOSX: Checking the MOSEK installation</a></li>
+</ul>
+</li>
+<li><a href="node006.html#245033296" target="_self">4.2. Compiling and linking</a>
+<ul class="toc-level-2">
+<li><a href="node006.html#245034304" target="_self">4.2.1. Compiling under Microsoft Windows</a>
+<ul class="toc-level-3">
+<li><a href="node006.html#245036744" target="_self">4.2.1.1. Compiling examples using NMake</a></li>
+<li><a href="node006.html#245038544" target="_self">4.2.1.2. Compiling from command line</a></li>
+<li><a href="node006.html#245049968" target="_self">4.2.1.3. Adding MOSEK to a Visual Studio Project</a></li>
+</ul>
+</li>
+<li><a href="node006.html#245058304" target="_self">4.2.2. UNIX versions</a>
+<ul class="toc-level-3">
+<li><a href="node006.html#245065920" target="_self">4.2.2.1. Compiling examples using GMake</a></li>
+<li><a href="node006.html#245067720" target="_self">4.2.2.2. Example: Linking with GNU C under Linux</a></li>
+<li><a href="node006.html#245069080" target="_self">4.2.2.3. Example: Linking with Sun C on Solaris</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="started-chap-iterface-intro-sec-compile-and-run">&#09;</a> <a name="chap:dist-examples">&#09;</a></p>
+
+<p> This chapter describes how to verify that MOSEK has been installed and set up correctly, and how to compile, link and execute a C example distributed with MOSEK.</p>
+
+<div>
+<h1><a name="245016192">4.1. Setting up MOSEK</a></h1>
+
+<p> Usage of the MOSEK C API requires a working installation of MOSEK and the installation of a valid license file &mdash; see the MOSEK Installation Manual for instructions.</p>
+
+<p>If MOSEK is installed correctly, you should be able to execute the MOSEK command line tool.</p>
+
+<div>
+<h2><a name="245016624">4.1.1. Windows: Checking the MOSEK installation</a></h2>
+
+<p> If MOSEK was installed using the automatic installer, the default location is </p>
+
+<pre class="verbatim">C:\Program Files\mosek\6\
+</pre>
+
+<p>unless a different path was specified.</p>
+
+<p>To check that MOSEK is installed correctly, please do the following. </p>
+
+<ol class="enumerate">
+<li>Open a DOS command prompt (DOS box). </li>
+<li>
+<p>Enter </p>
+
+<pre class="verbatim">mosek.exe -f
+</pre>
+
+<p> This will execute the MOSEK command line tool and print some relevant information. For example: </p>
+
+<pre class="verbatim">MOSEK Version 6.0.0.29(beta) (Build date: 2009-7-28 17:28:26)
+Copyright (c) 1998-2009 MOSEK ApS, Denmark. WWW: http://www.mosek.com
+Global optimizer version: 6.0.1.282. Global optimizer build date: Jul 20 2009 15:24:58
+Barrier Solver Version 6.0.0.029,
+Platform Windows x64.
+64 bit architecture.
+Using FLEXlm version: 11.6.
+Hostname: 'morud' Hostid: '"0015c5f32f32 0015c5f32f30"'
+
+Operating system variables
+MOSEKLM_LICENSE_FILE     :
+PATH                     : c:\local\python24;c:\local\bin;C:\Program Files\mosek\6\tools\platform\win64x86\bin
+
+*** Warning: No input file specified.
+             Common usage of the MOSEK command line tool is:
+
+             mosek file_name
+
+Return code - 0  [MSK_RES_OK]
+</pre>
+</li>
+<li>
+<p>Verify that </p>
+
+<ul class="itemize">
+<li>The program is executed. If the system was unable to recognize <tt class="tt">mosek.exe</tt> as a valid command, then the <tt class="tt">PATH</tt> environment variable has not been set correctly. </li>
+<li>The MOSEK version printed matches the expected version. </li>
+<li>The <tt class="tt">MOSEKLM_LICENSE_FILE</tt> points to the correct license file or to the directory containing it. Note that if it points to a directory containing several license files, there is a risk that it will use the wrong one. </li>
+<li>The <tt class="tt">PATH</tt> contains the path to the correct MOSEK installation. </li>
+</ul>
+</li>
+</ol>
+
+</div>
+
+<div>
+<h2><a name="245023016">4.1.2. Linux: Checking the MOSEK installation</a></h2>
+
+<p> There is no automatic installer for MOSEK on Linux, thus installation is performed manually: See MOSEK Installation Manual for details.</p>
+
+<p>To check that MOSEK is installed correctly, please do the following: </p>
+
+<ol class="enumerate">
+<li>Open a command prompt. </li>
+<li>
+<p>Enter </p>
+
+<pre class="verbatim">mosek -f
+</pre>
+
+<p> This will execute the MOSEK command line tool and print some relevant information. For example: </p>
+
+<pre class="verbatim">MOSEK Version 5.0.0.3(alpha) (Build date: Nov 23 2006 10:56:35)
+Copyright (c) 1998-2006 MOSEK ApS, Denmark. WWW: http://www.mosek.com
+Global optimizer version: 4.50.343. Global optimizer build date: Nov 10 2006 08:37:51.
+Using FLEXlm version: 11.3.
+Hostname: 'kolding' Hostid: '00001a1a5a6a'
+
+Operating system variables
+MOSEKLM_LICENSE_FILE     : /home/ulfw/mosek/5/licenses
+LD_LIBRARY_PATH          : /home/ulfw/mosek/5/tools/platform/win/bin:/home/ulfw/lib
+
+*** Warning: No input file specified.
+             Common usage of the MOSEK command line tool is:
+
+             mosek file_name
+
+Return code - 0  [MSK_RES_OK]
+</pre>
+</li>
+<li>
+<p>Verify that </p>
+
+<ul class="itemize">
+<li>The program is executed. If the system was unable to locate <tt class="tt">mosek</tt>, then the <tt class="tt">PATH</tt> environment variable bas not been set correctly. </li>
+<li>The MOSEK version printed matches the expected version. </li>
+<li>The <tt class="tt">MOSEKLM_LICENSE_FILE</tt> points to the correct license file or to the directory containing it. If it points to a directory containing several license files, there is a risk that it will use the wrong one. </li>
+<li>The <tt class="tt">LD_LIBRARY_PATH</tt> contains the path to the correct MOSEK installation. </li>
+</ul>
+</li>
+</ol>
+
+</div>
+
+<div>
+<h2><a name="245028048">4.1.3. MacOSX: Checking the MOSEK installation</a></h2>
+
+<p> There is no automatic installer for MOSEK on Linux. Installation is performed manually: See MOSEK Installation Manual for details.</p>
+
+<p>To check that MOSEK is correctly installed, go though the following steps. </p>
+
+<ol class="enumerate">
+<li>Open a command prompt. </li>
+<li>
+<p>Enter </p>
+
+<pre class="verbatim">mosek -f
+</pre>
+
+<p> This will execute the MOSEK command line tool and print some relevant information. </p>
+</li>
+<li>
+<p>Verify that </p>
+
+<ul class="itemize">
+<li>The program was executed. If the system was unable to locate <tt class="tt">mosek</tt>, then the <tt class="tt">PATH</tt> environment variable was not correctly set. </li>
+<li>The MOSEK version printed matches the expected version. </li>
+<li>The <tt class="tt">MOSEKLM_LICENSE_FILE</tt> points to the correct license file or the directory containing it. If it points to a directory containing several license files, there is a risk that it will use to wrong one. </li>
+<li>The <tt class="tt">DYLD_LIBRARY_PATH</tt> should contain the path to the correct MOSEK installation. </li>
+</ul>
+</li>
+</ol>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="245033296">4.2. Compiling and linking</a></h1>
+
+<p> <a name="chp-linking-sec-compiling-examp">&#09;</a><a name="idx-72987568">&#09;</a><a name="idx-72988288">&#09;</a>This section demonstrates how to compile, link and run the example <tt class="tt">lo1.c</tt> included with MOSEK. The general requirements for a program linking to the MOSEK library are the same as for <tt class="tt">lo1.c</tt>.</p>
+
+<p>It is assumed that MOSEKis installed, and that there is a working C compiler on the system.</p>
+
+<div>
+<h2><a name="245034304">4.2.1. Compiling under Microsoft Windows</a></h2>
+
+<p> <a name="idx-72993176">&#09;</a><a name="idx-72994040">&#09;</a>We assume that MOSEK is installed under the default path </p>
+
+<pre class="verbatim">c:\Program Files\mosek\6
+</pre>
+
+<p>and that the platform-specific files are located in </p>
+
+<pre class="verbatim">c:\Program Files\mosek\6\tools\platform\&lt;platform&gt;\
+</pre>
+
+<p>where <tt class="tt">&lt;platform&gt;</tt> is <tt class="tt">win</tt> (32-bit Windows), <tt class="tt">win64x86</tt> (64-bit Windows AMD64 or Intel64) or <tt class="tt">winia64</tt> (Windows Itanium).</p>
+
+<div>
+<h3><a name="245036744">4.2.1.1. Compiling examples using NMake</a></h3>
+
+<p> <a name="idx-72987712">&#09;</a><a name="idx-72983184">&#09;</a>The example directory contains makefiles for use with Microsoft NMake. This requires that paths and environment are set up for the Visual Studio tool chain (usually, the submenu containing Visual Studio also contains a <em>Visual Studio Command Prompt</em> which does the necessary setup).</p>
+
+<p>To build the examples, open a DOS box and change directory to the examples directory. For Windows with default installation directories, the example directory is </p>
+
+<pre class="verbatim">c:\Program Files\mosek\6\tools\examples\c
+</pre>
+
+<p>The directory contains a makefile named &#8220;<tt class="tt">Makefile</tt>&#8221;. To compile all examples, run the command </p>
+
+<pre class="verbatim">nmake /f Makefile all
+</pre>
+
+<p> To only build a single example instead of all examples, replace &#8220;<tt class="tt">all</tt>&#8221; by the corresponding executable name. For example, to build <tt class="tt">lo1.exe</tt> type </p>
+
+<pre class="verbatim">nmake /f Makefile lo1.exe
+</pre>
+
+</div>
+
+<div>
+<h3><a name="245038544">4.2.1.2. Compiling from command line</a></h3>
+
+<p> To compile and run a C example using the MOSEK <tt class="tt">dll</tt>, the following files are required: </p>
+
+<ul class="itemize">
+<li>
+<p><tt class="tt">mosek.h</tt>. The header file defining all functions and constants in MOSEK </p>
+
+<pre class="verbatim">c:\Program Files\mosek\6\tools\platform\&lt;platform&gt;\h\mosek.h
+</pre>
+</li>
+<li>
+<p>The MOSEK <tt class="tt">lib</tt> file located in </p>
+
+<pre class="verbatim">c:\Program Files\mosek\6\tools\platform\&lt;platform&gt;\dll
+</pre>
+
+<p>The relevant <tt class="tt">lib</tt> file is </p>
+
+<ul class="itemize">
+<li>
+<p>on 64-bit Microsoft Windows (AMD x64 or Intel EMT64) </p>
+
+<pre class="verbatim">mosek64_6_0.lib 
+</pre>
+</li>
+<li>
+<p>on 32-bit Microsoft Windows </p>
+
+<pre class="verbatim">mosek6_0.lib 
+</pre>
+</li>
+</ul>
+</li>
+<li>
+<p>The MOSEK solver <tt class="tt">dll</tt> located in </p>
+
+<pre class="verbatim">c:\Program Files\mosek\6\tools\platform\&lt;platform&gt;\bin
+</pre>
+
+<p>The relevant <tt class="tt">dll</tt> file is </p>
+
+<ul class="itemize">
+<li>
+<p>on 64-bit Microsoft Windows (AMD x64 or Intel EMT64) </p>
+
+<pre class="verbatim">mosek64_6_0.dll
+</pre>
+</li>
+<li>
+<p>on 32-bit Microsoft Windows </p>
+
+<pre class="verbatim">mosek6_0.dll
+</pre>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>Finally, the distributed C examples are located in the directory </p>
+
+<pre class="verbatim">c:\Program Files\mosek\6\tools\examples\c
+</pre>
+
+<p> To compile and execute the distributed example <tt class="tt">lo1.c</tt>, do the following: </p>
+
+<ol class="enumerate">
+<li>
+<p>Change directory: </p>
+
+<pre class="verbatim">c:
+cd "\Program Files\mosek\6\tools"
+</pre>
+</li>
+<li>
+<p>Compile the example into an executable <tt class="tt">lo1.exe</tt> (we assume that the Visual Studio C compiler <tt class="tt">cl.exe</tt> is available). For Windows 32 </p>
+
+<pre class="verbatim">cl examples\c\lo1.c /out:lo1.exe /I platform\win32x86\h\mosek.h platform\win32x86\bin\mosek6_0.lib
+</pre>
+
+<p> For Windows 64: </p>
+
+<pre class="verbatim">cl examples\c\lo1.c /out:lo1.exe /I platform\win64x86\h\mosek.h platform\win64x86\bin\mosek64_6_0.lib
+</pre>
+</li>
+<li>
+<p>To run the compiled examples, enter </p>
+
+<pre class="verbatim">./lo1.exe
+</pre>
+</li>
+</ol>
+
+</div>
+
+<div>
+<h3><a name="245049968">4.2.1.3. Adding MOSEK to a Visual Studio Project</a></h3>
+
+<p> The following walk-through is specific for Microsoft Visual Studio 7 (.NET), but may work for other versions too.</p>
+
+<p>To compile a project linking to MOSEK in Visual Studio, the following steps are necessary: </p>
+
+<ul class="itemize">
+<li>Create a project or open an existing project in Visual Studio. </li>
+<li>In the <span style="background-color:#cccccc"><b><span class="sf">Solution Explorer</span></b></span> right-click on the relevant project and select <span style="background-color:#cccccc"><b><span class="sf">Properties</span></b></span>. This will open the <span style="background-color:#cccccc"><b><span class="sf">Property pages</span></b></span> dialog. </li>
+<li>In the selection box <span style="background-color:#cccccc"><b><span class="sf">Configuration:</span></b></span> select <span style="background-color:#cccccc"><b><span class="sf">All Configurations</span></b></span>. </li>
+<li>In the tree-view open <span style="background-color:#cccccc"><b><span class="sf">Configuration Properties</span></b></span><span class="math"><img src="math/math1.png" alt="[[MathCmd 1]]"/></span><span style="background-color:#cccccc"><b><span class="sf">C/C++</span></b></span><span class="math"><img src="math/math1.png" alt="[[MathCmd 1]]"/></span><span style="background-color:#cccccc"><b><span class="sf">General</span></b></span>. </li>
+<li>In the properties view select <span style="background-color:#cccccc"><b><span class="sf">Additional Include Directories</span></b></span> and click on the ellipsis &#8220;<span style="background-color:#cccccc"><b><span class="sf">...</span></b></span>&#8221;. </li>
+<li>
+<p>Click on the <span style="background-color:#cccccc"><b><span class="sf">New Folder</span></b></span> button and write the <em>full path</em> to the <tt class="tt">mosek.h</tt> header file or browse for the file by clicking the ellipsis &#8220;<span style="background-color:#cccccc"><b><span class="sf">...</span></b></span>&#8221;. For example, for 32-bit Windows enter </p>
+
+<pre class="verbatim">C:\Program Files\mosek\6\tools\platform\win32x86\h
+</pre>
+</li>
+<li>Click <span style="background-color:#cccccc"><b><span class="sf">OK</span></b></span>. </li>
+<li>Back in the <span style="background-color:#cccccc"><b><span class="sf">Property Pages</span></b></span> dialog select from the tree-view <span style="background-color:#cccccc"><b><span class="sf">Configuration Properties</span></b></span><span class="math"><img src="math/math1.png" alt="[[MathCmd 1]]"/></span><span style="background-color:#cccccc"><b><span class="sf">Linker</span></b></span><span class="math"><img src="math/math1.png" alt="[[MathCmd 1]]"/></span><span style="background-color:#cccccc"><b><span class="sf">Input</span></b></span>. </li>
+<li>In the properties view select <span style="background-color:#cccccc"><b><span class="sf">Additional Dependencies</span></b></span> and click on the ellipsis &#8220;<span style="background-color:#cccccc"><b><span class="sf">...</span></b></span>&#8221;. This will open the <span style="background-color:#cccccc"><b><span class="sf">Additional Dependencies</span></b></span> dialog. </li>
+<li>
+<p>In the text field enter the full path of the MOSEK <tt class="tt">lib</tt> on a new line. For example, for 32-bit Windows </p>
+
+<pre class="verbatim">C:\Program Files\mosek\6\tools\platform\win32x86\bin\mosek6_0.lib
+</pre>
+</li>
+<li>Click <span style="background-color:#cccccc"><b><span class="sf">OK</span></b></span>. </li>
+<li>Back in the <span style="background-color:#cccccc"><b><span class="sf">Property Pages</span></b></span> dialog click <span style="background-color:#cccccc"><b><span class="sf">OK</span></b></span>. </li>
+</ul>
+
+<p> Additionally, if you want to add the <tt class="tt">mosek.h</tt> header file to your project, do the following: </p>
+
+<ul class="itemize">
+<li>In the <span style="background-color:#cccccc"><b><span class="sf">Solution Explorer</span></b></span> right-click on the relevant project and select <span style="background-color:#cccccc"><b><span class="sf">Add</span></b></span><span class="math"><img src="math/math1.png" alt="[[MathCmd 1]]"/></span><span style="background-color:#cccccc"><b><span class="sf">Add Existing Item</span></b></span>. </li>
+<li>Locate and select the <tt class="tt">mosek.h</tt> header file and click <span style="background-color:#cccccc"><b><span class="sf">OK</span></b></span>. </li>
+</ul>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="245058304">4.2.2. UNIX versions</a></h2>
+
+<p> <a name="ch-api-sec-build-unix">&#09;</a> The <tt class="tt">mosek.h</tt> header file which must be included in all files that uses MOSEK functions is located in the directory </p>
+
+<pre class="verbatim">mosek/6/tools/platform/&lt;platform&gt;/h/mosek.h
+</pre>
+
+<p>and the MOSEK shared (or dynamic) library is located in </p>
+
+<pre class="verbatim">mosek/6/tools/platform/&lt;platform&gt;/bin/libmosek64.so.6.0
+</pre>
+
+<p>for 64-bit architectures, and in </p>
+
+<pre class="verbatim">mosek/6/tools/platform/&lt;platform&gt;/bin/libmosek.so.6.0
+</pre>
+
+<p>for 32-bit architectures, where <tt class="tt">&lt;platform&gt;</tt> represents a particular UNIX platform, e.g. </p>
+
+<ul class="itemize">
+<li><tt class="tt">linux32x86</tt>, </li>
+<li><tt class="tt">linux64x86</tt>, </li>
+<li><tt class="tt">osx32ppc</tt>, </li>
+<li><tt class="tt">osx32x86</tt>, </li>
+<li><tt class="tt">solarissparc</tt>, or </li>
+<li><tt class="tt">solarissparc64</tt>. </li>
+</ul>
+
+<p>Programs linking with MOSEK must be linked to several libraries. A script for linking the MOSEK examples can is located in </p>
+
+<pre class="verbatim">mosek/&lt;version&gt;/test/testunix.sh
+</pre>
+
+<p>This script contains the definitions: </p>
+
+<pre class="verbatim">case $MSKPLATFORM in
+
+  linux32x86)
+    MSKCC="gcc"
+    MSKLINKFLAGS="-lc -ldl -lm"
+    ;;
+
+  linux64x86)
+    MSKCC="gcc -m64"
+    MSKLINKFLAGS="-lc -ldl -lm"
+    ;;
+
+  solarissparc )
+    MSKDIR=solaris/sparc
+    MSKCC=cc
+    MSKLINKFLAGS="-lsocket -lnsl -lintl -lthread -lpthread -lc -ldl -lm"
+    ;;
+
+  solarissparc64 )
+    MSKDIR=solaris/sparc64
+    MSKPLATFORM=solaris/sparc64
+    MSKCC="cc -xtarget=generic64"
+    MSKLINKFLAGS="-lsocket -lnsl -lintl -lthread -lpthread -lc -ldl -lm"
+    ;;
+esac
+</pre>
+
+<p>In the <tt class="tt">testunix.sh</tt> script the <tt class="tt">MSKLINKFLAGS</tt> variable is defined for each platform. <tt class="tt">MSKLINKFLAGS</tt> contains the link flags that must be added to the command line when linking against the MOSEK dynamic library.</p>
+
+<div>
+<h3><a name="245065920">4.2.2.1. Compiling examples using GMake</a></h3>
+
+<p> <a name="idx-74313096">&#09;</a><a name="idx-74312232">&#09;</a>The example directory contains makefiles for use with GNU Make.</p>
+
+<p>To build the examples, open a prompt and change directory to the examples directory. For Linux with default installation path, the examples directory is </p>
+
+<pre class="verbatim">mosek/6/tools/examples/c
+</pre>
+
+<p>The directory contains a makefile for GNU Make and gcc. To build all examples, go to the examples and enter </p>
+
+<pre class="verbatim">gmake all
+</pre>
+
+<p> To build one example instead of all examples, replace &#8220;<tt class="tt">all</tt>&#8221; by the corresponding executable name. For example, to build the <tt class="tt">lo1</tt> executable type </p>
+
+<pre class="verbatim">gmake lo1
+</pre>
+
+</div>
+
+<div>
+<h3><a name="245067720">4.2.2.2. Example: Linking with GNU C under Linux</a></h3>
+
+<p> <a name="idx-74309000">&#09;</a><a name="idx-74299944">&#09;</a></p>
+
+<p>The following example shows how to link to the MOSEK shared library on a 64bit platform: </p>
+
+<pre class="verbatim"># The -L. tells gcc to look for shared libraries in the directory ./
+# The -lmosek  tells gcc to link to the mosek library
+
+# Set environment variable so the MOSEK shared library
+# can be located. Must be done at both link time and run time.
+
+export LD_LIBRARY_PATH=./platform/linux64x86/bin/:$LD_LIBRARY_PATH
+
+# Replace -lmosek with -lmosek if you are linking on a 32-bit platform.
+
+gcc examp/lo1.c -o lo1 -I h/ -L platform/linux32x86/bin/ \
+                -lmosek -pthread -lc -ldl -lm
+
+# Run lo1 executable
+./lo1
+</pre>
+
+<p>Please note that linking with the &#8220;<tt class="tt">-pthread</tt>&#8221; flag is requires by Intel's OpenMP library.</p>
+
+<p>The distribution contains a MOSEK library built without OpenMP; to use this instead of the normal MOSEK library, replace &#8220;<tt class="tt">-lmosek</tt>&#8221; by &#8220;<tt class="tt">-lmoseknoomp</tt>, and &#8220;<tt class="tt">-lmosek64</tt>&#8221; by &#8220;<tt class="tt">-lmoseknoomp64</tt>&#8221;.</p>
+
+</div>
+
+<div>
+<h3><a name="245069080">4.2.2.3. Example: Linking with Sun C on Solaris</a></h3>
+
+<p> <a name="idx-74246696">&#09;</a><a name="idx-73072008">&#09;</a></p>
+
+<p>The following example shows how to link to the MOSEK shared library. </p>
+
+<pre class="verbatim"># The -L. tells cc to look for shared libraries in the directory ./
+# The -lmosek  tells cc to link to the mosek library.
+
+# Replace -lmosek with -lmosek64 if you are linking on a 64-bit platform.
+
+cc examp/lo1.c -o lo1 -I h/ -L platform/solaris/sparc/dll/ -lmosek \
+                -lsocket -lnsl -lintl -lthread -lpthread -lc -ldl -lm
+
+# Set environment variable so the MOSEK shared library
+# can be located.
+LD_LIBRARY_PATH=./platform/linux/intel/dll/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+
+# Run lo1 executable
+./lo1
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 3. Getting support and help" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  5. Basic API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:50:19 2012</div>
+</body></html>

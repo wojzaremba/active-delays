@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>G. The ORD file format</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node026.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : F. The XML (OSiL) format" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node028.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  H. The solution file format" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node026.html" target="_self">F. The XML (OSiL) format</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node028.html" target="_self">H. The solution file format</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="264863472">G. The ORD file format</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node027.html#264852688" target="_self">G.1. An example</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p><a name="idx-190024160">&#09;</a></p>
+
+<p>An ORD formatted file specifies in which order the mixed integer optimizer branches on variables. The format of an ORD file is shown in Figure <a href="node027.html#FIG-ORDFORMAT">G.1</a>. In the figure names in capitals are keywords of the ORD format, whereas names in brackets are custom names or values. The <tt class="tt">??</tt> is an optional key specifying the preferred branching direction. The possible keys are <tt class="tt">DN</tt> and <tt class="tt">UP</tt> which indicate that down or up is the preferred branching direction respectively. The branching direction key is optional and is left blank the mixed integer optimizer will decide whether to branch up or down.</p>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td>
+<p> <small class="small">
+<pre class="verbatim">*        1         2         3         4         5         6
+*23456789012345678901234567890123456789012345678901234567890
+NAME          [name]
+ ?? [vname1]              [value1]                       
+ENDATA
+</pre>
+</small></p>
+<span class="caption">Figure&nbsp;G.1: The standard ORD format.</span>
+<br/>
+<p><a name="FIG-ORDFORMAT">&#09;</a> </p>
+</td></tr></table>
+
+</div>
+
+<div>
+<h1><a name="264852688">G.1. An example</a></h1>
+
+<p>A concrete example of a ORD file is presented below: </p>
+
+<pre class="verbatim">NAME          EXAMPLE
+ DN x1                  2                            
+ UP x2                  1                                
+    x3                  10 
+ENDATA
+</pre>
+
+<p> This implies that the priorities 2, 1, and 10 are assigned to variable <tt class="tt">x1</tt>, <tt class="tt">x2</tt>, and <tt class="tt">x3</tt> respectively. The higher the priority value assigned to a variable the earlier the mixed integer optimizer will branch on that variable. The key <tt class="tt">DN</tt> implies that the mixed integer optimizer first will branch down on variable whereas the key <tt class="tt">UP</tt> implies that the mixed integer optimizer will first branch up on a variable.</p>
+
+<p>If no branch direction is specified for a variable then the mixed integer optimizer will automatically choose the branching direction for that variable. Similarly, if no priority is assigned to a variable then it is automatically assigned the priority of 0.</p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node026.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : F. The XML (OSiL) format" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node028.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  H. The solution file format" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node026.html" target="_self">F. The XML (OSiL) format</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node028.html" target="_self">H. The solution file format</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:46:08 2012</div>
+</body></html>

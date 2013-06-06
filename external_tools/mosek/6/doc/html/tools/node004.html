@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>2. The MOSEK optimization tools</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node003.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 1. Changes and new features in MOSEK" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization tools manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node005.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  3. Getting support and help" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node003.html" target="_self">1. Changes and new features in MOSEK</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="238913008">2. The MOSEK optimization tools</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node004.html#238911568" target="_self">2.1. What is MOSEK</a>
+<ul class="toc-level-2">
+<li><a href="node004.html#238916888" target="_self">2.1.1. Interfaces</a></li>
+</ul>
+</li>
+<li><a href="node004.html#238921272" target="_self">2.2. How to use this manual</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="CH:MOSEK">&#09;</a></p>
+
+<div>
+<h1><a name="238911568">2.1. What is MOSEK</a></h1>
+
+<p>MOSEK is a software package for solving mathematical optimization problems.</p>
+
+<p>The core of MOSEK consists of a number of optimizers that can solve various optimization problems. The problem clases MOSEK is designed to solve are: </p>
+
+<ul class="itemize">
+<li>Linear problems. </li>
+<li>Conic quadratic problems. (also known as second order optimization). </li>
+<li>
+<p>General convex problems. In particular, MOSEK is wellsuited for: </p>
+
+<ul class="itemize">
+<li>Convex quadratic problems. </li>
+<li>Convex quadratically constrained problems. </li>
+<li>Geometric problems (posynomial case). </li>
+</ul>
+</li>
+<li>Integer problems, i.e. problems where some of the variables are constrained to integer values. </li>
+</ul>
+
+<p>These problem classes can be solved using an appropriate optimizer built into MOSEK: </p>
+
+<ul class="itemize">
+<li>Interior-point optimizer for all continuous problems. </li>
+<li>Primal or dual simplex optimizer for linear problems. </li>
+<li>Conic interior-point optimizer for conic quadratic problems. </li>
+<li>Mixed-integer optimizer based on a branch and cut technology. </li>
+</ul>
+
+<p>All the optimizers available in MOSEK are built for solving large-scale sparse problems and have been extensively tuned for stability and performance.</p>
+
+<div>
+<h2><a name="238916888">2.1.1. Interfaces</a></h2>
+
+<p>There are several ways to interface with MOSEK: </p>
+
+<ul class="itemize">
+<li>
+<p>Files: </p>
+
+<ul class="itemize">
+<li>MPS format: MOSEK reads the industry standard MPS file format for specifying (mixed integer) linear optimization problems. Moreover an MPS file can also be used to specify quadratic, quadratically constrained, and conic optimization problems.</li>
+<li>LP format: MOSEK can read and write the CPLEX LP format with some restrictions.</li>
+<li>OPF format: MOSEK also has its own text based format called OPF. The format is closely related to the LP but is much more robust in its specification </li>
+</ul>
+</li>
+<li>
+<p>APIs: MOSEK can also invoked from various programming languages. </p>
+
+<ul class="itemize">
+<li>C/C++, </li>
+<li>C# (plus other .NET languages), </li>
+<li>Delphi, </li>
+<li>Java and </li>
+<li>Python. </li>
+</ul>
+</li>
+<li>
+<p>Thrid party programs:</p>
+
+<ul class="itemize">
+<li>AMPL: MOSEK can easily be used from the modeling language AMPL which is a high-level modeling language that makes it possible to formulate optimization problems in a language close to the original &#8220;pen and paper&#8221; model formulation.</li>
+<li>MATLAB: When using the MOSEK optimization toolbox for Matlab the functionality of MOSEK can easily be used within MATLAB. </li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="238921272">2.2. How to use this manual</a></h1>
+
+<p>This manual consists of two parts each consisting of several chapters.</p>
+
+<p>The first part consists of the Chapters <a title="4. Using the MOSEK command line tool" href="node006.html#ch-mosek-comtool">4</a> to <a title="14. Sensitivity analysis" href="node016.html#chap-sensitivity-analysis">14</a> and is a User's guide which provides a quick introduction to the usage of MOSEK. The last part consists of appendixes <a title="A. MOSEK command line tool reference" href="node017.html#ch-comtoolref">A</a> - <a title="I. Symbolic constants reference" href="node025.html#sec-symbcon">I</a> is a reference manual for the MOSEK command line tool, file formats and parameters.</p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node003.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 1. Changes and new features in MOSEK" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization tools manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node005.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  3. Getting support and help" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node003.html" target="_self">1. Changes and new features in MOSEK</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:02:15 2012</div>
+</body></html>

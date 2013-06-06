@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>H. The solution file format</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node026.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : G. The ORD file format" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node028.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  Bibliography" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node026.html" target="_self">G. The ORD file format</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node028.html" target="_self">Bibliography</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="250923920">H. The solution file format</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node027.html#250927584" target="_self">H.1. The basic and interior solution files</a></li>
+<li><a href="node027.html#250948640" target="_self">H.2. The integer solution file</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="app-sec-solfile">&#09;</a> MOSEK provides one or two solution files depending on the problem type and the optimizer used. If a problem is optimized using the interior-point optimizer and no basis identification is required, then a file named <tt class="tt">probname.sol</tt> is provided. <tt class="tt">probname</tt> is the name of the problem and <tt class="tt">.sol</tt> is the file extension. If the problem is optimized using the simplex optimizer or basis identification is performed, then a file named <tt class="tt">probname.bas</tt> is created presenting the optimal basis solution. Finally, if the problem contains integer constrained variables then a file named <tt class="tt">probname.int</tt> is created. It contains the integer solution.</p>
+
+<div>
+<h1><a name="250927584">H.1. The basic and interior solution files</a></h1>
+
+<p>In general both the interior-point and the basis solution files have the format: <small class="tiny">
+<pre class="verbatim">NAME                : &lt;problem name&gt;
+PROBLEM STATUS      : &lt;status of the problem&gt;
+SOLUTION STATUS     : &lt;status of the solution&gt;
+OBJECTIVE NAME      : &lt;name of the objective function&gt;
+PRIMAL OBJECTIVE    : &lt;primal objective value corresponding to the solution&gt;
+DUAL OBJECTIVE      : &lt;dual objective value corresponding to the solution&gt;
+CONSTRAINTS
+INDEX  NAME             AT ACTIVITY           LOWER LIMIT        UPPER LIMIT        DUAL LOWER         DUAL UPPER
+?      &lt;name&gt;           ?? &lt;a value&gt;          &lt;a value&gt;          &lt;a value&gt;          &lt;a value&gt;          &lt;a value&gt;
+VARIABLES
+INDEX  NAME             AT ACTIVITY           LOWER LIMIT        UPPER LIMIT        DUAL LOWER         DUAL UPPER          CONIC DUAL
+?      &lt;name&gt;           ?? &lt;a value&gt;          &lt;a value&gt;          &lt;a value&gt;          &lt;a value&gt;          &lt;a value&gt;           &lt;a value&gt;
+</pre>
+</small>In the example the fields <tt class="tt">?</tt> and <tt class="tt">&lt;&gt;</tt> will be filled with problem and solution specific information. As can be observed a solution report consists of three sections, i.e. </p>
+
+<dl class="description">
+<dt><tt class="tt">HEADER</tt></dt>
+<dd>
+<p> In this section, first the name of the problem is listed and afterwards the problem and solution statuses are shown. In this case the information shows that the problem is primal and dual feasible and the solution is optimal. Next the primal and dual objective values are displayed.</p>
+</dd>
+<dt><tt class="tt">CONSTRAINTS</tt></dt>
+<dd>
+<p> Subsequently in the constraint section the following information is listed for each constraint:  </p>
+
+<dl class="description">
+<dt><tt class="tt">INDEX</tt></dt>
+<dd>
+<p> A sequential index assigned to the constraint by MOSEK.</p>
+</dd>
+<dt><tt class="tt">NAME</tt></dt>
+<dd>
+<p> The name of the constraint assigned by the user.</p>
+</dd>
+<dt><tt class="tt">AT</tt></dt>
+<dd>
+<p> The status of the constraint. In Table <a href="node027.html#CH:INTRO:TAB:SOLSTAKEY">H.1</a> the possible values of the status keys and their interpretation are shown.  </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Status key </td>
+<td valign="top" style="border-top:1px solid black;"> Interpretation </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">UN</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> Unknown status </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">BS</tt> </td>
+<td valign="top"> Is basic </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">SB</tt> </td>
+<td valign="top"> Is superbasic </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">LL</tt> </td>
+<td valign="top"> Is at the lower limit (bound) </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">UL</tt> </td>
+<td valign="top"> Is at the upper limit (bound) </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">EQ</tt> </td>
+<td valign="top"> Lower limit is identical to upper limit </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">**</tt> </td>
+<td valign="top"> Is infeasible i.e. the lower limit is </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;">&#160;</td>
+<td valign="top" style="border-bottom:1px solid black;"> greater than the upper limit. </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;H.1: Status keys.</span>
+<br/>
+<p> <a name="CH:INTRO:TAB:SOLSTAKEY">&#09;</a> </p>
+</center></td></tr></table>
+</td></tr></table>
+</dd>
+<dt><tt class="tt">ACTIVITY</tt></dt>
+<dd>
+<p> Given the <span class="math"><span class="mi">i</span></span>th constraint on the form  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math1009.png" alt="\begin{math}\nonumber{}l_{i}^{c}\leq{}\sum _{{j=1}}^{n}a_{{ij}}x_{j}\leq{}u_{i}^{c},\end{math}"/></td>
+<td><a name="CONFORM">&#09;</a>(H.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>  then activity denote the quantity <span class="math"><img src="math/math1010.png" alt="[[MathCmd 1010]]"/></span>, where <span class="math"><img src="math/math371.png" alt="[[MathCmd 371]]"/></span> is the value for the <span class="math"><span class="mi">x</span></span> solution. </p>
+</dd>
+<dt><tt class="tt">LOWER LIMIT</tt></dt>
+<dd>
+<p> Is the quantity <span class="math"><img src="math/math132.png" alt="[[MathCmd 132]]"/></span> (see (<a href="node027.html#CONFORM">H.1.1</a>)). </p>
+</dd>
+<dt><tt class="tt">UPPER LIMIT</tt></dt>
+<dd>
+<p> Is the quantity <span class="math"><img src="math/math133.png" alt="[[MathCmd 133]]"/></span> (see (<a href="node027.html#CONFORM">H.1.1</a>)). </p>
+</dd>
+<dt><tt class="tt">DUAL LOWER</tt></dt>
+<dd>
+<p> Is the dual multiplier corresponding to the lower limit on the constraint. </p>
+</dd>
+<dt><tt class="tt">DUAL UPPER</tt></dt>
+<dd>
+<p> Is the dual multiplier corresponding to the upper limit on the constraint. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">VARIABLES</tt></dt>
+<dd>
+<p> The last section of the solution report lists information for the variables. This information has a similar interpretation as for the constraints. However, the column with the header <tt class="tt">[CONIC DUAL]</tt> is only included for problems having one or more conic constraints. This column shows the dual variables corresponding to the conic constraints.</p>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h1><a name="250948640">H.2. The integer solution file</a></h1>
+
+<p>The integer solution is equivalent to the basic and interior solution files except that no dual information is included.</p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node026.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : G. The ORD file format" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node028.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  Bibliography" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node026.html" target="_self">G. The ORD file format</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node028.html" target="_self">Bibliography</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:42:16 2012</div>
+</body></html>

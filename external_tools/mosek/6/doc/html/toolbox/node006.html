@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>4. Installation</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 3. Supported MATLAB versions" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  5. Getting support and help" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">3. Supported MATLAB versions</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">5. Getting support and help</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="235060544">4. Installation</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node006.html#235059968" target="_self">4.1. Locating the toolbox functions</a>
+<ul class="toc-level-2">
+<li><a href="node006.html#235079296" target="_self">4.1.1. On Windows</a></li>
+<li><a href="node006.html#235080664" target="_self">4.1.2. On Linux/UNIX/MAC OS X</a></li>
+<li><a href="node006.html#235081096" target="_self">4.1.3. Permanently changing <tt class="tt">matlabpath</tt></a></li>
+</ul>
+</li>
+<li><a href="node006.html#235086336" target="_self">4.2. Verifying that MOSEK works</a></li>
+<li><a href="node006.html#235086768" target="_self">4.3. Troubleshooting</a>
+<ul class="toc-level-2">
+<li><a href="node006.html#235086408" target="_self">4.3.1. ??? Undefined function or variable 'mosekopt'</a>
+<ul class="toc-level-3">
+<li><a href="node006.html#235087200" target="_self">4.3.1.1. Unable to load MEX-file</a></li>
+</ul>
+</li>
+<li><a href="node006.html#235084040" target="_self">4.3.2. &#8220;<tt class="tt">libgcc_s.so.1 must be installed for pthread_cancel to work</tt>&#8221;</a></li>
+<li><a href="node006.html#235090576" target="_self">4.3.3. Using the MATLAB compiler</a></li>
+<li><a href="node006.html#235090936" target="_self">4.3.4. Shadowing the m-file</a></li>
+<li><a href="node006.html#235092304" target="_self">4.3.5. &#8220;<tt class="tt">Cannot find authentication file</tt>&#8221;</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p>  In order to use the MOSEK optimization toolbox for MATLAB, you must install the MOSEK optimization tools. Please see Chapter 2 in the MOSEK installation manual for details on how to install MOSEK. An online version is available at</p>
+
+<p><a href="http://www.mosek.com/documentation/">http://www.mosek.com/documentation/</a></p>
+
+<div>
+<h1><a name="235059968">4.1. Locating the toolbox functions</a></h1>
+
+<p> <a name="ch-install-sec-locate">&#09;</a></p>
+
+<p>By default MATLAB cannot locate the MOSEK optimization toolbox functions. Therefore you must execute the <tt class="tt">addpath</tt> command within MATLAB to change the so-called <tt class="tt">matlabpath</tt> appropriately. Indeed <tt class="tt">matlabpath</tt> should include a path to the MOSEK optimization toolbox functions. The next subsections show how to use <tt class="tt">addpath</tt>.</p>
+
+<div>
+<h2><a name="235079296">4.1.1. On Windows</a></h2>
+
+<p>If you are using Windows you should do </p>
+
+<pre class="verbatim">% For MATLAB 7.9 (R2009b) or any later version do
+addpath 'c:\Program Files\mosek\6\toolbox\r2009b'
+
+% For MATLAB 7.4 (R2007a) to MATLAB 7.8 (R2009a)
+addpath 'c:\Program Files\mosek\6\toolbox\r2007a'
+
+% For MATLAB 7.3 (R2006b) do
+addpath 'c:\Program Files\mosek\6\toolbox\r2006b'
+</pre>
+
+<p>This assumes that you installed MOSEK at </p>
+
+<pre class="verbatim">c:\Program Files\
+</pre>
+
+<p>If this is not the case, you will have to change the path given to addpath.</p>
+
+</div>
+
+<div>
+<h2><a name="235080664">4.1.2. On Linux/UNIX/MAC OS X</a></h2>
+
+<p>If you are using UNIX or a UNIX-like operating system you should do </p>
+
+<pre class="verbatim">% For MATLAB 7.9 (R2009b) or any later version do
+addpath '/home/user/mosek/6/toolbox/r2009b'
+
+% For MATLAB 7.4 (R2007a) to MATLAB 7.8 (R2009a)
+addpath '/home/user/mosek/6/toolbox/r2007a'
+
+% For MATLAB 7.3 (R2006b)
+addpath '/home/user/mosek/6/toolbox/r2006b'
+</pre>
+
+<p>This assumes that MOSEK is installed at </p>
+
+<pre class="verbatim">/home/user
+</pre>
+
+<p>If this is not the case, you will have to change the path given to addpath.</p>
+
+</div>
+
+<div>
+<h2><a name="235081096">4.1.3. Permanently changing <tt class="tt">matlabpath</tt></a></h2>
+
+<p> Normally, you will have to enter the <tt class="tt">addpath</tt> command every time MATLAB is started. This can be avoided if the <tt class="tt">addpath</tt> command is added to </p>
+
+<pre class="verbatim">&lt;matlab&gt;toolbox\local\startup.m
+</pre>
+
+<p>where <tt class="tt">&lt;matlab&gt;</tt> is the MATLAB root directory. Alternatively the permanent modification of the MATLAB path can be performed using the </p>
+
+<pre class="verbatim">\File\Set Path
+</pre>
+
+<p>menu item.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="235086336">4.2. Verifying that MOSEK works</a></h1>
+
+<p> You can verify that MOSEK works by executing </p>
+
+<pre class="verbatim">mosekopt
+</pre>
+
+<p>in MATLAB. You should get a message similar to this: </p>
+
+<pre class="verbatim">MOSEK Version 3.1.1.62 (Build date: Dec 16 2004 11:49:51)
+Copyright (c) 1998-2004 MOSEK ApS, Denmark. WWW: http://www.mosek.com
+
+
+    MOSEK command summary.
+
+        [r,res]=mosekopt(cmd,prob,param,log)
+</pre>
+
+<p>If you do not get this message, please read Section <a title="4.3. Troubleshooting" href="node006.html#ch-installation-sec-troubleshoot">4.3</a>.</p>
+
+</div>
+
+<div>
+<h1><a name="235086768">4.3. Troubleshooting</a></h1>
+
+<p> <a name="ch-installation-sec-troubleshoot">&#09;</a></p>
+
+<div>
+<h2><a name="235086408">4.3.1. ??? Undefined function or variable 'mosekopt'</a></h2>
+
+<p> If you get the MATLAB error message </p>
+
+<pre class="verbatim">??? Undefined function or variable 'mosekopt'
+</pre>
+
+<p>you have not set up the <tt class="tt">matlabpath</tt> correctly as described in Section <a title="4.1. Locating the toolbox functions" href="node006.html#ch-install-sec-locate">4.1</a>.</p>
+
+<div>
+<h3><a name="235087200">4.3.1.1. Unable to load MEX-file</a></h3>
+
+<p> One reason can be that you are not adding the correct path to the <tt class="tt">matlabpath</tt>, e.g. you may be trying to use the MOSEK optimization toolbox build for MATLAB 7 in MATLAB 6.</p>
+
+<p>The other possible reasons are discussed below. </p>
+
+<ul class="itemize">
+<li>
+<p>Windows: MATLAB prints an error message similar to this: </p>
+
+<pre class="verbatim">DLL load failed for mex file
+c:\mosek\3\tools\toolbox\14sp3\mosekopt.dll The
+specified procedure could not be found. ??? Invalid MEX-file
+</pre>
+
+<p>Most likely this problem is caused by the fact that MOSEK cannot load the MOSEK DLL which in turn is caused by the environment variable </p>
+
+<pre class="verbatim">PATH
+</pre>
+
+<p>not being appropriately set up.</p>
+
+<p>Please consult the <em>MOSEK installation manual</em> to learn how to install MOSEK under Windows and how to set up the operating system variable <tt class="tt">PATH</tt>.</p>
+</li>
+<li>
+<p>MAC OS X: The <tt class="tt">DYLD_LIBRARY_PATH</tt> environment variable is not appropriately set up. Setting this variable can be tricky, in particular if you are invoking MATLAB by clicking on the MATLAB icon. In this case a file named </p>
+
+<pre class="verbatim">$HOME/.MacOSX/environment.plist
+</pre>
+
+<p>with a proper content should exist on your computer. Further details about <tt class="tt">environment.plist</tt> and how to install MOSEK under MAC OS X are available in the <em>MOSEK installation manual</em>.</p>
+</li>
+<li>
+<p>UNIX: MATLAB prints an error message similar to this: </p>
+
+<pre class="verbatim">Unable to load mex file:
+/usr/local/mosek/4/toolbox/14sp3/mosekopt.mexglx.
+libmosek.so.2.5: cannot open shared object file: No such file or
+directory ??? Invalid MEX-file
+</pre>
+
+<p>The cause of the problem is that the shared library </p>
+
+<pre class="verbatim">libmosek.so.2.5
+</pre>
+
+<p>cannot be loaded. Normally this problem is caused by the fact that the OS environment variable </p>
+
+<pre class="verbatim">LD_LIBRARY_PATH
+</pre>
+
+<p>is not appropriately set up. Please note that <tt class="tt">LD_LIBRARY_PATH</tt> may have another name on some UNIX systems. Please consult the <em>MOSEK installation manual</em> to learn how to install MOSEK under UNIX. </p>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="235084040">4.3.2. &#8220;<tt class="tt">libgcc_s.so.1 must be installed for pthread_cancel to work</tt>&#8221;</a></h2>
+
+<p> This error is caused by the fact thatan old version of the </p>
+
+<pre class="verbatim">libgcc_s.so.1
+</pre>
+
+<p>library is included in the MATLAB distribution. One method of solving this is to execute </p>
+
+<pre class="verbatim">export  LD_PRELOAD=/usr/lib/libgcc_s.so
+</pre>
+
+<p>before running MATLAB.</p>
+
+<p>Another workaround is to remove <tt class="tt">libgcc_s.so.1</tt> from the MATLAB distribution. We suggest you rename </p>
+
+<pre class="verbatim">&lt;matlab&gt;sys/os/glnx86/libgcc_s.so.1
+</pre>
+
+<p>to </p>
+
+<pre class="verbatim">&lt;matlab&gt;sys/os/glnx86/BACKUP_libgcc_s.so.1.bak
+</pre>
+
+<p>which should solve the problem.</p>
+
+</div>
+
+<div>
+<h2><a name="235090576">4.3.3. Using the MATLAB compiler</a></h2>
+
+<p> MATLAB scripts using MOSEK can be compiled with the MATLAB compiler. Below is a description of some possible errors and their solution.</p>
+
+</div>
+
+<div>
+<h2><a name="235090936">4.3.4. Shadowing the m-file</a></h2>
+
+<p> If you encounter the error </p>
+
+<pre class="verbatim">The file
+  '/tools/mosek/4/toolbox/r14sp3/mosekopt.mexglx'
+appears to be a MEX-file. It shadows the M-file
+'/tools/mosek/4/toolbox/r14sp3/mosekopt.m'
+but will not execute properly at runtime, as it does not export a function
+named 'mexFunction.'
+??? Error executing mcc, return status = 1.
+</pre>
+
+<p>when compiling a MATLAB script using MOSEK, you must delete </p>
+
+<pre class="verbatim">c:\mosek\6\toolbox\&lt;MATLABVERSION&gt;\mosekopt.m
+</pre>
+
+<p>This should fix the compile error.</p>
+
+</div>
+
+<div>
+<h2><a name="235092304">4.3.5. &#8220;<tt class="tt">Cannot find authentication file</tt>&#8221;</a></h2>
+
+<p> If you encounter the error </p>
+
+<pre class="verbatim">Cannot find authentication file
+'C:\mosek\4\toolbox\r2006b\mosekopt_mexw32.auth'.
+
+??? Invalid MEX-file 'C:\mosek\4\toolbox\r2006b\mosekopt.mexw32': .
+</pre>
+
+<p>Try to remove any <tt class="tt">addpath</tt> commands from your code when compiling. Instead, specify the location of the MOSEK files with </p>
+
+<pre class="verbatim">-I  c:\mosek\4\toolbox\r2006b
+</pre>
+
+<p>in the compile command.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 3. Supported MATLAB versions" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  5. Getting support and help" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">3. Supported MATLAB versions</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">5. Getting support and help</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:58:20 2012</div>
+</body></html>

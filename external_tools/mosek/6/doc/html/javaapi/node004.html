@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>2. About this manual</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node003.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 1. Changes and new features in MOSEK" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node005.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  3. Getting support and help" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node003.html" target="_self">1. Changes and new features in MOSEK</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="212126104">2. About this manual</a></h1>
+
+<p>This manual covers the general functionality of MOSEK and the usage of the MOSEK Java API.</p>
+
+<p>The MOSEK Java Application Programming Interface makes it possible to access the MOSEK solver from any Java application running on Sun Java, version 1.5 (and possibly other Java implementations). The whole functionality of the native C API is available through a thin, class-based interface using native Java types and exceptions. All methods in the interface are thin wrappers for functions in the native C API, keeping the overhead induced by the API to a minimum.</p>
+
+<p>The Java interface consists the class library <tt class="tt">mosek.jar</tt> and a library <tt class="tt">mosekjava</tt> (<tt class="tt">mosekjava.dll</tt> on Microsoft Windows, <tt class="tt">libmosekjava.so</tt> on Linux). All classes are defined in the package <tt class="tt">mosek</tt>.</p>
+
+<p>New users of the MOSEK Java API are encouraged to read: </p>
+
+<ul class="itemize">
+<li>Chapter <a title="4. Testing installation and compiling examples" href="node006.html#chap:dist-examples">4</a> on compiling and running the distributed examples.</li>
+<li>The relevant parts of Chapter <a title="5. Basic API tutorial" href="node007.html#chap:using-mosek-interface">5</a>, i.e. at least the general introduction and the linear optimization section.</li>
+<li>Chapter <a title="13. Usage guidelines" href="node015.html#chap-guidelines">13</a> for a set of guidelines about developing, testing, and debugging applications employing MOSEK. </li>
+</ul>
+
+<p>This should introduce most of the data structures and functionality necessary to implement and solve an optimization problem.</p>
+
+<p>Chapter <a title="7. Modelling" href="node009.html#chap:modelling">7</a> contains general material about the mathematical formulations of optimization problems compatible with MOSEK, as well as common tips and tricks for reformulating problems so that they can be solved by MOSEK.</p>
+
+<p>Hence, Chapter <a title="7. Modelling" href="node009.html#chap:modelling">7</a> is useful when trying to find a good formulation of a specific model.</p>
+
+<p>More advanced examples of modelling and model debugging are located in </p>
+
+<ul class="itemize">
+<li>Chapter <a title="11. Primal feasibility repair" href="node013.html#ch-feasibilityrepair">11</a> which deals with analysis of infeasible problems, </li>
+<li>Chapter <a title="12. Sensitivity analysis" href="node014.html#chap-sensitivity-analysis">12</a> about the sensitivity analysis interface, and</li>
+</ul>
+
+<p> Finally, the Java API reference material is located in </p>
+
+<ul class="itemize">
+<li>Chapter <a title="14. API reference" href="node016.html#chap-apiref">14</a> which lists all types and functions, </li>
+<li>Chapter <a title="15. Parameter reference" href="node017.html#chap-paramref">15</a> which lists all available parameters, </li>
+<li>Chapter <a title="16. Response codes" href="node018.html#chap-rescoderef">16</a> which lists all response codes, and </li>
+<li>Chapter <a title="17. Constants" href="node019.html#chap-constsref">17</a> which lists all symbolic constants. </li>
+</ul>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node003.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 1. Changes and new features in MOSEK" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node005.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  3. Getting support and help" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node003.html" target="_self">1. Changes and new features in MOSEK</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:42:13 2012</div>
+</body></html>

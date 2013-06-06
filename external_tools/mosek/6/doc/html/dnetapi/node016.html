@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>14. Using MOSEK from Microsoft Solver Foundation</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node015.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 13. Usage guidelines" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node017.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  15. API reference" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node015.html" target="_self">13. Usage guidelines</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node017.html" target="_self">15. API reference</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="238805576">14. Using MOSEK from Microsoft Solver Foundation</a></h1>
+
+<p>The following chapter describes the Microsoft Solver Foundation (MSF) plugin for MOSEK. This enables Solver foundation Services to use MOSEK as a solver to solve LP,QP and MIP problems. The current implementation does not include the following features:</p>
+
+<ul class="itemize">
+<li>Multiple objectives, only one objective is allowed. </li>
+<li>Sensitivity analysis results are not available. </li>
+<li>Conflict resolution is not available. </li>
+<li>SOCP is not available. </li>
+</ul>
+
+<p> The MSF plug-in is available in the dll <tt class="tt">MosekMsfPlugin.dll</tt> which must be installed in the Global Assembly Cache (GAC) or placed in the same directory as the executable at run-time. A visual studio project for building this dll can be found in</p>
+
+<pre class="verbatim"> mosek\6\tools\examples\csharp\vs2010\MosekMsfExample\MosekMsfPlugin
+</pre>
+
+<p> A visual studio example for a simple MSF program using MOSEK is available in:</p>
+
+<pre class="verbatim"> mosek\6\tools\examples\csharp\vs2010\MosekMsfExample
+</pre>
+
+<p> This project also contains the <tt class="tt">app.config</tt> file needed to load the plugin. Before building the project add a reference to <tt class="tt">Microsoft.Solver.Foundation.dll</tt>.</p>
+
+<p>The MOSEK dotnet dll (<tt class="tt">mosekdotnet.dll</tt>) must also be available along with the MOSEK native libraries. These are installed when installing the standard MOSEK distribution.</p>
+
+<p>The dll <tt class="tt">Microsoft.Solver.Foundation.dll</tt> contains the MSF functionality and is provided by the MSF distribution.</p>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node015.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 13. Usage guidelines" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node017.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  15. API reference" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node015.html" target="_self">13. Usage guidelines</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node017.html" target="_self">15. API reference</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:46:06 2012</div>
+</body></html>

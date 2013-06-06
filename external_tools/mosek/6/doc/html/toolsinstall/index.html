@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>The MOSEK installation manual. 
+Version 6.0 (Revision 137).</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.document -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><img src="graphics/inactive-previous.png" class="navbutton-inactive-previous" alt="" border="0"/></td>
+<td><a href="../../../help/index.html" target="_top"><img src="graphics/up.png" class="navbutton-up" alt="Up:  'Documentation Help'" border="0"/></a></td>
+<td><a href="node001.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  Contact information" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Up : </b><a href="../../../help/index.html" target="_top">'Documentation Help'</a></td>
+<td valign="top"><b>Next : </b><a href="node001.html" target="_self">Contact information</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="titlepage">
+<div class="documentinfo">
+<h1>The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</h1>
+
+<p><b><big></big></b></p>
+
+<p><strong></strong></p>
+
+</div>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node001.html" target="_self">Contact information</a></li>
+<li><a href="node002.html" target="_self">1. License conditions and supported platforms</a>
+<ul class="toc-level-2">
+<li><a href="node002.html#139655402820240" target="_self">1.1. License conditions</a></li>
+<li><a href="node002.html#139655402785320" target="_self">1.2. Supported operating systems</a></li>
+<li><a href="node002.html#139655402836336" target="_self">1.3. AMPL availability</a></li>
+<li><a href="node002.html#139655402853728" target="_self">1.4. MATLAB toolbox availability</a></li>
+<li><a href="node002.html#139655402880752" target="_self">1.5. Optimizer API availability</a></li>
+</ul>
+</li>
+<li><a href="node003.html" target="_self">2. Installing the software</a>
+<ul class="toc-level-2">
+<li><a href="node003.html#139655402924728" target="_self">2.1. Windows installation</a>
+<ul class="toc-level-3">
+<li><a href="node003.html#139655402923864" target="_self">2.1.1. Verifying the installation</a></li>
+</ul>
+</li>
+<li><a href="node003.html#139655402924008" target="_self">2.2. Mac OS X installation</a>
+<ul class="toc-level-3">
+<li><a href="node003.html#139655402921064" target="_self">2.2.1. License file set-up</a></li>
+<li><a href="node003.html#139655402917760" target="_self">2.2.2. Mosek binaries set-up</a></li>
+<li><a href="node003.html#139655402929040" target="_self">2.2.3. MOSEK/Python set-up</a></li>
+</ul>
+</li>
+<li><a href="node003.html#139655402931696" target="_self">2.3. Linux/UNIX installation instructions</a>
+<ul class="toc-level-3">
+<li><a href="node003.html#139655402934072" target="_self">2.3.1. Environment set-up</a></li>
+<li><a href="node003.html#139655402936512" target="_self">2.3.2. Verifying the set-up</a></li>
+<li><a href="node003.html#139655402937808" target="_self">2.3.3. Installation of the Java optimizer API</a>
+<ul class="toc-level-4">
+<li><a href="node003.html#139655402939744" target="_self">2.3.3.1. Installation of the .NET optimizer API for MONO</a></li>
+</ul>
+</li>
+<li><a href="node003.html#139655402941112" target="_self">2.3.4. MOSEK/Python set-up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node004.html" target="_self">3. Installing a license</a>
+<ul class="toc-level-2">
+<li><a href="node004.html#139655402943984" target="_self">3.1. Activating a purchased license</a></li>
+<li><a href="node004.html#139655402949304" target="_self">3.2. Activating a trial license</a></li>
+</ul>
+</li>
+<li><a href="node005.html" target="_self">4. License system FAQ</a></li>
+<li><a href="node006.html" target="_self">5. License system concepts</a>
+<ul class="toc-level-2">
+<li><a href="node006.html#139655402951024" target="_self">5.1. How the license system works</a></li>
+<li><a href="node006.html#139655402957568" target="_self">5.2. Sharing a single license between multiple non-networked computers</a></li>
+<li><a href="node006.html#139655402953400" target="_self">5.3. The host ID</a>
+<ul class="toc-level-3">
+<li><a href="node006.html#139655402958000" target="_self">5.3.1. A dongle host ID</a></li>
+</ul>
+</li>
+<li><a href="node006.html#139655402960008" target="_self">5.4. Further information about FLEXlm</a></li>
+</ul>
+</li>
+<li><a href="node007.html" target="_self">6. Dongle installation and usage</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#139655402965544" target="_self">6.1. Connecting the dongle</a></li>
+<li><a href="node007.html#139655402961088" target="_self">6.2. License checkout from client computer</a></li>
+</ul>
+</li>
+<li><a href="node008.html" target="_self">7. Obtaining the host ID and hostname</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#139655402966120" target="_self">7.1. Windows</a></li>
+<li><a href="node008.html#139655402970576" target="_self">7.2. LINUX/UNIX/MAC OSX</a>
+<ul class="toc-level-3">
+<li><a href="node008.html#139655402966336" target="_self">7.2.1. Default (Ethernet address) HOSTID</a></li>
+<li><a href="node008.html#139655402972440" target="_self">7.2.2. Dongle HOSTID</a></li>
+<li><a href="node008.html#139655402971432" target="_self">7.2.3. HOSTNAME</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node009.html" target="_self">8. License server installation</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#139655402974456" target="_self">8.1. Windows</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#139655402976320" target="_self">8.1.1. License server installation</a></li>
+<li><a href="node009.html#139655402979984" target="_self">8.1.2. Using MOSEK from a networked client computer</a>
+<ul class="toc-level-4">
+<li><a href="node009.html#139655402982648" target="_self">8.1.2.1. License file search path</a></li>
+<li><a href="node009.html#139655402983224" target="_self">8.1.2.2. Verifying that the license system works</a></li>
+<li><a href="node009.html#139655402985016" target="_self">8.1.2.3. Controlling port usage and firewall access</a></li>
+<li><a href="node009.html#139655402993784" target="_self">8.1.2.4. Locating the license server / reducing checkout overhead</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node009.html#139655403005424" target="_self">8.2. LINUX / UNIX / MAC OSX</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#139655403006936" target="_self">8.2.1. License server installation</a></li>
+<li><a href="node009.html#139655403013760" target="_self">8.2.2. Checking out a license from the server</a></li>
+<li><a href="node009.html#139655403022312" target="_self">8.2.3. Verifying that the license system works</a></li>
+<li><a href="node009.html#139655403023608" target="_self">8.2.4. Starting lmgrd on boot.</a></li>
+<li><a href="node009.html#139655403024968" target="_self">8.2.5. Speeding up license checkout</a></li>
+<li><a href="node009.html#139655403026192" target="_self">8.2.6. Accessing the license server through a firewall</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node010.html" target="_self">9. Installing a trial license</a>
+<ul class="toc-level-2">
+<li><a href="node010.html#139655403026912" target="_self">9.1. Windows</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#139655402511320" target="_self">9.1.0.1. License file search path</a></li>
+</ul>
+</li>
+<li><a href="node010.html#139655402512040" target="_self">9.2. LINUX / UNIX / MAC OSX</a></li>
+</ul>
+</li>
+<li><a href="node011.html" target="_self">A. Manual installation instructions</a>
+<ul class="toc-level-2">
+<li><a href="node011.html#139655402513400" target="_self">A.1. Windows</a></li>
+<li><a href="node011.html#139655402516704" target="_self">A.2. LINUX / UNIX / MAC OSX</a></li>
+</ul>
+</li>
+<li><a href="node012.html" target="_self">B. Operating system environment variables</a>
+<ul class="toc-level-2">
+<li><a href="node012.html#139655402516920" target="_self">B.1. Windows NT/2000</a></li>
+<li><a href="node012.html#139655402518648" target="_self">B.2. Windows XP</a></li>
+<li><a href="node012.html#139655402520728" target="_self">B.3. MAC OSX</a></li>
+<li><a href="node012.html#139655402521520" target="_self">B.4. UNIX</a></li>
+</ul>
+</li>
+<li><a href="node013.html" target="_self">Index</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><img src="graphics/inactive-previous.png" class="navbutton-inactive-previous" alt="" border="0"/></td>
+<td><a href="../../../help/index.html" target="_top"><img src="graphics/up.png" class="navbutton-up" alt="Up:  'Documentation Help'" border="0"/></a></td>
+<td><a href="node001.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  Contact information" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Up : </b><a href="../../../help/index.html" target="_top">'Documentation Help'</a></td>
+<td valign="top"><b>Next : </b><a href="node001.html" target="_self">Contact information</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:04:21 2012</div>
+</body></html>

@@ -1,0 +1,1672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>10. Modelling</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node011.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 9. Case studies" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node013.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  11. The optimizers for continuous problems" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node011.html" target="_self">9. Case studies</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node013.html" target="_self">11. The optimizers for continuous problems</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="251788896">10. Modelling</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node012.html#251789464" target="_self">10.1. Linear optimization</a>
+<ul class="toc-level-2">
+<li><a href="node012.html#251801968" target="_self">10.1.1. Duality for linear optimization</a>
+<ul class="toc-level-3">
+<li><a href="node012.html#251815408" target="_self">10.1.1.1. A primal-dual feasible solution</a></li>
+<li><a href="node012.html#251817856" target="_self">10.1.1.2. An optimal solution</a></li>
+<li><a href="node012.html#251829280" target="_self">10.1.1.3. Primal infeasible problems</a></li>
+<li><a href="node012.html#251838760" target="_self">10.1.1.4. Dual infeasible problems</a></li>
+</ul>
+</li>
+<li><a href="node012.html#251862480" target="_self">10.1.2. Primal and dual infeasible case</a></li>
+</ul>
+</li>
+<li><a href="node012.html#251862840" target="_self">10.2. Quadratic and quadratically constrained optimization</a>
+<ul class="toc-level-2">
+<li><a href="node012.html#253565768" target="_self">10.2.1. A general recommendation</a></li>
+<li><a href="node012.html#253566056" target="_self">10.2.2. Reformulating as a separable quadratic problem</a></li>
+</ul>
+</li>
+<li><a href="node012.html#253596304" target="_self">10.3. Conic optimization</a>
+<ul class="toc-level-2">
+<li><a href="node012.html#253614128" target="_self">10.3.1. Duality for conic optimization</a></li>
+<li><a href="node012.html#253630080" target="_self">10.3.2. Infeasibility</a></li>
+<li><a href="node012.html#253614200" target="_self">10.3.3. Examples</a>
+<ul class="toc-level-3">
+<li><a href="node012.html#253630152" target="_self">10.3.3.1. Quadratic objective and constraints</a></li>
+<li><a href="node012.html#253679016" target="_self">10.3.3.2. Minimizing a sum of norms</a></li>
+<li><a href="node012.html#253722776" target="_self">10.3.3.3. Modelling polynomial terms using conic optimization</a></li>
+<li><a href="node012.html#253789392" target="_self">10.3.3.4. Optimization with rational polynomials</a></li>
+<li><a href="node012.html#253793344" target="_self">10.3.3.5. Convex increasing power functions</a></li>
+<li><a href="node012.html#253799888" target="_self">10.3.3.6. Decreasing power functions</a></li>
+<li><a href="node012.html#253805848" target="_self">10.3.3.7. Minimizing general polynomials</a></li>
+<li><a href="node012.html#255454672" target="_self">10.3.3.8. Further reading</a></li>
+</ul>
+</li>
+<li><a href="node012.html#255454888" target="_self">10.3.4. Potential pitfalls in conic optimization</a>
+<ul class="toc-level-3">
+<li><a href="node012.html#255454744" target="_self">10.3.4.1. Non-attainment in the primal problem</a></li>
+<li><a href="node012.html#255466456" target="_self">10.3.4.2. Non-attainment in the dual problem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node012.html#255501592" target="_self">10.4. Nonlinear convex optimization</a>
+<ul class="toc-level-2">
+<li><a href="node012.html#255520848" target="_self">10.4.1. Duality</a></li>
+</ul>
+</li>
+<li><a href="node012.html#255552616" target="_self">10.5. Recommendations</a>
+<ul class="toc-level-2">
+<li><a href="node012.html#255555848" target="_self">10.5.1. Avoid near infeasible models</a></li>
+</ul>
+</li>
+<li><a href="node012.html#255567704" target="_self">10.6. Examples continued</a>
+<ul class="toc-level-2">
+<li><a href="node012.html#255555992" target="_self">10.6.1. The absolute value</a></li>
+<li><a href="node012.html#255568856" target="_self">10.6.2. The Markowitz portfolio model</a>
+<ul class="toc-level-3">
+<li><a href="node012.html#255580928" target="_self">10.6.2.1. Minimizing variance for a given return</a></li>
+<li><a href="node012.html#255595656" target="_self">10.6.2.2. Conic quadratic reformulation</a></li>
+<li><a href="node012.html#255607728" target="_self">10.6.2.3. Transaction costs with market impact term</a></li>
+<li><a href="node012.html#255646896" target="_self">10.6.2.4. Further reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="chap:modelling">&#09;</a></p>
+
+<p>In this chapter we will discuss the following issues: </p>
+
+<ul class="itemize">
+<li>The formal definitions of the problem types that MOSEK can solve.</li>
+<li>The solution information produced by MOSEK.</li>
+<li>The information produced by MOSEK if the problem is infeasible.</li>
+<li>A set of examples showing different ways of formulating commonly occurring problems so that they can be solved by MOSEK.</li>
+<li>Recommendations for formulating optimization problems. </li>
+</ul>
+
+<div>
+<h1><a name="251789464">10.1. Linear optimization</a></h1>
+
+<p>A linear optimization problem can be written as <a name="idx-86845416">&#09;</a> </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math416.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-linopt-eq-primal">&#09;</a>(10.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<ul class="itemize">
+<li><span class="math"><span class="mi">m</span></span> is the number of constraints.</li>
+<li><span class="math"><span class="mi">n</span></span> is the number of decision variables.</li>
+<li><span class="math"><img src="math/math116.png" alt="[[MathCmd 116]]"/></span> is a vector of decision variables. <a name="idx-86854760">&#09;</a></li>
+<li><span class="math"><img src="math/math118.png" alt="[[MathCmd 118]]"/></span> is the linear part of the objective function. <a name="idx-86857272">&#09;</a></li>
+<li><span class="math"><img src="math/math119.png" alt="[[MathCmd 119]]"/></span> is the constraint matrix. <a name="idx-86860936">&#09;</a></li>
+<li><span class="math"><img src="math/math120.png" alt="[[MathCmd 120]]"/></span> is the lower limit on the activity for the constraints. <a name="idx-86858280">&#09;</a></li>
+<li><span class="math"><img src="math/math121.png" alt="[[MathCmd 121]]"/></span> is the upper limit on the activity for the constraints. <a name="idx-86846568">&#09;</a></li>
+<li><span class="math"><img src="math/math122.png" alt="[[MathCmd 122]]"/></span> is the lower limit on the activity for the variables. <a name="idx-86825800">&#09;</a></li>
+<li><span class="math"><img src="math/math123.png" alt="[[MathCmd 123]]"/></span> is the upper limit on the activity for the variables. <a name="idx-86868480">&#09;</a> </li>
+</ul>
+
+<p> A primal solution <span class="math"><span class="mo">(</span><span class="mi">x</span><span class="mo">)</span></span> is <em>(primal) feasible</em> <a name="idx-86869416">&#09;</a><a name="idx-86870208">&#09;</a> if it satisfies all constraints in (<a href="node012.html#ch-use-sec-linopt-eq-primal">10.1.1</a>). If (<a href="node012.html#ch-use-sec-linopt-eq-primal">10.1.1</a>) has at least one primal feasible solution, then (<a href="node012.html#ch-use-sec-linopt-eq-primal">10.1.1</a>) is said to be (primal) feasible.</p>
+
+<p>In case (<a href="node012.html#ch-use-sec-linopt-eq-primal">10.1.1</a>) does not have a feasible solution, the problem is said to be <em>(primal) infeasible</em><a name="idx-86876744">&#09;</a><a name="idx-86876960">&#09;</a>.</p>
+
+<div>
+<h2><a name="251801968">10.1.1. Duality for linear optimization</a></h2>
+
+<p> Corresponding to the primal problem <a href="node012.html#ch-use-sec-linopt-eq-primal">(10.1.1)</a>, there is a dual problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math424.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & (l^{c})^{T}s_{l}^{c}-(u^{c})^{T}s_{u}^{c} &  & \\\nonumber{} & +(l^{x})^{T}s_{l}^{x}-(u^{x})^{T}s_{u}^{x}+c^{f} &  & \\\nonumber{}\mbox{subject to} & A^{T}y+s_{l}^{x}-s_{u}^{x} & = & c,\\\nonumber{} & -y+s_{l}^{c}-s_{u}^{c} & = & 0,\\\nonumber{} & s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-linopt-eq-dual">&#09;</a>(10.1.2)</td></tr>
+</tbody>
+</table>
+
+<p><a name="ch-use-sec-conicoptimization-infbounds">&#09;</a> <a name="idx-86885944">&#09;</a><a name="idx-86885872">&#09;</a>If a bound in the primal problem is plus or minus infinity, the corresponding dual variable is fixed at 0, and we use the convention that the product of the bound value and the corresponding dual variable is 0. E.g. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math425.png" alt="\begin{displaymath}\nonumber{}l_{j}^{x}=-\infty ~\Rightarrow ~(s_{l}^{x})_{j}=0\mbox{ and }l_{j}^{x}\cdot (s_{l}^{x})_{j}=0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This is equivalent to removing variable <span class="math"><img src="math/math426.png" alt="[[MathCmd 426]]"/></span> from the dual problem.</p>
+
+<p>A solution </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math427.png" alt="\begin{displaymath}\nonumber{}(y,s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>to the dual problem is feasible if it satisfies all the constraints in (<a href="node012.html#ch-use-sec-linopt-eq-dual">10.1.2</a>). If (<a href="node012.html#ch-use-sec-linopt-eq-dual">10.1.2</a>) has at least one feasible solution, then (<a href="node012.html#ch-use-sec-linopt-eq-dual">10.1.2</a>) is <em>(dual) feasible</em>, otherwise the problem is <em>(dual) infeasible</em><a name="idx-86899312">&#09;</a><a name="idx-86899816">&#09;</a>.</p>
+
+<p>We will denote a solution </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math428.png" alt="\begin{displaymath}\nonumber{}(x,y,s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>so that <span class="math"><span class="mi">x</span></span> is a solution to the primal problem <a href="node012.html#ch-use-sec-linopt-eq-primal">(10.1.1)</a>, and </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math427.png" alt="\begin{displaymath}\nonumber{}(y,s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is a solution to the corresponding dual problem <a href="node012.html#ch-use-sec-linopt-eq-dual">(10.1.2)</a>. A solution which is both primal and dual feasible is denoted a <em>primal-dual feasible solution</em><a name="idx-86908440">&#09;</a><a name="idx-86909224">&#09;</a>.</p>
+
+<div>
+<h3><a name="251815408">10.1.1.1. A primal-dual feasible solution</a></h3>
+
+<p> Let </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math430.png" alt="\begin{displaymath}\nonumber{}(x^{*},y^{*},(s_{l}^{c})^{*},(s_{u}^{c})^{*},(s_{l}^{x})^{*},(s_{u}^{x})^{*})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>be a primal-dual feasible solution, and let</p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math431.png" alt="\begin{displaymath}\nonumber{}(x^{c})^{*}:=Ax^{*}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>For a primal-dual feasible solution we define the <em>optimality gap</em> as the difference between the primal and the dual objective value, </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math432.png" alt="\begin{displaymath}\nonumber{}\begin{array}{c}\nonumber{}c^{T}x^{*}+c^{f}-((l^{c})^{T}s_{l}^{c}-(u^{c})^{T}s_{u}^{c}+(l^{x})^{T}s_{l}^{x}-(u^{x})^{T}s_{u}^{x}+c^{f})\\\nonumber{}=\sum \limits _{{i=1}}^{m}((s_{l}^{c})_{i}^{*}((x_{i}^{c})^{*}-l_{i}^{c})+(s_{u}^{c})_{i}^{*}(u_{i}^{c}-(x_{i}^{c})^{*})+\sum \limits _{{j=1}}^{n}((s_{l}^{x})_{j}^{*}(x_{j}-l_{j}^{x})+(s_{u}^{x})_{j}^{*}(u_{j}^{x}-x_{j}^{*}))\\\nonumber{}\geq{}0\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where the first relation can be obtained by multiplying the dual constraints <a href="node012.html#ch-use-sec-linopt-eq-dual">(10.1.2)</a> by <span class="math"><span class="mi">x</span></span> and <span class="math"><img src="math/math433.png" alt="[[MathCmd 433]]"/></span> respectively, and the second relation comes from the fact that each term in each sum is nonnegative. It follows that the primal objective will always be greater than or equal to the dual objective.</p>
+
+<p>We then define the <em>duality gap</em><a name="idx-86918712">&#09;</a> as the difference between the primal objective value and the dual objective value, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math434.png" alt="\begin{displaymath}\nonumber{}c^{T}x^{*}+c^{f}-((l^{c})^{T}s_{l}^{c}-(u^{c})^{T}s_{u}^{c}+(l^{x})^{T}s_{l}^{x}-(u^{x})^{T}s_{u}^{x}+c^{f})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Please note that the duality gap will always be nonnegative.</p>
+
+</div>
+
+<div>
+<h3><a name="251817856">10.1.1.2. An optimal solution</a></h3>
+
+<p><a name="idx-86920800">&#09;</a><a name="idx-86921656">&#09;</a></p>
+
+<p>It is well-known that a linear optimization problem has an optimal solution if and only if there exist feasible primal and dual solutions so that the duality gap is zero, or, equivalently, that the <em>complementarity conditions</em><a name="idx-86922952">&#09;</a> </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math435.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcll}\nonumber{}(s_{l}^{c})_{i}^{*}((x_{i}^{c})^{*}-l_{i}^{c}) & = & 0, & i=1,\ldots ,m,\\\nonumber{}(s_{u}^{c})_{i}^{*}(u_{i}^{c}-(x_{i}^{c})^{*}) & = & 0, & i=1,\ldots ,m,\\\nonumber{}(s_{l}^{x})_{j}^{*}(x_{j}-l_{j}^{x}) & = & 0, & j=1,\ldots ,n,\\\nonumber{}(s_{u}^{x})_{j}^{*}(u_{j}^{x}-x_{j}^{*}) & = & 0, & j=1,\ldots ,n\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>are satisfied.</p>
+
+<p>If (<a href="node012.html#ch-use-sec-linopt-eq-primal">10.1.1</a>) has an optimal solution and MOSEK solves the problem successfully, both the primal and dual solution are reported, including a status indicating the exact state of the solution.</p>
+
+</div>
+
+<div>
+<h3><a name="251829280">10.1.1.3. Primal infeasible problems</a></h3>
+
+<p> <a name="chp-modelling-sec-pinfeasprob">&#09;</a> <a name="idx-86899888">&#09;</a><a name="idx-86896936">&#09;</a>If the problem (<a href="node012.html#ch-use-sec-linopt-eq-primal">10.1.1</a>) is infeasible (has no feasible solution), MOSEK will report a certificate of primal infeasibility: The dual solution reported is a certificate of infeasibility, and the primal solution is undefined.</p>
+
+<p><a name="idx-86927336">&#09;</a><a name="idx-86927048">&#09;</a>A certificate of primal infeasibility is a feasible solution to the modified dual problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math436.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & (l^{c})^{T}s_{l}^{c}-(u^{c})^{T}s_{u}^{c}+(l^{x})^{T}s_{l}^{x}-(u^{x})^{T}s_{u}^{x} &  & \\\nonumber{}\mbox{subject to} & A^{T}y+s_{l}^{x}-s_{u}^{x} & = & 0,\\\nonumber{} & -y+s_{l}^{c}-s_{u}^{c} & = & 0,\\\nonumber{} & s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td><a name="EQ:HDUALO">&#09;</a>(10.1.3)</td></tr>
+</tbody>
+</table>
+
+<p>so that the objective is strictly positive, i.e. a solution </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math437.png" alt="\begin{displaymath}\nonumber{}(y^{*},(s_{l}^{c})^{*},(s_{u}^{c})^{*},(s_{l}^{x})^{*},(s_{u}^{x})^{*})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>to <a href="node012.html#EQ:HDUALO">(10.1.3)</a> so that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math438.png" alt="\begin{displaymath}\nonumber{}(l^{c})^{T}(s_{l}^{c})^{*}-(u^{c})^{T}(s_{u}^{c})^{*}+(l^{x})^{T}(s_{l}^{x})^{*}-(u^{x})^{T}(s_{u}^{x})^{*}>0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Such a solution implies that <a href="node012.html#EQ:HDUALO">(10.1.3)</a> is unbounded, and that its dual is infeasible.</p>
+
+<p>We note that the dual of <a href="node012.html#EQ:HDUALO">(10.1.3)</a> is a problem which constraints are identical to the constraints of the original primal problem <a href="node012.html#ch-use-sec-linopt-eq-primal">(10.1.1)</a>: If the dual of <a href="node012.html#EQ:HDUALO">(10.1.3)</a> is infeasible, so is the original primal problem.</p>
+
+</div>
+
+<div>
+<h3><a name="251838760">10.1.1.4. Dual infeasible problems</a></h3>
+
+<p> <a name="chp-modelling-sec-dinfeasprob">&#09;</a> <a name="idx-86939048">&#09;</a><a name="idx-86939768">&#09;</a>If the problem (<a href="node012.html#ch-use-sec-linopt-eq-dual">10.1.2</a>) is infeasible (has no feasible solution), MOSEK will report a certificate of dual infeasibility: The primal solution reported is a certificate of infeasibility, and the dual solution is undefined.</p>
+
+<p><a name="idx-86942856">&#09;</a><a name="idx-86942568">&#09;</a></p>
+
+<p>A certificate of dual infeasibility is a feasible solution to the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math439.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x &  & \\\nonumber{}\mbox{subject to} &  &  & Ax-x^{c} & = & 0,\\\nonumber{} & \bar{l}^{c} & \leq{} & x^{c} & \leq{} & \bar{u}^{c},\\\nonumber{} & \bar{l}^{x} & \leq{} & x & \leq{} & \bar{u}^{x}\end{array}\end{math}"/></td>
+<td><a name="EQ:HPRILO">&#09;</a>(10.1.4)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math440.png" alt="\begin{displaymath}\nonumber{}\bar{l}_{i}^{c}=\left\lbrace{}\begin{array}{ll}\nonumber{}0, & \mbox{if }l_{i}^{c}>-\infty ,\\\nonumber{}-\infty  & \mbox{otherwise}\end{array}\right.\quad{}\mbox{and}\quad{}\bar{u}_{i}^{c}:=\left\lbrace{}\begin{array}{ll}\nonumber{}0, & \mbox{if }u_{i}^{c}<\infty ,\\\nonumber{}\infty  & \mbox{otherwise}\end{array}\right.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math441.png" alt="\begin{displaymath}\nonumber{}\bar{l}_{j}^{x}=\left\lbrace{}\begin{array}{ll}\nonumber{}0, & \mbox{if }l_{j}^{x}>-\infty ,\\\nonumber{}-\infty  & \mbox{otherwise}\end{array}\right.\quad{}\mbox{and}\quad{}\bar{u}_{j}^{x}:=\left\lbrace{}\begin{array}{ll}\nonumber{}0, & \mbox{if }u_{j}^{x}<\infty ,\\\nonumber{}\infty  & \mbox{otherwise}\end{array}\right.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>so that the objective value <span class="math"><img src="math/math442.png" alt="[[MathCmd 442]]"/></span> is negative. Such a solution implies that <a href="node012.html#EQ:HPRILO">(10.1.4)</a> is unbounded, and that the dual of <a href="node012.html#EQ:HPRILO">(10.1.4)</a> is infeasible.</p>
+
+<p>We note that the dual of <a href="node012.html#EQ:HPRILO">(10.1.4)</a> is a problem which constraints are identical to the constraints of the original dual problem <a href="node012.html#ch-use-sec-linopt-eq-dual">(10.1.2)</a>: If the dual of <a href="node012.html#EQ:HPRILO">(10.1.4)</a> is infeasible, so is the original dual problem.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="251862480">10.1.2. Primal and dual infeasible case</a></h2>
+
+<p> In case that both the primal problem (<a href="node012.html#ch-use-sec-linopt-eq-primal">10.1.1</a>) and the dual problem (<a href="node012.html#ch-use-sec-linopt-eq-dual">10.1.2</a>) are infeasible, MOSEK will report only one of the two possible certificates &mdash; which one is not defined (MOSEK returns the first certificate found).</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="251862840">10.2. Quadratic and quadratically constrained optimization</a></h1>
+
+<p> <a name="idx-86972032">&#09;</a></p>
+
+<p>A convex quadratic optimization problem is an optimization problem of the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math443.png" alt="\begin{math}\nonumber{}\begin{array}{lrcccll}\nonumber{}\mbox{minimize} &  &  & \frac{1}{2}x^{T}Q^{o}x+c^{T}x+c^{f} &  &  & \\\nonumber{}\mbox{subject to} & l_{k}^{c} & \leq{} & \frac{1}{2}x^{T}Q^{k}x+\sum \limits _{{j=0}}^{{n-1}}a_{{k,i}}x_{j} & \leq{} & u_{k}^{c}, & k=0,\ldots ,m-1,\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x}, & j=0,\ldots ,n-1,\end{array}\end{math}"/></td>
+<td><a name="ch-modelling-sec-quadopt-quadpro">&#09;</a>(10.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>where the convexity requirement implies that </p>
+
+<ul class="itemize">
+<li><span class="math"><img src="math/math161.png" alt="[[MathCmd 161]]"/></span> is a symmetric positive semi-definite matrix.<a name="idx-86991288">&#09;</a><a name="idx-86991792">&#09;</a></li>
+<li>If <span class="math"><img src="math/math445.png" alt="[[MathCmd 445]]"/></span>, then <span class="math"><img src="math/math63.png" alt="[[MathCmd 63]]"/></span> is a symmetric positive semi-definite matrix.<a name="idx-86993952">&#09;</a><a name="idx-86994456">&#09;</a></li>
+<li>If <span class="math"><img src="math/math447.png" alt="[[MathCmd 447]]"/></span>, then <span class="math"><img src="math/math63.png" alt="[[MathCmd 63]]"/></span> is a symmetric negative semi-definite matrix.<a name="idx-86996680">&#09;</a><a name="idx-86997184">&#09;</a></li>
+<li>If <span class="math"><img src="math/math449.png" alt="[[MathCmd 449]]"/></span> and <span class="math"><img src="math/math450.png" alt="[[MathCmd 450]]"/></span>, then <span class="math"><img src="math/math63.png" alt="[[MathCmd 63]]"/></span> is a zero matrix. </li>
+</ul>
+
+<p>The convexity requirement is very important and it is strongly recommended that MOSEK is applied to convex problems only.</p>
+
+<div>
+<h2><a name="253565768">10.2.1. A general recommendation</a></h2>
+
+<p>Any convex quadratic optimization problem can be reformulated as a conic optimization problem. It is our experience that for the majority of practical applications it is better to cast them as conic problems because </p>
+
+<ul class="itemize">
+<li>the resulting problem is convex by construction, and</li>
+<li>the conic optimizer is more efficient than the optimizer for general quadratic problems. </li>
+</ul>
+
+<p>See Section <a title="10.3.3.1. Quadratic objective and constraints" href="node012.html#ch-use-sec-conic-quadterm">10.3.3.1</a> for further details.</p>
+
+</div>
+
+<div>
+<h2><a name="253566056">10.2.2. Reformulating as a separable quadratic problem</a></h2>
+
+<p> <a name="chp-modelling-sec-quad-sep-reform">&#09;</a>The simplest quadratic optimization problem is </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math452.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & 1/2x^{T}Qx+c^{T}x &  & \\\nonumber{}\mbox{subject to} & Ax & = & b,\\\nonumber{} & x\geq{}0. &  &\end{array}\end{math}"/></td>
+<td><a name="ch-modelling-sec-quad-qopt">&#09;</a>(10.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>The problem (<a href="node012.html#ch-modelling-sec-quad-qopt">10.2.2</a>) is said to be a separable problem if <span class="math"><span class="mi">Q</span></span> is a diagonal matrix or, in other words, if the quadratic terms in the objective all have this form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math453.png" alt="\begin{displaymath}\nonumber{}x_{j}^{2}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>instead of this form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math454.png" alt="\begin{displaymath}\nonumber{}x_{j}x_{i}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The separable form has the following advantages: </p>
+
+<ul class="itemize">
+<li>It is very easy to check the convexity assumption, and</li>
+<li>the simpler structure in a separable problem usually makes it easier to solve. </li>
+</ul>
+
+<p> It is well-known that a positive semi-definite matrix <span class="math"><span class="mi">Q</span></span> can always be factorized, i.e. a matrix <span class="math"><span class="mi">F</span></span> exists so that </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math455.png" alt="\begin{math}\nonumber{}Q=F^{T}F.\end{math}"/></td>
+<td><a name="ch-modelling-sec-quad-qfft">&#09;</a>(10.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>In many practical applications of quadratic optimization <span class="math"><span class="mi">F</span></span> is known explicitly; e.g. if <span class="math"><span class="mi">Q</span></span> is a covariance matrix, <span class="math"><span class="mi">F</span></span> is the set of observations producing it.</p>
+
+<p>Using (<a href="node012.html#ch-modelling-sec-quad-qfft">10.2.3</a>), the problem (<a href="node012.html#ch-modelling-sec-quad-qopt">10.2.2</a>) can be reformulated as </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math456.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & 1/2y^{T}Iy+c^{T}x &  & \\\nonumber{}\mbox{subject to} & Ax & = & b,\\\nonumber{} & Fx-y & = & 0,\\\nonumber{} & x\geq{}0. &  &\end{array}\end{math}"/></td>
+<td><a name="ch-modelling-sec-quad-qopt-sep">&#09;</a>(10.2.4)</td></tr>
+</tbody>
+</table>
+
+<p>The problem (<a href="node012.html#ch-modelling-sec-quad-qopt-sep">10.2.4</a>) is also a quadratic optimization problem and has more constraints and variables than (<a href="node012.html#ch-modelling-sec-quad-qopt">10.2.2</a>). However, the problem is separable. Normally, if <span class="math"><span class="mi">F</span></span> has fewer rows than columns, it is worthwhile to reformulate as a separable problem. Indeed consider the extreme case where <span class="math"><span class="mi">F</span></span> has one dense row and hence <span class="math"><span class="mi">Q</span></span> will be a dense matrix.</p>
+
+<p>The idea presented above is applicable to quadratic constraints too. Now, consider the constraint </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math457.png" alt="\begin{math}\nonumber{}1/2x^{T}(F^{T}F)x\leq{}b\end{math}"/></td>
+<td><a name="ch-modelling-eq-fft">&#09;</a>(10.2.5)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><span class="mi">F</span></span> is a matrix and <span class="math"><span class="mi">b</span></span> is a scalar. (<a href="node012.html#ch-modelling-eq-fft">10.2.5</a>) can be reformulated as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math458.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}1/2y^{T}Iy & \leq{} & b,\\\nonumber{}Fx-y & = & 0.\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>It should be obvious how to generalize this idea to make any convex quadratic problem separable.</p>
+
+<p>Next, consider the constraint </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math459.png" alt="\begin{displaymath}\nonumber{}1/2x^{T}(D+F^{T}F)x\leq{}b\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><span class="mi">D</span></span> is a positive semi-definite matrix, <span class="math"><span class="mi">F</span></span> is a matrix, and <span class="math"><span class="mi">b</span></span> is a scalar. We assume that <span class="math"><span class="mi">D</span></span> has a simple structure, e.g. that <span class="math"><span class="mi">D</span></span> is a diagonal or a block diagonal matrix. If this is the case, it may be worthwhile performing the reformulation </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math460.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}1/2((x^{T}Dx)+y^{T}Iy) & \leq{} & b,\\\nonumber{}Fx-y & = & 0.\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> Now, the question may arise: When should a quadratic problem be reformulated to make it separable or near separable? The simplest rule of thumb is that it should be reformulated if the number of non-zeros used to represent the problem decreases when reformulating the problem.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="253596304">10.3. Conic optimization</a></h1>
+
+<p> <a name="ch-use-sec-conicoptimization">&#09;</a> <a name="idx-87025208">&#09;</a> <a name="idx-87023056">&#09;</a> <a name="idx-87020104">&#09;</a> <em>Conic optimization</em> can be seen as a generalization of linear optimization. Indeed a conic optimization problem is a linear optimization problem plus a constraint of the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math20.png" alt="\begin{displaymath}\nonumber{}x\in{}\mathcal{C}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math21.png" alt="[[MathCmd 21]]"/></span> is a convex cone. A complete conic problem has the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math463.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\\\nonumber{} &  &  & x\in{}\mathcal{C}. &  &\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-conicoptimization-eq-primal">&#09;</a>(10.3.1)</td></tr>
+</tbody>
+</table>
+
+<p>The cone <span class="math"><img src="math/math21.png" alt="[[MathCmd 21]]"/></span> can be a Cartesian product of <span class="math"><span class="mi">p</span></span> convex cones, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math465.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}=\mathcal{C}_{1}\times \cdots \times \mathcal{C}_{p}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>in which case <span class="math"><img src="math/math466.png" alt="[[MathCmd 466]]"/></span> can be written as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math467.png" alt="\begin{displaymath}\nonumber{}x=(x_{1},\ldots ,x_{p}),~x_{1}\in{}\mathcal{C}_{1},\ldots ,x_{p}\in{}\mathcal{C}_{p}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where each <span class="math"><img src="math/math468.png" alt="[[MathCmd 468]]"/></span>. Please note that the <span class="math"><span class="mi">n</span></span>-dimensional Euclidean space <span class="math"><img src="math/math469.png" alt="[[MathCmd 469]]"/></span> is a cone itself, so simple linear variables are still allowed.</p>
+
+<p>MOSEK supports only a limited number of cones, specifically </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math470.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}=\mathcal{C}_{1}\times \cdot \times \mathcal{C}_{p}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where each <span class="math"><img src="math/math28.png" alt="[[MathCmd 28]]"/></span> has one of the following forms </p>
+
+<ul class="itemize">
+<li>
+<p><span class="math"><img src="math/math29.png" alt="[[MathCmd 29]]"/></span> set: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math30.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math31.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:x_{1}\geq{}\sqrt{\sum \limits _{{j=2}}^{{n^{t}}}x_{j}^{2}}\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Rotated quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math32.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:2x_{1}x_{2}\geq{}\sum \limits _{{j=3}}^{{n^{t}}}x_{j}^{2},~x_{1},x_{2}\geq{}0\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<p> Although these cones may seem to provide only limited expressive power they can be used to model a large range of problems as demonstrated in Section <a title="10.3.3. Examples" href="node012.html#sec-conic-quadratic-opt-examples">10.3.3</a>.</p>
+
+<div>
+<h2><a name="253614128">10.3.1. Duality for conic optimization</a></h2>
+
+<p> <a name="ch-use-sec-conicoptimization-duality">&#09;</a></p>
+
+<p>The dual problem corresponding to the conic optimization problem (<a href="node012.html#ch-use-sec-conicoptimization-eq-primal">10.3.1</a>) is given by </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math476.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{maximize} & (l^{c})^{T}s_{l}^{c}-(u^{c})^{T}s_{u}^{c} &  & \\\nonumber{} & +(l^{x})^{T}s_{l}^{x}-(u^{x})^{T}s_{u}^{x}+c^{f} &  & \\\nonumber{}\mbox{subject to} & A^{T}y+s_{l}^{x}-s_{u}^{x}+s_{n}^{x} & = & c,\\\nonumber{} & -y+s_{l}^{c}-s_{u}^{c} & = & 0,\\\nonumber{} & s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x} & \geq{} & 0,\\\nonumber{} & s_{n}^{x}\in{}\mathcal{C}^{*} &  &\end{array}\end{math}"/></td>
+<td>(10.3.2)</td></tr>
+</tbody>
+</table>
+
+<p>where the dual cone <span class="math"><img src="math/math47.png" alt="[[MathCmd 47]]"/></span> is a product of the cones </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math478.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}^{*}=\mathcal{C}^{*}_{1}\times \cdots \mathcal{C}^{*}_{p}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where each <span class="math"><img src="math/math54.png" alt="[[MathCmd 54]]"/></span> is the dual cone of <span class="math"><img src="math/math28.png" alt="[[MathCmd 28]]"/></span>. For the cone types MOSEK can handle, the relation between the primal and dual cone is given as follows: </p>
+
+<ul class="itemize">
+<li>
+<p><span class="math"><img src="math/math29.png" alt="[[MathCmd 29]]"/></span> set: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math57.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}\right\rbrace{}\quad{}\Leftrightarrow \quad{}\mathcal{C}^{*}_{t}:=\left\lbrace{}s\in{}\mathbb{R}^{{n^{t}}}:~s=0\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math58.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}:=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:x_{1}\geq{}\sqrt{\sum \limits _{{j=2}}^{{n^{t}}}x_{j}^{2}}\right\rbrace{}\quad{}\Leftrightarrow \quad{}\mathcal{C}^{*}_{t}=\mathcal{C}_{t}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Rotated quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math484.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}:=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:2x_{1}x_{2}\geq{}\sum \limits _{{j=3}}^{{n^{t}}}x_{j}^{2},~x_{1},x_{2}\geq{}0\right\rbrace{}.\quad{}\Leftrightarrow \quad{}\mathcal{C}^{*}_{t}=\mathcal{C}_{t}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<p> Please note that the dual problem of the dual problem is identical to the original primal problem.</p>
+
+</div>
+
+<div>
+<h2><a name="253630080">10.3.2. Infeasibility</a></h2>
+
+<p>In case MOSEK finds a problem to be infeasible it reports a certificate of the infeasibility. This works exactly as for linear problems (see Sections <a title="10.1.1.3. Primal infeasible problems" href="node012.html#chp-modelling-sec-pinfeasprob">10.1.1.3</a> and <a title="10.1.1.4. Dual infeasible problems" href="node012.html#chp-modelling-sec-dinfeasprob">10.1.1.4</a>).</p>
+
+</div>
+
+<div>
+<h2><a name="253614200">10.3.3. Examples</a></h2>
+
+<p> <a name="sec-conic-quadratic-opt-examples">&#09;</a><a name="idx-88624160">&#09;</a><a name="idx-88624880">&#09;</a>This section contains several examples of inequalities and problems that can be cast as conic optimization problems.</p>
+
+<div>
+<h3><a name="253630152">10.3.3.1. Quadratic objective and constraints</a></h3>
+
+<p> <a name="idx-88626240">&#09;</a><a name="ch-use-sec-conic-quadterm">&#09;</a></p>
+
+<p>From Section <a title="10.2.2. Reformulating as a separable quadratic problem" href="node012.html#chp-modelling-sec-quad-sep-reform">10.2.2</a> we know that any convex quadratic problem can be stated on the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math485.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & 0.5\left\|Fx\right\|^{2}+c^{T}x, &  & \\\nonumber{}\mbox{subject to} & 0.5\left\|Gx\right\|^{2}+a^{T}x & \leq{} & b,\end{array}\end{math}"/></td>
+<td><a name="ch-modelling-qctoqonic-1">&#09;</a>(10.3.3)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><span class="mi">F</span></span> and <span class="math"><span class="mi">G</span></span> are matrices and <span class="math"><span class="mi">c</span></span> and <span class="math"><span class="mi">a</span></span> are vectors. For simplicity we assume that there is only one constraint, but it should be obvious how to generalize the methods to an arbitrary number of constraints.</p>
+
+<p>Problem (<a href="node012.html#ch-modelling-qctoqonic-1">10.3.3</a>) can be reformulated as </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math486.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & 0.5\left\|t\right\|^{2}+c^{T}x, &  & \\\nonumber{}\mbox{subject to} & 0.5\left\|z\right\|^{2}+a^{T}x & \leq{} & b,\\\nonumber{} & Fx-t & = & 0,\\\nonumber{} & Gx-z & = & 0\end{array}\end{math}"/></td>
+<td>(10.3.4)</td></tr>
+</tbody>
+</table>
+
+<p>after the introduction of the new variables <span class="math"><span class="mi">t</span></span> and <span class="math"><span class="mi">z</span></span>. It is easy to convert this problem to a conic quadratic optimization problem, i.e. </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math487.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & v+c^{T}x, &  &  & \\\nonumber{}\mbox{subject to} & p+a^{T}x & = & b, & \\\nonumber{} & Fx-t & = & 0, & \\\nonumber{} & Gx-z & = & 0, & \\\nonumber{} & w & = & 1, & \\\nonumber{} & q & = & 1, & \\\nonumber{} & \left\|t\right\|^{2} & \leq{} & 2vw, & v,w\geq{}0,\\\nonumber{} & \left\|z\right\|^{2} & \leq{} & 2pq, & p,q\geq{}0.\end{array}\end{math}"/></td>
+<td>(10.3.5)</td></tr>
+</tbody>
+</table>
+
+<p>In this case we can model the last two inequalities using rotated quadratic cones.</p>
+
+<p>If we assume that <span class="math"><span class="mi">F</span></span> is a non-singular matrix &mdash; e.g. a diagonal matrix &mdash; then </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math488.png" alt="\begin{displaymath}\nonumber{}x=F^{{-1}}t\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and hence we can eliminate <span class="math"><span class="mi">x</span></span> from the problem to obtain: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math489.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & v+c^{T}F^{{-1}}t, &  &  & \\\nonumber{}\mbox{subject to} & p+a^{T}F^{{-1}}t & = & b, & \\\nonumber{} & GF^{{-1}}t-z & = & 0, & \\\nonumber{} & w & = & 1, & \\\nonumber{} & q & = & 1, & \\\nonumber{} & \left\|t\right\|^{2} & \leq{} & 2vw, & v,w\geq{}0,\\\nonumber{} & \left\|z\right\|^{2} & \leq{} & 2pq, & p,q\geq{}0.\end{array}\end{math}"/></td>
+<td>(10.3.6)</td></tr>
+</tbody>
+</table>
+
+<p>In most cases MOSEK performs this reduction automatically during the presolve phase before the optimization is performed.</p>
+
+</div>
+
+<div>
+<h3><a name="253679016">10.3.3.2. Minimizing a sum of norms</a></h3>
+
+<p> <a name="idx-88651968">&#09;</a> <a name="idx-88649952">&#09;</a></p>
+
+<p>The next example is the problem of minimizing a sum of norms, i.e. the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math490.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & \sum \limits _{{i=1}}^{{k}}\left\|x^{i}\right\| &  & \\\nonumber{}\mbox{subject to} & Ax & = & b,\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-conicoptimization-eq-primalmsn">&#09;</a>(10.3.7)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math491.png" alt="\begin{displaymath}\nonumber{}x:=\left[\begin{array}{c}\nonumber{}x^{1}\\\nonumber{}\vdots \\\nonumber{}x^{k}\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This problem is equivalent to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math492.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{i=1}}^{{k}}z_{i} &  &  & \\\nonumber{}\mbox{subject to} & Ax & = & b, & \\\nonumber{} & \left\|x^{i}\right\| & \leq{} & z_{i}, & i=1,\ldots ,k,\end{array}\end{math}"/></td>
+<td>(10.3.8)</td></tr>
+</tbody>
+</table>
+
+<p>which in turn is equivalent to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math493.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & \sum \limits _{{i=1}}^{{k}}z_{i} &  & \\\nonumber{}\mbox{subject to} & Ax & = & b,\\\nonumber{} & (z_{i},x^{i})\in{}\mathcal{C}_{i}, &  & i=1,\ldots ,k\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-conicoptimization-eq-pmsn">&#09;</a>(10.3.9)</td></tr>
+</tbody>
+</table>
+
+<p>where all <span class="math"><img src="math/math494.png" alt="[[MathCmd 494]]"/></span> are of the quadratic type, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math495.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{i}:=\left\lbrace{}(z_{i},x^{i}):~z_{i}\geq{}\left\|x^{i}\right\|\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The dual problem corresponding to (<a href="node012.html#ch-use-sec-conicoptimization-eq-pmsn">10.3.9</a>) is </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math496.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{maximize} & b^{T}y &  &  & \\\nonumber{}\mbox{subject to} & A^{T}y+s & = & c, & \\\nonumber{} & t_{i} & = & 1, & i=1,\ldots ,k,\\\nonumber{} & (t_{i},s^{i})\in{}\mathcal{C}_{i}, &  &  & i=1,\ldots ,k\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-conicoptimization-eq-dmsn">&#09;</a>(10.3.10)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math497.png" alt="\begin{displaymath}\nonumber{}s:=\left[\begin{array}{c}\nonumber{}s^{1}\\\nonumber{}\vdots \\\nonumber{}s^{k}\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> This problem is equivalent to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math498.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{maximize} & b^{T}y &  &  & \\\nonumber{}\mbox{subject to} & A^{T}y+s & = & c, & \\\nonumber{} & \left\|s^{i}\right\|_{2}^{2} & \leq{} & 1, & i=1,\ldots ,k.\end{array}\end{math}"/></td>
+<td>(10.3.11)</td></tr>
+</tbody>
+</table>
+
+<p>Please note that in this case the dual problem can be reduced to an &#8220;ordinary&#8221; convex quadratically constrained optimization problem due to the special structure of the primal problem. In some cases it turns out that it is much better to solve the dual problem (<a href="node012.html#ch-use-sec-conicoptimization-eq-dmsn">10.3.10</a>) rather than the primal problem (<a href="node012.html#ch-use-sec-conicoptimization-eq-pmsn">10.3.9</a>).</p>
+
+</div>
+
+<div>
+<h3><a name="253722776">10.3.3.3. Modelling polynomial terms using conic optimization</a></h3>
+
+<p> <a name="ch-modelling-sec-conic-polynomial">&#09;</a> Generally an arbitrary polynomial term of the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math499.png" alt="\begin{displaymath}\nonumber{}fx^{g}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>cannot be represented with conic quadratic constraints, however in the following we will demonstrate some special cases where it is possible.</p>
+
+<p>A particular simple polynomial term is the reciprocal, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math500.png" alt="\begin{displaymath}\nonumber{}\frac{1}{x}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Now, a constraint of the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math501.png" alt="\begin{displaymath}\nonumber{}\frac{1}{x}\leq{}y\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where it is required that <span class="math"><span class="mi">x</span><span class="mo">&gt;</span><span class="mn">0</span></span> is equivalent to </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math502.png" alt="\begin{displaymath}\nonumber{}1\leq{}xy\mbox{ and }x>0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which in turn is equivalent to </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math503.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}z & = & \sqrt{2},\\\nonumber{}z^{2} & \leq{} & 2xy.\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The last formulation is a conic constraint plus a simple linear equality.</p>
+
+<p>E.g., consider the problem </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math504.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & c^{T}x &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{j=1}}^{n}\frac{f_{j}}{x_{j}} & \leq{} & b,\\\nonumber{} & x\geq{}0, &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where it is assumed that <span class="math"><img src="math/math505.png" alt="[[MathCmd 505]]"/></span> and <span class="math"><span class="mi">b</span><span class="mo">&gt;</span><span class="mn">0</span></span>. This problem is equivalent to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math506.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & c^{T}x &  &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{j=1}}^{n}f_{j}z_{j} & = & b, & \\\nonumber{} & v_{j} & = & \sqrt{2}, & j=1,\ldots ,n,\\\nonumber{} & v_{j}^{2} & \leq{} & 2z_{j}x_{j}, & j=1,\ldots ,n,\\\nonumber{} & x,z\geq{}0, &  &  &\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-conicoptimization-eq-invxconic">&#09;</a>(10.3.12)</td></tr>
+</tbody>
+</table>
+
+<p>because </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math507.png" alt="\begin{displaymath}\nonumber{}v_{j}^{2}=2\leq{}2z_{j}x_{j}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>implies that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math508.png" alt="\begin{displaymath}\nonumber{}\frac{1}{x_{j}}\leq{}z_{j}\mbox{ and }\sum \limits _{{j=1}}^{n}\frac{f_{j}}{x_{j}}\leq{}\sum \limits _{{j=1}}^{n}f_{j}z_{j}=b.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> The problem (<a href="node012.html#ch-use-sec-conicoptimization-eq-invxconic">10.3.12</a>) is a conic quadratic optimization problem having <span class="math"><span class="mi">n</span></span> 3-dimensional rotated quadratic cones.</p>
+
+<p>The next example is the constraint </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math509.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}\sqrt{x} & \geq{} & |t|,\\\nonumber{}x & \geq{} & 0,\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where both <span class="math"><span class="mi">t</span></span> and <span class="math"><span class="mi">x</span></span> are variables. This set is identical to the set </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math510.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}t^{2} & \leq{} & 2xz,\\\nonumber{}z & = & 0.5,\\\nonumber{}x,z, & \geq{} & 0.\end{array}\end{math}"/></td>
+<td>(10.3.13)</td></tr>
+</tbody>
+</table>
+
+<p> Occasionally, when modeling the <em>market impact</em> term in portfolio optimization, the polynomial term <span class="math"><img src="math/math511.png" alt="[[MathCmd 511]]"/></span> occurs. Therefore, consider the set defined by the inequalities </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math512.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}x^{{1.5}} & \leq{} & t,\\\nonumber{}0 & \leq{} & x.\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-conic-pow32-eq-pow32">&#09;</a>(10.3.14)</td></tr>
+</tbody>
+</table>
+
+<p>We will exploit that <span class="math"><img src="math/math513.png" alt="[[MathCmd 513]]"/></span> . First define the set </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math514.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}x^{2} & \leq{} & 2st,\\\nonumber{}s,t & \geq{} & 0.\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-conic-pow32-c1">&#09;</a>(10.3.15)</td></tr>
+</tbody>
+</table>
+
+<p>Now, if we can make sure that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math515.png" alt="\begin{displaymath}\nonumber{}2s\leq{}\sqrt{x},\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>then we have the desired result since this implies that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math516.png" alt="\begin{displaymath}\nonumber{}x^{{1.5}}=\frac{x^{2}}{\sqrt{x}}\leq{}\frac{x^{2}}{2 s}\leq{}t.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Please note that <span class="math"><span class="mi">s</span></span> can be chosen freely and that <span class="math"><img src="math/math517.png" alt="[[MathCmd 517]]"/></span> is a valid choice.</p>
+
+<p>Let </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math518.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}x^{2} & \leq{} & 2st,\\\nonumber{}w^{2} & \leq{} & 2vr,\\\nonumber{}x & = & v,\\\nonumber{}s & = & w,\\\nonumber{}r & = & \frac{1}{8},\\\nonumber{}s,t,v,r & \geq{} & 0,\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-conic-pow32-c2">&#09;</a>(10.3.16)</td></tr>
+</tbody>
+</table>
+
+<p>then </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math519.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}s^{2} & = & w^{2}\\\nonumber{} & \leq{} & 2vr\\\nonumber{} & = & \frac{v}{4}\\\nonumber{} & = & \frac{x}{4}.\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Moreover, </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math520.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}x^{2} & \leq{} & 2st,\\\nonumber{} & \leq{} & 2\sqrt{\frac{x}{4}}t\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>leading to the conclusion that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math521.png" alt="\begin{displaymath}\nonumber{}x^{{1.5}}\leq{}t.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>(<a href="node012.html#ch-use-sec-conic-pow32-c2">10.3.16</a>) is a conic reformulation which is equivalent to (<a href="node012.html#ch-use-sec-conic-pow32-eq-pow32">10.3.14</a>). Please note that the <span class="math"><span class="mi">x</span>&ge;<span class="mn">0</span></span> constraint does not appear explicitly in (<a href="node012.html#ch-use-sec-conic-pow32-c1">10.3.15</a>) and (<a href="node012.html#ch-use-sec-conic-pow32-c2">10.3.16</a>), but implicitly since <span class="math"><span class="mi">x</span><span class="mo">=</span><span class="mi">v</span>&ge;<span class="mn">0</span></span>.</p>
+
+<p>As we shall see next, any polynomial term of the form <span class="math"><img src="math/math522.png" alt="[[MathCmd 522]]"/></span> where <span class="math"><span class="mi">g</span></span> is a positive rational number can be represented using conic quadratic constraints [<a href="node024.html#ALIZADEH:03:A" class="citation">10</a>, pp. 12-13], [<a href="node024.html#BEN-TAL:01:A" class="citation">5</a>].</p>
+
+</div>
+
+<div>
+<h3><a name="253789392">10.3.3.4. Optimization with rational polynomials</a></h3>
+
+<p> <a name="sec:rational_poly">&#09;</a> We next demonstrate how to model convex polynomial constraints of the form <span class="math"><img src="math/math523.png" alt="[[MathCmd 523]]"/></span> (where <span class="math"><span class="mi">p</span></span> and <span class="math"><span class="mi">q</span></span> are both positive integers) as a set of rotated quadratic cone constraints.</p>
+
+<p>Following Ben-Tal et al.&nbsp;[<a href="node024.html#BEN-TAL:01:A" class="citation">5</a>, p. 105] we use an intermediate result, namely that the set </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math524.png" alt="\begin{displaymath}\nonumber{}\lbrace{}s\in{}\mathbb{R},\,y\in{}\mathbb{R}^{{2^{l}}}_{+}\ |\ s\leq{}(2^{{l2^{{l-1}}}}y_{1}y_{2}\cdots y_{{2^{l}}})^{{1/2^{l}}}\rbrace{}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is convex and can be represented as a set of rotated quadratic cone constraints. To see this, we rewrite the condition (exemplified for <span class="math"><span class="mi">l</span><span class="mo">=</span><span class="mn">3</span></span>), </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math525.png" alt="\begin{math}\nonumber{}s\leq{}\left(2^{{12}}\cdot y_{1}\cdot y_{2}\cdot y_{3}\cdot y_{4}\cdot y_{5}\cdot y_{6}\cdot y_{7}\cdot y_{8}\right)^{{1/8}}\end{math}"/></td>
+<td><a name="eq:ratpoly_s">&#09;</a>(10.3.17)</td></tr>
+</tbody>
+</table>
+
+<p>as </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math526.png" alt="\begin{math}\nonumber{}s^{8}\leq{}\left(2^{{12}}\cdot y_{1}\cdot y_{2}\cdot y_{3}\cdot y_{4}\cdot y_{5}\cdot y_{6}\cdot y_{7}\cdot y_{8}\right)\end{math}"/></td>
+<td><a name="eq:ratpoly_s8">&#09;</a>(10.3.18)</td></tr>
+</tbody>
+</table>
+
+<p>since all <span class="math"><img src="math/math527.png" alt="[[MathCmd 527]]"/></span>. We next introduce <span class="math"><span class="mi">l</span></span> levels of auxiliary variables and (rotated cone) constraints </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math528.png" alt="\begin{math}\nonumber{}y_{{11}}^{2}\leq{}2y_{1}y_{2},\quad{}y_{{12}}^{2}\leq{}2y_{3}y_{4},\quad{}y_{{13}}^{2}\leq{}2y_{5}y_{6},\quad{}y_{{14}}^{2}\leq{}2y_{7}y_{8},\end{math}"/></td>
+<td><a name="eq:ratpoly_reform_lvl1">&#09;</a>(10.3.19)</td></tr>
+</tbody>
+</table>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math529.png" alt="\begin{math}\nonumber{}y_{{21}}^{2}\leq{}2y_{{11}}y_{{12}},\quad{}y_{{22}}^{2}\leq{}2y_{{13}}y_{{14}},\end{math}"/></td>
+<td><a name="eq:ratpoly_reform_lvl2">&#09;</a>(10.3.20)</td></tr>
+</tbody>
+</table>
+
+<p>and finally </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math530.png" alt="\begin{math}\nonumber{}s^{2}\leq{}2y_{{21}}y_{{22}}.\end{math}"/></td>
+<td><a name="eq:ratpoly_reform_lvl3">&#09;</a>(10.3.21)</td></tr>
+</tbody>
+</table>
+
+<p>By simple substitution we see that (<a href="node012.html#eq:ratpoly_reform_lvl3">10.3.21</a>) and (<a href="node012.html#eq:ratpoly_s8">10.3.18</a>) are equivalent, and since (<a href="node012.html#eq:ratpoly_reform_lvl3">10.3.21</a>) involves only a set of simple rotated conic constraints then the original constraint (<a href="node012.html#eq:ratpoly_s">10.3.17</a>) can be represented using only rotated conic constraints.</p>
+
+</div>
+
+<div>
+<h3><a name="253793344">10.3.3.5. Convex increasing power functions</a></h3>
+
+<p><a name="sec:poly_inc_power">&#09;</a> Using the intermediate result in section <a title="10.3.3.4. Optimization with rational polynomials" href="node012.html#sec:rational_poly">10.3.3.4</a> we can include convex power functions with positive rational powers, i.e., constraints of the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math531.png" alt="\begin{displaymath}\nonumber{}x^{{p/q}}\leq{}t,\quad{}x\geq{}0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><span class="mi">p</span></span> and <span class="math"><span class="mi">q</span></span> are positive integers and <span class="math"><span class="mi">p</span><span class="mo">/</span><span class="mi">q</span>&ge;<span class="mn">1</span></span>. For example, consider the constraints </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math532.png" alt="\begin{displaymath}\nonumber{}x^{{5/3}}\leq{}t,\quad{}x\geq{}0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>We rewrite it as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math533.png" alt="\begin{displaymath}\nonumber{}x^{8}\leq{}x^{3}t^{3},\quad{}x\geq{}0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which in turn is equivalent to </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math534.png" alt="\begin{displaymath}\nonumber{}x^{8}\leq{}2^{{12}}y_{1}y_{2}\cdots y_{8},\quad{}x=y_{1}=y_{2}=y_{3},\quad{}y_{4}=y_{5}=y_{6}=t,\quad{}y_{6}=1,\quad{}y_{7}=2^{{-12}},\quad{}x,y_{i}\geq{}0,\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>i.e., it can be represented as a set of rotated conic and linear constraints using the reformulation above.</p>
+
+<p>For general <span class="math"><span class="mi">p</span></span> and <span class="math"><span class="mi">q</span></span> we choose <span class="math"><span class="mi">l</span></span> as the smallest integer such that <span class="math"><img src="math/math535.png" alt="[[MathCmd 535]]"/></span> and we construct the problem as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math536.png" alt="\begin{displaymath}\nonumber{}x^{{2^{l}}}\leq{}2^{{l2^{{l-1}}}}y_{1}y_{2}\cdots y_{{2^{l}}},\quad{}x,y_{i}\geq{}0,\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>with the first <span class="math"><img src="math/math537.png" alt="[[MathCmd 537]]"/></span> elements of <span class="math"><span class="mi">y</span></span> set to <span class="math"><span class="mi">x</span></span>, the next <span class="math"><span class="mi">q</span></span> elements set to <span class="math"><span class="mi">t</span></span>, and the product of the remaining elements as <span class="math"><img src="math/math538.png" alt="[[MathCmd 538]]"/></span>, i.e., </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math539.png" alt="\begin{displaymath}\nonumber{}x^{{2^{l}}}\leq{}x^{{2^{l}-p}}t^{q},\quad{}x\geq{}0\qquad{}\Longleftrightarrow \qquad{}x^{{p/q}}\leq{}t,\quad{}x\geq{}0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h3><a name="253799888">10.3.3.6. Decreasing power functions</a></h3>
+
+<p><a name="sec:poly_dec_power">&#09;</a> We can also include decreasing power functions with positive rational powers </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math540.png" alt="\begin{displaymath}\nonumber{}x^{{-p/q}}\leq{}t,\quad{}x\geq{}0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><span class="mi">p</span></span> and <span class="math"><span class="mi">q</span></span> are positive integers. For example, consider </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math541.png" alt="\begin{displaymath}\nonumber{}x^{{-5/2}}\leq{}t,\quad{}x\geq{}0,\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>or equivalently </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math542.png" alt="\begin{displaymath}\nonumber{}1\leq{}x^{5}t^{2},\quad{}x\geq{}0,\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which, in turn, can be rewritten as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math543.png" alt="\begin{displaymath}\nonumber{}s^{8}\leq{}2^{{12}}y_{1}y_{2}\cdots y_{8},\quad{}s=2^{{3/2}},\quad{}y_{1}=\cdots =y_{5}=x,\quad{}y_{6}=y_{7}=y_{8}=t,\quad{}x,y_{i}\geq{}0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> For general <span class="math"><span class="mi">p</span></span> and <span class="math"><span class="mi">q</span></span> we choose <span class="math"><span class="mi">l</span></span> as the smallest integer such that <span class="math"><img src="math/math544.png" alt="[[MathCmd 544]]"/></span> and we construct the problem as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math545.png" alt="\begin{displaymath}\nonumber{}s^{{2^{l}}}\leq{}y_{1}y_{2}\cdots y_{{2^{l}}},\quad{}y_{i}\geq{}0,\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>with <span class="math"><img src="math/math546.png" alt="[[MathCmd 546]]"/></span> and the first <span class="math"><span class="mi">p</span></span> elements of <span class="math"><span class="mi">y</span></span> set to <span class="math"><span class="mi">x</span></span>, the next <span class="math"><span class="mi">q</span></span> elements set to <span class="math"><span class="mi">t</span></span>, and the remaining elements set to <span class="math"><span class="mn">1</span></span>, i.e., </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math547.png" alt="\begin{displaymath}\nonumber{}1\leq{}x^{p}t^{q},\quad{}x\geq{}0\qquad{}\Longleftrightarrow \qquad{}x^{{-p/q}}\leq{}t,\quad{}x\geq{}0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h3><a name="253805848">10.3.3.7. Minimizing general polynomials</a></h3>
+
+<p> Using the formulations in section <a title="10.3.3.5. Convex increasing power functions" href="node012.html#sec:poly_inc_power">10.3.3.5</a> and section <a title="10.3.3.6. Decreasing power functions" href="node012.html#sec:poly_dec_power">10.3.3.6</a> it is straightforward to minimize general polynomials. For example, we can minimize </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math548.png" alt="\begin{displaymath}\nonumber{}f(x)=x^{2}+x^{{-2}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which is used in statistical matching. We first formulate the problem </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math549.png" alt="\begin{displaymath}\nonumber{}\begin{array}{ll}\nonumber{}\mbox{minimize} & u+v\\\nonumber{}\mbox{subject to} & x^{2}\leq{}u\\\nonumber{} & x^{{-2}}\leq{}v,\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which is equivalent to the quadratic conic optimization problem </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math550.png" alt="\begin{displaymath}\nonumber{}\begin{array}{ll}\nonumber{}\mbox{minimize} & u+v\\\nonumber{}\mbox{subject to} & x^{2}\leq{}2uw\\\nonumber{} & s^{2}\leq{}2y_{{21}}y_{{22}}\\\nonumber{} & y_{{21}}^{2}\leq{}2y_{1}y_{2}\\\nonumber{} & y_{{22}}^{2}\leq{}2y_{3}y_{4}\\\nonumber{} & w=1\\\nonumber{} & s=2^{{3/4}}\\\nonumber{} & y_{1}=y_{2}=x\\\nonumber{} & y_{3}=v\\\nonumber{} & y_{4}=1\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>in the variables <span class="math"><img src="math/math551.png" alt="[[MathCmd 551]]"/></span>.</p>
+
+</div>
+
+<div>
+<h3><a name="255454672">10.3.3.8. Further reading</a></h3>
+
+<p> If you want to learn more about what can be modeled as a conic optimization problem we recommend the references [<a href="node024.html#ALIZADEH:03:A" class="citation">10</a>, <a href="node024.html#BEN-TAL:01:A" class="citation">5</a>, <a href="node024.html#LOBO:98:A" class="citation">19</a>].</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="255454888">10.3.4. Potential pitfalls in conic optimization</a></h2>
+
+<p> <a name="idx-90356192">&#09;</a></p>
+
+<p>While a linear optimization problem either has a bounded optimal solution or is infeasible, the conic case is not as simple as that.</p>
+
+<div>
+<h3><a name="255454744">10.3.4.1. Non-attainment in the primal problem</a></h3>
+
+<p>Consider the example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math552.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & z &  & \\\nonumber{}\mbox{subject to} & 2yz & \geq{} & x^{2},\\\nonumber{} & x & = & \sqrt{2},\\\nonumber{} & y,z & \geq{} & 0,\end{array}\end{math}"/></td>
+<td>(10.3.22)</td></tr>
+</tbody>
+</table>
+
+<p>which corresponds to the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math553.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & \frac{1}{y} &  & \\\nonumber{}\mbox{subject to} & y & \geq{} & 0.\end{array}\end{math}"/></td>
+<td>(10.3.23)</td></tr>
+</tbody>
+</table>
+
+<p>Clearly, the optimal objective value is zero but it is never attained because implicitly we assume that the optimal <span class="math"><span class="mi">y</span></span> is finite.</p>
+
+</div>
+
+<div>
+<h3><a name="255466456">10.3.4.2. Non-attainment in the dual problem</a></h3>
+
+<p>Next, consider the example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math554.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & x_{4} &  & \\\nonumber{}\mbox{subject to} & x_{3}+x_{4} & = & 1,\\\nonumber{} & x_{1} & = & 0,\\\nonumber{} & x_{2} & = & 1,\\\nonumber{} & 2x_{1}x_{2} & \geq{} & x_{3}^{2},\\\nonumber{} & x_{1},x_{2} & \geq{} & 0,\end{array}\end{math}"/></td>
+<td><a name="ch-use-sec-conicoptimization-eq-pro-nona-primal">&#09;</a>(10.3.24)</td></tr>
+</tbody>
+</table>
+
+<p>which has the optimal solution </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math555.png" alt="\begin{displaymath}\nonumber{}x_{1}^{*}=0,~x_{2}^{*}=1,~x_{3}^{*}=0\mbox{ and }x_{4}^{*}=1\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>implying that the optimal primal objective value is 1.</p>
+
+<p>Now, the dual problem corresponding to (<a href="node012.html#ch-use-sec-conicoptimization-eq-pro-nona-primal">10.3.24</a>) is </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math556.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & y_{1}+y_{3} &  & \\\nonumber{}\mbox{subject to} & y_{2}+s_{1} & = & 0,\\\nonumber{} & y_{3}+s_{2} & = & 0,\\\nonumber{} & y_{1}+s_{3} & = & 0,\\\nonumber{} & y_{1} & = & 1,\\\nonumber{} & 2s_{1}s_{2} & \geq{} & s_{3}^{2},\\\nonumber{} & s_{1},s_{2} & \geq{} & 0.\end{array}\end{math}"/></td>
+<td>(10.3.25)</td></tr>
+</tbody>
+</table>
+
+<p>Therefore, </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math557.png" alt="\begin{displaymath}\nonumber{}y_{1}^{*}=1\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math558.png" alt="\begin{displaymath}\nonumber{}s_{3}^{*}=-1.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This implies that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math559.png" alt="\begin{displaymath}\nonumber{}2s_{1}^{*}s_{2}^{*}\geq{}(s_{3}^{*})^{2}=1\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and hence <span class="math"><img src="math/math560.png" alt="[[MathCmd 560]]"/></span>. Given this fact we can conclude that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math561.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}y_{1}^{*}+y_{3}^{*} & = & 1-s_{2}^{*}\\\nonumber{} & < & 1\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>implying that the optimal dual objective value is 1, however, this is never attained. Hence, no primal-dual bounded optimal solution with zero duality gap exists. Of course it is possible to find a primal-dual feasible solution such that the duality gap is close to zero, but then <span class="math"><img src="math/math562.png" alt="[[MathCmd 562]]"/></span> will be similarly large. This is likely to make the problem (<a href="node012.html#ch-use-sec-conicoptimization-eq-pro-nona-primal">10.3.24</a>) hard to solve.</p>
+
+<p>An inspection of the problem (<a href="node012.html#ch-use-sec-conicoptimization-eq-pro-nona-primal">10.3.24</a>) reveals the constraint <span class="math"><img src="math/math563.png" alt="[[MathCmd 563]]"/></span>, which implies that <span class="math"><img src="math/math564.png" alt="[[MathCmd 564]]"/></span>. If we either add the redundant constraint </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math565.png" alt="\begin{displaymath}\nonumber{}x_{3}=0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>to the problem (<a href="node012.html#ch-use-sec-conicoptimization-eq-pro-nona-primal">10.3.24</a>) or eliminate <span class="math"><img src="math/math154.png" alt="[[MathCmd 154]]"/></span> and <span class="math"><img src="math/math155.png" alt="[[MathCmd 155]]"/></span> from the problem it becomes easy to solve.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="255501592">10.4. Nonlinear convex optimization</a></h1>
+
+<p> <a name="ch-use-sec-nlo">&#09;</a> MOSEK is capable of solving smooth (twice differentiable) convex nonlinear optimization problems of the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math115.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} &  &  & f(x)+c^{T}x &  & \\\nonumber{}\mbox{subject to } &  &  & g(x)+Ax-x^{c} & = & 0,\\\nonumber{} & l^{c} & \leq{} & x^{c} & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\end{array}\end{math}"/></td>
+<td><a name="EQ:NLOPT">&#09;</a>(10.4.1)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<ul class="itemize">
+<li><span class="math"><span class="mi">m</span></span> is the number of constraints. </li>
+<li><span class="math"><span class="mi">n</span></span> is the number of decision variables. </li>
+<li><span class="math"><img src="math/math116.png" alt="[[MathCmd 116]]"/></span> is a vector of decision variables. <a name="idx-90405416">&#09;</a> </li>
+<li><span class="math"><img src="math/math117.png" alt="[[MathCmd 117]]"/></span> is a vector of constraints or slack variables. </li>
+<li><span class="math"><img src="math/math118.png" alt="[[MathCmd 118]]"/></span> is the linear part objective function. <a name="idx-90409368">&#09;</a> </li>
+<li><span class="math"><img src="math/math119.png" alt="[[MathCmd 119]]"/></span> is the constraint matrix. <a name="idx-90412816">&#09;</a> </li>
+<li><span class="math"><img src="math/math120.png" alt="[[MathCmd 120]]"/></span> is the lower limit on the activity for the constraints. <a name="idx-90414112">&#09;</a> </li>
+<li><span class="math"><img src="math/math121.png" alt="[[MathCmd 121]]"/></span> is the upper limit on the activity for the constraints. <a name="idx-90409512">&#09;</a> </li>
+<li><span class="math"><img src="math/math122.png" alt="[[MathCmd 122]]"/></span> is the lower limit on the activity for the variables. <a name="idx-90404696">&#09;</a> </li>
+<li><span class="math"><img src="math/math123.png" alt="[[MathCmd 123]]"/></span> is the upper limit on the activity for the variables. <a name="idx-90391256">&#09;</a> </li>
+<li><span class="math"><img src="math/math124.png" alt="[[MathCmd 124]]"/></span> is a nonlinear function. </li>
+<li><span class="math"><img src="math/math125.png" alt="[[MathCmd 125]]"/></span> is a nonlinear vector function. </li>
+</ul>
+
+<p>This means that the <span class="math"><span class="mi">i</span></span>th constraint has the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math579.png" alt="\begin{displaymath}\nonumber{}l_{i}^{c}\leq{}g_{i}(x)+\sum _{{j=1}}^{n}a_{{i,j}}x_{j}\leq{}u_{i}^{c}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>when the <span class="math"><img src="math/math127.png" alt="[[MathCmd 127]]"/></span> variable has been eliminated.</p>
+
+<p>The linear term <span class="math"><span class="mi">A</span><span class="mi">x</span></span> is not included in <span class="math"><span class="mi">g</span><span class="mo">(</span><span class="mi">x</span><span class="mo">)</span></span> since it can be handled much more efficiently as a separate entity when optimizing.</p>
+
+<p>The nonlinear functions <span class="math"><span class="mi">f</span></span> and <span class="math"><span class="mi">g</span></span> must be smooth in all <span class="math"><img src="math/math581.png" alt="[[MathCmd 581]]"/></span>. Moreover, <span class="math"><span class="mi">f</span><span class="mo">(</span><span class="mi">x</span><span class="mo">)</span></span> must be a convex function and <span class="math"><img src="math/math582.png" alt="[[MathCmd 582]]"/></span> must satisfy </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math583.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}l_{i}^{c}=-\infty  & \Rightarrow  & g_{i}(x)\quad{}\mbox{is convex},\\\nonumber{}u_{i}^{c}=\infty  & \Rightarrow  & g_{i}(x)\quad{}\mbox{is concave},\\\nonumber{}-\infty <l_{i}^{c}\leq{}u_{i}^{c}<\infty  & \Rightarrow  & g_{i}(x)=0.\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<div>
+<h2><a name="255520848">10.4.1. Duality</a></h2>
+
+<p> <a name="ch-use-sec-nlodual">&#09;</a> So far, we have not discussed what happens when MOSEK is used to solve a primal or dual infeasible problem. In the following section these issues are addressed.</p>
+
+<p>Similar to the linear case, MOSEK reports dual information in the general nonlinear case. Indeed in this case the Lagrange function is defined by </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math584.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}L(x^{c},x,y,s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x}) & := & f(x)+c^{T}x+c^{f}\\\nonumber{} &  & -y^{T}(Ax+g(x)-x^{c})\\\nonumber{} &  & -(s_{l}^{c})^{T}(x^{c}-l^{c})-(s_{u}^{c})^{T}(u^{c}-x^{c})\\\nonumber{} &  & -(s_{l}^{x})^{T}(x-l^{x})-(s_{u}^{x})^{T}(u^{x}-x).\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and the dual problem is given by </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math585.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & L(x^{c},x,y,s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x}) &  & \\\nonumber{}\mbox{subject to} & \nabla _{{(x^{c},x)}}L(x^{c},x,y,s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x}) & = & 0,\\\nonumber{} & s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x}\geq{}0. &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which is equivalent to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math586.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & f(x)-y^{T}g(x)-x^{T}(\nabla f(x)^{T}-\nabla g(x)^{T}y) &  & \\\nonumber{} & +((l^{c})^{T}s_{l}^{c}-(u^{c})^{T}s_{u}^{c}+(l^{x})^{T}s_{l}^{x}-(u^{x})^{T}s_{u}^{x}+c^{f} &  & \\\nonumber{}\mbox{subject to} & -\nabla f(x)^{T}+A^{T}y+\nabla g(x)^{T}y+s_{l}^{x}-s_{u}^{x} & = & c,\\\nonumber{} & -y+s_{l}^{c}-s_{u}^{c} & = & 0,\\\nonumber{} & s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td><a name="EQ:DUANLO">&#09;</a>(10.4.2)</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="255552616">10.5. Recommendations</a></h1>
+
+<p> <a name="CH:PROFOR">&#09;</a> Often an optimization problem can be formulated in several different ways, and the exact formulation used may have a significant impact on the solution time and the quality of the solution. In some cases the difference between a &#8220;good&#8221; and a &#8220;bad&#8221; formulation means the ability to solve the problem or not.</p>
+
+<p>Below is a list of several issues that you should be aware of when developing a good formulation.</p>
+
+<ol class="enumerate">
+<li>Sparsity is very important. The constraint matrix <span class="math"><span class="mi">A</span></span> is assumed to be a sparse matrix, where sparse means that it contains many zeros (typically less than 10% non-zeros). Normally, when <span class="math"><span class="mi">A</span></span> is sparser, less memory is required to store the problem and it can be solved faster.</li>
+<li>
+<p>Avoid large bounds as these can introduce all sorts of numerical problems. Assume that a variable <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span> has the bounds  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math588.png" alt="\begin{displaymath}\nonumber{}0.0\leq{}x_{j}\leq{}1.0e16.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  The number 1.0e16 is large and it is very likely that the constraint <span class="math"><img src="math/math589.png" alt="[[MathCmd 589]]"/></span> is non-binding at optimum, and therefore that the bound <span class="math"><span class="mn">1.0</span><span class="mi">e</span><span class="mn">16</span></span> will not cause problems. Unfortunately, this is a na&iuml;ve assumption because the bound <span class="math"><span class="mn">1.0</span><span class="mi">e</span><span class="mn">16</span></span> may actually affect the presolve, the scaling, the computation of the dual objective value, etc. In this case the constraint <span class="math"><img src="math/math590.png" alt="[[MathCmd 590]]"/></span> is likely to be sufficient, i.e. <span class="math"><span class="mn">1.0</span><span class="mi">e</span><span class="mn">16</span></span> is just a way of representing infinity.</p>
+</li>
+<li>Avoid large penalty terms in the objective, i.e. do not have large terms in the linear part of the objective function. They will most likely cause numerical problems.</li>
+<li>
+<p>On a computer all computations are performed in finite precision, which implies that  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math591.png" alt="\begin{displaymath}\nonumber{}1=1+\varepsilon\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  where <span class="math"><img src="math/math592.png" alt="[[MathCmd 592]]"/></span> is about <span class="math"><img src="math/math593.png" alt="[[MathCmd 593]]"/></span>. This means that the results of all computations are truncated and therefore causing rounding errors. The upshot is that very small numbers and very large numbers should be avoided, e.g. it is recommended that all elements in <span class="math"><span class="mi">A</span></span> either are zero or belong to the interval <span class="math"><img src="math/math594.png" alt="[[MathCmd 594]]"/></span>. The same holds for the bounds and the linear objective.</p>
+</li>
+<li>Decreasing the number of variables or constraints does not <em>necessarily</em> make it easier to solve a problem. In certain cases, i.e. in nonlinear optimization, it may be a good idea to introduce more constraints and variables if it makes the model separable. Furthermore, a big but sparse problem may be advantageous compared to a smaller but denser problem.</li>
+<li>Try to avoid linearly dependent rows among the linear constraints. Network flow problems and multi-commodity network flow problems, for example, often contain one or more linearly dependent rows. </li>
+<li>Finally, it is recommended to consult some of the papers about preprocessing to get some ideas about efficient formulations. See e.g. [<a href="node024.html#ANDERSEN:95:D" class="citation">9</a>, <a href="node024.html#ANDERSEN:96:J" class="citation">6</a>, <a href="node024.html#GOULD:04:A" class="citation">26</a>, <a href="node024.html#KENNINGTON:04:A" class="citation">24</a>]. </li>
+</ol>
+
+<div>
+<h2><a name="255555848">10.5.1. Avoid near infeasible models</a></h2>
+
+<p> Consider the linear optimization problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math595.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} &  &  & \\\nonumber{}\mbox{subject to} & x+y & \leq{} & 10^{{-10}}+\alpha ,\\\nonumber{} & 1.0e4x+2.0e4y & \geq{} & 10^{{-6}},\\\nonumber{} & x,y\geq{}0. &  &\end{array}\end{math}"/></td>
+<td>(10.5.1)</td></tr>
+</tbody>
+</table>
+
+<p>Clearly, the problem is feasible for <span class="math"><img src="math/math596.png" alt="[[MathCmd 596]]"/></span>. However, for <span class="math"><img src="math/math597.png" alt="[[MathCmd 597]]"/></span> the problem is infeasible. This implies that an insignificant change in the right side of the constraints makes the problem status switch from feasible to infeasible. Such a model should be avoided.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="255567704">10.6. Examples continued</a></h1>
+
+<div>
+<h2><a name="255555992">10.6.1. The absolute value</a></h2>
+
+<p> <a name="idx-90464624">&#09;</a> <a name="idx-90464552">&#09;</a></p>
+
+<p>Assume that we have a constraint for the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math598.png" alt="\begin{math}\nonumber{}|f^{T}x+g|\leq{}b\end{math}"/></td>
+<td><a name="eq-ch-modelling-sec-genfor-eq-abs">&#09;</a>(10.6.1)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math116.png" alt="[[MathCmd 116]]"/></span> is a vector of variables, and <span class="math"><img src="math/math600.png" alt="[[MathCmd 600]]"/></span> and <span class="math"><img src="math/math601.png" alt="[[MathCmd 601]]"/></span> are constants.</p>
+
+<p>It is easy to verify that the constraint (<a href="node012.html#eq-ch-modelling-sec-genfor-eq-abs">10.6.1</a>) is equivalent to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math602.png" alt="\begin{math}\nonumber{}-b\leq{}f^{T}x+g\leq{}b\end{math}"/></td>
+<td>(10.6.2)</td></tr>
+</tbody>
+</table>
+
+<p>which is a set of ordinary linear inequality constraints.</p>
+
+<p>Please note that equalities involving an absolute value such as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math603.png" alt="\begin{displaymath}\nonumber{}|x|=1\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>cannot be formulated as a linear or even a as convex nonlinear optimization problem. It requires integer constraints.</p>
+
+</div>
+
+<div>
+<h2><a name="255568856">10.6.2. The Markowitz portfolio model</a></h2>
+
+<p> <a name="sec:markowitz">&#09;</a> <a name="idx-90479360">&#09;</a><a name="idx-90480008">&#09;</a> In this section we will show how to model several versions of the Markowitz portfolio model using conic optimization.</p>
+
+<p>The Markowitz portfolio model deals with the problem of selecting a portfolio of assets, i.e. stocks, bonds, etc. The goal is to find a portfolio such that for a given return the risk is minimized. The assumptions are: </p>
+
+<ul class="itemize">
+<li>A portfolio can consist of <span class="math"><span class="mi">n</span></span> traded assets numbered <span class="math"><img src="math/math604.png" alt="[[MathCmd 604]]"/></span> held over a period of time.</li>
+<li><span class="math"><img src="math/math605.png" alt="[[MathCmd 605]]"/></span> is the initial holding of asset <span class="math"><span class="mi">j</span></span> where <span class="math"><img src="math/math606.png" alt="[[MathCmd 606]]"/></span>.</li>
+<li><span class="math"><img src="math/math607.png" alt="[[MathCmd 607]]"/></span> is the return on asset <span class="math"><span class="mi">j</span></span> and is assumed to be a random variable. <span class="math"><span class="mi">r</span></span> has a known mean <span class="math"><img src="math/math608.png" alt="[[MathCmd 608]]"/></span> and covariance <span class="math"><img src="math/math609.png" alt="[[MathCmd 609]]"/></span>. </li>
+</ul>
+
+<p>The variable <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span> denotes the amount of asset <span class="math"><span class="mi">j</span></span> traded in the given period of time and has the following meaning: </p>
+
+<ul class="itemize">
+<li>If <span class="math"><img src="math/math611.png" alt="[[MathCmd 611]]"/></span>, then the amount of asset <span class="math"><span class="mi">j</span></span> is increased (by purchasing). </li>
+<li>If <span class="math"><img src="math/math612.png" alt="[[MathCmd 612]]"/></span>, then the amount of asset <span class="math"><span class="mi">j</span></span> is decreased (by selling). </li>
+</ul>
+
+<p>The model deals with two central quantities: </p>
+
+<ul class="itemize">
+<li>
+<p>Expected return: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math613.png" alt="\begin{displaymath}\nonumber{}E[r^{T}(w^{0}+x)]=\bar{r}^{T}(w^{0}+x).\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Variance (Risk): </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math614.png" alt="\begin{displaymath}\nonumber{}V[r^{T}(w^{0}+x)]=(w^{0}+x)^{T}\Sigma (w^{0}+x).\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<p> By definition <span class="math"><img src="math/math609.png" alt="[[MathCmd 609]]"/></span> is positive semi-definite and </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math616.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}\mbox{Std. dev.} & = & \left\|\Sigma ^{{\frac{1}{2}}}(w^{0}+x)\right\|\\\nonumber{} & = & \left\|L^{T}(w^{0}+x)\right\|\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><span class="mi">L</span></span> is <b>any</b> matrix such that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math617.png" alt="\begin{displaymath}\nonumber{}\Sigma =LL^{T}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>A low rank of <span class="math"><img src="math/math609.png" alt="[[MathCmd 609]]"/></span> is advantageous from a computational point of view. A valid <span class="math"><span class="mi">L</span></span> can always be computed as the Cholesky factorization of <span class="math"><img src="math/math609.png" alt="[[MathCmd 609]]"/></span>.</p>
+
+<div>
+<h3><a name="255580928">10.6.2.1. Minimizing variance for a given return</a></h3>
+
+<p> <a name="idx-90508464">&#09;</a> In our first model we want to minimize the variance while selecting a portfolio with a specified expected target return <span class="math"><span class="mi">t</span></span>. Additionally, the portfolio must satisfy the budget (self-financing) constraint asserting that the total amount of assets sold must equal the total amount of assets purchased. This is expressed in the model </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math620.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & V[r^{T}(w^{0}+x)] &  & \\\nonumber{}\mbox{subject to} & E[r^{T}(w^{0}+x)] & = & t,\\\nonumber{} & e^{T}x & = & 0,\end{array}\end{math}"/></td>
+<td>(10.6.3)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math621.png" alt="[[MathCmd 621]]"/></span>. Using the definitions above this may be formulated as a quadratic optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math622.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & (w^{0}+x)^{T}\Sigma (w^{0}+x) &  & \\\nonumber{}\mbox{subject to} & \bar{r}^{T}(w^{0}+x) & = & t,\\\nonumber{} & e^{T}x & = & 0.\end{array}\end{math}"/></td>
+<td>(10.6.4)</td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h3><a name="255595656">10.6.2.2. Conic quadratic reformulation</a></h3>
+
+<p>An equivalent conic quadratic reformulation is given by: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math623.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}\mbox{minimize} & f &  & \\\nonumber{}\mbox{subject to} & \Sigma ^{{\frac{1}{2}}}(w^{0}+x)-g & = & 0,\\\nonumber{} & \bar{r}^{T}(w^{0}+x) & = & t,\\\nonumber{} & e^{T}x & = & 0,\\\nonumber{} & f\geq{}\left\|g\right\|. &  &\end{array}\end{math}"/></td>
+<td>(10.6.5)</td></tr>
+</tbody>
+</table>
+
+<p>Here we minimize the standard deviation instead of the variance. Please note that <span class="math"><img src="math/math624.png" alt="[[MathCmd 624]]"/></span> can be replaced by any matrix <span class="math"><span class="mi">L</span></span> where <span class="math"><img src="math/math625.png" alt="[[MathCmd 625]]"/></span>. A low rank <span class="math"><span class="mi">L</span></span> is computationally advantageous.</p>
+
+</div>
+
+<div>
+<h3><a name="255607728">10.6.2.3. Transaction costs with market impact term</a></h3>
+
+<p> <a name="idx-90539576">&#09;</a> <a name="idx-90540368">&#09;</a> We will now expand our model to include transaction costs as a fraction of the traded volume. [<a href="node024.html#GRINOLD:00:A" class="citation">16</a>, pp. 445-475] argues that transaction costs can be modeled as follows </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math626.png" alt="\begin{math}\nonumber{}\mbox{commission}+\frac{\mbox{bid}}{\mbox{ask}}-\mbox{spread}+\theta \sqrt{\frac{\mbox{trade volume}}{\mbox{daily volume}}},\end{math}"/></td>
+<td>(10.6.6)</td></tr>
+</tbody>
+</table>
+
+<p>and that it is important to incorporate these into the model.</p>
+
+<p>In the following we deal with the last of these terms denoted the <em>market impact term</em>. If you sell (buy) a lot of assets the price is likely to go down (up). This can be captured in the market impact term </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math627.png" alt="\begin{displaymath}\nonumber{}\theta \sqrt{\frac{\mbox{trade volume}}{\mbox{daily volume}}}\approx{}m_{j}\sqrt{|x_{j}|}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The <span class="math"><img src="math/math628.png" alt="[[MathCmd 628]]"/></span> and &#8220;daily volume&#8221; have to be estimated in some way, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math629.png" alt="\begin{displaymath}\nonumber{}m_{j}=\frac{\theta }{\sqrt{\mbox{daily volume}}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>has to be estimated. The market impact term gives the cost as a fraction of daily traded volume (<span class="math"><img src="math/math630.png" alt="[[MathCmd 630]]"/></span>). Therefore, the total cost when trading an amount <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span> of asset <span class="math"><span class="mi">j</span></span> is given by </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math632.png" alt="\begin{displaymath}\nonumber{}|x_{j}|(m_{j}|x_{j}|^{{\frac{1}{2}}}).\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This leads us to the model: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math633.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}\mbox{minimize} & f &  & \\\nonumber{}\mbox{subject to} & \Sigma ^{{\frac{1}{2}}}(w^{0}+x)-g & = & 0,\\\nonumber{} & \bar{r}^{T}(w^{0}+x) & = & t,\\\nonumber{} & e^{T}x+e^{T}y & = & 0,\\\nonumber{} & |x_{j}|(m_{j}|x_{j}|^{{\frac{1}{2}}}) & \leq{} & y_{j},\\\nonumber{} & f\geq{}\left\|g\right\|. &  &\end{array}\end{math}"/></td>
+<td>(10.6.7)</td></tr>
+</tbody>
+</table>
+
+<p>Now, defining the variable transformation </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math634.png" alt="\begin{displaymath}\nonumber{}y_{j}=m_{j}\bar{y}_{j}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>we obtain </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math635.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}\mbox{minimize} & f &  & \\\nonumber{}\mbox{subject to} & \Sigma ^{{\frac{1}{2}}}(w^{0}+x)-g & = & 0,\\\nonumber{} & \bar{r}^{T}(w^{0}+x) & = & t,\\\nonumber{} & e^{T}x+m^{T}\bar{y} & = & 0,\\\nonumber{} & |x_{j}|^{{3/2}} & \leq{} & \bar{y}_{j},\\\nonumber{} & f\geq{}\left\|g\right\|. &  &\end{array}\end{math}"/></td>
+<td>(10.6.8)</td></tr>
+</tbody>
+</table>
+
+<p>As shown in Section <a title="10.3.3.3. Modelling polynomial terms using conic optimization" href="node012.html#ch-modelling-sec-conic-polynomial">10.3.3.3</a> the set </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math636.png" alt="\begin{displaymath}\nonumber{}|x_{j}|^{{3/2}}\leq{}\bar{y}_{j}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>can be modeled by </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math637.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}x_{j} & \leq{} & z_{j},\\\nonumber{}-x_{j} & \leq{} & z_{j},\\\nonumber{}z_{j}^{2} & \leq{} & 2s_{j}\bar{y}_{j},\\\nonumber{}u_{j}^{2} & \leq{} & 2v_{j}q_{j},\\\nonumber{}z_{j} & = & v_{j},\\\nonumber{}s_{j} & = & u_{j},\\\nonumber{}q_{j} & = & \frac{1}{8},\\\nonumber{}q_{j},s_{j},\bar{y}_{j},v_{j},q_{j} & \geq{} & 0.\end{array}\end{math}"/></td>
+<td>(10.6.9)</td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h3><a name="255646896">10.6.2.4. Further reading</a></h3>
+
+<p> For further reading please see [<a href="node024.html#LOBO:05:A" class="citation">14</a>] in particular, and [<a href="node024.html#SCHERER:04:A" class="citation">3</a>] and [<a href="node024.html#GRINOLD:00:A" class="citation">16</a>], which also contain relevant material.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node011.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 9. Case studies" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node013.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  11. The optimizers for continuous problems" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node011.html" target="_self">9. Case studies</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node013.html" target="_self">11. The optimizers for continuous problems</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:58:20 2012</div>
+</body></html>

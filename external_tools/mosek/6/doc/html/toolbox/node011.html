@@ -1,0 +1,1227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>9. Case studies</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node010.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 8. Command reference" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node012.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  10. Modelling" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node010.html" target="_self">8. Command reference</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node012.html" target="_self">10. Modelling</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="249736800">9. Case studies</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node011.html#248006272" target="_self">9.1. Robust linear optimization</a>
+<ul class="toc-level-2">
+<li><a href="node011.html#249737728" target="_self">9.1.1. Introductory example</a></li>
+<li><a href="node011.html#249786312" target="_self">9.1.2. Data uncertainty and its consequences.</a></li>
+<li><a href="node011.html#249788176" target="_self">9.1.3. Robust linear optimization methodology</a>
+<ul class="toc-level-3">
+<li><a href="node011.html#249786592" target="_self">9.1.3.1. Uncertain linear programs and their robust counterparts.</a></li>
+<li><a href="node011.html#249807072" target="_self">9.1.3.2. Robust counterpart of an uncertain linear optimization problem with interval uncertainty</a></li>
+<li><a href="node011.html#249878576" target="_self">9.1.3.3. Introductory example (continued)</a></li>
+</ul>
+</li>
+<li><a href="node011.html#249922336" target="_self">9.1.4. Random uncertainty and ellipsoidal robust counterpart</a>
+<ul class="toc-level-3">
+<li><a href="node011.html#249957984" target="_self">9.1.4.1. Example: Interval and Ellipsoidal robust counterparts of uncertain linear constraint with independent random perturbations of coefficients</a></li>
+<li><a href="node011.html#251676936" target="_self">9.1.4.2. Combined Interval-Ellipsoidal Robust Counterpart</a></li>
+</ul>
+</li>
+<li><a href="node011.html#251696480" target="_self">9.1.5. Further references</a></li>
+</ul>
+</li>
+<li><a href="node011.html#251697344" target="_self">9.2. Geometric (posynomial) optimization</a>
+<ul class="toc-level-2">
+<li><a href="node011.html#251696552" target="_self">9.2.1. The problem</a></li>
+<li><a href="node011.html#251724648" target="_self">9.2.2. Applications</a></li>
+<li><a href="node011.html#251697848" target="_self">9.2.3. Modeling tricks</a>
+<ul class="toc-level-3">
+<li><a href="node011.html#251725872" target="_self">9.2.3.1. Equalities</a></li>
+</ul>
+</li>
+<li><a href="node011.html#251735072" target="_self">9.2.4. Problematic formulations</a>
+<ul class="toc-level-3">
+<li><a href="node011.html#251735432" target="_self">9.2.4.1. Finite unattainable solution</a></li>
+<li><a href="node011.html#251751240" target="_self">9.2.4.2. Infinite solution</a></li>
+</ul>
+</li>
+<li><a href="node011.html#251759504" target="_self">9.2.5. An example</a></li>
+<li><a href="node011.html#251787600" target="_self">9.2.6. Solving the example</a></li>
+<li><a href="node011.html#251759648" target="_self">9.2.7. Exporting to a file</a></li>
+<li><a href="node011.html#251788536" target="_self">9.2.8. Further information</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<div>
+<h1><a name="248006272">9.1. Robust linear optimization</a></h1>
+
+<p> In most linear optimization examples discussed in this manual it is implicitly assumed that the problem data, such as <span class="math"><span class="mi">c</span></span> and <span class="math"><span class="mi">A</span></span>, is known with certainty. However, in practice this is seldom the case, e.g. the data may just be roughly estimated, affected by measurement errors or be affected by random events.</p>
+
+<p>In this section a robust linear optimization methodology is presented which removes the assumption that the problem data is known exactly. Rather it is assumed that the data belongs to some set, i.e. a box or an ellipsoid.</p>
+
+<p>The computations are performed using the MOSEK optimization toolbox for MATLAB but could equally well have been implemented using the MOSEK API.</p>
+
+<p>This section is co-authored with A. Ben-Tal and A. Nemirovski.</p>
+
+<div>
+<h2><a name="249737728">9.1.1. Introductory example</a></h2>
+
+<p> <a name="ch-cases-sec-rlo-example">&#09;</a> Consider the following toy-sized linear optimization problem: A company produces two kinds of drugs, DrugI and DrugII, containing a specific active agent A, which is extracted from a raw materials that should be purchased on the market. The drug production data are as follows: </p>
+<center>
+<p><small class="scriptsize">
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup>
+<tbody><tr class="evenrow">
+<td align="center" valign="top" style="border-top:3px double black; border-left:3px double black;"> Drug</td>
+<td align="center" valign="top" style="border-top:3px double black; border-left:3px double black;">Selling price,</td>
+<td align="center" valign="top" style="border-top:3px double black; border-left:3px double black;">Content of agent A,</td>
+<td colspan="3" align="center" valign="top" style="border-top:3px double black; border-right:3px double black; border-left:3px double black;">Production expenses per 1000 packs</td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td align="center" valign="top" style="border-left:3px double black;"> </td>
+<td align="center" valign="top" style="border-left:3px double black;">$ per 1000 packs</td>
+<td align="center" valign="top" style="border-left:3px double black;"> gm per 1000 packs</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:3px double black;">
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="0"><colgroup><col/></colgroup>
+<tbody><tr class="evenrow">
+<td align="center" valign="top">manpower,</td></tr><tr class="oddrow">
+<td align="center" valign="top">hours</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;">
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="0"><colgroup><col/></colgroup>
+<tbody><tr class="evenrow">
+<td align="center" valign="top">equipment,</td></tr><tr class="oddrow">
+<td align="center" valign="top">hours</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:3px double black; border-left:1px solid black;">
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="0"><colgroup><col/></colgroup>
+<tbody><tr class="evenrow">
+<td align="center" valign="top"> operational</td></tr><tr class="oddrow">
+<td align="center" valign="top">costs, $</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td align="center" valign="top" style="border-top:3px double black; border-left:3px double black;">DrugI</td>
+<td align="center" valign="top" style="border-top:3px double black; border-left:3px double black;">6200</td>
+<td align="center" valign="top" style="border-top:3px double black; border-left:3px double black;">0.500</td>
+<td align="center" valign="top" style="border-top:3px double black; border-left:3px double black;">90.0</td>
+<td align="center" valign="top" style="border-top:3px double black; border-left:1px solid black;">40.0</td>
+<td align="center" valign="top" style="border-top:3px double black; border-right:3px double black; border-left:1px solid black;">700</td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:3px double black; border-left:3px double black;">DrugII</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:3px double black; border-left:3px double black;">6900</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:3px double black; border-left:3px double black;">0.600</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:3px double black; border-left:3px double black;">100.0</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:3px double black; border-left:1px solid black;">50.0</td>
+<td align="center" valign="top" style="border-bottom:3px double black; border-top:1px solid black; border-right:3px double black; border-left:1px solid black;">800</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</small></p>
+</center>
+<p>There are two kinds of raw materials, RawI and RawII, which can be used as sources of the active agent. The related data is as follows: </p>
+<center>
+<p><small class="scriptsize">
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup>
+<tbody><tr class="evenrow">
+<td align="center" valign="top" style="border-top:3px double black; border-left:3px double black;"> Raw material</td>
+<td align="center" valign="top" style="border-top:3px double black; border-left:3px double black;">Purchasing price,</td>
+<td align="center" valign="top" style="border-top:3px double black; border-right:3px double black; border-left:3px double black;">Content of agent A,</td></tr><tr class="oddrow">
+<td align="center" valign="top" style="border-left:3px double black;">&#160;</td>
+<td align="center" valign="top" style="border-left:3px double black;">$ per kg</td>
+<td align="center" valign="top" style="border-right:3px double black; border-left:3px double black;"> gm per kg</td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td align="center" valign="top" style="border-top:3px double black; border-left:3px double black;">RawI</td>
+<td align="center" valign="top" style="border-top:3px double black; border-left:3px double black;">100.00</td>
+<td align="center" valign="top" style="border-top:3px double black; border-right:3px double black; border-left:3px double black;">0.01</td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:3px double black; border-left:3px double black;">RawII</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:3px double black; border-left:3px double black;">199.90</td>
+<td align="center" valign="top" style="border-bottom:3px double black; border-top:1px solid black; border-right:3px double black; border-left:3px double black;">0.02</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</small></p>
+</center>
+<p>Finally, the monthly resources dedicated to producing the drugs are as follows: </p>
+<center>
+<p><small class="scriptsize">
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup>
+<tbody><tr class="evenrow">
+<td align="center" valign="top" style="border-top:1px solid black; border-left:3px double black;"> Budget, $</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:3px double black;">Manpower, hours</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:3px double black;">Equipment, hours</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:3px double black; border-left:3px double black;">Capacity of raw materials storage, kg</td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:1px solid black; border-left:3px double black;">100000</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:1px solid black; border-left:3px double black;">2000</td>
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:1px solid black; border-left:3px double black;">800</td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-top:1px solid black; border-right:3px double black; border-left:3px double black;">1000</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</small></p>
+</center>
+<p>The problem is to find the production plan which maximizes the profit of the company, i.e. minimize the purchasing and operational costs </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math256.png" alt="\begin{displaymath}\nonumber{}100\cdot \mathtt{RawI}+199.90\cdot \mathtt{RawII}+700\cdot \mathtt{DrugI}+800\cdot \mathtt{DrugII}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and maximize the income </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math257.png" alt="\begin{displaymath}\nonumber{}6200\cdot \mathtt{DrugI}+6900\cdot \mathtt{DrugII}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> The problem can be stated as the following linear programming program:</p>
+
+<p>Minimize </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math258.png" alt="\begin{math}\nonumber{}-\left(100\cdot \mathtt{RawI}+199.90\cdot \mathtt{RawII}+700\cdot \mathtt{DrugI}+800\cdot \mathtt{DrugII}\right)+\left(6200\cdot \mathtt{DrugI}+6900\cdot \mathtt{DrugII}\right)\end{math}"/></td>
+<td><a name="CH:CASES:robust-ex1-obj">&#09;</a>(9.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>subject to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math259.png" alt="\begin{math}\nonumber{}\begin{array}{rcll}\nonumber{}0.01\cdot \mathtt{RawI}+0.02\cdot \mathtt{RawII}-0.500\cdot \mathtt{DrugI}-0.600\cdot \mathtt{DrugII} & \geq{} & 0 & (a)\\\nonumber{}\mathtt{RawI}+\mathtt{RawII} & \leq{} & 1000 & (b)\\\nonumber{}90.0\cdot \mathtt{DrugI}+100.0\cdot \mathtt{DrugII} & \leq{} & 2000 & (c)\\\nonumber{}40.0\cdot \mathtt{DrugI}+50.0\cdot \mathtt{DrugII} & \leq{} & 800 & (d)\\\nonumber{}100.0\cdot \mathtt{RawI}+199.90\cdot \mathtt{RawII}+700\cdot \mathtt{DrugI}+800\cdot \mathtt{DrugII} & \leq{} & 100000 & (d)\\\nonumber{}\mathtt{RawI},\mathtt{RawII},\mathtt{DrugI},\mathtt{DrugII} & \geq{} & 0 & (e)\end{array}\end{math}"/></td>
+<td>(9.1.2)</td></tr>
+</tbody>
+</table>
+
+<p>where the variables are the amounts <tt class="tt">RawI</tt>, <tt class="tt">RawII</tt> (in kg) of raw materials to be purchased and the amounts <tt class="tt">DrugI</tt>, <tt class="tt">DrugII</tt> (in 1000 of packs) of drugs to be produced. The objective <a href="node011.html#CH:CASES:robust-ex1-obj">(9.1.1)</a> denotes the profit to be maximized, and the inequalities can be interpreted as follows: </p>
+
+<ul class="itemize">
+<li> Balance of the active agent. </li>
+<li> Storage restriction. </li>
+<li> Manpower restriction. </li>
+<li> Equipment restriction. </li>
+<li> Ducget restriction. </li>
+</ul>
+
+<p> Here is the MATLAB script which specifies the problem and solves it using the MOSEK optimization toolbox: </p>
+
+<pre class="verbatimcode">% rlo1.m
+
+clear prob;
+
+prob.c   = [-100;-199.9;6200-700;6900-800];
+prob.a   = sparse([0.01,0.02,-0.500,-0.600;1,1,0,0;
+                   0,0,90.0,100.0;0,0,40.0,50.0;100.0,199.9,700,800]);
+prob.blc = [0;-inf;-inf;-inf;-inf];
+prob.buc = [inf;1000;2000;800;100000];
+prob.blx = [0;0;0;0];
+prob.bux = [inf;inf;inf;inf];
+[r,res]  = mosekopt('maximize',prob);
+xx       = res.sol.itr.xx;
+RawI     = xx(1);
+RawII    = xx(2);
+DrugI    = xx(3);
+DrugII   = xx(4);
+
+disp(sprintf('*** Optimal value: %8.3f',prob.c'*xx));
+disp('*** Optimal solution:');
+disp(sprintf('RawI:   %8.3f',RawI));
+disp(sprintf('RawII:  %8.3f',RawII));
+disp(sprintf('DrugI:  %8.3f',DrugI));
+disp(sprintf('DrugII: %8.3f',DrugII));
+</pre>
+
+<p>When executing this script, the following is displayed: </p>
+
+<pre class="verbatim">*** Optimal value: 8819.658
+*** Optimal solution:
+RawI:     0.000
+RawII:  438.789
+DrugI:   17.552
+DrugII:   0.000
+</pre>
+
+<p>We see that the optimal solution promises the company a modest but quite respectful profit of 8.8%. Please note that at the optimal solution the balance constraint is active: the production process utilizes the full amount of the active agent contained in the raw materials.</p>
+
+</div>
+
+<div>
+<h2><a name="249786312">9.1.2. Data uncertainty and its consequences.</a></h2>
+
+<p> Please note that not all problem data can be regarded as &#8220;absolutely reliable&#8221;; e.g. one can hardly believe that the contents of the active agent in the raw materials are <em>exactly</em> the &#8220;nominal data&#8221; 0.01 gm/kg for RawI and 0.02 gm/kg for RawII. In reality, these contents definitely vary around the indicated values. A natural assumption here is that the actual contents of the active agent <span class="math"><img src="math/math260.png" alt="[[MathCmd 260]]"/></span> in RawI and <span class="math"><img src="math/math261.png" alt="[[MathCmd 261]]"/></span> in RawII are realizations of random variables somehow distributed around the &#8220;nominal contents&#8221; <span class="math"><img src="math/math262.png" alt="[[MathCmd 262]]"/></span> and <span class="math"><img src="math/math263.png" alt="[[MathCmd 263]]"/></span>. To be more specific, assume that <span class="math"><img src="math/math260.png" alt="[[MathCmd 260]]"/></span> drifts in the 0.5% margin of <span class="math"><img src="math/math265.png" alt="[[MathCmd 265]]"/></span>, i.e. it takes with probability 0.5 the values from the interval <span class="math"><img src="math/math266.png" alt="[[MathCmd 266]]"/></span>. Similarly, assume that <span class="math"><img src="math/math261.png" alt="[[MathCmd 261]]"/></span> drifts in the 2% margin of <span class="math"><img src="math/math268.png" alt="[[MathCmd 268]]"/></span>, taking with probabilities 0.5 the values <span class="math"><img src="math/math269.png" alt="[[MathCmd 269]]"/></span>. How do the perturbations of the contents of the active agent affect the production process?</p>
+
+<p>The optimal solution prescribes to purchase 438.8 kg of RawII and to produce 17552 packs of DrugI. With the above random fluctuations in the content of the active agent in RawII, this production plan, with probability 0.5, will be infeasible &ndash; with this probability, the actual content of the active agent in the raw materials will be less than required to produce the planned amount of DrugI. For the sake of simplicity, assume that this difficulty is resolved in the simplest way: when the actual content of the active agent in the raw materials is insufficient, the output of the drug is reduced accordingly. With this policy, the actual production of DrugI becomes a random variable which takes, with probabilities 0.5, the nominal value of 17552 packs and the 2% less value of 17201 packs. These 2% fluctuations in the production affect the profit as well; the latter becomes a random variable taking, with probabilities 0.5, the nominal value 8,820 and the 21% less value 6,929. The expected profit is 7,843,which is by 11% less than the nominal profit 8,820 promised by the optimal solution of the problem.</p>
+
+<p>We see that in our toy example that small (and in reality unavoidable) perturbations of the data may make the optimal solution infeasible, and a straightforward adjustment to the actual solution values may heavily affect the solution quality.</p>
+
+<p>It turns out that the outlined phenomenon is found in many linear programs of practical origin. Usually, in these programs at least part of the data is not known exactly and can vary around its nominal values, and these data perturbations can make the nominal optimal solution &ndash; the one corresponding to the nominal data &ndash; infeasible. It turns out that the consequences of data uncertainty can be much more severe than in our toy example. The analysis of linear optimization problems from the NETLIB collection reported in [<a href="node024.html#BEN-TAL:00:A" class="citation">4</a>] demonstrates that for 13 of 94 NETLIB problems, already 0.01% perturbations of &#8220;clearly uncertain&#8221; data can make the nominal optimal solution severely infeasible: with these perturbations, the solution, with a non-negligible probability, violates some of the constraints by 50% and more. It should be added that in the general case, in contrast to the toy example we have considered, there is no evident way to adjust the optimal solution by a small modification to the actual values of the data. Moreover there are cases when such an adjustment is impossible &mdash; in order to become feasible for the perturbed data, the nominal optimal solution should be &#8220;completely reshaped&#8221;.</p>
+
+</div>
+
+<div>
+<h2><a name="249788176">9.1.3. Robust linear optimization methodology</a></h2>
+
+<p> A natural approach to handling data uncertainty in optimization is offered by the <em>Robust Optimization Methodology</em> which, as applied to linear optimization, is as follows.</p>
+
+<div>
+<h3><a name="249786592">9.1.3.1. Uncertain linear programs and their robust counterparts.</a></h3>
+
+<p> Consider a linear optimization problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math270.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} &  &  & c^{T}x &  & \\\nonumber{}\mbox{subject to} & l_{c} & \leq{} & Ax & \leq{} & u_{c},\\\nonumber{} & l_{x} & \leq{} & x & \leq{} & u_{x},\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-ulp">&#09;</a>(9.1.3)</td></tr>
+</tbody>
+</table>
+
+<p>with the data <span class="math"><img src="math/math271.png" alt="[[MathCmd 271]]"/></span>, and assume that this data is not known exactly; all we know is that the data varies in a given <em>uncertainty set</em> <span class="math"><img src="math/math272.png" alt="[[MathCmd 272]]"/></span>. The simplest example is the one of <em>interval uncertainty</em>, where every data entry can run through a given interval: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math273.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}\mathcal{U} & = & \bigg\lbrace{}(c,A,l_{c},u_{c},l_{x},u_{x}):\\\nonumber{} &  & (c^{\mathrm{n}}-dc,A^{\mathrm{n}}-dA,l_{c}^{\mathrm{n}}-dl_{c},u_{c}^{\mathrm{n}}-du_{c},l_{x}^{\mathrm{n}}-dl_{x},u_{x}^{\mathrm{n}}-du_{x})\leq{}(c,A,l_{c},u_{c},l_{x},u_{x})\\\nonumber{} &  & \leq{}(c^{\mathrm{n}}+dc,A^{\mathrm{n}}+dA,l_{c}^{\mathrm{n}}+dl_{c},u_{c}^{\mathrm{n}}+du_{c},l_{x}^{\mathrm{n}}+dl_{x},u_{x}^{\mathrm{n}}+du_{x})\bigg\rbrace{}.\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-uint">&#09;</a>(9.1.4)</td></tr>
+</tbody>
+</table>
+
+<p>Here </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math274.png" alt="\begin{displaymath}\nonumber{}(c^{\mathrm{n}},A^{\mathrm{n}},l_{c}^{\mathrm{n}},u_{c}^{\mathrm{n}},l_{x}^{\mathrm{n}},u_{x}^{\mathrm{n}})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is the <em>nominal data</em>, </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math275.png" alt="\begin{displaymath}\nonumber{}dc,dA,dl_{c},du_{c},dl_{x},du_{x}\geq{}0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is the <em>data perturbation bounds</em>. Please note that some of the entries in the data perturbation bounds can be zero, meaning that the corresponding data entries are certain (the expected values equals the actual values).</p>
+
+<ul class="itemize">
+<li>The family of instances (<a href="node011.html#ch-cases-sec-rlo-eq-ulp">9.1.3</a>) with data running through a given uncertainty set <span class="math"><img src="math/math272.png" alt="[[MathCmd 272]]"/></span> is called an <em>uncertain linear optimization problem</em>. </li>
+<li>
+<p>A vector <span class="math"><span class="mi">x</span></span> is called a <em>robust feasible solution</em> to an uncertain linear optimization problem, if it remains feasible for all realizations of the data from the uncertainty set, i.e. if </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math277.png" alt="\begin{math}\nonumber{}l_{c}\leq{}Ax\leq{}u_{c},\,l_{x}\leq{}x\leq{}u_{x}\hbox{ for all }(c,A,l_{c},u_{c},l_{x},u_{x})\in{}\mathcal{U}.\end{math}"/></td>
+<td>(9.1.5)</td></tr>
+</tbody>
+</table>
+</li>
+<li>If for some value <span class="math"><span class="mi">t</span></span> we have <span class="math"><img src="math/math278.png" alt="[[MathCmd 278]]"/></span> for all realizations of the objective from the uncertainty set, we say that <em>robust value of the objective</em> at <span class="math"><span class="mi">x</span></span> does not exceed <span class="math"><span class="mi">t</span></span>. </li>
+</ul>
+
+<p>The Robust Optimization methodology proposes to associate with an uncertain linear program its <em>robust counterpart</em> (RC) which is <em>the problem of minimizing the robust optimal value over the set of all robust feasible solutions</em>, i.e. the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math279.png" alt="\begin{math}\nonumber{}\min \limits _{{t,x}}\left\lbrace{}t:c^{T}x\leq{}t,\,l_{c}\leq{}Ax\leq{}u_{c},\,l_{x}\leq{}x\leq{}u_{x}\hbox{ for all }(c,A,l_{c},u_{c},l_{x},u_{x})\in{}\mathcal{U}\right\rbrace{}.\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-ro">&#09;</a>(9.1.6)</td></tr>
+</tbody>
+</table>
+
+<p>The optimal solution to (<a href="node011.html#ch-cases-sec-rlo-eq-ro">9.1.6</a>) is treated as the &#8220;uncertainty-immuned&#8221; solution to the original uncertain linear programming program.</p>
+
+</div>
+
+<div>
+<h3><a name="249807072">9.1.3.2. Robust counterpart of an uncertain linear optimization problem with interval uncertainty</a></h3>
+
+<p>In general, the RC (<a href="node011.html#ch-cases-sec-rlo-eq-ro">9.1.6</a>) of an uncertain linear optimization problem is not a linear optimization problem since(<a href="node011.html#ch-cases-sec-rlo-eq-ro">9.1.6</a>) has infinitely many linear constraints. There are, however, cases when (<a href="node011.html#ch-cases-sec-rlo-eq-ro">9.1.6</a>) can be rewritten equivalently as a linear programming program; in particular, this is the case for interval uncertainty (<a href="node011.html#ch-cases-sec-rlo-eq-uint">9.1.4</a>). Specifically, in the case of (<a href="node011.html#ch-cases-sec-rlo-eq-uint">9.1.4</a>), the robust counterpart of uncertain linear program is equivalent to the following linear program in variables <span class="math"><span class="mi">x</span><span class="mo">,</span><span class="mi">y</span><span class="mo">,</span><span class="mi">t</span></span>: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math280.png" alt="\begin{math}\nonumber{}\begin{array}{lcccccl}\nonumber{}\mbox{minimize} &  &  & t &  &  & \\\nonumber{}\mbox{subject to} &  &  & (c^{\mathrm{n}})^{T}x+(dc)^{T}y-t & \leq{} & 0, & (a)\\\nonumber{} & l_{c}^{\mathrm{n}}+dl_{c} & \leq{} & (A^{\mathrm{n}})x-(dA)y, &  &  & (b)\\\nonumber{} &  &  & (A^{\mathrm{n}})x+(dA)y & \leq{} & u_{c}^{\mathrm{n}}-du_{c}, & (c)\\\nonumber{} & 0 & \leq{} & x+y, &  &  & (d)\\\nonumber{} & 0 & \leq{} & -x+y, &  &  & (e)\\\nonumber{} & l_{x}^{\mathrm{n}}+dl_{x} & \leq{} & x & \leq{} & u_{x}^{\mathrm{n}}-du_{x}, & (f)\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-uintro">&#09;</a>(9.1.7)</td></tr>
+</tbody>
+</table>
+
+<p>The origin of (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>) is quite transparent: The constraints (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>.<span class="math"><span class="mi">d</span><span class="mo">-</span><span class="mi">e</span></span>) linking <span class="math"><span class="mi">x</span></span> and <span class="math"><span class="mi">y</span></span> merely say that <span class="math"><img src="math/math281.png" alt="[[MathCmd 281]]"/></span> for all <span class="math"><span class="mi">i</span></span>. With this in mind, it is evident that at every feasible solution to (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>) the entries in the vector </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math282.png" alt="\begin{displaymath}\nonumber{}(A^{\mathrm{n}})x-(dA)y\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>are lower bounds on the entries of <span class="math"><span class="mi">A</span><span class="mi">x</span></span> with <span class="math"><span class="mi">A</span></span> from the uncertainty set (<a href="node011.html#ch-cases-sec-rlo-eq-uint">9.1.4</a>), so that (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>.<span class="math"><span class="mi">b</span></span>) ensures that <span class="math"><img src="math/math283.png" alt="[[MathCmd 283]]"/></span> for all data from the uncertainty set. Similarly, (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>.<span class="math"><span class="mi">c</span></span>) and (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>.<span class="math"><span class="mi">a</span></span>), (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>.<span class="math"><span class="mi">f</span></span>) ensure, for all data from the uncertainty set, that <span class="math"><img src="math/math284.png" alt="[[MathCmd 284]]"/></span>, <span class="math"><img src="math/math278.png" alt="[[MathCmd 278]]"/></span>, and that the entries in <span class="math"><span class="mi">x</span></span> satisfy the required lower and upper bounds, respectively.</p>
+
+<p>Please note that at the optimal solution to (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>), one clearly has <span class="math"><img src="math/math286.png" alt="[[MathCmd 286]]"/></span>. It follows that when the bounds on the entries of <span class="math"><span class="mi">x</span></span> impose nonnegativity (nonpositivity) of an entry <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span>, then there is no need to introduce the corresponding additional variable <span class="math"><img src="math/math288.png" alt="[[MathCmd 288]]"/></span> &mdash; from the very beginning it can be replaced with <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span>, if <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span> is nonnegative, or with <span class="math"><img src="math/math291.png" alt="[[MathCmd 291]]"/></span>, if <span class="math"><img src="math/math49.png" alt="[[MathCmd 49]]"/></span> is nonpositive.</p>
+
+<p>Another possible formulation of problem (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>) is the following. Let </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math293.png" alt="\begin{displaymath}\nonumber{}l_{c}^{\mathrm{n}}+dl_{c}=(A^{\mathrm{n}})x-(dA)y-f,\quad{}f\geq{}0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>then this equation is equivalent to <span class="math"><span class="mo">(</span><span class="mi">a</span><span class="mo">)</span></span> in (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>.b). If <span class="math"><img src="math/math294.png" alt="[[MathCmd 294]]"/></span>, then equation <span class="math"><span class="mi">i</span></span> should be dropped from the computations. Similarly, </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math295.png" alt="\begin{displaymath}\nonumber{}-x+y=g\geq{}0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is equivalent to (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>.d). This implies that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math296.png" alt="\begin{displaymath}\nonumber{}l_{c}^{\mathrm{n}}+dl_{c}-(A^{\mathrm{n}})x+f=-(dA)y\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math297.png" alt="\begin{displaymath}\nonumber{}y=g+x\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Substituting these values into (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>) gives </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math298.png" alt="\begin{math}\nonumber{}\begin{array}{lcccccl}\nonumber{}\mbox{minimize} &  &  & t &  &  & \\\nonumber{}\mbox{subject to} &  &  & (c^{\mathrm{n}})^{T}x+(dc)^{T}(g+x)-t & \leq{} & 0, & \\\nonumber{} & 0 & \leq{} & f, &  &  & \\\nonumber{} &  &  & 2(A^{\mathrm{n}})x+(dA)(g+x)+f+l_{c}^{\mathrm{n}}+dl_{c} & \leq{} & u_{c}^{\mathrm{n}}-du_{c}, & \\\nonumber{} & 0 & \leq{} & g, &  &  & \\\nonumber{} & 0 & \leq{} & 2x+g, &  &  & \\\nonumber{} & l_{x}^{\mathrm{n}}+dl_{x} & \leq{} & x & \leq{} & u_{x}^{\mathrm{n}}-du_{x}, &\end{array}\end{math}"/></td>
+<td>(9.1.8)</td></tr>
+</tbody>
+</table>
+
+<p>which after some simplifications leads to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math299.png" alt="\begin{math}\nonumber{}\begin{array}{lcccccl}\nonumber{}\mbox{minimize} &  &  & t &  &  & \\\nonumber{}\mbox{subject to} &  &  & (c^{\mathrm{n}}+dc)^{T}x+(dc)^{T}g-t & \leq{} & 0, & (a)\\\nonumber{} & 0 & \leq{} & f, &  &  & (b)\\\nonumber{} &  &  & 2(A^{\mathrm{n}}+dA)x+(dA)g+f-(l_{c}^{\mathrm{n}}+dl_{c}) & \leq{} & u_{c}^{\mathrm{n}}-du_{c}, & (c)\\\nonumber{} & 0 & \leq{} & g, &  &  & (d)\\\nonumber{} & 0 & \leq{} & 2x+g, &  &  & (e)\\\nonumber{} & l_{x}^{\mathrm{n}}+dl_{x} & \leq{} & x & \leq{} & u_{x}^{\mathrm{n}}-du_{x}, & (f)\end{array}\end{math}"/></td>
+<td>(9.1.9)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math300.png" alt="\begin{math}\nonumber{}\begin{array}{lcccccl}\nonumber{}\mbox{minimize} &  &  & t &  &  & \\\nonumber{}\mbox{subject to} &  &  & (c^{\mathrm{n}}+dc)^{T}x+(dc)^{T}g-t & \leq{} & 0, & (a)\\\nonumber{} &  &  & 2(A^{\mathrm{n}}+dA)x+(dA)g+f & \leq{} & u_{c}^{\mathrm{n}}-du_{c}+l_{c}^{\mathrm{n}}+dl_{c}, & (b)\\\nonumber{} & 0 & \leq{} & 2x+g, &  &  & (c)\\\nonumber{} & 0 & \leq{} & f, &  &  & (d)\\\nonumber{} & 0 & \leq{} & g, &  &  & (e)\\\nonumber{} & l_{x}^{\mathrm{n}}+dl_{x} & \leq{} & x & \leq{} & u_{x}^{\mathrm{n}}-du_{x}. & (f)\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-unitro3">&#09;</a>(9.1.10)</td></tr>
+</tbody>
+</table>
+
+<p>Please note that this problem has more variables but much fewer constraints than (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>). Therefore, (<a href="node011.html#ch-cases-sec-rlo-eq-unitro3">9.1.10</a>) is likely to be solved faster than (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>). Note too that (<a href="node011.html#ch-cases-sec-rlo-eq-unitro3">9.1.10</a>.b) is trivially redundant if <span class="math"><img src="math/math301.png" alt="[[MathCmd 301]]"/></span>.</p>
+
+</div>
+
+<div>
+<h3><a name="249878576">9.1.3.3. Introductory example (continued)</a></h3>
+
+<p>  Let us apply the Robust Optimization methodology to our drug production example presented in Section <a title="9.1.1. Introductory example" href="node011.html#ch-cases-sec-rlo-example">9.1.1</a>, assuming that the only uncertain data is the contents of the active agent in the raw materials, and that these contents vary in 0.5% and 2% neighborhoods of the respective nominal values 0.01 and 0.02. With this assumption, the problem becomes an uncertain LP affected by interval uncertainty; the robust counterpart (<a href="node011.html#ch-cases-sec-rlo-eq-uintro">9.1.7</a>) of this uncertain LP is the linear program </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math302.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}\mbox{(Drug\_RC)}: &  & \\\nonumber{}\mbox{maximize} &  & \\\nonumber{}t &  & \\\nonumber{}\mbox{subject to} &  & \\\nonumber{}t\leq{}-100\cdot \mbox{\texttt{RawI}}-199.9\cdot \mbox{\texttt{RawII}}+5500\cdot \mbox{\texttt{DrugI}}+6100\cdot \mbox{\texttt{DrugII}} &  & \\\nonumber{}0.01\cdot 0.995\cdot \mbox{\texttt{RawI}}+0.02\cdot 0.98\cdot \mbox{\texttt{RawII}}-0.500\cdot \mbox{\texttt{DrugI}}-0.600\cdot \mbox{\texttt{DrugII}} & \geq{} & 0\\\nonumber{}\mbox{\texttt{RawI}}+\mbox{\texttt{RawII}} & \leq{} & 1000\\\nonumber{}90.0\cdot \mbox{\texttt{DrugI}}+100.0\cdot \mbox{\texttt{DrugII}} & \leq{} & 2000\\\nonumber{}40.0\cdot \mbox{\texttt{DrugI}}+50.0\cdot \mbox{\texttt{DrugII}} & \leq{} & 800\\\nonumber{}100.0\cdot \mbox{\texttt{RawI}}+199.90\cdot \mbox{\texttt{RawII}}+700\cdot \mbox{\texttt{DrugI}}+800\cdot \mbox{\texttt{DrugII}} & \leq{} & 100000\\\nonumber{}\mbox{\texttt{RawI}},\mbox{\texttt{RawII}},\mbox{\texttt{DrugI}},\mbox{\texttt{DrugII}} & \geq{} & 0\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Solving this problem with MOSEK we get the following output: </p>
+
+<pre class="verbatim">*** Optimal value: 8294.567
+*** Optimal solution:
+RawI:    877.732
+RawII:     0.000
+DrugI:    17.467
+DrugII:    0.000
+</pre>
+
+<p>We see that the robust optimal solution we have built &#8220;costs money&#8221; &ndash; it promises a profit of just $ 8,295 (cf. with the profit of $ 8,820 promised by the nominal optimal solution). Please note, however, that the robust optimal solution remains feasible whatever are the realizations of the uncertain data from the uncertainty set in question, while the nominal optimal solution requires adjustment to this data and, with this adjustment, results in the average profit of $ 7,843, which is by 5.4% <em>less</em> than the profit of $ 8,295 <em>guaranteed</em> by the robust optimal solution. Note too that the robust optimal solution is significantly different from the nominal one: both solutions prescribe to produce the same drug DrugI (in the amounts 17,467 and 17,552 packs, respectively) but from different raw materials, RawI in the case of the robust solution and RawII in the case of the nominal solution. The reason is that although the price per unit of the active agent for RawII is sligthly less than for RawI, the content of the agent in RawI is more stable, so when possible fluctuations of the contents are taken into account, RawI turns out to be more profitable than RawII.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="249922336">9.1.4. Random uncertainty and ellipsoidal robust counterpart</a></h2>
+
+<p> In some cases, it is natural to assume that the perturbations affecting different uncertain data entries are random and independent of each other. In these cases, the robust counterpart based on the interval model of uncertainty seems to be too conservative: Why should we expect that all the data will be simultaneously driven to its most unfavorable values and immune the solution against this highly unlikely situation? A less conservative approach is offered by the <em>ellipsoidal</em> model of uncertainty. To motivate this model, let us seseee what happens with a particular linear constraint </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math303.png" alt="\begin{math}\nonumber{}a^{T}x\leq{}b\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-lc">&#09;</a>(9.1.11)</td></tr>
+</tbody>
+</table>
+
+<p>at a given candidate solution <span class="math"><span class="mi">x</span></span> in the case when the vector <span class="math"><span class="mi">a</span></span> of coefficients of the constraint is affected by random perturbations: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math304.png" alt="\begin{math}\nonumber{}a=a^{\mathrm{n}}+\zeta ,\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-pert">&#09;</a>(9.1.12)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math305.png" alt="[[MathCmd 305]]"/></span> is the vector of nominal coefficients and <span class="math"><img src="math/math306.png" alt="[[MathCmd 306]]"/></span> is a random perturbation vector with zero mean and covariance matrix <span class="math"><img src="math/math307.png" alt="[[MathCmd 307]]"/></span>. In this case the value of the left-hand side of (<a href="node011.html#ch-cases-sec-rlo-eq-lc">9.1.11</a>), evaluated at a given <span class="math"><span class="mi">x</span></span>, becomes a random variable with the expected value <span class="math"><img src="math/math308.png" alt="[[MathCmd 308]]"/></span> and the standard deviation <span class="math"><img src="math/math309.png" alt="[[MathCmd 309]]"/></span>. Now let us act as an engineer who believes that the value of a random variable never exceeds its mean plus 3 times the standard deviation; we do not intend to be that specific and replace &#8220;3&#8221; in the above rule by a safety parameter <span class="math"><img src="math/math310.png" alt="[[MathCmd 310]]"/></span> which will be in our control. Believing that the value of a random variable &#8220;never&#8221; exceeds its mean plus <span class="math"><img src="math/math310.png" alt="[[MathCmd 310]]"/></span> times the standard deviation, we conclude that a &#8220;safe&#8221; version of (<a href="node011.html#ch-cases-sec-rlo-eq-lc">9.1.11</a>) is the inequality </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math312.png" alt="\begin{math}\nonumber{}(a^{\mathrm{n}})^{T}x+\Omega \sqrt{x^{T}V_{a}x}\leq{}b.\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-lcs">&#09;</a>(9.1.13)</td></tr>
+</tbody>
+</table>
+
+<p>The word &#8220;safe&#8221; above admits a quantitative interpretation: If <span class="math"><span class="mi">x</span></span> satisfies <a href="node011.html#ch-cases-sec-rlo-eq-lcs">(9.1.13)</a>, one can bound from above the probability of the event that random perturbations (<a href="node011.html#ch-cases-sec-rlo-eq-pert">9.1.12</a>) result in violating the constraint (<a href="node011.html#ch-cases-sec-rlo-eq-lc">9.1.11</a>) evaluated at <span class="math"><span class="mi">x</span></span>. The bound in question depends on what we know about the distribution of <span class="math"><img src="math/math306.png" alt="[[MathCmd 306]]"/></span>, e.g. </p>
+
+<ol class="enumerate">
+<li>
+<p>We always have the bound given by the Tschebyshev inequality:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math314.png" alt="\begin{math}\nonumber{}\hbox{ satisfies (9.1.13) }\Rightarrow \mbox{Prob}\left\lbrace{}a^{T}x>b\right\rbrace{}\leq{}\frac{1}{\Omega ^{2}}.\end{math}"/></td>
+<td><a name="btsch">&#09;</a>(9.1.14)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>When <span class="math"><img src="math/math306.png" alt="[[MathCmd 306]]"/></span> is Gaussian, then the Tschebyshev bound can be improved to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math316.png" alt="\begin{math}\nonumber{}\hbox{ satisfies (9.1.13) }\Rightarrow \mbox{Prob}\left\lbrace{}a^{T}x>b\right\rbrace{}\leq{}\frac{1}{\sqrt{2\pi }}\int \limits _{\Omega }^{\infty }\exp{}\lbrace{}-t^{2}/2\rbrace{}dt\leq{}0.5\exp{}\lbrace{}-\Omega ^{2}/2\rbrace{}.\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-bgauss">&#09;</a>(9.1.15)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Assume that <span class="math"><img src="math/math317.png" alt="[[MathCmd 317]]"/></span>, where <span class="math"><img src="math/math318.png" alt="[[MathCmd 318]]"/></span> is certain <span class="math"><img src="math/math319.png" alt="[[MathCmd 319]]"/></span> matrix, and <span class="math"><img src="math/math320.png" alt="[[MathCmd 320]]"/></span> is a random vector with independent coordinates <span class="math"><img src="math/math321.png" alt="[[MathCmd 321]]"/></span> symmetrically distributed in the segment <span class="math"><span class="mo">[</span><span class="mn">-1</span><span class="mo">,</span><span class="mn">1</span><span class="mo">]</span></span>. Setting <span class="math"><img src="math/math322.png" alt="[[MathCmd 322]]"/></span> (<span class="math"><span class="mi">V</span></span> is a natural &#8220;upper bound&#8221; on the covariance matrix of <span class="math"><img src="math/math306.png" alt="[[MathCmd 306]]"/></span>), one has  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math324.png" alt="\begin{math}\nonumber{}x\hbox{ satisfies (9.1.13) }\Rightarrow \mbox{Prob}\left\lbrace{}a^{T}x>b\right\rbrace{}\leq{}0.5\exp{}\lbrace{}-\Omega ^{2}/2\rbrace{}.\end{math}"/></td>
+<td><a name="bbox">&#09;</a>(9.1.16)</td></tr>
+</tbody>
+</table>
+</li>
+</ol>
+
+<p>Please note that in order to ensure the bounds in (<a href="node011.html#ch-cases-sec-rlo-eq-bgauss">9.1.15</a>) and (<a href="node011.html#bbox">9.1.16</a>) to be <span class="math"><img src="math/math325.png" alt="[[MathCmd 325]]"/></span>, it suffices to set <span class="math"><img src="math/math326.png" alt="[[MathCmd 326]]"/></span>.</p>
+
+<p>Now, assume that we are given a linear program affected by random perturbations: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math327.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & [c^{\mathrm{n}}+dc]^{T}x &  & \\\nonumber{}\mbox{subject to} & (l_{c})_{i} & \leq{} & [a_{i}^{\mathrm{n}}+da_{i}]^{T}x & \leq{} & (u_{c})_{i},\,\,i=1,...,m,\\\nonumber{} & l_{x} & \leq{} & x & \leq{} & u_{x},\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-rand">&#09;</a>(9.1.17)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math328.png" alt="[[MathCmd 328]]"/></span> are the nominal data, and <span class="math"><span class="mi">d</span><span class="mi">c</span></span>, <span class="math"><img src="math/math329.png" alt="[[MathCmd 329]]"/></span> are random perturbations with zero means. Assume, for the sake of definiteness, that every one of the random perturbations <span class="math"><img src="math/math330.png" alt="[[MathCmd 330]]"/></span> satisfies either the assumption of item 2 or the assumption of item 3, and let <span class="math"><img src="math/math331.png" alt="[[MathCmd 331]]"/></span> be the corresponding (upper bounds on the) covariance matrices of the perturbations. Choosing a safety parameter <span class="math"><img src="math/math310.png" alt="[[MathCmd 310]]"/></span> and replacing the objective and the bodies of all the constraints by their safe bounds as explained above, we arrive at the following optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math333.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & t &  & \\\nonumber{}\mbox{subject to} &  &  & [c^{\mathrm{n}}]^{T}x+\Omega \sqrt{x^{T}V_{c}x} & \leq{} & t,\\\nonumber{} & (l_{c})_{i} & \leq{} & [a_{i}^{\mathrm{n}}]^{T}x-\Omega \sqrt{x^{T}V_{{a_{i}}}x}, &  & \\\nonumber{} &  &  & [a_{i}^{\mathrm{n}}]^{T}x+\Omega \sqrt{x^{T}V_{{a_{i}}}x} & \leq{} & (u_{c})_{i},\,\,i=1,...,m,\\\nonumber{} & l_{x} & \leq{} & x & \leq{} & u_{x}.\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-safev">&#09;</a>(9.1.18)</td></tr>
+</tbody>
+</table>
+
+<p>The relation between problems (<a href="node011.html#ch-cases-sec-rlo-eq-safev">9.1.18</a>) and (<a href="node011.html#ch-cases-sec-rlo-eq-rand">9.1.17</a>) is as follows: </p>
+<blockquote class="quote">
+<p>If <span class="math"><span class="mo">(</span><span class="mi">x</span><span class="mo">,</span><span class="mi">t</span><span class="mo">)</span></span> is a feasible solution of (<a href="node011.html#ch-cases-sec-rlo-eq-safev">9.1.18</a>), then with probability at least </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math334.png" alt="\begin{displaymath}\nonumber{}p=1-(m+1)\exp{}\lbrace{}-\Omega ^{2}/2\rbrace{}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> <span class="math"><span class="mi">x</span></span> is feasible for randomly perturbed problem (<a href="node011.html#ch-cases-sec-rlo-eq-rand">9.1.17</a>), and <span class="math"><span class="mi">t</span></span> is an upper bound on the objective of (<a href="node011.html#ch-cases-sec-rlo-eq-rand">9.1.17</a>) evaluated at <span class="math"><span class="mi">x</span></span>. </p>
+</blockquote>
+<p>We see that if <span class="math"><img src="math/math310.png" alt="[[MathCmd 310]]"/></span> is not too small (<a href="node011.html#ch-cases-sec-rlo-eq-safev">9.1.18</a>) can be treated as a &#8220;safe version&#8221; of (<a href="node011.html#ch-cases-sec-rlo-eq-rand">9.1.17</a>).</p>
+
+<p>On the other hand, it is easily seen that (<a href="node011.html#ch-cases-sec-rlo-eq-safev">9.1.18</a>) is nothing but the robust counterpart of the uncertain linear optimization problem with the nominal data <span class="math"><img src="math/math336.png" alt="[[MathCmd 336]]"/></span> and the row-wise ellipsoidal uncertainty given by the matrices <span class="math"><img src="math/math337.png" alt="[[MathCmd 337]]"/></span>. In the corresponding uncertainty set, the uncertainty affects the coefficients of the objective and the constraint matrix only, and the perturbation vectors affecting the objective and the vectors of coefficients of the linear constraints run, independently of each other, through the respective ellipsoids </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math338.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}E_{c} & = & \left\lbrace{}dc=\Omega V_{c}^{{1/2}}u:u^{T}u\leq{}1\right\rbrace{},\\\nonumber{}E_{{a_{i}}} & = & \left\lbrace{}da_{i}=\Omega V_{{a_{i}}}^{{1/2}}u:u^{T}u\leq{}1\right\rbrace{},\,i=1,...,m.\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>It turns out that in many cases the ellipsoidal model of uncertainty is significantly less conservative and thus better suited for practice, than the interval model of uncertainty. </p>
+
+<p>Last but not least, it should be mentioned that problem (<a href="node011.html#ch-cases-sec-rlo-eq-safev">9.1.18</a>) is equivalent to a conic quadratic program, specifically to the program </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math339.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & t &  & \\\nonumber{}\mbox{subject to} &  &  & [c^{\mathrm{n}}]^{T}x+\Omega z & \leq{} & t,\\\nonumber{} & (l_{c})_{i} & \leq{} & [a_{i}^{\mathrm{n}}]^{T}x-\Omega z_{i}, &  & \\\nonumber{} &  &  & [a_{i}^{\mathrm{n}}]^{T}x+\Omega z_{i} & \leq{} & (u_{c})_{i},\,\,i=1,...,m,\\\nonumber{} & 0 & = & w-D_{c}x &  & \\\nonumber{} & 0 & = & w^{i}-D_{{a_{i}}}x, &  & i=1,...,m,\\\nonumber{} & 0 & \leq{} & z-\sqrt{w^{T}w}, &  & \\\nonumber{} & 0 & \leq{} & z_{i}-\sqrt{(w^{i})^{T}w^{i}}, &  & i=1,...,m,\\\nonumber{} & l_{x} & \leq{} & x & \leq{} & u_{x}.\end{array}\end{math}"/></td>
+<td>(9.1.19)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math340.png" alt="[[MathCmd 340]]"/></span> and <span class="math"><img src="math/math341.png" alt="[[MathCmd 341]]"/></span> are matrices satisfying the relations </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math342.png" alt="\begin{displaymath}\nonumber{}V_{c}=D_{c}^{T}D_{c},\,V_{{a_{i}}}=D_{{a_{i}}}^{T}D_{{a_{i}}},\,i=1,...,m.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<div>
+<h3><a name="249957984">9.1.4.1. Example: Interval and Ellipsoidal robust counterparts of uncertain linear constraint with independent random perturbations of coefficients</a></h3>
+
+<p> Consider a linear constraint </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math343.png" alt="\begin{math}\nonumber{}l\leq{}\sum \limits _{{j=1}}^{n}a_{j}x_{j}\leq{}u\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-c">&#09;</a>(9.1.20)</td></tr>
+</tbody>
+</table>
+
+<p>and assume that the <span class="math"><img src="math/math344.png" alt="[[MathCmd 344]]"/></span> coefficients of the body of the constraint are uncertain and vary in intervals <span class="math"><img src="math/math345.png" alt="[[MathCmd 345]]"/></span>. The worst-case-oriented model of uncertainty here is the interval one, and the corresponding robust counterpart of the constraint is given by the system of linear inequalities </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math346.png" alt="\begin{math}\nonumber{}\begin{array}{rcccl}\nonumber{}l & \leq{} & \sum \limits _{{j=1}}^{n}a^{\mathrm{n}}_{j}x_{j}-\sum \limits _{{j=1}}^{n}\sigma _{j}y_{j}, &  & \\\nonumber{} &  & \sum \limits _{{j=1}}^{n}a^{\mathrm{n}}_{j}x_{j}+\sum \limits _{{j=1}}^{n}\sigma _{j}y_{j} & \leq{} & u,\\\nonumber{}0 & \leq{} & x_{j}+y_{j}, &  & \\\nonumber{}0 & \leq{} & -x_{j}+y_{j}, &  & j=1,...,n.\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-cint">&#09;</a>(9.1.21)</td></tr>
+</tbody>
+</table>
+
+<p>Now, assume that we have reasons to believe that the true values of the coefficients <span class="math"><img src="math/math344.png" alt="[[MathCmd 344]]"/></span> are obtained from their nominal values <span class="math"><img src="math/math348.png" alt="[[MathCmd 348]]"/></span> by random perturbations, independent for different <span class="math"><span class="mi">j</span></span> and symmetrically distributed in the segments <span class="math"><img src="math/math349.png" alt="[[MathCmd 349]]"/></span>. With this assumption, we are in the situation of item 3 and can replace the uncertain constraint (<a href="node011.html#ch-cases-sec-rlo-eq-c">9.1.20</a>) with its ellipsoidal robust counterpart </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math350.png" alt="\begin{math}\nonumber{}\begin{array}{rcccl}\nonumber{}l & \leq{} & \sum \limits _{{j=1}}^{n}a^{\mathrm{n}}_{j}x_{j}-\Omega z, &  & \\\nonumber{} &  & \sum \limits _{{j=1}}^{n}a^{\mathrm{n}}_{j}x_{j}+\Omega z & \leq{} & u,\\\nonumber{}0 & \leq{} & z-\sqrt{\sum \limits _{{j=1}}^{n}\sigma _{j}^{2}x_{j}^{2}}. &  &\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-cell">&#09;</a>(9.1.22)</td></tr>
+</tbody>
+</table>
+
+<p>Please note that with the model of random perturbations, a vector <span class="math"><span class="mi">x</span></span> satisfying (<a href="node011.html#ch-cases-sec-rlo-eq-cell">9.1.22</a>) satisfies a realization of (<a href="node011.html#ch-cases-sec-rlo-eq-c">9.1.20</a>) with probability at least <span class="math"><img src="math/math351.png" alt="[[MathCmd 351]]"/></span>; for <span class="math"><img src="math/math352.png" alt="[[MathCmd 352]]"/></span>. This probability is <span class="math"><img src="math/math353.png" alt="[[MathCmd 353]]"/></span>, which for all practical purposes is the same as sayiong that <span class="math"><span class="mi">x</span></span> satisfies all realizations of (<a href="node011.html#ch-cases-sec-rlo-eq-c">9.1.20</a>). On the other hand, the uncertainty set associated with (<a href="node011.html#ch-cases-sec-rlo-eq-cint">9.1.21</a>) is the box </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math354.png" alt="\begin{displaymath}\nonumber{}B=\left\lbrace{}a=(a_{1},...,a_{n})^{T}:a_{j}^{\mathrm{n}}-\sigma _{j}\leq{}a_{j}\leq{}a_{j}^{\mathrm{n}}+\sigma _{j},\,j=1,...,n\right\rbrace{},\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>while the uncertainty set associated with (<a href="node011.html#ch-cases-sec-rlo-eq-cell">9.1.22</a>) is the ellipsoid </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math355.png" alt="\begin{displaymath}\nonumber{}E(\Omega )=\left\lbrace{}a=(a_{1},...,a_{n})^{T}:\sum \limits _{{j=1}}^{n}{(a_{j}-a_{j}^{\mathrm{n}})^{\frac{2}{\sigma _{j}^{2}}}}\leq{}\Omega ^{2}\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>For a moderate value of <span class="math"><img src="math/math310.png" alt="[[MathCmd 310]]"/></span>, say <span class="math"><img src="math/math352.png" alt="[[MathCmd 352]]"/></span>, and <span class="math"><span class="mi">n</span>&ge;<span class="mn">40</span></span>, the ellipsoid <span class="math"><img src="math/math358.png" alt="[[MathCmd 358]]"/></span> in its diameter, typical linear sizes, volume, etc. is incomparably less than the box <span class="math"><span class="mi">B</span></span>, the difference becoming more dramatic the larger the dimension <span class="math"><span class="mi">n</span></span> of the box and the ellipsoid. It follows that the ellipsoidal robust counterpart (<a href="node011.html#ch-cases-sec-rlo-eq-cell">9.1.22</a>) of the randomly perturbed uncertain constraint (<a href="node011.html#ch-cases-sec-rlo-eq-c">9.1.20</a>) is much less conservative than the interval robust counterpart (<a href="node011.html#ch-cases-sec-rlo-eq-cint">9.1.21</a>), while ensuring basically the same &#8220;robustness guarantees&#8221;. To illustrate this important point, consider the following numerical examples: </p>
+<blockquote class="quote">
+<p> There are <span class="math"><span class="mi">n</span></span> different assets on the market. The return on $ 1 invested in asset <span class="math"><span class="mi">j</span></span> is a random variable distributed symmetrically in the segment <span class="math"><img src="math/math359.png" alt="[[MathCmd 359]]"/></span>, and the returns on different assets are independent of each other. The problem is to distribute $ 1 among the assets in order to get the largest possible total return on the resulting portfolio. </p>
+</blockquote>
+<p>A natural model of the problem is an uncertain linear optimization problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math360.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{maximize} &  &  & \sum \limits _{{j=1}}^{n}a_{j}x_{j} &  & \\\nonumber{}\mbox{subject to} &  &  & \sum \limits _{{j=1}}^{n}x_{j} & = & 1,\\\nonumber{} & 0 & \leq{} & x_{j}, &  & j=1,...,n.\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-portf">&#09;</a>(9.1.23)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math344.png" alt="[[MathCmd 344]]"/></span> are the uncertain returns of the assets. Both the nominal optimal solution (set all returns <span class="math"><img src="math/math344.png" alt="[[MathCmd 344]]"/></span> equal to their nominal values <span class="math"><img src="math/math363.png" alt="[[MathCmd 363]]"/></span>) and the risk-neutral Stochastic Programming approach (maximize the expected total return) result in the same solution: Our $ 1 should be invested in the most promising asset(s) &ndash; the one(s) with the maximal nominal return. This solution, however, can be very unreliable if, as is typically the case in reality, the most promising asset has the largest volatility <span class="math"><img src="math/math364.png" alt="[[MathCmd 364]]"/></span> and is in this sense the most risky. To reduce the risk, one can use the Robust Counterpart approach which results in the following optimization problems. </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math365.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{\textbf{The Interval Model of Uncertainty:}} &  &  &  &  & \\\nonumber{}\mbox{maximize} &  & t &  &  & \\\nonumber{}\mbox{subject to} & 0 & \leq{} & -t+\sum \limits _{{j=1}}^{n}(\delta _{j}-\sigma _{j})x_{j}, &  & \\\nonumber{} &  &  & \sum \limits _{{j=1}}^{n}x_{j} & = & 1,\\\nonumber{} & 0 & \leq{} & x_{j}, &  & j=1,...,n\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-portfint">&#09;</a>(9.1.24)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math366.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{\textbf{The ellipsoidal Model of Uncertainty:}}\mbox{maximize} &  &  & t &  & \\\nonumber{}\mbox{subject to} & 0 & \leq{} & -t+\sum \limits _{{j=1}}^{n}(\delta _{j})x_{j}-\Omega z, &  & \\\nonumber{} & 0 & \leq{} & z-\sqrt{\sum \limits _{{j=1}}^{n}\sigma _{j}^{2}x_{j}^{2}}, &  & \\\nonumber{} &  &  & \sum \limits _{{j=1}}^{n}x_{j} & = & 1,\\\nonumber{} & 0 & \leq{} & x_{j}, &  & j=1,...,n.\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-portfell">&#09;</a>(9.1.25)</td></tr>
+</tbody>
+</table>
+
+<p>Note that the problem (<a href="node011.html#ch-cases-sec-rlo-eq-portfell">9.1.25</a>) is essentially the risk-averted portfolio model proposed in mid-50's by Markowitz.</p>
+
+<p>The solution of (<a href="node011.html#ch-cases-sec-rlo-eq-portfint">9.1.24</a>) is evident &mdash; our $ 1 should be invested in the asset(s) with the largest possible <em>guaranteed</em> return <span class="math"><img src="math/math367.png" alt="[[MathCmd 367]]"/></span>. In contrast to this very conservative policy (which in reality prescribes to keep the initial capital in a bank or in the most reliable, and thus low profit, assets), the optimal solution to (<a href="node011.html#ch-cases-sec-rlo-eq-portfell">9.1.25</a>) prescribes a quite reasonable diversification of investments which allows to get much better total return than (<a href="node011.html#ch-cases-sec-rlo-eq-portfint">9.1.24</a>) with basically zero risk. To illustrate this, assume that there are <span class="math"><span class="mi">n</span><span class="mo">=</span><span class="mn">300</span></span> assets with the nominal returns (per year) varying from 1.04 (bank savings) to 2.00: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math368.png" alt="\begin{displaymath}\nonumber{}\delta _{j}=1.04+0.96\frac{j-1}{n-1},\,j=1,2,...,n=300\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and volatilities varying from 0 for the bank savings to 1.2 for the most promising asset: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math369.png" alt="\begin{displaymath}\nonumber{}\sigma _{j}=1.152\frac{j-1}{n-1},\,j=1,...,n=300.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Here is a MATLAB script which builds the associated problem (<a href="node011.html#ch-cases-sec-rlo-eq-portfell">9.1.25</a>), solves it via the MOSEK optimization toolbox, displays the resulting robust optimal value of the total return and the distribution of investments, and finally runs 10,000 simulations to get the distribution of the total return on the resulting portfolio (in these simulations, the returns on all assets are uniformly distributed in the corresponding intervals): </p>
+
+<pre class="verbatimcode">% File: rlo2.m
+
+% Problem:
+%
+% Maximize t subject to
+% t &lt;= sum(delta(j)*x(j)) -Omega*z,
+% y(j) = sigma(j)*x(j), j=1,...,n,
+% sum(x(j)) = 1,
+% norm(y) &lt;= z,
+% 0 &lt;= x.
+
+clear prob;
+n     = 300;
+Omega = 6;
+
+% Set nominal returns and volatilities
+delta = (0.96/(n-1))*[0:1:n-1]+1.04;
+sigma = (1.152/(n-1))*[0:1:n-1];
+
+% Set mosekopt description of the problem
+prob.c = -[1;zeros(2*n+1,1)];
+A      = [-1,ones(1,n)+delta,-Omega,zeros(1,n);zeros(n+1,2*n+2)];
+for j=1:n,
+    % Body of the constraint y(j) - sigma(j)*x(j) = 0:
+    A(j+1,j+1)   = -sigma(j);
+    A(j+1,2+n+j) = 1;
+end;
+A(n+2,2:n+1)        = ones(1,n);
+prob.a             = sparse(A);
+prob.blc           = [zeros(n+1,1);1];
+prob.buc           = [inf;zeros(n,1);1];
+prob.blx           = [-inf;zeros(n,1);0;zeros(n,1)];
+prob.bux           = inf*ones(2*n+2,1);
+prob.cones         = cell(1,1);
+prob.cones{1}.type = 'MSK_CT_QUAD';
+prob.cones{1}.sub  = [n+2;[n+3:1:2*n+2]'];
+
+% Run mosekopt
+[r,res]=mosekopt('minimize echo(1)',prob);
+
+% Display the solution
+xx = res.sol.itr.xx;
+t  = xx(1);
+
+disp(sprintf('Robust optimal value: %5.4f',t));
+x = max(xx(2:1+n),zeros(n,1));
+plot([1:1:n],x,'-m');
+grid on;
+
+disp('Press &lt;Enter&gt; to run simulations');
+pause
+
+% Run simulations
+
+Nsim = 10000;
+out  = zeros(Nsim,1);
+for i=1:Nsim,
+    returns  = delta+(2*rand(1,n)-1).*sigma;
+    out(i)   = returns*x;
+end;
+disp(sprintf('Actual returns over %d simulations:',Nsim));
+disp(sprintf('Min=%5.4f Mean=%5.4f Max=%5.4f StD=%5.2f',...
+    min(out),mean(out),max(out),std(out)));
+hist(out);
+</pre>
+
+<p>Here are the results displayed by the script: </p>
+
+<pre class="verbatim">Robust optimal value: 1.3428
+Actual returns over 10000 simulations:
+Min=1.5724 Mean=1.6965 Max=1.8245 StD= 0.03
+</pre>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td><center></center><span class="caption">Figure&nbsp;9.1: Distribution of investments among the assets in the optimal solution of.</span>
+<br/>
+<p> <a name="ch-cases-sec-rlo-portfell">&#09;</a> </p>
+</td></tr></table>
+
+</div>
+
+<p> Please note that with our set-up there is exactly one asset with guaranteed return greater than <span class="math"><span class="mn">1</span></span> &ndash; asset # 1 (bank savings, return 1.04, zero volatility). Consequently, the interval robust counterpart (<a href="node011.html#ch-cases-sec-rlo-eq-portfint">9.1.24</a>) prescribes to put our $ 1 in the bank, thus getting a 4% profit. In contrast to this, the diversified portfolio given by the optimal solution of (<a href="node011.html#ch-cases-sec-rlo-eq-portfell">9.1.25</a>) never yields profit less than 57.2%, and yields at average a 69.67% profit with pretty low (0.03) standard deviation. We see that in favorable circumstances the ellipsoidal robust counterpart of an uncertain linear program indeed is less conservative than, although basically as reliable as, the interval robust counterpart.</p>
+
+<p>Finally, let us compare our results with those given by the nominal optimal solution. The latter prescribes to invest everything we have in the most promising asset (in our example this is the asset # 300 with a nominal return of 2.00 and volatility of1.152). Assuming that the actual return is uniformly distributed in the corresponding interval and running 10,000 simulations, we get the following results: </p>
+
+<pre class="verbatim">Nominal optimal value: 2.0000
+Actual returns over 10000 simulations:
+Min=0.8483 Mean=1.9918 Max=3.1519 StD= 0.66
+</pre>
+
+<p>We see that the nominal solution results in a portfolio which is much more risky, although better at average, than the portfolio given by the robust solution.</p>
+
+</div>
+
+<div>
+<h3><a name="251676936">9.1.4.2. Combined Interval-Ellipsoidal Robust Counterpart</a></h3>
+
+<p> We have considered the case when the coefficients <span class="math"><img src="math/math344.png" alt="[[MathCmd 344]]"/></span> of uncertain linear constraint (<a href="node011.html#ch-cases-sec-rlo-eq-c">9.1.20</a>) are affected by uncorrelated random perturbations symmetrically distributed in given intervals <span class="math"><img src="math/math349.png" alt="[[MathCmd 349]]"/></span>, and we have discussed two ways to model the uncertainty: </p>
+
+<ul class="itemize">
+<li>The interval uncertainty model (the uncertainty set <span class="math"><img src="math/math272.png" alt="[[MathCmd 272]]"/></span> is the box <span class="math"><span class="mi">B</span></span>), where we ignore the stochastic nature of the perturbations and their independence. This model yields the Interval Robust Counterpart (<a href="node011.html#ch-cases-sec-rlo-eq-cint">9.1.21</a>); </li>
+<li>The ellipsoidal uncertainty model (<span class="math"><img src="math/math272.png" alt="[[MathCmd 272]]"/></span> is the ellipsoid <span class="math"><img src="math/math358.png" alt="[[MathCmd 358]]"/></span>), which takes into account the stochastic nature of data perturbations and yields the Ellipsoidal Robust Counterpart (<a href="node011.html#ch-cases-sec-rlo-eq-cell">9.1.22</a>).</li>
+</ul>
+
+<p>Please note that although for large <span class="math"><span class="mi">n</span></span> the ellipsoid <span class="math"><img src="math/math358.png" alt="[[MathCmd 358]]"/></span> in its diameter, volume and average linear sizes is incomparably smaller than the box <span class="math"><span class="mi">B</span></span>, in the case of <span class="math"><img src="math/math376.png" alt="[[MathCmd 376]]"/></span> the ellipsoid <span class="math"><img src="math/math358.png" alt="[[MathCmd 358]]"/></span> in certain directions goes beyond the box. E.g. the ellipsoid <span class="math"><span class="mi">E</span><span class="mo">(</span><span class="mn">6</span><span class="mo">)</span></span>, although much more narrow than <span class="math"><span class="mi">B</span></span> in most of the directions, is 6 times wider than <span class="math"><span class="mi">B</span></span> in the directions of the coordinate axes. Intuition says that it hardly makes sense to keep in the uncertainty set realizations of the data which are outside of <span class="math"><span class="mi">B</span></span> and thus forbidden by our model of perturbations, so in the situation under consideration the intersection of <span class="math"><img src="math/math358.png" alt="[[MathCmd 358]]"/></span> and <span class="math"><span class="mi">B</span></span> is a better model of the uncertainty set than the ellipsoid <span class="math"><img src="math/math358.png" alt="[[MathCmd 358]]"/></span> itself. What happens when the model of the uncertainty set is the &#8220;combined interval-ellipsoidal&#8221; uncertainty <span class="math"><img src="math/math380.png" alt="[[MathCmd 380]]"/></span> ?</p>
+
+<p>First, it turns out that the RC of (<a href="node011.html#ch-cases-sec-rlo-eq-c">9.1.20</a>) corresponding to the uncertainty set <span class="math"><img src="math/math381.png" alt="[[MathCmd 381]]"/></span> is still given by a system of linear and conic quadratic inequalities, specifically the system </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math382.png" alt="\begin{math}\nonumber{}\begin{array}{rcccl}\nonumber{}l & \leq{} & \sum \limits _{{j=1}}^{n}a_{j}^{\mathrm{n}}x_{j}-\sum \limits _{{j=1}}^{n}\sigma _{j}y_{j}-\Omega \sqrt{\sum \limits _{{j=1}}^{n}\sigma _{j}^{2}u_{j}^{2}}, &  & \\\nonumber{} &  & \sum \limits _{{j=1}}^{n}a_{j}^{\mathrm{n}}x_{j}+\sum \limits _{{j=1}}^{n}\sigma _{j}z_{j}+\Omega \sqrt{\sum \limits _{{j=1}}^{n}\sigma _{j}^{2}v_{j}^{2}} & \leq{} & u,\\\nonumber{}-y_{j} & \leq{} & x_{j}-u_{j} & \leq{} & y_{j},\,j=1,...,n,\\\nonumber{}-z_{j} & \leq{} & x_{j}-v_{j} & \leq{} & z_{j},\,j=1,...,n.\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-rlo-eq-cintell">&#09;</a>(9.1.26)</td></tr>
+</tbody>
+</table>
+
+<p> Second, it turns out that our intuition is correct: As a model of uncertainty, <span class="math"><img src="math/math383.png" alt="[[MathCmd 383]]"/></span> is as reliable as the ellipsoid <span class="math"><img src="math/math358.png" alt="[[MathCmd 358]]"/></span>. Specifically, if <span class="math"><span class="mi">x</span></span> can be extended to a feasible solution of (<a href="node011.html#ch-cases-sec-rlo-eq-cintell">9.1.26</a>), then the probability for <span class="math"><span class="mi">x</span></span> to satisfy a realization of (<a href="node011.html#ch-cases-sec-rlo-eq-c">9.1.20</a>) is <span class="math"><img src="math/math385.png" alt="[[MathCmd 385]]"/></span>.</p>
+
+<p>The conclusion is that if we have reasons to assume that the perturbations of uncertain coefficients in a constraint of an uncertain linear optimization problem are (a) random, (b) independent of each other, and (c) symmetrically distributed in given intervals, then it makes sense to associate with this constraint an interval-ellipsoidal model of uncertainty and use a system of linear and conic quadratic inequalities (<a href="node011.html#ch-cases-sec-rlo-eq-cintell">9.1.26</a>). Please note that when building the robust counterpart of an uncertain linear optimization problem, one can use different models of the uncertainty (e.g., interval, ellipsoidal, combined interval-ellipsoidal) for different uncertain constraints within the same problem.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="251696480">9.1.5. Further references</a></h2>
+
+<p>For further information about robust linear optimization consult [<a href="node024.html#BEN-TAL:00:A" class="citation">4</a>, <a href="node024.html#BEN-TAL:01:A" class="citation">5</a>].</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="251697344">9.2. Geometric (posynomial) optimization</a></h1>
+
+<p> <a name="ch-cases-sec-posyopt">&#09;</a> <a name="idx-85178128">&#09;</a> <a name="idx-85178776">&#09;</a></p>
+
+<div>
+<h2><a name="251696552">9.2.1. The problem</a></h2>
+
+<p>A <em>geometric optimization</em> problem can be stated as follows </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math386.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{k\in{}J_{0}}}c_{k}\prod \limits _{{j=0}}^{{n-1}}t_{j}^{{a_{{kj}}}} &  &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{k\in{}J_{i}}}c_{k}\prod \limits _{{j=0}}^{{n-1}}t_{j}^{{a_{{kj}}}} & \leq{} & 1, & i=1,\ldots ,m,\\\nonumber{} & t>0, &  &  &\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-posyopt-eq-primal-posy">&#09;</a>(9.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>where it is assumed that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math97.png" alt="\begin{displaymath}\nonumber{}\cup _{{k=0}}^{m}J_{k}=\lbrace{}1,\ldots ,T\rbrace{}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and if <span class="math"><img src="math/math98.png" alt="[[MathCmd 98]]"/></span>, then </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math99.png" alt="\begin{displaymath}\nonumber{}J_{i}\cap J_{j}=\emptyset .\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Hence, <span class="math"><span class="mi">A</span></span> is a <span class="math"><img src="math/math100.png" alt="[[MathCmd 100]]"/></span> matrix and <span class="math"><span class="mi">c</span></span> is a vector of length <span class="math"><span class="mi">T</span></span>. Given <span class="math"><img src="math/math391.png" alt="[[MathCmd 391]]"/></span> then </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math392.png" alt="\begin{displaymath}\nonumber{}c_{k}\prod \limits _{{j=0}}^{{n-1}}t_{j}^{{a_{{kj}}}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is called a <i>monomial</i> <a name="idx-85190272">&#09;</a>. A sum of monomials i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math393.png" alt="\begin{displaymath}\nonumber{}\sum \limits _{{k\in{}J_{i}}}c_{k}\prod \limits _{{j=0}}^{{n-1}}t_{j}^{{a_{{kj}}}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is called a <i>posynomial</i><a name="idx-85197312">&#09;</a>. In general, the problem (<a href="node011.html#ch-cases-sec-posyopt-eq-primal-posy">9.2.1</a>) is very hard to solve. However, the posynomial case where it is required that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math101.png" alt="\begin{displaymath}\nonumber{}c>0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is relatively easy. The reason is that using a simple variable transformation a convex optimization problem can be obtained. Indeed using the variable transformation </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math102.png" alt="\begin{math}\nonumber{}t_{j}=e^{{x_{j}}}\end{math}"/></td>
+<td><a name="ch-cases-sec-posyopt-eq-posy-trans">&#09;</a>(9.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>we obtain the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math396.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{k\in{}J_{0}}}c_{k}e^{{\sum \limits _{{j=0}}^{{n-1}}a_{{kj}}x_{j}}} &  &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{k\in{}J_{i}}}c_{k}e^{{\sum \limits _{{j=0}}^{{n-1}}a_{{kj}}x_{j}}} & \leq{} & 1, & i=1,\ldots ,m,\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-posyopt-eq-primal-exp">&#09;</a>(9.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>which is a convex optimization problem that can be solved using MOSEK. We will call </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math397.png" alt="\begin{displaymath}\nonumber{}c_{t}e^{{\left(\sum \limits _{{j=0}}^{{n-1}}a_{{tj}}x_{j}\right)}}=e^{{\left(\log (c_{t})+\sum \limits _{{j=0}}^{{n-1}}a_{{tj}}x_{j}\right)}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>a <em>term</em> and hence the number of terms is <span class="math"><span class="mi">T</span></span>.</p>
+
+<p>As stated, the problem (<a href="node011.html#ch-cases-sec-posyopt-eq-primal-exp">9.2.3</a>) is non-separable. However, using </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math398.png" alt="\begin{displaymath}\nonumber{}v_{t}=\log (c_{t})+\sum \limits _{{j=0}}^{{n-1}}a_{{tj}}x_{j}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>we obtain the separable problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math399.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{t\in{}J_{0}}}e^{{v_{t}}} &  &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{t\in{}J_{i}}}e^{{v_{t}}} & \leq{} & 1, & i=1,\ldots ,m,\\\nonumber{} & \sum \limits _{{j=0}}^{{n-1}}a_{{tj}}x_{j}-v_{t} & = & -\log (c_{t}), & t=0,\ldots ,T,\end{array}\end{math}"/></td>
+<td><a name="ch-case-exp-separable">&#09;</a>(9.2.4)</td></tr>
+</tbody>
+</table>
+
+<p>which is a separable convex optimization problem.</p>
+
+<p>A warning about this approach is that the exponential function <span class="math"><img src="math/math400.png" alt="[[MathCmd 400]]"/></span> is only numerically well-defined for values of <span class="math"><span class="mi">x</span></span> in a small interval around <span class="math"><span class="mn">0</span></span> since <span class="math"><img src="math/math400.png" alt="[[MathCmd 400]]"/></span> grows very rapidly as <span class="math"><span class="mi">x</span></span> becomes larger. Therefore numerical problems may arise when solving the problem on this form.</p>
+
+</div>
+
+<div>
+<h2><a name="251724648">9.2.2. Applications</a></h2>
+
+<p> A large number of practical applications, particularly in electrical circuit design, can be cast as a geometric optimization problem. We will not review these applications here but rather refer the reader to [<a href="node024.html#BOYD:04:A" class="citation">13</a>] and the references therein.</p>
+
+</div>
+
+<div>
+<h2><a name="251697848">9.2.3. Modeling tricks</a></h2>
+
+<p> A lot of tricks that can be used for modeling posynomial optimization problems are described in [<a href="node024.html#BOYD:04:A" class="citation">13</a>]. Therefore, in this section we cover only one important case.</p>
+
+<div>
+<h3><a name="251725872">9.2.3.1. Equalities</a></h3>
+
+<p> In general, equalities are not allowed in (<a href="node011.html#ch-cases-sec-posyopt-eq-primal-posy">9.2.1</a>), i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math402.png" alt="\begin{displaymath}\nonumber{}\sum \limits _{{k\in{}J_{i}}}c_{k}\prod \limits _{{j=0}}^{{n-1}}t_{j}^{{a_{{kj}}}}=1\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is not allowed. However, a monomial equality is not a problem. Indeed consider the example </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math403.png" alt="\begin{displaymath}\nonumber{}xyz^{{-1}}=1\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>of a monomial equality. The equality is identical to </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math404.png" alt="\begin{displaymath}\nonumber{}1\leq{}xyz^{{-1}}\leq{}1\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which in turn is identical to the two inequalities </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math405.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lclcl}\nonumber{}xyz^{{-1}} &  &  & \leq{} & 1,\\\nonumber{}\frac{1}{xyz^{{-1}}} & = & x^{{-1}}y^{{-1}}z & \leq{} & 1.\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Hence, it is possible to model a monomial equality using two inequalities.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="251735072">9.2.4. Problematic formulations</a></h2>
+
+<p> Certain formulations of geometric optimization problems may cause problems for the algorithms implemented in MOSEK. Basically there are two kinds of problems that may occur: </p>
+
+<ul class="itemize">
+<li>The solution vector is finite, but an optimal objective value can only be a approximated. </li>
+<li>The optimal objective value is finite but implies that a variable in the solution is infinite. </li>
+</ul>
+
+<div>
+<h3><a name="251735432">9.2.4.1. Finite unattainable solution</a></h3>
+
+<p> The following problem illustrates an unattainable solution: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math406.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lclcl}\nonumber{}\mbox{minimize} & x^{2}y &  & \\\nonumber{}\mbox{subject to} & xy & \leq{} & 1,\\\nonumber{} & x,y>0. &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Clearly, the optimal objective value is <span class="math"><span class="mn">0</span></span> but because of the constraint the <span class="math"><span class="mi">x</span><span class="mo">,</span><span class="mi">y</span><span class="mo">&gt;</span><span class="mn">0</span></span> constraint this value can never be attained: To see why this is a problem, remember that MOSEK substitutes <span class="math"><img src="math/math407.png" alt="[[MathCmd 407]]"/></span> and <span class="math"><img src="math/math408.png" alt="[[MathCmd 408]]"/></span> and solves the problem as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math409.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lclcl}\nonumber{}\mbox{minimize} & e^{{2t_{x}}}e^{{t_{y}}} &  & \\\nonumber{}\mbox{subject to} & e^{{t_{x}}}e^{{t_{y}}} & \leq{} & 1,\\\nonumber{} & t_{x},t_{y}\in{}\mathbb{R}. &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The optimal solution implies that <span class="math"><img src="math/math410.png" alt="[[MathCmd 410]]"/></span> or <span class="math"><img src="math/math411.png" alt="[[MathCmd 411]]"/></span>, and thus it is unattainable.</p>
+
+<p>Now, the issue should be clear: If a variable <span class="math"><span class="mi">x</span></span> appears only with nonnegative exponents, then fixing <span class="math"><span class="mi">x</span><span class="mo">=</span><span class="mn">0</span></span> will minimize all terms in which it appears &mdash; but such a solution cannot be attained.</p>
+
+</div>
+
+<div>
+<h3><a name="251751240">9.2.4.2. Infinite solution</a></h3>
+
+<p> A similar problem will occur if a finite optimal objective value requires a variable to be infinite. This can be illustrated by the following example: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math412.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lclcl}\nonumber{}\mbox{minimize} & x^{{-2}} &  & \\\nonumber{}\mbox{subject to} & x^{{-1}} & \leq{} & 1,\\\nonumber{} & x>0, &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which is a valid geometric programming problem. In this case the optimal objective is <span class="math"><span class="mn">0</span></span>, but this requires <span class="math"><span class="mi">x</span><span class="mo">=</span>&infin;</span>, which is unattainable.</p>
+
+<p>Again, this specific case will appear if a variable <span class="math"><span class="mi">x</span></span> appears only with negative exponents in the problem, implying that each term in which it appears can be minimized for <span class="math"><img src="math/math413.png" alt="[[MathCmd 413]]"/></span>.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="251759504">9.2.5. An example</a></h2>
+
+<p> Consider the example </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math414.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lclcl}\nonumber{}\mbox{minimize} & x^{{-1}}y &  & \\\nonumber{}\mbox{subject to} & x^{2}y^{{-\frac{1}{2}}}+3y^{{\frac{1}{2}}}z^{{-1}} & \leq{} & 1,\\\nonumber{} & xy^{{-1}} & = & z^{2},\\\nonumber{} & -x & \leq{} & -\frac{1}{10},\\\nonumber{} & x & \leq{} & 3,\\\nonumber{} & x,y,z>0, &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which is not a geometric optimization problem. However, using the obvious transformations we obtain the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math415.png" alt="\begin{math}\nonumber{}\begin{array}{lclcl}\nonumber{}\mbox{minimize} & x^{{-1}}y &  & \\\nonumber{}\mbox{subject to} & x^{2}y^{{-\frac{1}{2}}}+3y^{{\frac{1}{2}}}z^{{-1}} & \leq{} & 1,\\\nonumber{} & xy^{{-1}}z^{{-2}} & \leq{} & 1,\\\nonumber{} & x^{{-1}}yz^{2} & \leq{} & 1,\\\nonumber{} & \frac{1}{10}x^{{-1}} & \leq{} & 1,\\\nonumber{} & \frac{1}{3}x & \leq{} & 1,\\\nonumber{} & x,y,z>0, &  &\end{array}\end{math}"/></td>
+<td><a name="ch-case-exp-separable-normalized">&#09;</a>(9.2.5)</td></tr>
+</tbody>
+</table>
+
+<p>which is a geometric optimization problem.</p>
+
+</div>
+
+<div>
+<h2><a name="251787600">9.2.6. Solving the example</a></h2>
+
+<p>The problem <a href="node011.html#ch-case-exp-separable-normalized">(9.2.5)</a> can be defined and solved in the MOSEK toolbox as shown below.</p>
+
+<pre class="verbatim">% go2.m
+
+c     = [1 1 3 1 1 0.1 1/3]';
+a     = sparse([[-1  1  0];
+                [2 -0.5 0];
+                [0 0.5 -1];
+                [1 -1 -2]; 
+                [-1 1 2]; 
+                [-1 0 0]; 
+                [1 0 0]]);
+
+map   = [0 1 1 2 3 4 5]';
+[res] = mskgpopt(c,a,map);
+
+fprintf('\nPrimal optimal solution to original gp:');
+fprintf(' %e',exp(res.sol.itr.xx));
+fprintf('\n\n');
+
+% Compute the optimal objective value and
+% the constraint activities.
+v = c.*exp(a*res.sol.itr.xx);
+
+% Add appropriate terms together.
+f = sparse(map+1,1:7,ones(size(map)))*v;
+
+% First objective value. Then constraint values.
+fprintf('Objective value: %e\n',log(f(1)));
+fprintf('Constraint values:');
+fprintf(' %e',log(f(2:end)));
+fprintf('\n\n');
+
+% Dual multipliers (should be negative)
+fprintf('Dual variables (should be negative):');
+fprintf(' %e',res.sol.itr.y);
+fprintf('\n\n');
+</pre>
+
+</div>
+
+<div>
+<h2><a name="251759648">9.2.7. Exporting to a file</a></h2>
+
+<p>It's possible to write a geometric optimization problem to a file with the command:</p>
+
+<pre class="verbatim"> mskgpwri(c,a,map,filename)
+</pre>
+
+<p> This file format is compatible with the <tt class="tt">mskexpopt</tt> command line tool. See the MOSEK Tools User's manual for details on <tt class="tt">mskexpopt</tt>. This file format can be useful for sending debug information to MOSEK or for testing. It's also possible to read the above format with the command: </p>
+
+<pre class="verbatim"> [c,a,map] = mskgpread(filename)
+</pre>
+
+</div>
+
+<div>
+<h2><a name="251788536">9.2.8. Further information</a></h2>
+
+<p>More information about geometric optimization problems is located in [<a href="node024.html#BAZARAA:93:A" class="citation">17</a>, <a href="node024.html#BEIGHTLER:76:A" class="citation">12</a>, <a href="node024.html#BOYD:04:A" class="citation">13</a>].</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node010.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 8. Command reference" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node012.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  10. Modelling" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node010.html" target="_self">8. Command reference</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node012.html" target="_self">10. Modelling</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:58:20 2012</div>
+</body></html>

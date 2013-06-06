@@ -1,0 +1,67 @@
+#GMake / Linux AMD64 / Mono C#
+
+MOSEKNETDLL=../../platform/linux64x86/bin/mosekdotnet.dll
+CSC=mcs
+EXAMPLES=lo1.exe \
+         lo2.exe \
+         qo1.exe \
+         cqo1.exe \
+         qcqo1.exe \
+         milo1.exe \
+         concurrent1.exe \
+         concurrent2.exe \
+         feasrepairex1.exe \
+         mioinitsol.exe \
+         production.exe \
+         sensitivity.exe \
+         simple.exe \
+         solvebasis.exe
+
+lo1.exe: lo1.cs
+	$(CSC) /target:exe /out:lo1.exe /r:$(MOSEKNETDLL) lo1.cs
+
+lo2.exe: lo2.cs
+	$(CSC) /target:exe /out:lo2.exe /r:$(MOSEKNETDLL) lo2.cs
+
+qo1.exe: qo1.cs
+	$(CSC) /target:exe /out:qo1.exe /r:$(MOSEKNETDLL) qo1.cs
+
+cqo1.exe: cqo1.cs
+	$(CSC) /target:exe /out:cqo1.exe /r:$(MOSEKNETDLL) cqo1.cs
+
+qcqo1.exe: qcqo1.cs
+	$(CSC) /target:exe /out:qcqo1.exe /r:$(MOSEKNETDLL) qcqo1.cs
+
+milo1.exe: milo1.cs
+	$(CSC) /target:exe /out:milo1.exe /r:$(MOSEKNETDLL) milo1.cs
+
+concurrent1.exe: concurrent1.cs
+	$(CSC) /target:exe /out:concurrent1.exe /r:$(MOSEKNETDLL) concurrent1.cs
+
+concurrent2.exe: concurrent2.cs
+	$(CSC) /target:exe /out:concurrent2.exe /r:$(MOSEKNETDLL) concurrent2.cs
+
+feasrepairex1.exe: feasrepairex1.cs
+	$(CSC) /target:exe /out:feasrepairex1.exe /r:$(MOSEKNETDLL) feasrepairex1.cs
+
+mioinitsol.exe: mioinitsol.cs
+	$(CSC) /target:exe /out:mioinitsol.exe /r:$(MOSEKNETDLL) mioinitsol.cs
+
+production.exe: production.cs
+	$(CSC) /target:exe /out:production.exe /r:$(MOSEKNETDLL) production.cs
+
+sensiticity.exe: sensiticity.cs
+	$(CSC) /target:exe /out:sensiticity.exe /r:$(MOSEKNETDLL) sensiticity.cs
+
+sensitivity.exe: sensitivity.cs
+	$(CSC) /target:exe /out:sensitivity.exe /r:$(MOSEKNETDLL) sensitivity.cs
+
+simple.exe: simple.cs
+	$(CSC) /target:exe /out:simple.exe /r:$(MOSEKNETDLL) simple.cs
+
+solvebasis.exe: solvebasis.cs
+	$(CSC) /target:exe /out:solvebasis.exe /r:$(MOSEKNETDLL) solvebasis.cs
+
+
+
+all: $(EXAMPLES)

@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>6. Advanced API tutorial</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. Basic API tutorial" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. Modelling" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">7. Modelling</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="227253496">6. Advanced API tutorial</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node008.html#227248680" target="_self">6.1. Linear network flow problems</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#227268656" target="_self">6.1.1. A linear network flow problem example</a>
+<ul class="toc-level-3">
+<li><a href="node008.html#227303152" target="_self">6.1.1.1. Source code</a></li>
+<li><a href="node008.html#227301856" target="_self">6.1.1.2. Example code comments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node008.html#227298048" target="_self">6.2. Embedded network flow problems</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#227397000" target="_self">6.2.1. Example: Exploit embedded network flow structure in the simplex optimizer</a></li>
+</ul>
+</li>
+<li><a href="node008.html#227393832" target="_self">6.3. Solving linear systems involving the basis matrix</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#227384712" target="_self">6.3.1. Identifying the basis</a></li>
+<li><a href="node008.html#227419992" target="_self">6.3.2. An example</a></li>
+<li><a href="node008.html#229129248" target="_self">6.3.3. Solving arbitrary linear systems</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> This chapter provides information about additional problem classes and functionality provided in the .NET API.</p>
+
+<div>
+<h1><a name="227248680">6.1. Linear network flow problems</a></h1>
+
+<p> <a name="chap-apiintro-sec-linear-network-optimization">&#09;</a>  <a name="idx-79763072">&#09;</a></p>
+
+<p>Network flow problems are a special class of linear optimization problems which has many applications. A network consists of a set of points connected by a set of lines. Usually the points and lines are called <em>nodes</em> and <em>arcs</em>. Arcs may have an direction on them. The network is directed if all arcs are directed. The class of network flow problems is defined as follows.
+<br/>Let <span class="math"><img src="math/math125.png" alt="[[MathCmd 125]]"/></span> be a directed network of nodes <span class="math"><img src="math/math126.png" alt="[[MathCmd 126]]"/></span> and arcs <span class="math"><img src="math/math127.png" alt="[[MathCmd 127]]"/></span>. Associated with every arc <span class="math"><img src="math/math128.png" alt="[[MathCmd 128]]"/></span> is a cost <span class="math"><img src="math/math129.png" alt="[[MathCmd 129]]"/></span> and a capacity <span class="math"><img src="math/math130.png" alt="[[MathCmd 130]]"/></span>. Moreover, associated with each node <span class="math"><img src="math/math131.png" alt="[[MathCmd 131]]"/></span> in the network is a lower limit <span class="math"><img src="math/math132.png" alt="[[MathCmd 132]]"/></span> and an upper limit <span class="math"><img src="math/math133.png" alt="[[MathCmd 133]]"/></span> on the demand (supply) of the node. The minimum cost of a network flow problem can be stated as follows: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math134.png" alt="\begin{math}\nonumber{}\begin{array}{lcccccl}\nonumber{}\mbox{minimize} &  &  & \sum \limits _{{(i,j)\in{}\mathcal{A}}}c_{{ij}}x_{{ij}} &  &  & \\\nonumber{}\mbox{subject to} & l^{c}_{{i}} & \leq{} & \sum \limits _{{\lbrace{}j:(i,j)\in{}\mathcal{A}\rbrace{}}}x_{{ij}}-\sum \limits _{{\lbrace{}j:(j,i)\in{}\mathcal{A}\rbrace{}}}x_{{ji}} & \leq{} & u^{c}_{{i}} & \forall i\in{}\mathcal{N},\\\nonumber{} & l^{x}_{{ij}} & \leq{} & x_{{ij}} & \leq{} & u^{x}_{{ij}} & \forall (i,j)\in{}\mathcal{A}.\end{array}\end{math}"/></td>
+<td><a name="pure-network-flow-problem">&#09;</a>(6.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>A classical example of a network flow problem is the transportation problem where the objective is to distribute goods from warehouses to customers at lowest possible total cost, see [<a href="node029.html#AHUJA:89:A" class="citation">7</a>] for a detailed application reference.</p>
+
+<p>The above graph formulation of the network flow problem implies the structural properties. Each variable appears in exactly two constraints with a numerical value of either <span class="math"><img src="math/math135.png" alt="[[MathCmd 135]]"/></span> or <span class="math"><img src="math/math136.png" alt="[[MathCmd 136]]"/></span>.</p>
+
+<p>It is well-known that problems with network flow structure can be solved efficiently with a specialized version of the simplex method. MOSEK includes such a network simplex implementation which can be called either directly using <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">mosek.Task.netoptimize</tt></a> or indirectly by letting the standard simplex optimizer extract the embedded network. This section shows how to solve a network problem by a direct call to <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">mosek.Task.netoptimize</tt></a>. For further details on how to exploit embedded network in the standard simplex optimizer, see Section <a title="8.3.1. Network flow problems" href="node010.html#solving-network-problems">8.3.1</a>.</p>
+
+<div>
+<h2><a name="227268656">6.1.1. A linear network flow problem example</a></h2>
+
+<p> <a name="chap-apiintro-sec-linear-network-example">&#09;</a> <a name="idx-81204288">&#09;</a> The following is an example of a linear network optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math137.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & x_{0} &  &  & + & x_{2} & + &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & -x_{0} &  &  &  &  & + & x_{3} &  &  &  &  & = & 1,\\\nonumber{} &  &  &  &  & x_{2} & - & x_{3} & + & x_{4} & + & x_{5} & = & -2,\\\nonumber{} & x_{0} & - & x_{1} &  &  &  &  & - & x_{4} & - & x_{5} & = & 0,\\\nonumber{} &  &  & x_{1} & - & x_{2} & + &  &  &  &  &  & = & 0,\end{array}\end{math}"/></td>
+<td><a name="net-prob">&#09;</a>(6.1.2)</td></tr>
+</tbody>
+</table>
+
+<p>having the bounds <span class="math"><img src="math/math138.png" alt="[[MathCmd 138]]"/></span>.</p>
+
+<p>The corresponding graph <span class="math"><img src="math/math125.png" alt="[[MathCmd 125]]"/></span> is displayed in fig.<a href="node008.html#fig-network">6.1</a>.</p>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td><center>
+<p> <img src="graphics/network.png"/> </p>
+<span class="caption">Figure&nbsp;6.1: Simple network.</span>
+<br/>
+<p> <a name="fig-network">&#09;</a> </p>
+</center></td></tr></table>
+
+</div>
+
+<div>
+<h3><a name="227303152">6.1.1.1. Source code</a></h3>
+
+<p> <a name="idx-81220096">&#09;</a><a name="sec:network1-source">&#09;</a></p>
+
+<p>In this section we will show how to solve (<a href="node008.html#net-prob">6.1.2</a>) with the network optimizer.</p>
+
+<p>The .NET program included below, which solves this problem, is distributed with MOSEK and can be found in the directory</p>
+
+</div>
+
+<div>
+<h3><a name="227301856">6.1.1.2. Example code comments</a></h3>
+
+<p> There are a few important differences between the linear network optimization example in section <a title="6.1.1.1. Source code" href="node008.html#sec:network1-source">6.1.1.1</a> and the general linear optimization problem in section <a title="5.2. Linear optimization" href="node007.html#chap-apiintro-sec-linear-optimization">5.2</a>. </p>
+
+<ul class="itemize">
+<li>MOSEK allows that network problems can be inputted and optimized using one function call to the function <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">mosek.Task.netoptimize</tt></a>. This is more efficient and uses less memory than a call to the standard optimizer. </li>
+<li>Since we know that each column of matrix <span class="math"><span class="mi">A</span></span> has two non-zeroes, it can be stored in two arrays, <tt class="tt">from</tt> and <tt class="tt">to</tt>, specifying the origin and destination of the arcs (variables), see graph in fig.fig-network. </li>
+<li>The solution is written directly to <tt class="tt">skc</tt>, <tt class="tt">skx</tt>, <tt class="tt">xc</tt>, <tt class="tt">xx</tt>, <tt class="tt">y</tt>, <tt class="tt">slc</tt>, <tt class="tt">suc</tt>, <tt class="tt">slx</tt> and <tt class="tt">sux</tt> by <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">mosek.Task.netoptimize</tt></a>. </li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="227298048">6.2. Embedded network flow problems</a></h1>
+
+<p> <a name="advanced-embedded-network">&#09;</a>  <a name="idx-81237488">&#09;</a></p>
+
+<p>Often problems contains both large parts with network structure and some non-network constraints or variables &mdash; such problems are said to have <em>embedded network structure</em>.</p>
+
+<p>A linear optimization with embedded network structure problem can be written as : <a name="idx-81239792">&#09;</a> </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math140.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  & \\\nonumber{}\mbox{subject to} & l^{c}_{N} & \leq{} & Nx & \leq{} & u^{c}_{N},\\\nonumber{} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\end{array}\end{math}"/></td>
+<td><a name="embedded-network-specs">&#09;</a>(6.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>Where the constraints</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math141.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}l^{c}_{N} & \leq{} & Nx & \leq{} & u^{c}_{N}\end{array}\end{math}"/></td>
+<td>(6.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>defines a network as explained in section <a title="6.1. Linear network flow problems" href="node008.html#chap-apiintro-sec-linear-network-optimization">6.1</a>, and the constraints</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math142.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}l^{c} & \leq{} & Ax & \leq{} & u^{c}\end{array}\end{math}"/></td>
+<td>(6.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>defines the general non-network linear constraints. As an example consider the small linear optimization problem</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math143.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & -x_{0} &  &  & + & x_{2} &  &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & 0.50x_{0} &  &  &  &  & + & 0.50x_{3} &  &  &  &  & = & 0.5,\\\nonumber{} &  &  &  &  & 0.50x_{2} & - & 0.50x_{3} & + & 0.50x_{4} & + & 0.50x_{5} & = & -1,\\\nonumber{} & -0.25x_{0} & + & -2.50x_{1} & + &  &  &  & - & 0.25x_{4} & - & 0.25x_{5} & = & 0,\\\nonumber{} &  &  & 2.50x_{1} & - & 0.25x_{2} &  &  &  &  &  &  & = & 0,\\\nonumber{} &  & - & x_{1} & + & x_{2} & + & x_{3} &  &  & + & x_{5} & \geq{} & 6,\end{array}\end{math}"/></td>
+<td><a name="net-em-prob">&#09;</a>(6.2.4)</td></tr>
+</tbody>
+</table>
+
+<p>with the bounds </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math144.png" alt="\begin{displaymath}\nonumber{}-\infty \leq{}x_{0}\leq{}0,0\leq{}x_{j}\leq{}\infty \mbox{ for }j=1\ldots 5.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> Recalling the network flow problem structural properties from section <a href="node008.html#pure-network-flow-problem">6.1.1</a>, each variable should appear in exactly two constraints with coefficients of either <span class="math"><img src="math/math135.png" alt="[[MathCmd 135]]"/></span> or <span class="math"><img src="math/math136.png" alt="[[MathCmd 136]]"/></span>.</p>
+
+<p>At first glance it does not seem to contain any network structure, but if we scale constraints 1-4 by respectively 2.0, 2.0, 4.0, 4.0 and columns 1-2 by -1.0, 0.1 we get the following problem :</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math147.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & x_{0} &  &  & + & x_{2} & + &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & -x_{0} &  &  &  &  & + & x_{3} &  &  &  &  & = & 1,\\\nonumber{} &  &  &  &  & x_{2} & - & x_{3} & + & x_{4} & + & x_{5} & = & -2,\\\nonumber{} & x_{0} & - & x_{1} &  &  &  &  & - & x_{4} & - & x_{5} & = & 0,\\\nonumber{} &  &  & x_{1} & - & x_{2} & + &  &  &  &  &  & = & 0,\\\nonumber{} &  &  & x_{1} & + & x_{2} & + & x_{3} &  &  & + & x_{5} & \geq{} & 6,\end{array}\end{math}"/></td>
+<td>(6.2.5)</td></tr>
+</tbody>
+</table>
+
+<p>with the bounds </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math148.png" alt="\begin{displaymath}\nonumber{}0\leq{}x_{j}\leq{}\infty \mbox{ for }j=0\ldots 5.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> This corresponds to the network flow problem in section <a title="6.1.1. A linear network flow problem example" href="node008.html#chap-apiintro-sec-linear-network-example">6.1.1</a> plus one extra non-network constraint. We cannot use the network optimizer directly on the above problem since the last constraint destroys the network property. Finding the largest possible network structure in a linear optimization problem is computationally difficult, so MOSEK offers a heuristic <a href="node017.html#common-func*mosek*task*netextraction"><tt class="tt">mosek.Task.netextraction</tt></a> that attempts to find suitable scaling factors maximizing numbers of network constraints and variables. Assuming that the embedded network structure is dominant and the problem has few non-network constraints, we can exploit this structure and potentially speed up the optimization. Since the network constraints can be handled efficiently by the specialized network optimizer, the following idea is used: </p>
+
+<ul class="itemize">
+<li>Disregard the non-network constraints and optimize the network problem. </li>
+<li>Use the network solution to hot-start the standard dual simplex optimizer. </li>
+</ul>
+
+<p>An embedded network can be exploited by this scheme in two ways: </p>
+
+<ul class="itemize">
+<li>Use the extraction heuristics directly by the <a href="node017.html#common-func*mosek*task*netextraction"><tt class="tt">mosek.Task.netextraction</tt></a> function and optimize with the <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">mosek.Task.netoptimize</tt></a> function. </li>
+<li>Let the simplex optimizer exploit embedded network structure automatically. </li>
+</ul>
+
+<p> The first method is more difficult than the second, but also offers much more flexibility. In <a title="6.2.1. Example: Exploit embedded network flow structure in the simplex optimizer" href="node008.html#network-advanced-example">6.2.1</a> the first method is demonstrated by a code example below. For further details on exploiting embedded network structure in the standard simplex optimizer, see section <a title="8.3.1. Network flow problems" href="node010.html#solving-network-problems">8.3.1</a>.</p>
+
+<div>
+<h2><a name="227397000">6.2.1. Example: Exploit embedded network flow structure in the simplex optimizer</a></h2>
+
+<p> <a name="idx-81268392">&#09;</a> <a name="network-advanced-example">&#09;</a></p>
+
+<p>MOSEK is distributed with some network examples which can be found in the directory</p>
+
+<pre class="verbatim">  mosek\6\tools\examples 
+</pre>
+
+<p> The example given in this section demonstrates how to extract and optimize embedded network structure in a arbitrary linear optimization problem. The following idea is used</p>
+
+<ul class="itemize">
+<li>Read an arbitrary linear optimization problem into a task. </li>
+<li>Use the <a href="node017.html#common-func*mosek*task*netextraction"><tt class="tt">mosek.Task.netextraction</tt></a> function to extract embedded network structure. </li>
+<li>Optimize the network problem using the <a href="node017.html#common-func*mosek*task*netoptimize"><tt class="tt">mosek.Task.netoptimize</tt></a> function. </li>
+</ul>
+
+<p>In the above example we only optimize the embedded network problem. We still need to use the found network solution as a hot-start for the simplex optimizer and solve the original problem. This involves unscaling the network solution back to same unit measure as the original problem. In the example</p>
+
+<p>we show how to convert the network solution into a valid hot-start for the simplex optimizer.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="227393832">6.3. Solving linear systems involving the basis matrix</a></h1>
+
+<p> A linear optimization problem always has an optimal solution which is also a basic solution. In an optimal basic solution there are exactly <span class="math"><span class="mi">m</span></span> basic variables where <span class="math"><span class="mi">m</span></span> is the number of rows in the constraint matrix <span class="math"><span class="mi">A</span></span>. Define </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math149.png" alt="\begin{displaymath}\nonumber{}B\in{}\mathbb{R}^{{m\times m}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>as a matrix consisting of the columns of <span class="math"><span class="mi">A</span></span> corresponding to the basic variables.</p>
+
+<p>The basis matrix <span class="math"><span class="mi">B</span></span> is always non-singular, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math150.png" alt="\begin{displaymath}\nonumber{}\det (B)\not=0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>or equivalently that <span class="math"><img src="math/math151.png" alt="[[MathCmd 151]]"/></span> exists. This implies that the linear systems </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math152.png" alt="\begin{math}\nonumber{}B\bar{x}=w\end{math}"/></td>
+<td><a name="ch-apiex-sec-basissolve-eq-ftran">&#09;</a>(6.3.1)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math153.png" alt="\begin{math}\nonumber{}B^{T}\bar{x}=w\end{math}"/></td>
+<td><a name="ch-apiex-sec-basissolve-eq-btran">&#09;</a>(6.3.2)</td></tr>
+</tbody>
+</table>
+
+<p>each has a unique solution for all <span class="math"><span class="mi">w</span></span>.</p>
+
+<p>MOSEK provides functions for solving the linear systems (<a href="node008.html#ch-apiex-sec-basissolve-eq-ftran">6.3.1</a>) and (<a href="node008.html#ch-apiex-sec-basissolve-eq-btran">6.3.2</a>) for an arbitrary <span class="math"><span class="mi">w</span></span>.</p>
+
+<div>
+<h2><a name="227384712">6.3.1. Identifying the basis</a></h2>
+
+<p>To use the solutions to (<a href="node008.html#ch-apiex-sec-basissolve-eq-ftran">6.3.1</a>) and (<a href="node008.html#ch-apiex-sec-basissolve-eq-btran">6.3.2</a>) it is important to know how the basis matrix <span class="math"><span class="mi">B</span></span> is constructed.</p>
+
+<p>Internally MOSEK employs the linear optimization problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math154.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{maximize} &  &  & c^{T}x &  & \\\nonumber{}\mbox{subject to} &  &  & Ax-x^{c} & = & 0\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\\\nonumber{} & l^{c} & \leq{} & x^{c} & \leq{} & u^{c}.\end{array}\end{math}"/></td>
+<td><a name="ch-apiex-basissolve-eq-primal">&#09;</a>(6.3.3)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math155.png" alt="\begin{displaymath}\nonumber{}x^{c}\in{}\mathbb{R}^{{m}}\mbox{ and }x\in{}\mathbb{R}^{n}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The basis matrix is constructed of <span class="math"><span class="mi">m</span></span> columns taken from </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math156.png" alt="\begin{displaymath}\nonumber{}[\begin{array}{cc}\nonumber{}A & -I\end{array}].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>If variable <span class="math"><img src="math/math157.png" alt="[[MathCmd 157]]"/></span> is a basis variable, then the <span class="math"><span class="mi">j</span></span>'th column of <span class="math"><span class="mi">A</span></span> denoted <span class="math"><img src="math/math158.png" alt="[[MathCmd 158]]"/></span> will appear in <span class="math"><span class="mi">B</span></span>. Similarly, if <span class="math"><img src="math/math159.png" alt="[[MathCmd 159]]"/></span> is a basis variable, then the <span class="math"><span class="mi">i</span></span>'th column of <span class="math"><span class="mo">-</span><span class="mi">I</span></span> will appear in the basis. The ordering of the basis variables and therefore the ordering of the columns of <span class="math"><span class="mi">B</span></span> is arbitrary. The ordering of the basis variables may be retrieved by calling the function:</p>
+
+<pre class="verbatim">mosek.Task.initbasissolve(int[] basis);
+</pre>
+
+<p> This function initializes data structures for later use and returns the indexes of the basic variables in the array <tt class="tt">basis</tt>. The interpretation of the <tt class="tt">basis</tt> is as follows. If </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math160.png" alt="\begin{displaymath}\nonumber{}\mathtt{basis}[i]<\mathtt{numcon},\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>then the <span class="math"><span class="mi">i</span></span>'th basis variable is <span class="math"><img src="math/math159.png" alt="[[MathCmd 159]]"/></span>. Moreover, the <span class="math"><span class="mi">i</span></span>'th column in <span class="math"><span class="mi">B</span></span> will be the <span class="math"><span class="mi">i</span></span>'th column of <span class="math"><span class="mo">-</span><span class="mi">I</span></span>. On the other hand if </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math162.png" alt="\begin{displaymath}\nonumber{}\mathtt{basis}[i]\geq{}\mathtt{numcon},\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>then the <span class="math"><span class="mi">i</span></span>'th basis variable is variable </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math163.png" alt="\begin{displaymath}\nonumber{}x_{{\mathtt{basis}[i]-\mathtt{numcon}}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and the <span class="math"><span class="mi">i</span></span>'th column of <span class="math"><span class="mi">B</span></span> is the column </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math164.png" alt="\begin{displaymath}\nonumber{}A_{{:,(\mathtt{basis}[i]-\mathtt{numcon})}}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> For instance if <span class="math"><img src="math/math165.png" alt="[[MathCmd 165]]"/></span> and <span class="math"><img src="math/math166.png" alt="[[MathCmd 166]]"/></span>, then since <span class="math"><img src="math/math167.png" alt="[[MathCmd 167]]"/></span>, the first basis variable is <span class="math"><img src="math/math168.png" alt="[[MathCmd 168]]"/></span>. Therefore, the first column of <span class="math"><span class="mi">B</span></span> is the fourth column of <span class="math"><span class="mo">-</span><span class="mi">I</span></span>. Similarly, if <span class="math"><img src="math/math169.png" alt="[[MathCmd 169]]"/></span>, then the second variable in the basis is <span class="math"><img src="math/math170.png" alt="[[MathCmd 170]]"/></span>. Hence, the second column of <span class="math"><span class="mi">B</span></span> is identical to <span class="math"><img src="math/math171.png" alt="[[MathCmd 171]]"/></span>.</p>
+
+</div>
+
+<div>
+<h2><a name="227419992">6.3.2. An example</a></h2>
+
+<p>Consider the linear optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math172.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & x_{0}+x_{1} &  & \\\nonumber{}\mbox{subject to} & x_{0}+2x_{1} & \leq{} & 2,\\\nonumber{} & x_{0}+x_{1} & \leq{} & 6,\\\nonumber{} & x_{0},x_{1}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td><a name="CH:APIEX:SEC:SOLVEWITHBASIS:EX1">&#09;</a>(6.3.4)</td></tr>
+</tbody>
+</table>
+
+<p>Suppose a call to <a href="node017.html#common-func*mosek*task*initbasissolve"><tt class="tt">mosek.Task.initbasissolve</tt></a> returns an array <tt class="tt">basis</tt> so that </p>
+
+<pre class="verbatim">basis[0] = 1,
+basis[1] = 2.
+</pre>
+
+<p>Then the basis variables are <span class="math"><img src="math/math173.png" alt="[[MathCmd 173]]"/></span> and <span class="math"><img src="math/math12.png" alt="[[MathCmd 12]]"/></span> and the corresponding basis matrix <span class="math"><span class="mi">B</span></span> is </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math175.png" alt="\begin{math}\nonumber{}\left[\begin{array}{cc}\nonumber{}0 & 1\\\nonumber{}-1 & 1\end{array}\right].\end{math}"/></td>
+<td>(6.3.5)</td></tr>
+</tbody>
+</table>
+
+<p>Please note the ordering of the columns in <span class="math"><span class="mi">B</span></span>.</p>
+
+<p>The following program demonstrates the use of <a href="node017.html#common-func*mosek*task*solvewithbasis"><tt class="tt">mosek.Task.solvewithbasis</tt></a>.</p>
+
+<p><a name="idx-81343912">&#09;</a> <a name="idx-81343984">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File     : solvebasis.cs
+ 
+  Purpose  :  To demonstrate the usage of
+              MSK_solvewithbasis on the problem:
+ 
+              maximize  x0 + x1
+              st. 
+                      x0 + 2.0 x1 &lt;= 2
+                      x0  +    x1 &lt;= 6
+                      x0 &gt;= 0, x1&gt;= 0
+
+               The problem has the slack variables
+               xc0, xc1 on the constraints
+               and the variabels x0 and x1.
+
+               maximize  x0 + x1
+               st. 
+                  x0 + 2.0 x1 -xc1       = 2
+                  x0  +    x1       -xc2 = 6                     
+                  x0 &gt;= 0, x1&gt;= 0,
+                  xc1 &lt;=  0 , xc2 &lt;= 0
+*/</span>
+
+<span class="keyword">using</span> System;
+
+class msgclass : mosek.Stream 
+{
+  <span class="type">string</span> prefix;
+<span class="keyword">public</span> msgclass (<span class="type">string</span> prfx) 
+  {
+    prefix = prfx;
+  }
+  
+<span class="keyword">public</span> override <span class="type">void</span> streamCB (<span class="type">string</span> msg)
+  {
+    Console.Write ("<span class="string">{0}{1}</span>", prefix,msg);
+  }
+}
+
+<span class="keyword">public</span> class lo1
+{  
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> Main ()
+  {
+    <span class="keyword">const</span> <span class="type">int</span> NUMCON = 2;
+    <span class="keyword">const</span> <span class="type">int</span> NUMVAR = 2;
+
+    <span class="comment">// Since the value infinity is never used, we define</span>
+    <span class="comment">// 'infinity' symbolic purposes only</span>
+    <span class="type">double</span>
+      infinity = 0;
+
+    <span class="type">double</span><span class="brackets">[]</span> c    = {1.0, 1.0};
+    <span class="type">int</span><span class="brackets">[]</span>    ptrb = {0, 2};
+    <span class="type">int</span><span class="brackets">[]</span>    ptre = {2, 3};
+    <span class="type">int</span><span class="brackets">[]</span>    asub = {0, 1,
+                     0, 1};
+    <span class="type">double</span><span class="brackets">[]</span> aval = {1.0, 1.0,
+                     2.0, 1.0};
+    mosek.boundkey<span class="brackets">[]</span> bkc  = {mosek.boundkey.up,
+                             mosek.boundkey.up};
+        
+    <span class="type">double</span><span class="brackets">[]</span> blc  = {-infinity,
+                     -infinity};
+    <span class="type">double</span><span class="brackets">[]</span> buc  = {2.0,
+                     6.0};
+        
+    mosek.boundkey<span class="brackets">[]</span>  bkx  = {mosek.boundkey.lo,
+                              mosek.boundkey.lo};
+    <span class="type">double</span><span class="brackets">[]</span>  blx  = {0.0,
+                      0.0};
+        
+    <span class="type">double</span><span class="brackets">[]</span>  bux  = {+infinity,
+                      +infinity};
+    mosek.Task 
+      task = <span class="keyword">null</span>;
+    mosek.Env  
+      env  = <span class="keyword">null</span>;
+        
+    <span class="type">double</span><span class="brackets">[]</span> w1 = {2.0, 6.0};
+    <span class="type">double</span><span class="brackets">[]</span> w2 = {1.0, 0.0};
+    <span class="keyword">try</span>
+    {
+      <span class="comment">// Make mosek environment. </span>
+      env  = <span class="keyword">new</span> mosek.Env ();
+      <span class="comment">// Direct the env log stream to the user specified</span>
+      <span class="comment">// method env_msg_obj.streamCB </span>
+      env.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">[env]</span>"));
+      <span class="comment">// Initialize the environment.</span>
+      env.init ();
+      <span class="comment">// Create a task object linked with the environment env.</span>
+      task = <span class="keyword">new</span> mosek.Task (env, NUMCON,NUMVAR);
+      <span class="comment">// Directs the log task stream to the user specified</span>
+      <span class="comment">// method task_msg_obj.streamCB</span>
+      task.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">[task]</span>"));
+      task.inputdata(NUMCON,NUMVAR,
+                     c,
+                     0.0,
+                     ptrb,
+                     ptre,
+                     asub,
+                     aval,
+                     bkc,
+                     blc,
+                     buc,
+                     bkx,
+                     blx,
+                     bux);
+      task.putobjsense(mosek.objsense.maximize);
+      <span class="keyword">try</span>
+      {
+        task.optimize();
+      }
+      <span class="keyword">catch</span> (mosek.Warning w)
+      {
+        Console.WriteLine("<span class="string">Mosek warning:</span>");
+        Console.WriteLine (w.Code);
+        Console.WriteLine (w);
+      }
+                                
+      <span class="type">int</span><span class="brackets">[]</span> basis = <span class="keyword">new</span> <span class="type">int</span>[NUMCON];
+      task.initbasissolve(basis);
+                
+      <span class="comment">//List basis variables corresponding to columns of B             </span>
+      <span class="type">int</span><span class="brackets">[]</span> varsub = {0,1};
+      <span class="keyword">for</span> (<span class="type">int</span> i = 0; i &lt; NUMCON; i++) {
+        <span class="keyword">if</span> (basis[varsub[i]] &lt; NUMCON) 
+          Console.WriteLine ("<span class="string">Basis variable no {0} is xc{1}</span>",
+                             i,
+                             basis[i]);                                            
+        <span class="keyword">else</span> 
+          Console.WriteLine ("<span class="string">Basis variable no {0} is x{1}</span>",
+                             i,
+                             basis[i] - NUMCON);
+      }
+                
+      <span class="comment">// solve Bx = w1</span>
+      <span class="comment">// varsub contains index of non-zeros in b.</span>
+      <span class="comment">//  On return b contains the solution x and</span>
+      <span class="comment">// varsub the index of the non-zeros in x. </span>
+      <span class="type">int</span> nz = 2; 
+      
+      task.solvewithbasis(0, ref nz, varsub, w1);
+      Console.WriteLine ("<span class="string">nz = {0}</span>", nz);
+      Console.WriteLine ("<span class="string">Solution to Bx = w1:\n</span>");
+                
+      <span class="keyword">for</span> (<span class="type">int</span> i = 0; i &lt; nz; i++) {
+        <span class="keyword">if</span> (basis[varsub[i]] &lt; NUMCON) 
+          Console.WriteLine ("<span class="string">xc {0} = {1}</span>",
+                             basis[varsub[i]],
+                             w1[varsub[i]] );  
+        <span class="keyword">else</span> 
+          Console.WriteLine ("<span class="string">x{0} = {1}</span>",
+                             basis[varsub[i]] - NUMCON,
+                             w1[varsub[i]]);       
+      }
+
+      <span class="comment">// Solve B^Tx = w2 </span>
+      nz = 1;
+      varsub[0] = 0;
+                
+      task.solvewithbasis(1, ref nz, varsub, w2);
+
+      Console.WriteLine ("<span class="string">\nSolution to B^Tx = w2:\n</span>");
+
+      <span class="keyword">for</span> (<span class="type">int</span> i = 0; i &lt; nz; i++) {
+        <span class="keyword">if</span> (basis[varsub[i]] &lt; NUMCON) 
+          Console.WriteLine ("<span class="string">xc {0} = {1}</span>",
+                             basis[varsub[i]],
+                             w2[varsub[i]]);
+        <span class="keyword">else</span> 
+          Console.WriteLine ("<span class="string">x {0} = {1}</span>",
+                             basis[varsub[i]] - NUMCON,
+                             w2[varsub[i]]);   
+      }
+    }
+    <span class="keyword">catch</span> (mosek.Exception e)
+    {
+      Console.WriteLine (e.Code);
+      Console.WriteLine (e);
+    }
+
+    <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.Dispose ();
+    <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.Dispose ();
+  }
+}
+</div>
+
+<p>In the example above the linear system is solved using the optimal basis for (<a href="node008.html#CH:APIEX:SEC:SOLVEWITHBASIS:EX1">6.3.4</a>) and the original right-hand side of the problem. Thus the solution to the linear system is the optimal solution to the problem. When running the example program the following output is produced. </p>
+
+<pre class="verbatim">basis[0] = 1
+Basis variable no 0 is xc1.
+basis[1] = 2
+Basis variable no 1 is x0.
+
+Solution to Bx = b:
+
+x0 = 2.000000e+00
+xc1 = -4.000000e+00
+
+Solution to B^Tx = c:
+
+x1 = -1.000000e+00
+x0 = 1.000000e+00
+</pre>
+
+<p>Please note that the ordering of the basis variables is </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math176.png" alt="\begin{displaymath}\nonumber{}\left[\begin{array}{c}\nonumber{}x^{c}_{1}\\\nonumber{}x_{0}\end{array}\right]\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and thus the basis is given by: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math177.png" alt="\begin{math}\nonumber{}B=\left[\begin{array}{cc}\nonumber{}0 & 1\\\nonumber{}-1 & 1\end{array}\right]\end{math}"/></td>
+<td>(6.3.6)</td></tr>
+</tbody>
+</table>
+
+<p>It can be verified that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math178.png" alt="\begin{displaymath}\nonumber{}\left[\begin{array}{c}\nonumber{}x^{c}_{1}\\\nonumber{}x_{0}\end{array}\right]=\left[\begin{array}{c}\nonumber{}-4\\\nonumber{}2\end{array}\right]\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is a solution to </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math179.png" alt="\begin{displaymath}\nonumber{}\left[\begin{array}{cc}\nonumber{}0 & 1\\\nonumber{}-1 & 1\end{array}\right]\left[\begin{array}{c}\nonumber{}x^{c}_{1}\\\nonumber{}x_{0}\end{array}\right]=\left[\begin{array}{c}\nonumber{}2\\\nonumber{}6\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h2><a name="229129248">6.3.3. Solving arbitrary linear systems</a></h2>
+
+<p> MOSEK can be used to solve an arbitrary (rectangular) linear system </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math180.png" alt="\begin{displaymath}\nonumber{}Ax=b\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>using the <a href="node017.html#common-func*mosek*task*solvewithbasis"><tt class="tt">mosek.Task.solvewithbasis</tt></a> function without optimizing the problem as in the previous example. This is done by setting up an <span class="math"><span class="mi">A</span></span> matrix in the task, setting all variables to basic and calling the <a href="node017.html#common-func*mosek*task*solvewithbasis"><tt class="tt">mosek.Task.solvewithbasis</tt></a> function with the <span class="math"><span class="mi">b</span></span> vector as input. The solution is returned by the function.</p>
+
+<p>Below we demonstrate how to solve the linear system </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math181.png" alt="\begin{math}\nonumber{}\left[\begin{array}{cc}\nonumber{}0 & 1\\\nonumber{}-1 & 1\end{array}\right]\left[\begin{array}{c}\nonumber{}x_{0}\\\nonumber{}x_{1}\end{array}\right]=\left[\begin{array}{c}\nonumber{}b_{1}\\\nonumber{}b_{2}\end{array}\right]\end{math}"/></td>
+<td><a name="eq:linear-system-ex">&#09;</a>(6.3.7)</td></tr>
+</tbody>
+</table>
+
+<p>with <span class="math"><span class="mi">b</span><span class="mo">=</span><span class="mo">(</span><span class="mn">1</span><span class="mo">,</span><span class="mn">-2</span><span class="mo">)</span></span> and <span class="math"><span class="mi">b</span><span class="mo">=</span><span class="mo">(</span><span class="mn">7</span><span class="mo">,</span><span class="mn">0</span><span class="mo">)</span></span>.</p>
+
+<div class="verbatimcode"><span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File     :  solvelinear.c
+ 
+  Purpose  :  To demonstrate the usage of MSK_solvewithbasis
+              when solving the linear system:
+               
+  1.0  x1             = b1
+  -1.0  x0  +  1.0  x1 = b2
+
+  with two different right hand sides
+
+  b = (1.0, -2.0)
+
+  and
+
+  b = (7.0, 0.0)
+*/</span>
+
+
+
+<span class="keyword">using</span> System;
+
+class msgclass : mosek.Stream 
+{
+  <span class="type">string</span> prefix;
+<span class="keyword">public</span> msgclass (<span class="type">string</span> prfx) 
+  {
+    prefix = prfx;
+  }
+  
+<span class="keyword">public</span> override <span class="type">void</span> streamCB (<span class="type">string</span> msg)
+  {
+    Console.Write ("<span class="string">{0}{1}</span>", prefix,msg);
+  }
+}
+
+<span class="keyword">public</span> class solvelinear
+{
+
+
+  
+<span class="keyword">static</span> <span class="keyword">public</span> <span class="type">void</span> put_a(mosek.Task task,
+                  <span class="type">double</span><span class="brackets">[]</span><span class="brackets">[]</span> aval,
+                  <span class="type">int</span><span class="brackets">[]</span><span class="brackets">[]</span> asub,
+                  <span class="type">int</span><span class="brackets">[]</span> ptrb,
+                  <span class="type">int</span><span class="brackets">[]</span> ptre,
+                  <span class="type">int</span> numvar,
+                  <span class="type">int</span><span class="brackets">[]</span> basis
+                  )
+  {
+    <span class="comment">// Since the value infinity is never used, we define</span>
+    <span class="comment">// 'infinity' symbolic purposes only</span>
+    <span class="type">double</span>
+      infinity = 0;
+
+    
+    mosek.stakey<span class="brackets">[]</span> skx = <span class="keyword">new</span> mosek.stakey [numvar];
+    mosek.stakey<span class="brackets">[]</span> skc = <span class="keyword">new</span> mosek.stakey [numvar];
+    
+    <span class="keyword">for</span> (<span class="type">int</span> i=0;i&lt;numvar ;++i)
+    {
+      skx[i] = mosek.stakey.bas;
+      skc[i] = mosek.stakey.fix;
+    }
+    
+    task.append(mosek.accmode.var,numvar);
+    task.append(mosek.accmode.con,numvar);
+    
+    <span class="keyword">for</span> (<span class="type">int</span> i=0;i&lt;numvar ;++i)
+      task.putavec(mosek.accmode.var,
+                   i,
+                   asub[i],
+                   aval[i]);
+
+    <span class="keyword">for</span> (<span class="type">int</span> i=0 ; i&lt;numvar ;++i)
+      task.putbound(mosek.accmode.con,
+                    i,
+                    mosek.boundkey.fx,
+                    0.0,
+                    0.0);
+
+    <span class="keyword">for</span> (<span class="type">int</span> i=0 ; i&lt;numvar ;++i)
+      task.putbound(mosek.accmode.var,
+                    i,
+                    mosek.boundkey.fr,
+                    -infinity,
+                    infinity);
+
+    task.makesolutionstatusunknown(mosek.soltype.bas);
+    
+
+    <span class="comment">/* Define a basic solution by specifying
+       status keys for variables &amp; constraints. */</span> 
+
+    <span class="keyword">for</span> (<span class="type">int</span> i=0 ; i&lt;numvar ;++i)
+      task.putsolutioni (
+                         mosek.accmode.var,
+                         i,  
+                         mosek.soltype.bas, 
+                         skx[i],     
+                         0.0,
+                         0.0,
+                         0.0,
+                         0.0);
+    
+    <span class="keyword">for</span> (<span class="type">int</span> i=0 ; i&lt;numvar ;++i)
+      task.putsolutioni (
+                         mosek.accmode.con,
+                         i,
+                         mosek.soltype.bas,       
+                         skc[i], 
+                         0.0,
+                         0.0,
+                         0.0,
+                         0.0);
+    
+    
+    
+    task.initbasissolve(basis);    
+  }
+  
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> Main ()
+  {
+    <span class="keyword">const</span> <span class="type">int</span> NUMCON = 2;
+    <span class="keyword">const</span> <span class="type">int</span> NUMVAR = 2;
+
+
+    <span class="type">int</span>   numvar = 2;
+    <span class="type">int</span>   numcon = 2;   <span class="comment">/* we must have numvar == numcon */</span>
+
+    <span class="type">double</span><span class="brackets">[]</span><span class="brackets">[]</span>
+      aval   = <span class="keyword">new</span> <span class="type">double</span>[NUMVAR]<span class="brackets">[]</span>;
+    
+    aval[0] = <span class="keyword">new</span> <span class="type">double</span><span class="brackets">[]</span> {-1.0 };
+    aval[1] = <span class="keyword">new</span> <span class="type">double</span><span class="brackets">[]</span> {1.0, 1.0};
+
+
+    <span class="type">int</span><span class="brackets">[]</span><span class="brackets">[]</span>
+      asub = <span class="keyword">new</span> <span class="type">int</span>[NUMVAR]<span class="brackets">[]</span>;
+
+    asub[0] = <span class="keyword">new</span> <span class="type">int</span><span class="brackets">[]</span> {1};
+    asub[1] = <span class="keyword">new</span> <span class="type">int</span><span class="brackets">[]</span> {0,1};
+        
+    <span class="type">int</span> <span class="brackets">[]</span>      ptrb  = {0,1};
+    <span class="type">int</span> <span class="brackets">[]</span>      ptre  = {1,3};
+
+    <span class="type">int</span><span class="brackets">[]</span>       bsub  = <span class="keyword">new</span> <span class="type">int</span>[numvar];
+    <span class="type">double</span><span class="brackets">[]</span>    b     = <span class="keyword">new</span> <span class="type">double</span>[numvar];
+    <span class="type">int</span><span class="brackets">[]</span>       basis = <span class="keyword">new</span> <span class="type">int</span>[numvar];
+    
+    mosek.Task 
+      task = <span class="keyword">null</span>;
+    mosek.Env  
+      env  = <span class="keyword">null</span>;
+        
+
+    <span class="keyword">try</span>
+    {
+      <span class="comment">// Make mosek environment. </span>
+      env  = <span class="keyword">new</span> mosek.Env ();
+      <span class="comment">// Direct the env log stream to the user specified</span>
+      <span class="comment">// method env_msg_obj.streamCB </span>
+      env.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">[env]</span>"));
+      <span class="comment">// Initialize the environment.</span>
+      env.init ();
+      <span class="comment">// Create a task object linked with the environment env.</span>
+      task = <span class="keyword">new</span> mosek.Task (env, NUMCON,NUMVAR);
+      <span class="comment">// Directs the log task stream to the user specified</span>
+      <span class="comment">// method task_msg_obj.streamCB</span>
+      task.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">[task]</span>"));
+
+
+      <span class="comment">/* Put A matrix and factor A.
+         Call this function only once for a given task. */</span> 
+
+      put_a(
+            task,
+            aval,
+            asub,
+            ptrb,
+            ptre,
+            numvar,
+            basis
+            );
+
+      <span class="comment">/* now solve rhs */</span>
+      b[0] = 1;
+      b[1] = -2;
+      bsub[0] = 0;
+      bsub[1] = 1;
+      <span class="type">int</span> nz = 2;
+  
+      task.solvewithbasis(0,ref nz,bsub,b);
+      Console.WriteLine ("<span class="string">\nSolution to Bx = b:\n\n</span>");
+      
+      <span class="comment">/* Print solution and show correspondents
+         to original variables in the problem */</span>
+      <span class="keyword">for</span> (<span class="type">int</span> i=0;i&lt;nz;++i) 
+      {    
+        <span class="keyword">if</span> (basis[bsub[i]] &lt; numcon)
+          Console.WriteLine ("<span class="string">This should never happen\n</span>");
+        <span class="keyword">else</span>   
+          Console.WriteLine ("<span class="string">x{0} = {1}\n</span>",basis[bsub[i]] - numcon , b[bsub[i]] );   
+      }
+      
+      b[0] = 7;
+      bsub[0] = 0;
+      nz = 1;
+  
+      task.solvewithbasis(0,ref nz,bsub,b);
+      
+      Console.WriteLine ("<span class="string">\nSolution to Bx = b:\n\n</span>");
+      <span class="comment">/* Print solution and show correspondents
+         to original variables in the problem */</span>
+      <span class="keyword">for</span> (<span class="type">int</span> i=0;i&lt;nz;++i) 
+      {    
+        <span class="keyword">if</span> (basis[bsub[i]] &lt; numcon)
+          Console.WriteLine ("<span class="string">This should never happen\n</span>");
+        <span class="keyword">else</span>   
+          Console.WriteLine ("<span class="string">x{0} = {1}\n</span>",basis[bsub[i]] - numcon , b[bsub[i]] );   
+      }   
+    }
+    <span class="keyword">catch</span> (mosek.Exception e)
+    {
+      Console.WriteLine (e.Code);
+      Console.WriteLine (e);
+    }
+    
+    <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.Dispose ();
+    <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.Dispose ();
+  }
+}
+</div>
+
+<p>The most important step in the above example is the definition of the basic solution using the <a href="node017.html#common-func*mosek*task*putsolutioni"><tt class="tt">mosek.Task.putsolutioni</tt></a> function, where we define the status key for each variable. The actual values of the variables are not important and can be selected arbitrarily, so we set them to zero. All variables corresponding to columns in the linear system we want to solve are set to basic and the slack variables for the constraints, which are all non-basic, are set to their bound.</p>
+
+<p>The program produces the output: </p>
+
+<pre class="verbatim">Solution to Bx = b:
+
+x1 = 1
+x0 = 3
+
+Solution to Bx = b:
+
+x1 = 7
+x0 = 7
+</pre>
+
+<p>and we can verify that <span class="math"><img src="math/math182.png" alt="[[MathCmd 182]]"/></span> is indeed a solution to <a href="node008.html#eq:linear-system-ex">(6.3.7)</a>.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. Basic API tutorial" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. Modelling" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">7. Modelling</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:46:05 2012</div>
+</body></html>

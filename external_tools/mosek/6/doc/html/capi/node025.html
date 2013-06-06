@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>E. The OPF format</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node024.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : D. The LP file format" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node026.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  F. The XML (OSiL) format" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node024.html" target="_self">D. The LP file format</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node026.html" target="_self">F. The XML (OSiL) format</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="300663800">E. The OPF format</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node025.html#300661792" target="_self">E.1. Intended use</a></li>
+<li><a href="node025.html#300665528" target="_self">E.2. The file format</a>
+<ul class="toc-level-2">
+<li><a href="node025.html#300666392" target="_self">E.2.1. Sections</a></li>
+<li><a href="node025.html#300685072" target="_self">E.2.2. Numbers</a></li>
+<li><a href="node025.html#300686800" target="_self">E.2.3. Names</a></li>
+</ul>
+</li>
+<li><a href="node025.html#300688592" target="_self">E.3. Parameters section</a></li>
+<li><a href="node025.html#300689888" target="_self">E.4. Writing OPF files from MOSEK</a></li>
+<li><a href="node025.html#300692544" target="_self">E.5. Examples</a>
+<ul class="toc-level-2">
+<li><a href="node025.html#300690104" target="_self">E.5.1. Linear example <tt class="tt">lo1.opf</tt></a></li>
+<li><a href="node025.html#300715040" target="_self">E.5.2. Quadratic example <tt class="tt">qo1.opf</tt></a></li>
+<li><a href="node025.html#300721216" target="_self">E.5.3. Conic quadratic example <tt class="tt">cqo1.opf</tt></a></li>
+<li><a href="node025.html#300737888" target="_self">E.5.4. Mixed integer example <tt class="tt">milo1.opf</tt></a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="idx-214330832">&#09;</a> <a name="app-sec-opfformat">&#09;</a></p>
+
+<p>The Optimization Problem Format (OPF) is an alternative to LP and MPS files for specifying optimization problems. It is row-oriented, inspired by the CPLEX LP format.</p>
+
+<p>Apart from containing objective, constraints, bounds etc. it may contain complete or partial solutions, comments and extra information relevant for solving the problem. It is designed to be easily read and modified by hand and to be forward compatible with possible future extensions.</p>
+
+<div>
+<h1><a name="300661792">E.1. Intended use</a></h1>
+
+<p> The OPF file format is meant to replace several other files: </p>
+
+<ul class="itemize">
+<li>The LP file format. Any problem that can be written as an LP file can be written as an OPF file to; furthermore it naturally accommodates ranged constraints and variables as well as arbitrary characters in names, fixed expressions in the objective, empty constraints, and conic constraints. </li>
+<li>Parameter files. It is possible to specify integer, double and string parameters along with the problem (or in a separate OPF file). </li>
+<li>Solution files. It is possible to store a full or a partial solution in an OPF file and later reload it. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="300665528">E.2. The file format</a></h1>
+
+<p> The format uses tags to structure data. A simple example with the basic sections may look like this: </p>
+
+<pre class="verbatim">[comment]
+  This is a comment. You may write almost anything here...
+[/comment]
+
+# This is a single-line comment. 
+
+[objective min 'myobj']
+  x + 3 y + x^2 + 3 y^2 + z + 1 
+[/objective]
+
+[constraints]
+  [con 'con01'] 4 &lt;= x + y  [/con]
+[/constraints]
+
+[bounds]
+  [b] -10 &lt;= x,y &lt;= 10  [/b]
+
+  [cone quad] x,y,z [/cone]
+[/bounds]
+</pre>
+
+<p>A scope is opened by a tag of the form <tt class="tt">[tag]</tt> and closed by a tag of the form <tt class="tt">[/tag]</tt>. An opening tag may accept a list of unnamed and named arguments, for examples </p>
+
+<pre class="verbatim"> [tag value] tag with one unnamed argument [/tag]
+ [tag arg=value] tag with one named argument in quotes [/tag]
+</pre>
+
+<p>Unnamed arguments are identified by their order, while named arguments may appear in any order, but never before an unnamed argument. The <tt class="tt">value</tt> can be a quoted, single-quoted or double-quoted text string, i.e. </p>
+
+<pre class="verbatim"> [tag 'value']     single-quoted value [/tag]
+ [tag arg='value'] single-quoted value [/tag]
+ [tag "value"]     double-quoted value [/tag]
+ [tag arg="value"] double-quoted value [/tag]
+</pre>
+
+<div>
+<h2><a name="300666392">E.2.1. Sections</a></h2>
+
+<p> The recognized tags are </p>
+
+<ul class="itemize">
+<li><tt class="tt">[comment]</tt> A comment section. This can contain <em>almost</em> any text: Between single quotes (<tt class="tt">'</tt>) or double quotes (<tt class="tt">"</tt>) any text may appear. Outside quotes the markup characters (<tt class="tt">[</tt> and <tt class="tt">]</tt>) must be prefixed by backslashes. Both single and double quotes may appear alone or inside a pair of quotes if it is prefixed by a backslash. </li>
+<li>
+<p><tt class="tt">[objective]</tt> The objective function: This accepts one or two parameters, where the first one (in the above example `<tt class="tt">min</tt>') is either <tt class="tt">min</tt> or <tt class="tt">max</tt> (regardless of case) and defines the objective sense, and the second one (above `<tt class="tt">myobj</tt>'), if present, is the objective name. The section may contain linear and quadratic expressions.</p>
+
+<p>If several objectives are specified, all but the last are ignored. </p>
+</li>
+<li>
+<p><tt class="tt">[constraints]</tt> This does not directly contain any data, but may contain the subsection `<tt class="tt">con</tt>' defining a linear constraint.</p>
+
+<p><tt class="tt">[con]</tt> defines a single constraint; if an argument is present (<tt class="tt">[con NAME]</tt>) this is used as the name of the constraint, otherwise it is given a null-name. The section contains a constraint definition written as linear and quadratic expressions with a lower bound, an upper bound, with both or with an equality. Examples: </p>
+
+<pre class="verbatim">[constraints]
+  [con 'con1'] 0 &lt;= x + y       [/con]
+  [con 'con2'] 0 &gt;= x + y       [/con]
+  [con 'con3'] 0 &lt;= x + y &lt;= 10 [/con]
+  [con 'con4']      x + y  = 10 [/con]
+[/constraints]
+</pre>
+
+<p> Constraint names are unique. If a constraint is apecified which has the same name as a previously defined constraint, the new constraint replaces the existing one.</p>
+</li>
+<li>
+<p><tt class="tt">[bounds]</tt> This does not directly contain any data, but may contain the subsections `<tt class="tt">b</tt>' (linear bounds on variables) and `<tt class="tt">cone</tt>' (quadratic cone). </p>
+
+<ul class="itemize">
+<li>
+<p><tt class="tt">[b]</tt>. Bound definition on one or several variables separated by comma (`<tt class="tt">,</tt>'). An upper or lower bound on a variable replaces any earlier defined bound on that variable. If only one bound (upper or lower) is given only this bound is replaced. This means that upper and lower bounds can be specified separately. So the OPF bound definition: </p>
+
+<pre class="verbatim">      [b]  x,y &gt;= -10  [/b]
+      [b]  x,y &lt;= 10   [/b] 
+    </pre>
+
+<p> results in the bound </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math1207.png" alt="\begin{math}\nonumber{}-10\leq{}x,y\leq{}10.\end{math}"/></td>
+<td>(E.2.1)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><tt class="tt">[cone]</tt>. Currently, the supported cones are the <em>quadratic cone</em> and the <em>rotated quadratic cone</em> (see section <a title="5.4. Conic optimization" href="node007.html#sec:conic-opt">5.4</a>). A conic constraint is defined as a set of variables which belongs to a single unique cone.</p>
+
+<p>A quadratic cone of <span class="math"><span class="mi">n</span></span> variables <span class="math"><img src="math/math1208.png" alt="[[MathCmd 1208]]"/></span> defines a constraint of the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math1209.png" alt="\begin{displaymath}\nonumber{}x_{1}^{2}>\sum ^{n}_{{i=2}}x_{i}^{2.}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> A rotated quadratic cone of <span class="math"><span class="mi">n</span></span> variables <span class="math"><img src="math/math1208.png" alt="[[MathCmd 1208]]"/></span> defines a constraint of the form </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math1211.png" alt="\begin{displaymath}\nonumber{}x_{1}x_{2}>\sum ^{n}_{{i=3}}x_{i}^{2.}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<p>  A <tt class="tt">[bounds]</tt>-section example: </p>
+
+<pre class="verbatim">[bounds]
+  [b]  0 &lt;= x,y &lt;= 10  [/b] # ranged bound
+  [b] 10 &gt;= x,y &gt;=  0  [/b] # ranged bound
+  [b]  0 &lt;= x,y &lt;= inf [/b] # using inf
+  [b]       x,y free   [/b] # free variables
+  # Let (x,y,z,w) belong to the cone K
+  [cone quad]  x,y,z,w  [/cone] # quadratic cone
+  [cone rquad] x,y,z,w  [/cone] # rotated quadratic cone
+[/bounds]
+</pre>
+
+<p> By default all variables are free. </p>
+</li>
+<li><tt class="tt">[variables]</tt> This defines an ordering of variables as they should appear in the problem. This is simply a space-separated list of variable names. </li>
+<li><tt class="tt">[integer]</tt> This contains a space-separated list of variables and defines the constraint that the listed variables must be integer values. </li>
+<li>
+<p><tt class="tt">[hints]</tt> This may contain only non-essential data; for example estimates of the number of variables, constraints and non-zeros. Placed before all other sections containing data this may reduce the time spent reading the file.</p>
+
+<p>In the <tt class="tt">hints</tt> section, any subsection which is not recognized by MOSEK is simply ignored. In this section a hint in a subsection is defined as follows: </p>
+
+<pre class="verbatim">  [hint ITEM] value [/hint]
+</pre>
+
+<p> where <tt class="tt">ITEM</tt> may be replaced by <tt class="tt">numvar</tt> (number of variables), <tt class="tt">numcon</tt> (number of linear/quadratic constraints), <tt class="tt">numanz</tt> (number if linear non-zeros in constraints) and <tt class="tt">numqnz</tt> (number of quadratic non-zeros in constraints). </p>
+</li>
+<li>
+<p><tt class="tt">[solutions]</tt> This section can contain a number of full or partial solutions to a problem, each inside a <tt class="tt">[solution]</tt>-section. The syntax is </p>
+
+<pre class="verbatim">[solution SOLTYPE status=STATUS]...[/solution]
+</pre>
+
+<p> where <tt class="tt">SOLTYPE</tt> is one of the strings </p>
+
+<ul class="itemize">
+<li>`<tt class="tt">interior</tt>', a non-basic solution, </li>
+<li>`<tt class="tt">basic</tt>', a basic solution, </li>
+<li>`<tt class="tt">integer</tt>', an integer solution, </li>
+</ul>
+
+<p> and <tt class="tt">STATUS</tt> is one of the strings </p>
+
+<ul class="itemize">
+<li>`<tt class="tt">UNKNOWN</tt>', </li>
+<li>`<tt class="tt">OPTIMAL</tt>', </li>
+<li>`<tt class="tt">INTEGER_OPTIMAL</tt>', </li>
+<li>`<tt class="tt">PRIM_FEAS</tt>', </li>
+<li>`<tt class="tt">DUAL_FEAS</tt>', </li>
+<li>`<tt class="tt">PRIM_AND_DUAL_FEAS</tt>', </li>
+<li>`<tt class="tt">NEAR_OPTIMAL</tt>', </li>
+<li>`<tt class="tt">NEAR_PRIM_FEAS</tt>', </li>
+<li>`<tt class="tt">NEAR_DUAL_FEAS</tt>', </li>
+<li>`<tt class="tt">NEAR_PRIM_AND_DUAL_FEAS</tt>', </li>
+<li>`<tt class="tt">PRIM_INFEAS_CER</tt>', </li>
+<li>`<tt class="tt">DUAL_INFEAS_CER</tt>', </li>
+<li>`<tt class="tt">NEAR_PRIM_INFEAS_CER</tt>', </li>
+<li>`<tt class="tt">NEAR_DUAL_INFEAS_CER</tt>', </li>
+<li>`<tt class="tt">NEAR_INTEGER_OPTIMAL</tt>'. </li>
+</ul>
+
+<p> Most of these values are irrelevant for input solutions; when constructing a solution for simplex hot-start or an initial solution for a mixed integer problem the safe setting is <tt class="tt">UNKNOWN</tt>.</p>
+
+<p>A <tt class="tt">[solution]</tt>-section contains <tt class="tt">[con]</tt> and <tt class="tt">[var]</tt> sections. Each <tt class="tt">[con]</tt> and <tt class="tt">[var]</tt> section defines solution values for a single variable or constraint, each value written as </p>
+
+<pre class="verbatim">KEYWORD=value
+</pre>
+
+<p>where <tt class="tt">KEYWORD</tt> defines a solution item and <tt class="tt">value</tt> defines its value. Allowed keywords are as follows: </p>
+
+<ul class="itemize">
+<li>
+<p><tt class="tt">sk</tt>. The status of the item, where the <tt class="tt">value</tt> is one of the following strings: </p>
+
+<ul class="itemize">
+<li><tt class="tt">LOW</tt>, the item is on its lower bound. </li>
+<li><tt class="tt">UPR</tt>, the item is on its upper bound. </li>
+<li><tt class="tt">FIX</tt>, it is a fixed item. </li>
+<li><tt class="tt">BAS</tt>, the item is in the basis. </li>
+<li><tt class="tt">SUPBAS</tt>, the item is super basic. </li>
+<li><tt class="tt">UNK</tt>, the status is unknown. </li>
+<li><tt class="tt">INF</tt>, the item is outside its bounds (infeasible). </li>
+</ul>
+</li>
+<li><tt class="tt">lvl</tt> Defines the level of the item. </li>
+<li><tt class="tt">sl</tt> Defines the level of the variable associated with its lower bound. </li>
+<li><tt class="tt">su</tt> Defines the level of the variable associated with its upper bound. </li>
+<li><tt class="tt">sn</tt> Defines the level of the variable associated with its cone. </li>
+<li><tt class="tt">y</tt> Defines the level of the corresponding dual variable (for constraints only). </li>
+</ul>
+
+<p>A <tt class="tt">[var]</tt> section should always contain the items <tt class="tt">sk</tt> and <tt class="tt">lvl</tt>, and optionally <tt class="tt">sl</tt>, <tt class="tt">su</tt> and <tt class="tt">sn</tt>.</p>
+
+<p>A <tt class="tt">[con]</tt> section should always contain <tt class="tt">sk</tt> and <tt class="tt">lvl</tt>, and optionally <tt class="tt">sl</tt>, <tt class="tt">su</tt> and <tt class="tt">y</tt>.</p>
+
+<p>An example of a solution section </p>
+
+<pre class="verbatim">[solution basic status=UNKNOWN]
+    [var x0] sk=LOW    lvl=5.0      [/var]
+    [var x1] sk=UPR    lvl=10.0     [/var]
+    [var x2] sk=SUPBAS lvl=2.0  sl=1.5 su=0.0 [/var]
+
+    [con c0] sk=LOW    lvl=3.0 y=0.0 [/con]
+    [con c0] sk=UPR    lvl=0.0 y=5.0 [/con]
+[/solution]
+</pre>
+</li>
+<li><tt class="tt">[vendor]</tt> This contains solver/vendor specific data. It accepts one argument, which is a vendor ID &ndash; for MOSEK the ID is simply <tt class="tt">mosek</tt> &ndash; and the section contains the subsection <tt class="tt">parameters</tt> defining solver parameters. When reading a vendor section, any unknown vendor can be safely ignored. This is described later. </li>
+</ul>
+
+<p> Comments using the `<tt class="tt">#</tt>' may appear anywhere in the file. Between the `<tt class="tt">#</tt>' and the following line-break any text may be written, including markup characters.</p>
+
+</div>
+
+<div>
+<h2><a name="300685072">E.2.2. Numbers</a></h2>
+
+<p> Numbers, when used for parameter values or coefficients, are written in the usual way by the <tt class="tt">printf</tt> function. That is, they may be prefixed by a sign (<tt class="tt">+</tt> or <tt class="tt">-</tt>) and may contain an integer part, decimal part and an exponent. The decimal point is always `<tt class="tt">.</tt>' (a dot). Some examples are </p>
+
+<pre class="verbatim"> 1
+ 1.0
+  .0
+ 1.
+ 1e10
+ 1e+10
+ 1e-10
+</pre>
+
+<p>Some <em>invalid</em> examples are </p>
+
+<pre class="verbatim"> e10   # invalid, must contain either integer or decimal part
+ .     # invalid
+ .e10  # invalid
+</pre>
+
+<p> More formally, the following standard regular expression describes numbers as used: </p>
+
+<pre class="verbatim">[+|-]?([0-9]+[.][0-9]*|[.][0-9]+)([eE][+|-]?[0-9]+)?
+</pre>
+
+</div>
+
+<div>
+<h2><a name="300686800">E.2.3. Names</a></h2>
+
+<p> Variable names, constraint names and objective name may contain arbitrary characters, which in some cases must be enclosed by quotes (single or double) that in turn must be preceded by a backslash. Unquoted names must begin with a letter (<tt class="tt">a-z</tt> or <tt class="tt">A-Z</tt>) and contain only the following characters: the letters <tt class="tt">a</tt>-<tt class="tt">z</tt> and <tt class="tt">A</tt>-<tt class="tt">Z</tt>, the digits <tt class="tt">0</tt>-<tt class="tt">9</tt>, braces (<tt class="tt">{</tt> and <tt class="tt">}</tt>) and underscore (<tt class="tt">_</tt>).</p>
+
+<p>Some examples of legal names: </p>
+
+<pre class="verbatim"> an_unqouted_name
+ another_name{123}
+ 'single qouted name'
+ "double qouted name"
+ "name with \"qoute\" in it"
+ "name with []s in it"
+</pre>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="300688592">E.3. Parameters section</a></h1>
+
+<p> In the <tt class="tt">vendor</tt> section solver parameters are defined inside the <tt class="tt">parameters</tt> subsection. Each parameter is written as </p>
+
+<pre class="verbatim">  [p PARAMETER_NAME] value [/p]
+</pre>
+
+<p> where <tt class="tt">PARAMETER_NAME</tt> is replaced by a MOSEK parameter name, usually of the form <tt class="tt">MSK_IPAR_...</tt>, <tt class="tt">MSK_DPAR_...</tt> or <tt class="tt">MSK_SPAR_...</tt>, and the <tt class="tt">value</tt> is replaced by the value of that parameter; both integer values and named values may be used. Some simple examples are: </p>
+
+<pre class="verbatim">[vendor mosek]
+  [parameters]
+    [p MSK_IPAR_OPF_MAX_TERMS_PER_LINE] 10     [/p]
+    [p MSK_IPAR_OPF_WRITE_PARAMETERS]   MSK_ON [/p]
+    [p MSK_DPAR_DATA_TOL_BOUND_INF]     1.0e18 [/p]
+  [/parameters]
+[/vendor]
+</pre>
+
+</div>
+
+<div>
+<h1><a name="300689888">E.4. Writing OPF files from MOSEK</a></h1>
+
+<p>The function <a href="node017.html#common-func*mosek*task*writedata"><tt class="tt">MSK_writedata</tt></a> can be used to produce an OPF file from a task.</p>
+
+<p>To write an OPF file set the parameter <a href="node018.html#common-const*mosek*iparam*write-data-format"><tt class="tt">MSK_IPAR_WRITE_DATA_FORMAT</tt></a> to <a href="node020.html#common-const*mosek*dataformat*op"><tt class="tt">MSK_DATA_FORMAT_OP</tt></a> as this ensures that <tt class="tt">OPF</tt> format is used. Then modify the following parameters to define what the file should contain: </p>
+
+<ul class="itemize">
+<li><a href="node018.html#common-const*mosek*iparam*opf-write-header"><tt class="tt">MSK_IPAR_OPF_WRITE_HEADER</tt></a>, include a small header with comments. </li>
+<li><a href="node018.html#common-const*mosek*iparam*opf-write-hints"><tt class="tt">MSK_IPAR_OPF_WRITE_HINTS</tt></a>, include hints about the size of the problem. </li>
+<li><a href="node018.html#common-const*mosek*iparam*opf-write-problem"><tt class="tt">MSK_IPAR_OPF_WRITE_PROBLEM</tt></a>, include the problem itself &mdash; objective, constraints and bounds. </li>
+<li><a href="node018.html#common-const*mosek*iparam*opf-write-solutions"><tt class="tt">MSK_IPAR_OPF_WRITE_SOLUTIONS</tt></a>, include solutions if they are defined. If this is off, no solutions are included. </li>
+<li><a href="node018.html#common-const*mosek*iparam*opf-write-sol-bas"><tt class="tt">MSK_IPAR_OPF_WRITE_SOL_BAS</tt></a>, include basic solution, if defined. </li>
+<li><a href="node018.html#common-const*mosek*iparam*opf-write-sol-itg"><tt class="tt">MSK_IPAR_OPF_WRITE_SOL_ITG</tt></a>, include integer solution, if defined. </li>
+<li><a href="node018.html#common-const*mosek*iparam*opf-write-sol-itr"><tt class="tt">MSK_IPAR_OPF_WRITE_SOL_ITR</tt></a>, include interior solution, if defined. </li>
+<li><a href="node018.html#common-const*mosek*iparam*opf-write-parameters"><tt class="tt">MSK_IPAR_OPF_WRITE_PARAMETERS</tt></a>, include all parameter settings. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="300692544">E.5. Examples</a></h1>
+
+<p> This section contains a set of small examples written in OPF and describing how to formulate linear, quadratic and conic problems.</p>
+
+<div>
+<h2><a name="300690104">E.5.1. Linear example <tt class="tt">lo1.opf</tt></a></h2>
+
+<p>Consider the example: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math1212.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} & -10x_{1} &  & -9x_{2}, &  & \\\nonumber{}\mbox{subject to} & 7/10x_{1} & + & 1x_{2} & \leq{} & 630,\\\nonumber{} & 1/2x_{1} & + & 5/6x_{2} & \leq{} & 600,\\\nonumber{} & 1x_{1} & + & 2/3x_{2} & \leq{} & 708,\\\nonumber{} & 1/10x_{1} & + & 1/4x_{2} & \leq{} & 135,\\\nonumber{} & x_{1}, &  & x_{2} & \geq{} & 0.\end{array}\end{math}"/></td>
+<td>(E.5.1)</td></tr>
+</tbody>
+</table>
+
+<p>In the <tt class="tt">OPF</tt> format the example is displayed as shown below: </p>
+
+<div class="verbatimcode"><span class="tag">[comment]</span>
+  Example lo1.mps converted to OPF. 
+<span class="tag">[/comment]</span>
+
+<span class="tag">[hints]</span>
+  <span class="comment"># Give a hint about the size of the different elements in the problem. </span>
+  <span class="comment"># These need only be estimates, but in this case they are exact.</span>
+  <span class="tag">[hint NUMVAR]</span> 2 <span class="tag">[/hint]</span>
+  <span class="tag">[hint NUMCON]</span> 4 <span class="tag">[/hint]</span>
+  <span class="tag">[hint NUMANZ]</span> 8 <span class="tag">[/hint]</span>
+<span class="tag">[/hints]</span>
+
+<span class="tag">[variables]</span>
+  <span class="comment"># All variables that will appear in the problem</span>
+  x1 x2 
+<span class="tag">[/variables]</span>
+
+<span class="tag">[objective minimize '<span class="string">obj</span>']</span>
+   - 10 x1 - 9 x2
+<span class="tag">[/objective]</span>
+
+<span class="tag">[constraints]</span>
+  <span class="tag">[con '<span class="string">c1</span>']</span>  0.7 x1 +              x2 &lt;= 630 <span class="tag">[/con]</span>
+  <span class="tag">[con '<span class="string">c2</span>']</span>  0.5 x1 + 0.8333333333 x2 &lt;= 600 <span class="tag">[/con]</span>
+  <span class="tag">[con '<span class="string">c3</span>']</span>      x1 + 0.66666667   x2 &lt;= 708 <span class="tag">[/con]</span>
+  <span class="tag">[con '<span class="string">c4</span>']</span>  0.1 x1 + 0.25         x2 &lt;= 135 <span class="tag">[/con]</span>
+<span class="tag">[/constraints]</span>
+
+<span class="tag">[bounds]</span>
+  <span class="comment"># By default all variables are free. The following line will </span>
+  <span class="comment"># change this to all variables being nonnegative.</span>
+  <span class="tag">[b]</span> 0 &lt;= * <span class="tag">[/b]</span>
+<span class="tag">[/bounds]</span>
+</div>
+
+</div>
+
+<div>
+<h2><a name="300715040">E.5.2. Quadratic example <tt class="tt">qo1.opf</tt></a></h2>
+
+<p>An example of a quadratic optimization problem is </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math1213.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}\mbox{minimize} &  &  & x_{1}^{2}+0.1x_{2}^{2}+x_{3}^{2}-x_{1}x_{3}-x_{2} & \\\nonumber{}\mbox{subject to} & 1 & \leq{} & x_{1}+x_{2}+x_{3}, & \\\nonumber{} &  &  & x\geq{}0. &\end{array}\end{math}"/></td>
+<td>(E.5.2)</td></tr>
+</tbody>
+</table>
+
+<p> This can be formulated in <tt class="tt">opf</tt> as shown below.</p>
+
+<div class="verbatimcode"><span class="tag">[comment]</span>
+  Example qo1.mps converted to OPF.
+<span class="tag">[/comment]</span>
+
+<span class="tag">[hints]</span>
+  <span class="tag">[hint NUMVAR]</span> 3 <span class="tag">[/hint]</span>
+  <span class="tag">[hint NUMCON]</span> 1 <span class="tag">[/hint]</span>
+  <span class="tag">[hint NUMANZ]</span> 3 <span class="tag">[/hint]</span>
+<span class="tag">[/hints]</span>
+
+<span class="tag">[variables]</span>
+  x1 x2 x3 
+<span class="tag">[/variables]</span>
+
+<span class="tag">[objective minimize '<span class="string">obj</span>']</span>
+   <span class="comment"># The quadratic terms are often multiplied by 1/2, </span>
+   <span class="comment"># but this is not required.</span>
+
+   - x2 + 0.5 ( 2 x1 ^ 2 - 2 x3 * x1 + 0.2 x2 ^ 2 + 2 x3 ^ 2 )
+<span class="tag">[/objective]</span>
+
+<span class="tag">[constraints]</span>
+  <span class="tag">[con '<span class="string">c1</span>']</span> 1 &lt;= x1 + x2 + x3 <span class="tag">[/con]</span>
+<span class="tag">[/constraints]</span>
+
+<span class="tag">[bounds]</span>
+  <span class="tag">[b]</span> 0 &lt;= * <span class="tag">[/b]</span>
+<span class="tag">[/bounds]</span>
+</div>
+
+</div>
+
+<div>
+<h2><a name="300721216">E.5.3. Conic quadratic example <tt class="tt">cqo1.opf</tt></a></h2>
+
+<p> Consider the example: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math1214.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & 1x_{1}+2x_{2} &  & \\\nonumber{}\mbox{subject to} & 2x_{3}+4x_{4} & = & 5,\\\nonumber{} & x_{5}^{2} & \leq{} & 2x_{1}x_{3},\\\nonumber{} & x_{6}^{2} & \leq{} & 2x_{2}x_{4},\\\nonumber{} & x_{5} & = & 1,\\\nonumber{} & x_{6} & = & 1,\\\nonumber{} & x\geq{}0. &  &\end{array}\end{math}"/></td>
+<td>(E.5.3)</td></tr>
+</tbody>
+</table>
+
+<p> Please note that the type of the cones is defined by the parameter to <tt class="tt">[cone ...]</tt>; the content of the <tt class="tt">cone</tt>-section is the names of variables that belong to the cone. </p>
+
+<div class="verbatimcode"><span class="tag">[comment]</span>
+  Example cqo1.mps converted to OPF.
+<span class="tag">[/comment]</span>
+
+<span class="tag">[hints]</span>
+  <span class="tag">[hint NUMVAR]</span> 6 <span class="tag">[/hint]</span>
+  <span class="tag">[hint NUMCON]</span> 1 <span class="tag">[/hint]</span>
+  <span class="tag">[hint NUMANZ]</span> 2 <span class="tag">[/hint]</span>
+<span class="tag">[/hints]</span>
+
+<span class="tag">[variables]</span>
+  x1 x2 x3 x4 x5 x6 
+<span class="tag">[/variables]</span>
+
+<span class="tag">[objective minimize '<span class="string">obj</span>']</span>
+   x1 + 2 x2
+<span class="tag">[/objective]</span>
+
+<span class="tag">[constraints]</span>
+  <span class="tag">[con '<span class="string">c1</span>']</span>  2 x3 + 4 x4 = 5 <span class="tag">[/con]</span>
+<span class="tag">[/constraints]</span>
+
+<span class="tag">[bounds]</span>
+  <span class="comment"># We let all variables default to the positive orthant</span>
+  <span class="tag">[b]</span> 0 &lt;= * <span class="tag">[/b]</span>
+  <span class="comment"># ... and change those that differ from the default.</span>
+  <span class="tag">[b]</span> x5,x6 = 1 <span class="tag">[/b]</span>
+
+  <span class="comment"># We define two rotated quadratic cones</span>
+
+  <span class="comment"># k1: 2 x1 * x3 &gt;= x5^2</span>
+  <span class="tag">[cone rquad '<span class="string">k1</span>']</span> x1, x3, x5 <span class="tag">[/cone]</span>
+
+  <span class="comment"># k2: 2 x2 * x4 &gt;= x6^2</span>
+  <span class="tag">[cone rquad '<span class="string">k2</span>']</span> x2, x4, x6 <span class="tag">[/cone]</span>
+<span class="tag">[/bounds]</span>
+</div>
+
+</div>
+
+<div>
+<h2><a name="300737888">E.5.4. Mixed integer example <tt class="tt">milo1.opf</tt></a></h2>
+
+<p> Consider the mixed integer problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math74.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & x_{0}+0.64x_{1} &  & \\\nonumber{}\mbox{subject to} & 50x_{0}+31x_{1} & \leq{} & 250,\\\nonumber{} & 3x_{0}-2x_{1} & \geq{} & -4,\\\nonumber{} & x_{0},x_{1}\geq{}0 &  & \mbox{and integer}\end{array}\end{math}"/></td>
+<td>(E.5.4)</td></tr>
+</tbody>
+</table>
+
+<p>This can be implemented in <tt class="tt">OPF</tt> with: </p>
+
+<div class="verbatimcode"><span class="tag">[comment]</span>
+   Written by MOSEK version 5.0.0.7
+   Date 20-11-06
+   Time 14:42:24
+<span class="tag">[/comment]</span>
+
+<span class="tag">[hints]</span>
+  <span class="tag">[hint NUMVAR]</span> 2 <span class="tag">[/hint]</span>
+  <span class="tag">[hint NUMCON]</span> 2 <span class="tag">[/hint]</span>
+  <span class="tag">[hint NUMANZ]</span> 4 <span class="tag">[/hint]</span>
+<span class="tag">[/hints]</span>
+
+<span class="tag">[variables disallow_new_variables]</span>
+  x1 x2 
+<span class="tag">[/variables]</span>
+
+<span class="tag">[objective maximize '<span class="string">obj</span>']</span>
+   x1 + 6.4e-1 x2
+<span class="tag">[/objective]</span>
+
+<span class="tag">[constraints]</span>
+  <span class="tag">[con '<span class="string">c1</span>']</span>            5e+1 x1 + 3.1e+1 x2 &lt;= 2.5e+2 <span class="tag">[/con]</span>
+  <span class="tag">[con '<span class="string">c2</span>']</span> -4 &lt;= 3 x1 - 2 x2 <span class="tag">[/con]</span>
+<span class="tag">[/constraints]</span>
+
+<span class="tag">[bounds]</span>
+  <span class="tag">[b]</span> 0 &lt;= * <span class="tag">[/b]</span>
+<span class="tag">[/bounds]</span>
+
+<span class="tag">[integer]</span>
+  x1 x2 
+<span class="tag">[/integer]</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node024.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : D. The LP file format" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node026.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  F. The XML (OSiL) format" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node024.html" target="_self">D. The LP file format</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node026.html" target="_self">F. The XML (OSiL) format</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:50:23 2012</div>
+</body></html>

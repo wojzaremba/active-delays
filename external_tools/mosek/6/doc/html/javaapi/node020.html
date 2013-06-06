@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>A. Troubleshooting</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node019.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 17. Constants" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node021.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  B. Problem analyzer examples" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node019.html" target="_self">17. Constants</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node021.html" target="_self">B. Problem analyzer examples</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="247137848">A. Troubleshooting</a></h1>
+
+<p> <a name="chap-troubleshooting">&#09;</a></p>
+
+<p>Following is a list of problems and solutions related to the use of the MOSEK Java API.</p>
+
+<ul class="itemize">
+<li>
+<p><em>The Java compiler (javac) or VM (java) says all symbols in mosek... are undefined</em>.</p>
+
+<p>The <tt class="tt">CLASSPATH</tt> environment variable does not contain the path to <tt class="tt">mosek.jar</tt>.</p>
+
+<p>In MS Windows the path is specified as for example </p>
+
+<pre class="verbatim">C:\MOSEKINSTALLATION\JAVA\MOSEK.JAR
+</pre>
+
+<p> and the single paths in the classpath are seperated by &#8220;<tt class="tt">;</tt>&#8221; (semicolon), for example </p>
+
+<pre class="verbatim">C:\MOSEKINSTALLATION\JAVA\MOSEK.JAR;C:\OTHERJAVADIR\CLASSES;C:\JAPPS\CLASSES
+</pre>
+
+<p> Under any unix the path is specified as for example </p>
+
+<pre class="verbatim">/mosekinstallation/java/mosek.jar
+</pre>
+
+<p> and the single paths in the classpath is seperated by &#8220;<tt class="tt">:</tt>&#8221; (colon), for example </p>
+
+<pre class="verbatim">/mosekinstallation/java/mosek.jar;/otherjavadir/classes;/japps/classes
+</pre>
+
+<p> Note that the classpath may also be specified as a parameter to the Java compiler or VM (<tt class="tt">-classpath CLASSPATH</tt>).</p>
+</li>
+<li>
+<p><em>The Java compiler or VM still says it cannot find the symbols defined in the MOSEK package</em>.</p>
+
+<p>All the symbols in the MOSEK Java API are defined in the package <tt class="tt">mosek</tt>, meaning that for example the <tt class="tt">MosekEnv</tt> is actually <tt class="tt">mosek.MosekEnv</tt> unless there is an <tt class="tt">import mosek.*</tt> in the application (see examples).</p>
+</li>
+<li>
+<p><em>The application starts, but stops with an exception saying that the Java VM cannot find or load the library &#8220;mosekjava&#8221; or &#8220;mosek_X_Y&#8221;</em>.</p>
+
+<p>The Java VM needs to be able to locate the dynamic library <tt class="tt">mosekjava</tt> and <tt class="tt">mosek_X_Y</tt>.</p>
+
+<p>On MS Windows this is done by adding the directory where <tt class="tt">mosekjava.dll</tt> resides to the <tt class="tt">PATH</tt> environment variable (or by copying the library to the directory of the Java application).</p>
+
+<p>On unix it is done by adding the path of the library <tt class="tt">libmosekjava.so</tt> to the environment variable <tt class="tt">LD_LIBRARY_PATH</tt>.</p>
+
+<p>Finally, on 64bit systems, make sure that both Java and the mosek installation are either both 64bit or both 32bit. Executing </p>
+
+<pre class="verbatim">java -version
+</pre>
+
+<p> will print the relevant Java version information. </p>
+</li>
+</ul>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node019.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 17. Constants" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node021.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  B. Problem analyzer examples" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node019.html" target="_self">17. Constants</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node021.html" target="_self">B. Problem analyzer examples</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:42:16 2012</div>
+</body></html>

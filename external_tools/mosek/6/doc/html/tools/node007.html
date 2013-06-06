@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>5. MOSEK and AMPL</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node006.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 4. Using the MOSEK command line tool" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization tools manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node008.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  6. MOSEK and GAMS" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node006.html" target="_self">4. Using the MOSEK command line tool</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node008.html" target="_self">6. MOSEK and GAMS</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="240596824">5. MOSEK and AMPL</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node007.html#240596248" target="_self">5.1. Invoking the AMPL shell</a></li>
+<li><a href="node007.html#240596968" target="_self">5.2. Applicability</a></li>
+<li><a href="node007.html#240596320" target="_self">5.3. An example</a></li>
+<li><a href="node007.html#240598048" target="_self">5.4. Determining the outcome of an optimization</a></li>
+<li><a href="node007.html#240599768" target="_self">5.5. Optimizer options</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#240598912" target="_self">5.5.1. The MOSEK parameter database</a></li>
+<li><a href="node007.html#240617736" target="_self">5.5.2. Options</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#240598984" target="_self">5.5.2.1. <tt class="tt">outlev</tt></a></li>
+<li><a href="node007.html#240619032" target="_self">5.5.2.2. <tt class="tt">wantsol</tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#240619744" target="_self">5.6. Constraint and variable names</a></li>
+<li><a href="node007.html#240620392" target="_self">5.7. Which solution is returned to AMPL</a></li>
+<li><a href="node007.html#240619960" target="_self">5.8. Hot-start</a></li>
+<li><a href="node007.html#240622768" target="_self">5.9. Conic constraints</a></li>
+<li><a href="node007.html#240633760" target="_self">5.10. Sensitivity analysis</a></li>
+<li><a href="node007.html#240637784" target="_self">5.11. Using the command line version of the AMPL interface</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="ch-mosekampl">&#09;</a></p>
+
+<p>AMPL is a modeling language for specifying linear and nonlinear optimization models in a natural way. AMPL also makes it easy to solve the problem and e.g. display the solution or part of it.</p>
+
+<p>We will not discuss the specifics of the AMPL language here but instead refer the reader to [<a href="node027.html#FOURER:03:A" class="citation">20</a>] and the AMPL website <a href="http://www.ampl.com">http://www.ampl.com</a>.</p>
+
+<p>AMPL cannot solve optimization problems by itself but requires a link to an appropriate optimizer such as MOSEK. The MOSEK distribution includes an AMPL link which makes it possible to use MOSEK as an optimizer within AMPL.</p>
+
+<div>
+<h1><a name="240596248">5.1. Invoking the AMPL shell</a></h1>
+
+<p>The MOSEK distribution by default comes with the AMPL shell installed. To invoke the AMPL shell type: </p>
+
+<pre class="verbatim">mampl
+</pre>
+
+</div>
+
+<div>
+<h1><a name="240596968">5.2. Applicability</a></h1>
+
+<p>It is possible to specify problems in AMPL that cannot be solved by MOSEK. The optimization problem must be a smooth convex optimization problem as discussed in Section <a title="9.4. Nonlinear convex optimization" href="node011.html#ch-use-sec-nlo">9.4</a>.</p>
+
+</div>
+
+<div>
+<h1><a name="240596320">5.3. An example</a></h1>
+
+<p>In many instances, you can successfully apply MOSEK simply by specifying the model and data, setting the solver option to MOSEK, and typing solve. First to invoke the AMPL shell type: </p>
+
+<pre class="verbatim">mampl
+</pre>
+
+<p>when the AMPL shell has started type the commands: </p>
+
+<pre class="verbatim">ampl: model diet.mod;
+ampl: data diet.dat;
+ampl: option solver mosek;
+ampl: solve;
+</pre>
+
+<p>The resulting output is: <small class="small">
+<pre class="verbatim">MOSEK finished.
+Problem status    - PRIMAL_AND_DUAL_FEASIBLE
+Solution status   - OPTIMAL
+Primal objective  - 14.8557377
+Dual objective    - 14.8557377
+
+Objective = Total_Cost
+</pre>
+</small> </p>
+
+</div>
+
+<div>
+<h1><a name="240598048">5.4. Determining the outcome of an optimization</a></h1>
+
+<p>The AMPL parameter <tt class="tt">solve_result_num</tt> is used to indicate the outcome of the optimization process. It is used as follows </p>
+
+<pre class="verbatim">ampl: display solve_result_num
+</pre>
+
+<p>Please refer to table <a href="node007.html#CH:MOSEKAMPL:TAB:SOLVERESULTNUM">5.1</a> for possible values of this parameter. </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Value </td>
+<td valign="top" style="border-top:1px solid black;"> Message </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> 0 </td>
+<td valign="top" style="border-top:1px solid black;"> the solution is optimal. </td></tr><tr class="evenrow">
+<td valign="top">100 </td>
+<td valign="top"> suboptimal primal solution. </td></tr><tr class="oddrow">
+<td valign="top">101 </td>
+<td valign="top"> superoptimal (dual feasible) solution. </td></tr><tr class="evenrow">
+<td valign="top">150 </td>
+<td valign="top"> the solution is near optimal. </td></tr><tr class="oddrow">
+<td valign="top">200 </td>
+<td valign="top"> primal infeasible problem. </td></tr><tr class="evenrow">
+<td valign="top">300 </td>
+<td valign="top"> dual infeasible problem. </td></tr><tr class="oddrow">
+<td valign="top">400 </td>
+<td valign="top"> too many iterations.</td></tr><tr class="evenrow">
+<td valign="top">500 </td>
+<td valign="top"> solution status is unknown.</td></tr><tr class="oddrow">
+<td valign="top">501 </td>
+<td valign="top"> ill-posed problem, solution status is unknown. </td></tr><tr class="evenrow">
+<td valign="top"><span class="math">&ge;</span> 501 </td>
+<td valign="top"> The value - 501 is a MOSEK response code. </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;">&#160;</td>
+<td valign="top" style="border-bottom:1px solid black;"> See Appendix <a title="I.40. Response codes" href="node025.html#constclass*mosek*rescode">I.40</a> for all MOSEK response codes. </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;5.1: Interpretation of <tt class="tt">solve_result_num</tt>.</span>
+<br/>
+<p> <a name="CH:MOSEKAMPL:TAB:SOLVERESULTNUM">&#09;</a> </p>
+</center></td></tr></table>
+</td></tr></table>
+
+</div>
+
+<div>
+<h1><a name="240599768">5.5. Optimizer options</a></h1>
+
+<div>
+<h2><a name="240598912">5.5.1. The MOSEK parameter database</a></h2>
+
+<p>The MOSEK optimizer has options and parameters controlling such things as the termination criterion and which optimizer is used. These parameters can be modified within AMPL as shown in the example below: </p>
+
+<pre class="verbatim">ampl: model diet.mod;
+ampl: data diet.dat;
+ampl: option solver mosek;
+ampl: option mosek_options
+ampl? 'msk_ipar_optimizer = msk_optimizer_primal_simplex \
+ampl? msk_ipar_sim_max_iterations = 100000';
+ampl: solve;
+</pre>
+
+<p>In the example above a string called <tt class="tt">mosek_options</tt> is created which contains the parameter settings. Each parameter setting has the format </p>
+
+<pre class="verbatim">parameter name = value
+</pre>
+
+<p>where &#8220;parameter name&#8221; can be any valid MOSEK parameter name. See Appendix <a title="H. Parameters reference" href="node024.html#app-paramref">H</a> for a description of all valid MOSEK parameters.</p>
+
+<p>An alternative way of specifying the options is </p>
+
+<pre class="verbatim">ampl: option mosek_options
+ampl? 'msk_ipar_optimizer = msk_optimizer_primal_simplex'
+ampl? ' msk_ipar_sim_max_iterations = 100000';
+</pre>
+
+<p>New options can also be appended to an existing option string as shown below </p>
+
+<pre class="verbatim">ampl: option mosek_options $mosek_options
+ampl? ' msk_ipar_sim_print_freq = 0 msk_ipar_sim_max_iterations = 1000';
+</pre>
+
+<p>The expression <tt class="verb">$mosek_options</tt>expands to the current value of the option. Line two in the example appends an additional value <tt class="tt">msk_ipar_sim_max_iterations</tt> to the option string.</p>
+
+</div>
+
+<div>
+<h2><a name="240617736">5.5.2. Options</a></h2>
+
+<div>
+<h3><a name="240598984">5.5.2.1. <tt class="tt">outlev</tt></a></h3>
+
+<p> <a name="idx-86923816">&#09;</a></p>
+
+<p>MOSEK also recognizes the <tt class="tt">outlev</tt> option which controls the amount of printed output. <span class="math"><span class="mn">0</span></span> means no printed output and a higher value means more printed output. An example of setting <tt class="tt">outlev</tt> is as follows: </p>
+
+<pre class="verbatim">ampl: option mosek_options 'outlev=2';
+</pre>
+
+</div>
+
+<div>
+<h3><a name="240619032">5.5.2.2. <tt class="tt">wantsol</tt></a></h3>
+
+<p> <a name="idx-86919648">&#09;</a></p>
+
+<p>MOSEK recognize the option <tt class="tt">wantsol</tt>. We refer the reader to the AMPL manual [<a href="node027.html#FOURER:03:A" class="citation">20</a>] for details about this option.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="240619744">5.6. Constraint and variable names</a></h1>
+
+<p>AMPL assigns meaningfull names to all the constraints and variables. Since MOSEK uses item names in error and log messages, it may be useful to pass the AMPL names to MOSEK. Using the command </p>
+
+<pre class="verbatim">ampl: option mosek_auxfiles rc;
+</pre>
+
+<p>before the</p>
+
+<pre class="verbatim">solve;
+</pre>
+
+<p>command makes MOSEK obtain the constraint and variable names automatically.</p>
+
+</div>
+
+<div>
+<h1><a name="240620392">5.7. Which solution is returned to AMPL</a></h1>
+
+<p>The MOSEK optimizer can produce three types of solutions: basic, integer, and interior point solutions. For nonlinear problems only an interior solution is available. For linear optimization problems optimized by the interior-point optimizer with basis identification turned on both a basic and an interior point solution are calculated. The simplex algorithm produces only a basic solution. Whenever both an interior and a basic solution are available, the basic solution is returned. For problems containing integer variables, the integer solution is returned to AMPL.</p>
+
+</div>
+
+<div>
+<h1><a name="240619960">5.8. Hot-start</a></h1>
+
+<p>Frequently, a sequence of optimization problems is solved where each problem differs only slightly from the previous problem. In that case it may be advantageous to use the previous optimal solution to hot-start the optimizer. Such a facility is available in MOSEK only when the simplex optimizer is used.</p>
+
+<p>The hot-start facility exploits the AMPL variable suffix <tt class="tt">sstatus</tt> to communicate the optimal basis back to AMPL, and AMPL uses this facility to communicate an initial basis to MOSEK. The following example demonstrates this feature. </p>
+
+<pre class="verbatim">ampl: model diet.mod;
+ampl: data diet.dat;
+ampl: option solver mosek;
+ampl: option mosek_options
+ampl? 'msk_ipar_optimizer = msk_optimizer_primal_simplex outlev=2';
+ampl: solve;
+ampl: display Buy.sstatus;
+ampl: solve;
+</pre>
+
+<p>The resulting output is: <small class="small">
+<pre class="verbatim">Accepted: msk_ipar_optimizer                  = MSK_OPTIMIZER_PRIMAL_SIMPLEX
+Accepted: outlev                              = 2
+
+Computer   - Platform               : Linux/64-X86
+Computer   - CPU type               : Intel-P4
+MOSEK      - task name              :
+MOSEK      - objective sense        : min
+MOSEK      - problem type           : LO (linear optimization problem)
+MOSEK      - constraints            : 7                 variables              : 9
+MOSEK      - integer variables      : 0
+Optimizer started.
+Simplex optimizer started.
+Presolve started.
+Linear dependency checker started.
+Linear dependency checker terminated.
+Presolve   - Stk. size (kb) : 0
+Eliminator - tries                  : 0                 time                   : 0.00
+Eliminator - elim's                 : 0
+Lin. dep.  - tries                  : 1                 time                   : 0.00
+Lin. dep.  - number                 : 0
+Presolve terminated. Time: 0.00
+Primal simplex optimizer started.
+Primal simplex optimizer setup started.
+Primal simplex optimizer setup terminated.
+Optimizer  - solved problem         : the primal
+Optimizer  - constraints            : 7                 variables              : 9
+Optimizer  - hotstart               : no
+ITER      DEGITER(%)  PFEAS       DFEAS       POBJ                  DOBJ                  TIME      TOTTIME
+0         0.00        1.40e+03    NA          1.2586666667e+01      NA                    0.00      0.01
+3         0.00        0.00e+00    NA          1.4855737705e+01      NA                    0.00      0.01
+Primal simplex optimizer terminated.
+Simplex optimizer terminated. Time: 0.00.
+Optimizer terminated. Time: 0.01
+Return code - 0  [MSK_RES_OK]
+MOSEK finished.
+Problem status    : PRIMAL_AND_DUAL_FEASIBLE
+Solution status   : OPTIMAL
+Primal objective  : 14.8557377
+Dual objective    : 14.8557377
+
+Objective = Total_Cost
+Buy.sstatus [*] :=
+'Quarter Pounder w/ Cheese'  bas
+  'McLean Deluxe w/ Cheese'  low
+                  'Big Mac'  low
+               Filet-O-Fish  low
+        'McGrilled Chicken'  low
+             'Fries, small'  bas
+         'Sausage McMuffin'  low
+           '1% Lowfat Milk'  bas
+             'Orange Juice'  low
+;
+Accepted: msk_ipar_optimizer                  = MSK_OPTIMIZER_PRIMAL_SIMPLEX
+Accepted: outlev                              = 2
+Basic solution
+Problem status  : UNKNOWN
+Solution status : UNKNOWN
+Primal - objective: 1.4855737705e+01   eq. infeas.: 3.97e+03 max bound infeas.: 2.00e+03
+Dual   - objective: 0.0000000000e+00   eq. infeas.: 7.14e-01 max bound infeas.: 0.00e+00
+
+Computer   - Platform               : Linux/64-X86
+Computer   - CPU type               : Intel-P4
+MOSEK      - task name              :
+MOSEK      - objective sense        : min
+MOSEK      - problem type           : LO (linear optimization problem)
+MOSEK      - constraints            : 7                 variables              : 9
+MOSEK      - integer variables      : 0
+Optimizer started.
+Simplex optimizer started.
+Presolve started.
+Presolve   - Stk. size (kb) : 0
+Eliminator - tries                  : 0                 time                   : 0.00
+Eliminator - elim's                 : 0
+Lin. dep.  - tries                  : 0                 time                   : 0.00
+Lin. dep.  - number                 : 0
+Presolve terminated. Time: 0.00
+Primal simplex optimizer started.
+Primal simplex optimizer setup started.
+Primal simplex optimizer setup terminated.
+Optimizer  - solved problem         : the primal
+Optimizer  - constraints            : 7                 variables              : 9
+Optimizer  - hotstart               : yes
+Optimizer  - Num. basic             : 7                 Basis rank             : 7
+Optimizer  - Valid bas. fac.        : no
+ITER      DEGITER(%)  PFEAS       DFEAS       POBJ                  DOBJ                  TIME      TOTTIME
+0         0.00        0.00e+00    NA          1.4855737705e+01      NA                    0.00      0.01
+0         0.00        0.00e+00    NA          1.4855737705e+01      NA                    0.00      0.01
+Primal simplex optimizer terminated.
+Simplex optimizer terminated. Time: 0.00.
+Optimizer terminated. Time: 0.01
+Return code - 0  [MSK_RES_OK]
+MOSEK finished.
+Problem status    : PRIMAL_AND_DUAL_FEASIBLE
+Solution status   : OPTIMAL
+Primal objective  : 14.8557377
+Dual objective    : 14.8557377
+
+Objective = Total_Cost
+</pre>
+</small>Please note that the second solve takes fewer iterations since the previous optimal basis is reused.</p>
+
+</div>
+
+<div>
+<h1><a name="240622768">5.9. Conic constraints</a></h1>
+
+<p>AMPL does not support conic constraints. It is of course possible to specify the conic quadratic constraint </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math24.png" alt="\begin{displaymath}\nonumber{}x\geq{}\left\|z\right\|\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>in AMPL but it will be treated as a general nonlinear constraint. MOSEK cannot analyze the nonlinear constraints and discover that such a constraint is actually quadratic cone constraint. Therefore, an explicit method for specifying a conic constraints are needed.</p>
+
+<p>The AMPL example </p>
+
+<pre class="verbatim">suffix cone integer; # Mosek specific suffix
+option presolve 0;   # AMPL presolve should be turned off when the problem
+                     # has conic constraints
+
+var x;
+var y;
+var z;
+
+minimize obj: y;
+subject to con: x + z = y;
+
+# Represents the conic constraint y &gt;= sqrt(x^2+z^2)
+let y.cone := -1;
+let x.cone := 1;
+let z.cone := 1;
+
+option solver mosek;
+option mosek_options 'outlev=2';
+solve;
+</pre>
+
+<p>solves the example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math25.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & y &  & \\\nonumber{}\mbox{subject to} & x+z & = & y,\\\nonumber{} & y\geq{}\sqrt{x^{2}+z^{2}}. &  &\end{array}\end{math}"/></td>
+<td>(5.9.1)</td></tr>
+</tbody>
+</table>
+
+<p>The idea of the MOSEK specific extension is to use a variable suffix named <tt class="tt">cone</tt> to specify the index of the cone that variable is member of. If a variable is not a member of a cone, then <tt class="tt">cone</tt> suffix of the variable should not be specified. Alternatively the cone suffix can be set to 0. The <tt class="tt">cone</tt> suffix should be negative if the variable is on the left side of </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math26.png" alt="\begin{displaymath}\nonumber{}x\geq{}\left\|z\right\|.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>For each cone there should be at least one variable having a negative cone suffix and at most two variable can have negative cone suffix. If two variables have negative cone suffix, then a rotated quadratic cone is specified. Hence, </p>
+
+<pre class="verbatim">let y.cone := -1;
+let x.cone := -1;
+let z.cone := 1;
+</pre>
+
+<p>is the same as the rotated quadratic cone constraint </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math27.png" alt="\begin{displaymath}\nonumber{}2xy\geq{}z^{2}\mbox{ and }x,y\geq{}0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> Finally, some observations about the MOSEK specific conic extension to AMPL are: </p>
+
+<ul class="itemize">
+<li>A cone can contain as many variables as desired. </li>
+<li>A problem can contain any mixture of quadratic and rotated quadratic cones. </li>
+<li>The problem can contain any number cones. </li>
+<li>Currently, dual variables associated with constraints is not available in AMPL. </li>
+<li>Is is important that presolve is turned off when a problem has conic constraints because AMPL does not take such constraints into account. Hence, leaving the presolve on may lead to incorrect results. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="240633760">5.10. Sensitivity analysis</a></h1>
+
+<p>MOSEK can calculate sensitivity information for the objective and constraints. To enable sensitivity information set the option: </p>
+
+<pre class="verbatim">sensitivity = 1
+</pre>
+
+<p>Results are returned in variable/constraint suffixes as follows: </p>
+
+<ul class="itemize">
+<li><tt class="tt">.down</tt> Smallest value of objective coefficient/right hand side before the optimal basis changes. </li>
+<li><tt class="tt">.up</tt> Largest value of objective coefficient/right hand side before the optimal basis changes. </li>
+<li><tt class="tt">.current</tt> Current value of objective coefficient/right hand side. </li>
+</ul>
+
+<p>For ranged constraints sensitivity information is returned only for the lower bound.</p>
+
+<p>The example below returns sensitivity information on the <tt class="tt">diet</tt> model.</p>
+
+<pre class="verbatim">ampl: model diet.mod;
+ampl: data diet.dat;
+ampl: option solver mosek;
+ampl: option mosek_options 'sensitivity=1';
+
+ampl: solve;
+#display sensitivity information and current solution.
+ampl: display _var.down,_var.current,_var.up,_var;
+#display sensitivity information and optimal dual values.
+ampl: display _con.down,_con.current,_con.up,_con;
+</pre>
+
+<p> The resulting output is:</p>
+
+<pre class="verbatim">Return code - 0  [MSK_RES_OK]
+MOSEK finished.
+Problem status    : PRIMAL_AND_DUAL_FEASIBLE
+Solution status   : OPTIMAL
+Primal objective  : 14.8557377
+Dual objective    : 14.8557377
+
+
+suffix up OUT;
+suffix down OUT;
+suffix current OUT;
+Objective = Total_Cost
+:  _var.down _var.current       _var.up        _var      :=
+1   1.37385       1.84             1.86075    4.38525
+2   1.8677        2.19      Infinity          0
+3   1.82085       1.84      Infinity          0
+4   1.35466       1.44      Infinity          0
+5   1.57633       2.29      Infinity          0
+6   0.094         0.77             0.794851   6.14754
+7   1.22759       1.29      Infinity          0
+8   0.57559       0.6              0.910769   3.42213
+9   0.657279      0.72      Infinity          0
+;
+ampl: display _con.down,_con.current,_con.up,_con;
+:     _con.down    _con.current   _con.up      _con       :=
+1   -Infinity           2000      3965.37    0
+2         297.6          350       375       0.0277049
+3   -Infinity             55       172.029   0
+4          63.0531       100       195.388   0.0267541
+5   -Infinity            100       132.213   0
+6   -Infinity            100       234.221   0
+7          17.6923       100       142.821   0.0248361
+;
+</pre>
+
+</div>
+
+<div>
+<h1><a name="240637784">5.11. Using the command line version of the AMPL interface</a></h1>
+
+<p> AMPL can generate a data file containing all the optimization problem and all relevant information which can then be read and solved by the MOSEK command line tool.</p>
+
+<p>When the problem has been loaded into AMPL, the commands </p>
+
+<pre class="verbatim">ampl: option auxfiles rc;
+ampl: write  bprob;
+</pre>
+
+<p>will make AMPL write the appropriate data files, i.e. </p>
+
+<pre class="verbatim">prob.nl
+prob.col
+prob.row
+</pre>
+
+<p>Then the problem can be solved using the command line version of MOSEK as follows </p>
+
+<pre class="verbatim">mosek prob.nl outlev=10 -a
+</pre>
+
+<p>The <tt class="tt">-a</tt> command line option indicates that MOSEK is invoked in AMPL mode. When MOSEK is invoked in AMPL mode the normal MOSEK command line options should appear <em>after</em> the <tt class="tt">-a</tt> option except for the file name which should be the first argument. As the above example demonstrates MOSEK accepts command line options as specified by the AMPL &#8220;convention&#8221;. Which command line arguments MOSEK accepts in AMPL mode can be viewed by executing </p>
+
+<pre class="verbatim">mosek -= -a
+</pre>
+
+<p>For linear, quadratic and quadratic constrained problems a text file representation of the problem can be obtained using one of the commands </p>
+
+<pre class="verbatim">mosek prob.nl -a -x -out prob.mps
+mosek prob.nl -a -x -out prob.opf
+mosek prob.nl -a -x -out prob.lp
+</pre>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node006.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 4. Using the MOSEK command line tool" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization tools manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node008.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  6. MOSEK and GAMS" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node006.html" target="_self">4. Using the MOSEK command line tool</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node008.html" target="_self">6. MOSEK and GAMS</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:02:15 2012</div>
+</body></html>

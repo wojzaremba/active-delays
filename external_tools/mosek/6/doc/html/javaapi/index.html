@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>The MOSEK Java API manual. 
+Version 6.0 (Revision 137).</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.document -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><img src="graphics/inactive-previous.png" class="navbutton-inactive-previous" alt="" border="0"/></td>
+<td><a href="../../../help/index.html" target="_top"><img src="graphics/up.png" class="navbutton-up" alt="Up:  'Documentation Help'" border="0"/></a></td>
+<td><a href="node001.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  Contact information" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Up : </b><a href="../../../help/index.html" target="_top">'Documentation Help'</a></td>
+<td valign="top"><b>Next : </b><a href="node001.html" target="_self">Contact information</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="titlepage">
+<div class="documentinfo">
+<h1>The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</h1>
+
+<p><b><big></big></b></p>
+
+<p><strong></strong></p>
+
+</div>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node001.html" target="_self">Contact information</a></li>
+<li><a href="node002.html" target="_self">License agreement</a></li>
+<li><a href="node003.html" target="_self">1. Changes and new features in MOSEK</a>
+<ul class="toc-level-2">
+<li><a href="node003.html#212083560" target="_self">1.1. Compilers used to build MOSEK</a></li>
+<li><a href="node003.html#212116616" target="_self">1.2. General changes</a></li>
+<li><a href="node003.html#212118488" target="_self">1.3. Optimizers</a>
+<ul class="toc-level-3">
+<li><a href="node003.html#212117624" target="_self">1.3.1. Interior point optimizer</a></li>
+<li><a href="node003.html#212118920" target="_self">1.3.2. The simplex optimizers</a></li>
+<li><a href="node003.html#212119208" target="_self">1.3.3. Mixed-integer optimizer</a></li>
+</ul>
+</li>
+<li><a href="node003.html#212119920" target="_self">1.4. API changes</a></li>
+<li><a href="node003.html#212121144" target="_self">1.5. License system</a></li>
+<li><a href="node003.html#212122440" target="_self">1.6. Other changes</a></li>
+<li><a href="node003.html#212123592" target="_self">1.7. Interfaces</a></li>
+<li><a href="node003.html#212124592" target="_self">1.8. Platform changes</a></li>
+</ul>
+</li>
+<li><a href="node004.html" target="_self">2. About this manual</a></li>
+<li><a href="node005.html" target="_self">3. Getting support and help</a>
+<ul class="toc-level-2">
+<li><a href="node005.html#212126464" target="_self">3.1. MOSEK documentation</a></li>
+<li><a href="node005.html#212134368" target="_self">3.2. Additional reading</a></li>
+</ul>
+</li>
+<li><a href="node006.html" target="_self">4. Testing installation and compiling examples</a>
+<ul class="toc-level-2">
+<li><a href="node006.html#212134584" target="_self">4.1. Microsoft Windows Platform</a>
+<ul class="toc-level-3">
+<li><a href="node006.html#212136376" target="_self">4.1.1. Compiling and executing a program</a>
+<ul class="toc-level-4">
+<li><a href="node006.html#212139112" target="_self">4.1.1.1. Compiling with Microsoft NMake</a></li>
+</ul>
+</li>
+<li><a href="node006.html#212142704" target="_self">4.1.2. Common problems</a></li>
+</ul>
+</li>
+<li><a href="node006.html#212145792" target="_self">4.2. Linux Platform</a>
+<ul class="toc-level-3">
+<li><a href="node006.html#212146656" target="_self">4.2.1. Setting <tt class="tt">PATH</tt> and <tt class="tt">CLASSPATH</tt></a></li>
+<li><a href="node006.html#212150608" target="_self">4.2.2. Compiling and executing a program</a>
+<ul class="toc-level-4">
+<li><a href="node006.html#212153624" target="_self">4.2.2.1. Compiling examples using GMake</a></li>
+</ul>
+</li>
+<li><a href="node006.html#212157000" target="_self">4.2.3. Common problems</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html" target="_self">5. Basic API tutorial</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#212157216" target="_self">5.1. The basics</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#212165192" target="_self">5.1.1. The environment and the task</a></li>
+<li><a href="node007.html#212167712" target="_self">5.1.2. A simple working example</a>
+<ul class="toc-level-4">
+<li><a href="node007.html#212169504" target="_self">5.1.2.1. Writing a problem to a file</a></li>
+<li><a href="node007.html#212170152" target="_self">5.1.2.2. Inputting and outputting problem data</a></li>
+<li><a href="node007.html#212171016" target="_self">5.1.2.3. Setting parameters</a></li>
+</ul>
+</li>
+<li><a href="node007.html#212170584" target="_self">5.1.3. Compiling and running examples</a></li>
+</ul>
+</li>
+<li><a href="node007.html#212172096" target="_self">5.2. Linear optimization</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#212189336" target="_self">5.2.1. Linear optimization example: lo1</a>
+<ul class="toc-level-4">
+<li><a href="node007.html#212190056" target="_self">5.2.1.1. Solving the problem</a></li>
+<li><a href="node007.html#212248984" target="_self">5.2.1.2. Source code for lo1</a></li>
+</ul>
+</li>
+<li><a href="node007.html#212255088" target="_self">5.2.2. Row-wise input</a></li>
+</ul>
+</li>
+<li><a href="node007.html#212258112" target="_self">5.3. Quadratic optimization</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#212272408" target="_self">5.3.1. Example: Quadratic objective</a>
+<ul class="toc-level-4">
+<li><a href="node007.html#213151896" target="_self">5.3.1.1. Source code</a></li>
+<li><a href="node007.html#213152112" target="_self">5.3.1.2. Example code comments</a></li>
+</ul>
+</li>
+<li><a href="node007.html#213157792" target="_self">5.3.2. Example: Quadratic constraints</a>
+<ul class="toc-level-4">
+<li><a href="node007.html#213181072" target="_self">5.3.2.1. Source code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#213188408" target="_self">5.4. Conic optimization</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#213205576" target="_self">5.4.1. Example: cqo1</a>
+<ul class="toc-level-4">
+<li><a href="node007.html#213205792" target="_self">5.4.1.1. Source code</a></li>
+<li><a href="node007.html#213216504" target="_self">5.4.1.2. Source code comments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#213218944" target="_self">5.5. Integer optimization</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#213217432" target="_self">5.5.1. Example: milo1</a>
+<ul class="toc-level-4">
+<li><a href="node007.html#213219232" target="_self">5.5.1.1. Source code</a></li>
+<li><a href="node007.html#213229936" target="_self">5.5.1.2. Code comments</a></li>
+</ul>
+</li>
+<li><a href="node007.html#213229224" target="_self">5.5.2. Specifying an initial solution</a></li>
+<li><a href="node007.html#213230368" target="_self">5.5.3. Example: Specifying an integer solution</a></li>
+</ul>
+</li>
+<li><a href="node007.html#213235616" target="_self">5.6. Problem modification and reoptimization</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#213230872" target="_self">5.6.1. A production planning problem</a></li>
+<li><a href="node007.html#213265440" target="_self">5.6.2. Changing the <span class="math"><span class="mi">A</span></span> matrix</a></li>
+<li><a href="node007.html#213282256" target="_self">5.6.3. Appending variables</a></li>
+<li><a href="node007.html#213286992" target="_self">5.6.4. Reoptimization</a></li>
+<li><a href="node007.html#213308696" target="_self">5.6.5. Appending constraints</a></li>
+</ul>
+</li>
+<li><a href="node007.html#213315384" target="_self">5.7. Efficiency considerations</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#213322136" target="_self">5.7.1. API overhead</a></li>
+</ul>
+</li>
+<li><a href="node007.html#213324288" target="_self">5.8. Conventions employed in the API</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#213322280" target="_self">5.8.1. Naming conventions for arguments</a>
+<ul class="toc-level-4">
+<li><a href="node007.html#215050576" target="_self">5.8.1.1. Bounds</a></li>
+</ul>
+</li>
+<li><a href="node007.html#215052232" target="_self">5.8.2. Vector formats</a></li>
+<li><a href="node007.html#215055392" target="_self">5.8.3. Matrix formats</a>
+<ul class="toc-level-4">
+<li><a href="node007.html#215052512" target="_self">5.8.3.1. Unordered triplets</a></li>
+<li><a href="node007.html#215057904" target="_self">5.8.3.2. Row or column ordered sparse matrix</a></li>
+<li><a href="node007.html#215081904" target="_self">5.8.3.3. Row ordered sparse matrix</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#215090312" target="_self">5.9. The license system</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#215081976" target="_self">5.9.1. Waiting for a free license</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node008.html" target="_self">6. Advanced API tutorial</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#215082048" target="_self">6.1. Linear network flow problems</a>
+<ul class="toc-level-3">
+<li><a href="node008.html#215106120" target="_self">6.1.1. A linear network flow problem example</a>
+<ul class="toc-level-4">
+<li><a href="node008.html#215138032" target="_self">6.1.1.1. Source code</a></li>
+<li><a href="node008.html#215136304" target="_self">6.1.1.2. Example code comments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node008.html#215132352" target="_self">6.2. Embedded network flow problems</a>
+<ul class="toc-level-3">
+<li><a href="node008.html#215236552" target="_self">6.2.1. Example: Exploit embedded network flow structure in the simplex optimizer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node009.html" target="_self">7. Modelling</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#215225912" target="_self">7.1. Linear optimization</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#215247832" target="_self">7.1.1. Duality for linear optimization</a>
+<ul class="toc-level-4">
+<li><a href="node009.html#215261336" target="_self">7.1.1.1. A primal-dual feasible solution</a></li>
+<li><a href="node009.html#215263784" target="_self">7.1.1.2. An optimal solution</a></li>
+<li><a href="node009.html#215275208" target="_self">7.1.1.3. Primal infeasible problems</a></li>
+<li><a href="node009.html#215284624" target="_self">7.1.1.4. Dual infeasible problems</a></li>
+</ul>
+</li>
+<li><a href="node009.html#217061496" target="_self">7.1.2. Primal and dual infeasible case</a></li>
+</ul>
+</li>
+<li><a href="node009.html#217061856" target="_self">7.2. Quadratic and quadratically constrained optimization</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#217077232" target="_self">7.2.1. A general recommendation</a></li>
+<li><a href="node009.html#217077520" target="_self">7.2.2. Reformulating as a separable quadratic problem</a></li>
+</ul>
+</li>
+<li><a href="node009.html#217107704" target="_self">7.3. Conic optimization</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#217125592" target="_self">7.3.1. Duality for conic optimization</a></li>
+<li><a href="node009.html#217141544" target="_self">7.3.2. Infeasibility</a></li>
+<li><a href="node009.html#217125664" target="_self">7.3.3. Examples</a>
+<ul class="toc-level-4">
+<li><a href="node009.html#217141616" target="_self">7.3.3.1. Quadratic objective and constraints</a></li>
+<li><a href="node009.html#217190480" target="_self">7.3.3.2. Minimizing a sum of norms</a></li>
+<li><a href="node009.html#217234176" target="_self">7.3.3.3. Modelling polynomial terms using conic optimization</a></li>
+<li><a href="node009.html#217300792" target="_self">7.3.3.4. Optimization with rational polynomials</a></li>
+<li><a href="node009.html#218939048" target="_self">7.3.3.5. Convex increasing power functions</a></li>
+<li><a href="node009.html#218945656" target="_self">7.3.3.6. Decreasing power functions</a></li>
+<li><a href="node009.html#218951552" target="_self">7.3.3.7. Minimizing general polynomials</a></li>
+<li><a href="node009.html#218970232" target="_self">7.3.3.8. Further reading</a></li>
+</ul>
+</li>
+<li><a href="node009.html#218970448" target="_self">7.3.4. Potential pitfalls in conic optimization</a>
+<ul class="toc-level-4">
+<li><a href="node009.html#218970304" target="_self">7.3.4.1. Non-attainment in the primal problem</a></li>
+<li><a href="node009.html#218982016" target="_self">7.3.4.2. Non-attainment in the dual problem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node009.html#219017088" target="_self">7.4. Recommendations</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#219022688" target="_self">7.4.1. Avoid near infeasible models</a></li>
+</ul>
+</li>
+<li><a href="node009.html#219034544" target="_self">7.5. Examples continued</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#219022832" target="_self">7.5.1. The absolute value</a></li>
+<li><a href="node009.html#219035696" target="_self">7.5.2. The Markowitz portfolio model</a>
+<ul class="toc-level-4">
+<li><a href="node009.html#219047768" target="_self">7.5.2.1. Minimizing variance for a given return</a></li>
+<li><a href="node009.html#219062496" target="_self">7.5.2.2. Conic quadratic reformulation</a></li>
+<li><a href="node009.html#219074504" target="_self">7.5.2.3. Transaction costs with market impact term</a></li>
+<li><a href="node009.html#219113736" target="_self">7.5.2.4. Further reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node010.html" target="_self">8. The optimizers for continuous problems</a>
+<ul class="toc-level-2">
+<li><a href="node010.html#219113808" target="_self">8.1. How an optimizer works</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#219115104" target="_self">8.1.1. Presolve</a>
+<ul class="toc-level-4">
+<li><a href="node010.html#219117256" target="_self">8.1.1.1. Eliminator</a></li>
+<li><a href="node010.html#219122360" target="_self">8.1.1.2. Linear dependency checker</a></li>
+</ul>
+</li>
+<li><a href="node010.html#219130192" target="_self">8.1.2. Dualizer</a></li>
+<li><a href="node010.html#219130624" target="_self">8.1.3. Scaling</a></li>
+<li><a href="node010.html#219131632" target="_self">8.1.4. Using multiple CPU's</a></li>
+</ul>
+</li>
+<li><a href="node010.html#219133424" target="_self">8.2. Linear optimization</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#219131848" target="_self">8.2.1. Optimizer selection</a></li>
+<li><a href="node010.html#219133856" target="_self">8.2.2. The interior-point optimizer</a>
+<ul class="toc-level-4">
+<li><a href="node010.html#219169568" target="_self">8.2.2.1. Interior-point termination criterion</a></li>
+<li><a href="node010.html#219187104" target="_self">8.2.2.2. Basis identification</a></li>
+<li><a href="node010.html#219191488" target="_self">8.2.2.3. The interior-point log</a></li>
+</ul>
+</li>
+<li><a href="node010.html#220853312" target="_self">8.2.3. The simplex based optimizer</a>
+<ul class="toc-level-4">
+<li><a href="node010.html#219191704" target="_self">8.2.3.1. Simplex termination criterion</a></li>
+<li><a href="node010.html#220855616" target="_self">8.2.3.2. Starting from an existing solution</a></li>
+<li><a href="node010.html#220856400" target="_self">8.2.3.3. Numerical difficulties in the simplex optimizers</a></li>
+</ul>
+</li>
+<li><a href="node010.html#220861864" target="_self">8.2.4. The interior-point or the simplex optimizer?</a></li>
+<li><a href="node010.html#220862512" target="_self">8.2.5. The primal or the dual simplex variant?</a></li>
+</ul>
+</li>
+<li><a href="node010.html#220863808" target="_self">8.3. Linear network optimization</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#220862728" target="_self">8.3.1. Network flow problems</a></li>
+<li><a href="node010.html#220866896" target="_self">8.3.2. Embedded network problems</a></li>
+</ul>
+</li>
+<li><a href="node010.html#220869120" target="_self">8.4. Conic optimization</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#220867328" target="_self">8.4.1. The interior-point optimizer</a>
+<ul class="toc-level-4">
+<li><a href="node010.html#220869336" target="_self">8.4.1.1. Interior-point termination criteria</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node010.html#220879760" target="_self">8.5. Nonlinear convex optimization</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#220869768" target="_self">8.5.1. The interior-point optimizer</a>
+<ul class="toc-level-4">
+<li><a href="node010.html#220879832" target="_self">8.5.1.1. The convexity requirement</a></li>
+<li><a href="node010.html#220880264" target="_self">8.5.1.2. The differentiabilty requirement</a></li>
+<li><a href="node010.html#220882776" target="_self">8.5.1.3. Interior-point termination criteria</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node010.html#220901176" target="_self">8.6. Solving problems in parallel</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#220892336" target="_self">8.6.1. Thread safety</a></li>
+<li><a href="node010.html#220901320" target="_self">8.6.2. The parallelized interior-point optimizer</a></li>
+<li><a href="node010.html#220901744" target="_self">8.6.3. The concurrent optimizer</a>
+<ul class="toc-level-4">
+<li><a href="node010.html#220914896" target="_self">8.6.3.1. Concurrent optimization through the API</a></li>
+</ul>
+</li>
+<li><a href="node010.html#220915760" target="_self">8.6.4. A more flexible concurrent optimizer</a></li>
+</ul>
+</li>
+<li><a href="node010.html#220916048" target="_self">8.7. Understanding solution quality</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#220916768" target="_self">8.7.1. The solution summary</a>
+<ul class="toc-level-4">
+<li><a href="node010.html#220916120" target="_self">8.7.1.1. The optimal case</a></li>
+<li><a href="node010.html#220921080" target="_self">8.7.1.2. The primal infeasible case</a></li>
+</ul>
+</li>
+<li><a href="node010.html#220926536" target="_self">8.7.2. Retrieving solution quality information with the API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node011.html" target="_self">9. The optimizer for mixed integer problems</a>
+<ul class="toc-level-2">
+<li><a href="node011.html#220931496" target="_self">9.1. Some notation</a></li>
+<li><a href="node011.html#220962400" target="_self">9.2. An important fact about integer optimization problems</a></li>
+<li><a href="node011.html#220962968" target="_self">9.3. How the integer optimizer works</a>
+<ul class="toc-level-3">
+<li><a href="node011.html#220963328" target="_self">9.3.1. Presolve</a></li>
+<li><a href="node011.html#220963112" target="_self">9.3.2. Heuristic</a></li>
+<li><a href="node011.html#220965416" target="_self">9.3.3. The optimization phase</a></li>
+</ul>
+</li>
+<li><a href="node011.html#220966280" target="_self">9.4. Termination criterion</a></li>
+<li><a href="node011.html#220987976" target="_self">9.5. How to speed up the solution process</a></li>
+<li><a href="node011.html#220988480" target="_self">9.6. Understanding solution quality</a>
+<ul class="toc-level-3">
+<li><a href="node011.html#220989992" target="_self">9.6.1. Solutionsummary</a></li>
+<li><a href="node011.html#220991000" target="_self">9.6.2. Retrieving solution quality information with the API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node012.html" target="_self">10. The analyzers</a>
+<ul class="toc-level-2">
+<li><a href="node012.html#220992216" target="_self">10.1. The problem analyzer</a>
+<ul class="toc-level-3">
+<li><a href="node012.html#220996816" target="_self">10.1.1. General characteristics</a></li>
+<li><a href="node012.html#221005152" target="_self">10.1.2. Objective</a></li>
+<li><a href="node012.html#221008024" target="_self">10.1.3. Linear constraints</a></li>
+<li><a href="node012.html#221009320" target="_self">10.1.4. Constraint and variable bounds</a></li>
+<li><a href="node012.html#221009680" target="_self">10.1.5. Quadratic constraints</a></li>
+<li><a href="node012.html#221010616" target="_self">10.1.6. Conic constraints</a></li>
+</ul>
+</li>
+<li><a href="node012.html#221012408" target="_self">10.2. Analyzing infeasible problems</a>
+<ul class="toc-level-3">
+<li><a href="node012.html#221013560" target="_self">10.2.1. Example: Primal infeasibility</a></li>
+<li><a href="node012.html#221016864" target="_self">10.2.2. Locating the cause of primal infeasibility</a></li>
+<li><a href="node012.html#221084128" target="_self">10.2.3. Locating the cause of dual infeasibility</a>
+<ul class="toc-level-4">
+<li><a href="node012.html#221070400" target="_self">10.2.3.1. A cautious note</a></li>
+</ul>
+</li>
+<li><a href="node012.html#221091384" target="_self">10.2.4. The infeasibility report</a>
+<ul class="toc-level-4">
+<li><a href="node012.html#221069680" target="_self">10.2.4.1. Example: Primal infeasibility</a></li>
+<li><a href="node012.html#221096200" target="_self">10.2.4.2. Example: Dual infeasibility</a></li>
+</ul>
+</li>
+<li><a href="node012.html#222815296" target="_self">10.2.5. Theory concerning infeasible problems</a></li>
+<li><a href="node012.html#222837864" target="_self">10.2.6. The certificate of primal infeasibility</a></li>
+<li><a href="node012.html#222853240" target="_self">10.2.7. The certificate of dual infeasibility</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node013.html" target="_self">11. Primal feasibility repair</a>
+<ul class="toc-level-2">
+<li><a href="node013.html#222853312" target="_self">11.1. The main idea</a></li>
+<li><a href="node013.html#222936096" target="_self">11.2. Feasibility repair in MOSEK</a>
+<ul class="toc-level-3">
+<li><a href="node013.html#222853384" target="_self">11.2.1. Usage of negative weights</a></li>
+<li><a href="node013.html#222936672" target="_self">11.2.2. Automatical naming</a></li>
+<li><a href="node013.html#222939976" target="_self">11.2.3. Feasibility repair using the API</a></li>
+<li><a href="node013.html#222941552" target="_self">11.2.4. An example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node014.html" target="_self">12. Sensitivity analysis</a>
+<ul class="toc-level-2">
+<li><a href="node014.html#222941984" target="_self">12.1. Introduction</a></li>
+<li><a href="node014.html#222965840" target="_self">12.2. Restrictions</a></li>
+<li><a href="node014.html#222942200" target="_self">12.3. References</a></li>
+<li><a href="node014.html#222967208" target="_self">12.4. Sensitivity analysis for linear problems</a>
+<ul class="toc-level-3">
+<li><a href="node014.html#222967352" target="_self">12.4.1. The optimal objective value function</a>
+<ul class="toc-level-4">
+<li><a href="node014.html#223005152" target="_self">12.4.1.1. Equality constraints</a></li>
+</ul>
+</li>
+<li><a href="node014.html#223006376" target="_self">12.4.2. The basis type sensitivity analysis</a></li>
+<li><a href="node014.html#223008024" target="_self">12.4.3. The optimal partition type sensitivity analysis</a></li>
+<li><a href="node014.html#224777136" target="_self">12.4.4. Example: Sensitivity analysis</a></li>
+</ul>
+</li>
+<li><a href="node014.html#226650664" target="_self">12.5. Sensitivity analysis from the MOSEK API</a></li>
+<li><a href="node014.html#226651960" target="_self">12.6. Sensitivity analysis with the command line tool</a>
+<ul class="toc-level-3">
+<li><a href="node014.html#226654400" target="_self">12.6.1. Sensitivity analysis specification file</a></li>
+<li><a href="node014.html#226656840" target="_self">12.6.2. Example: Sensitivity analysis from command line</a></li>
+<li><a href="node014.html#226662016" target="_self">12.6.3. Controlling log output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node015.html" target="_self">13. Usage guidelines</a>
+<ul class="toc-level-2">
+<li><a href="node015.html#226662520" target="_self">13.1. Verifying the results</a>
+<ul class="toc-level-3">
+<li><a href="node015.html#226668200" target="_self">13.1.1. Verifying primal feasibility</a></li>
+<li><a href="node015.html#226674448" target="_self">13.1.2. Verifying optimality</a></li>
+</ul>
+</li>
+<li><a href="node015.html#226675672" target="_self">13.2. Turn on logging</a></li>
+<li><a href="node015.html#226678544" target="_self">13.3. Turn on data checking</a></li>
+<li><a href="node015.html#226675960" target="_self">13.4. Debugging an optimization task</a></li>
+<li><a href="node015.html#226680416" target="_self">13.5. Important API limitations</a>
+<ul class="toc-level-3">
+<li><a href="node015.html#226679624" target="_self">13.5.1. Thread safety</a></li>
+</ul>
+</li>
+<li><a href="node015.html#226681848" target="_self">13.6. Bug reporting</a></li>
+</ul>
+</li>
+<li><a href="node016.html" target="_self">14. API reference</a>
+<ul class="toc-level-2">
+<li><a href="node016.html#226682064" target="_self">14.1. API Functionality</a>
+<ul class="toc-level-3">
+<li><a href="node016.html#226683144" target="_self">14.1.1. Analyzing the problem and associated data</a></li>
+<li><a href="node016.html#226684584" target="_self">14.1.2. Reading and writing data files</a></li>
+<li><a href="node016.html#226687024" target="_self">14.1.3. Solutions</a></li>
+<li><a href="node016.html#226693416" target="_self">14.1.4. Memory allocation and deallocation</a></li>
+<li><a href="node016.html#226694496" target="_self">14.1.5. Changing problem specification</a></li>
+<li><a href="node016.html#226700824" target="_self">14.1.6. Delete problem elements (variables,constraints,cones)</a></li>
+<li><a href="node016.html#226701968" target="_self">14.1.7. Add problem elements (variables,constraints,cones)</a></li>
+<li><a href="node016.html#226703048" target="_self">14.1.8. Problem inspection</a></li>
+<li><a href="node016.html#226711600" target="_self">14.1.9. Conic constraints</a></li>
+<li><a href="node016.html#226713544" target="_self">14.1.10. Bounds</a></li>
+<li><a href="node016.html#226715552" target="_self">14.1.11. Output stream functions</a></li>
+<li><a href="node016.html#226717496" target="_self">14.1.12. Objective function</a></li>
+<li><a href="node016.html#226722160" target="_self">14.1.13. Optimizer statistics</a></li>
+<li><a href="node016.html#226724104" target="_self">14.1.14. Parameters (set/get)</a></li>
+<li><a href="node016.html#226728272" target="_self">14.1.15. Naming</a></li>
+<li><a href="node016.html#226731144" target="_self">14.1.16. Preallocating space for problem data</a></li>
+<li><a href="node016.html#226734448" target="_self">14.1.17. Integer variables</a></li>
+<li><a href="node016.html#226737040" target="_self">14.1.18. Quadratic terms</a></li>
+<li><a href="node016.html#226739696" target="_self">14.1.19. Diagnosing infeasibility</a></li>
+<li><a href="node016.html#226740776" target="_self">14.1.20. Optimization</a></li>
+<li><a href="node016.html#226742072" target="_self">14.1.21. Network optimization</a></li>
+<li><a href="node016.html#226743216" target="_self">14.1.22. Sensitivity analysis</a></li>
+<li><a href="node016.html#226744512" target="_self">14.1.23. Testing data validity</a></li>
+<li><a href="node016.html#226745376" target="_self">14.1.24. Solving with the basis</a></li>
+<li><a href="node016.html#226746736" target="_self">14.1.25. Initialization of environment</a></li>
+<li><a href="node016.html#226748032" target="_self">14.1.26. Change <span class="math"><span class="mi">A</span></span></a></li>
+</ul>
+</li>
+<li><a href="node016.html#226750760" target="_self">14.2. Class <tt class="tt">mosek.ArrayLengthException</tt></a></li>
+<li><a href="node016.html#226751912" target="_self">14.3. Class <tt class="tt">mosek.Callback</tt></a></li>
+<li><a href="node016.html#226752776" target="_self">14.4. Class <tt class="tt">mosek.Env</tt></a>
+<ul class="toc-level-3">
+<li><a href="node016.html#226753136" target="_self">14.4.1. Constructors</a></li>
+<li><a href="node016.html#226756944" target="_self">14.4.2. Methods</a></li>
+</ul>
+</li>
+<li><a href="node016.html#226787912" target="_self">14.5. Class <tt class="tt">mosek.Error</tt></a>
+<ul class="toc-level-3">
+<li><a href="node016.html#226757160" target="_self">14.5.1. Constructors</a></li>
+</ul>
+</li>
+<li><a href="node016.html#226793304" target="_self">14.6. Class <tt class="tt">mosek.Exception</tt></a>
+<ul class="toc-level-3">
+<li><a href="node016.html#226793736" target="_self">14.6.1. Constructors</a></li>
+</ul>
+</li>
+<li><a href="node016.html#226796824" target="_self">14.7. Class <tt class="tt">mosek.Progress</tt></a>
+<ul class="toc-level-3">
+<li><a href="node016.html#226797256" target="_self">14.7.1. Constructors</a></li>
+<li><a href="node016.html#226800200" target="_self">14.7.2. Methods</a></li>
+</ul>
+</li>
+<li><a href="node016.html#226803008" target="_self">14.8. Class <tt class="tt">mosek.Stream</tt></a>
+<ul class="toc-level-3">
+<li><a href="node016.html#226800416" target="_self">14.8.1. Constructors</a></li>
+<li><a href="node016.html#226805664" target="_self">14.8.2. Methods</a></li>
+</ul>
+</li>
+<li><a href="node016.html#226808536" target="_self">14.9. Class <tt class="tt">mosek.Task</tt></a>
+<ul class="toc-level-3">
+<li><a href="node016.html#226805880" target="_self">14.9.1. Constructors</a></li>
+<li><a href="node016.html#226812056" target="_self">14.9.2. Attributes</a></li>
+<li><a href="node016.html#226812776" target="_self">14.9.3. Methods</a></li>
+</ul>
+</li>
+<li><a href="node016.html#234824120" target="_self">14.10. Class <tt class="tt">mosek.Warning</tt></a>
+<ul class="toc-level-3">
+<li><a href="node016.html#226813136" target="_self">14.10.1. Constructors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node017.html" target="_self">15. Parameter reference</a>
+<ul class="toc-level-2">
+<li><a href="node017.html#234825200" target="_self">15.1. Parameter groups</a>
+<ul class="toc-level-3">
+<li><a href="node017.html#234828216" target="_self">15.1.1. Logging parameters.</a></li>
+<li><a href="node017.html#234834328" target="_self">15.1.2. Basis identification parameters.</a></li>
+<li><a href="node017.html#234836552" target="_self">15.1.3. The Interior-point method parameters.</a></li>
+<li><a href="node017.html#234846328" target="_self">15.1.4. Simplex optimizer parameters.</a></li>
+<li><a href="node017.html#234853152" target="_self">15.1.5. Primal simplex optimizer parameters.</a></li>
+<li><a href="node017.html#234854448" target="_self">15.1.6. Dual simplex optimizer parameters.</a></li>
+<li><a href="node017.html#234855744" target="_self">15.1.7. Network simplex optimizer parameters.</a></li>
+<li><a href="node017.html#234857320" target="_self">15.1.8. Nonlinear convex method parameters.</a></li>
+<li><a href="node017.html#234860344" target="_self">15.1.9. The conic interior-point method parameters.</a></li>
+<li><a href="node017.html#234862352" target="_self">15.1.10. The mixed-integer optimization parameters.</a></li>
+<li><a href="node017.html#234870976" target="_self">15.1.11. Presolve parameters.</a></li>
+<li><a href="node017.html#234873848" target="_self">15.1.12. Termination criterion parameters.</a></li>
+<li><a href="node017.html#234881896" target="_self">15.1.13. Progress call-back parameters.</a></li>
+<li><a href="node017.html#234882832" target="_self">15.1.14. Non-convex solver parameters.</a></li>
+<li><a href="node017.html#234884128" target="_self">15.1.15. Feasibility repair parameters.</a></li>
+<li><a href="node017.html#234884776" target="_self">15.1.16. Optimization system parameters.</a></li>
+<li><a href="node017.html#234887792" target="_self">15.1.17. Output information parameters.</a></li>
+<li><a href="node017.html#234894472" target="_self">15.1.18. Extra information about the optimization problem.</a></li>
+<li><a href="node017.html#234895120" target="_self">15.1.19. Overall solver parameters.</a></li>
+<li><a href="node017.html#234899936" target="_self">15.1.20. Behavior of the optimization task.</a></li>
+<li><a href="node017.html#234904032" target="_self">15.1.21. Data input/output parameters.</a></li>
+<li><a href="node017.html#234924008" target="_self">15.1.22. Analysis parameters.</a></li>
+<li><a href="node017.html#234925304" target="_self">15.1.23. Solution input/output parameters.</a></li>
+<li><a href="node017.html#234930832" target="_self">15.1.24. Infeasibility report parameters.</a></li>
+<li><a href="node017.html#234931984" target="_self">15.1.25. License manager parameters.</a></li>
+<li><a href="node017.html#234933928" target="_self">15.1.26. Data check parameters.</a></li>
+<li><a href="node017.html#234937376" target="_self">15.1.27. Debugging parameters.</a></li>
+</ul>
+</li>
+<li><a href="node017.html#234938808" target="_self">15.2. Double parameters</a></li>
+<li><a href="node017.html#237466400" target="_self">15.3. Integer parameters</a></li>
+<li><a href="node017.html#241430896" target="_self">15.4. String parameter types</a></li>
+</ul>
+</li>
+<li><a href="node018.html" target="_self">16. Response codes</a></li>
+<li><a href="node019.html" target="_self">17. Constants</a>
+<ul class="toc-level-2">
+<li><a href="node019.html#245108960" target="_self">17.1. Constraint or variable access modes</a></li>
+<li><a href="node019.html#245110832" target="_self">17.2. Function opcode</a></li>
+<li><a href="node019.html#245116728" target="_self">17.3. Function operand type</a></li>
+<li><a href="node019.html#245120032" target="_self">17.4. Basis identification</a></li>
+<li><a href="node019.html#245123984" target="_self">17.5. Bound keys</a></li>
+<li><a href="node019.html#245127936" target="_self">17.6. Specifies the branching direction.</a></li>
+<li><a href="node019.html#245130592" target="_self">17.7. Progress call-back codes</a></li>
+<li><a href="node019.html#245208920" target="_self">17.8. Types of convexity checks.</a></li>
+<li><a href="node019.html#245211576" target="_self">17.9. Compression types</a></li>
+<li><a href="node019.html#245214168" target="_self">17.10. Cone types</a></li>
+<li><a href="node019.html#245216176" target="_self">17.11. CPU type</a></li>
+<li><a href="node019.html#245224080" target="_self">17.12. Data format types</a></li>
+<li><a href="node019.html#245229328" target="_self">17.13. Double information items</a></li>
+<li><a href="node019.html#245271872" target="_self">17.14. Feasibility repair types</a></li>
+<li><a href="node019.html#245274528" target="_self">17.15. License feature</a></li>
+<li><a href="node019.html#245277832" target="_self">17.16. Integer information items.</a></li>
+<li><a href="node019.html#245348040" target="_self">17.17. Information item types</a></li>
+<li><a href="node019.html#245350696" target="_self">17.18. Input/output modes</a></li>
+<li><a href="node019.html#245353288" target="_self">17.19. Language selection constants</a></li>
+<li><a href="node019.html#246997792" target="_self">17.20. Long integer information items.</a></li>
+<li><a href="node019.html#247007640" target="_self">17.21. Mark</a></li>
+<li><a href="node019.html#247009648" target="_self">17.22. Continuous mixed-integer solution type</a></li>
+<li><a href="node019.html#247012888" target="_self">17.23. Integer restrictions</a></li>
+<li><a href="node019.html#247015544" target="_self">17.24. Mixed-integer node selection types</a></li>
+<li><a href="node019.html#247020144" target="_self">17.25. MPS file format type</a></li>
+<li><a href="node019.html#247022800" target="_self">17.26. Message keys</a></li>
+<li><a href="node019.html#247025392" target="_self">17.27. Network detection method</a></li>
+<li><a href="node019.html#247028048" target="_self">17.28. Objective sense types</a></li>
+<li><a href="node019.html#247030704" target="_self">17.29. On/off</a></li>
+<li><a href="node019.html#247032648" target="_self">17.30. Optimizer types</a></li>
+<li><a href="node019.html#247040552" target="_self">17.31. Ordering strategies</a></li>
+<li><a href="node019.html#247045152" target="_self">17.32. Parameter type</a></li>
+<li><a href="node019.html#247048456" target="_self">17.33. Presolve method.</a></li>
+<li><a href="node019.html#247051112" target="_self">17.34. Problem data items</a></li>
+<li><a href="node019.html#247053704" target="_self">17.35. Problem types</a></li>
+<li><a href="node019.html#247058304" target="_self">17.36. Problem status keys</a></li>
+<li><a href="node019.html#247066920" target="_self">17.37. Interpretation of quadratic terms in MPS files</a></li>
+<li><a href="node019.html#247069512" target="_self">17.38. Response code type</a></li>
+<li><a href="node019.html#247073464" target="_self">17.39. Scaling type</a></li>
+<li><a href="node019.html#247075472" target="_self">17.40. Scaling type</a></li>
+<li><a href="node019.html#247078712" target="_self">17.41. Sensitivity types</a></li>
+<li><a href="node019.html#247080720" target="_self">17.42. Degeneracy strategies</a></li>
+<li><a href="node019.html#247084672" target="_self">17.43. Exploit duplicate columns.</a></li>
+<li><a href="node019.html#247087328" target="_self">17.44. Hot-start type employed by the simplex optimizer</a></li>
+<li><a href="node019.html#247089920" target="_self">17.45. Problem reformulation.</a></li>
+<li><a href="node019.html#247093224" target="_self">17.46. Simplex selection strategy</a></li>
+<li><a href="node019.html#247097824" target="_self">17.47. Solution items</a></li>
+<li><a href="node019.html#247103784" target="_self">17.48. Solution status keys</a></li>
+<li><a href="node019.html#247114280" target="_self">17.49. Solution types</a></li>
+<li><a href="node019.html#247116936" target="_self">17.50. Solve primal or dual form</a></li>
+<li><a href="node019.html#247119528" target="_self">17.51. Status keys</a></li>
+<li><a href="node019.html#247124840" target="_self">17.52. Starting point types</a></li>
+<li><a href="node019.html#247128144" target="_self">17.53. Stream types</a></li>
+<li><a href="node019.html#247131384" target="_self">17.54. Integer values</a></li>
+<li><a href="node019.html#247133392" target="_self">17.55. Variable types</a></li>
+<li><a href="node019.html#247135336" target="_self">17.56. XML writer output mode</a></li>
+</ul>
+</li>
+<li><a href="node020.html" target="_self">A. Troubleshooting</a></li>
+<li><a href="node021.html" target="_self">B. Problem analyzer examples</a>
+<ul class="toc-level-2">
+<li><a href="node021.html#247138064" target="_self">B.1. air04</a></li>
+<li><a href="node021.html#247150568" target="_self">B.2. arki001</a></li>
+<li><a href="node021.html#247151432" target="_self">B.3. Problem with both linear and quadratic constraints</a></li>
+<li><a href="node021.html#247152296" target="_self">B.4. Problem with both linear and conic constraints</a></li>
+</ul>
+</li>
+<li><a href="node022.html" target="_self">C. The MPS file format</a>
+<ul class="toc-level-2">
+<li><a href="node022.html#247152792" target="_self">C.1. The MPS file format</a>
+<ul class="toc-level-3">
+<li><a href="node022.html#247173488" target="_self">C.1.1. An example</a></li>
+<li><a href="node022.html#247173848" target="_self">C.1.2. <tt class="tt">NAME</tt></a></li>
+<li><a href="node022.html#247175360" target="_self">C.1.3. <tt class="tt">OBJSENSE</tt> (optional)</a></li>
+<li><a href="node022.html#247176440" target="_self">C.1.4. <tt class="tt">OBJNAME</tt> (optional)</a></li>
+<li><a href="node022.html#247177584" target="_self">C.1.5. <tt class="tt">ROWS</tt></a></li>
+<li><a href="node022.html#247208560" target="_self">C.1.6. <tt class="tt">COLUMNS</tt></a></li>
+<li><a href="node022.html#247233640" target="_self">C.1.7. <tt class="tt">RHS</tt> (optional)</a></li>
+<li><a href="node022.html#248905952" target="_self">C.1.8. <tt class="tt">RANGES</tt> (optional)</a></li>
+<li><a href="node022.html#248948784" target="_self">C.1.9. <tt class="tt">QSECTION</tt> (optional)</a></li>
+<li><a href="node022.html#248982416" target="_self">C.1.10. <tt class="tt">BOUNDS</tt> (optional)</a></li>
+<li><a href="node022.html#249036024" target="_self">C.1.11. <tt class="tt">CSECTION</tt> (optional)</a></li>
+<li><a href="node022.html#249083448" target="_self">C.1.12. <tt class="tt">ENDATA</tt></a></li>
+</ul>
+</li>
+<li><a href="node022.html#249086968" target="_self">C.2. Integer variables</a></li>
+<li><a href="node022.html#249093512" target="_self">C.3. General limitations</a></li>
+<li><a href="node022.html#249095232" target="_self">C.4. Interpretation of the MPS format</a></li>
+<li><a href="node022.html#249097104" target="_self">C.5. The free MPS format</a></li>
+</ul>
+</li>
+<li><a href="node023.html" target="_self">D. The LP file format</a>
+<ul class="toc-level-2">
+<li><a href="node023.html#249097680" target="_self">D.1. A warning</a></li>
+<li><a href="node023.html#249099688" target="_self">D.2. The LP file format</a>
+<ul class="toc-level-3">
+<li><a href="node023.html#249117728" target="_self">D.2.1. The sections</a>
+<ul class="toc-level-4">
+<li><a href="node023.html#249100336" target="_self">D.2.1.1. The objective</a></li>
+<li><a href="node023.html#249122896" target="_self">D.2.1.2. The constraints</a></li>
+<li><a href="node023.html#249130592" target="_self">D.2.1.3. Bounds</a></li>
+<li><a href="node023.html#249136984" target="_self">D.2.1.4. Variable types</a></li>
+<li><a href="node023.html#249139640" target="_self">D.2.1.5. Terminating section</a></li>
+<li><a href="node023.html#249138136" target="_self">D.2.1.6. An example</a></li>
+</ul>
+</li>
+<li><a href="node023.html#249141800" target="_self">D.2.2. LP format peculiarities</a>
+<ul class="toc-level-4">
+<li><a href="node023.html#249141584" target="_self">D.2.2.1. Comments</a></li>
+<li><a href="node023.html#249143096" target="_self">D.2.2.2. Names</a></li>
+<li><a href="node023.html#249145536" target="_self">D.2.2.3. Variable bounds</a></li>
+<li><a href="node023.html#249146112" target="_self">D.2.2.4. MOSEK specific extensions to the LP format</a></li>
+</ul>
+</li>
+<li><a href="node023.html#250832008" target="_self">D.2.3. The strict LP format</a></li>
+<li><a href="node023.html#250834240" target="_self">D.2.4. Formatting of an LP file</a>
+<ul class="toc-level-4">
+<li><a href="node023.html#250835744" target="_self">D.2.4.1. Speeding up file reading</a></li>
+<li><a href="node023.html#250836248" target="_self">D.2.4.2. Unnamed constraints</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node024.html" target="_self">E. The OPF format</a>
+<ul class="toc-level-2">
+<li><a href="node024.html#250836896" target="_self">E.1. Intended use</a></li>
+<li><a href="node024.html#250840632" target="_self">E.2. The file format</a>
+<ul class="toc-level-3">
+<li><a href="node024.html#250841496" target="_self">E.2.1. Sections</a></li>
+<li><a href="node024.html#250860176" target="_self">E.2.2. Numbers</a></li>
+<li><a href="node024.html#250861904" target="_self">E.2.3. Names</a></li>
+</ul>
+</li>
+<li><a href="node024.html#250863696" target="_self">E.3. Parameters section</a></li>
+<li><a href="node024.html#250864992" target="_self">E.4. Writing OPF files from MOSEK</a></li>
+<li><a href="node024.html#250867584" target="_self">E.5. Examples</a>
+<ul class="toc-level-3">
+<li><a href="node024.html#250865208" target="_self">E.5.1. Linear example <tt class="tt">lo1.opf</tt></a></li>
+<li><a href="node024.html#250890144" target="_self">E.5.2. Quadratic example <tt class="tt">qo1.opf</tt></a></li>
+<li><a href="node024.html#250896256" target="_self">E.5.3. Conic quadratic example <tt class="tt">cqo1.opf</tt></a></li>
+<li><a href="node024.html#250912992" target="_self">E.5.4. Mixed integer example <tt class="tt">milo1.opf</tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node025.html" target="_self">F. The XML (OSiL) format</a></li>
+<li><a href="node026.html" target="_self">G. The ORD file format</a>
+<ul class="toc-level-2">
+<li><a href="node026.html#250923488" target="_self">G.1. An example</a></li>
+</ul>
+</li>
+<li><a href="node027.html" target="_self">H. The solution file format</a>
+<ul class="toc-level-2">
+<li><a href="node027.html#250927584" target="_self">H.1. The basic and interior solution files</a></li>
+<li><a href="node027.html#250948640" target="_self">H.2. The integer solution file</a></li>
+</ul>
+</li>
+<li><a href="node028.html" target="_self">Bibliography</a></li>
+<li><a href="node029.html" target="_self">Index</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><img src="graphics/inactive-previous.png" class="navbutton-inactive-previous" alt="" border="0"/></td>
+<td><a href="../../../help/index.html" target="_top"><img src="graphics/up.png" class="navbutton-up" alt="Up:  'Documentation Help'" border="0"/></a></td>
+<td><a href="node001.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  Contact information" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Up : </b><a href="../../../help/index.html" target="_top">'Documentation Help'</a></td>
+<td valign="top"><b>Next : </b><a href="node001.html" target="_self">Contact information</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:42:17 2012</div>
+</body></html>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>4. Testing installation and compiling examples</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 3. Getting support and help" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  5. Basic API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="223778144">4. Testing installation and compiling examples</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node006.html#223786840" target="_self">4.1. Compiling and running from the command line</a></li>
+<li><a href="node006.html#223792160" target="_self">4.2. Compiling the example using nmake</a></li>
+<li><a href="node006.html#223793952" target="_self">4.3. Visual Studio project</a></li>
+<li><a href="node006.html#223795680" target="_self">4.4. Using the interface DLL</a></li>
+<li><a href="node006.html#223797192" target="_self">4.5. Interactive use of MOSEK</a></li>
+<li><a href="node006.html#223798984" target="_self">4.6. Linux and Mono</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="started-chap-iterface-intro-sec-compile-and-run">&#09;</a> <a name="chap:dist-examples">&#09;</a></p>
+
+<p>This chapter describes how to compile and run the .NET examples distributed with MOSEK.</p>
+
+<p><a name="idx-75059352">&#09;</a>To use the MOSEK .NET interface, a working MOSEK installation must be present &mdash; see the MOSEK Installation manual for instructions. In the following we assume that assume that MOSEK is installed in the default directory </p>
+
+<pre class="verbatim">C:\Program Files\mosek
+</pre>
+
+<p> The MOSEK .NET interface is defined in </p>
+
+<pre class="verbatim">C:\Program Files\mosek\6\tools\platform\win32x86\bin\mosekdotnet.dll
+</pre>
+
+<p> The distributed .NET examples are found in </p>
+
+<pre class="verbatim">C:\Program Files\mosek\6\tools\examples\dotnet
+</pre>
+
+<p> Please note that the Windows &#8220;<tt class="tt">Program Files</tt>&#8221; may be different for non-US installations.</p>
+
+<div>
+<h1><a name="223786840">4.1. Compiling and running from the command line</a></h1>
+
+<p> <a name="chp-linking&ndash;sec-compiling-examp">&#09;</a><a name="idx-75085800">&#09;</a><a name="idx-75086520">&#09;</a>To compile an example, say <tt class="tt">lo1</tt>, with the Microsoft .NET compiler, open a DOS box with paths for Visual Studio set up (usually in the Start menu, the sub-menu for Visual Studio contains an entry that starts a DOS box with everything set up). Change directory to where the examples are found: </p>
+
+<pre class="verbatimcmdline">  c:
+  cd "\Program Files\mosek\6\tools\examples\dotnet"
+</pre>
+
+<p>Then the following line compiles <tt class="tt">lo1.cs</tt> into an executable <tt class="tt">lo1.exe</tt>: </p>
+
+<pre class="verbatimcmdline">  csc /r:"c:Program Files\mosek\mosek\6\tools\platform\win32x86\bin\mosekdotnet.dll" lo1.cs
+</pre>
+
+<p> As for the Visual Basic example, the equivalent command looks as follows </p>
+
+<pre class="verbatimcmdline">  vbc /r:"c:\Program Files\mosek\mosek\6\tools\platform\win32x86\bin\mosekdotnet.dll" lo1.vb
+</pre>
+
+<p>To run the example, the system must be able to locate <tt class="tt">mosekdotnet.dll</tt>. To ensure this, either copy <tt class="tt">mosekdotnet.dll</tt> into the directory where <tt class="tt">lo1.exe</tt> was created, or ensure that <tt class="tt">mosekdotnet.dll</tt> resides in the Global Assembly Cache.</p>
+
+<p>The program can now be executed by entering on the command line: </p>
+
+<pre class="verbatimcmdline">  lo1
+</pre>
+
+</div>
+
+<div>
+<h1><a name="223792160">4.2. Compiling the example using nmake</a></h1>
+
+<p> A makefile for use with nmake is available in </p>
+
+<pre class="verbatim">C:\Program Files\mosek\6\tools\examples\dotnet\Makefile.win32x86
+</pre>
+
+<p>or </p>
+
+<pre class="verbatim">C:\Program Files\mosek\6\tools\examples\dotnet\Makefile.win64x86
+</pre>
+
+<p>depending on the platform.</p>
+
+<p>To compile all examples using this makefile use the command </p>
+
+<pre class="verbatimcmdline">  nmake /f Makefile.win64x86 all
+</pre>
+
+</div>
+
+<div>
+<h1><a name="223793952">4.3. Visual Studio project</a></h1>
+
+<p> <a name="idx-75096864">&#09;</a> The example <tt class="tt">lo1.cs</tt> also exists as a Visual Studio 2008 project. </p>
+
+<pre class="verbatim">c:\Program Files\mosek\6\tools\examples\dotnet\vs2008\MosekLo1
+</pre>
+
+<p>To use this project first copy the directory to somewhere with write permissions. E.g </p>
+
+<pre class="verbatim">C:\Documents and Settings\USERNAME
+</pre>
+
+<p>Then open the Visual studio project file <tt class="tt">MosekLo1.csproj</tt>.</p>
+
+</div>
+
+<div>
+<h1><a name="223795680">4.4. Using the interface DLL</a></h1>
+
+<p> <a name="idx-75086664">&#09;</a>The library <tt class="tt">mosekdotnet.dll</tt> may be used from any .NET compatible language such as Visual Basic, Microsoft C# or Microsoft Managed C++. Both the examples and the library should also work with Mono on most 32-bit platforms.</p>
+
+<p><a name="idx-75110160">&#09;</a>The library accesses methods in the native MOSEK library (<tt class="tt">mosek.dll</tt>), which from a .NET view is considered <em>unsafe</em>. This means that use of the library in certain restricted contexts is not possible &mdash; bulding and running an ordinary application and running it on a local drive is possible.</p>
+
+</div>
+
+<div>
+<h1><a name="223797192">4.5. Interactive use of MOSEK</a></h1>
+
+<p> <a name="idx-75114184">&#09;</a>It is possible to use the MOSEK .NET API interavtively from .NET languages which implements a command-line interpreter, for example <tt class="tt">IronPython</tt> <a name="idx-75116984">&#09;</a></p>
+<center>
+<p> <a href="http://www.codeplex.com/IronPython">http://www.codeplex.com/IronPython</a> </p>
+</center>
+<p>or the third-party language <tt class="tt">Boo</tt> <a name="idx-75087952">&#09;</a></p>
+<center>
+<p> <a href="http://boo.codehaus.org/">http://boo.codehaus.org/</a> </p>
+</center>
+<p>These can efficiently be used to create and examine the problems and solutions from MOSEK.</p>
+
+</div>
+
+<div>
+<h1><a name="223798984">4.6. Linux and Mono</a></h1>
+
+<p> It is possible to use the .NET API from Mono v.1.2 and later. Mono is a free implementation if the .NET platform available here </p>
+<center>
+<p> <a href="http://mono-project.com/">http://mono-project.com/</a>. </p>
+</center>
+<p>The .NET dll is not included in the Linux distributions of MOSEK, but the dll included in the Windows distribution can be used from Mono.</p>
+
+<p>To do this you must have a complete MOSEK installed as described in &#8220;the MOSEK Installation Manual&#8221;. Set the environment variable </p>
+
+<pre class="verbatim">MONO_PATH
+</pre>
+
+<p>to point to <tt class="tt">mosekdotnet.dll</tt> for the 64-bit Mono).</p>
+
+<p>You should now be able to compile and run the distributed .NET examples using Mono.</p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 3. Getting support and help" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  5. Basic API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:46:05 2012</div>
+</body></html>

@@ -1,0 +1,2004 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>8. Command reference</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node009.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 7. A guided tour" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node011.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  9. Case studies" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node009.html" target="_self">7. A guided tour</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node011.html" target="_self">9. Case studies</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="246003976">8. Command reference</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node010.html#246003112" target="_self">8.1. Data structures</a>
+<ul class="toc-level-2">
+<li><a href="node010.html#246004408" target="_self">8.1.1. <tt class="tt">prob</tt></a></li>
+<li><a href="node010.html#247814840" target="_self">8.1.2. <tt class="tt">names</tt></a></li>
+<li><a href="node010.html#247830720" target="_self">8.1.3. <tt class="tt">cones</tt></a></li>
+<li><a href="node010.html#247835752" target="_self">8.1.4. <tt class="tt">sol</tt></a></li>
+<li><a href="node010.html#247848400" target="_self">8.1.5. <tt class="tt">prisen</tt></a></li>
+<li><a href="node010.html#247858600" target="_self">8.1.6. <tt class="tt">duasen</tt></a></li>
+<li><a href="node010.html#247861832" target="_self">8.1.7. <tt class="tt">info</tt></a></li>
+<li><a href="node010.html#247863128" target="_self">8.1.8. <tt class="tt">symbcon</tt></a></li>
+<li><a href="node010.html#247864856" target="_self">8.1.9. <tt class="tt">callback</tt></a></li>
+</ul>
+</li>
+<li><a href="node010.html#247873408" target="_self">8.2. An example of a command reference</a></li>
+<li><a href="node010.html#247879296" target="_self">8.3. Functions provided by the MOSEK optimization toolbox</a></li>
+<li><a href="node010.html#247918104" target="_self">8.4. MATLAB optimization toolbox compatible functions</a>
+<ul class="toc-level-2">
+<li><a href="node010.html#247879440" target="_self">8.4.1. Linear and quadratic optimization</a></li>
+<li><a href="node010.html#247963944" target="_self">8.4.2. For linear least squares problems</a></li>
+<li><a href="node010.html#248005408" target="_self">8.4.3. The optimization options</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#248005984" target="_self">8.4.3.1. Viewing and modifying the optimization options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="CH:CMDREF">&#09;</a> After studying the examples presented in the previous chapter, it should be possible to use most of the facilities in the MOSEK optimization toolbox. A more formal specification of the main data structures employed by MOSEK and a command reference are provided in this chapter.</p>
+
+<div>
+<h1><a name="246003112">8.1. Data structures</a></h1>
+
+<p> <a name="CH:MATLAB:SEC:DATSTRUC">&#09;</a> <a name="idx-78129272">&#09;</a> In each of the subsequent sections the most important data structures employed by MOSEK are discussed.</p>
+
+<div>
+<h2><a name="246004408">8.1.1. <tt class="tt">prob</tt></a></h2>
+
+<p> <a name="idx-78130928">&#09;</a></p>
+
+<dl class="description">
+<dt>Description:</dt>
+<dd>
+<p> The <tt class="tt">prob</tt> data structure is used to communicate an optimization problem to MOSEK or for MOSEK to return an optimization problem to the user. It defines an optimization problem using a number of subfields.  </p>
+</dd>
+<dt>Subfields:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.names</tt></dt>
+<dd>
+<p> A MATLAB structure which contains the problem name, the name of the objective, and so forth. See Section <a title="8.1.2. names" href="node010.html#ch-cmdref-sec-names">8.1.2</a>. </p>
+</dd>
+<dt><tt class="tt">.qosubi</tt></dt>
+<dd>
+<p> <span class="math"><span class="mi">i</span></span> subscript for element <span class="math"><img src="math/math160.png" alt="[[MathCmd 160]]"/></span> in <span class="math"><img src="math/math161.png" alt="[[MathCmd 161]]"/></span>. See (<a href="node010.html#CH:MATLAB:EQ:QO">8.1.6</a>). </p>
+</dd>
+<dt><tt class="tt">.qosubj</tt></dt>
+<dd>
+<p> <span class="math"><span class="mi">j</span></span> subscript for element <span class="math"><img src="math/math160.png" alt="[[MathCmd 160]]"/></span> in <span class="math"><img src="math/math161.png" alt="[[MathCmd 161]]"/></span>. See (<a href="node010.html#CH:MATLAB:EQ:QO">8.1.6</a>). </p>
+</dd>
+<dt><tt class="tt">.qoval</tt></dt>
+<dd>
+<p> Numerical value for element <span class="math"><img src="math/math160.png" alt="[[MathCmd 160]]"/></span> in <span class="math"><img src="math/math161.png" alt="[[MathCmd 161]]"/></span>. See (<a href="node010.html#CH:MATLAB:EQ:QO">8.1.6</a>). </p>
+</dd>
+<dt><tt class="tt">.qcsubk</tt></dt>
+<dd>
+<p> <span class="math"><span class="mi">k</span></span> subscript for element <span class="math"><img src="math/math166.png" alt="[[MathCmd 166]]"/></span> in <span class="math"><img src="math/math167.png" alt="[[MathCmd 167]]"/></span>. See (<a href="node010.html#CH:MATLAB:EQ:QK">8.1.7</a>). </p>
+</dd>
+<dt><tt class="tt">.qcsubi</tt></dt>
+<dd>
+<p> <span class="math"><span class="mi">i</span></span> subscript for element <span class="math"><img src="math/math166.png" alt="[[MathCmd 166]]"/></span> in <span class="math"><img src="math/math167.png" alt="[[MathCmd 167]]"/></span>. See (<a href="node010.html#CH:MATLAB:EQ:QK">8.1.7</a>). </p>
+</dd>
+<dt><tt class="tt">.qcsubj</tt></dt>
+<dd>
+<p> <span class="math"><span class="mi">j</span></span> subscript for element <span class="math"><img src="math/math166.png" alt="[[MathCmd 166]]"/></span> in <span class="math"><img src="math/math167.png" alt="[[MathCmd 167]]"/></span>. See (<a href="node010.html#CH:MATLAB:EQ:QK">8.1.7</a>). </p>
+</dd>
+<dt><tt class="tt">.qcval</tt></dt>
+<dd>
+<p> Numerical value for element <span class="math"><img src="math/math166.png" alt="[[MathCmd 166]]"/></span> in <span class="math"><img src="math/math167.png" alt="[[MathCmd 167]]"/></span>. See (<a href="node010.html#CH:MATLAB:EQ:QK">8.1.7</a>). </p>
+</dd>
+<dt><tt class="tt">.c</tt></dt>
+<dd>
+<p> Linear term in the objective. </p>
+</dd>
+<dt><tt class="tt">.a</tt></dt>
+<dd>
+<p> The constraint matrix. It must be a <b>sparse matrix</b> having the number of rows and columns equivalent to the number of constraints and variables in the problem. This field should always be defined, even if the problem does not have any constraints. In that case a sparse matrix having zero rows and the correct number of columns is the appropriate definition of the field. </p>
+</dd>
+<dt><tt class="tt">.blc</tt></dt>
+<dd>
+<p> Lower bounds of the constraints. <span class="math"><span class="mo">-</span>&infin;</span> denotes an infinite lower bound. If the field is not defined or <tt class="tt">blc==[]</tt>, then all the lower bounds are assumed to be equal to <span class="math"><span class="mo">-</span>&infin;</span>. </p>
+</dd>
+<dt><tt class="tt">.buc</tt></dt>
+<dd>
+<p> Upper bounds of the constraints. <span class="math">&infin;</span> denotes an infinite upper bound. If the field is not defined or <tt class="tt">buc==[]</tt>, then all the upper bounds are assumed to be equal to <span class="math">&infin;</span>. </p>
+</dd>
+<dt><tt class="tt">.blx</tt></dt>
+<dd>
+<p> Lower bounds on the variables. <span class="math"><span class="mo">-</span>&infin;</span> denotes an infinite lower bound. If the field is not defined or <tt class="tt">blx==[]</tt>, then all the lower bounds are assumed to be equal to <span class="math"><span class="mo">-</span>&infin;</span>. </p>
+</dd>
+<dt><tt class="tt">.bux</tt></dt>
+<dd>
+<p> Upper bounds on the variables. <span class="math">&infin;</span> denotes an infinite upper bound. If the field is not defined or <tt class="tt">bux==[]</tt>, then all the upper bounds are assumed to be equal to <span class="math">&infin;</span>. </p>
+</dd>
+<dt><tt class="tt">.ints</tt></dt>
+<dd>
+<p> A MATLAB structure which has the subfields  </p>
+
+<pre class="verbatim">.sub; % Required.
+.pri; % Subfields.
+                                 </pre>
+
+<p>  <tt class="tt">ints.sub</tt> is a one-dimensional array containing the indexes of the integer-constrained variables. Hence, <tt class="tt">ints.sub</tt> is identical to the set <span class="math"><img src="math/math174.png" alt="[[MathCmd 174]]"/></span> in (<a href="node010.html#ch-ref-sec-dat-eq-j">8.1.5</a>). <tt class="tt">ints.pri</tt> is also a one dimensional array of the same length as <tt class="tt">ints.sub</tt>. The <tt class="tt">ints.pri(k)</tt> is the branching priority assigned to variable index <tt class="tt">ints.sub(k)</tt>. </p>
+</dd>
+<dt><tt class="tt">.cones</tt></dt>
+<dd>
+<p> A MATLAB cell array defining the conic constraints (<a href="node010.html#ch-ref-sec-dat_eq-conic">8.1.4</a>). See Section <a title="8.1.3. cones" href="node010.html#ch-ref-sec-dat-cones">8.1.3</a> for details on this structure. </p>
+</dd>
+<dt><tt class="tt">.sol</tt></dt>
+<dd>
+<p> A MATLAB structure containing a guess on the optimal solution which some of the optimizers in MOSEK may exploit. See Section <a title="8.1.4. sol" href="node010.html#ch-ref-sec-dat-sol">8.1.4</a> for details on this structure.</p>
+</dd>
+<dt><tt class="tt">.prisen</tt></dt>
+<dd>
+<p> A MATLAB structure which has the subfields: </p>
+
+<dl class="description">
+<dt><tt class="tt">.cons.subu</tt></dt>
+<dd>
+<p> Indexes of constraints, where upper bounds are analyzed for sensitivity. </p>
+</dd>
+<dt><tt class="tt">.cons.subl</tt></dt>
+<dd>
+<p> Indexes of constraints, where lower bounds are analyzed for sensitivity. </p>
+</dd>
+<dt><tt class="tt">.vars.subu</tt></dt>
+<dd>
+<p> Indexes of variables, where upper bounds are analyzed for sensitivity. </p>
+</dd>
+<dt><tt class="tt">.vars.subl</tt></dt>
+<dd>
+<p> Indexes of variables, where lower bounds are analyzed for sensitivity. </p>
+</dd>
+<dt><tt class="tt">.sub</tt></dt>
+<dd>
+<p> Index of variables where coefficients are analysed for sensitivity. </p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Comments:</dt>
+<dd>
+<p>MOSEK solves an optimization problem which has the form of minimizing or maximizing an objective function  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math175.png" alt="\begin{math}\nonumber{}\frac{1}{2}\sum _{{i=1}}^{{n}}\sum _{{j=1}}^{{n}}q_{{ij}}^{o}x_{i}x_{j}+c_{j}x_{j}\end{math}"/></td>
+<td>(8.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>  subject to the functional constraints  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math176.png" alt="\begin{math}\nonumber{}l_{k}^{c}\leq{}\frac{1}{2}\sum _{{i=1}}^{{n}}\sum _{{j=1}}^{{n}}q_{{ij}}^{p}x_{i}x_{j}+\sum _{{j=1}}^{{n}}a_{{kj}}x_{j}\leq{}u_{k}^{c},~k=1,\ldots ,m,\end{math}"/></td>
+<td>(8.1.2)</td></tr>
+</tbody>
+</table>
+
+<p>  the variable bound constraints  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math177.png" alt="\begin{math}\nonumber{}l_{j}^{x}\leq{}x_{j}\leq{}u_{j}^{x},~j=1,\ldots ,n\end{math}"/></td>
+<td>(8.1.3)</td></tr>
+</tbody>
+</table>
+
+<p>  and the conic constraint  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math178.png" alt="\begin{math}\nonumber{}x\in{}\mathcal{C}.\end{math}"/></td>
+<td><a name="ch-ref-sec-dat_eq-conic">&#09;</a>(8.1.4)</td></tr>
+</tbody>
+</table>
+
+<p>  Finally, some variables may be integer-constrained, i.e.  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math179.png" alt="\begin{math}\nonumber{}x_{j}\mbox{ integer-constrained for all }j\in{}\mathcal{J}\end{math}"/></td>
+<td><a name="ch-ref-sec-dat-eq-j">&#09;</a>(8.1.5)</td></tr>
+</tbody>
+</table>
+
+<p>  where <span class="math"><span class="mi">x</span></span> is the decision variables and all the other quantities are the parameters of the problem and they are presented below:  </p>
+
+<ul class="itemize">
+<li>
+<p> The quadratic terms <span class="math"><img src="math/math180.png" alt="[[MathCmd 180]]"/></span> in the objective are stored in the matrix <span class="math"><img src="math/math161.png" alt="[[MathCmd 161]]"/></span> as follows  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math182.png" alt="\begin{displaymath}\nonumber{}Q^{o}=\left[\begin{array}{ccc}\nonumber{}q_{{11}}^{o} & \cdots  & q_{{1n}}^{o}\\\nonumber{}\vdots  & \cdots  & \vdots \\\nonumber{}q_{{n1}}^{0} & \cdots  & q_{{nn}}^{o}\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  In MOSEK it is assumed that <span class="math"><img src="math/math161.png" alt="[[MathCmd 161]]"/></span> is symmetric, i.e.  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math184.png" alt="\begin{displaymath}\nonumber{}q_{{ij}}^{o}=q_{{ji}}^{o}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  and therefore only the lower triangular part in <span class="math"><img src="math/math161.png" alt="[[MathCmd 161]]"/></span> should be specified. </p>
+</li>
+<li> It is the linear part of the objective specifying the <span class="math"><img src="math/math186.png" alt="[[MathCmd 186]]"/></span> in the linear term <span class="math"><img src="math/math187.png" alt="[[MathCmd 187]]"/></span>. </li>
+<li>
+<p> The quadratic terms <span class="math"><img src="math/math188.png" alt="[[MathCmd 188]]"/></span> in the <span class="math"><span class="mi">k</span></span>th constraint are stored in the <span class="math"><img src="math/math167.png" alt="[[MathCmd 167]]"/></span> matrix as follows  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math190.png" alt="\begin{displaymath}\nonumber{}Q^{p}=\left[\begin{array}{ccc}\nonumber{}q_{{11}}^{p} & \cdots  & q_{{1n}}^{p}\\\nonumber{}\vdots  & \cdots  & \vdots \\\nonumber{}q_{{n1}}^{p} & \cdots  & q_{{nn}}^{p}\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  MOSEK assumes that <span class="math"><img src="math/math167.png" alt="[[MathCmd 167]]"/></span> is symmetric, i.e.  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math192.png" alt="\begin{displaymath}\nonumber{}q_{{ij}}^{p}=q_{{ji}}^{p}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  and therefore only the lower triangular part in <span class="math"><img src="math/math167.png" alt="[[MathCmd 167]]"/></span> should be specified. </p>
+</li>
+<li>
+<p> The constraint matrix <span class="math"><span class="mi">A</span></span> is given by  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math194.png" alt="\begin{displaymath}\nonumber{}A=\left[\begin{array}{ccc}\nonumber{}a_{{11}} & \cdots  & a_{{1n}}\\\nonumber{}\vdots  & \cdots  & \vdots \\\nonumber{}a_{{m1}} & \cdots  & a_{{mn}}\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  In MOSEK it is assumed that <span class="math"><span class="mi">A</span></span> is a sparse matrix, i.e. most of the coefficients in <span class="math"><span class="mi">A</span></span> are zero. Therefore, only non-zeros elements in <span class="math"><span class="mi">A</span></span> are stored and worked with. This usually saves a lot of storage and speeds up the computations. </p>
+</li>
+<li> Specifies the lower bounds of the constraints. </li>
+<li> Specifies the upper bounds of the constraints. </li>
+<li> Specifies the lower bounds on the variables. </li>
+<li> Specifies the upper bounds on the variables. </li>
+<li>
+<p> Specifies the conic constraint. Let  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math24.png" alt="\begin{displaymath}\nonumber{}x^{t}\in{}\mathbb{R}^{{n^{t}}},~t=1,\ldots ,k\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  be vectors comprised of disjoined subsets of the decision variables <span class="math"><span class="mi">x</span></span> (each decision variable is a member of exactly one <span class="math"><img src="math/math25.png" alt="[[MathCmd 25]]"/></span>), e.g.  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math26.png" alt="\begin{displaymath}\nonumber{}x^{1}=\left[\begin{array}{c}\nonumber{}x_{1}\\\nonumber{}x_{4}\\\nonumber{}x_{7}\end{array}\right]\mbox{ and }x^{2}=\left[\begin{array}{c}\nonumber{}x_{6}\\\nonumber{}x_{5}\\\nonumber{}x_{{3}}\\\nonumber{}x_{2}\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  Next, define  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math198.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}:=\left\lbrace{}x\in{}\mathbb{R}^{n}:~x^{t}\in{}\mathcal{C}_{t},~t=1,\ldots ,k\right\rbrace{}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  where <span class="math"><img src="math/math28.png" alt="[[MathCmd 28]]"/></span> must have one of the following forms  </p>
+
+<ul class="itemize">
+<li>
+<p><span class="math"><img src="math/math29.png" alt="[[MathCmd 29]]"/></span> set: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math30.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math31.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:x_{1}\geq{}\sqrt{\sum \limits _{{j=2}}^{{n^{t}}}x_{j}^{2}}\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Rotated quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math203.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:2x_{1}x_{2}\geq{}\sqrt{\sum \limits _{{j=3}}^{{n^{t}}}x_{j}^{2}},~x_{1},x_{2}\geq{}0\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+
+<p> All the parameters of the optimization problem are stored using one or more subfields of the <tt class="tt">prob</tt> structure using the naming convention in Table <a href="node010.html#CH:MATCMDREF:TAB:NAMCONV">8.1</a>.  </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<p> <small class="small">
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Field name </td>
+<td valign="top" style="border-top:1px solid black;"> Type </td>
+<td valign="top" style="border-top:1px solid black;"> Dimen- </td>
+<td valign="top" style="border-top:1px solid black;"> Optio- </td>
+<td valign="top" style="border-top:1px solid black;"> Problem </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td valign="top"> </td>
+<td valign="top"> sion </td>
+<td valign="top"> nal </td>
+<td valign="top"> parameter </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">qosubi</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">int</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">length(qoval)</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> Yes </td>
+<td valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math160.png" alt="[[MathCmd 160]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qosubj</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> <tt class="tt">length(qoval)</tt> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math160.png" alt="[[MathCmd 160]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qoval</tt> </td>
+<td valign="top"> <tt class="tt">double</tt> </td>
+<td valign="top"> <tt class="tt">length(qoval)</tt> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math160.png" alt="[[MathCmd 160]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">c</tt> </td>
+<td valign="top"> <tt class="tt">double</tt> </td>
+<td valign="top"> <span class="math"><span class="mi">n</span></span> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math186.png" alt="[[MathCmd 186]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qcsubk</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> <tt class="tt">length(qcval)</tt> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math166.png" alt="[[MathCmd 166]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qcsubi</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> <tt class="tt">length(qcval)</tt> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math166.png" alt="[[MathCmd 166]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qcsubj</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> <tt class="tt">length(qcval)</tt> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math166.png" alt="[[MathCmd 166]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qcval</tt> </td>
+<td valign="top"> <tt class="tt">double</tt> </td>
+<td valign="top"> <tt class="tt">length(qcval)</tt> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math166.png" alt="[[MathCmd 166]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">a</tt> </td>
+<td valign="top"> Sparse matrix </td>
+<td valign="top"> <span class="math"><img src="math/math212.png" alt="[[MathCmd 212]]"/></span> </td>
+<td valign="top"> No </td>
+<td valign="top"> <span class="math"><img src="math/math213.png" alt="[[MathCmd 213]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">blc</tt> </td>
+<td valign="top"> <tt class="tt">double</tt> </td>
+<td valign="top"> <span class="math"><span class="mi">m</span></span> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math214.png" alt="[[MathCmd 214]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">buc</tt> </td>
+<td valign="top"> <tt class="tt">double</tt> </td>
+<td valign="top"> <span class="math"><span class="mi">m</span></span> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math215.png" alt="[[MathCmd 215]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">blx</tt> </td>
+<td valign="top"> <tt class="tt">double</tt> </td>
+<td valign="top"> <span class="math"><span class="mi">n</span></span> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math216.png" alt="[[MathCmd 216]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">bux</tt> </td>
+<td valign="top"> <tt class="tt">double</tt> </td>
+<td valign="top"> <span class="math"><span class="mi">n</span></span> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math217.png" alt="[[MathCmd 217]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">ints</tt> </td>
+<td valign="top"> MATLAB structure </td>
+<td valign="top"> <span class="math"><img src="math/math218.png" alt="[[MathCmd 218]]"/></span> </td>
+<td valign="top"> Yes </td>
+<td valign="top"> <span class="math"><img src="math/math174.png" alt="[[MathCmd 174]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">cones</tt> </td>
+<td valign="top" style="border-bottom:1px solid black;"> MATLAB cell array </td>
+<td valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mi">k</span></span> </td>
+<td valign="top" style="border-bottom:1px solid black;"> Yes </td>
+<td valign="top" style="border-bottom:1px solid black;"> <span class="math"><img src="math/math21.png" alt="[[MathCmd 21]]"/></span> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;8.1: The relation between fields and problem parameters.</span>
+<br/>
+<p> <a name="CH:MATCMDREF:TAB:NAMCONV">&#09;</a> </p>
+</small> </p>
+</center></td></tr></table>
+</td></tr></table>
+
+<p> In Table <a href="node010.html#CH:MATCMDREF:TAB:NAMCONV">8.1</a> all the parameters are listed with their corresponding type. The <tt class="tt">int</tt> type indicates that the field must contain an integer value, <tt class="tt">double</tt> indicates a real number. The relationship between <span class="math"><img src="math/math161.png" alt="[[MathCmd 161]]"/></span> and <span class="math"><img src="math/math167.png" alt="[[MathCmd 167]]"/></span> and the subfields of the <tt class="tt">prob</tt> structure is as follows:  </p>
+
+<ul class="itemize">
+<li>
+<p>The quadratic terms in the objective:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math223.png" alt="\begin{math}\nonumber{}q_{{{qosubi(t)},{qoval(t)}}}^{o}={qoval(t)},~t=1,2,\ldots ,{length(qoval)}.\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:QO">&#09;</a>(8.1.6)</td></tr>
+</tbody>
+</table>
+
+<p>  Since <span class="math"><img src="math/math161.png" alt="[[MathCmd 161]]"/></span> by assumption is symmetric, all elements are assumed to belong to the lower triangular part. If an element is specified multiple times, the different elements are added together. </p>
+</li>
+<li>
+<p>The quadratic terms in the constraints:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math225.png" alt="\begin{math}\nonumber{}q_{{{qcsubi(t)},{qcsubj(t)}}}^{{qcsubk(t)}}={qcval(t)},~t=1,2,\ldots ,{length(qcval)}.\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:QK">&#09;</a>(8.1.7)</td></tr>
+</tbody>
+</table>
+
+<p>  Since <span class="math"><img src="math/math167.png" alt="[[MathCmd 167]]"/></span> by assumption is symmetric, all elements are assumed to belong to the lower triangular part. If an element is specified multiple times, the different elements are added together. </p>
+</li>
+</ul>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h2><a name="247814840">8.1.2. <tt class="tt">names</tt></a></h2>
+
+<p> <a name="ch-cmdref-sec-names">&#09;</a> <a name="idx-78340176">&#09;</a>  This structure is used to store all the names of individual items in the optimization problem such as the constraints and the variables. The structure contains the subfields:  </p>
+
+<dl class="description">
+<dt><tt class="tt">.name</tt></dt>
+<dd>
+<p> Contains the problem name.</p>
+</dd>
+<dt><tt class="tt">.obj</tt></dt>
+<dd>
+<p> Contains the name of the objective.</p>
+</dd>
+<dt><tt class="tt">.con</tt></dt>
+<dd>
+<p> Is a MATLAB cell array where <tt class="tt">names.con{i}</tt> contains the name of the <span class="math"><span class="mi">i</span></span>th constraint.</p>
+</dd>
+<dt><tt class="tt">.var</tt></dt>
+<dd>
+<p> Is a MATLAB cell array where <tt class="tt">names.var{j}</tt> contains the name of the <span class="math"><span class="mi">j</span></span>th constraint.</p>
+</dd>
+<dt><tt class="tt">.cone</tt></dt>
+<dd>
+<p> Is a MATLAB cell array where <tt class="tt">names.cone{t}</tt> contains the name of the <span class="math"><span class="mi">t</span></span>th conic constraint. </p>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h2><a name="247830720">8.1.3. <tt class="tt">cones</tt></a></h2>
+
+<p> <a name="ch-ref-sec-dat-cones">&#09;</a> <a name="idx-80073936">&#09;</a></p>
+
+<p><tt class="tt">cones</tt> is a MATLAB cell array containing one structure per cone in the optimization problem, i.e. <tt class="tt">cones{t}</tt> is used to specify the <span class="math"><span class="mi">t</span></span>th cone in the optimization problem.</p>
+
+<p>The structure contains the subfields:  </p>
+
+<dl class="description">
+<dt><tt class="tt">.type</tt></dt>
+<dd>
+<p> <tt class="tt">cones{t}.type</tt> contains the cone type for the <span class="math"><span class="mi">t</span></span>th cone. The <tt class="tt">type</tt> subfield has one of the values <tt class="tt">'MSK_CT_QUAD'</tt> or <tt class="tt">'MSK_CT_RQUAD'</tt>, indicating if cone is a quadratic cone or a rotated quadratic cone.</p>
+</dd>
+<dt><tt class="tt">.sub</tt></dt>
+<dd>
+<p> <tt class="tt">cones{t}.sub</tt> is a list of variable indexes specifying which variables are members of the cone. </p>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h2><a name="247835752">8.1.4. <tt class="tt">sol</tt></a></h2>
+
+<p> <a name="ch-ref-sec-dat-sol">&#09;</a> <a name="idx-80085936">&#09;</a>  </p>
+
+<dl class="description">
+<dt>Description:</dt>
+<dd>
+<p> A MATLAB structure used to store one or more solutions to an optimization problem. The structure has one subfield for each possible solution type.</p>
+</dd>
+<dt>Subfields:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.itr</tt></dt>
+<dd>
+<p> Interior (point) solution computed by the interior-point optimizer. </p>
+</dd>
+<dt><tt class="tt">.bas</tt></dt>
+<dd>
+<p> Basic solution computed by the simplex optimizers and basis identification procedure. </p>
+</dd>
+<dt><tt class="tt">.int</tt></dt>
+<dd>
+<p> Integer solution computed by the mixed-integer optimizer. </p>
+</dd>
+</dl>
+</dd>
+<dt>Comments:</dt>
+<dd>
+<p> Each of the solutions <tt class="tt">sol.itr</tt>, <tt class="tt">sol.bas</tt>, and <tt class="tt">sol.int</tt> may contain one or more of the fields:  </p>
+
+<dl class="description">
+<dt><tt class="tt">.prosta</tt></dt>
+<dd>
+<p> Problem status. See Appendix <a title="F.38. Problem status keys" href="node022.html#constclass*mosek*prosta">F.38</a>.</p>
+</dd>
+<dt><tt class="tt">.solsta</tt></dt>
+<dd>
+<p> Solution status. See Appendix <a title="F.51. Solution status keys" href="node022.html#constclass*mosek*solsta">F.51</a>.</p>
+</dd>
+<dt><tt class="tt">.skc</tt></dt>
+<dd>
+<p> Constraint status keys. See Table <a href="node009.html#CH:MAT:SEC:USE:TAB:CONVARSTAKEY">7.1</a>.</p>
+</dd>
+<dt><tt class="tt">.skx</tt></dt>
+<dd>
+<p> Variable status keys. See Table <a href="node009.html#CH:MAT:SEC:USE:TAB:CONVARSTAKEY">7.1</a>.</p>
+</dd>
+<dt><tt class="tt">.skn</tt></dt>
+<dd>
+<p> Conic status keys. See Section <a href="node009.html#CH:MAT:SEC:USE:TAB:CONVARSTAKEY">7.1</a>.</p>
+</dd>
+<dt><tt class="tt">.xc</tt></dt>
+<dd>
+<p> Constraint activities, i.e. <span class="math"><img src="math/math227.png" alt="[[MathCmd 227]]"/></span> where <span class="math"><span class="mi">x</span></span> is the optimal solution.</p>
+</dd>
+<dt><tt class="tt">.xx</tt></dt>
+<dd>
+<p> Variable activities, i.e. the optimal <span class="math"><span class="mi">x</span></span> solution.</p>
+</dd>
+<dt><tt class="tt">.y</tt></dt>
+<dd>
+<p> Identical to <tt class="tt">sol.slc-sol.suc</tt>.</p>
+</dd>
+<dt><tt class="tt">.slc</tt></dt>
+<dd>
+<p> Dual solution corresponding to the lower constraint bounds.</p>
+</dd>
+<dt><tt class="tt">.suc</tt></dt>
+<dd>
+<p> Dual solution corresponding to the upper constraint bounds.</p>
+</dd>
+<dt><tt class="tt">.slx</tt></dt>
+<dd>
+<p> Dual solution corresponding to the lower variable bounds.</p>
+</dd>
+<dt><tt class="tt">.sux</tt></dt>
+<dd>
+<p> Dual solution corresponding to the upper variable bounds.</p>
+</dd>
+<dt><tt class="tt">.snx</tt></dt>
+<dd>
+<p> Dual solution corresponding to the conic constraint.</p>
+</dd>
+<dt><tt class="tt">.pobjval</tt></dt>
+<dd>
+<p> The primal objective value. </p>
+</dd>
+</dl>
+
+<p> The fields <tt class="tt">.skn</tt> and <tt class="tt">.snx</tt> cannot occur in the <tt class="tt">.bas</tt> and <tt class="tt">.int</tt> solutions. In addition the fields <tt class="tt">.y</tt>, <tt class="tt">.slc</tt>, <tt class="tt">.suc</tt>, <tt class="tt">.slx</tt>, and <tt class="tt">.sux</tt> cannot occur in the <tt class="tt">.int</tt> solution since integer problems does not have a well-defined dual problem, and hence no dual solution.  </p>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h2><a name="247848400">8.1.5. <tt class="tt">prisen</tt></a></h2>
+
+<p> <a name="ch-ref-sec-dat-prisen">&#09;</a> <a name="idx-80148168">&#09;</a> </p>
+
+<dl class="description">
+<dt>Description:</dt>
+<dd>
+<p>Results of the primal sensitivity analysis. </p>
+</dd>
+<dt>Subfields:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.cons</tt></dt>
+<dd>
+<p> MATLAB structure with the subfields: </p>
+
+<dl class="description">
+<dt><tt class="tt">.lr_bl</tt></dt>
+<dd>
+<p> Left value <span class="math"><img src="math/math228.png" alt="[[MathCmd 228]]"/></span> in the linearity interval for a lower bound. </p>
+</dd>
+<dt><tt class="tt">.rr_bl</tt></dt>
+<dd>
+<p> Right value <span class="math"><img src="math/math229.png" alt="[[MathCmd 229]]"/></span> in the linearity interval for a lower bound. </p>
+</dd>
+<dt><tt class="tt">.ls_bl</tt></dt>
+<dd>
+<p> Left shadow price <span class="math"><img src="math/math230.png" alt="[[MathCmd 230]]"/></span> for a lower bound. </p>
+</dd>
+<dt><tt class="tt">.rs_bl</tt></dt>
+<dd>
+<p> Right shadow price <span class="math"><img src="math/math231.png" alt="[[MathCmd 231]]"/></span> for a lower bound. </p>
+</dd>
+<dt><tt class="tt">.lr_bu</tt></dt>
+<dd>
+<p> Left value <span class="math"><img src="math/math228.png" alt="[[MathCmd 228]]"/></span> in the linearity interval for an upper bound. </p>
+</dd>
+<dt><tt class="tt">.rr_bu</tt></dt>
+<dd>
+<p> Right value <span class="math"><img src="math/math229.png" alt="[[MathCmd 229]]"/></span> in the linearity interval for an upper bound. </p>
+</dd>
+<dt><tt class="tt">.ls_bu</tt></dt>
+<dd>
+<p> Left shadow price <span class="math"><img src="math/math230.png" alt="[[MathCmd 230]]"/></span> for an upper bound. </p>
+</dd>
+<dt><tt class="tt">.rs_bu</tt></dt>
+<dd>
+<p> Right shadow price <span class="math"><img src="math/math231.png" alt="[[MathCmd 231]]"/></span> for an upper bound. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">.var</tt></dt>
+<dd>
+<p> MATLAB structure with the subfields: </p>
+
+<dl class="description">
+<dt><tt class="tt">.lr_bl</tt></dt>
+<dd>
+<p> Left value <span class="math"><img src="math/math228.png" alt="[[MathCmd 228]]"/></span> in the linearity interval for a lower bound on a variable. </p>
+</dd>
+<dt><tt class="tt">.rr_bl</tt></dt>
+<dd>
+<p> Right value <span class="math"><img src="math/math229.png" alt="[[MathCmd 229]]"/></span> in the linearity interval for a lower bound on a variable. </p>
+</dd>
+<dt><tt class="tt">.ls_bl</tt></dt>
+<dd>
+<p> Left shadow price <span class="math"><img src="math/math230.png" alt="[[MathCmd 230]]"/></span> for a lower bound on a variable. </p>
+</dd>
+<dt><tt class="tt">.rs_bl</tt></dt>
+<dd>
+<p> Right shadow price <span class="math"><img src="math/math231.png" alt="[[MathCmd 231]]"/></span> for a lower bound on a variable. </p>
+</dd>
+<dt><tt class="tt">.lr_bu</tt></dt>
+<dd>
+<p> Left value <span class="math"><img src="math/math228.png" alt="[[MathCmd 228]]"/></span> in the linearity interval for an upper bound on a variable. </p>
+</dd>
+<dt><tt class="tt">.rr_bu</tt></dt>
+<dd>
+<p> Right value <span class="math"><img src="math/math229.png" alt="[[MathCmd 229]]"/></span> in the linearity interval for an upper bound on a variable. </p>
+</dd>
+<dt><tt class="tt">.ls_bu</tt></dt>
+<dd>
+<p> Left shadow price <span class="math"><img src="math/math230.png" alt="[[MathCmd 230]]"/></span> for an upper bound on a variable. </p>
+</dd>
+<dt><tt class="tt">.rs_bu</tt></dt>
+<dd>
+<p> Right shadow price <span class="math"><img src="math/math231.png" alt="[[MathCmd 231]]"/></span> for an upper bound on a variable. </p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h2><a name="247858600">8.1.6. <tt class="tt">duasen</tt></a></h2>
+
+<p> <a name="ch-ref-sec-dat-duasen">&#09;</a> <a name="idx-80179640">&#09;</a> </p>
+
+<dl class="description">
+<dt>Description:</dt>
+<dd>
+<p>Results of dual the sensitivity analysis. </p>
+</dd>
+<dt>Subfields:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.lr_c</tt></dt>
+<dd>
+<p> Left value <span class="math"><img src="math/math228.png" alt="[[MathCmd 228]]"/></span> in linearity interval for an objective coefficient. </p>
+</dd>
+<dt><tt class="tt">.rr_c</tt></dt>
+<dd>
+<p> Right value <span class="math"><img src="math/math229.png" alt="[[MathCmd 229]]"/></span> in linearity interval for an objective coefficient. </p>
+</dd>
+<dt><tt class="tt">.ls_c</tt></dt>
+<dd>
+<p> Left shadow price <span class="math"><img src="math/math230.png" alt="[[MathCmd 230]]"/></span> for an objective coefficient. </p>
+</dd>
+<dt><tt class="tt">.rs_c</tt></dt>
+<dd>
+<p> Right shadow price <span class="math"><img src="math/math231.png" alt="[[MathCmd 231]]"/></span> for an objective coefficient. </p>
+</dd>
+</dl>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h2><a name="247861832">8.1.7. <tt class="tt">info</tt></a></h2>
+
+<p> <a name="ch-ref-dat-info">&#09;</a> <a name="idx-80193872">&#09;</a>  <tt class="tt">info</tt> is a MATLAB structure containing a subfield for each item in the MOSEK optimization task database, e.g. the <tt class="tt">info.MSK_DINF_BI_CPUTIME</tt> field specifies the amount of time spent in the basis identification in the last optimization. In Sections <a title="F.13. Double information items" href="node022.html#constclass*mosek*dinfitem">F.13</a> and <a title="F.17. Integer information items." href="node022.html#constclass*mosek*iinfitem">F.17</a> all the items in the task information database are listed.</p>
+
+</div>
+
+<div>
+<h2><a name="247863128">8.1.8. <tt class="tt">symbcon</tt></a></h2>
+
+<p> <a name="ch-ref-dat-symbcon">&#09;</a> <a name="idx-80164336">&#09;</a>  <tt class="tt">symbcon</tt> is a MATLAB structure containing a subfield for each MOSEK symbolic constant, e.g. the field <tt class="tt">symbcon.MSK_DINF_BI_CPUTIME</tt> specifies the value of the symbolic constant &#8220;<tt class="tt">MSK_DINF_BI_CPUTIME</tt>&#8221;. In Appendix <a title="F. Symbolic constants" href="node022.html#appendix-symbolic-constants">F</a> allthe symbolic constants are listed.</p>
+
+</div>
+
+<div>
+<h2><a name="247864856">8.1.9. <tt class="tt">callback</tt></a></h2>
+
+<p> <a name="idx-80204216">&#09;</a> <a name="ch-ref-sec-dat-callback">&#09;</a>  <tt class="tt">callback</tt> A MATLAB structure containing the subfields (all of them are optional):  </p>
+
+<dl class="description">
+<dt><tt class="tt">.loghandle</tt></dt>
+<dd>
+<p> A MATLAB data structure or just <tt class="tt">[]</tt>.</p>
+</dd>
+<dt><tt class="tt">.log</tt></dt>
+<dd>
+<p> The name of a user-defined function which must accept two input arguments, e.g. </p>
+
+<pre class="verbatim">function myfunc(handle,str)
+</pre>
+
+<p>  where <tt class="tt">handle</tt> will be identical to <tt class="tt">callback.handle</tt> when <tt class="tt">myfunc</tt> is called, and <tt class="tt">str</tt> is a string of text from the log file.</p>
+</dd>
+<dt><tt class="tt">.iterhandle</tt></dt>
+<dd>
+<p> A MATLAB data structure or just <tt class="tt">[]</tt>.</p>
+</dd>
+<dt><tt class="tt">.iter</tt></dt>
+<dd>
+<p> The name of a user-defined function which must accept three input arguments, e.g. </p>
+
+<pre class="verbatim">function myfunc(handle,where,info)
+</pre>
+
+<p>  where <tt class="tt">handle</tt> will be identical to <tt class="tt">callback.iterhandle</tt> when <tt class="tt">myfunc</tt> is called, <tt class="tt">where</tt> indicates the current progress of the colver and <tt class="tt">info</tt> is the current information database. See <a title="8.1.7. info" href="node010.html#ch-ref-dat-info">8.1.7</a> for further details about the <tt class="tt">info</tt> data structure.</p>
+</dd>
+</dl>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="247873408">8.2. An example of a command reference</a></h1>
+
+<p> All functions are documented using the format: </p>
+
+<ul class="itemize">
+<li class="sumitem">
+<p><tt class="tt">somefunction</tt></p>
+
+<dl class="description">
+<dt>Description:</dt>
+<dd>
+<p> The purpose of the function.</p>
+</dd>
+<dt>Syntax:</dt>
+<dd>
+<pre class="verbatim">[ret1,ret2] = somefunction(arg1,arg2) </pre>
+</dd>
+<dt>Arguments:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">arg1</tt></dt>
+<dd>
+<p> A description of this argument. </p>
+</dd>
+<dt><tt class="tt">arg2</tt></dt>
+<dd>
+<p> (Optional) A description of this argument which is optional. However, if argument 3 is specified, this argument must be specified too. </p>
+</dd>
+<dt><tt class="tt">arg3</tt></dt>
+<dd>
+<p> Another useful argument. </p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">ret1</tt></dt>
+<dd>
+<p> A description of the first return <tt class="tt">ret1</tt>. </p>
+</dd>
+<dt><tt class="tt">ret2</tt></dt>
+<dd>
+<p> (Optional) A description of the second return <tt class="tt">ret2</tt>. </p>
+</dd>
+</dl>
+</dd>
+<dt>Comments:</dt>
+<dd>
+<p>Potentially some comments about the function.</p>
+</dd>
+<dt>Examples:</dt>
+<dd>
+<p>Some examples of the use of the function.</p>
+</dd>
+</dl>
+</li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="247879296">8.3. Functions provided by the MOSEK optimization toolbox</a></h1>
+
+<ul class="itemize">
+<li class="sumitem">
+<p><tt class="tt">mosekopt</tt> </p>
+
+<dl class="description">
+<dt>Description</dt>
+<dd>
+<p>  Solves an optimization problem. Data specifying the optimization problem can either be read from a file or be inputted directly from MATLAB. It is also possible to write a file using <tt class="tt">mosekopt</tt>.</p>
+</dd>
+<dt>Syntax:</dt>
+<dd>
+<pre class="verbatim">[rcode,res] = mosekopt(cmd,prob,param,callback) 
+      </pre>
+</dd>
+<dt>Arguments:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">cmd</tt></dt>
+<dd>
+<p> <tt class="tt">cmd</tt> is a string containing commands to MOSEK on what to do. E.g. the string <tt class="tt">`minimize info'</tt> means that the objective should be minimized, and information about the optimization process should be returned in <tt class="tt">res.info</tt>. The following commands are recognized by <tt class="tt">mosekopt</tt>:  </p>
+
+<dl class="description">
+<dt><tt class="tt">aformat(n)</tt></dt>
+<dd>
+<p> If the problem data are read from a file, this command controls the format <tt class="tt">res.prob.a</tt> upon return. For <tt class="tt">aformat(0)</tt> <tt class="tt">res.prob.a</tt> is a sparse matrix, and for <tt class="tt">aformat(1)</tt> the constraint matrix is given in coordinate format in which case the sparse matrix can be constructed as </p>
+
+<pre class="verbatim">m = % number of constraints
+n = % number of variables
+a = sparse(res.prob.a.subi,...
+           res.prob.a.subj,...
+           res.prob.a.val,...
+           m,n);
+</pre>
+</dd>
+<dt><tt class="tt">anapro</tt></dt>
+<dd>
+<p> Runs the problem analyzer. </p>
+</dd>
+<dt><tt class="tt">echo(n)</tt></dt>
+<dd>
+<p> Controls how much information is echoed to the screen. Here, <tt class="tt">n</tt> must be a nonnegative integer, where 0 means that no information is displayed and 3 means that all information is displayed. </p>
+</dd>
+<dt><tt class="tt">info</tt></dt>
+<dd>
+<p> Return the complete task information database in <tt class="tt">res.info</tt>. This database contains various task specific information. See Section <a title="8.1.7. info" href="node010.html#ch-ref-dat-info">8.1.7</a> for details the <tt class="tt">info</tt> data structure. </p>
+</dd>
+<dt><tt class="tt">param</tt></dt>
+<dd>
+<p> Return the complete parameter database in <tt class="tt">res.param</tt>. </p>
+</dd>
+<dt><tt class="tt">maximize</tt></dt>
+<dd>
+<p> Maximize the objective. </p>
+</dd>
+<dt><tt class="tt">minimize</tt></dt>
+<dd>
+<p> Minimize the objective. </p>
+</dd>
+<dt><tt class="tt">nokeepenv</tt></dt>
+<dd>
+<p> Delete the MOSEK environment after each run. This can increase the license checkout overhead significantly and is therefore only intended as a debug feature. </p>
+</dd>
+<dt><tt class="tt">read(name)</tt></dt>
+<dd>
+<p> Request that data is read from a file &#8220;<tt class="tt">name</tt>&#8221;. </p>
+</dd>
+<dt><tt class="tt">statuskeys(n)</tt></dt>
+<dd>
+<p> Controls the format of status keys (problem status, solution status etc.) in the returned problem, where <tt class="tt">statuskeys(0)</tt> means that all the status keys are returned as strings, and <tt class="tt">statuskeys(1)</tt> means that all the status keys are returned as numeric codes. </p>
+</dd>
+<dt><tt class="tt">symbcon</tt></dt>
+<dd>
+<p> Return the <tt class="tt">symbcon</tt> data structure in <tt class="tt">res.symbcon</tt>. See Section <a title="8.1.8. symbcon" href="node010.html#ch-ref-dat-symbcon">8.1.8</a> for details on the <tt class="tt">symbcon</tt> data structure. </p>
+</dd>
+<dt><tt class="tt">write(name)</tt>,<tt class="tt">write()</tt></dt>
+<dd>
+<p> Write problem to the file &#8220;<tt class="tt">name</tt>&#8221;. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">prob</tt></dt>
+<dd>
+<p> (Optional) A MATLAB structure containing the problem data. See Table <a title="8.1. Data structures" href="node010.html#CH:MATLAB:SEC:DATSTRUC">8.1</a> for details. </p>
+</dd>
+<dt><tt class="tt">param</tt></dt>
+<dd>
+<p> (Optional) A MATLAB structure which is used to specify algorithmic parameters to MOSEK. The fields of <tt class="tt">param</tt> must be valid MOSEK parameter names. Moreover, the values corresponding to the fields must be of a valid type, i.e. the value of a string parameter must be a string, the value of an integer paramter must be an integer etc. </p>
+</dd>
+<dt><tt class="tt">callback</tt></dt>
+<dd>
+<p> (Optional) A MATLAB structure defining call-back data and functions. See Sections <a title="7.22. User call-back functions" href="node009.html#ch-gt-sec-callback">7.22</a> and <a title="8.1.9. callback" href="node010.html#ch-ref-sec-dat-callback">8.1.9</a> for details. </p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">rcode</tt></dt>
+<dd>
+<p> Return code. The interpretation of the value of the return code is listed in Appendix <a title="F. Symbolic constants" href="node022.html#appendix-symbolic-constants">F</a>. </p>
+</dd>
+<dt><tt class="tt">res</tt></dt>
+<dd>
+<p> (Optional) Solution obtained by the interior-point algorithm. </p>
+
+<dl class="description">
+<dt><tt class="tt">.sol</tt></dt>
+<dd>
+<p> The data structure of the type <tt class="tt">sol</tt> is discussed in Section <a title="8.1. Data structures" href="node010.html#CH:MATLAB:SEC:DATSTRUC">8.1</a>. </p>
+</dd>
+<dt><tt class="tt">.info</tt></dt>
+<dd>
+<p> A MATLAB structure containing the task information database which contains various task related information such as the number of iterations used to solve the problem. However, this field is only defined if <tt class="tt">info</tt> appeared in the <tt class="tt">cmd</tt> command when <tt class="tt">mosekopt</tt> is invoked. </p>
+</dd>
+<dt><tt class="tt">.param</tt></dt>
+<dd>
+<p> A MATLAB structure which contain the complete MOSEK parameter database. However, this field is defined only if the <tt class="tt">param</tt> command is present in <tt class="tt">cmd</tt> when <tt class="tt">mosekopt</tt> is invoked. </p>
+</dd>
+<dt><tt class="tt">.prob</tt></dt>
+<dd>
+<p> Contains the problem data if the problem data was read from a file. </p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Examples:</dt>
+<dd>
+<p> The following example demonstrates how to display the MOSEK parameter database and how to use the primal simplex optimizer instead of the default optimizer.  </p>
+
+<pre class="verbatimcode">% Obtain the parameter database.
+[rcode,res] = mosekopt('param');
+
+% Display the parameter database.
+res.param
+param = res.param;
+
+% Modify a parameter.
+param.MSK_IPAR_OPTIMIZER = 3
+
+% Optimize a problem.
+[rcode,res]=mosekopt('minimize info',prob,param);
+
+% Display the information database.
+res.info
+</pre>
+</dd>
+</dl>
+</li>
+<li class="sumitem"><tt class="tt">msklpopt</tt> </li>
+<li class="sumitem"><tt class="tt">mskqpopt</tt> </li>
+<li class="sumitem"><tt class="tt">mskenopt</tt> </li>
+<li class="sumitem"><tt class="tt">mskgpopt</tt> </li>
+<li class="sumitem">
+<p><tt class="tt">mskscopt</tt> </p>
+
+<dl class="description">
+<dt>Description</dt>
+<dd>
+<p> These functions provide an easy-to-use but less flexible interface than the <tt class="tt">mosekopt</tt> function. In fact these procedures is just wrappers around the <tt class="tt">mosekopt</tt> interface and they are defined in MATLAB m-files.</p>
+</dd>
+<dt>Syntax:</dt>
+<dd>
+<pre class="verbatim">res = msklpopt(c,a,blc,buc,blx,bux,param,cmd);
+res = mskqpopt(q,c,a,blc,buc,blx,bux,param,cmd);
+res = mskenopt(d,c,a,blc,buc,blx,bux,param,cmd);
+res = mskgpopt(d,a,map,param,cmd);
+res = mskscopt(opr,opri,oprj,oprf,oprg,...
+               c,a,blc,buc,blx,bux,param,cmd)</pre>
+</dd>
+<dt>Arguments:</dt>
+<dd>
+<p> For a description of the arguments we refer the reader to the actual m files stored in </p>
+
+<pre class="verbatim">&lt;root&gt;\mosek\6\toolbox\matlab\solvers 
+</pre>
+
+<p>  Please note that the MATLAB command <tt class="tt">help</tt>, e.g. </p>
+
+<pre class="verbatim">help msklpopt 
+</pre>
+
+<p>  will produce some usage information for the functions.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>
+<p>Identical to the <tt class="tt">res</tt> structure returned by <tt class="tt">mosekopt</tt>. </p>
+</dd>
+</dl>
+</li>
+<li class="sumitem">
+<p><tt class="tt">mskgpwri</tt></p>
+
+<dl class="description">
+<dt>Description</dt>
+<dd>
+<p> This function writes a Geometric Programming (gp) problem to a file in a format compatible with the <tt class="tt">mskexpopt</tt> command line tool. </p>
+</dd>
+<dt>Syntax:</dt>
+<dd>
+<pre class="verbatim">res = mskgpwri(c,a,map,filename)
+</pre>
+</dd>
+<dt>Arguments:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">c,a,map</tt></dt>
+<dd>
+<p> Data in the same format accepted by <tt class="tt">mskgpopt</tt>. </p>
+</dd>
+<dt><tt class="tt">filename</tt></dt>
+<dd>
+<p> The output file name. </p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>
+<p> Nothing. </p>
+</dd>
+</dl>
+</li>
+<li class="sumitem">
+<p><tt class="tt">mskgpread</tt></p>
+
+<dl class="description">
+<dt>Description</dt>
+<dd>
+<p> This function reads a Geometric Programming (gp) problem from a file compatible with the <tt class="tt">mskexpopt</tt> command line tool. </p>
+</dd>
+<dt>Syntax:</dt>
+<dd>
+<pre class="verbatim">[c,a,map] = mskgpread (filename)
+</pre>
+</dd>
+<dt>Arguments:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">filename</tt></dt>
+<dd>
+<p> The name of the file to read. </p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">c,a,map</tt></dt>
+<dd>
+<p> Data in the same format accepted by <tt class="tt">mskgpopt</tt>. </p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="247918104">8.4. MATLAB optimization toolbox compatible functions</a></h1>
+
+<p> The functions presented in this section intents to provide compatibility with the corresponding MATLAB optimization toolbox functions. Although they are not perfectly compatible, the differences usually do not cause any problems.</p>
+
+<div>
+<h2><a name="247879440">8.4.1. Linear and quadratic optimization</a></h2>
+
+<ul class="itemize">
+<li class="sumitem">
+<p><tt class="tt">linprog</tt> </p>
+
+<dl class="description">
+<dt>Description</dt>
+<dd>
+<p>Solves the linear optimization problem:  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math248.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & f^{T}x &  & \\\nonumber{}\mbox{subject to} & Ax & \leq{} & b,\\\nonumber{} & Bx & = & c,\\\nonumber{} & l\leq{}x\leq{}u. &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</dd>
+<dt>Syntax:</dt>
+<dd>
+<pre class="verbatim">[x,fval,exitflag,output,lambda]
+  = linprog(f,A,b,B,c,l,u,x0,options) </pre>
+</dd>
+<dt>Arguments:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">f</tt></dt>
+<dd>
+<p> The objective function. </p>
+</dd>
+<dt><tt class="tt">A</tt></dt>
+<dd>
+<p> Constraint matrix for the less-than equal inequalities. Use <span class="math"><span class="mi">A</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no inequalities. </p>
+</dd>
+<dt><tt class="tt">b</tt></dt>
+<dd>
+<p> Right-hand side for the less-than equal inequalities. Use <span class="math"><span class="mi">b</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no inequalities. </p>
+</dd>
+<dt><tt class="tt">B</tt></dt>
+<dd>
+<p> (Optional) Constraint matrix for the equalities. Use <span class="math"><span class="mi">B</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no equalities. </p>
+</dd>
+<dt><tt class="tt">c</tt></dt>
+<dd>
+<p> (Optional) Right-hand side for the equalities. Use <span class="math"><span class="mi">c</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no equalities. </p>
+</dd>
+<dt><tt class="tt">l</tt></dt>
+<dd>
+<p> (Optional) Lower bounds on the variables. Please use <span class="math"><span class="mo">-</span>&infin;</span> to represent infinite lower bounds. </p>
+</dd>
+<dt><tt class="tt">u</tt></dt>
+<dd>
+<p> (Optional) Upper bounds on the variables. Please use <span class="math">&infin;</span> to represent infinite upper bounds. </p>
+</dd>
+<dt><tt class="tt">x0</tt></dt>
+<dd>
+<p> (Optional) An initial guess for the starting point. This information is ignored by MOSEK. </p>
+</dd>
+<dt>options</dt>
+<dd>
+<p> (Optional) An optimization options structure. See the <tt class="tt">optimset</tt> function for the definition of the optimization options structure. <tt class="tt">linprog</tt> uses the options </p>
+
+<dl class="description">
+<dt><tt class="tt">.Diagnostics</tt></dt>
+<dd></dd>
+<dt><tt class="tt">.Display</tt></dt>
+<dd></dd>
+<dt><tt class="tt">.MaxIter</tt></dt>
+<dd></dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">x</tt></dt>
+<dd>
+<p> The optimal <span class="math"><span class="mi">x</span></span> solution. </p>
+</dd>
+<dt><tt class="tt">fval</tt></dt>
+<dd>
+<p> The optimal objective value, i.e. <span class="math"><img src="math/math249.png" alt="[[MathCmd 249]]"/></span>. </p>
+</dd>
+<dt><tt class="tt">exitflag</tt></dt>
+<dd>
+<p> A number which has the interpretation: </p>
+
+<dl class="description">
+<dt><span class="math"><span class="mo">&lt;</span><span class="mn">0</span></span></dt>
+<dd>
+<p> The problem is likely to be either primal or dual infeasible. </p>
+</dd>
+<dt><span class="math"><span class="mo">=</span><span class="mn">0</span></span></dt>
+<dd>
+<p> The maximum number of iterations was reached. </p>
+</dd>
+<dt><span class="math"><span class="mo">&gt;</span><span class="mn">0</span></span></dt>
+<dd>
+<p> <span class="math"><span class="mi">x</span></span> is an optimal solution. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">output</tt></dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.iterations</tt></dt>
+<dd>
+<p> Number of iterations spent to reach the optimum. </p>
+</dd>
+<dt><tt class="tt">.algorithm</tt></dt>
+<dd>
+<p> Always defined as 'large-scale: interior-point'. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">lambda</tt></dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.lower</tt></dt>
+<dd>
+<p> Lagrange multipliers for lower bounds <span class="math"><span class="mi">l</span></span>. </p>
+</dd>
+<dt><tt class="tt">.upper</tt></dt>
+<dd>
+<p> Lagrange multipliers for upper bounds <span class="math"><span class="mi">u</span></span>. </p>
+</dd>
+<dt><tt class="tt">.ineqlin</tt></dt>
+<dd>
+<p> Lagrange multipliers for the inequalities. </p>
+</dd>
+<dt><tt class="tt">.eqlin</tt></dt>
+<dd>
+<p> Lagrange multipliers for the equalities. </p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Examples:</dt>
+<dd>
+<pre class="verbatimcode">% Optimize a problem having only linear inequalities.
+x = linprog(f,A,b);
+</pre>
+</dd>
+</dl>
+</li>
+<li class="sumitem">
+<p><tt class="tt">quadprog</tt> </p>
+
+<dl class="description">
+<dt>Description</dt>
+<dd>
+<p> Solves the quadratic optimization problem:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math250.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & \frac{1}{2}x^{T}Hx+f^{T}x &  & \\\nonumber{}\mbox{subject to} & Ax & \leq{} & b,\\\nonumber{} & Bx & = & c,\\\nonumber{} & l\leq{}x\leq{}u. &  &\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:QUADPROG">&#09;</a>(8.4.1)</td></tr>
+</tbody>
+</table>
+</dd>
+<dt>Syntax:</dt>
+<dd>
+<pre class="verbatim">[x,fval,exitflag,output,lambda]
+  = quadprog(H,f,A,b,B,c,l,u,x0,options) </pre>
+</dd>
+<dt>Arguments:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">H</tt></dt>
+<dd>
+<p> Hessian of the objective function. <span class="math"><span class="mi">H</span></span> must be a symmetric matrix. Contrary to the MATLAB optimization toolbox, MOSEK handles only the cases where <span class="math"><span class="mi">H</span></span> is positive semi-definite. On the other hand MOSEK always computes a global optimum, i.e. the objective function has to be strictly convex. </p>
+</dd>
+<dt><tt class="tt">f</tt></dt>
+<dd>
+<p> See (<a href="node010.html#CH:MATLAB:EQ:QUADPROG">8.4.1</a>) for the definition. </p>
+</dd>
+<dt><tt class="tt">A</tt></dt>
+<dd>
+<p> Constraint matrix for the less-than equal inequalities. Use <span class="math"><span class="mi">A</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no inequalities. </p>
+</dd>
+<dt><tt class="tt">b</tt></dt>
+<dd>
+<p> Right-hand side for the less-than equal inequalities. Use <span class="math"><span class="mi">b</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no inequalities. </p>
+</dd>
+<dt><tt class="tt">B</tt></dt>
+<dd>
+<p> (Optional) Constraint matrix for the equalities. Use <span class="math"><span class="mi">B</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no equalities. </p>
+</dd>
+<dt><tt class="tt">c</tt></dt>
+<dd>
+<p> (Optional) Right-hand side for the equalities. Use <span class="math"><span class="mi">c</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no equalities. </p>
+</dd>
+<dt><tt class="tt">l</tt></dt>
+<dd>
+<p> (Optional) Lower bounds on the variables. Please use <span class="math"><span class="mo">-</span>&infin;</span> to represent infinite lower bounds. </p>
+</dd>
+<dt><tt class="tt">u</tt></dt>
+<dd>
+<p> (Optional) Upper bounds on the variables. Please use <span class="math">&infin;</span> to represent infinite upper bounds. </p>
+</dd>
+<dt><tt class="tt">x0</tt></dt>
+<dd>
+<p> (Optional) An initial guess for the starting point. This information is ignored by MOSEK. </p>
+</dd>
+<dt>options</dt>
+<dd>
+<p> (Optional) An optimization options structure. See the <tt class="tt">optimset</tt> function for the definition of the optimizations options structure. <tt class="tt">quadprog</tt> uses the options </p>
+
+<dl class="description">
+<dt><tt class="tt">.Diagnostics</tt></dt>
+<dd></dd>
+<dt><tt class="tt">.Display</tt></dt>
+<dd></dd>
+<dt><tt class="tt">.MaxIter</tt></dt>
+<dd></dd>
+<dt><tt class="tt">.Write</tt></dt>
+<dd></dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">x</tt></dt>
+<dd>
+<p> The <span class="math"><span class="mi">x</span></span> solution. </p>
+</dd>
+<dt><tt class="tt">fval</tt></dt>
+<dd>
+<p> The optimal objective value i.e. <span class="math"><img src="math/math251.png" alt="[[MathCmd 251]]"/></span>. </p>
+</dd>
+<dt><tt class="tt">exitflag</tt></dt>
+<dd>
+<p> A scalar which has the interpretation: </p>
+
+<dl class="description">
+<dt><span class="math"><span class="mo">&lt;</span><span class="mn">0</span></span></dt>
+<dd>
+<p> The problem is likely to be either primal or dual infeasible. </p>
+</dd>
+<dt><span class="math"><span class="mo">=</span><span class="mn">0</span></span></dt>
+<dd>
+<p> The maximum number of iterations was reached. </p>
+</dd>
+<dt><span class="math"><span class="mo">&gt;</span><span class="mn">0</span></span></dt>
+<dd>
+<p> <span class="math"><span class="mi">x</span></span> is an optimal solution. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">output</tt></dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.iterations</tt></dt>
+<dd>
+<p> Number of iterations spent to reach the optimum. </p>
+</dd>
+<dt><tt class="tt">.algorithm</tt></dt>
+<dd>
+<p> Always defined as 'large-scale: interior-point'. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">lambda</tt></dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.lower</tt></dt>
+<dd>
+<p> Lagrange multipliers for lower bounds <span class="math"><span class="mi">l</span></span>. </p>
+</dd>
+<dt><tt class="tt">.upper</tt></dt>
+<dd>
+<p> Lagrange multipliers for upper bounds <span class="math"><span class="mi">u</span></span>. </p>
+</dd>
+<dt><tt class="tt">.ineqlin</tt></dt>
+<dd>
+<p> Lagrange multipliers for inequalities. </p>
+</dd>
+<dt><tt class="tt">.eqlin</tt></dt>
+<dd>
+<p> Lagrange multipliers for equalities. </p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Examples:</dt>
+<dd>
+<pre class="verbatimcode">% Optimizes problem only
+% having linear inequalities.
+x = quadprog(H,f,A,b);
+</pre>
+</dd>
+</dl>
+</li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="247963944">8.4.2. For linear least squares problems</a></h2>
+
+<ul class="itemize">
+<li class="sumitem">
+<p>lsqlin </p>
+
+<dl class="description">
+<dt>Description</dt>
+<dd>
+<p>Solves the linear least squares problem:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math252.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & \frac{1}{2}\left\|Cx-d\right\|_{2}^{2} &  & \\\nonumber{}\mbox{subject to} & Ax & \leq{} & b,\\\nonumber{} & Bx & = & c,\\\nonumber{} & l\leq{}x\leq{}u. &  &\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:LSQLIN">&#09;</a>(8.4.2)</td></tr>
+</tbody>
+</table>
+</dd>
+<dt>Syntax:</dt>
+<dd>
+<pre class="verbatim">[x,resnorm,residual,exitflag,output,lambda]
+  = lsqlin(C,d,A,b,B,c,l,u,x0,options) </pre>
+</dd>
+<dt>Arguments:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">C</tt></dt>
+<dd>
+<p> A matrix. See problem (<a href="node010.html#CH:MATLAB:EQ:LSQLIN">8.4.2</a>) for the purpose of the argument. </p>
+</dd>
+<dt><tt class="tt">d</tt></dt>
+<dd>
+<p> A vector. See problem (<a href="node010.html#CH:MATLAB:EQ:LSQLIN">8.4.2</a>) for the purpose of the argument. </p>
+</dd>
+<dt><tt class="tt">A</tt></dt>
+<dd>
+<p> Constraint matrix for the less-than equal inequalities. Use <span class="math"><span class="mi">A</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no inequalities. </p>
+</dd>
+<dt><tt class="tt">b</tt></dt>
+<dd>
+<p> Right-hand side for the less-than equal inequalities. Use <span class="math"><span class="mi">b</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no inequalities. </p>
+</dd>
+<dt><tt class="tt">B</tt></dt>
+<dd>
+<p> (Optional) Constraint matrix for the equalities. Use <span class="math"><span class="mi">B</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no equalities. </p>
+</dd>
+<dt><tt class="tt">c</tt></dt>
+<dd>
+<p> (Optional) Right-hand side for the equalities. Use <span class="math"><span class="mi">c</span><span class="mo">=</span><span class="mo">[</span><span class="mo">]</span></span> if there are no equalities. </p>
+</dd>
+<dt><tt class="tt">l</tt></dt>
+<dd>
+<p> (Optional) Lower bounds on the variables. Please use <span class="math"><span class="mo">-</span>&infin;</span> to represent infinite lower bounds. </p>
+</dd>
+<dt><tt class="tt">u</tt></dt>
+<dd>
+<p> (Optional) Upper bounds on the variables. Please use <span class="math">&infin;</span> to represent infinite lower bounds. </p>
+</dd>
+<dt><tt class="tt">x0</tt></dt>
+<dd>
+<p> (Optional) An initial guess for the starting point. This information is ignored by MOSEK. </p>
+</dd>
+<dt>options</dt>
+<dd>
+<p> (Optional) An optimization options structure. See the function <tt class="tt">optimset</tt> function for the definition of the optimization options structure. <tt class="tt">lsqprog</tt> uses the options </p>
+
+<dl class="description">
+<dt><tt class="tt">.Diagnostics</tt></dt>
+<dd></dd>
+<dt><tt class="tt">.Display</tt></dt>
+<dd></dd>
+<dt><tt class="tt">.MaxIter</tt></dt>
+<dd></dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">x</tt></dt>
+<dd>
+<p> The optimal <span class="math"><span class="mi">x</span></span> solution. </p>
+</dd>
+<dt><tt class="tt">resnorm</tt></dt>
+<dd>
+<p> The squared norm of the optimal residuals, i.e. <span class="math"><img src="math/math253.png" alt="[[MathCmd 253]]"/></span> evaluated at the optimal solution. </p>
+</dd>
+<dt><tt class="tt">residual</tt></dt>
+<dd>
+<p> The residual <span class="math"><span class="mi">C</span><span class="mi">x</span><span class="mo">-</span><span class="mi">d</span></span>. </p>
+</dd>
+<dt><tt class="tt">exitflag</tt></dt>
+<dd>
+<p> A scalar which has the interpretation: </p>
+
+<dl class="description">
+<dt><span class="math"><span class="mo">&lt;</span><span class="mn">0</span></span></dt>
+<dd>
+<p> The problem is likely to be either primal or dual infeasible. </p>
+</dd>
+<dt><span class="math"><span class="mo">=</span><span class="mn">0</span></span></dt>
+<dd>
+<p> The maximum number of iterations was reached. </p>
+</dd>
+<dt><span class="math"><span class="mo">&gt;</span><span class="mn">0</span></span></dt>
+<dd>
+<p> <span class="math"><span class="mi">x</span></span> is the optimal solution. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">output</tt></dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.iterations</tt></dt>
+<dd>
+<p> Number of iterations spent to reach the optimum. </p>
+</dd>
+<dt><tt class="tt">.algorithm</tt></dt>
+<dd>
+<p> Always defined as 'large-scale: interior-point'. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">lambda</tt></dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.lower</tt></dt>
+<dd>
+<p> Lagrange multipliers for lower bounds <span class="math"><span class="mi">l</span></span>. </p>
+</dd>
+<dt><tt class="tt">.upper</tt></dt>
+<dd>
+<p> Lagrange multipliers for upper bounds <span class="math"><span class="mi">u</span></span>. </p>
+</dd>
+<dt><tt class="tt">.ineqlin</tt></dt>
+<dd>
+<p> Lagrange multipliers for inequalities. </p>
+</dd>
+<dt><tt class="tt">.eqlin</tt></dt>
+<dd>
+<p> Lagrange multipliers for equalities. </p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Examples:</dt>
+<dd>
+<pre class="verbatimcode">% Solve a linear least
+% squares problem.
+x = lsqlin(C,d,A,b);
+</pre>
+</dd>
+</dl>
+</li>
+<li class="sumitem">
+<p><tt class="tt">lsqnonneg</tt> </p>
+
+<dl class="description">
+<dt>Description</dt>
+<dd>
+<p> Solves the linear least squares problem:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math254.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & \frac{1}{2}\left\|Cx-d\right\|_{2}^{2} & \\\nonumber{}\mbox{subject to} & x\geq{}0. &\end{array}\end{math}"/></td>
+<td><a name="CH:MATLAB:EQ:LSQNONNEG">&#09;</a>(8.4.3)</td></tr>
+</tbody>
+</table>
+</dd>
+<dt>Syntax:</dt>
+<dd>
+<pre class="verbatim">[x,resnorm,residual,exitflag,output,lambda]
+  = lsqnonneg(C,d,x0,options) 
+</pre>
+</dd>
+<dt>Arguments:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">C</tt></dt>
+<dd>
+<p> See problem (<a href="node010.html#CH:MATLAB:EQ:LSQNONNEG">8.4.3</a>). </p>
+</dd>
+<dt><tt class="tt">d</tt></dt>
+<dd>
+<p> See problem (<a href="node010.html#CH:MATLAB:EQ:LSQNONNEG">8.4.3</a>). </p>
+</dd>
+<dt><tt class="tt">x0</tt></dt>
+<dd>
+<p> (Optional) An initial guess for the starting point. This information is ignored by MOSEK. </p>
+</dd>
+<dt>options</dt>
+<dd>
+<p> (Optional) An optimizations options structure. See the <tt class="tt">optimset</tt> function for the definition of the optimization options structure. <tt class="tt">lsqlin</tt> uses the options </p>
+
+<dl class="description">
+<dt><tt class="tt">.Diagnostics</tt></dt>
+<dd></dd>
+<dt><tt class="tt">.Display</tt></dt>
+<dd></dd>
+<dt><tt class="tt">.MaxIter</tt></dt>
+<dd></dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">x</tt></dt>
+<dd>
+<p> The <span class="math"><span class="mi">x</span></span> solution. </p>
+</dd>
+<dt><tt class="tt">resnorm</tt></dt>
+<dd>
+<p> The squared norm of the optimal residuals, i.e.  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math255.png" alt="\begin{displaymath}\nonumber{}\left\|Cx-d\right\|^{2}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  evaluated at the optimal solution. </p>
+</dd>
+<dt><tt class="tt">residual</tt></dt>
+<dd>
+<p> The residual <span class="math"><span class="mi">C</span><span class="mi">x</span><span class="mo">-</span><span class="mi">d</span></span>. </p>
+</dd>
+<dt><tt class="tt">exitflag</tt></dt>
+<dd>
+<p> A number which has the interpretation: </p>
+
+<dl class="description">
+<dt><span class="math"><span class="mo">&lt;</span><span class="mn">0</span></span></dt>
+<dd>
+<p> The problem is likely to be either primal or dual infeasible. </p>
+</dd>
+<dt><span class="math"><span class="mo">=</span><span class="mn">0</span></span></dt>
+<dd>
+<p> The maximum number of iterations was reached. </p>
+</dd>
+<dt><span class="math"><span class="mo">&gt;</span><span class="mn">0</span></span></dt>
+<dd>
+<p> <span class="math"><span class="mi">x</span></span> is optimal solution. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">output</tt></dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.iterations</tt></dt>
+<dd>
+<p> Number of iterations spend to reach the optimum. </p>
+</dd>
+<dt><tt class="tt">.algorithm</tt></dt>
+<dd>
+<p> Always defined to be 'large-scale: interior-point'. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">lambda</tt></dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">.lower</tt></dt>
+<dd>
+<p> Lagrange multipliers for lower bounds <span class="math"><span class="mi">l</span></span>. </p>
+</dd>
+<dt><tt class="tt">.upper</tt></dt>
+<dd>
+<p> Lagrange multipliers for upper bounds <span class="math"><span class="mi">u</span></span>. </p>
+</dd>
+<dt><tt class="tt">.ineqlin</tt></dt>
+<dd>
+<p> Lagrange multipliers for inequalities. </p>
+</dd>
+<dt><tt class="tt">.eqlin</tt></dt>
+<dd>
+<p> Lagrange multipliers for equalities. </p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Comments:</dt>
+<dd>
+<p>This procedure just provides an easy interface to <tt class="tt">lsqlin</tt>. Indeed all the procedure does is to call <tt class="tt">lsqlin</tt> with the appropriate arguments.</p>
+</dd>
+<dt>Examples:</dt>
+<dd>
+<pre class="verbatimcode">% Solve the problem
+x = lsqnonneg(C,d);
+</pre>
+</dd>
+</dl>
+</li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="248005408">8.4.3. The optimization options</a></h2>
+
+<p> The procedures in the optimization toolbox accepts some options controlling e.g. the amount of information displayed or the stopping criterion.</p>
+
+<p>In general, due to the fact that MOSEK and MATLAB optimization toolboxes employ different algorithms the toolboxes use different options. Therefore, the MOSEK optimization toolbox ignores most of the options recognized by the MATLAB toolbox. The description of the <tt class="tt">optimset</tt> function lists which MATLAB options MOSEK recoginizes.</p>
+
+<div>
+<h3><a name="248005984">8.4.3.1. Viewing and modifying the optimization options</a></h3>
+
+<ul class="itemize">
+<li class="sumitem">
+<p><tt class="tt">optimget</tt> </p>
+
+<dl class="description">
+<dt>Description</dt>
+<dd>
+<p>Obtains a value of an optimization parameter.</p>
+</dd>
+<dt>Syntax:</dt>
+<dd>
+<pre class="verbatim">val = optimget(options,param,default) </pre>
+</dd>
+<dt>Arguments:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">options</tt></dt>
+<dd>
+<p> The optimization options structure. </p>
+</dd>
+<dt><tt class="tt">param</tt></dt>
+<dd>
+<p> Name of the optimization parameter for which the value should be obtained. </p>
+</dd>
+<dt><tt class="tt">default</tt></dt>
+<dd>
+<p> (Optional) If <tt class="tt">param</tt> is not defined, the value of <tt class="tt">default</tt> is returned instead. </p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">val</tt></dt>
+<dd>
+<p> Value of the required option. If the option does not exist, then <tt class="tt">[]</tt> is returned unless the value <tt class="tt">'default'</tt> is defined in which case the default value is returned. </p>
+</dd>
+</dl>
+</dd>
+<dt>Comments:</dt>
+<dd>
+<p> See the <tt class="tt">optimset</tt> function for which parameters that can be set.</p>
+</dd>
+<dt>Examples:</dt>
+<dd>
+<pre class="verbatimcode">% Obtain the value of the diagnostics
+% option.
+val = optimget(options,'Diagnostics');
+
+% val is equal to the default value.
+val = optimget(options,'Nopar',1.0e-1);
+</pre>
+</dd>
+</dl>
+</li>
+<li class="sumitem">
+<p><tt class="tt">optimset</tt> </p>
+
+<dl class="description">
+<dt>Description</dt>
+<dd>
+<p> Obtains and modifies the optimization options structure. Only a subset of the fields in the optimization structure recognized by the MATLAB optimization toolbox is recognized by MOSEK.</p>
+
+<p>In addition the optimization options structure can be used to modify all the MOSEK specific parameters defined in Appendix <a title="E. Parameters" href="node021.html#APP:CH:PARAM">E</a>.  </p>
+
+<dl class="description">
+<dt><tt class="tt">.Diagnostics</tt></dt>
+<dd>
+<p> Used to control how much diagnostic information is printed. Following values are accepted: </p>
+
+<dl class="description">
+<dt><tt class="tt">off</tt></dt>
+<dd>
+<p> No diagnostic information is printed. </p>
+</dd>
+<dt><tt class="tt">on</tt></dt>
+<dd>
+<p> Diagnostic information is printed. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">.Display</tt></dt>
+<dd>
+<p> Defines what information is displayed. The following values are accepted: </p>
+
+<dl class="description">
+<dt><tt class="tt">off</tt></dt>
+<dd>
+<p> No output is displayed. </p>
+</dd>
+<dt><tt class="tt">iter</tt></dt>
+<dd>
+<p> Some output is displayed for each iteration. </p>
+</dd>
+<dt><tt class="tt">final</tt></dt>
+<dd>
+<p> Only the final output is displayed. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">.MaxIter</tt></dt>
+<dd>
+<p> Maximum number of iterations allowed. </p>
+</dd>
+<dt><tt class="tt">.Write</tt></dt>
+<dd>
+<p> A filename to write the problem to. If equal to the empty string no file is written. E.g the option </p>
+
+<pre class="verbatim">            Write(myfile.opf)
+            </pre>
+
+<p> writes the file <tt class="tt">myfile.opf</tt> in the <tt class="tt">opf</tt> format. </p>
+</dd>
+</dl>
+</dd>
+<dt>Syntax:</dt>
+<dd>
+<pre class="verbatim">options = optimset(arg1,arg2,
+                   param1,value1,
+                   param2,value2,...) </pre>
+</dd>
+<dt>Arguments:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">arg1</tt></dt>
+<dd>
+<p> (Optional) Is allowed to be any of the following two things: </p>
+
+<dl class="description">
+<dt>Any string</dt>
+<dd>
+<p> The same as using no argument. </p>
+</dd>
+<dt>A structure</dt>
+<dd>
+<p> The argument is assumed to be a structure containing options, which are copied to the return options. </p>
+</dd>
+</dl>
+</dd>
+<dt><tt class="tt">param1</tt></dt>
+<dd>
+<p> (Optional) A string containing the name of a parameter that should be modified. </p>
+</dd>
+<dt><tt class="tt">value1</tt></dt>
+<dd>
+<p> (Optional) The new value assigned to the parameter with the name <tt class="tt">param1</tt>. </p>
+</dd>
+<dt><tt class="tt">param2</tt></dt>
+<dd>
+<p> (Optional) Has the same interpretation as <tt class="tt">param1</tt>. </p>
+</dd>
+<dt><tt class="tt">value2</tt></dt>
+<dd>
+<p> (Optional) Has the same interpretation as <tt class="tt">value1</tt>. </p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt>
+<dd>
+<dl class="description">
+<dt><tt class="tt">options</tt></dt>
+<dd>
+<p> The updated optimization options structure. </p>
+</dd>
+</dl>
+</dd>
+<dt>Examples:</dt>
+<dd>
+<pre class="verbatimcode">% Obtain the default options.
+opt = optimset
+
+% Modify the value of the parameter
+% display in the optimization
+% options structure
+opt = optimset(opt,'display','on');
+
+% Return default options
+opt = optimset('whatever')
+
+% Modify a MOSEK parameter.
+opt = [];
+opt = optimset(opt,'MSK_DPAR_INTPNT_TOLMURED',1.0e-14);
+</pre>
+</dd>
+</dl>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node009.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 7. A guided tour" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node011.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  9. Case studies" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node009.html" target="_self">7. A guided tour</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node011.html" target="_self">9. Case studies</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:58:20 2012</div>
+</body></html>

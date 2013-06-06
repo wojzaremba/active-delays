@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>17. Response codes</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node018.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 16. Parameter reference" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node020.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  18. Constants" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node018.html" target="_self">16. Parameter reference</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node020.html" target="_self">18. Constants</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="293009672">17. Response codes</a></h1>
+
+<p> <a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a> <a name="chap-rescoderef">&#09;</a></p>
+
+<ul class="itemize">
+<li>(0)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_OK</tt>
+<br/>No error occurred. </li>
+<li>(50)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_OPEN_PARAM_FILE</tt>
+<br/>The parameter file could not be opened. </li>
+<li>(51)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_LARGE_BOUND</tt>
+<br/>A numerically large bound value is specified. </li>
+<li>(52)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_LARGE_LO_BOUND</tt>
+<br/>A numerically large lower bound value is specified. </li>
+<li>(53)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_LARGE_UP_BOUND</tt>
+<br/>A numerically large upper bound value is specified. </li>
+<li>(54)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_LARGE_CON_FX</tt>
+<br/>An equality constraint is fixed to a numerically large value. This can cause numerical problems. </li>
+<li>(57)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_LARGE_CJ</tt>
+<br/>A numerically large value is specified for one <span class="math"><img src="math/math1099.png" alt="[[MathCmd 1099]]"/></span>. </li>
+<li>(62)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_LARGE_AIJ</tt>
+<br/>A numerically large value is specified for an <span class="math"><img src="math/math897.png" alt="[[MathCmd 897]]"/></span> element in <span class="math"><span class="mi">A</span></span>. The parameter <a href="node018.html#common-const*mosek*dparam*data-tol-aij-large"><tt class="tt">MSK_DPAR_DATA_TOL_AIJ_LARGE</tt></a> controls when an <span class="math"><img src="math/math897.png" alt="[[MathCmd 897]]"/></span> is considered large. </li>
+<li>(63)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_ZERO_AIJ</tt>
+<br/>One or more zero elements are specified in A. </li>
+<li>(65)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_NAME_MAX_LEN</tt>
+<br/>A name is longer than the buffer that is supposed to hold it. </li>
+<li>(66)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_SPAR_MAX_LEN</tt>
+<br/>A value for a string parameter is longer than the buffer that is supposed to hold it. </li>
+<li>(70)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_MPS_SPLIT_RHS_VECTOR</tt>
+<br/>An RHS vector is split into several nonadjacent parts in an MPS file. </li>
+<li>(71)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_MPS_SPLIT_RAN_VECTOR</tt>
+<br/>A RANGE vector is split into several nonadjacent parts in an MPS file. </li>
+<li>(72)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_MPS_SPLIT_BOU_VECTOR</tt>
+<br/>A BOUNDS vector is split into several nonadjacent parts in an MPS file. </li>
+<li>(80)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_LP_OLD_QUAD_FORMAT</tt>
+<br/>Missing '/2' after quadratic expressions in bound or objective. </li>
+<li>(85)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_LP_DROP_VARIABLE</tt>
+<br/>Ignored a variable because the variable was not previously defined. Usually this implies that a variable appears in the bound section but not in the objective or the constraints. </li>
+<li>(200)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_NZ_IN_UPR_TRI</tt>
+<br/>Non-zero elements specified in the upper triangle of a matrix were ignored. </li>
+<li>(201)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_DROPPED_NZ_QOBJ</tt>
+<br/>One or more non-zero elements were dropped in the Q matrix in the objective. </li>
+<li>(250)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_IGNORE_INTEGER</tt>
+<br/>Ignored integer constraints. </li>
+<li>(251)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_NO_GLOBAL_OPTIMIZER</tt>
+<br/>No global optimizer is available. </li>
+<li>(270)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_MIO_INFEASIBLE_FINAL</tt>
+<br/>The final mixed-integer problem with all the integer variables fixed at their optimal values is infeasible. </li>
+<li>(300)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_SOL_FILTER</tt>
+<br/>Invalid solution filter is specified. </li>
+<li>(350)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_UNDEF_SOL_FILE_NAME</tt>
+<br/>Undefined name occurred in a solution. </li>
+<li>(351)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_SOL_FILE_IGNORED_CON</tt>
+<br/>One or more lines in the constraint section were ignored when reading a solution file. </li>
+<li>(352)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_SOL_FILE_IGNORED_VAR</tt>
+<br/>One or more lines in the variable section were ignored when reading a solution file. </li>
+<li>(400)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_TOO_FEW_BASIS_VARS</tt>
+<br/>An incomplete basis has been specified. Too few basis variables are specified. </li>
+<li>(405)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_TOO_MANY_BASIS_VARS</tt>
+<br/>A basis with too many variables has been specified. </li>
+<li>(500)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_LICENSE_EXPIRE</tt>
+<br/>The license expires. </li>
+<li>(501)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_LICENSE_SERVER</tt>
+<br/>The license server is not responding. </li>
+<li>(502)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_EMPTY_NAME</tt>
+<br/>A variable or constraint name is empty. The output file may be invalid. </li>
+<li>(503)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_USING_GENERIC_NAMES</tt>
+<br/>The file writer reverts to generic names because a name is blank. </li>
+<li>(505)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_LICENSE_FEATURE_EXPIRE</tt>
+<br/>The license expires. </li>
+<li>(705)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_ZEROS_IN_SPARSE_ROW</tt>
+<br/>One or more (near) zero elements are specified in a sparse row of a matrix. It is redundant to specify zero elements. Hence it may indicate an error. </li>
+<li>(710)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_ZEROS_IN_SPARSE_COL</tt>
+<br/>One or more (near) zero elements are specified in a sparse column of a matrix. It is redundant to specify zero elements. Hence, it may indicate an error. </li>
+<li>(800)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_INCOMPLETE_LINEAR_DEPENDENCY_CHECK</tt>
+<br/>The linear dependency check(s) was not completed and therefore the <span class="math"><span class="mi">A</span></span> matrix may contain linear dependencies. </li>
+<li>(801)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_ELIMINATOR_SPACE</tt>
+<br/>The eliminator is skipped at least once due to lack of space. </li>
+<li>(802)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_PRESOLVE_OUTOFSPACE</tt>
+<br/>The presolve is incomplete due to lack of space. </li>
+<li>(803)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_PRESOLVE_BAD_PRECISION</tt>
+<br/>The presolve estimates that the model is specified with insufficient precision. </li>
+<li>(804)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_WRITE_DISCARDED_CFIX</tt>
+<br/>The fixed objective term could not be converted to a variable and was discarded in the output file. </li>
+<li>(805)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_CONSTRUCT_SOLUTION_INFEAS</tt>
+<br/>After fixing the integer variables at the suggested values then the problem is infeasible. </li>
+<li>(807)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_CONSTRUCT_INVALID_SOL_ITG</tt>
+<br/>The intial value for one or more of the integer variables is not feasible. </li>
+<li>(810)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_CONSTRUCT_NO_SOL_ITG</tt>
+<br/>The construct solution requires an integer solution. </li>
+<li>(900)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_ANA_LARGE_BOUNDS</tt>
+<br/>This warning is issued by the problem analyzer, if one or more constraint or variable bounds are very large. One should consider omitting these bounds entirely by setting them to +inf or -inf. </li>
+<li>(901)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_ANA_C_ZERO</tt>
+<br/>This warning is issued by the problem analyzer, if the coefficients in the linear part of the objective are all zero. </li>
+<li>(902)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_ANA_EMPTY_COLS</tt>
+<br/>This warning is issued by the problem analyzer, if columns, in which all coefficients are zero, are found. </li>
+<li>(903)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_ANA_CLOSE_BOUNDS</tt>
+<br/>This warning is issued by problem analyzer, if ranged constraints or variables with very close upper and lower bounds are detected. One should consider treating such constraints as equalities and such variables as constants. </li>
+<li>(904)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_WRN_ANA_ALMOST_INT_BOUNDS</tt>
+<br/>This warning is issued by the problem analyzer if a constraint is bound nearly integral. </li>
+<li>(1000)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE</tt>
+<br/>Invalid license. </li>
+<li>(1001)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE_EXPIRED</tt>
+<br/>The license has expired. </li>
+<li>(1002)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE_VERSION</tt>
+<br/>The license is valid for another version of MOSEK. </li>
+<li>(1005)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SIZE_LICENSE</tt>
+<br/>The problem is bigger than the license. </li>
+<li>(1006)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PROB_LICENSE</tt>
+<br/>The software is not licensed to solve the problem. </li>
+<li>(1007)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FILE_LICENSE</tt>
+<br/>Invalid license file. </li>
+<li>(1008)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MISSING_LICENSE_FILE</tt>
+<br/>MOSEK cannot find the license file or license server. Usually this happens if the operating system variable <tt class="tt">MOSEKLM_LICENSE_FILE</tt> is not set up appropriately. Please see the MOSEK installation manual for details. </li>
+<li>(1010)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SIZE_LICENSE_CON</tt>
+<br/>The problem has too many constraints to be solved with the available license. </li>
+<li>(1011)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SIZE_LICENSE_VAR</tt>
+<br/>The problem has too many variables to be solved with the available license. </li>
+<li>(1012)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SIZE_LICENSE_INTVAR</tt>
+<br/>The problem contains too many integer variables to be solved with the available license. </li>
+<li>(1013)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_OPTIMIZER_LICENSE</tt>
+<br/>The optimizer required is not licensed. </li>
+<li>(1014)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FLEXLM</tt>
+<br/>The FLEXlm license manager reported an error. </li>
+<li>(1015)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE_SERVER</tt>
+<br/>The license server is not responding. </li>
+<li>(1016)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE_MAX</tt>
+<br/>Maximum number of licenses is reached. </li>
+<li>(1017)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE_MOSEKLM_DAEMON</tt>
+<br/>The MOSEKLM license manager daemon is not up and running. </li>
+<li>(1018)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE_FEATURE</tt>
+<br/>A requested feature is not available in the license file(s). Most likely due to an incorrect license system setup. </li>
+<li>(1019)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PLATFORM_NOT_LICENSED</tt>
+<br/>A requested license feature is not available for the required platform. </li>
+<li>(1020)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE_CANNOT_ALLOCATE</tt>
+<br/>The license system cannot allocate the memory required. </li>
+<li>(1021)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE_CANNOT_CONNECT</tt>
+<br/>MOSEK cannot connect to the license server. Most likely the license server is not up and running. </li>
+<li>(1025)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE_INVALID_HOSTID</tt>
+<br/>The host ID specified in the license file does not match the host ID of the computer. </li>
+<li>(1026)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE_SERVER_VERSION</tt>
+<br/>The version specified in the checkout request is greater than the highest version number the daemon supports. </li>
+<li>
+<p>(1027)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LICENSE_NO_SERVER_SUPPORT</tt>
+<br/>The license server does not support the requested feature. Possible reasons for this error include: </p>
+
+<ul class="itemize">
+<li>The feature has expired. </li>
+<li>The feature's start date is later than today's date. </li>
+<li>The version requested is higher than feature's the highest supported version. </li>
+<li>A corrupted license file. </li>
+</ul>
+
+<p>Try restarting the license and inspect the license server debug file, usually called <tt class="tt">lmgrd.log</tt>. </p>
+</li>
+<li>(1030)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_OPEN_DL</tt>
+<br/>A dynamic link library could not be opened. </li>
+<li>(1035)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_OLDER_DLL</tt>
+<br/>The dynamic link library is older than the specified version. </li>
+<li>(1036)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NEWER_DLL</tt>
+<br/>The dynamic link library is newer than the specified version. </li>
+<li>(1040)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LINK_FILE_DLL</tt>
+<br/>A file cannot be linked to a stream in the DLL version. </li>
+<li>(1045)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_THREAD_MUTEX_INIT</tt>
+<br/>Could not initialize a mutex. </li>
+<li>(1046)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_THREAD_MUTEX_LOCK</tt>
+<br/>Could not lock a mutex. </li>
+<li>(1047)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_THREAD_MUTEX_UNLOCK</tt>
+<br/>Could not unlock a mutex. </li>
+<li>(1048)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_THREAD_CREATE</tt>
+<br/>Could not create a thread. This error may occur if a large number of environments are created and not deleted again. In any case it is a good practice to minimize the number of environments created. </li>
+<li>(1049)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_THREAD_COND_INIT</tt>
+<br/>Could not initialize a condition. </li>
+<li>(1050)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_UNKNOWN</tt>
+<br/>Unknown error. </li>
+<li>(1051)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SPACE</tt>
+<br/>Out of space. </li>
+<li>(1052)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FILE_OPEN</tt>
+<br/>Error while opening a file. </li>
+<li>(1053)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FILE_READ</tt>
+<br/>File read error. </li>
+<li>(1054)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FILE_WRITE</tt>
+<br/>File write error. </li>
+<li>(1055)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_DATA_FILE_EXT</tt>
+<br/>The data file format cannot be determined from the file name. </li>
+<li>(1056)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_FILE_NAME</tt>
+<br/>An invalid file name has been specified. </li>
+<li>(1057)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_SOL_FILE_NAME</tt>
+<br/>An invalid file name has been specified. </li>
+<li>(1058)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_MBT_FILE</tt>
+<br/>A MOSEK binary task file is invalid. </li>
+<li>(1059)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_END_OF_FILE</tt>
+<br/>End of file reached. </li>
+<li>(1060)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NULL_ENV</tt>
+<br/><tt class="tt">env</tt> is a NULL pointer. </li>
+<li>(1061)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NULL_TASK</tt>
+<br/><tt class="tt">task</tt> is a NULL pointer. </li>
+<li>(1062)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_STREAM</tt>
+<br/>An invalid stream is referenced. </li>
+<li>(1063)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NO_INIT_ENV</tt>
+<br/><tt class="tt">env</tt> is not initialized. </li>
+<li>(1064)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_TASK</tt>
+<br/>The <tt class="tt">task</tt> is invalid. </li>
+<li>(1065)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NULL_POINTER</tt>
+<br/>An argument to a function is unexpectedly a NULL pointer. </li>
+<li>(1066)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LIVING_TASKS</tt>
+<br/>All tasks associated with an enviroment must be deleted before the environment is deleted. There are still some undeleted tasks. </li>
+<li>(1070)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_BLANK_NAME</tt>
+<br/>An all blank name has been specified. </li>
+<li>(1071)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_DUP_NAME</tt>
+<br/>The same name was used multiple times for the same problem item type. </li>
+<li>(1075)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_OBJ_NAME</tt>
+<br/>An invalid objective name is specified. </li>
+<li>(1080)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SPACE_LEAKING</tt>
+<br/>MOSEK is leaking memory. This can be due to either an incorrect use of MOSEK or a bug. </li>
+<li>(1081)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SPACE_NO_INFO</tt>
+<br/>No available information about the space usage. </li>
+<li>(1090)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_READ_FORMAT</tt>
+<br/>The specified format cannot be read. </li>
+<li>(1100)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_FILE</tt>
+<br/>An error occurred while reading an MPS file. </li>
+<li>(1101)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_INV_FIELD</tt>
+<br/>A field in the MPS file is invalid. Probably it is too wide. </li>
+<li>(1102)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_INV_MARKER</tt>
+<br/>An invalid marker has been specified in the MPS file. </li>
+<li>(1103)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_NULL_CON_NAME</tt>
+<br/>An empty constraint name is used in an MPS file. </li>
+<li>(1104)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_NULL_VAR_NAME</tt>
+<br/>An empty variable name is used in an MPS file. </li>
+<li>(1105)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_UNDEF_CON_NAME</tt>
+<br/>An undefined constraint name occurred in an MPS file. </li>
+<li>(1106)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_UNDEF_VAR_NAME</tt>
+<br/>An undefined variable name occurred in an MPS file. </li>
+<li>(1107)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_INV_CON_KEY</tt>
+<br/>An invalid constraint key occurred in an MPS file. </li>
+<li>(1108)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_INV_BOUND_KEY</tt>
+<br/>An invalid bound key occurred in an MPS file. </li>
+<li>(1109)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_INV_SEC_NAME</tt>
+<br/>An invalid section name occurred in an MPS file. </li>
+<li>(1110)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_NO_OBJECTIVE</tt>
+<br/>No objective is defined in an MPS file. </li>
+<li>(1111)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_SPLITTED_VAR</tt>
+<br/>All elements in a column of the <span class="math"><span class="mi">A</span></span> matrix must be specified consecutively. Hence, it is illegal to specify non-zero elements in <span class="math"><span class="mi">A</span></span> for variable 1, then for variable 2 and then variable 1 again. </li>
+<li>(1112)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_MUL_CON_NAME</tt>
+<br/>A constraint name was specified multiple times in the <tt class="tt">ROWS</tt> section. </li>
+<li>(1113)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_MUL_QSEC</tt>
+<br/>Multiple <tt class="tt">QSECTION</tt>s are specified for a constraint in the MPS data file. </li>
+<li>(1114)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_MUL_QOBJ</tt>
+<br/>The Q term in the objective is specified multiple times in the MPS data file. </li>
+<li>(1115)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_INV_SEC_ORDER</tt>
+<br/>The sections in the MPS data file are not in the correct order. </li>
+<li>(1116)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_MUL_CSEC</tt>
+<br/>Multiple <tt class="tt">CSECTION</tt>s are given the same name. </li>
+<li>(1117)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_CONE_TYPE</tt>
+<br/>Invalid cone type specified in a <tt class="tt">CSECTION</tt>. </li>
+<li>(1118)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_CONE_OVERLAP</tt>
+<br/>A variable is specified to be a member of several cones. </li>
+<li>(1119)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_CONE_REPEAT</tt>
+<br/>A variable is repeated within the <tt class="tt">CSECTION</tt>. </li>
+<li>(1122)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_INVALID_OBJSENSE</tt>
+<br/>An invalid objective sense is specified. </li>
+<li>(1125)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_TAB_IN_FIELD2</tt>
+<br/>A tab char occurred in field 2. </li>
+<li>(1126)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_TAB_IN_FIELD3</tt>
+<br/>A tab char occurred in field 3. </li>
+<li>(1127)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_TAB_IN_FIELD5</tt>
+<br/>A tab char occurred in field 5. </li>
+<li>(1128)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MPS_INVALID_OBJ_NAME</tt>
+<br/>An invalid objective name is specified. </li>
+<li>(1130)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_ORD_INVALID_BRANCH_DIR</tt>
+<br/>An invalid branch direction key is specified. </li>
+<li>(1131)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_ORD_INVALID</tt>
+<br/>Invalid content in branch ordering file. </li>
+<li>(1150)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LP_INCOMPATIBLE</tt>
+<br/>The problem cannot be written to an LP formatted file. </li>
+<li>(1151)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LP_EMPTY</tt>
+<br/>The problem cannot be written to an LP formatted file. </li>
+<li>(1152)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LP_DUP_SLACK_NAME</tt>
+<br/>The name of the slack variable added to a ranged constraint already exists. </li>
+<li>(1153)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_WRITE_MPS_INVALID_NAME</tt>
+<br/>An invalid name is created while writing an MPS file. Usually this will make the MPS file unreadable. </li>
+<li>(1154)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LP_INVALID_VAR_NAME</tt>
+<br/>A variable name is invalid when used in an LP formatted file. </li>
+<li>(1155)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LP_FREE_CONSTRAINT</tt>
+<br/>Free constraints cannot be written in LP file format. </li>
+<li>(1156)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_WRITE_OPF_INVALID_VAR_NAME</tt>
+<br/>Empty variable names cannot be written to OPF files. </li>
+<li>(1157)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LP_FILE_FORMAT</tt>
+<br/>Syntax error in an LP file. </li>
+<li>(1158)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_WRITE_LP_FORMAT</tt>
+<br/>Problem cannot be written as an LP file. </li>
+<li>(1159)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_READ_LP_MISSING_END_TAG</tt>
+<br/>Missing End tag in LP file. </li>
+<li>(1160)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LP_FORMAT</tt>
+<br/>Syntax error in an LP file. </li>
+<li>(1161)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_WRITE_LP_NON_UNIQUE_NAME</tt>
+<br/>An auto-generated name is not unique. </li>
+<li>(1162)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_READ_LP_NONEXISTING_NAME</tt>
+<br/>A variable never occurred in objective or constraints. </li>
+<li>(1163)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LP_WRITE_CONIC_PROBLEM</tt>
+<br/>The problem contains cones that cannot be written to an LP formatted file. </li>
+<li>(1164)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LP_WRITE_GECO_PROBLEM</tt>
+<br/>The problem contains general convex terms that cannot be written to an LP formatted file. </li>
+<li>(1166)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_WRITING_FILE</tt>
+<br/>An error occurred while writing file </li>
+<li>(1168)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_OPF_FORMAT</tt>
+<br/>Syntax error in an OPF file </li>
+<li>(1169)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_OPF_NEW_VARIABLE</tt>
+<br/>Introducing new variables is now allowed. When a <tt class="tt">[variables]</tt> section is present, it is not allowed to introduce new variables later in the problem. </li>
+<li>(1170)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_NAME_IN_SOL_FILE</tt>
+<br/>An invalid name occurred in a solution file. </li>
+<li>(1171)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LP_INVALID_CON_NAME</tt>
+<br/>A constraint name is invalid when used in an LP formatted file. </li>
+<li>(1172)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_OPF_PREMATURE_EOF</tt>
+<br/>Premature end of file in an OPF file. </li>
+<li>(1197)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_ARGUMENT_LENNEQ</tt>
+<br/>Incorrect length of arguments. </li>
+<li>(1198)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_ARGUMENT_TYPE</tt>
+<br/>Incorrect argument type. </li>
+<li>(1199)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NR_ARGUMENTS</tt>
+<br/>Incorrect number of function arguments. </li>
+<li>(1200)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_IN_ARGUMENT</tt>
+<br/>A function argument is incorrect. </li>
+<li>(1201)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_ARGUMENT_DIMENSION</tt>
+<br/>A function argument is of incorrect dimension. </li>
+<li>(1203)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INDEX_IS_TOO_SMALL</tt>
+<br/>An index in an argument is too small. </li>
+<li>(1204)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INDEX_IS_TOO_LARGE</tt>
+<br/>An index in an argument is too large. </li>
+<li>(1205)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PARAM_NAME</tt>
+<br/>The parameter name is not correct. </li>
+<li>(1206)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PARAM_NAME_DOU</tt>
+<br/>The parameter name is not correct for a double parameter. </li>
+<li>(1207)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PARAM_NAME_INT</tt>
+<br/>The parameter name is not correct for an integer parameter. </li>
+<li>(1208)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PARAM_NAME_STR</tt>
+<br/>The parameter name is not correct for a string parameter. </li>
+<li>(1210)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PARAM_INDEX</tt>
+<br/>Parameter index is out of range. </li>
+<li>(1215)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PARAM_IS_TOO_LARGE</tt>
+<br/>The parameter value is too large. </li>
+<li>(1216)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PARAM_IS_TOO_SMALL</tt>
+<br/>The parameter value is too small. </li>
+<li>(1217)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PARAM_VALUE_STR</tt>
+<br/>The parameter value string is incorrect. </li>
+<li>(1218)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PARAM_TYPE</tt>
+<br/>The parameter type is invalid. </li>
+<li>(1219)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INF_DOU_INDEX</tt>
+<br/>A double information index is out of range for the specified type. </li>
+<li>(1220)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INF_INT_INDEX</tt>
+<br/>An integer information index is out of range for the specified type. </li>
+<li>(1221)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INDEX_ARR_IS_TOO_SMALL</tt>
+<br/>An index in an array argument is too small. </li>
+<li>(1222)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INDEX_ARR_IS_TOO_LARGE</tt>
+<br/>An index in an array argument is too large. </li>
+<li>(1225)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INF_LINT_INDEX</tt>
+<br/>A long integer information index is out of range for the specified type. </li>
+<li>(1230)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INF_DOU_NAME</tt>
+<br/>A double information name is invalid. </li>
+<li>(1231)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INF_INT_NAME</tt>
+<br/>An integer information name is invalid. </li>
+<li>(1232)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INF_TYPE</tt>
+<br/>The information type is invalid. </li>
+<li>(1234)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INF_LINT_NAME</tt>
+<br/>A long integer information name is invalid. </li>
+<li>(1235)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INDEX</tt>
+<br/>An index is out of range. </li>
+<li>(1236)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_WHICHSOL</tt>
+<br/>The solution defined by compwhichsol does not exists. </li>
+<li>(1237)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SOLITEM</tt>
+<br/>The solution item number <tt class="tt">solitem</tt> is invalid. Please note that <a href="node020.html#common-const*mosek*solitem*snx"><tt class="tt">MSK_SOL_ITEM_SNX</tt></a> is invalid for the basic solution. </li>
+<li>(1238)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_WHICHITEM_NOT_ALLOWED</tt>
+<br/><tt class="tt">whichitem</tt> is unacceptable. </li>
+<li>(1240)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MAXNUMCON</tt>
+<br/>The maximum number of constraints specified is smaller than the number of constraints in the task. </li>
+<li>(1241)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MAXNUMVAR</tt>
+<br/>The maximum number of variables specified is smaller than the number of variables in the task. </li>
+<li>(1243)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MAXNUMQNZ</tt>
+<br/>The maximum number of non-zeros specified for the <span class="math"><span class="mi">Q</span></span> matrices is smaller than the number of non-zeros in the current <span class="math"><span class="mi">Q</span></span> matrices. </li>
+<li>(1250)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NUMCONLIM</tt>
+<br/>Maximum number of constraints limit is exceeded. </li>
+<li>(1251)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NUMVARLIM</tt>
+<br/>Maximum number of variables limit is exceeded. </li>
+<li>(1252)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_TOO_SMALL_MAXNUMANZ</tt>
+<br/>The maximum number of non-zeros specified for <span class="math"><span class="mi">A</span></span> is smaller than the number of non-zeros in the current <span class="math"><span class="mi">A</span></span>. </li>
+<li>(1253)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_APTRE</tt>
+<br/><tt class="tt">aptre[j]</tt> is strictly smaller than <tt class="tt">aptrb[j]</tt> for some <tt class="tt">j</tt>. </li>
+<li>(1254)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MUL_A_ELEMENT</tt>
+<br/>An element in <span class="math"><span class="mi">A</span></span> is defined multiple times. </li>
+<li>(1255)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_BK</tt>
+<br/>Invalid bound key. </li>
+<li>(1256)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_BKC</tt>
+<br/>Invalid bound key is specified for a constraint. </li>
+<li>(1257)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_BKX</tt>
+<br/>An invalid bound key is specified for a variable. </li>
+<li>(1258)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_VAR_TYPE</tt>
+<br/>An invalid variable type is specified for a variable. </li>
+<li>(1259)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SOLVER_PROBTYPE</tt>
+<br/>Problem type does not match the chosen optimizer. </li>
+<li>(1260)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_OBJECTIVE_RANGE</tt>
+<br/>Empty objective range. </li>
+<li>(1261)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FIRST</tt>
+<br/>Invalid <tt class="tt">first</tt>. </li>
+<li>(1262)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LAST</tt>
+<br/>Invalid index <tt class="tt">last</tt>. A given index was out of expected range. </li>
+<li>(1263)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NEGATIVE_SURPLUS</tt>
+<br/>Negative surplus. </li>
+<li>(1264)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NEGATIVE_APPEND</tt>
+<br/>Cannot append a negative number. </li>
+<li>
+<p>(1265)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_UNDEF_SOLUTION</tt>
+<br/>MOSEK has the following solution types:  </p>
+
+<ul class="itemize">
+<li>an interior-point solution, </li>
+<li>an basic solution, </li>
+<li>and an integer solution. </li>
+</ul>
+
+<p>  Each optimizer may set one or more of these solutions; e.g by default a successful optimization with the interior-point optimizer defines the interior-point solution, and, for linear problems, also the basic solution. This error occurs when asking for a solution or for information about a solution that is not defined. </p>
+</li>
+<li>(1266)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_BASIS</tt>
+<br/>An invalid basis is specified. Either too many or too few basis variables are specified. </li>
+<li>(1267)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_SKC</tt>
+<br/>Invalid value in <tt class="tt">skc</tt>. </li>
+<li>(1268)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_SKX</tt>
+<br/>Invalid value in <tt class="tt">skx</tt>. </li>
+<li>(1269)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_SK_STR</tt>
+<br/>Invalid status key string encountered. </li>
+<li>(1270)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_SK</tt>
+<br/>Invalid status key code. </li>
+<li>(1271)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_CONE_TYPE_STR</tt>
+<br/>Invalid cone type string encountered. </li>
+<li>(1272)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_CONE_TYPE</tt>
+<br/>Invalid cone type code is encountered. </li>
+<li>(1274)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_SKN</tt>
+<br/>Invalid value in <tt class="tt">skn</tt>. </li>
+<li>(1275)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_SURPLUS</tt>
+<br/>Invalid surplus. </li>
+<li>(1280)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_NAME_ITEM</tt>
+<br/>An invalid name item code is used. </li>
+<li>(1281)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_PRO_ITEM</tt>
+<br/>An invalid problem is used. </li>
+<li>(1283)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_FORMAT_TYPE</tt>
+<br/>Invalid format type. </li>
+<li>(1285)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FIRSTI</tt>
+<br/>Invalid <tt class="tt">firsti</tt>. </li>
+<li>(1286)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LASTI</tt>
+<br/>Invalid <tt class="tt">lasti</tt>. </li>
+<li>(1287)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FIRSTJ</tt>
+<br/>Invalid <tt class="tt">firstj</tt>. </li>
+<li>(1288)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LASTJ</tt>
+<br/>Invalid <tt class="tt">lastj</tt>. </li>
+<li>(1290)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NONLINEAR_EQUALITY</tt>
+<br/>The model contains a nonlinear equality which defines a nonconvex set. </li>
+<li>(1291)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NONCONVEX</tt>
+<br/>The optimization problem is nonconvex. </li>
+<li>(1292)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NONLINEAR_RANGED</tt>
+<br/>The model contains a nonlinear ranged constraint which by definition defines a nonconvex set. </li>
+<li>(1293)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_CON_Q_NOT_PSD</tt>
+<br/>The quadratic constraint matrix is not positive semi-definite as expected for a constraint with finite upper bound. This results in a nonconvex problem. </li>
+<li>(1294)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_CON_Q_NOT_NSD</tt>
+<br/>The quadratic constraint matrix is not negative semi-definite as expected for a constraint with finite lower bound. This results in a nonconvex problem. </li>
+<li>(1295)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_OBJ_Q_NOT_PSD</tt>
+<br/>The quadratic coefficient matrix in the objective is not positive semi-definite as expected for a minimization problem. </li>
+<li>(1296)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_OBJ_Q_NOT_NSD</tt>
+<br/>The quadratic coefficient matrix in the objective is not negative semi-definite as expected for a maximization problem. </li>
+<li>(1299)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_ARGUMENT_PERM_ARRAY</tt>
+<br/>An invalid permutation array is specified. </li>
+<li>(1300)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_CONE_INDEX</tt>
+<br/>An index of a non-existing cone has been specified. </li>
+<li>(1301)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_CONE_SIZE</tt>
+<br/>A cone with too few members is specified. </li>
+<li>(1302)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_CONE_OVERLAP</tt>
+<br/>A new cone which variables overlap with an existing cone has been specified. </li>
+<li>(1303)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_CONE_REP_VAR</tt>
+<br/>A variable is included multiple times in the cone. </li>
+<li>(1304)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MAXNUMCONE</tt>
+<br/>The value specified for <tt class="tt">maxnumcone</tt> is too small. </li>
+<li>(1305)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_CONE_TYPE</tt>
+<br/>Invalid cone type specified. </li>
+<li>(1306)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_CONE_TYPE_STR</tt>
+<br/>Invalid cone type specified. </li>
+<li>(1310)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_REMOVE_CONE_VARIABLE</tt>
+<br/>A variable cannot be removed because it will make a cone invalid. </li>
+<li>(1350)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SOL_FILE_INVALID_NUMBER</tt>
+<br/>An invalid number is specified in a solution file. </li>
+<li>(1375)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_HUGE_C</tt>
+<br/>A huge value in absolute size is specified for one <span class="math"><img src="math/math1099.png" alt="[[MathCmd 1099]]"/></span>. </li>
+<li>(1380)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_HUGE_AIJ</tt>
+<br/>A numerically huge value is specified for an <span class="math"><img src="math/math897.png" alt="[[MathCmd 897]]"/></span> element in <span class="math"><span class="mi">A</span></span>. The parameter <a href="node018.html#common-const*mosek*dparam*data-tol-aij-huge"><tt class="tt">MSK_DPAR_DATA_TOL_AIJ_HUGE</tt></a> controls when an <span class="math"><img src="math/math897.png" alt="[[MathCmd 897]]"/></span> is considered huge. </li>
+<li>(1400)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INFINITE_BOUND</tt>
+<br/>A numerically huge bound value is specified. </li>
+<li>(1401)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_QOBJ_SUBI</tt>
+<br/>Invalid value in <tt class="tt">qosubi</tt>. </li>
+<li>(1402)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_QOBJ_SUBJ</tt>
+<br/>Invalid value in <tt class="tt">qosubj</tt>. </li>
+<li>(1403)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_QOBJ_VAL</tt>
+<br/>Invalid value in <tt class="tt">qoval</tt>. </li>
+<li>(1404)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_QCON_SUBK</tt>
+<br/>Invalid value in <tt class="tt">qcsubk</tt>. </li>
+<li>(1405)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_QCON_SUBI</tt>
+<br/>Invalid value in <tt class="tt">qcsubi</tt>. </li>
+<li>(1406)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_QCON_SUBJ</tt>
+<br/>Invalid value in <tt class="tt">qcsubj</tt>. </li>
+<li>(1407)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_QCON_VAL</tt>
+<br/>Invalid value in <tt class="tt">qcval</tt>. </li>
+<li>(1408)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_QCON_SUBI_TOO_SMALL</tt>
+<br/>Invalid value in <tt class="tt">qcsubi</tt>. </li>
+<li>(1409)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_QCON_SUBI_TOO_LARGE</tt>
+<br/>Invalid value in <tt class="tt">qcsubi</tt>. </li>
+<li>(1415)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_QOBJ_UPPER_TRIANGLE</tt>
+<br/>An element in the upper triangle of <span class="math"><img src="math/math36.png" alt="[[MathCmd 36]]"/></span> is specified. Only elements in the lower triangle should be specified. </li>
+<li>(1417)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_QCON_UPPER_TRIANGLE</tt>
+<br/>An element in the upper triangle of a <span class="math"><img src="math/math37.png" alt="[[MathCmd 37]]"/></span> is specified. Only elements in the lower triangle should be specified. </li>
+<li>(1425)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FIXED_BOUND_VALUES</tt>
+<br/>A fixed constraint/variable has been specified using the bound keys but the numerical value of the lower and upper bound is different. </li>
+<li>(1430)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_USER_FUNC_RET</tt>
+<br/>An user function reported an error. </li>
+<li>(1431)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_USER_FUNC_RET_DATA</tt>
+<br/>An user function returned invalid data. </li>
+<li>(1432)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_USER_NLO_FUNC</tt>
+<br/>The user-defined nonlinear function reported an error. </li>
+<li>(1433)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_USER_NLO_EVAL</tt>
+<br/>The user-defined nonlinear function reported an error. </li>
+<li>(1440)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_USER_NLO_EVAL_HESSUBI</tt>
+<br/>The user-defined nonlinear function reported an invalid subscript in the Hessian. </li>
+<li>(1441)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_USER_NLO_EVAL_HESSUBJ</tt>
+<br/>The user-defined nonlinear function reported an invalid subscript in the Hessian. </li>
+<li>(1445)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_OBJECTIVE_SENSE</tt>
+<br/>An invalid objective sense is specified. </li>
+<li>(1446)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_UNDEFINED_OBJECTIVE_SENSE</tt>
+<br/>The objective sense has not been specified before the optimization. </li>
+<li>(1449)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_Y_IS_UNDEFINED</tt>
+<br/>The solution item <span class="math"><span class="mi">y</span></span> is undefined. </li>
+<li>(1450)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NAN_IN_DOUBLE_DATA</tt>
+<br/>An invalid floating point value was used in some double data. </li>
+<li>(1461)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NAN_IN_BLC</tt>
+<br/><span class="math"><img src="math/math13.png" alt="[[MathCmd 13]]"/></span> contains an invalid floating point value, i.e. a <tt class="tt">NaN</tt>. </li>
+<li>(1462)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NAN_IN_BUC</tt>
+<br/><span class="math"><img src="math/math14.png" alt="[[MathCmd 14]]"/></span> contains an invalid floating point value, i.e. a <tt class="tt">NaN</tt>. </li>
+<li>(1470)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NAN_IN_C</tt>
+<br/><span class="math"><span class="mi">c</span></span> contains an invalid floating point value, i.e. a <tt class="tt">NaN</tt>. </li>
+<li>(1471)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NAN_IN_BLX</tt>
+<br/><span class="math"><img src="math/math15.png" alt="[[MathCmd 15]]"/></span> contains an invalid floating point value, i.e. a <tt class="tt">NaN</tt>. </li>
+<li>(1472)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NAN_IN_BUX</tt>
+<br/><span class="math"><img src="math/math16.png" alt="[[MathCmd 16]]"/></span> contains an invalid floating point value, i.e. a <tt class="tt">NaN</tt>. </li>
+<li>(1473)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NAN_IN_AIJ</tt>
+<br/><span class="math"><img src="math/math897.png" alt="[[MathCmd 897]]"/></span> contains an invalid floating point value, i.e. a <tt class="tt">NaN</tt>. </li>
+<li>(1500)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_PROBLEM</tt>
+<br/>Invalid problem type. Probably a nonconvex problem has been specified. </li>
+<li>(1501)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MIXED_PROBLEM</tt>
+<br/>The problem contains both conic and nonlinear constraints. </li>
+<li>(1550)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_OPTIMIZER</tt>
+<br/>An invalid optimizer has been chosen for the problem. This means that the simplex or the conic optimizer is chosen to optimize a nonlinear problem. </li>
+<li>(1551)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MIO_NO_OPTIMIZER</tt>
+<br/>No optimizer is available for the current class of integer optimization problems. </li>
+<li>(1552)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NO_OPTIMIZER_VAR_TYPE</tt>
+<br/>No optimizer is available for this class of optimization problems. </li>
+<li>(1553)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MIO_NOT_LOADED</tt>
+<br/>The mixed-integer optimizer is not loaded. </li>
+<li>(1580)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_POSTSOLVE</tt>
+<br/>An error occurred during the postsolve. Please contact MOSEK support. </li>
+<li>(1590)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_OVERFLOW</tt>
+<br/>A computation produced an overflow i.e. a very large number. </li>
+<li>(1600)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NO_BASIS_SOL</tt>
+<br/>No basic solution is defined. </li>
+<li>(1610)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_BASIS_FACTOR</tt>
+<br/>The factorization of the basis is invalid. </li>
+<li>(1615)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_BASIS_SINGULAR</tt>
+<br/>The basis is singular and hence cannot be factored. </li>
+<li>(1650)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FACTOR</tt>
+<br/>An error occurred while factorizing a matrix. </li>
+<li>(1700)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FEASREPAIR_CANNOT_RELAX</tt>
+<br/>An optimization problem cannot be relaxed. This is the case e.g. for general nonlinear optimization problems. </li>
+<li>(1701)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FEASREPAIR_SOLVING_RELAXED</tt>
+<br/>The relaxed problem could not be solved to optimality. Please consult the log file for further details. </li>
+<li>(1702)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_FEASREPAIR_INCONSISTENT_BOUND</tt>
+<br/>The upper bound is less than the lower bound for a variable or a constraint.  Please correct this before running the feasibility repair. </li>
+<li>(1750)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NAME_MAX_LEN</tt>
+<br/>A name is longer than the buffer that is supposed to hold it. </li>
+<li>(1760)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NAME_IS_NULL</tt>
+<br/>The name buffer is a NULL pointer. </li>
+<li>(1800)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_COMPRESSION</tt>
+<br/>Invalid compression type. </li>
+<li>(1801)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_IOMODE</tt>
+<br/>Invalid io mode. </li>
+<li>(2000)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NO_PRIMAL_INFEAS_CER</tt>
+<br/>A certificate of primal infeasibility is not available. </li>
+<li>(2001)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NO_DUAL_INFEAS_CER</tt>
+<br/>A certificate of infeasibility is not available. </li>
+<li>(2500)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NO_SOLUTION_IN_CALLBACK</tt>
+<br/>The required solution is not available. </li>
+<li>(2501)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_MARKI</tt>
+<br/>Invalid value in marki. </li>
+<li>(2502)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_MARKJ</tt>
+<br/>Invalid value in markj. </li>
+<li>(2503)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_NUMI</tt>
+<br/>Invalid numi. </li>
+<li>(2504)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INV_NUMJ</tt>
+<br/>Invalid numj. </li>
+<li>(2505)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_CANNOT_CLONE_NL</tt>
+<br/>A task with a nonlinear function call-back cannot be cloned. </li>
+<li>(2506)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_CANNOT_HANDLE_NL</tt>
+<br/>A function cannot handle a task with nonlinear function call-backs. </li>
+<li>(2520)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_ACCMODE</tt>
+<br/>An invalid access mode is specified. </li>
+<li>(2550)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_MBT_INCOMPATIBLE</tt>
+<br/>The MBT file is incompatible with this platform. This results from reading a file on a 32 bit platform generated on a 64 bit platform. </li>
+<li>(2800)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_LU_MAX_NUM_TRIES</tt>
+<br/>Could not compute the LU factors of the matrix within the maximum number of allowed tries. </li>
+<li>(2900)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_UTF8</tt>
+<br/>An invalid UTF8 string is encountered. </li>
+<li>(2901)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_WCHAR</tt>
+<br/>An invalid <tt class="tt">wchar</tt> string is encountered. </li>
+<li>(2950)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_NO_DUAL_FOR_ITG_SOL</tt>
+<br/>No dual information is available for the integer solution. </li>
+<li>(3000)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INTERNAL</tt>
+<br/>An internal error occurred. Please report this problem. </li>
+<li>(3001)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_API_ARRAY_TOO_SMALL</tt>
+<br/>An input array was too short. </li>
+<li>(3002)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_API_CB_CONNECT</tt>
+<br/>Failed to connect a callback object. </li>
+<li>(3005)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_API_FATAL_ERROR</tt>
+<br/>An internal error occurred in the API. Please report this problem. </li>
+<li>(3050)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SEN_FORMAT</tt>
+<br/>Syntax error in sensitivity analysis file. </li>
+<li>(3051)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SEN_UNDEF_NAME</tt>
+<br/>An undefined name was encountered in the sensitivity analysis file. </li>
+<li>(3052)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SEN_INDEX_RANGE</tt>
+<br/>Index out of range in the sensitivity analysis file. </li>
+<li>(3053)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SEN_BOUND_INVALID_UP</tt>
+<br/>Analysis of upper bound requested for an index, where no upper bound exists. </li>
+<li>(3054)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SEN_BOUND_INVALID_LO</tt>
+<br/>Analysis of lower bound requested for an index, where no lower bound exists. </li>
+<li>(3055)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SEN_INDEX_INVALID</tt>
+<br/>Invalid range given in the sensitivity file. </li>
+<li>(3056)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SEN_INVALID_REGEXP</tt>
+<br/>Syntax error in regexp or regexp longer than 1024. </li>
+<li>(3057)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SEN_SOLUTION_STATUS</tt>
+<br/>No optimal solution found to the original problem given for sensitivity analysis. </li>
+<li>(3058)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SEN_NUMERICAL</tt>
+<br/>Numerical difficulties encountered performing the sensitivity analysis. </li>
+<li>(3059)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_CONCURRENT_OPTIMIZER</tt>
+<br/>An unsupported optimizer was chosen for use with the concurrent optimizer. </li>
+<li>(3100)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_UNB_STEP_SIZE</tt>
+<br/>A step size in an optimizer was unexpectedly unbounded. For instance, if the step-size becomes unbounded in phase 1 of the simplex algorithm then an error occurs. Normally this will happen only if the problem is badly formulated. Please contact MOSEK support if this error occurs. </li>
+<li>(3101)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_IDENTICAL_TASKS</tt>
+<br/>Some tasks related to this function call were identical. Unique tasks were expected. </li>
+<li>(3102)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_AD_INVALID_CODELIST</tt>
+<br/>The code list data was invalid. </li>
+<li>(3103)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_AD_INVALID_OPERATOR</tt>
+<br/>The code list data was invalid. An unknown operator was used. </li>
+<li>(3104)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_AD_INVALID_OPERAND</tt>
+<br/>The code list data was invalid. An unknown operand was used. </li>
+<li>(3105)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_AD_MISSING_OPERAND</tt>
+<br/>The code list data was invalid. Missing operand for operator. </li>
+<li>(3106)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_AD_MISSING_RETURN</tt>
+<br/>The code list data was invalid. Missing return operation in function. </li>
+<li>(3200)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_BRANCH_DIRECTION</tt>
+<br/>An invalid branching direction is specified. </li>
+<li>(3201)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_BRANCH_PRIORITY</tt>
+<br/>An invalid branching priority is specified. It should be nonnegative. </li>
+<li>(3500)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INTERNAL_TEST_FAILED</tt>
+<br/>An internal unit test function failed. </li>
+<li>(3600)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_XML_INVALID_PROBLEM_TYPE</tt>
+<br/>The problem type is not supported by the XML format. </li>
+<li>(3700)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INVALID_AMPL_STUB</tt>
+<br/>Invalid AMPL stub. </li>
+<li>(3800)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INT64_TO_INT32_CAST</tt>
+<br/>An 32 bit integer could not cast to a 64 bit integer. </li>
+<li>(3900)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_SIZE_LICENSE_NUMCORES</tt>
+<br/>The computer contains more cpu cores than the license allows for. </li>
+<li>(3910)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_INFEAS_UNDEFINED</tt>
+<br/>The requested value is not defined for this solution type. </li>
+<li>(3999)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_ERR_API_INTERNAL</tt>
+<br/>An internal fatal error occurred in an interface function. </li>
+<li>(4000)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_MAX_ITERATIONS</tt>
+<br/>The optimizer terminated at the maximum number of iterations. </li>
+<li>(4001)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_MAX_TIME</tt>
+<br/>The optimizer terminated at the maximum amount of time. </li>
+<li>(4002)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_OBJECTIVE_RANGE</tt>
+<br/>The optimizer terminated on the bound of the objective range. </li>
+<li>(4003)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_MIO_NEAR_REL_GAP</tt>
+<br/>The mixed-integer optimizer terminated because the near optimal relative gap tolerance was satisfied. </li>
+<li>(4004)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_MIO_NEAR_ABS_GAP</tt>
+<br/>The mixed-integer optimizer terminated because the near optimal absolute gap tolerance was satisfied. </li>
+<li>(4005)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_USER_BREAK</tt>
+<br/>Not in use. </li>
+<li>
+<p>(4006)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_STALL</tt>
+<br/>The optimizer terminated due to slow progress. The most likely reason causing slow progress is that the problem is badly formulated e.g. badly scaly scaled of near infeasible. Sometimes a few dense columns in the constraint matrix can also lead to numerical problems that causes a stall.</p>
+
+<p>The solution returned may or may not be of acceptable quality. Therefore, the solution status should be examined to determine the status of the solution. If the solution is near optimal, then for most practical purposes the solution will be good enough.</p>
+
+<p>In particular, if a linear optimization problem is solved with the interior-point optimizer with basis identification turned on, the returned solution may be of acceptable quality, even in the optimizer stalled. </p>
+</li>
+<li>(4007)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_USER_CALLBACK</tt>
+<br/>The optimizer terminated due to the return of the user-defined call-back function. </li>
+<li>(4008)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_MIO_NUM_RELAXS</tt>
+<br/>The mixed-integer optimizer terminated as the maximum number of relaxations was reached. </li>
+<li>(4009)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_MIO_NUM_BRANCHES</tt>
+<br/>The mixed-integer optimizer terminated as to the maximum number of branches was reached. </li>
+<li>(4015)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_NUM_MAX_NUM_INT_SOLUTIONS</tt>
+<br/>The mixed-integer optimizer terminated as the maximum number of feasible solutions was reached. </li>
+<li>(4020)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_MAX_NUM_SETBACKS</tt>
+<br/>The optimizer terminated as the maximum number of set-backs was reached. This indicates  numerical problems and a possibly badly formulated problem. </li>
+<li>(4025)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_NUMERICAL_PROBLEM</tt>
+<br/>The optimizer terminated due to numerical problems. </li>
+<li>(4030)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_INTERNAL</tt>
+<br/>The optimizer terminated due to some internal reason. Please contact MOSEK support. </li>
+<li>(4031)<a name="constclass*mosek*rescode">&#09;</a><a name="common-constclass*mosek*rescode"></a><tt class="tt">MSK_RES_TRM_INTERNAL_STOP</tt>
+<br/>The optimizer terminated for internal reasons. Please contact MOSEK support. </li>
+</ul>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node018.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 16. Parameter reference" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node020.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  18. Constants" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node018.html" target="_self">16. Parameter reference</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node020.html" target="_self">18. Constants</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:50:22 2012</div>
+</body></html>

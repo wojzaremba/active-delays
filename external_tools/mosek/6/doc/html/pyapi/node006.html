@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>4. Testing installation and running examples</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 3. Getting support and help" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Python API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  5. Basic API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="218339448">4. Testing installation and running examples</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node006.html#218348792" target="_self">4.1. Microsoft Windows platform</a>
+<ul class="toc-level-2">
+<li><a href="node006.html#218349512" target="_self">4.1.1. Running a Python example</a></li>
+</ul>
+</li>
+<li><a href="node006.html#218351736" target="_self">4.2. Linux platform</a>
+<ul class="toc-level-2">
+<li><a href="node006.html#218356408" target="_self">4.2.1. Running a Python example</a></li>
+</ul>
+</li>
+<li><a href="node006.html#218359208" target="_self">4.3. Implementation details</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="started-chap-iterface-intro-sec-compile-and-run">&#09;</a> <a name="chap:dist-examples">&#09;</a></p>
+
+<p> <a name="idx-75746624">&#09;</a> This chapter describes how to verify that the MOSEK Python API has been installed and works, and how to run the distributed examples.</p>
+
+<p>The MOSEK Python interface, PyMosek, requires a MOSEK installation and a full Python 2.5 or 2.6 installation with <tt class="tt">ctypes</tt> support. Furthermore, MOSEK can use arrays from the NumPy package from <tt class="tt">scipy.org</tt>.</p>
+
+<p>A Python installer can be obtained from the official site: </p>
+<center>
+<p><a href="http://www.python.org/">http://www.python.org/</a> </p>
+</center>
+<p> The NumPy package providing arrays and mathematical functionality can be obtained from: </p>
+<center>
+<p><a href="http://numpy.scipy.org/">http://numpy.scipy.org/</a> </p>
+</center>
+<p>Please note that starting from MOSEK version 6.0 PyMosek uses the NumPy package rather than the Numeric package. If the NumPy package is not present, the PyMosek package includes a minimal array implementation, <tt class="tt">mosek.array</tt>, that can be used instead.</p>
+
+<div>
+<h1><a name="218348792">4.1. Microsoft Windows platform</a></h1>
+
+<p> <a name="idx-75753448">&#09;</a>To use the PyMosek interface you will need a working installation of MOSEK and Python. See the MOSEK Installation Manual for instructions on installing and testing MOSEK.</p>
+
+<p>MOSEK includes a binary Python that can be used interactively or for running scripts, but if you have a Python installed on your system you may use that instead.</p>
+
+<p>The PyMosek module is located in on of the directories </p>
+
+<pre class="verbatim">mosek\6\tools\platform\win64x86\python\2
+mosek\6\tools\platform\win32x86\python\2
+</pre>
+
+<p>Examples using the PyMosek interface are found in </p>
+
+<pre class="verbatim">mosek\6\tools\examples\python
+</pre>
+
+<div>
+<h2><a name="218349512">4.1.1. Running a Python example</a></h2>
+
+<p> To run one of the distributed examples, open a DOS box and type </p>
+
+<pre class="verbatim">C:
+cd "\Program Files\mosek\6\tools\examples\python"
+</pre>
+
+<p>then to execute example <tt class="tt">lo1</tt> type </p>
+
+<pre class="verbatim">python lo1.py
+</pre>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="218351736">4.2. Linux platform</a></h1>
+
+<p> <a name="idx-75763008">&#09;</a>MOSEK can be installed by unpacked it to some directory &mdash; the complete procedure is described in the MOSEK Installation Manual. In the following we assume that assume that MOSEK was unpacked to the user's home directory, and that all steps in the installation was completed.</p>
+
+<p> The PyMosekmodule is located in </p>
+
+<pre class="verbatim">mosek/6/tools/platform/$PLATFORM/python/2
+</pre>
+
+<p>where <tt class="tt">$PLATFORM</tt> is <tt class="tt">linux32x86</tt> or <tt class="tt">linux64x86</tt>, depending on the platform.</p>
+
+<p>The Python examples are found in </p>
+
+<pre class="verbatim">mosek/6/tools/examples/python
+</pre>
+
+<p> Before the PyMosek API can be used, the system environment must be set correctly up: </p>
+
+<ul class="itemize">
+<li>The environment variable <tt class="tt">LD_LIBRARY_PATH</tt> must contain the path to the mosek library. </li>
+<li>The environment variable <tt class="tt">PYTHONPATH</tt> must point to the location of PyMosek module. </li>
+</ul>
+
+<p>  You can verify that this is the case as follows: Open a shell and type </p>
+
+<pre class="verbatimcmdline">  echo $PATH
+</pre>
+
+<p> This prints a &#8220;<tt class="tt">:</tt>&#8221;-separated list of paths which should contain the path to MOSEK. Then type </p>
+
+<pre class="verbatimcmdline">  echo $PYTHONPATH
+</pre>
+
+<p>This prints a &#8220;<tt class="tt">:</tt>&#8221;-separated list of paths which should contain the path to the PyMosek module. If one of the above were missing, they must be set up. This can be done either temporarily or permanently: </p>
+
+<ul class="itemize">
+<li>
+<p>The variables can be temporarily set in current shell. In <tt class="tt">Bash</tt> this can be done by typing </p>
+
+<pre class="verbatimcmdline">  export LD_LIBRARY_PATH="$HOME/mosek/6/tools/platform/$PLATFORM/bin:$LD_LIBRARY_PATH"
+  export PYTHONPATH="$HOME/mosek/6/tools/platform/$PLATFORM/python/2:$PYTHONPATH"
+</pre>
+
+<p>Note that other shells may require a different syntax. </p>
+</li>
+<li>
+<p>The variables can be permanently set by including following lines in <tt class="tt">&nbsp;/.bashrc</tt> </p>
+
+<pre class="verbatim">if [ -z "$LD_LIBRARY_PATH" ]; then
+  export LD_LIBRARY_PATH="$HOME/mosek/6/tools/platform/$PLATFORM/bin"
+else
+  export LD_LIBRARY_PATH="$HOME/mosek/6/tools/platform/$PLATFORM/bin:$LD_LIBRARY_PATH"
+fi
+
+if [ -z "$PYTHONPATH" ]; then
+  export PYTHONPATH="$HOME/mosek/6/tools/platform/$PLATFORM/python/2"
+else
+  export PYTHONPATH="$HOME/mosek/6/tools/platform/$PLATFORM/python/2:$PYTHONPATH"
+fi
+</pre>
+
+<p>Please note that other shells may use a different syntax. </p>
+</li>
+</ul>
+
+<div>
+<h2><a name="218356408">4.2.1. Running a Python example</a></h2>
+
+<p> <a name="idx-75793688">&#09;</a><a name="idx-75790672">&#09;</a>To run a Python script, open a shell, change directory to where the script is located, and type </p>
+
+<pre class="verbatim">python myscript.py
+</pre>
+
+<p>where <tt class="tt">myscript.py</tt> is the name of the Python script.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="218359208">4.3. Implementation details</a></h1>
+
+<p> The PyMosek module is implemented as a pure Python module using <tt class="tt">ctypes</tt> to call native DLLs. The minimal array module <tt class="tt">mosek.array</tt> is implemented as a pure binary DLL plus a pure Python <tt class="tt">ctypes</tt>-based module.</p>
+
+<p>This means that the PyMosek module is compatible with Python 2.5 and all later 2.X versions. The new Python 3.X series introduces several language incompatibilities, which means that the module is not immediately compatible with Python 3.X; a Python 3.X compatible version is being developed, but is not be included in the distribution &mdash; please contact <tt class="tt">support@mosek.com</tt> if you wish to use Python 3 with MOSEK.</p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 3. Getting support and help" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Python API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  5. Basic API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:54:29 2012</div>
+</body></html>

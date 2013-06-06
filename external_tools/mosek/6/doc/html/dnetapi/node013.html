@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>11. Primal feasibility repair</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node012.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 10. The analyzers" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node014.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  12. Sensitivity analysis" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node012.html" target="_self">10. The analyzers</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node014.html" target="_self">12. Sensitivity analysis</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="235036328">11. Primal feasibility repair</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node013.html#235000968" target="_self">11.1. The main idea</a></li>
+<li><a href="node013.html#235083752" target="_self">11.2. Feasibility repair in MOSEK</a>
+<ul class="toc-level-2">
+<li><a href="node013.html#235001040" target="_self">11.2.1. Usage of negative weights</a></li>
+<li><a href="node013.html#235084328" target="_self">11.2.2. Automatical naming</a></li>
+<li><a href="node013.html#235091728" target="_self">11.2.3. Feasibility repair using the API</a></li>
+<li><a href="node013.html#235093240" target="_self">11.2.4. An example</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="ch-feasibilityrepair">&#09;</a> Section <a title="10.2.2. Locating the cause of primal infeasibility" href="node012.html#chap-analysing-infeasible-problems-sec-location-the-cause">10.2.2</a> discusses how MOSEK treats infeasible problems. In particular, it is discussed which information MOSEK returns when a problem is infeasible and how this information can be used to pinpoint the elements causing the infeasibility.</p>
+
+<p>In this section we will discuss a method for repairing a primal infeasible problem by relaxing the constraints in a controlled way. For the sake of simplicity we discuss the method in the context of linear optimization. MOSEK can also repair infeasibilities in quadratic and conic optimization problems possibly having integer constrained variables. Please note that infeasibilities in nonlinear optimization problems can't be repaired using the method described below.</p>
+
+<div>
+<h1><a name="235000968">11.1. The main idea</a></h1>
+
+<p> Consider the linear optimization problem with <span class="math"><span class="mi">m</span></span> constraints and <span class="math"><span class="mi">n</span></span> variables </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math183.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\end{array}\end{math}"/></td>
+<td><a name="sec-relaxprimal-eq-primal">&#09;</a>(11.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>which we assume is infeasible. Moreover, we assume that </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math526.png" alt="\begin{math}\nonumber{}(l^{c})_{i}\leq{}(u^{c})_{i},~\forall i\end{math}"/></td>
+<td><a name="sec-relaxprimal-asmp-bndcon">&#09;</a>(11.1.2)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math527.png" alt="\begin{math}\nonumber{}(l^{x})_{j}\leq{}(u^{x})_{j},~\forall j\end{math}"/></td>
+<td><a name="sec-relaxprimal-asmp-bndvar">&#09;</a>(11.1.3)</td></tr>
+</tbody>
+</table>
+
+<p>because otherwise the problem (<a href="node013.html#sec-relaxprimal-eq-primal">11.1.1</a>) is trivially infeasible.</p>
+
+<p>One way of making the problem feasible is to reduce the lower bounds and increase the upper bounds. If the change is sufficiently large the problem becomes feasible.</p>
+
+<p>One obvious question is: What is the smallest change to the bounds that will make the problem feasible?</p>
+
+<p>We associate a weight with each bound: </p>
+
+<ul class="itemize">
+<li><span class="math"><img src="math/math528.png" alt="[[MathCmd 528]]"/></span> (associated with <span class="math"><img src="math/math8.png" alt="[[MathCmd 8]]"/></span>), </li>
+<li><span class="math"><img src="math/math530.png" alt="[[MathCmd 530]]"/></span> (associated with <span class="math"><img src="math/math9.png" alt="[[MathCmd 9]]"/></span>), </li>
+<li><span class="math"><img src="math/math532.png" alt="[[MathCmd 532]]"/></span> (associated with <span class="math"><img src="math/math10.png" alt="[[MathCmd 10]]"/></span>), </li>
+<li><span class="math"><img src="math/math534.png" alt="[[MathCmd 534]]"/></span> (associated with <span class="math"><img src="math/math11.png" alt="[[MathCmd 11]]"/></span>), </li>
+</ul>
+
+<p>Now, the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math536.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & p &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax+v_{l}^{c}-v_{u}^{c} & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x+v_{l}^{x}-v_{u}^{x} & \leq{} & u^{x},\\\nonumber{} &  &  & (w_{l}^{c})^{T}v_{l}^{c}+(w_{u}^{c})^{T}v_{u}^{c}+(w_{l}^{x})^{T}v_{l}^{x}+(w_{u}^{x})^{T}v_{u}^{x}-p & \leq{} & 0,\\\nonumber{} &  &  & v_{l}^{c},v_{u}^{c},v_{l}^{x},v_{u}^{x}\geq{}0 &  &\end{array}\end{math}"/></td>
+<td><a name="sec-relaxprimal-eq-minsum">&#09;</a>(11.1.4)</td></tr>
+</tbody>
+</table>
+
+<p>minimizes the weighted sum of changes to the bounds that makes the problem feasible. The variables <span class="math"><img src="math/math537.png" alt="[[MathCmd 537]]"/></span>, <span class="math"><img src="math/math538.png" alt="[[MathCmd 538]]"/></span>, <span class="math"><img src="math/math539.png" alt="[[MathCmd 539]]"/></span> and <span class="math"><img src="math/math538.png" alt="[[MathCmd 538]]"/></span> are <i>elasticity</i> variables because they allow a constraint to be violated and hence add some elasticity to the problem. For instance, the elasticity variable <span class="math"><img src="math/math537.png" alt="[[MathCmd 537]]"/></span> shows how much the lower bound <span class="math"><img src="math/math542.png" alt="[[MathCmd 542]]"/></span> should be relaxed to make the problem feasible. Since <span class="math"><span class="mi">p</span></span> is minimized and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math543.png" alt="\begin{math}\nonumber{}(w_{l}^{c})^{T}v_{l}^{c}+(w_{u}^{c})^{T}v_{u}^{c}+(w_{l}^{x})^{T}v_{l}^{x}+(w_{u}^{x})^{T}v_{u}^{x}-p\leq{}0,\end{math}"/></td>
+<td><a name="ch-feasrepair-eq-wsumviol">&#09;</a>(11.1.5)</td></tr>
+</tbody>
+</table>
+
+<p>a large <span class="math"><img src="math/math544.png" alt="[[MathCmd 544]]"/></span> tends to imply that the elasticity variable <span class="math"><img src="math/math537.png" alt="[[MathCmd 537]]"/></span> will be small in an optimal solution.</p>
+
+<p>The reader may want to verify that the problem (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>) is always feasible given the assumptions (<a href="node013.html#sec-relaxprimal-asmp-bndcon">11.1.2</a>) and (<a href="node013.html#sec-relaxprimal-asmp-bndvar">11.1.3</a>).</p>
+
+<p>Please note that if a weight is negative then the resulting problem (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>) is unbounded.</p>
+
+<p>The weights <span class="math"><img src="math/math546.png" alt="[[MathCmd 546]]"/></span>, <span class="math"><img src="math/math547.png" alt="[[MathCmd 547]]"/></span>, <span class="math"><img src="math/math548.png" alt="[[MathCmd 548]]"/></span>, and <span class="math"><img src="math/math549.png" alt="[[MathCmd 549]]"/></span> can be regarded as a costs (penalties) for violating the associated constraints. Thus a higher weight implies that higher priority is given to the satisfaction of the associated constraint.</p>
+
+<p>The main idea can now be presented as follows. If you have an infeasible problem, then form the problem (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>) and optimize it. Next inspect the optimal solution <span class="math"><img src="math/math550.png" alt="[[MathCmd 550]]"/></span>, and <span class="math"><img src="math/math551.png" alt="[[MathCmd 551]]"/></span> to problem (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>). This solution provides a suggested relaxation of the bounds that will make the problem feasible.</p>
+
+<p>Assume that <span class="math"><img src="math/math552.png" alt="[[MathCmd 552]]"/></span> is an optimal objective value to (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>). An extension of the idea presented above is to solve the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math553.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax+v_{l}^{c}-v_{u}^{c} & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x+v_{l}^{x}-v_{u}^{x} & \leq{} & u^{x},\\\nonumber{} &  &  & (w_{l}^{c})^{T}v_{l}^{c}+(w_{u}^{c})^{T}v_{u}^{c}+(w_{l}^{x})^{T}v_{l}^{x}+(w_{u}^{x})^{T}v_{u}^{x}-p & \leq{} & 0,\\\nonumber{} &  &  & p & = & p^{*},\\\nonumber{} &  &  & v_{l}^{c},v_{u}^{c},v_{l}^{x},v_{u}^{x}\geq{}0 &  &\end{array}\end{math}"/></td>
+<td><a name="sec-relaxprimal-combined">&#09;</a>(11.1.6)</td></tr>
+</tbody>
+</table>
+
+<p>which minimizes the true objective while making sure that total weighted violations of the bounds is minimal, i.e. equals to <span class="math"><img src="math/math552.png" alt="[[MathCmd 552]]"/></span>.</p>
+
+</div>
+
+<div>
+<h1><a name="235083752">11.2. Feasibility repair in MOSEK</a></h1>
+
+<p> MOSEK includes functionality that help you construct the problem (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>) simply by passing a set of weights to MOSEK. This can be used for linear, quadratic, and conic optimization problems, possibly having integer constrained variables.</p>
+
+<div>
+<h2><a name="235001040">11.2.1. Usage of negative weights</a></h2>
+
+<p> <a name="ch-feasrepair-sec-neg-wei">&#09;</a> As the problem (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>) is presented it does not make sense to use negative weights since that makes the problem unbounded. Therefore, if the value of a weight is negative MOSEK fixes the associated elasticity variable to zero, e.g. if </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math555.png" alt="\begin{displaymath}\nonumber{}(w_{l}^{c})_{i}<0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>then MOSEK imposes the bound </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math556.png" alt="\begin{displaymath}\nonumber{}(v_{l}^{c})_{i}\leq{}0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This implies that the lower bound on the <span class="math"><span class="mi">i</span></span>th constraint will not be violated. (Clearly, this could also imply that the problem is infeasible so negative weight should be used with care). Associating a negative weights with a constraint tells MOSEK that the constraint should not be relaxed.</p>
+
+</div>
+
+<div>
+<h2><a name="235084328">11.2.2. Automatical naming</a></h2>
+
+<p> MOSEK can automatically create a new problem of the form (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>) starting from an existing problem by adding the elasticity variables and the extra constraints. Specificly, the variables <span class="math"><img src="math/math557.png" alt="[[MathCmd 557]]"/></span>, <span class="math"><img src="math/math558.png" alt="[[MathCmd 558]]"/></span>, <span class="math"><img src="math/math559.png" alt="[[MathCmd 559]]"/></span>, <span class="math"><img src="math/math560.png" alt="[[MathCmd 560]]"/></span>, and <span class="math"><span class="mi">p</span></span> are appended to existing variable vector <span class="math"><span class="mi">x</span></span> in their natural order. Moreover, the constraint (<a href="node013.html#ch-feasrepair-eq-wsumviol">11.1.5</a>) is appended to the constraints.</p>
+
+<p>The new variables and constraints are automatically given names as follows: </p>
+
+<ul class="itemize">
+<li>The names of the variables <span class="math"><img src="math/math537.png" alt="[[MathCmd 537]]"/></span> and <span class="math"><img src="math/math538.png" alt="[[MathCmd 538]]"/></span> are constructed from the name of the <span class="math"><span class="mi">i</span></span>th constraint. For instance, if the 9th original constraint is named <tt class="tt">c9</tt>, then by default <span class="math"><img src="math/math563.png" alt="[[MathCmd 563]]"/></span> and <span class="math"><img src="math/math564.png" alt="[[MathCmd 564]]"/></span> are given the names <tt class="tt">LO*c9</tt> and <tt class="tt">UP*c9</tt> respectively. If necessary, the character &#8220;<tt class="tt">*</tt>&#8221; can be replaced by a different string by changing the 
+<br/><a href="node018.html#common-const*mosek*sparam*feasrepair-name-separator"><tt class="tt">mosek.sparam.feasrepair_name_separator</tt></a> 
+<br/>parameter. </li>
+<li>
+<p>The additional constraints  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math565.png" alt="\begin{displaymath}\nonumber{}l^{x}\leq{}x+v_{l}^{x}-v_{u}^{x}\leq{}u^{x}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  are given names as follows. There is exactly one constraint per variable in the original problem, and thus the <span class="math"><span class="mi">i</span></span>th of these constraints is named after the <span class="math"><span class="mi">i</span></span>th variable in the original problem. For instance, if the first original variable is named &#8220;<tt class="tt">x0</tt>&#8221;, then the first of the above constraints is named &#8220;<tt class="tt">MSK-x1</tt>&#8221;. If necessary, the prefix &#8220;<tt class="tt">MSK-</tt>&#8221; can be replaced by a different string by changing the 
+<br/><a href="node018.html#common-const*mosek*sparam*feasrepair-name-prefix"><tt class="tt">mosek.sparam.feasrepair_name_prefix</tt></a> 
+<br/>parameter.</p>
+</li>
+<li>
+<p>The variable <span class="math"><span class="mi">p</span></span> is by default given the name <tt class="tt">WSUMVIOLVAR</tt>, and the constraint (<a href="node013.html#ch-feasrepair-eq-wsumviol">11.1.5</a>) is given the name <tt class="tt">WSUMVIOLCON</tt>.</p>
+
+<p>The substring &#8220;<tt class="tt">WSUMVIOL</tt>&#8221; can be replaced by a different string by changing the
+<br/><a href="node018.html#common-const*mosek*sparam*feasrepair-name-wsumviol"><tt class="tt">mosek.sparam.feasrepair_name_wsumviol</tt></a> 
+<br/>parameter. </p>
+</li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="235091728">11.2.3. Feasibility repair using the API</a></h2>
+
+<p> The <a href="node017.html#common-func*mosek*task*relaxprimal"><tt class="tt">mosek.Task.relaxprimal</tt></a> function takes an existing problem as input and creates a new task containing the problem (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>). Moreover, if requested this function can solve the problems (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>) and (<a href="node013.html#sec-relaxprimal-combined">11.1.6</a>) automatically.</p>
+
+<p>The parameter <a href="node018.html#common-const*mosek*iparam*feasrepair-optimize"><tt class="tt">mosek.iparam.feasrepair_optimize</tt></a> controls which problem is solved. Its value is used as follows: </p>
+
+<ul class="itemize">
+<li><a href="node020.html#common-const*mosek*feasrepairtype*optimize-none"><tt class="tt">mosek.feasrepairtype.optimize_none</tt></a>: The problem (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>) is constructed, but not solved. </li>
+<li><a href="node020.html#common-const*mosek*feasrepairtype*optimize-penalty"><tt class="tt">mosek.feasrepairtype.optimize_penalty</tt></a>: The problem (<a href="node013.html#sec-relaxprimal-eq-minsum">11.1.4</a>) is constructed and solved. </li>
+<li><a href="node020.html#common-const*mosek*feasrepairtype*optimize-combined"><tt class="tt">mosek.feasrepairtype.optimize_combined</tt></a>: The problem (<a href="node013.html#sec-relaxprimal-combined">11.1.6</a>) is constructed and solved. </li>
+</ul>
+
+<p>For further details, please see the description of the function <a href="node017.html#common-func*mosek*task*relaxprimal"><tt class="tt">mosek.Task.relaxprimal</tt></a> in the reference.</p>
+
+</div>
+
+<div>
+<h2><a name="235093240">11.2.4. An example</a></h2>
+
+<p> Consider this example of linear optimization </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math566.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} & -10x_{1} &  & -9x_{2}, &  & \\\nonumber{}\mbox{subject to} & 7/10x_{1} & + & 1x_{2} & \leq{} & 630,\\\nonumber{} & 1/2x_{1} & + & 5/6x_{2} & \leq{} & 600,\\\nonumber{} & 1x_{1} & + & 2/3x_{2} & \leq{} & 708,\\\nonumber{} & 1/10x_{1} & + & 1/4x_{2} & \leq{} & 135,\\\nonumber{} & x_{1}, &  & x_{2} & \geq{} & 0.\\\nonumber{} &  & x_{2}\geq{}650 &  &  &\end{array}\end{math}"/></td>
+<td><a name="sec-relaxprimal-eq-lo1_infeasible">&#09;</a>(11.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>This is an infeasible problem. Suppose that we want MOSEK to suggest a modification to the bounds such that the problem becomes feasible. The following example performs this task:</p>
+
+<div class="verbatimcode"><span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File:      feasrepairex1.cs
+
+  Purpose:    To demonstrate how to use the MSK_relaxprimal function to
+              locate the cause of an infeasibility.
+
+  Syntax: On command line
+          feasrepairex1 feasrepair.lp
+          feasrepair.lp is located in mosek\&lt;version&gt;\tools\examples.
+*/</span>
+
+<span class="keyword">using</span> System;
+
+class msgclass : mosek.Stream 
+{
+  <span class="type">string</span> prefix;
+  <span class="keyword">public</span> msgclass (<span class="type">string</span> prfx) 
+  {
+    prefix = prfx;
+  }
+  
+  <span class="keyword">public</span> override <span class="type">void</span> streamCB (<span class="type">string</span> msg)
+  {
+    Console.Write ("<span class="string">{0}{1}</span>", prefix,msg);
+  }
+}
+
+<span class="keyword">public</span> class feasrepairex1
+{
+     <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> Main (String<span class="brackets">[]</span> args)
+    {
+        <span class="keyword">const</span> <span class="type">double</span> infinity = 0.0;
+        mosek.Env
+            env = <span class="keyword">null</span>;
+        mosek.Task
+            task = <span class="keyword">null</span>;
+        mosek.Task
+            task_relaxprimal = <span class="keyword">null</span>;
+        
+        <span class="type">double</span><span class="brackets">[]</span> wlc = {1.0,1.0,1.0,1.0};
+        <span class="type">double</span><span class="brackets">[]</span> wuc = {1.0,1.0,1.0,1.0};
+        <span class="type">double</span><span class="brackets">[]</span> wlx = {1.0,1.0};
+        <span class="type">double</span><span class="brackets">[]</span> wux = {1.0,1.0};
+        <span class="type">double</span> sum_violation;
+
+        <span class="keyword">try</span>
+            {
+            <span class="comment">// Make mosek environment. </span>
+            env  = <span class="keyword">new</span> mosek.Env ();
+            <span class="comment">// Direct the env log stream to the user specified</span>
+            <span class="comment">// method env_msg_obj.streamCB </span>
+            env.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">[env]</span>"));
+            <span class="comment">// Initialize the environment.</span>
+            env.init ();
+
+            <span class="comment">// Create a task object linked with the environment env.</span>
+            task = <span class="keyword">new</span> mosek.Task (env, 0,0);
+            <span class="comment">// Directs the log task stream to the user specified</span>
+            <span class="comment">// method task_msg_obj.streamCB</span>
+            task.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">[task]</span>"));
+
+
+            <span class="comment">/* read file from current dir */</span>
+            task.readdata(args[0]);
+            task.putintparam(mosek.iparam.feasrepair_optimize,
+                             mosek.Val.feasrepair_optimize_penalty);
+            Console.WriteLine ("<span class="string">Start relax primal</span>");
+            task.relaxprimal(out task_relaxprimal,
+                             wlc,
+                             wuc,
+                             wlx,
+                             wux);
+            Console.WriteLine ("<span class="string">End relax primal</span>");
+            
+            task_relaxprimal.getprimalobj(mosek.soltype.bas,out sum_violation);
+            Console.WriteLine ("<span class="string">Minimized sum of violations = {0}</span>" , sum_violation);
+            
+            <span class="comment">/* modified bound returned in wlc,wuc,wlx,wux */</span>
+            
+            <span class="keyword">for</span> (<span class="type">int</span> i=0;i&lt;4;++i)
+            {
+              <span class="keyword">if</span> (wlc[i] == -infinity)
+                Console.WriteLine("<span class="string">lbc[{0}] = -inf, </span>",i);
+              <span class="keyword">else</span>
+                Console.WriteLine("<span class="string">lbc[{0}] = {1}, </span>",i,wlc[i]);
+              
+              <span class="keyword">if</span> (wuc[i] == infinity)
+                Console.WriteLine("<span class="string">ubc[{0}] = inf\n</span>",i);
+              <span class="keyword">else</span>
+                Console.WriteLine("<span class="string">ubc[{0}] = {1}\n</span>",i,wuc[i]);
+            }
+            
+            <span class="keyword">for</span> (<span class="type">int</span> i=0;i&lt;2;++i)
+            {
+              <span class="keyword">if</span> (wlx[i] == -infinity)
+                            Console.WriteLine("<span class="string">lbx[{0}] = -inf, </span>",i);
+              <span class="keyword">else</span>
+                Console.WriteLine("<span class="string">lbx[{0}] = {1}, </span>",i,wlx[i]);
+      
+              <span class="keyword">if</span> (wux[i] == infinity)
+                            Console.WriteLine("<span class="string">ubx[{0}] = inf\n</span>",i);
+              <span class="keyword">else</span>
+                Console.WriteLine("<span class="string">ubx[{0}] = {1}\n</span>",i,wux[i]);
+            }
+            }
+        <span class="keyword">catch</span> (mosek.Exception e)
+            {
+                Console.WriteLine (e.Code);
+                Console.WriteLine (e);
+            }
+
+        <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.Dispose ();
+        <span class="keyword">if</span> (task_relaxprimal != <span class="keyword">null</span>) task_relaxprimal.Dispose ();              
+        <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.Dispose ();
+
+    }   
+}
+</div>
+
+<p>The output from the program above is:</p>
+
+<pre class="verbatim">Minimized sum of violations = 4.250000e+01
+lbc[0] = -inf, ubc[0] = 6.300000e+02
+lbc[1] = -inf, ubc[1] = 6.000000e+02
+lbc[2] = -inf, ubc[2] = 7.080000e+02
+lbc[3] = -inf, ubc[3] = 1.575000e+02
+lbx[0] = 0.000000e+00, ubx[0] = inf
+lbx[1] = 6.300000e+02, ubx[1] = inf
+</pre>
+
+<p> To make the problem feasible it is suggested increasing the upper bound on the activity of the fourth constraint from <span class="math"><span class="mn">134</span></span> to <span class="math"><span class="mn">157.5</span></span> and decreasing the lower bound on the variable <span class="math"><img src="math/math73.png" alt="[[MathCmd 73]]"/></span> to <span class="math"><span class="mn">630</span></span>.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node012.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 10. The analyzers" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node014.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  12. Sensitivity analysis" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node012.html" target="_self">10. The analyzers</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node014.html" target="_self">12. Sensitivity analysis</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:46:06 2012</div>
+</body></html>

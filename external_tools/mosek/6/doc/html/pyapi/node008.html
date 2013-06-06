@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>6. Advanced API tutorial</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. Basic API tutorial" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Python API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. Modelling" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">7. Modelling</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="221632128">6. Advanced API tutorial</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node008.html#221630616" target="_self">6.1. Linear network flow problems</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#221647576" target="_self">6.1.1. A linear network flow problem example</a>
+<ul class="toc-level-3">
+<li><a href="node008.html#221683296" target="_self">6.1.1.1. Source code</a></li>
+<li><a href="node008.html#221683152" target="_self">6.1.1.2. Example code comments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node008.html#221678768" target="_self">6.2. Embedded network flow problems</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#221777648" target="_self">6.2.1. Example: Exploit embedded network flow structure in the simplex optimizer</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> This chapter provides information about additional problem classes and functionality provided in the Python API.</p>
+
+<div>
+<h1><a name="221630616">6.1. Linear network flow problems</a></h1>
+
+<p> <a name="chap-apiintro-sec-linear-network-optimization">&#09;</a>  <a name="idx-80534488">&#09;</a></p>
+
+<p>Network flow problems are a special class of linear optimization problems which has many applications. A network consists of a set of points connected by a set of lines. Usually the points and lines are called <em>nodes</em> and <em>arcs</em>. Arcs may have an direction on them. The network is directed if all arcs are directed. The class of network flow problems is defined as follows.
+<br/>Let <span class="math"><img src="math/math119.png" alt="[[MathCmd 119]]"/></span> be a directed network of nodes <span class="math"><img src="math/math120.png" alt="[[MathCmd 120]]"/></span> and arcs <span class="math"><img src="math/math121.png" alt="[[MathCmd 121]]"/></span>. Associated with every arc <span class="math"><img src="math/math122.png" alt="[[MathCmd 122]]"/></span> is a cost <span class="math"><img src="math/math123.png" alt="[[MathCmd 123]]"/></span> and a capacity <span class="math"><img src="math/math124.png" alt="[[MathCmd 124]]"/></span>. Moreover, associated with each node <span class="math"><img src="math/math125.png" alt="[[MathCmd 125]]"/></span> in the network is a lower limit <span class="math"><img src="math/math126.png" alt="[[MathCmd 126]]"/></span> and an upper limit <span class="math"><img src="math/math127.png" alt="[[MathCmd 127]]"/></span> on the demand (supply) of the node. The minimum cost of a network flow problem can be stated as follows: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math128.png" alt="\begin{math}\nonumber{}\begin{array}{lcccccl}\nonumber{}\mbox{minimize} &  &  & \sum \limits _{{(i,j)\in{}\mathcal{A}}}c_{{ij}}x_{{ij}} &  &  & \\\nonumber{}\mbox{subject to} & l^{c}_{{i}} & \leq{} & \sum \limits _{{\lbrace{}j:(i,j)\in{}\mathcal{A}\rbrace{}}}x_{{ij}}-\sum \limits _{{\lbrace{}j:(j,i)\in{}\mathcal{A}\rbrace{}}}x_{{ji}} & \leq{} & u^{c}_{{i}} & \forall i\in{}\mathcal{N},\\\nonumber{} & l^{x}_{{ij}} & \leq{} & x_{{ij}} & \leq{} & u^{x}_{{ij}} & \forall (i,j)\in{}\mathcal{A}.\end{array}\end{math}"/></td>
+<td><a name="pure-network-flow-problem">&#09;</a>(6.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>A classical example of a network flow problem is the transportation problem where the objective is to distribute goods from warehouses to customers at lowest possible total cost, see [<a href="node027.html#AHUJA:89:A" class="citation">7</a>] for a detailed application reference.</p>
+
+<p>The above graph formulation of the network flow problem implies the structural properties. Each variable appears in exactly two constraints with a numerical value of either <span class="math"><img src="math/math129.png" alt="[[MathCmd 129]]"/></span> or <span class="math"><img src="math/math130.png" alt="[[MathCmd 130]]"/></span>.</p>
+
+<p>It is well-known that problems with network flow structure can be solved efficiently with a specialized version of the simplex method. MOSEK includes such a network simplex implementation which can be called either directly using <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a> or indirectly by letting the standard simplex optimizer extract the embedded network. This section shows how to solve a network problem by a direct call to <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a>. For further details on how to exploit embedded network in the standard simplex optimizer, see Section <a title="8.3.1. Network flow problems" href="node010.html#solving-network-problems">8.3.1</a>.</p>
+
+<div>
+<h2><a name="221647576">6.1.1. A linear network flow problem example</a></h2>
+
+<p> <a name="chap-apiintro-sec-linear-network-example">&#09;</a> <a name="idx-80559712">&#09;</a> The following is an example of a linear network optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math131.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & x_{0} &  &  & + & x_{2} & + &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & -x_{0} &  &  &  &  & + & x_{3} &  &  &  &  & = & 1,\\\nonumber{} &  &  &  &  & x_{2} & - & x_{3} & + & x_{4} & + & x_{5} & = & -2,\\\nonumber{} & x_{0} & - & x_{1} &  &  &  &  & - & x_{4} & - & x_{5} & = & 0,\\\nonumber{} &  &  & x_{1} & - & x_{2} & + &  &  &  &  &  & = & 0,\end{array}\end{math}"/></td>
+<td><a name="net-prob">&#09;</a>(6.1.2)</td></tr>
+</tbody>
+</table>
+
+<p>having the bounds <span class="math"><img src="math/math132.png" alt="[[MathCmd 132]]"/></span>.</p>
+
+<p>The corresponding graph <span class="math"><img src="math/math119.png" alt="[[MathCmd 119]]"/></span> is displayed in fig.<a href="node008.html#fig-network">6.1</a>.</p>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td><center>
+<p> <img src="graphics/network.png"/> </p>
+<span class="caption">Figure&nbsp;6.1: Simple network.</span>
+<br/>
+<p> <a name="fig-network">&#09;</a> </p>
+</center></td></tr></table>
+
+</div>
+
+<div>
+<h3><a name="221683296">6.1.1.1. Source code</a></h3>
+
+<p> <a name="idx-80569984">&#09;</a><a name="sec:network1-source">&#09;</a></p>
+
+<p>In this section we will show how to solve (<a href="node008.html#net-prob">6.1.2</a>) with the network optimizer.</p>
+
+<p>The Python program included below, which solves this problem, is distributed with MOSEK and can be found in the directory</p>
+
+<pre class="verbatim">  mosek\6\tools\examples\python
+</pre>
+
+<p><a name="idx-80556832">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">#</span>
+<span class="comment"># Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.</span>
+<span class="comment">#</span>
+<span class="comment"># File:    network1.py</span>
+<span class="comment">#</span>
+<span class="comment">#  Demonstrates a simple use of the network optimizer.</span>
+<span class="comment">#</span>
+<span class="comment">#   Purpose: 1. Specify data for a network.</span>
+<span class="comment">#            2. Solve the network problem with the network optimizer.</span>
+<span class="comment"># </span>
+
+<span class="keyword">import</span> sys
+<span class="keyword">import</span> mosek
+<span class="keyword">from</span> numpy <span class="keyword">import</span> <span class="type">array</span>, <span class="type">float</span>, zeros
+
+<span class="comment"># Define a stream printer to grab output from MOSEK</span>
+<span class="keyword">def</span> streamprinter(text):
+    sys.stdout.write(text)
+    sys.stdout.flush()
+
+<span class="comment"># Since the actual value of Infinity is ignored, we define it solely</span>
+<span class="comment"># for symbolic purposes:</span>
+inf = 0.0
+
+<span class="comment"># Make mosek environment. </span>
+env  = mosek.Env ()
+
+<span class="comment"># Initialize the environment.</span>
+env.init ()
+
+<span class="comment"># Attach a printer to the environment</span>
+env.set_Stream (mosek.streamtype.log, streamprinter)
+
+numcon = 4
+numvar = 6
+
+<span class="comment"># Specify network graph data.</span>
+netfrom = <span class="type">array</span> ([0,2,3,1,1,1]) 
+netto   = <span class="type">array</span> ([2,3,1,0,2,2]) 
+
+<span class="comment"># Specify arc cost.</span>
+cc      = zeros (4, <span class="type">float</span>) 
+cx      = <span class="type">array</span> ([1.0,0.0,1.0,0.0,-1.0,1.0]) 
+
+<span class="comment"># Specify boundkeys.</span>
+bkc     = [mosek.boundkey.fx]*4 
+
+bkx     = [mosek.boundkey.lo]*6 
+
+<span class="comment"># Specify bounds.</span>
+blc     = <span class="type">array</span> ([1.0,1.0,-2.0,0.0]) 
+buc     = <span class="type">array</span> ([1.0,1.0,-2.0,0.0]) 
+blx     = zeros (6, <span class="type">float</span>) 
+bux     = <span class="type">array</span> ([inf,inf,inf,inf,inf,inf]) 
+
+<span class="comment"># Specify zero primal solution.</span>
+xc      = zeros (4, <span class="type">float</span>) 
+xx      = zeros (6, <span class="type">float</span>) 
+
+<span class="comment"># Specify zero dual solution.</span>
+y       = zeros (4, <span class="type">float</span>) 
+slc     = zeros (4, <span class="type">float</span>) 
+suc     = zeros (4, <span class="type">float</span>) 
+slx     = zeros (6, <span class="type">float</span>) 
+sux     = zeros (6, <span class="type">float</span>) 
+
+<span class="comment"># Specify status keys.</span>
+skc     = [mosek.stakey.unk]*4
+ 
+skx     = [mosek.stakey.unk]*6 
+
+<span class="comment"># Create a task object linked with the environment env.</span>
+dummytask = env.Task (numcon,numvar)
+
+<span class="comment"># Set the problem to be maximized</span>
+dummytask.putobjsense (mosek.objsense.maximize)
+
+<span class="comment"># Solve the network problem</span>
+prosta,solsta = dummytask.netoptimize(
+    cc,
+    cx,
+    bkc,
+    blc,
+    buc,
+    bkx,
+    blx,
+    bux,
+    netfrom,
+    netto,
+    0,
+    skc,
+    skx,
+    xc,
+    xx,
+    y,
+    slc,
+    suc,
+    slx,
+    sux)
+
+<span class="keyword">if</span>  solsta == mosek.solsta.optimal :
+  <span class="keyword">print</span> "<span class="string">Network problem is optimal</span>"
+
+  <span class="keyword">print</span> "<span class="string">Primal solution is :</span>"
+  <span class="keyword">for</span> i <span class="keyword">in</span> range(0,numcon) :
+    <span class="keyword">print</span> "<span class="string">xc[%d] = %-16.10e</span>" % (i,xc[i])
+
+  <span class="keyword">for</span> j <span class="keyword">in</span> range(0,numvar) :
+    <span class="keyword">print</span> "<span class="string">Arc(%d,%d) -&gt; xx[%d] = %-16.10e</span>" % (netfrom[j],netto[j],j,xx[j])
+<span class="keyword">elif</span> solsta == mosek.solsta.prim_infeas_cer :
+  <span class="keyword">print</span> "<span class="string">Network problem is primal infeasible</span>"
+<span class="keyword">elif</span> solsta == mosek.solsta.dual_infeas_cer :
+  <span class="keyword">print</span> "<span class="string">Network problem is dual infeasible</span>"
+<span class="keyword">else</span> :
+  <span class="keyword">print</span> "<span class="string">Network problem solsta : %s</span>" % solsta
+</div>
+
+</div>
+
+<div>
+<h3><a name="221683152">6.1.1.2. Example code comments</a></h3>
+
+<p> There are a few important differences between the linear network optimization example in section <a title="6.1.1.1. Source code" href="node008.html#sec:network1-source">6.1.1.1</a> and the general linear optimization problem in section <a title="5.2. Linear optimization" href="node007.html#chap-apiintro-sec-linear-optimization">5.2</a>. </p>
+
+<ul class="itemize">
+<li>MOSEK allows that network problems can be inputted and optimized using one function call to the function <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a>. This is more efficient and uses less memory than a call to the standard optimizer. </li>
+<li>Since we know that each column of matrix <span class="math"><span class="mi">A</span></span> has two non-zeroes, it can be stored in two arrays, <tt class="tt">from</tt> and <tt class="tt">to</tt>, specifying the origin and destination of the arcs (variables), see graph in fig.fig-network. </li>
+<li>The solution is written directly to <tt class="tt">skc</tt>, <tt class="tt">skx</tt>, <tt class="tt">xc</tt>, <tt class="tt">xx</tt>, <tt class="tt">y</tt>, <tt class="tt">slc</tt>, <tt class="tt">suc</tt>, <tt class="tt">slx</tt> and <tt class="tt">sux</tt> by <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a>. </li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="221678768">6.2. Embedded network flow problems</a></h1>
+
+<p> <a name="advanced-embedded-network">&#09;</a>  <a name="idx-80578248">&#09;</a></p>
+
+<p>Often problems contains both large parts with network structure and some non-network constraints or variables &mdash; such problems are said to have <em>embedded network structure</em>.</p>
+
+<p>A linear optimization with embedded network structure problem can be written as : <a name="idx-80571352">&#09;</a> </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math134.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  & \\\nonumber{}\mbox{subject to} & l^{c}_{N} & \leq{} & Nx & \leq{} & u^{c}_{N},\\\nonumber{} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\end{array}\end{math}"/></td>
+<td><a name="embedded-network-specs">&#09;</a>(6.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>Where the constraints</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math135.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}l^{c}_{N} & \leq{} & Nx & \leq{} & u^{c}_{N}\end{array}\end{math}"/></td>
+<td>(6.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>defines a network as explained in section <a title="6.1. Linear network flow problems" href="node008.html#chap-apiintro-sec-linear-network-optimization">6.1</a>, and the constraints</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math136.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}l^{c} & \leq{} & Ax & \leq{} & u^{c}\end{array}\end{math}"/></td>
+<td>(6.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>defines the general non-network linear constraints. As an example consider the small linear optimization problem</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math137.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & -x_{0} &  &  & + & x_{2} &  &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & 0.50x_{0} &  &  &  &  & + & 0.50x_{3} &  &  &  &  & = & 0.5,\\\nonumber{} &  &  &  &  & 0.50x_{2} & - & 0.50x_{3} & + & 0.50x_{4} & + & 0.50x_{5} & = & -1,\\\nonumber{} & -0.25x_{0} & + & -2.50x_{1} & + &  &  &  & - & 0.25x_{4} & - & 0.25x_{5} & = & 0,\\\nonumber{} &  &  & 2.50x_{1} & - & 0.25x_{2} &  &  &  &  &  &  & = & 0,\\\nonumber{} &  & - & x_{1} & + & x_{2} & + & x_{3} &  &  & + & x_{5} & \geq{} & 6,\end{array}\end{math}"/></td>
+<td><a name="net-em-prob">&#09;</a>(6.2.4)</td></tr>
+</tbody>
+</table>
+
+<p>with the bounds </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math138.png" alt="\begin{displaymath}\nonumber{}-\infty \leq{}x_{0}\leq{}0,0\leq{}x_{j}\leq{}\infty \mbox{ for }j=1\ldots 5.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> Recalling the network flow problem structural properties from section <a href="node008.html#pure-network-flow-problem">6.1.1</a>, each variable should appear in exactly two constraints with coefficients of either <span class="math"><img src="math/math129.png" alt="[[MathCmd 129]]"/></span> or <span class="math"><img src="math/math130.png" alt="[[MathCmd 130]]"/></span>.</p>
+
+<p>At first glance it does not seem to contain any network structure, but if we scale constraints 1-4 by respectively 2.0, 2.0, 4.0, 4.0 and columns 1-2 by -1.0, 0.1 we get the following problem :</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math141.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccl}\nonumber{}\mbox{maximize} & x_{0} &  &  & + & x_{2} & + &  & - & x_{4} & + & x_{5} &  & \\\nonumber{}\mbox{subject to} & -x_{0} &  &  &  &  & + & x_{3} &  &  &  &  & = & 1,\\\nonumber{} &  &  &  &  & x_{2} & - & x_{3} & + & x_{4} & + & x_{5} & = & -2,\\\nonumber{} & x_{0} & - & x_{1} &  &  &  &  & - & x_{4} & - & x_{5} & = & 0,\\\nonumber{} &  &  & x_{1} & - & x_{2} & + &  &  &  &  &  & = & 0,\\\nonumber{} &  &  & x_{1} & + & x_{2} & + & x_{3} &  &  & + & x_{5} & \geq{} & 6,\end{array}\end{math}"/></td>
+<td>(6.2.5)</td></tr>
+</tbody>
+</table>
+
+<p>with the bounds </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math142.png" alt="\begin{displaymath}\nonumber{}0\leq{}x_{j}\leq{}\infty \mbox{ for }j=0\ldots 5.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> This corresponds to the network flow problem in section <a title="6.1.1. A linear network flow problem example" href="node008.html#chap-apiintro-sec-linear-network-example">6.1.1</a> plus one extra non-network constraint. We cannot use the network optimizer directly on the above problem since the last constraint destroys the network property. Finding the largest possible network structure in a linear optimization problem is computationally difficult, so MOSEK offers a heuristic <a href="node016.html#common-func*mosek*task*netextraction"><tt class="tt">Task.netextraction</tt></a> that attempts to find suitable scaling factors maximizing numbers of network constraints and variables. Assuming that the embedded network structure is dominant and the problem has few non-network constraints, we can exploit this structure and potentially speed up the optimization. Since the network constraints can be handled efficiently by the specialized network optimizer, the following idea is used: </p>
+
+<ul class="itemize">
+<li>Disregard the non-network constraints and optimize the network problem. </li>
+<li>Use the network solution to hot-start the standard dual simplex optimizer. </li>
+</ul>
+
+<p>An embedded network can be exploited by this scheme in two ways: </p>
+
+<ul class="itemize">
+<li>Use the extraction heuristics directly by the <a href="node016.html#common-func*mosek*task*netextraction"><tt class="tt">Task.netextraction</tt></a> function and optimize with the <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a> function. </li>
+<li>Let the simplex optimizer exploit embedded network structure automatically. </li>
+</ul>
+
+<p> The first method is more difficult than the second, but also offers much more flexibility. In <a title="6.2.1. Example: Exploit embedded network flow structure in the simplex optimizer" href="node008.html#network-advanced-example">6.2.1</a> the first method is demonstrated by a code example below. For further details on exploiting embedded network structure in the standard simplex optimizer, see section <a title="8.3.1. Network flow problems" href="node010.html#solving-network-problems">8.3.1</a>.</p>
+
+<div>
+<h2><a name="221777648">6.2.1. Example: Exploit embedded network flow structure in the simplex optimizer</a></h2>
+
+<p> <a name="idx-80626176">&#09;</a> <a name="network-advanced-example">&#09;</a></p>
+
+<p>MOSEK is distributed with some network examples which can be found in the directory</p>
+
+<pre class="verbatim">  mosek\6\tools\examples 
+</pre>
+
+<p> The example given in this section demonstrates how to extract and optimize embedded network structure in a arbitrary linear optimization problem. The following idea is used</p>
+
+<ul class="itemize">
+<li>Read an arbitrary linear optimization problem into a task. </li>
+<li>Use the <a href="node016.html#common-func*mosek*task*netextraction"><tt class="tt">Task.netextraction</tt></a> function to extract embedded network structure. </li>
+<li>Optimize the network problem using the <a href="node016.html#common-func*mosek*task*netoptimize"><tt class="tt">Task.netoptimize</tt></a> function. </li>
+</ul>
+
+<p><a name="idx-80630272">&#09;</a> <a name="idx-80630200">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">#</span>
+<span class="comment"># Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.</span>
+<span class="comment">#</span>
+<span class="comment"># File:    network2.py</span>
+<span class="comment">#</span>
+<span class="comment">#  Demonstrates a simple use of network structure in a model.</span>
+<span class="comment">#</span>
+<span class="comment">#   Purpose: 1. Read an optimization problem from an</span>
+<span class="comment">#               user specified MPS file.</span>
+<span class="comment">#            2. Extract the embedded network (if any ).</span>
+<span class="comment">#            3. Solve the embedded network with the network optimizer.</span>
+<span class="comment">#</span>
+<span class="comment">#   Note that the general simplex optimizer called though MSK_optimize can also extract </span>
+<span class="comment">#   embedded network and solve it with the network optimizer. The direct call to the </span>
+<span class="comment">#   network optimizer, which is demonstrated here, is offered as an option to save </span>
+<span class="comment">#   memory and overhead for solving either many or large network problems.</span>
+<span class="comment"># </span>
+
+<span class="keyword">import</span> sys
+<span class="keyword">import</span> mosek
+<span class="keyword">from</span> numpy <span class="keyword">import</span> resize,<span class="type">array</span>, <span class="type">float</span>, zeros
+<span class="comment">#from mosek.array import *</span>
+
+<span class="comment"># Define a stream printer to grab output from MOSEK</span>
+<span class="keyword">def</span> streamprinter(text):
+    sys.stdout.write(text)
+    sys.stdout.flush()
+
+<span class="comment"># Since the actual value of Infinity is ignores, we define it solely</span>
+<span class="comment"># for symbolic purposes:</span>
+inf = 0.0
+
+<span class="keyword">if</span> len(sys.argv) != 2:
+    <span class="keyword">print</span> "<span class="string">Wrong arguments. The syntax is:</span>"
+    <span class="keyword">print</span> "<span class="string"> network2 inputfile</span>"
+<span class="keyword">else</span>:
+    <span class="comment"># Make mosek environment. </span>
+    env  = mosek.Env ()
+    
+    <span class="comment"># Initialize the environment.</span>
+    env.init ()
+    
+    <span class="comment"># Attach a printer to the environment</span>
+    env.set_Stream (mosek.streamtype.log, streamprinter)
+    
+    <span class="comment">#  since we don't know the size of the problem.</span>
+    numcon    = []
+    numvar    = []
+    netnumcon = []
+    netnumvar = []
+    task   = env.Task (0,0)
+    
+    task.readdata (sys.argv[1])
+    
+    numcon = task.getnumcon ()
+    numvar = task.getnumvar ()
+    
+    <span class="comment"># Specify network graph data.</span>
+    netfrom = zeros (numvar, <span class="type">int</span>) 
+    netto   = zeros (numvar, <span class="type">int</span>) 
+    
+    <span class="comment"># Specify arc cost.</span>
+    cc      = zeros (numcon, <span class="type">float</span>) 
+    cx      = zeros (numvar, <span class="type">float</span>) 
+    
+    <span class="comment"># Specify boundkeys.</span>
+    bkc     = [ mosek.boundkey.fx ] * numcon 
+    bkx     = [ mosek.boundkey.fx ] * numvar)
+    
+    <span class="comment"># Specify bounds.</span>
+    blc     = zeros (numcon, <span class="type">float</span>) 
+    buc     = zeros (numcon, <span class="type">float</span>)
+    blx     = zeros (numvar, <span class="type">float</span>)
+    bux     = zeros (numvar, <span class="type">float</span>) 
+    
+    <span class="comment"># Specify data for extracted network.</span>
+    scalcon = zeros (numcon, <span class="type">float</span>) 
+    scalvar = zeros (numvar, <span class="type">float</span>) 
+    netcon  = zeros (numcon, <span class="type">int</span>) 
+    netvar  = zeros (numvar, <span class="type">int</span>)
+    
+    <span class="comment"># Extract embedded network</span>
+    netnumcon,netnumvar = task.netextraction(
+        netcon,
+        netvar,
+        scalcon,
+        scalvar,
+        cx,
+        bkc,
+        blc,
+        buc,
+        bkx,
+        blx,
+        bux,
+        netfrom,
+        netto)
+    
+    <span class="comment"># Create a dummy task object linked with the environment env.</span>
+    dummytask = env.Task (netnumcon,netnumvar)
+ 
+    <span class="comment"># Array length for netoptimize must match netnumcon and netnumvar</span>
+       
+    <span class="comment"># Resize network graph data.</span>
+    netfrom = resize (netfrom,netnumvar) 
+    netto   = resize (netto,netnumvar) 
+
+    <span class="comment"># Resize arc cost.</span>
+    cc      = resize (cc,netnumcon) 
+    cx      = resize (cx,netnumvar) 
+
+    <span class="comment"># Resize boundkeys.</span>
+    bkc     = [ mosek.boundkey.fx ] * netnumcon
+    bkx     = [ mosek.boundkey.fx ] * netnumvar
+
+    <span class="comment"># Resize bounds.</span>
+    blc     = resize (blc,netnumcon) 
+    buc     = resize (buc,netnumcon)
+    blx     = resize (blx,netnumvar)
+    bux     = resize (bux,netnumvar) 
+
+    <span class="comment"># Specify zero primal solution.</span>
+    xc      = zeros (netnumcon, <span class="type">float</span>) 
+    xx      = zeros (netnumvar, <span class="type">float</span>) 
+    
+    <span class="comment"># Specify zero dual solution.</span>
+    y       = zeros (netnumcon, <span class="type">float</span>) 
+    slc     = zeros (netnumcon, <span class="type">float</span>) 
+    suc     = zeros (netnumcon, <span class="type">float</span>) 
+    slx     = zeros (netnumvar, <span class="type">float</span>) 
+    sux     = zeros (netnumvar, <span class="type">float</span>) 
+    
+    <span class="comment"># Specify status keys.</span>
+    skc     = [ mosek.stakey.unk ] * netnumcon
+    skx     = [ mosek.stakey.unk ] * netnumvar 
+    
+    <span class="comment"># Specify problem and solution status.</span>
+    prosta  = []
+    solsta  = []
+    
+    <span class="comment"># Solve the network problem</span>
+    prosta,solsta = dummytask.netoptimize(
+        cc,
+        cx,
+        bkc,
+        blc,
+        buc,
+        bkx,
+        blx,
+        bux,
+        netfrom,
+        netto,
+        0,
+        skc,
+        skx,
+        xc,
+        xx,
+        y,
+        slc,
+        suc,
+        slx,
+        sux)
+    
+    <span class="keyword">print</span> "<span class="string">Original problem size : numcon : %d numvar : %d</span>" % (numcon,numvar)
+    <span class="keyword">print</span> "<span class="string">Embedded network size : numcon : %d numvar : %d</span>" % (netnumcon,netnumvar)
+    
+    <span class="keyword">if</span>  solsta == mosek.solsta.optimal :
+      <span class="keyword">print</span> "<span class="string">Network problem is optimal</span>"
+    <span class="keyword">elif</span> solsta == mosek.solsta.prim_infeas_cer :
+      <span class="keyword">print</span> "<span class="string">Network problem is primal infeasible</span>"
+    <span class="keyword">elif</span> solsta == mosek.solsta.dual_infeas_cer :
+      <span class="keyword">print</span> "<span class="string">Network problem is dual infeasible</span>"
+    <span class="keyword">else</span> :
+      <span class="keyword">print</span> "<span class="string">Network problem solsta : %s</span>" % solsta
+</div>
+
+<p>In the above example we only optimize the embedded network problem. We still need to use the found network solution as a hot-start for the simplex optimizer and solve the original problem. This involves unscaling the network solution back to same unit measure as the original problem. In the example</p>
+
+<pre class="verbatim">  mosek\6\tools\examples\python\network3.py
+</pre>
+
+<p>we show how to convert the network solution into a valid hot-start for the simplex optimizer.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. Basic API tutorial" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Python API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. Modelling" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">7. Modelling</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:54:29 2012</div>
+</body></html>

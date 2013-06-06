@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>10. The analyzers</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node011.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 9. The optimizer for mixed integer problems" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node013.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  11. Primal feasibility repair" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node011.html" target="_self">9. The optimizer for mixed integer problems</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node013.html" target="_self">11. Primal feasibility repair</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="233134272">10. The analyzers</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node012.html#233127520" target="_self">10.1. The problem analyzer</a>
+<ul class="toc-level-2">
+<li><a href="node012.html#233128088" target="_self">10.1.1. General characteristics</a></li>
+<li><a href="node012.html#233140520" target="_self">10.1.2. Objective</a></li>
+<li><a href="node012.html#233143328" target="_self">10.1.3. Linear constraints</a></li>
+<li><a href="node012.html#233144688" target="_self">10.1.4. Constraint and variable bounds</a></li>
+<li><a href="node012.html#233145048" target="_self">10.1.5. Quadratic constraints</a></li>
+<li><a href="node012.html#233145984" target="_self">10.1.6. Conic constraints</a></li>
+</ul>
+</li>
+<li><a href="node012.html#233147712" target="_self">10.2. Analyzing infeasible problems</a>
+<ul class="toc-level-2">
+<li><a href="node012.html#234869248" target="_self">10.2.1. Example: Primal infeasibility</a></li>
+<li><a href="node012.html#234872488" target="_self">10.2.2. Locating the cause of primal infeasibility</a></li>
+<li><a href="node012.html#234942192" target="_self">10.2.3. Locating the cause of dual infeasibility</a>
+<ul class="toc-level-3">
+<li><a href="node012.html#234927600" target="_self">10.2.3.1. A cautious note</a></li>
+</ul>
+</li>
+<li><a href="node012.html#234898496" target="_self">10.2.4. The infeasibility report</a>
+<ul class="toc-level-3">
+<li><a href="node012.html#234926808" target="_self">10.2.4.1. Example: Primal infeasibility</a></li>
+<li><a href="node012.html#234951888" target="_self">10.2.4.2. Example: Dual infeasibility</a></li>
+</ul>
+</li>
+<li><a href="node012.html#234962888" target="_self">10.2.5. Theory concerning infeasible problems</a></li>
+<li><a href="node012.html#234989616" target="_self">10.2.6. The certificate of primal infeasibility</a></li>
+<li><a href="node012.html#235000896" target="_self">10.2.7. The certificate of dual infeasibility</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<div>
+<h1><a name="233127520">10.1. The problem analyzer</a></h1>
+
+<p> <a name="ch_analyzers_sec_problem">&#09;</a></p>
+
+<p>The problem analyzer prints a detailed survey of the model's </p>
+
+<ul class="itemize">
+<li>linear constraints and objective </li>
+<li>quadratic constraints </li>
+<li>conic constraints </li>
+<li>variables </li>
+</ul>
+
+<p> In the initial stages of model formulation the problem analyzer may be used as a quick way of verifying that the model has been built or imported correctly. In later stages it can help revealing special structures within the model that may be used to tune the optimizer's performance or to identify the causes of numerical difficulties.</p>
+
+<p>The problem analyzer is run from the command line using the <tt class="tt">-anapro</tt> argument and produces something similar to the following (this is the problemanalyzer's survey of the <tt class="tt">aflow30a</tt> problem from the MIPLIB 2003 collection, see Appendix <a title="B. Problem analyzer examples" href="node022.html#app-sec-paexamples">B</a> for more examples):</p>
+
+<p><small class="footnotesize">
+<pre class="verbatim">Analyzing the problem
+
+Constraints               Bounds                    Variables
+ upper bd:       421       ranged  : all             cont:       421
+ fixed   :        58                                 bin :       421
+
+-------------------------------------------------------------------------------
+
+Objective, min cx
+   range: min |c|: 0.00000   min |c|&gt;0: 11.0000     max |c|: 500.000
+ distrib:        |c|        vars
+                   0         421
+           [11, 100)         150
+          [100, 500]         271
+
+-------------------------------------------------------------------------------
+
+Constraint matrix A has
+       479 rows (constraints)
+       842 columns (variables)
+      2091 (0.518449%) nonzero entries (coefficients)
+
+Row nonzeros, A_i
+   range: min A_i: 2 (0.23753%)    max A_i: 34 (4.038%)
+ distrib:        A_i        rows       rows%        acc%
+                   2         421       87.89       87.89
+             [8, 15]          20        4.18       92.07
+            [16, 31]          30        6.26       98.33
+            [32, 34]           8        1.67      100.00
+
+Column nonzeros, A|j
+   range: min A|j: 2 (0.417537%)    max A|j: 3 (0.626305%)
+ distrib:        A|j        cols       cols%        acc%
+                   2         435       51.66       51.66
+                   3         407       48.34      100.00
+
+A nonzeros, A(ij)
+   range: min |A(ij)|: 1.00000     max |A(ij)|: 100.000
+ distrib:      A(ij)      coeffs
+             [1, 10)        1670
+           [10, 100]         421
+
+-------------------------------------------------------------------------------
+
+Constraint bounds, lb &lt;= Ax &lt;= ub
+ distrib:        |b|             lbs             ubs
+                   0                             421
+             [1, 10]              58              58
+
+Variable bounds, lb &lt;= x &lt;= ub
+ distrib:        |b|             lbs             ubs
+                   0             842    
+             [1, 10)                             421
+           [10, 100]                             421
+
+-------------------------------------------------------------------------------
+</pre>
+</small></p>
+
+<p>The survey is divided into six different sections, each described below. To keep the presentation short with focus on key elements the analyzer generally attempts to display information on issues relevant for the current model only: E.g., if the model does not have any conic constraints (this is the case in the example above) or any integer variables, those parts of the analysis will not appear.</p>
+
+<div>
+<h2><a name="233128088">10.1.1. General characteristics</a></h2>
+
+<p> The first part of the survey consists of a brief summary of the model's linear and quadratic constraints (indexed by <span class="math"><span class="mi">i</span></span>) and variables (indexed by <span class="math"><span class="mi">j</span></span>). The summary is divided into three subsections:</p>
+
+<dl class="description">
+<dt></dt>
+<dd>
+<p><tt class="verb">Constraints</tt> </p>
+
+<dl class="description">
+<dt></dt>
+<dd>
+<p><tt class="verb">upper bd:</tt> The number of upper bounded constraints, <span class="math"><img src="math/math487.png" alt="[[MathCmd 487]]"/></span> </p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">lower bd:</tt> The number of lower bounded constraints, <span class="math"><img src="math/math488.png" alt="[[MathCmd 488]]"/></span> </p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">ranged  :</tt> The number of ranged constraints, <span class="math"><img src="math/math489.png" alt="[[MathCmd 489]]"/></span> </p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">fixed   :</tt> The number of fixed constraints, <span class="math"><img src="math/math490.png" alt="[[MathCmd 490]]"/></span> </p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">free    :</tt> The number of free constraints  </p>
+</dd>
+</dl>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">Bounds</tt> </p>
+
+<dl class="description">
+<dt></dt>
+<dd>
+<p><tt class="verb">upper bd:</tt> The number of upper bounded variables, <span class="math"><img src="math/math491.png" alt="[[MathCmd 491]]"/></span> </p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">lower bd:</tt> The number of lower bounded variables, <span class="math"><img src="math/math492.png" alt="[[MathCmd 492]]"/></span> </p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">ranged  :</tt> The number of ranged variables, <span class="math"><img src="math/math493.png" alt="[[MathCmd 493]]"/></span> </p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">fixed   :</tt> The number of fixed variables, <span class="math"><img src="math/math494.png" alt="[[MathCmd 494]]"/></span> </p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">free    :</tt> The number of free variables  </p>
+</dd>
+</dl>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">Variables</tt> </p>
+
+<dl class="description">
+<dt></dt>
+<dd>
+<p><tt class="verb">cont:</tt> The number of continuous variables, <span class="math"><img src="math/math495.png" alt="[[MathCmd 495]]"/></span> </p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">bin :</tt> The number of binary variables, <span class="math"><img src="math/math496.png" alt="[[MathCmd 496]]"/></span> </p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">int :</tt> The number of general integer variables, <span class="math"><img src="math/math497.png" alt="[[MathCmd 497]]"/></span> </p>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<p> Only constraints, bounds and domains actually in the model will be reported on, cf. appendix <a title="B. Problem analyzer examples" href="node022.html#app-sec-paexamples">B</a>; if all entities in a section turn out to be of the same kind, the number will be replaced by <tt class="tt">all</tt> for brevity.</p>
+
+</div>
+
+<div>
+<h2><a name="233140520">10.1.2. Objective</a></h2>
+
+<p> The second part of the survey focuses on (the linear part of) the objective, summarizing the optimization sense and the coefficients' absolute value range and distribution. The number of 0 (zero) coefficients is singled out (if any such variables are in the problem).</p>
+
+<p>The range is displayed using three terms: </p>
+
+<dl class="description">
+<dt></dt>
+<dd>
+<p><tt class="verb">min |c|: </tt> The minimum absolute value among all coeffecients</p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">min |c|&gt;0:</tt> The minimum absolute value among the nonzero coefficients</p>
+</dd>
+<dt></dt>
+<dd>
+<p><tt class="verb">max |c|: </tt> The maximum absolute value among the coefficients </p>
+</dd>
+</dl>
+
+<p> If some of these extrema turn out to be equal, the display is shortened accordingly: </p>
+
+<ul class="itemize">
+<li>If <tt class="verb">min |c|</tt>is greater than zero, the <tt class="verb">min |c|&gt;0</tt> term is obsolete and will not be displayed</li>
+<li>If only one or two different coefficients occur this will be displayed using <tt class="tt">all</tt> and an explicit listing of the coefficients </li>
+</ul>
+
+<p>The absolute value distribution is displayed as a table summarizing the numbers by orders of magnitude (with a ratio of 10). Again, the number of variables with a coefficient of 0 (if any) is singled out. Each line of the table is headed by an interval (half-open intervals including their lower bounds), and is followed by the number of variables with their objective coefficient in this interval. Intervals with no elements are skipped.</p>
+
+</div>
+
+<div>
+<h2><a name="233143328">10.1.3. Linear constraints</a></h2>
+
+<p> The third part of the survey displays information on the nonzero coefficients of the linear constraint matrix.</p>
+
+<p>Following a brief summary of the matrix dimensions and the number of nonzero coefficients in total, three sections provide further details on how the nonzero coefficients are distributed by row-wise count (<tt class="verb">A_i</tt>), by column-wise count (<tt class="verb">A|j</tt>), and by absolute value (<tt class="verb">|A(ij)|</tt>). Each section is headed by a brief display of the distribution's range (<tt class="verb">min</tt> and <tt class="verb">max</tt>), and for the row/column-wise counts the corresponding densities are displayed too (in parentheses).</p>
+
+<p>The distribution tables single out three particularly interesting counts: zero, one, and two nonzeros per row/column; the remaining row/column nonzeros are displayed by orders of magnitude (ratio 2). For each interval the relative and accumulated relative counts are also displayed.</p>
+
+<p>Note that constraints may have both linear and quadratic terms, but the empty rows and columns reported in this part of the survey relate to the linear terms only. If empty rows and/or columns are found in the linear constraint matrix, the problem is analyzed further in order to determine if the corresponding constraints have any quadratic terms or the corresponding variables are used in conic or quadratic constraints; cf. the last two examples of appendix <a title="B. Problem analyzer examples" href="node022.html#app-sec-paexamples">B</a>.</p>
+
+<p>The distribution of the absolute values, <tt class="verb">|A(ij)|</tt>, is displayed just as for the objective coefficients described above.</p>
+
+</div>
+
+<div>
+<h2><a name="233144688">10.1.4. Constraint and variable bounds</a></h2>
+
+<p> The fourth part of the survey displays distributions for the absolute values of the finite lower and upper bounds for both constraints and variables. The number of bounds at 0 is singled out and, otherwise, displayed by orders of magnitude (with a ratio of 10).</p>
+
+</div>
+
+<div>
+<h2><a name="233145048">10.1.5. Quadratic constraints</a></h2>
+
+<p> The fifth part of the survey displays distributions for the nonzero elements in the gradient of the quadratic constraints, i.e. the nonzero row counts for the column vectors <span class="math"><span class="mi">Q</span><span class="mi">x</span></span>. The table is similar to the tables for the linear constraints' nonzero row and column counts described in the survey's third part.</p>
+
+<p>Note: Quadratic constraints may also have a linear part, but that will be included in the linear constraints survey; this means that if a problem has one or more pure quadratic constraints, part three of the survey will report an equal number of linear constraint rows with 0 (zero) nonzeros, cf. the last example in appendix <a title="B. Problem analyzer examples" href="node022.html#app-sec-paexamples">B</a>. Likewise, variables that appear in quadratic terms only will be reported as empty columns (0 nonzeros) in the linear constraint report.</p>
+
+</div>
+
+<div>
+<h2><a name="233145984">10.1.6. Conic constraints</a></h2>
+
+<p> The last part of the survey summarizes the model's conic constraints. For each of the two types of cones, quadratic and rotated quadratic, the total number of cones are reported, and the distribution of the cones' dimensions are displayed using intervals. Cone dimensions of 2, 3, and 4 are singled out.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="233147712">10.2. Analyzing infeasible problems</a></h1>
+
+<p> <a name="sec-analysing-infeasible-problems">&#09;</a> <a name="idx-91464984">&#09;</a><a name="idx-91465632">&#09;</a></p>
+
+<p>When developing and implementing a new optimization model, the first attempts will often be either infeasible, due to specification of inconsistent constraints, or unbounded, if important constraints have been left out.</p>
+
+<p>In this chapter we will </p>
+
+<ul class="itemize">
+<li>go over an example demonstrating how to locate infeasible constraints using the MOSEK infeasibility report tool, </li>
+<li>discuss in more general terms which properties that may cause infeasibilities, and</li>
+<li>present the more formal theory of infeasible and unbounded problems. </li>
+</ul>
+
+<p> Furthermore, chapter <a title="11. Primal feasibility repair" href="node013.html#ch-feasibilityrepair">11</a> contains a discussion on a specific method for repairing infeasibility problems where infeasibilities are caused by model parameters rather than errors in the model or the implementation.</p>
+
+<div>
+<h2><a name="234869248">10.2.1. Example: Primal infeasibility</a></h2>
+
+<p> <a name="sec-transpriminfeas">&#09;</a>A problem is said to be <em>primal infeasible</em> if no solution exists that satisfy all the constraints of the problem.</p>
+
+<p>As an example of a primal infeasible problem consider the problem of minimizing the cost of transportation between a number of production plants and stores: Each plant produces a fixed number of goods, and each store has a fixed demand that must be met. Supply, demand and cost of transportation per unit are given in figure <a href="node012.html#fig-transinfeas">10.1</a>.</p>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td><center>
+<p> <img src="graphics/transportp.png"/></p>
+<span class="caption">Figure&nbsp;10.1: Supply, demand and cost of transportation.</span>
+<br/>
+<p> <a name="fig-transinfeas">&#09;</a> </p>
+</center></td></tr></table>
+
+</div>
+
+<p>The problem represented in figure <a href="node012.html#fig-transinfeas">10.1</a> is infeasible, since the total demand </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math498.png" alt="\begin{math}\nonumber{}2300=1100+200+500+500\end{math}"/></td>
+<td>(10.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>exceeds the total supply </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math499.png" alt="\begin{math}\nonumber{}2200=200+1000+1000\end{math}"/></td>
+<td>(10.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>If we denote the number of transported goods from plant <span class="math"><span class="mi">i</span></span> to store <span class="math"><span class="mi">j</span></span> by <span class="math"><img src="math/math500.png" alt="[[MathCmd 500]]"/></span>, the problem can be formulated as the LP: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math501.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccccccccl}\nonumber{}\mbox{minimize} & x_{{11}} & + & 2x_{{12}} & + & 5x_{{23}} & + & 2x_{{24}} & + & x_{{31}} & + & 2x_{{33}} & + & x_{{34}} &  & \\\nonumber{}\mbox{subject to} & x_{{11}} & + & x_{{12}} &  &  &  &  &  &  &  &  &  &  & \leq{} & 200,\\\nonumber{} &  &  &  &  & x_{{23}} & + & x_{{24}} &  &  &  &  &  &  & \leq{} & 1000,\\\nonumber{} &  &  &  &  &  &  &  &  & x_{{31}} & + & x_{{33}} & + & x_{{34}} & \leq{} & 1000,\\\nonumber{} & x_{{11}} &  &  &  &  &  &  & + & x_{{31}} &  &  &  &  & = & 1100,\\\nonumber{} &  &  & x_{{12}} &  &  &  &  &  &  &  &  &  &  & = & 200,\\\nonumber{} &  &  &  &  & x_{{23}} & + &  &  &  &  & x_{{33}} &  &  & = & 500,\\\nonumber{} &  &  &  &  &  &  & x_{{24}} & + &  &  &  &  & x_{{34}} & = & 500,\\\nonumber{} & x_{{ij}}\geq{}0. &  &  &  &  &  &  &  &  &  &  &  &  &  &\end{array}\end{math}"/></td>
+<td><a name="eq:trans-infeas-lp-1">&#09;</a>(10.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>Solving the problem (<a href="node012.html#eq:trans-infeas-lp-1">10.2.3</a>) using MOSEK will result in a solution, a solution status and a problem status. Among the log output from the execution of MOSEK on the above problem are the lines: </p>
+
+<pre class="verbatim">Basic solution
+Problem status  : PRIMAL_INFEASIBLE
+Solution status : PRIMAL_INFEASIBLE_CER
+</pre>
+
+<p>The first line indicates that the problem status is primal infeasible. The second line says that a <em>certificate of the infeasibility</em> was found. The certificate is returned in place of the solution to the problem.</p>
+
+</div>
+
+<div>
+<h2><a name="234872488">10.2.2. Locating the cause of primal infeasibility</a></h2>
+
+<p> <a name="chap-analysing-infeasible-problems-sec-location-the-cause">&#09;</a> Usually a primal infeasible problem status is caused by a mistake in formulating the problem and therefore the question arises: &#8220;What is the cause of the infeasible status?&#8221; When trying to answer this question, it is often advantageous to follow these steps: </p>
+
+<ul class="itemize">
+<li>Remove the objective function. This does not change the infeasible status but simplifies the problem, eliminating any possibility of problems related to the objective function. </li>
+<li>Consider whether your problem has some necessary conditions for feasibility and examine if these are satisfied, e.g. total supply should be greater than or equal to total demand. </li>
+<li>Verify that coefficients and bounds are reasonably sized in your problem. </li>
+</ul>
+
+<p>If the problem is still primal infeasible, some of the constraints must be relaxed or removed completely. The MOSEK infeasibility report (Section <a title="10.2.4. The infeasibility report" href="node012.html#ch-analyzing-infeasible-problems-sec-infeasibility-reprot">10.2.4</a>) may assist you in finding the constraints causing the infeasibility.</p>
+
+<p>Possible ways of relaxing your problem include: </p>
+
+<ul class="itemize">
+<li>Increasing (decreasing) upper (lower) bounds on variables and constraints.</li>
+<li>Removing suspected constraints from the problem. </li>
+</ul>
+
+<p> Returning to the transportation example, we discover that removing the fifth constraint </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math502.png" alt="\begin{math}\nonumber{}x_{{12}}=200\end{math}"/></td>
+<td>(10.2.4)</td></tr>
+</tbody>
+</table>
+
+<p>makes the problem feasible.</p>
+
+</div>
+
+<div>
+<h2><a name="234942192">10.2.3. Locating the cause of dual infeasibility</a></h2>
+
+<p>A problem may also be <em>dual infeasible</em>. In this case the primal problem is often unbounded, mening that feasbile solutions exists such that the objective tends towards infinity. An example of a dual infeasible and primal unbounded problem is: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math503.png" alt="\begin{math}\nonumber{}\begin{array}{lcl}\nonumber{}\mbox{minimize} & x_{1} & \\\nonumber{}\mbox{subject to} & x_{1}\leq{}5. &\end{array}\end{math}"/></td>
+<td>(10.2.5)</td></tr>
+</tbody>
+</table>
+
+<p>To resolve a dual infeasibility the primal problem must be made more restricted by </p>
+
+<ul class="itemize">
+<li>Adding upper or lower bounds on variables or constraints. </li>
+<li>Removing variables. </li>
+<li>Changing the objective. </li>
+</ul>
+
+<div>
+<h3><a name="234927600">10.2.3.1. A cautious note</a></h3>
+
+<p>The problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math504.png" alt="\begin{math}\nonumber{}\begin{array}{lcl}\nonumber{}\mbox{minimize} & 0 & \\\nonumber{}\mbox{subject to} & 0\leq{}x_{1}, & \\\nonumber{} & x_{j}\leq{}x_{{j+1}}, & j=1,\dots ,n-1,\\\nonumber{} & x_{n}\leq{}-1 &\end{array}\end{math}"/></td>
+<td>(10.2.6)</td></tr>
+</tbody>
+</table>
+
+<p>is clearly infeasible. Moreover, if any one of the constraints are dropped, then the problem becomes feasible.</p>
+
+<p>This illustrates the worst case scenario that all, or at least a significant portion, of the constraints are involved in the infeasibility. Hence, it may not always be easy or possible to pinpoint a few constraints which are causing the infeasibility.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="234898496">10.2.4. The infeasibility report</a></h2>
+
+<p> <a name="ch-analyzing-infeasible-problems-sec-infeasibility-reprot">&#09;</a> MOSEK includes functionality for diagnosing the cause of a primal or a dual infeasibility. It can be turned on by setting the <a href="node018.html#common-const*mosek*iparam*infeas-report-auto"><tt class="tt">mosek.iparam.infeas_report_auto</tt></a> to <a href="node020.html#common-const*mosek*onoffkey*on"><tt class="tt">mosek.onoffkey.on</tt></a>. This causes MOSEK to print a report on variables and constraints involved in the infeasibility.</p>
+
+<p>The <a href="node018.html#common-const*mosek*iparam*infeas-report-level"><tt class="tt">mosek.iparam.infeas_report_level</tt></a> parameter controls the amount of information presented in the infeasibility report. The default value is <span class="math"><span class="mn">1</span></span>.</p>
+
+<div>
+<h3><a name="234926808">10.2.4.1. Example: Primal infeasibility</a></h3>
+
+<p> We will reuse the example (<a href="node012.html#eq:trans-infeas-lp-1">10.2.3</a>) located in <tt class="tt">infeas.lp</tt>: </p>
+
+<pre class="verbatim">\
+\ An example of an infeasible linear problem.
+\
+minimize
+ obj: + 1 x11 + 2 x12 + 1 x13 
+      + 4 x21 + 2 x22 + 5 x23 
+      + 4 x31 + 1 x32 + 2 x33
+st
+  s0: + x11 + x12      &lt;= 200
+  s1: + x23 + x24      &lt;= 1000
+  s2: + x31 +x33 + x34 &lt;= 1000
+  d1: + x11 + x31       = 1100
+  d2: + x12             = 200
+  d3: + x23 + x33       = 500
+  d4: + x24 + x34       = 500
+bounds
+end
+ 
+</pre>
+
+<p>Using the command line </p>
+
+<pre class="verbatim">mosek -d MSK_IPAR_INFEAS_REPORT_AUTO MSK_ON infeas.lp
+</pre>
+
+<p>MOSEK produces the following infeasibility report </p>
+
+<pre class="verbatim">MOSEK PRIMAL INFEASIBILITY REPORT.
+
+Problem status: The problem is primal infeasible
+
+The following constraints are involved in the primal infeasibility.
+
+Index    Name      Lower bound      Upper bound      Dual lower       Dual upper
+0        s0        NONE             2.000000e+002    0.000000e+000    1.000000e+000
+2        s2        NONE             1.000000e+003    0.000000e+000    1.000000e+000
+3        d1        1.100000e+003    1.100000e+003    1.000000e+000    0.000000e+000
+4        d2        2.000000e+002    2.000000e+002    1.000000e+000    0.000000e+000
+
+The following bound constraints are involved in the infeasibility.
+
+Index    Name      Lower bound      Upper bound      Dual lower       Dual upper
+8        x33       0.000000e+000    NONE             1.000000e+000    0.000000e+000
+10       x34       0.000000e+000    NONE             1.000000e+000    0.000000e+000
+</pre>
+
+<p>The infeasibility report is divided into two sections where the first section shows which constraints that are important for the infeasibility. In this case the important constraints are the ones named <tt class="tt">s0</tt>, <tt class="tt">s2</tt>, <tt class="tt">d1</tt>, and <tt class="tt">d2</tt>. The values in the columns &#8220;<tt class="tt">Dual lower</tt>&#8221; and &#8220;<tt class="tt">Dual upper</tt>&#8221; are also useful, since a non-zero <em>dual lower</em> value for a constraint implies that the lower bound on the constraint is important for the infeasibility. Similarly, a non-zero <em>dual upper</em> value implies that the upper bound on the constraint is important for the infeasibility.</p>
+
+<p>It is also possible to obtain the infeasible subproblem. The command line </p>
+
+<pre class="verbatim">mosek -d MSK_IPAR_INFEAS_REPORT_AUTO MSK_ON infeas.lp -info rinfeas.lp
+</pre>
+
+<p>produces the files <tt class="tt">rinfeas.bas.inf.lp</tt>. In this case the content of the file <tt class="tt">rinfeas.bas.inf.lp</tt> is </p>
+
+<pre class="verbatim">minimize
+ Obj: + CFIXVAR
+st
+ s0: + x11 + x12 &lt;= 200
+ s2: + x31 + x33 + x34 &lt;= 1e+003
+ d1: + x11 + x31 = 1.1e+003
+ d2: + x12 = 200
+bounds
+ x11 free
+ x12 free
+ x13 free
+ x21 free
+ x22 free
+ x23 free
+ x31 free
+ x32 free
+ x24 free
+ CFIXVAR = 0e+000
+end
+</pre>
+
+<p>which is an optimization problem. This problem is identical to (<a href="node012.html#eq:trans-infeas-lp-1">10.2.3</a>), except that the objective and some of the constraints and bounds have been removed. Executing the command </p>
+
+<pre class="verbatim">mosek -d MSK_IPAR_INFEAS_REPORT_AUTO MSK_ON rinfeas.bas.inf.lp
+</pre>
+
+<p>demonstrates that the reduced problem is <b>primal infeasible</b>. Since the reduced problem is usually smaller than original problem, it should be easier to locate the cause of the infeasibility in this rather than in the original (<a href="node012.html#eq:trans-infeas-lp-1">10.2.3</a>).</p>
+
+</div>
+
+<div>
+<h3><a name="234951888">10.2.4.2. Example: Dual infeasibility</a></h3>
+
+<p> The example problem </p>
+
+<pre class="verbatim">maximize -  200 y1 - 1000 y2 - 1000 y3
+         - 1100 y4 -  200 y5 -  500 y6
+         -  500 y7
+subject to
+   x11: y1+y4 &lt; 1
+   x12: y1+y5 &lt; 2
+   x23: y2+y6 &lt; 5
+   x24: y2+y7 &lt; 2
+   x31: y3+y4 &lt; 1
+   x33: y3+y6 &lt; 2
+   x44: y3+y7 &lt; 1
+bounds
+   y1 &lt; 0
+   y2 &lt; 0
+   y3 &lt; 0
+   y4 free 
+   y5 free
+   y6 free
+   y7 free
+end
+</pre>
+
+<p>is dual infeasible. This can be verified by proving that </p>
+
+<pre class="verbatim">y1=-1, y2=-1, y3=0, y4=1, y5=1
+</pre>
+
+<p>is a certificate of dual infeasibility. In this example the following infeasibility report is produced (slightly edited): <small class="footnotesize">
+<pre class="verbatim">The following constraints are involved in the infeasibility.
+
+Index    Name             Activity         Objective        Lower bound      Upper bound     
+0        x11              -1.000000e+00                     NONE             1.000000e+00    
+4        x31              -1.000000e+00                     NONE             1.000000e+00    
+
+The following variables are involved in the infeasibility.
+
+Index    Name             Activity         Objective        Lower bound      Upper bound     
+3        y4               -1.000000e+00    -1.100000e+03    NONE             NONE            
+Interior-point solution
+Problem status  : DUAL_INFEASIBLE
+Solution status : DUAL_INFEASIBLE_CER
+Primal - objective: 1.1000000000e+03   eq. infeas.: 0.00e+00 max bound infeas.: 0.00e+00 cone infeas.: 0.00e+00
+Dual   - objective: 0.0000000000e+00   eq. infeas.: 0.00e+00 max bound infeas.: 0.00e+00 cone infeas.: 0.00e+00
+</pre>
+</small>Let <span class="math"><img src="math/math405.png" alt="[[MathCmd 405]]"/></span> denote the reported primal solution. MOSEK states </p>
+
+<ul class="itemize">
+<li>that the problem is <em>dual infeasible</em>, </li>
+<li>that the reported solution is a certificate of dual infeasibility, and </li>
+<li>that the infeasibility measure for <span class="math"><img src="math/math405.png" alt="[[MathCmd 405]]"/></span> is approximately zero. </li>
+</ul>
+
+<p>Since it was an maximization problem, this implies that </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math507.png" alt="\begin{math}\nonumber{}c^{t}x^{*}>0.\end{math}"/></td>
+<td><a name="eq:dual-infeas-obj-value">&#09;</a>(10.2.7)</td></tr>
+</tbody>
+</table>
+
+<p>For a minimization problem this inequality would have been reversed &mdash; see <a href="node012.html#ch-inf-sev-dualinfgenbounds-infcer">(10.2.19)</a>.</p>
+
+<p>From the infeasibility report we see that the variable <tt class="tt">y4</tt>, and the constraints <tt class="tt">x11</tt> and <tt class="tt">x33</tt> are involved in the infeasibility since these appear with non-zero values in the &#8220;<tt class="tt">Activity</tt>&#8221; column.</p>
+
+<p>One possible strategy to &#8220;fix&#8221; the infeasibility is to modify the problem so that the certificate of infeasibility becomes invalid. In this case we may do one the the following things: </p>
+
+<ul class="itemize">
+<li>Put a lower bound in <tt class="tt">y3</tt>. This will directly invalidate the certificate of dual infeasibility. </li>
+<li>Increase the object coefficient of <tt class="tt">y3</tt>. Changing the coefficients sufficiently will invalidate the inequality <a href="node012.html#eq:dual-infeas-obj-value">(10.2.7)</a> and thus the certificate. </li>
+<li>Put lower bounds on <tt class="tt">x11</tt> or <tt class="tt">x31</tt>. This will directly invalidate the certificate of infeasibility. </li>
+</ul>
+
+<p>Please note that modifying the problem to invalidate the reported certificate does <em>not</em> imply that the problem becomes dual feasible &mdash; the infeasibility may simply &#8220;move&#8221;, resulting in a new infeasibility.</p>
+
+<p>More often, the reported certificate can be used to give a hint about errors or inconsistencies in the model that produced the problem.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="234962888">10.2.5. Theory concerning infeasible problems</a></h2>
+
+<p> This section discusses the theory of infeasibility certificates and how MOSEK uses a certificate to produce an infeasibility report. In general, MOSEK solves the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math508.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x}\end{array}\end{math}"/></td>
+<td><a name="sec-infeas-theory-primal">&#09;</a>(10.2.8)</td></tr>
+</tbody>
+</table>
+
+<p>where the corresponding dual problem is </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math191.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & (l^{c})^{T}s_{l}^{c}-(u^{c})^{T}s_{u}^{c} &  & \\\nonumber{} & +(l^{x})^{T}s_{l}^{x}-(u^{x})^{T}s_{u}^{x}+c^{f} &  & \\\nonumber{}\mbox{subject to} & A^{T}y+s_{l}^{x}-s_{u}^{x} & = & c,\\\nonumber{} & -y+s_{l}^{c}-s_{u}^{c} & = & 0,\\\nonumber{} & s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td><a name="sec-infeas-theory-dual">&#09;</a>(10.2.9)</td></tr>
+</tbody>
+</table>
+
+<p>We use the convension that for any bound that is not finite, the corresponding dual variable is fixed at zero (and thus will have no influence on the dual problem). For example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math510.png" alt="\begin{math}\nonumber{}l_{j}^{x}=-\infty ~\Rightarrow ~(s_{l}^{x})_{j}=0\end{math}"/></td>
+<td>(10.2.10)</td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h2><a name="234989616">10.2.6. The certificate of primal infeasibility</a></h2>
+
+<p> A certificate of primal infeasibility is <em>any</em> solution to the homogenized dual problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math511.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & (l^{c})^{T}s_{l}^{c}-(u^{c})^{T}s_{u}^{c} &  & \\\nonumber{} & +(l^{x})^{T}s_{l}^{x}-(u^{x})^{T}s_{u}^{x} &  & \\\nonumber{}\mbox{subject to} & A^{T}y+s_{l}^{x}-s_{u}^{x} & = & 0,\\\nonumber{} & -y+s_{l}^{c}-s_{u}^{c} & = & 0,\\\nonumber{} & s_{l}^{c},s_{u}^{c},s_{l}^{x},s_{u}^{x}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td>(10.2.11)</td></tr>
+</tbody>
+</table>
+
+<p>with a positive objective value. That is, <span class="math"><img src="math/math512.png" alt="[[MathCmd 512]]"/></span> is a certificate of primal infeasibility if </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math513.png" alt="\begin{math}\nonumber{}(l^{c})^{T}s_{l}^{{c*}}-(u^{c})^{T}s_{u}^{{c*}}+(l^{x})^{T}s_{l}^{{x*}}-(u^{x})^{T}s_{u}^{{x*}}>0\end{math}"/></td>
+<td>(10.2.12)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math514.png" alt="\begin{math}\nonumber{}\begin{array}{lcl}\nonumber{}A^{T}y+s_{l}^{{x*}}-s_{u}^{{x*}} & = & 0,\\\nonumber{}-y+s_{l}^{{c*}}-s_{u}^{{c*}} & = & 0,\\\nonumber{}s_{l}^{{c*}},s_{u}^{{c*}},s_{l}^{{x*}},s_{u}^{{x*}}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td>(10.2.13)</td></tr>
+</tbody>
+</table>
+
+<p>The well-known Farkas Lemma tells us that (<a href="node012.html#sec-infeas-theory-primal">10.2.8</a>) is infeasible if and only if a certificate of primal infeasibility exists.</p>
+
+<p>Let <span class="math"><img src="math/math512.png" alt="[[MathCmd 512]]"/></span> be a certificate of primal infeasibility then </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math516.png" alt="\begin{math}\nonumber{}(s_{l}^{{c*}})_{i}>0\quad{}((s_{u}^{{c*}})_{i}>0)\end{math}"/></td>
+<td>(10.2.14)</td></tr>
+</tbody>
+</table>
+
+<p>implies that the lower (upper) bound on the <span class="math"><span class="mi">i</span></span>th constraint is important for the infeasibility. Furthermore, </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math517.png" alt="\begin{math}\nonumber{}(s_{l}^{{x*}})_{j}>0\quad{}((s_{u}^{{x*}})_{i}>0)\end{math}"/></td>
+<td>(10.2.15)</td></tr>
+</tbody>
+</table>
+
+<p>implies that the lower (upper) bound on the <span class="math"><span class="mi">j</span></span>th variable is important for the infeasibility.</p>
+
+</div>
+
+<div>
+<h2><a name="235000896">10.2.7. The certificate of dual infeasibility</a></h2>
+
+<p> A certificate of dual infeasibility is <em>any</em> solution to the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math518.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x &  & \\\nonumber{}\mbox{subject to} & \bar{l}^{c} & \leq{} & Ax & \leq{} & \bar{u}^{c},\\\nonumber{} & \bar{l}^{x} & \leq{} & x & \leq{} & \bar{u}^{x}\end{array}\end{math}"/></td>
+<td>(10.2.16)</td></tr>
+</tbody>
+</table>
+
+<p>with negative objective value, where we use the definitions </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math519.png" alt="\begin{math}\nonumber{}\bar{l}_{i}^{c}:=\left\lbrace{}\begin{array}{ll}\nonumber{}0, & l_{i}^{c}>-\infty ,\\\nonumber{}-\infty , & \mbox{otherwise},\end{array}\right.\quad{}\bar{u}_{i}^{c}:=\left\lbrace{}\begin{array}{ll}\nonumber{}0, & u_{i}^{c}<\infty ,\\\nonumber{}\infty , & \mbox{otherwise},\end{array}\right.\end{math}"/></td>
+<td>(10.2.17)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math520.png" alt="\begin{math}\nonumber{}\bar{l}_{i}^{x}:=\left\lbrace{}\begin{array}{ll}\nonumber{}0, & l_{i}^{x}>-\infty ,\\\nonumber{}-\infty , & \mbox{otherwise},\end{array}\right.\mbox{ and }\bar{u}_{i}^{x}:=\left\lbrace{}\begin{array}{ll}\nonumber{}0, & u_{i}^{x}<\infty ,\\\nonumber{}\infty , & \mbox{otherwise}.\end{array}\right.\end{math}"/></td>
+<td>(10.2.18)</td></tr>
+</tbody>
+</table>
+
+<p>Stated differently, a certificate of dual infeasibility is any <span class="math"><img src="math/math405.png" alt="[[MathCmd 405]]"/></span> such that </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math522.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{} &  & c^{T}x^{*} & < & 0,\\\nonumber{}\bar{l}^{c} & \leq{} & Ax^{*} & \leq{} & \bar{u}^{c},\\\nonumber{}\bar{l}^{x} & \leq{} & x^{*} & \leq{} & \bar{u}^{x}\end{array}\end{math}"/></td>
+<td><a name="ch-inf-sev-dualinfgenbounds-infcer">&#09;</a>(10.2.19)</td></tr>
+</tbody>
+</table>
+
+<p>The well-known Farkas Lemma tells us that (<a href="node012.html#sec-infeas-theory-dual">10.2.9</a>) is infeasible if and only if a certificate of dual infeasibility exists.</p>
+
+<p>Note that if <span class="math"><img src="math/math405.png" alt="[[MathCmd 405]]"/></span> is a certificate of dual infeasibility then for any <span class="math"><span class="mi">j</span></span> such that </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math524.png" alt="\begin{math}\nonumber{}x_{j}^{*}\not=0,\end{math}"/></td>
+<td>(10.2.20)</td></tr>
+</tbody>
+</table>
+
+<p>variable <span class="math"><span class="mi">j</span></span> is involved in the dual infeasibility.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node011.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 9. The optimizer for mixed integer problems" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node013.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  11. Primal feasibility repair" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node011.html" target="_self">9. The optimizer for mixed integer problems</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node013.html" target="_self">11. Primal feasibility repair</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:46:06 2012</div>
+</body></html>

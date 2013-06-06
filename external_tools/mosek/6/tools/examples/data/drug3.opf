@@ -1,0 +1,56 @@
+[comment]
+  Example: Drug production optimization problem taking uncertainties into
+  account. This is a ellipsoidal robust counterpart of the drug production
+  problem presented in "drug1.opf".
+[/comment]
+
+[variables]
+  DrugI DrugII # Produced amounts/1000 packs
+  RawI  RawII  # Purchased amounts/kg
+  t            # The robust objective value
+  yI yII z     # Extra variables for the conic formulation
+[/variables]
+
+[objective maximize] t [/objective]
+
+[constraints]
+  [con "objective constraint"]
+    # Profit from selling drugs
+      + 6200 DrugI + 6900 DrugII
+    # Cost of purchased raw materials
+      - 100 RawI - 199.90 RawII 
+    # Cost of producing drugs
+      - 700 DrugI - 800 DrugII
+
+      - t >= 0
+  [/con]
+
+  # Balance the availability/usage of active agent A, taking into account the
+  # uncertainty of the actual content.
+  [con "Robust Balance A"]
+    0 <=   0.01 RawI + 0.02 RawII 
+         - 0.500 DrugI - 0.600 DrugII 
+         - z
+  [/con]
+  # The constraint: y = Dx
+  [con "y_eq_Dz[0]"] 0 = yI  - 0.00005 RawI  [/con]
+  [con "y_eq_Dz[1]"] 0 = yII - 0.00040 RawII [/con]
+
+    # Constraint on storage space for raw materials
+  [con "Storage"]   RawI + RawII <= 1000 [/con]
+  # Restriction on available manpower
+  [con "Manpower"]  90.0 DrugI +100.0 DrugII <= 2000 [/con]
+  # Restriction on available equipment
+  [con "Equipment"] 40.0 DrugI + 50.0 DrugII <= 800 [/con]
+  # Restriction on available budget
+  [con "Budget"]    100 RawI  + 199.90 RawII + 700 DrugI + 800 DrugII <= 100000[/con]
+[/constraints]
+
+
+[bounds]
+  [b] RawI,RawII,DrugI,DrugII >= 0 [/b]
+  [b] t free [/b]
+  # Define the inequality (z^2 > yI^2 + yII^2)
+  [cone quad] z,yI,yII [/cone]
+[/bounds]
+

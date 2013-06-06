@@ -1,0 +1,1984 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>18. Constants</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node019.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 17. Response codes" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node021.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  A. Troubleshooting" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node019.html" target="_self">17. Response codes</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node021.html" target="_self">A. Troubleshooting</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="294940824">18. Constants</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node020.html#294953616" target="_self">18.1. Constraint or variable access modes</a></li>
+<li><a href="node020.html#294955488" target="_self">18.2. Function opcode</a></li>
+<li><a href="node020.html#294961448" target="_self">18.3. Function operand type</a></li>
+<li><a href="node020.html#294964688" target="_self">18.4. Basis identification</a></li>
+<li><a href="node020.html#294968640" target="_self">18.5. Bound keys</a></li>
+<li><a href="node020.html#294972592" target="_self">18.6. Specifies the branching direction.</a></li>
+<li><a href="node020.html#294975248" target="_self">18.7. Progress call-back codes</a></li>
+<li><a href="node020.html#295053576" target="_self">18.8. Types of convexity checks.</a></li>
+<li><a href="node020.html#295056232" target="_self">18.9. Compression types</a></li>
+<li><a href="node020.html#295058824" target="_self">18.10. Cone types</a></li>
+<li><a href="node020.html#295060832" target="_self">18.11. CPU type</a></li>
+<li><a href="node020.html#295068736" target="_self">18.12. Data format types</a></li>
+<li><a href="node020.html#295073984" target="_self">18.13. Double information items</a></li>
+<li><a href="node020.html#296754928" target="_self">18.14. Feasibility repair types</a></li>
+<li><a href="node020.html#296757584" target="_self">18.15. License feature</a></li>
+<li><a href="node020.html#296760888" target="_self">18.16. Integer information items.</a></li>
+<li><a href="node020.html#296831096" target="_self">18.17. Information item types</a></li>
+<li><a href="node020.html#296833752" target="_self">18.18. Input/output modes</a></li>
+<li><a href="node020.html#296836344" target="_self">18.19. Language selection constants</a></li>
+<li><a href="node020.html#296838352" target="_self">18.20. Long integer information items.</a></li>
+<li><a href="node020.html#296848200" target="_self">18.21. Mark</a></li>
+<li><a href="node020.html#296850208" target="_self">18.22. Continuous mixed-integer solution type</a></li>
+<li><a href="node020.html#296853448" target="_self">18.23. Integer restrictions</a></li>
+<li><a href="node020.html#296856104" target="_self">18.24. Mixed-integer node selection types</a></li>
+<li><a href="node020.html#296860704" target="_self">18.25. MPS file format type</a></li>
+<li><a href="node020.html#296863360" target="_self">18.26. Message keys</a></li>
+<li><a href="node020.html#296866016" target="_self">18.27. Network detection method</a></li>
+<li><a href="node020.html#296868608" target="_self">18.28. Objective sense types</a></li>
+<li><a href="node020.html#296871264" target="_self">18.29. On/off</a></li>
+<li><a href="node020.html#296873208" target="_self">18.30. Optimizer types</a></li>
+<li><a href="node020.html#296881112" target="_self">18.31. Ordering strategies</a></li>
+<li><a href="node020.html#296885712" target="_self">18.32. Parameter type</a></li>
+<li><a href="node020.html#296889016" target="_self">18.33. Presolve method.</a></li>
+<li><a href="node020.html#296891672" target="_self">18.34. Problem data items</a></li>
+<li><a href="node020.html#296894264" target="_self">18.35. Problem types</a></li>
+<li><a href="node020.html#296898928" target="_self">18.36. Problem status keys</a></li>
+<li><a href="node020.html#296907480" target="_self">18.37. Interpretation of quadratic terms in MPS files</a></li>
+<li><a href="node020.html#296910072" target="_self">18.38. Response code type</a></li>
+<li><a href="node020.html#296914024" target="_self">18.39. Scaling type</a></li>
+<li><a href="node020.html#296916032" target="_self">18.40. Scaling type</a></li>
+<li><a href="node020.html#296919336" target="_self">18.41. Sensitivity types</a></li>
+<li><a href="node020.html#296921280" target="_self">18.42. Degeneracy strategies</a></li>
+<li><a href="node020.html#296925232" target="_self">18.43. Exploit duplicate columns.</a></li>
+<li><a href="node020.html#296927888" target="_self">18.44. Hot-start type employed by the simplex optimizer</a></li>
+<li><a href="node020.html#296930480" target="_self">18.45. Problem reformulation.</a></li>
+<li><a href="node020.html#296933784" target="_self">18.46. Simplex selection strategy</a></li>
+<li><a href="node020.html#296938384" target="_self">18.47. Solution items</a></li>
+<li><a href="node020.html#296944344" target="_self">18.48. Solution status keys</a></li>
+<li><a href="node020.html#296954840" target="_self">18.49. Solution types</a></li>
+<li><a href="node020.html#296957496" target="_self">18.50. Solve primal or dual form</a></li>
+<li><a href="node020.html#296960152" target="_self">18.51. Status keys</a></li>
+<li><a href="node020.html#296965400" target="_self">18.52. Starting point types</a></li>
+<li><a href="node020.html#296968704" target="_self">18.53. Stream types</a></li>
+<li><a href="node020.html#296971944" target="_self">18.54. Integer values</a></li>
+<li><a href="node020.html#296973952" target="_self">18.55. Variable types</a></li>
+<li><a href="node020.html#296975896" target="_self">18.56. XML writer output mode</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="chap-constsref">&#09;</a></p>
+
+<ul class="itemize">
+<li> <a href="node020.html#common-constclass*mosek*accmode"><tt class="tt">accmode</tt></a>
+<br/>
+<br/>Constraint or variable access modes </li>
+<li> <a href="node020.html#common-constclass*mosek*adopcode"><tt class="tt">adopcode</tt></a>
+<br/>
+<br/>Function opcode </li>
+<li> <a href="node020.html#common-constclass*mosek*adoptype"><tt class="tt">adoptype</tt></a>
+<br/>
+<br/>Function operand type </li>
+<li> <a href="node020.html#common-constclass*mosek*basindtype"><tt class="tt">basindtype</tt></a>
+<br/>
+<br/>Basis identification </li>
+<li> <a href="node020.html#common-constclass*mosek*boundkey"><tt class="tt">boundkey</tt></a>
+<br/>
+<br/>Bound keys </li>
+<li> <a href="node020.html#common-constclass*mosek*branchdir"><tt class="tt">branchdir</tt></a>
+<br/>
+<br/>Specifies the branching direction. </li>
+<li> <a href="node020.html#common-constclass*mosek*callbackcode"><tt class="tt">callbackcode</tt></a>
+<br/>
+<br/>Progress call-back codes </li>
+<li> <a href="node020.html#common-constclass*mosek*checkconvexitytype"><tt class="tt">checkconvexitytype</tt></a>
+<br/>
+<br/>Types of convexity checks. </li>
+<li> <a href="node020.html#common-constclass*mosek*compresstype"><tt class="tt">compresstype</tt></a>
+<br/>
+<br/>Compression types </li>
+<li> <a href="node020.html#common-constclass*mosek*conetype"><tt class="tt">conetype</tt></a>
+<br/>
+<br/>Cone types </li>
+<li> <a href="node020.html#common-constclass*mosek*cputype"><tt class="tt">cputype</tt></a>
+<br/>
+<br/>CPU type </li>
+<li> <a href="node020.html#common-constclass*mosek*dataformat"><tt class="tt">dataformat</tt></a>
+<br/>
+<br/>Data format types </li>
+<li> <a href="node020.html#common-constclass*mosek*dinfitem"><tt class="tt">dinfitem</tt></a>
+<br/>
+<br/>Double information items </li>
+<li> <a href="node020.html#common-constclass*mosek*feasrepairtype"><tt class="tt">feasrepairtype</tt></a>
+<br/>
+<br/>Feasibility repair types </li>
+<li> <a href="node020.html#common-constclass*mosek*feature"><tt class="tt">feature</tt></a>
+<br/>
+<br/>License feature </li>
+<li> <a href="node020.html#common-constclass*mosek*iinfitem"><tt class="tt">iinfitem</tt></a>
+<br/>
+<br/>Integer information items. </li>
+<li> <a href="node020.html#common-constclass*mosek*inftype"><tt class="tt">inftype</tt></a>
+<br/>
+<br/>Information item types </li>
+<li> <a href="node020.html#common-constclass*mosek*iomode"><tt class="tt">iomode</tt></a>
+<br/>
+<br/>Input/output modes </li>
+<li> <a href="node020.html#common-constclass*mosek*language"><tt class="tt">language</tt></a>
+<br/>
+<br/>Language selection constants </li>
+<li> <a href="node020.html#common-constclass*mosek*liinfitem"><tt class="tt">liinfitem</tt></a>
+<br/>
+<br/>Long integer information items. </li>
+<li> <a href="node020.html#common-constclass*mosek*mark"><tt class="tt">mark</tt></a>
+<br/>
+<br/>Mark </li>
+<li> <a href="node020.html#common-constclass*mosek*miocontsoltype"><tt class="tt">miocontsoltype</tt></a>
+<br/>
+<br/>Continuous mixed-integer solution type </li>
+<li> <a href="node020.html#common-constclass*mosek*miomode"><tt class="tt">miomode</tt></a>
+<br/>
+<br/>Integer restrictions </li>
+<li> <a href="node020.html#common-constclass*mosek*mionodeseltype"><tt class="tt">mionodeseltype</tt></a>
+<br/>
+<br/>Mixed-integer node selection types </li>
+<li> <a href="node020.html#common-constclass*mosek*mpsformat"><tt class="tt">mpsformat</tt></a>
+<br/>
+<br/>MPS file format type </li>
+<li> <a href="node020.html#common-constclass*mosek*msgkey"><tt class="tt">msgkey</tt></a>
+<br/>
+<br/>Message keys </li>
+<li> <a href="node020.html#common-constclass*mosek*networkdetect"><tt class="tt">networkdetect</tt></a>
+<br/>
+<br/>Network detection method </li>
+<li> <a href="node020.html#common-constclass*mosek*objsense"><tt class="tt">objsense</tt></a>
+<br/>
+<br/>Objective sense types </li>
+<li> <a href="node020.html#common-constclass*mosek*onoffkey"><tt class="tt">onoffkey</tt></a>
+<br/>
+<br/>On/off </li>
+<li> <a href="node020.html#common-constclass*mosek*optimizertype"><tt class="tt">optimizertype</tt></a>
+<br/>
+<br/>Optimizer types </li>
+<li> <a href="node020.html#common-constclass*mosek*orderingtype"><tt class="tt">orderingtype</tt></a>
+<br/>
+<br/>Ordering strategies </li>
+<li> <a href="node020.html#common-constclass*mosek*parametertype"><tt class="tt">parametertype</tt></a>
+<br/>
+<br/>Parameter type </li>
+<li> <a href="node020.html#common-constclass*mosek*presolvemode"><tt class="tt">presolvemode</tt></a>
+<br/>
+<br/>Presolve method. </li>
+<li> <a href="node020.html#common-constclass*mosek*problemitem"><tt class="tt">problemitem</tt></a>
+<br/>
+<br/>Problem data items </li>
+<li> <a href="node020.html#common-constclass*mosek*problemtype"><tt class="tt">problemtype</tt></a>
+<br/>
+<br/>Problem types </li>
+<li> <a href="node020.html#common-constclass*mosek*prosta"><tt class="tt">prosta</tt></a>
+<br/>
+<br/>Problem status keys </li>
+<li> <a href="node020.html#common-constclass*mosek*qreadtype"><tt class="tt">qreadtype</tt></a>
+<br/>
+<br/>Interpretation of quadratic terms in MPS files </li>
+<li> <a href="node020.html#common-constclass*mosek*rescodetype"><tt class="tt">rescodetype</tt></a>
+<br/>
+<br/>Response code type </li>
+<li> <a href="node020.html#common-constclass*mosek*scalingmethod"><tt class="tt">scalingmethod</tt></a>
+<br/>
+<br/>Scaling type </li>
+<li> <a href="node020.html#common-constclass*mosek*scalingtype"><tt class="tt">scalingtype</tt></a>
+<br/>
+<br/>Scaling type </li>
+<li> <a href="node020.html#common-constclass*mosek*sensitivitytype"><tt class="tt">sensitivitytype</tt></a>
+<br/>
+<br/>Sensitivity types </li>
+<li> <a href="node020.html#common-constclass*mosek*simdegen"><tt class="tt">simdegen</tt></a>
+<br/>
+<br/>Degeneracy strategies </li>
+<li> <a href="node020.html#common-constclass*mosek*simdupvec"><tt class="tt">simdupvec</tt></a>
+<br/>
+<br/>Exploit duplicate columns. </li>
+<li> <a href="node020.html#common-constclass*mosek*simhotstart"><tt class="tt">simhotstart</tt></a>
+<br/>
+<br/>Hot-start type employed by the simplex optimizer </li>
+<li> <a href="node020.html#common-constclass*mosek*simreform"><tt class="tt">simreform</tt></a>
+<br/>
+<br/>Problem reformulation. </li>
+<li> <a href="node020.html#common-constclass*mosek*simseltype"><tt class="tt">simseltype</tt></a>
+<br/>
+<br/>Simplex selection strategy </li>
+<li> <a href="node020.html#common-constclass*mosek*solitem"><tt class="tt">solitem</tt></a>
+<br/>
+<br/>Solution items </li>
+<li> <a href="node020.html#common-constclass*mosek*solsta"><tt class="tt">solsta</tt></a>
+<br/>
+<br/>Solution status keys </li>
+<li> <a href="node020.html#common-constclass*mosek*soltype"><tt class="tt">soltype</tt></a>
+<br/>
+<br/>Solution types </li>
+<li> <a href="node020.html#common-constclass*mosek*solveform"><tt class="tt">solveform</tt></a>
+<br/>
+<br/>Solve primal or dual form </li>
+<li> <a href="node020.html#common-constclass*mosek*stakey"><tt class="tt">stakey</tt></a>
+<br/>
+<br/>Status keys </li>
+<li> <a href="node020.html#common-constclass*mosek*startpointtype"><tt class="tt">startpointtype</tt></a>
+<br/>
+<br/>Starting point types </li>
+<li> <a href="node020.html#common-constclass*mosek*streamtype"><tt class="tt">streamtype</tt></a>
+<br/>
+<br/>Stream types </li>
+<li> <a href="node020.html#common-constclass*mosek*value"><tt class="tt">value</tt></a>
+<br/>
+<br/>Integer values </li>
+<li> <a href="node020.html#common-constclass*mosek*variabletype"><tt class="tt">variabletype</tt></a>
+<br/>
+<br/>Variable types </li>
+<li> <a href="node020.html#common-constclass*mosek*xmlwriteroutputtype"><tt class="tt">xmlwriteroutputtype</tt></a>
+<br/>
+<br/>XML writer output mode </li>
+</ul>
+
+<div>
+<h1><a name="294953616">18.1. Constraint or variable access modes</a></h1>
+
+<p> <a name="constclass*mosek*accmode">&#09;</a><a name="common-constclass*mosek*accmode"></a> <a name="idx-197947120">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_ACC_CON</tt><a name="const*mosek*accmode*con">&#09;</a><a name="common-const*mosek*accmode*con"></a> 
+<br/>Access data by rows (constraint oriented) </li>
+<li><tt class="tt">MSK_ACC_VAR</tt><a name="const*mosek*accmode*var">&#09;</a><a name="common-const*mosek*accmode*var"></a> 
+<br/>Access data by columns (variable orinted) </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="294955488">18.2. Function opcode</a></h1>
+
+<p> <a name="constclass*mosek*adopcode">&#09;</a><a name="common-constclass*mosek*adopcode"></a> <a name="idx-197918944">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_ADOP_ADD</tt><a name="const*mosek*adopcode*add">&#09;</a><a name="common-const*mosek*adopcode*add"></a> 
+<br/>Add two operands. </li>
+<li><tt class="tt">MSK_ADOP_DIV</tt><a name="const*mosek*adopcode*div">&#09;</a><a name="common-const*mosek*adopcode*div"></a> 
+<br/>Divide two operands. </li>
+<li><tt class="tt">MSK_ADOP_EXP</tt><a name="const*mosek*adopcode*exp">&#09;</a><a name="common-const*mosek*adopcode*exp"></a> 
+<br/>Exponential function of one oparand. </li>
+<li><tt class="tt">MSK_ADOP_LOG</tt><a name="const*mosek*adopcode*log">&#09;</a><a name="common-const*mosek*adopcode*log"></a> 
+<br/>Logarithm function of one operand. </li>
+<li><tt class="tt">MSK_ADOP_MUL</tt><a name="const*mosek*adopcode*mul">&#09;</a><a name="common-const*mosek*adopcode*mul"></a> 
+<br/>Multiply two operands. </li>
+<li><tt class="tt">MSK_ADOP_POW</tt><a name="const*mosek*adopcode*pow">&#09;</a><a name="common-const*mosek*adopcode*pow"></a> 
+<br/>First operand to the power the second operand. </li>
+<li><tt class="tt">MSK_ADOP_RET</tt><a name="const*mosek*adopcode*ret">&#09;</a><a name="common-const*mosek*adopcode*ret"></a> 
+<br/>Return one operand. </li>
+<li><tt class="tt">MSK_ADOP_SUB</tt><a name="const*mosek*adopcode*sub">&#09;</a><a name="common-const*mosek*adopcode*sub"></a> 
+<br/>Subtract two operands. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="294961448">18.3. Function operand type</a></h1>
+
+<p> <a name="constclass*mosek*adoptype">&#09;</a><a name="common-constclass*mosek*adoptype"></a> <a name="idx-197999432">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_ADOPTYPE_CONSTANT</tt><a name="const*mosek*adoptype*constant">&#09;</a><a name="common-const*mosek*adoptype*constant"></a> 
+<br/>Operand refers to a constant. </li>
+<li><tt class="tt">MSK_ADOPTYPE_NONE</tt><a name="const*mosek*adoptype*none">&#09;</a><a name="common-const*mosek*adoptype*none"></a> 
+<br/>Operand not used. </li>
+<li><tt class="tt">MSK_ADOPTYPE_REFERENCE</tt><a name="const*mosek*adoptype*reference">&#09;</a><a name="common-const*mosek*adoptype*reference"></a> 
+<br/>Operand refers to the result of another operation. </li>
+<li><tt class="tt">MSK_ADOPTYPE_VARIABLE</tt><a name="const*mosek*adoptype*variable">&#09;</a><a name="common-const*mosek*adoptype*variable"></a> 
+<br/>Operand refers to a variable. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="294964688">18.4. Basis identification</a></h1>
+
+<p> <a name="constclass*mosek*basindtype">&#09;</a><a name="common-constclass*mosek*basindtype"></a> <a name="idx-196464864">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_BI_ALWAYS</tt><a name="const*mosek*basindtype*always">&#09;</a><a name="common-const*mosek*basindtype*always"></a> 
+<br/>Basis identification is always performed even if the interior-point optimizer terminates abnormally. </li>
+<li><tt class="tt">MSK_BI_IF_FEASIBLE</tt><a name="const*mosek*basindtype*if-feasible">&#09;</a><a name="common-const*mosek*basindtype*if-feasible"></a> 
+<br/>Basis identification is not performed if the interior-point optimizer terminates with a problem status saying that the problem is primal or dual infeasible. </li>
+<li><tt class="tt">MSK_BI_NEVER</tt><a name="const*mosek*basindtype*never">&#09;</a><a name="common-const*mosek*basindtype*never"></a> 
+<br/>Never do basis identification. </li>
+<li><tt class="tt">MSK_BI_NO_ERROR</tt><a name="const*mosek*basindtype*no-error">&#09;</a><a name="common-const*mosek*basindtype*no-error"></a> 
+<br/>Basis identification is performed if the interior-point optimizer terminates without an error. </li>
+<li><tt class="tt">MSK_BI_OTHER</tt><a name="const*mosek*basindtype*other">&#09;</a><a name="common-const*mosek*basindtype*other"></a> 
+<br/>Try another BI method. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="294968640">18.5. Bound keys</a></h1>
+
+<p> <a name="constclass*mosek*boundkey">&#09;</a><a name="common-constclass*mosek*boundkey"></a> <a name="idx-198027312">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_BK_FR</tt><a name="const*mosek*boundkey*fr">&#09;</a><a name="common-const*mosek*boundkey*fr"></a> 
+<br/>The constraint or variable is free. </li>
+<li><tt class="tt">MSK_BK_FX</tt><a name="const*mosek*boundkey*fx">&#09;</a><a name="common-const*mosek*boundkey*fx"></a> 
+<br/>The constraint or variable is fixed. </li>
+<li><tt class="tt">MSK_BK_LO</tt><a name="const*mosek*boundkey*lo">&#09;</a><a name="common-const*mosek*boundkey*lo"></a> 
+<br/>The constraint or variable has a finite lower bound and an infinite upper bound. </li>
+<li><tt class="tt">MSK_BK_RA</tt><a name="const*mosek*boundkey*ra">&#09;</a><a name="common-const*mosek*boundkey*ra"></a> 
+<br/>The constraint or variable is ranged. </li>
+<li><tt class="tt">MSK_BK_UP</tt><a name="const*mosek*boundkey*up">&#09;</a><a name="common-const*mosek*boundkey*up"></a> 
+<br/>The constraint or variable has an infinite lower bound and an finite upper bound. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="294972592">18.6. Specifies the branching direction.</a></h1>
+
+<p> <a name="constclass*mosek*branchdir">&#09;</a><a name="common-constclass*mosek*branchdir"></a> <a name="idx-197980384">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_BRANCH_DIR_DOWN</tt><a name="const*mosek*branchdir*down">&#09;</a><a name="common-const*mosek*branchdir*down"></a> 
+<br/>The mixed-integer optimizer always chooses the down branch first. </li>
+<li><tt class="tt">MSK_BRANCH_DIR_FREE</tt><a name="const*mosek*branchdir*free">&#09;</a><a name="common-const*mosek*branchdir*free"></a> 
+<br/>The mixed-integer optimizer decides which branch to choose. </li>
+<li><tt class="tt">MSK_BRANCH_DIR_UP</tt><a name="const*mosek*branchdir*up">&#09;</a><a name="common-const*mosek*branchdir*up"></a> 
+<br/>The mixed-integer optimizer always chooses the up branch first. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="294975248">18.7. Progress call-back codes</a></h1>
+
+<p> <a name="constclass*mosek*callbackcode">&#09;</a><a name="common-constclass*mosek*callbackcode"></a> <a name="idx-198073880">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_CALLBACK_BEGIN_BI</tt><a name="const*mosek*callbackcode*begin-bi">&#09;</a><a name="common-const*mosek*callbackcode*begin-bi"></a> 
+<br/>The basis identification procedure has been started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_CONCURRENT</tt><a name="const*mosek*callbackcode*begin-concurrent">&#09;</a><a name="common-const*mosek*callbackcode*begin-concurrent"></a> 
+<br/>Concurrent optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_CONIC</tt><a name="const*mosek*callbackcode*begin-conic">&#09;</a><a name="common-const*mosek*callbackcode*begin-conic"></a> 
+<br/>The call-back function is called when the conic optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_DUAL_BI</tt><a name="const*mosek*callbackcode*begin-dual-bi">&#09;</a><a name="common-const*mosek*callbackcode*begin-dual-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the dual phase is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_DUAL_SENSITIVITY</tt><a name="const*mosek*callbackcode*begin-dual-sensitivity">&#09;</a><a name="common-const*mosek*callbackcode*begin-dual-sensitivity"></a> 
+<br/>Dual sensitivity analysis is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_DUAL_SETUP_BI</tt><a name="const*mosek*callbackcode*begin-dual-setup-bi">&#09;</a><a name="common-const*mosek*callbackcode*begin-dual-setup-bi"></a> 
+<br/>The call-back function is called when the dual BI phase is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*begin-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*begin-dual-simplex"></a> 
+<br/>The call-back function is called when the dual simplex optimizer started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_DUAL_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*begin-dual-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*begin-dual-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the dual simplex clean-up phase is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_FULL_CONVEXITY_CHECK</tt><a name="const*mosek*callbackcode*begin-full-convexity-check">&#09;</a><a name="common-const*mosek*callbackcode*begin-full-convexity-check"></a> 
+<br/>Begin full convexity check. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_INFEAS_ANA</tt><a name="const*mosek*callbackcode*begin-infeas-ana">&#09;</a><a name="common-const*mosek*callbackcode*begin-infeas-ana"></a> 
+<br/>The call-back function is called when the infeasibility analyzer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_INTPNT</tt><a name="const*mosek*callbackcode*begin-intpnt">&#09;</a><a name="common-const*mosek*callbackcode*begin-intpnt"></a> 
+<br/>The call-back function is called when the interior-point optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_LICENSE_WAIT</tt><a name="const*mosek*callbackcode*begin-license-wait">&#09;</a><a name="common-const*mosek*callbackcode*begin-license-wait"></a> 
+<br/>Begin waiting for license. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_MIO</tt><a name="const*mosek*callbackcode*begin-mio">&#09;</a><a name="common-const*mosek*callbackcode*begin-mio"></a> 
+<br/>The call-back function is called when the mixed-integer optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_NETWORK_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*begin-network-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*begin-network-dual-simplex"></a> 
+<br/>The call-back function is called when the dual network simplex optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_NETWORK_PRIMAL_SIMPLEX</tt><a name="const*mosek*callbackcode*begin-network-primal-simplex">&#09;</a><a name="common-const*mosek*callbackcode*begin-network-primal-simplex"></a> 
+<br/>The call-back function is called when the primal network simplex optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_NETWORK_SIMPLEX</tt><a name="const*mosek*callbackcode*begin-network-simplex">&#09;</a><a name="common-const*mosek*callbackcode*begin-network-simplex"></a> 
+<br/>The call-back function is called when the simplex network optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_NONCONVEX</tt><a name="const*mosek*callbackcode*begin-nonconvex">&#09;</a><a name="common-const*mosek*callbackcode*begin-nonconvex"></a> 
+<br/>The call-back function is called when the nonconvex optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_OPTIMIZER</tt><a name="const*mosek*callbackcode*begin-optimizer">&#09;</a><a name="common-const*mosek*callbackcode*begin-optimizer"></a> 
+<br/>The call-back function is called when the optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_PRESOLVE</tt><a name="const*mosek*callbackcode*begin-presolve">&#09;</a><a name="common-const*mosek*callbackcode*begin-presolve"></a> 
+<br/>The call-back function is called when the presolve is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_PRIMAL_BI</tt><a name="const*mosek*callbackcode*begin-primal-bi">&#09;</a><a name="common-const*mosek*callbackcode*begin-primal-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the primal phase is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_PRIMAL_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*begin-primal-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*begin-primal-dual-simplex"></a> 
+<br/>The call-back function is called when the primal-dual simplex optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_PRIMAL_DUAL_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*begin-primal-dual-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*begin-primal-dual-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the primal-dual simplex clean-up phase is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_PRIMAL_SENSITIVITY</tt><a name="const*mosek*callbackcode*begin-primal-sensitivity">&#09;</a><a name="common-const*mosek*callbackcode*begin-primal-sensitivity"></a> 
+<br/>Primal sensitivity analysis is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_PRIMAL_SETUP_BI</tt><a name="const*mosek*callbackcode*begin-primal-setup-bi">&#09;</a><a name="common-const*mosek*callbackcode*begin-primal-setup-bi"></a> 
+<br/>The call-back function is called when the primal BI setup is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_PRIMAL_SIMPLEX</tt><a name="const*mosek*callbackcode*begin-primal-simplex">&#09;</a><a name="common-const*mosek*callbackcode*begin-primal-simplex"></a> 
+<br/>The call-back function is called when the primal simplex optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_PRIMAL_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*begin-primal-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*begin-primal-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the primal simplex clean-up phase is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_QCQO_REFORMULATE</tt><a name="const*mosek*callbackcode*begin-qcqo-reformulate">&#09;</a><a name="common-const*mosek*callbackcode*begin-qcqo-reformulate"></a> 
+<br/>Begin QCQO reformulation. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_READ</tt><a name="const*mosek*callbackcode*begin-read">&#09;</a><a name="common-const*mosek*callbackcode*begin-read"></a> 
+<br/>MOSEK has started reading a problem file. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_SIMPLEX</tt><a name="const*mosek*callbackcode*begin-simplex">&#09;</a><a name="common-const*mosek*callbackcode*begin-simplex"></a> 
+<br/>The call-back function is called when the simplex optimizer is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*begin-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*begin-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the simplex clean-up phase is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_SIMPLEX_NETWORK_DETECT</tt><a name="const*mosek*callbackcode*begin-simplex-network-detect">&#09;</a><a name="common-const*mosek*callbackcode*begin-simplex-network-detect"></a> 
+<br/>The call-back function is called when the network detection procedure is started. </li>
+<li><tt class="tt">MSK_CALLBACK_BEGIN_WRITE</tt><a name="const*mosek*callbackcode*begin-write">&#09;</a><a name="common-const*mosek*callbackcode*begin-write"></a> 
+<br/>MOSEK has started writing a problem file. </li>
+<li><tt class="tt">MSK_CALLBACK_CONIC</tt><a name="const*mosek*callbackcode*conic">&#09;</a><a name="common-const*mosek*callbackcode*conic"></a> 
+<br/>The call-back function is called from within the conic optimizer after the information database has been updated. </li>
+<li><tt class="tt">MSK_CALLBACK_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*dual-simplex"></a> 
+<br/>The call-back function is called from within the dual simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_END_BI</tt><a name="const*mosek*callbackcode*end-bi">&#09;</a><a name="common-const*mosek*callbackcode*end-bi"></a> 
+<br/>The call-back function is called when the basis identification procedure is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_CONCURRENT</tt><a name="const*mosek*callbackcode*end-concurrent">&#09;</a><a name="common-const*mosek*callbackcode*end-concurrent"></a> 
+<br/>Concurrent optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_CONIC</tt><a name="const*mosek*callbackcode*end-conic">&#09;</a><a name="common-const*mosek*callbackcode*end-conic"></a> 
+<br/>The call-back function is called when the conic optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_DUAL_BI</tt><a name="const*mosek*callbackcode*end-dual-bi">&#09;</a><a name="common-const*mosek*callbackcode*end-dual-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the dual phase is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_DUAL_SENSITIVITY</tt><a name="const*mosek*callbackcode*end-dual-sensitivity">&#09;</a><a name="common-const*mosek*callbackcode*end-dual-sensitivity"></a> 
+<br/>Dual sensitivity analysis is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_DUAL_SETUP_BI</tt><a name="const*mosek*callbackcode*end-dual-setup-bi">&#09;</a><a name="common-const*mosek*callbackcode*end-dual-setup-bi"></a> 
+<br/>The call-back function is called when the dual BI phase is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*end-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*end-dual-simplex"></a> 
+<br/>The call-back function is called when the dual simplex optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_DUAL_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*end-dual-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*end-dual-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the dual clean-up phase is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_FULL_CONVEXITY_CHECK</tt><a name="const*mosek*callbackcode*end-full-convexity-check">&#09;</a><a name="common-const*mosek*callbackcode*end-full-convexity-check"></a> 
+<br/>End full convexity check. </li>
+<li><tt class="tt">MSK_CALLBACK_END_INFEAS_ANA</tt><a name="const*mosek*callbackcode*end-infeas-ana">&#09;</a><a name="common-const*mosek*callbackcode*end-infeas-ana"></a> 
+<br/>The call-back function is called when the infeasibility analyzer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_INTPNT</tt><a name="const*mosek*callbackcode*end-intpnt">&#09;</a><a name="common-const*mosek*callbackcode*end-intpnt"></a> 
+<br/>The call-back function is called when the interior-point optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_LICENSE_WAIT</tt><a name="const*mosek*callbackcode*end-license-wait">&#09;</a><a name="common-const*mosek*callbackcode*end-license-wait"></a> 
+<br/>End waiting for license. </li>
+<li><tt class="tt">MSK_CALLBACK_END_MIO</tt><a name="const*mosek*callbackcode*end-mio">&#09;</a><a name="common-const*mosek*callbackcode*end-mio"></a> 
+<br/>The call-back function is called when the mixed-integer optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_NETWORK_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*end-network-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*end-network-dual-simplex"></a> 
+<br/>The call-back function is called when the dual network simplex optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_NETWORK_PRIMAL_SIMPLEX</tt><a name="const*mosek*callbackcode*end-network-primal-simplex">&#09;</a><a name="common-const*mosek*callbackcode*end-network-primal-simplex"></a> 
+<br/>The call-back function is called when the primal network simplex optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_NETWORK_SIMPLEX</tt><a name="const*mosek*callbackcode*end-network-simplex">&#09;</a><a name="common-const*mosek*callbackcode*end-network-simplex"></a> 
+<br/>The call-back function is called when the simplex network optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_NONCONVEX</tt><a name="const*mosek*callbackcode*end-nonconvex">&#09;</a><a name="common-const*mosek*callbackcode*end-nonconvex"></a> 
+<br/>The call-back function is called when the nonconvex optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_OPTIMIZER</tt><a name="const*mosek*callbackcode*end-optimizer">&#09;</a><a name="common-const*mosek*callbackcode*end-optimizer"></a> 
+<br/>The call-back function is called when the optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_PRESOLVE</tt><a name="const*mosek*callbackcode*end-presolve">&#09;</a><a name="common-const*mosek*callbackcode*end-presolve"></a> 
+<br/>The call-back function is called when the presolve is completed. </li>
+<li><tt class="tt">MSK_CALLBACK_END_PRIMAL_BI</tt><a name="const*mosek*callbackcode*end-primal-bi">&#09;</a><a name="common-const*mosek*callbackcode*end-primal-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the primal phase is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_PRIMAL_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*end-primal-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*end-primal-dual-simplex"></a> 
+<br/>The call-back function is called when the primal-dual simplex optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_PRIMAL_DUAL_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*end-primal-dual-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*end-primal-dual-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the primal-dual clean-up phase is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_PRIMAL_SENSITIVITY</tt><a name="const*mosek*callbackcode*end-primal-sensitivity">&#09;</a><a name="common-const*mosek*callbackcode*end-primal-sensitivity"></a> 
+<br/>Primal sensitivity analysis is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_PRIMAL_SETUP_BI</tt><a name="const*mosek*callbackcode*end-primal-setup-bi">&#09;</a><a name="common-const*mosek*callbackcode*end-primal-setup-bi"></a> 
+<br/>The call-back function is called when the primal BI setup is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_PRIMAL_SIMPLEX</tt><a name="const*mosek*callbackcode*end-primal-simplex">&#09;</a><a name="common-const*mosek*callbackcode*end-primal-simplex"></a> 
+<br/>The call-back function is called when the primal simplex optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_PRIMAL_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*end-primal-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*end-primal-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the primal clean-up phase is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_QCQO_REFORMULATE</tt><a name="const*mosek*callbackcode*end-qcqo-reformulate">&#09;</a><a name="common-const*mosek*callbackcode*end-qcqo-reformulate"></a> 
+<br/>End QCQO reformulation. </li>
+<li><tt class="tt">MSK_CALLBACK_END_READ</tt><a name="const*mosek*callbackcode*end-read">&#09;</a><a name="common-const*mosek*callbackcode*end-read"></a> 
+<br/>MOSEK has finished reading a problem file. </li>
+<li><tt class="tt">MSK_CALLBACK_END_SIMPLEX</tt><a name="const*mosek*callbackcode*end-simplex">&#09;</a><a name="common-const*mosek*callbackcode*end-simplex"></a> 
+<br/>The call-back function is called when the simplex optimizer is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*end-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*end-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure when the simplex clean-up phase is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_SIMPLEX_NETWORK_DETECT</tt><a name="const*mosek*callbackcode*end-simplex-network-detect">&#09;</a><a name="common-const*mosek*callbackcode*end-simplex-network-detect"></a> 
+<br/>The call-back function is called when the network detection procedure is terminated. </li>
+<li><tt class="tt">MSK_CALLBACK_END_WRITE</tt><a name="const*mosek*callbackcode*end-write">&#09;</a><a name="common-const*mosek*callbackcode*end-write"></a> 
+<br/>MOSEK has finished writing a problem file. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_BI</tt><a name="const*mosek*callbackcode*im-bi">&#09;</a><a name="common-const*mosek*callbackcode*im-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure at an intermediate point. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_CONIC</tt><a name="const*mosek*callbackcode*im-conic">&#09;</a><a name="common-const*mosek*callbackcode*im-conic"></a> 
+<br/>The call-back function is called at an intermediate stage within the conic optimizer where the information database has not been updated. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_DUAL_BI</tt><a name="const*mosek*callbackcode*im-dual-bi">&#09;</a><a name="common-const*mosek*callbackcode*im-dual-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure at an intermediate point in the dual phase. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_DUAL_SENSIVITY</tt><a name="const*mosek*callbackcode*im-dual-sensivity">&#09;</a><a name="common-const*mosek*callbackcode*im-dual-sensivity"></a> 
+<br/>The call-back function is called at an intermediate stage of the dual sensitivity analysis. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*im-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*im-dual-simplex"></a> 
+<br/>The call-back function is called at an intermediate point in the dual simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_FULL_CONVEXITY_CHECK</tt><a name="const*mosek*callbackcode*im-full-convexity-check">&#09;</a><a name="common-const*mosek*callbackcode*im-full-convexity-check"></a> 
+<br/>The call-back function is called at an intermediate stage of the full convexity check. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_INTPNT</tt><a name="const*mosek*callbackcode*im-intpnt">&#09;</a><a name="common-const*mosek*callbackcode*im-intpnt"></a> 
+<br/>The call-back function is called at an intermediate stage within the interior-point optimizer where the information database has not been updated. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_LICENSE_WAIT</tt><a name="const*mosek*callbackcode*im-license-wait">&#09;</a><a name="common-const*mosek*callbackcode*im-license-wait"></a> 
+<br/>MOSEK is waiting for a license. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_LU</tt><a name="const*mosek*callbackcode*im-lu">&#09;</a><a name="common-const*mosek*callbackcode*im-lu"></a> 
+<br/>The call-back function is called from within the LU factorization procedure at an intermediate point. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_MIO</tt><a name="const*mosek*callbackcode*im-mio">&#09;</a><a name="common-const*mosek*callbackcode*im-mio"></a> 
+<br/>The call-back function is called at an intermediate point in the mixed-integer optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_MIO_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*im-mio-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*im-mio-dual-simplex"></a> 
+<br/>The call-back function is called at an intermediate point in the mixed-integer optimizer while running the dual simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_MIO_INTPNT</tt><a name="const*mosek*callbackcode*im-mio-intpnt">&#09;</a><a name="common-const*mosek*callbackcode*im-mio-intpnt"></a> 
+<br/>The call-back function is called at an intermediate point in the mixed-integer optimizer while running the interior-point optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_MIO_PRESOLVE</tt><a name="const*mosek*callbackcode*im-mio-presolve">&#09;</a><a name="common-const*mosek*callbackcode*im-mio-presolve"></a> 
+<br/>The call-back function is called at an intermediate point in the mixed-integer optimizer while running the presolve. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_MIO_PRIMAL_SIMPLEX</tt><a name="const*mosek*callbackcode*im-mio-primal-simplex">&#09;</a><a name="common-const*mosek*callbackcode*im-mio-primal-simplex"></a> 
+<br/>The call-back function is called at an intermediate point in the mixed-integer optimizer while running the primal simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_NETWORK_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*im-network-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*im-network-dual-simplex"></a> 
+<br/>The call-back function is called at an intermediate point in the dual network simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_NETWORK_PRIMAL_SIMPLEX</tt><a name="const*mosek*callbackcode*im-network-primal-simplex">&#09;</a><a name="common-const*mosek*callbackcode*im-network-primal-simplex"></a> 
+<br/>The call-back function is called at an intermediate point in the primal network simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_NONCONVEX</tt><a name="const*mosek*callbackcode*im-nonconvex">&#09;</a><a name="common-const*mosek*callbackcode*im-nonconvex"></a> 
+<br/>The call-back function is called at an intermediate stage within the nonconvex optimizer where the information database has not been updated. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_ORDER</tt><a name="const*mosek*callbackcode*im-order">&#09;</a><a name="common-const*mosek*callbackcode*im-order"></a> 
+<br/>The call-back function is called from within the matrix ordering procedure at an intermediate point. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_PRESOLVE</tt><a name="const*mosek*callbackcode*im-presolve">&#09;</a><a name="common-const*mosek*callbackcode*im-presolve"></a> 
+<br/>The call-back function is called from within the presolve procedure at an intermediate stage. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_PRIMAL_BI</tt><a name="const*mosek*callbackcode*im-primal-bi">&#09;</a><a name="common-const*mosek*callbackcode*im-primal-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure at an intermediate point in the primal phase. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_PRIMAL_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*im-primal-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*im-primal-dual-simplex"></a> 
+<br/>The call-back function is called at an intermediate point in the primal-dual simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_PRIMAL_SENSIVITY</tt><a name="const*mosek*callbackcode*im-primal-sensivity">&#09;</a><a name="common-const*mosek*callbackcode*im-primal-sensivity"></a> 
+<br/>The call-back function is called at an intermediate stage of the primal sensitivity analysis. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_PRIMAL_SIMPLEX</tt><a name="const*mosek*callbackcode*im-primal-simplex">&#09;</a><a name="common-const*mosek*callbackcode*im-primal-simplex"></a> 
+<br/>The call-back function is called at an intermediate point in the primal simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_QO_REFORMULATE</tt><a name="const*mosek*callbackcode*im-qo-reformulate">&#09;</a><a name="common-const*mosek*callbackcode*im-qo-reformulate"></a> 
+<br/>The call-back function is called at an intermediate stage of the QP to SOCP reformulation. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_SIMPLEX</tt><a name="const*mosek*callbackcode*im-simplex">&#09;</a><a name="common-const*mosek*callbackcode*im-simplex"></a> 
+<br/>The call-back function is called from within the simplex optimizer at an intermediate point. </li>
+<li><tt class="tt">MSK_CALLBACK_IM_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*im-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*im-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure at an intermediate point in the simplex clean-up phase. The frequency of the call-backs is controlled by the <a href="node018.html#common-const*mosek*iparam*log-sim-freq"><tt class="tt">MSK_IPAR_LOG_SIM_FREQ</tt></a> parameter. </li>
+<li><tt class="tt">MSK_CALLBACK_INTPNT</tt><a name="const*mosek*callbackcode*intpnt">&#09;</a><a name="common-const*mosek*callbackcode*intpnt"></a> 
+<br/>The call-back function is called from within the interior-point optimizer after the information database has been updated. </li>
+<li><tt class="tt">MSK_CALLBACK_NEW_INT_MIO</tt><a name="const*mosek*callbackcode*new-int-mio">&#09;</a><a name="common-const*mosek*callbackcode*new-int-mio"></a> 
+<br/>The call-back function is called after a new integer solution has been located by the mixed-integer optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_NONCOVEX</tt><a name="const*mosek*callbackcode*noncovex">&#09;</a><a name="common-const*mosek*callbackcode*noncovex"></a> 
+<br/>The call-back function is called from within the nonconvex optimizer after the information database has been updated. </li>
+<li><tt class="tt">MSK_CALLBACK_PRIMAL_SIMPLEX</tt><a name="const*mosek*callbackcode*primal-simplex">&#09;</a><a name="common-const*mosek*callbackcode*primal-simplex"></a> 
+<br/>The call-back function is called from within the primal simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_QCONE</tt><a name="const*mosek*callbackcode*qcone">&#09;</a><a name="common-const*mosek*callbackcode*qcone"></a> 
+<br/>The call-back function is called from within the Qcone optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_READ_ADD_ANZ</tt><a name="const*mosek*callbackcode*read-add-anz">&#09;</a><a name="common-const*mosek*callbackcode*read-add-anz"></a> 
+<br/>A chunk of <span class="math"><span class="mi">A</span></span> non-zeos has been read from a problem file. </li>
+<li><tt class="tt">MSK_CALLBACK_READ_ADD_CONES</tt><a name="const*mosek*callbackcode*read-add-cones">&#09;</a><a name="common-const*mosek*callbackcode*read-add-cones"></a> 
+<br/>A chunk of cones has been read from a problem file. </li>
+<li><tt class="tt">MSK_CALLBACK_READ_ADD_CONS</tt><a name="const*mosek*callbackcode*read-add-cons">&#09;</a><a name="common-const*mosek*callbackcode*read-add-cons"></a> 
+<br/>A chunk of constraints has been read from a problem file. </li>
+<li><tt class="tt">MSK_CALLBACK_READ_ADD_QNZ</tt><a name="const*mosek*callbackcode*read-add-qnz">&#09;</a><a name="common-const*mosek*callbackcode*read-add-qnz"></a> 
+<br/>A chunk of <span class="math"><span class="mi">Q</span></span> non-zeos has been read from a problem file. </li>
+<li><tt class="tt">MSK_CALLBACK_READ_ADD_VARS</tt><a name="const*mosek*callbackcode*read-add-vars">&#09;</a><a name="common-const*mosek*callbackcode*read-add-vars"></a> 
+<br/>A chunk of variables has been read from a problem file. </li>
+<li><tt class="tt">MSK_CALLBACK_READ_OPF</tt><a name="const*mosek*callbackcode*read-opf">&#09;</a><a name="common-const*mosek*callbackcode*read-opf"></a> 
+<br/>The call-back function is called from the OPF reader. </li>
+<li><tt class="tt">MSK_CALLBACK_READ_OPF_SECTION</tt><a name="const*mosek*callbackcode*read-opf-section">&#09;</a><a name="common-const*mosek*callbackcode*read-opf-section"></a> 
+<br/>A chunk of <span class="math"><span class="mi">Q</span></span> non-zeos has been read from a problem file. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_DUAL_BI</tt><a name="const*mosek*callbackcode*update-dual-bi">&#09;</a><a name="common-const*mosek*callbackcode*update-dual-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure at an intermediate point in the dual phase. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*update-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*update-dual-simplex"></a> 
+<br/>The call-back function is called in the dual simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_DUAL_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*update-dual-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*update-dual-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure at an intermediate point in the dual simplex clean-up phase. The frequency of the call-backs is controlled by the <a href="node018.html#common-const*mosek*iparam*log-sim-freq"><tt class="tt">MSK_IPAR_LOG_SIM_FREQ</tt></a> parameter. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_NETWORK_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*update-network-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*update-network-dual-simplex"></a> 
+<br/>The call-back function is called in the dual network simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_NETWORK_PRIMAL_SIMPLEX</tt><a name="const*mosek*callbackcode*update-network-primal-simplex">&#09;</a><a name="common-const*mosek*callbackcode*update-network-primal-simplex"></a> 
+<br/>The call-back function is called in the primal network simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_NONCONVEX</tt><a name="const*mosek*callbackcode*update-nonconvex">&#09;</a><a name="common-const*mosek*callbackcode*update-nonconvex"></a> 
+<br/>The call-back function is called at an intermediate stage within the nonconvex optimizer where the information database has been updated. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_PRESOLVE</tt><a name="const*mosek*callbackcode*update-presolve">&#09;</a><a name="common-const*mosek*callbackcode*update-presolve"></a> 
+<br/>The call-back function is called from within the presolve procedure. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_PRIMAL_BI</tt><a name="const*mosek*callbackcode*update-primal-bi">&#09;</a><a name="common-const*mosek*callbackcode*update-primal-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure at an intermediate point in the primal phase. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_PRIMAL_DUAL_SIMPLEX</tt><a name="const*mosek*callbackcode*update-primal-dual-simplex">&#09;</a><a name="common-const*mosek*callbackcode*update-primal-dual-simplex"></a> 
+<br/>The call-back function is called in the primal-dual simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_PRIMAL_DUAL_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*update-primal-dual-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*update-primal-dual-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure at an intermediate point in the primal-dual simplex clean-up phase. The frequency of the call-backs is controlled by the <a href="node018.html#common-const*mosek*iparam*log-sim-freq"><tt class="tt">MSK_IPAR_LOG_SIM_FREQ</tt></a> parameter. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_PRIMAL_SIMPLEX</tt><a name="const*mosek*callbackcode*update-primal-simplex">&#09;</a><a name="common-const*mosek*callbackcode*update-primal-simplex"></a> 
+<br/>The call-back function is called in the primal simplex optimizer. </li>
+<li><tt class="tt">MSK_CALLBACK_UPDATE_PRIMAL_SIMPLEX_BI</tt><a name="const*mosek*callbackcode*update-primal-simplex-bi">&#09;</a><a name="common-const*mosek*callbackcode*update-primal-simplex-bi"></a> 
+<br/>The call-back function is called from within the basis identification procedure at an intermediate point in the primal simplex clean-up phase. The frequency of the call-backs is controlled by the <a href="node018.html#common-const*mosek*iparam*log-sim-freq"><tt class="tt">MSK_IPAR_LOG_SIM_FREQ</tt></a> parameter. </li>
+<li><tt class="tt">MSK_CALLBACK_WRITE_OPF</tt><a name="const*mosek*callbackcode*write-opf">&#09;</a><a name="common-const*mosek*callbackcode*write-opf"></a> 
+<br/>The call-back function is called from the OPF writer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="295053576">18.8. Types of convexity checks.</a></h1>
+
+<p> <a name="constclass*mosek*checkconvexitytype">&#09;</a><a name="common-constclass*mosek*checkconvexitytype"></a> <a name="idx-201078904">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_CHECK_CONVEXITY_FULL</tt><a name="const*mosek*checkconvexitytype*full">&#09;</a><a name="common-const*mosek*checkconvexitytype*full"></a> 
+<br/>Perform a full convexity check. </li>
+<li><tt class="tt">MSK_CHECK_CONVEXITY_NONE</tt><a name="const*mosek*checkconvexitytype*none">&#09;</a><a name="common-const*mosek*checkconvexitytype*none"></a> 
+<br/>No convexity check. </li>
+<li><tt class="tt">MSK_CHECK_CONVEXITY_SIMPLE</tt><a name="const*mosek*checkconvexitytype*simple">&#09;</a><a name="common-const*mosek*checkconvexitytype*simple"></a> 
+<br/>Perform simple and fast convexity check. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="295056232">18.9. Compression types</a></h1>
+
+<p> <a name="constclass*mosek*compresstype">&#09;</a><a name="common-constclass*mosek*compresstype"></a> <a name="idx-201068344">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_COMPRESS_FREE</tt><a name="const*mosek*compresstype*free">&#09;</a><a name="common-const*mosek*compresstype*free"></a> 
+<br/>The type of compression used is chosen automatically. </li>
+<li><tt class="tt">MSK_COMPRESS_GZIP</tt><a name="const*mosek*compresstype*gzip">&#09;</a><a name="common-const*mosek*compresstype*gzip"></a> 
+<br/>The type of compression used is gzip compatible. </li>
+<li><tt class="tt">MSK_COMPRESS_NONE</tt><a name="const*mosek*compresstype*none">&#09;</a><a name="common-const*mosek*compresstype*none"></a> 
+<br/>No compression is used. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="295058824">18.10. Cone types</a></h1>
+
+<p> <a name="constclass*mosek*conetype">&#09;</a><a name="common-constclass*mosek*conetype"></a> <a name="idx-201108296">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_CT_QUAD</tt><a name="const*mosek*conetype*quad">&#09;</a><a name="common-const*mosek*conetype*quad"></a> 
+<br/>The cone is a quadratic cone. </li>
+<li><tt class="tt">MSK_CT_RQUAD</tt><a name="const*mosek*conetype*rquad">&#09;</a><a name="common-const*mosek*conetype*rquad"></a> 
+<br/>The cone is a rotated quadratic cone. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="295060832">18.11. CPU type</a></h1>
+
+<p> <a name="constclass*mosek*cputype">&#09;</a><a name="common-constclass*mosek*cputype"></a> <a name="idx-201112464">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_CPU_AMD_ATHLON</tt><a name="const*mosek*cputype*amd-athlon">&#09;</a><a name="common-const*mosek*cputype*amd-athlon"></a> 
+<br/>An AMD Athlon. </li>
+<li><tt class="tt">MSK_CPU_AMD_OPTERON</tt><a name="const*mosek*cputype*amd-opteron">&#09;</a><a name="common-const*mosek*cputype*amd-opteron"></a> 
+<br/>An AMD Opteron (64 bit). </li>
+<li><tt class="tt">MSK_CPU_GENERIC</tt><a name="const*mosek*cputype*generic">&#09;</a><a name="common-const*mosek*cputype*generic"></a> 
+<br/>An generic CPU type for the platform </li>
+<li><tt class="tt">MSK_CPU_HP_PARISC20</tt><a name="const*mosek*cputype*hp-parisc20">&#09;</a><a name="common-const*mosek*cputype*hp-parisc20"></a> 
+<br/>An HP PA RISC version 2.0 CPU. </li>
+<li><tt class="tt">MSK_CPU_INTEL_CORE2</tt><a name="const*mosek*cputype*intel-core2">&#09;</a><a name="common-const*mosek*cputype*intel-core2"></a> 
+<br/>An Intel CORE2 cpu. </li>
+<li><tt class="tt">MSK_CPU_INTEL_ITANIUM2</tt><a name="const*mosek*cputype*intel-itanium2">&#09;</a><a name="common-const*mosek*cputype*intel-itanium2"></a> 
+<br/>An Intel Itanium2. </li>
+<li><tt class="tt">MSK_CPU_INTEL_P3</tt><a name="const*mosek*cputype*intel-p3">&#09;</a><a name="common-const*mosek*cputype*intel-p3"></a> 
+<br/>An Intel Pentium P3. </li>
+<li><tt class="tt">MSK_CPU_INTEL_P4</tt><a name="const*mosek*cputype*intel-p4">&#09;</a><a name="common-const*mosek*cputype*intel-p4"></a> 
+<br/>An Intel Pentium P4 or Intel Xeon. </li>
+<li><tt class="tt">MSK_CPU_INTEL_PM</tt><a name="const*mosek*cputype*intel-pm">&#09;</a><a name="common-const*mosek*cputype*intel-pm"></a> 
+<br/>An Intel PM cpu. </li>
+<li><tt class="tt">MSK_CPU_POWERPC_G5</tt><a name="const*mosek*cputype*powerpc-g5">&#09;</a><a name="common-const*mosek*cputype*powerpc-g5"></a> 
+<br/>A G5 PowerPC CPU. </li>
+<li><tt class="tt">MSK_CPU_UNKNOWN</tt><a name="const*mosek*cputype*unknown">&#09;</a><a name="common-const*mosek*cputype*unknown"></a> 
+<br/>An unknown CPU. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="295068736">18.12. Data format types</a></h1>
+
+<p> <a name="constclass*mosek*dataformat">&#09;</a><a name="common-constclass*mosek*dataformat"></a> <a name="idx-201140416">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_DATA_FORMAT_EXTENSION</tt><a name="const*mosek*dataformat*extension">&#09;</a><a name="common-const*mosek*dataformat*extension"></a> 
+<br/>The file extension is used to determine the data file format. </li>
+<li><tt class="tt">MSK_DATA_FORMAT_FREE_MPS</tt><a name="const*mosek*dataformat*free-mps">&#09;</a><a name="common-const*mosek*dataformat*free-mps"></a> 
+<br/>The data data a free MPS formatted file. </li>
+<li><tt class="tt">MSK_DATA_FORMAT_LP</tt><a name="const*mosek*dataformat*lp">&#09;</a><a name="common-const*mosek*dataformat*lp"></a> 
+<br/>The data file is LP formatted. </li>
+<li><tt class="tt">MSK_DATA_FORMAT_MBT</tt><a name="const*mosek*dataformat*mbt">&#09;</a><a name="common-const*mosek*dataformat*mbt"></a> 
+<br/>The data file is a MOSEK binary task file. </li>
+<li><tt class="tt">MSK_DATA_FORMAT_MPS</tt><a name="const*mosek*dataformat*mps">&#09;</a><a name="common-const*mosek*dataformat*mps"></a> 
+<br/>The data file is MPS formatted. </li>
+<li><tt class="tt">MSK_DATA_FORMAT_OP</tt><a name="const*mosek*dataformat*op">&#09;</a><a name="common-const*mosek*dataformat*op"></a> 
+<br/>The data file is an optimization problem formatted file. </li>
+<li><tt class="tt">MSK_DATA_FORMAT_XML</tt><a name="const*mosek*dataformat*xml">&#09;</a><a name="common-const*mosek*dataformat*xml"></a> 
+<br/>The data file is an XML formatted file. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="295073984">18.13. Double information items</a></h1>
+
+<p> <a name="constclass*mosek*dinfitem">&#09;</a><a name="common-constclass*mosek*dinfitem"></a> <a name="idx-201149904">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_DINF_BI_CLEAN_DUAL_TIME</tt><a name="const*mosek*dinfitem*bi-clean-dual-time">&#09;</a><a name="common-const*mosek*dinfitem*bi-clean-dual-time"></a> 
+<br/>Time spent within the dual clean-up optimizer of the basis identification procedure since its invocation. </li>
+<li><tt class="tt">MSK_DINF_BI_CLEAN_PRIMAL_DUAL_TIME</tt><a name="const*mosek*dinfitem*bi-clean-primal-dual-time">&#09;</a><a name="common-const*mosek*dinfitem*bi-clean-primal-dual-time"></a> 
+<br/>Time spent within the primal-dual clean-up optimizer of the basis identification procedure since its invocation. </li>
+<li><tt class="tt">MSK_DINF_BI_CLEAN_PRIMAL_TIME</tt><a name="const*mosek*dinfitem*bi-clean-primal-time">&#09;</a><a name="common-const*mosek*dinfitem*bi-clean-primal-time"></a> 
+<br/>Time spent within the primal clean-up optimizer of the basis identification procedure since its invocation. </li>
+<li><tt class="tt">MSK_DINF_BI_CLEAN_TIME</tt><a name="const*mosek*dinfitem*bi-clean-time">&#09;</a><a name="common-const*mosek*dinfitem*bi-clean-time"></a> 
+<br/>Time spent within the clean-up phase of the basis identification procedure since its invocation. </li>
+<li><tt class="tt">MSK_DINF_BI_DUAL_TIME</tt><a name="const*mosek*dinfitem*bi-dual-time">&#09;</a><a name="common-const*mosek*dinfitem*bi-dual-time"></a> 
+<br/>Time spent within the dual phase basis identification procedure since its invocation. </li>
+<li><tt class="tt">MSK_DINF_BI_PRIMAL_TIME</tt><a name="const*mosek*dinfitem*bi-primal-time">&#09;</a><a name="common-const*mosek*dinfitem*bi-primal-time"></a> 
+<br/>Time spent within the primal phase of the basis identification procedure since its invocation. </li>
+<li><tt class="tt">MSK_DINF_BI_TIME</tt><a name="const*mosek*dinfitem*bi-time">&#09;</a><a name="common-const*mosek*dinfitem*bi-time"></a> 
+<br/>Time spent within the basis identification procedure since its invocation. </li>
+<li><tt class="tt">MSK_DINF_CONCURRENT_TIME</tt><a name="const*mosek*dinfitem*concurrent-time">&#09;</a><a name="common-const*mosek*dinfitem*concurrent-time"></a> 
+<br/>Time spent within the concurrent optimizer since its invocation. </li>
+<li><tt class="tt">MSK_DINF_INTPNT_DUAL_FEAS</tt><a name="const*mosek*dinfitem*intpnt-dual-feas">&#09;</a><a name="common-const*mosek*dinfitem*intpnt-dual-feas"></a> 
+<br/>Dual feasibility measure reported by the interior-point and Qcone optimizer. (For the interior-point optimizer this measure does not directly related to the original problem because a homogeneous model is employed.) </li>
+<li><tt class="tt">MSK_DINF_INTPNT_DUAL_OBJ</tt><a name="const*mosek*dinfitem*intpnt-dual-obj">&#09;</a><a name="common-const*mosek*dinfitem*intpnt-dual-obj"></a> 
+<br/>Dual objective value reported by the interior-point or Qcone optimizer. </li>
+<li><tt class="tt">MSK_DINF_INTPNT_FACTOR_NUM_FLOPS</tt><a name="const*mosek*dinfitem*intpnt-factor-num-flops">&#09;</a><a name="common-const*mosek*dinfitem*intpnt-factor-num-flops"></a> 
+<br/>An estimate of the number of flops used in the factorization. </li>
+<li><tt class="tt">MSK_DINF_INTPNT_KAP_DIV_TAU</tt><a name="const*mosek*dinfitem*intpnt-kap-div-tau">&#09;</a><a name="common-const*mosek*dinfitem*intpnt-kap-div-tau"></a> 
+<br/>This measure should converge to zero if the problem has a primal-dual optimal solution or to infinity if problem is (strictly) primal or dual infeasible. In case the measure is converging towards a positive but bounded constant the problem is usually ill-posed. </li>
+<li><tt class="tt">MSK_DINF_INTPNT_ORDER_TIME</tt><a name="const*mosek*dinfitem*intpnt-order-time">&#09;</a><a name="common-const*mosek*dinfitem*intpnt-order-time"></a> 
+<br/>Order time (in seconds). </li>
+<li><tt class="tt">MSK_DINF_INTPNT_PRIMAL_FEAS</tt><a name="const*mosek*dinfitem*intpnt-primal-feas">&#09;</a><a name="common-const*mosek*dinfitem*intpnt-primal-feas"></a> 
+<br/>Primal feasibility measure reported by the interior-point or Qcone optimizers. (For the interior-point optimizer this measure does not directly related to the original problem because a homogeneous model is employed). </li>
+<li><tt class="tt">MSK_DINF_INTPNT_PRIMAL_OBJ</tt><a name="const*mosek*dinfitem*intpnt-primal-obj">&#09;</a><a name="common-const*mosek*dinfitem*intpnt-primal-obj"></a> 
+<br/>Primal objective value reported by the interior-point or Qcone optimizer. </li>
+<li><tt class="tt">MSK_DINF_INTPNT_TIME</tt><a name="const*mosek*dinfitem*intpnt-time">&#09;</a><a name="common-const*mosek*dinfitem*intpnt-time"></a> 
+<br/>Time spent within the interior-point optimizer since its invocation. </li>
+<li><tt class="tt">MSK_DINF_MIO_CONSTRUCT_SOLUTION_OBJ</tt><a name="const*mosek*dinfitem*mio-construct-solution-obj">&#09;</a><a name="common-const*mosek*dinfitem*mio-construct-solution-obj"></a> 
+<br/>If MOSEK has successfully constructed an integer feasible solution, then this item contains the optimal objective value corresponding to the feasible solution. </li>
+<li><tt class="tt">MSK_DINF_MIO_HEURISTIC_TIME</tt><a name="const*mosek*dinfitem*mio-heuristic-time">&#09;</a><a name="common-const*mosek*dinfitem*mio-heuristic-time"></a> 
+<br/>Time spent in the optimizer while solving the relaxtions. </li>
+<li>
+<p><tt class="tt">MSK_DINF_MIO_OBJ_ABS_GAP</tt><a name="const*mosek*dinfitem*mio-obj-abs-gap">&#09;</a><a name="common-const*mosek*dinfitem*mio-obj-abs-gap"></a> 
+<br/>Given the mixed-integer optimizer has computed a feasible solution and a bound on the optimal objective value, then this item contains the absolute gap defined by </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math1112.png" alt="\begin{displaymath}\nonumber{}|\mbox{(objective value of feasible solution)}-\mbox{(objective bound)}|.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Otherwise it has the value -1.0. </p>
+</li>
+<li><tt class="tt">MSK_DINF_MIO_OBJ_BOUND</tt><a name="const*mosek*dinfitem*mio-obj-bound">&#09;</a><a name="common-const*mosek*dinfitem*mio-obj-bound"></a> 
+<br/>The best known bound on the objective function. This value is undefined until at least one relaxation has been solved: To see if this is the case check that <a href="node020.html#common-const*mosek*iinfitem*mio-num-relax"><tt class="tt">MSK_IINF_MIO_NUM_RELAX</tt></a> is stricly positive. </li>
+<li><tt class="tt">MSK_DINF_MIO_OBJ_INT</tt><a name="const*mosek*dinfitem*mio-obj-int">&#09;</a><a name="common-const*mosek*dinfitem*mio-obj-int"></a> 
+<br/>The primal objective value corresponding to the best integer feasible solution. Please note that at least one integer feasible solution must have located i.e. check <a href="node020.html#common-const*mosek*iinfitem*mio-num-int-solutions"><tt class="tt">MSK_IINF_MIO_NUM_INT_SOLUTIONS</tt></a>. </li>
+<li>
+<p><tt class="tt">MSK_DINF_MIO_OBJ_REL_GAP</tt><a name="const*mosek*dinfitem*mio-obj-rel-gap">&#09;</a><a name="common-const*mosek*dinfitem*mio-obj-rel-gap"></a> 
+<br/>Given that the mixed-integer optimizer has computed a feasible solution and a bound on the optimal objective value, then this item contains the relative gap defined by </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math1113.png" alt="\begin{displaymath}\nonumber{}\frac{|\mbox{(objective value of feasible solution)}-\mbox{(objective bound)}|}{\max (\delta ,|\mbox{(objective value of feasible solution)}|)}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math583.png" alt="[[MathCmd 583]]"/></span> is given by the paramater <a href="node018.html#common-const*mosek*dparam*mio-rel-gap-const"><tt class="tt">MSK_DPAR_MIO_REL_GAP_CONST</tt></a>. Otherwise it has the value -1.0. </p>
+</li>
+<li><tt class="tt">MSK_DINF_MIO_OPTIMIZER_TIME</tt><a name="const*mosek*dinfitem*mio-optimizer-time">&#09;</a><a name="common-const*mosek*dinfitem*mio-optimizer-time"></a> 
+<br/>Time spent in the optimizer while solving the relaxtions. </li>
+<li><tt class="tt">MSK_DINF_MIO_ROOT_OPTIMIZER_TIME</tt><a name="const*mosek*dinfitem*mio-root-optimizer-time">&#09;</a><a name="common-const*mosek*dinfitem*mio-root-optimizer-time"></a> 
+<br/>Time spent in the optimizer while solving the root relaxation. </li>
+<li><tt class="tt">MSK_DINF_MIO_ROOT_PRESOLVE_TIME</tt><a name="const*mosek*dinfitem*mio-root-presolve-time">&#09;</a><a name="common-const*mosek*dinfitem*mio-root-presolve-time"></a> 
+<br/>Time spent in while presolveing the root relaxation. </li>
+<li><tt class="tt">MSK_DINF_MIO_TIME</tt><a name="const*mosek*dinfitem*mio-time">&#09;</a><a name="common-const*mosek*dinfitem*mio-time"></a> 
+<br/>Time spent in the mixed-integer optimizer. </li>
+<li><tt class="tt">MSK_DINF_MIO_USER_OBJ_CUT</tt><a name="const*mosek*dinfitem*mio-user-obj-cut">&#09;</a><a name="common-const*mosek*dinfitem*mio-user-obj-cut"></a> 
+<br/>If the objective cut is used, then this information item has the value of the cut. </li>
+<li><tt class="tt">MSK_DINF_OPTIMIZER_TIME</tt><a name="const*mosek*dinfitem*optimizer-time">&#09;</a><a name="common-const*mosek*dinfitem*optimizer-time"></a> 
+<br/>Total time spent in the optimizer since it was invoked. </li>
+<li><tt class="tt">MSK_DINF_PRESOLVE_ELI_TIME</tt><a name="const*mosek*dinfitem*presolve-eli-time">&#09;</a><a name="common-const*mosek*dinfitem*presolve-eli-time"></a> 
+<br/>Total time spent in the eliminator since the presolve was invoked. </li>
+<li><tt class="tt">MSK_DINF_PRESOLVE_LINDEP_TIME</tt><a name="const*mosek*dinfitem*presolve-lindep-time">&#09;</a><a name="common-const*mosek*dinfitem*presolve-lindep-time"></a> 
+<br/>Total time spent in the linear dependency checker since the presolve was invoked. </li>
+<li><tt class="tt">MSK_DINF_PRESOLVE_TIME</tt><a name="const*mosek*dinfitem*presolve-time">&#09;</a><a name="common-const*mosek*dinfitem*presolve-time"></a> 
+<br/>Total time (in seconds) spent in the presolve since it was invoked. </li>
+<li><tt class="tt">MSK_DINF_QCQO_REFORMULATE_TIME</tt><a name="const*mosek*dinfitem*qcqo-reformulate-time">&#09;</a><a name="common-const*mosek*dinfitem*qcqo-reformulate-time"></a> 
+<br/>Time spent with QP reformulation. </li>
+<li><tt class="tt">MSK_DINF_RD_TIME</tt><a name="const*mosek*dinfitem*rd-time">&#09;</a><a name="common-const*mosek*dinfitem*rd-time"></a> 
+<br/>Time spent reading the data file. </li>
+<li><tt class="tt">MSK_DINF_SIM_DUAL_TIME</tt><a name="const*mosek*dinfitem*sim-dual-time">&#09;</a><a name="common-const*mosek*dinfitem*sim-dual-time"></a> 
+<br/>Time spent in the dual simplex optimizer since invoking it. </li>
+<li><tt class="tt">MSK_DINF_SIM_FEAS</tt><a name="const*mosek*dinfitem*sim-feas">&#09;</a><a name="common-const*mosek*dinfitem*sim-feas"></a> 
+<br/>Feasibility measure reported by the simplex optimizer. </li>
+<li><tt class="tt">MSK_DINF_SIM_NETWORK_DUAL_TIME</tt><a name="const*mosek*dinfitem*sim-network-dual-time">&#09;</a><a name="common-const*mosek*dinfitem*sim-network-dual-time"></a> 
+<br/>Time spent in the dual network simplex optimizer since invoking it. </li>
+<li><tt class="tt">MSK_DINF_SIM_NETWORK_PRIMAL_TIME</tt><a name="const*mosek*dinfitem*sim-network-primal-time">&#09;</a><a name="common-const*mosek*dinfitem*sim-network-primal-time"></a> 
+<br/>Time spent in the primal network simplex optimizer since invoking it. </li>
+<li><tt class="tt">MSK_DINF_SIM_NETWORK_TIME</tt><a name="const*mosek*dinfitem*sim-network-time">&#09;</a><a name="common-const*mosek*dinfitem*sim-network-time"></a> 
+<br/>Time spent in the network simplex optimizer since invoking it. </li>
+<li><tt class="tt">MSK_DINF_SIM_OBJ</tt><a name="const*mosek*dinfitem*sim-obj">&#09;</a><a name="common-const*mosek*dinfitem*sim-obj"></a> 
+<br/>Objective value reported by the simplex optimizer. </li>
+<li><tt class="tt">MSK_DINF_SIM_PRIMAL_DUAL_TIME</tt><a name="const*mosek*dinfitem*sim-primal-dual-time">&#09;</a><a name="common-const*mosek*dinfitem*sim-primal-dual-time"></a> 
+<br/>Time spent in the primal-dual simplex optimizer optimizer since invoking it. </li>
+<li><tt class="tt">MSK_DINF_SIM_PRIMAL_TIME</tt><a name="const*mosek*dinfitem*sim-primal-time">&#09;</a><a name="common-const*mosek*dinfitem*sim-primal-time"></a> 
+<br/>Time spent in the primal simplex optimizer since invoking it. </li>
+<li><tt class="tt">MSK_DINF_SIM_TIME</tt><a name="const*mosek*dinfitem*sim-time">&#09;</a><a name="common-const*mosek*dinfitem*sim-time"></a> 
+<br/>Time spent in the simplex optimizer since invoking it. </li>
+<li><tt class="tt">MSK_DINF_SOL_BAS_DUAL_OBJ</tt><a name="const*mosek*dinfitem*sol-bas-dual-obj">&#09;</a><a name="common-const*mosek*dinfitem*sol-bas-dual-obj"></a> 
+<br/>Dual objective value of the basic solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_BAS_MAX_DBI</tt><a name="const*mosek*dinfitem*sol-bas-max-dbi">&#09;</a><a name="common-const*mosek*dinfitem*sol-bas-max-dbi"></a> 
+<br/>Maximal dual bound infeasibility in the basic solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_BAS_MAX_DEQI</tt><a name="const*mosek*dinfitem*sol-bas-max-deqi">&#09;</a><a name="common-const*mosek*dinfitem*sol-bas-max-deqi"></a> 
+<br/>Maximal dual equality infeasibility in the basic solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_BAS_MAX_PBI</tt><a name="const*mosek*dinfitem*sol-bas-max-pbi">&#09;</a><a name="common-const*mosek*dinfitem*sol-bas-max-pbi"></a> 
+<br/>Maximal primal bound infeasibility in the basic solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_BAS_MAX_PEQI</tt><a name="const*mosek*dinfitem*sol-bas-max-peqi">&#09;</a><a name="common-const*mosek*dinfitem*sol-bas-max-peqi"></a> 
+<br/>Maximal primal equality infeasibility in the basic solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_BAS_MAX_PINTI</tt><a name="const*mosek*dinfitem*sol-bas-max-pinti">&#09;</a><a name="common-const*mosek*dinfitem*sol-bas-max-pinti"></a> 
+<br/>Maximal primal integer infeasibility in the basic solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_BAS_PRIMAL_OBJ</tt><a name="const*mosek*dinfitem*sol-bas-primal-obj">&#09;</a><a name="common-const*mosek*dinfitem*sol-bas-primal-obj"></a> 
+<br/>Primal objective value of the basic solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_INT_MAX_PBI</tt><a name="const*mosek*dinfitem*sol-int-max-pbi">&#09;</a><a name="common-const*mosek*dinfitem*sol-int-max-pbi"></a> 
+<br/>Maximal primal bound infeasibility in the integer solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_INT_MAX_PEQI</tt><a name="const*mosek*dinfitem*sol-int-max-peqi">&#09;</a><a name="common-const*mosek*dinfitem*sol-int-max-peqi"></a> 
+<br/>Maximal primal equality infeasibility in the basic solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_INT_MAX_PINTI</tt><a name="const*mosek*dinfitem*sol-int-max-pinti">&#09;</a><a name="common-const*mosek*dinfitem*sol-int-max-pinti"></a> 
+<br/>Maximal primal integer infeasibility in the integer solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_INT_PRIMAL_OBJ</tt><a name="const*mosek*dinfitem*sol-int-primal-obj">&#09;</a><a name="common-const*mosek*dinfitem*sol-int-primal-obj"></a> 
+<br/>Primal objective value of the integer solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_ITR_DUAL_OBJ</tt><a name="const*mosek*dinfitem*sol-itr-dual-obj">&#09;</a><a name="common-const*mosek*dinfitem*sol-itr-dual-obj"></a> 
+<br/>Dual objective value of the interior-point solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_ITR_MAX_DBI</tt><a name="const*mosek*dinfitem*sol-itr-max-dbi">&#09;</a><a name="common-const*mosek*dinfitem*sol-itr-max-dbi"></a> 
+<br/>Maximal dual bound infeasibility in the interior-point solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_ITR_MAX_DCNI</tt><a name="const*mosek*dinfitem*sol-itr-max-dcni">&#09;</a><a name="common-const*mosek*dinfitem*sol-itr-max-dcni"></a> 
+<br/>Maximal dual cone infeasibility in the interior-point solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_ITR_MAX_DEQI</tt><a name="const*mosek*dinfitem*sol-itr-max-deqi">&#09;</a><a name="common-const*mosek*dinfitem*sol-itr-max-deqi"></a> 
+<br/>Maximal dual equality infeasibility in the interior-point solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_ITR_MAX_PBI</tt><a name="const*mosek*dinfitem*sol-itr-max-pbi">&#09;</a><a name="common-const*mosek*dinfitem*sol-itr-max-pbi"></a> 
+<br/>Maximal primal bound infeasibility in the interior-point solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_ITR_MAX_PCNI</tt><a name="const*mosek*dinfitem*sol-itr-max-pcni">&#09;</a><a name="common-const*mosek*dinfitem*sol-itr-max-pcni"></a> 
+<br/>Maximal primal cone infeasibility in the interior-point solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_ITR_MAX_PEQI</tt><a name="const*mosek*dinfitem*sol-itr-max-peqi">&#09;</a><a name="common-const*mosek*dinfitem*sol-itr-max-peqi"></a> 
+<br/>Maximal primal equality infeasibility in the interior-point solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_ITR_MAX_PINTI</tt><a name="const*mosek*dinfitem*sol-itr-max-pinti">&#09;</a><a name="common-const*mosek*dinfitem*sol-itr-max-pinti"></a> 
+<br/>Maximal primal integer infeasibility in the interior-point solution. Updated at the end of the optimization. </li>
+<li><tt class="tt">MSK_DINF_SOL_ITR_PRIMAL_OBJ</tt><a name="const*mosek*dinfitem*sol-itr-primal-obj">&#09;</a><a name="common-const*mosek*dinfitem*sol-itr-primal-obj"></a> 
+<br/>Primal objective value of the interior-point solution. Updated at the end of the optimization. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296754928">18.14. Feasibility repair types</a></h1>
+
+<p> <a name="constclass*mosek*feasrepairtype">&#09;</a><a name="common-constclass*mosek*feasrepairtype"></a> <a name="idx-202882440">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_FEASREPAIR_OPTIMIZE_COMBINED</tt><a name="const*mosek*feasrepairtype*optimize-combined">&#09;</a><a name="common-const*mosek*feasrepairtype*optimize-combined"></a> 
+<br/>Minimize with original objective subject to minimal weighted violation of bounds. </li>
+<li><tt class="tt">MSK_FEASREPAIR_OPTIMIZE_NONE</tt><a name="const*mosek*feasrepairtype*optimize-none">&#09;</a><a name="common-const*mosek*feasrepairtype*optimize-none"></a> 
+<br/>Do not optimize the feasibility repair problem. </li>
+<li><tt class="tt">MSK_FEASREPAIR_OPTIMIZE_PENALTY</tt><a name="const*mosek*feasrepairtype*optimize-penalty">&#09;</a><a name="common-const*mosek*feasrepairtype*optimize-penalty"></a> 
+<br/>Minimize weighted sum of violations. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296757584">18.15. License feature</a></h1>
+
+<p> <a name="constclass*mosek*feature">&#09;</a><a name="common-constclass*mosek*feature"></a> <a name="idx-202892856">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_FEATURE_PTOM</tt><a name="const*mosek*feature*ptom">&#09;</a><a name="common-const*mosek*feature*ptom"></a> 
+<br/>Mixed-integer extension. </li>
+<li><tt class="tt">MSK_FEATURE_PTON</tt><a name="const*mosek*feature*pton">&#09;</a><a name="common-const*mosek*feature*pton"></a> 
+<br/>Nonlinear extension. </li>
+<li><tt class="tt">MSK_FEATURE_PTOX</tt><a name="const*mosek*feature*ptox">&#09;</a><a name="common-const*mosek*feature*ptox"></a> 
+<br/>Non-convex extension. </li>
+<li><tt class="tt">MSK_FEATURE_PTS</tt><a name="const*mosek*feature*pts">&#09;</a><a name="common-const*mosek*feature*pts"></a> 
+<br/>Base system. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296760888">18.16. Integer information items.</a></h1>
+
+<p> <a name="constclass*mosek*iinfitem">&#09;</a><a name="common-constclass*mosek*iinfitem"></a> <a name="idx-202921168">&#09;</a> </p>
+
+<ul class="itemize">
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_CON</tt><a name="const*mosek*iinfitem*ana-pro-num-con">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-con"></a> 
+<br/>Number of constraints in the problem.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_CON_EQ</tt><a name="const*mosek*iinfitem*ana-pro-num-con-eq">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-con-eq"></a> 
+<br/>Number of equality constraints.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_CON_FR</tt><a name="const*mosek*iinfitem*ana-pro-num-con-fr">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-con-fr"></a> 
+<br/>Number of unbounded constraints.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_CON_LO</tt><a name="const*mosek*iinfitem*ana-pro-num-con-lo">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-con-lo"></a> 
+<br/>Number of constraints with a lower bound and an infinite upper bound.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_CON_RA</tt><a name="const*mosek*iinfitem*ana-pro-num-con-ra">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-con-ra"></a> 
+<br/>Number of constraints with finite lower and upper bounds.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_CON_UP</tt><a name="const*mosek*iinfitem*ana-pro-num-con-up">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-con-up"></a> 
+<br/>Number of constraints with an upper bound and an infinite lower bound.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_VAR</tt><a name="const*mosek*iinfitem*ana-pro-num-var">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-var"></a> 
+<br/>Number of variables in the problem.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_VAR_BIN</tt><a name="const*mosek*iinfitem*ana-pro-num-var-bin">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-var-bin"></a> 
+<br/>Number of binary (0-1) variables.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_VAR_CONT</tt><a name="const*mosek*iinfitem*ana-pro-num-var-cont">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-var-cont"></a> 
+<br/>Number of continuous variables.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_VAR_EQ</tt><a name="const*mosek*iinfitem*ana-pro-num-var-eq">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-var-eq"></a> 
+<br/>Number of fixed variables.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_VAR_FR</tt><a name="const*mosek*iinfitem*ana-pro-num-var-fr">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-var-fr"></a> 
+<br/>Number of free variables.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_VAR_INT</tt><a name="const*mosek*iinfitem*ana-pro-num-var-int">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-var-int"></a> 
+<br/>Number of general integer variables.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_VAR_LO</tt><a name="const*mosek*iinfitem*ana-pro-num-var-lo">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-var-lo"></a> 
+<br/>Number of variables with a lower bound and an infinite upper bound.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_VAR_RA</tt><a name="const*mosek*iinfitem*ana-pro-num-var-ra">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-var-ra"></a> 
+<br/>Number of variables with finite lower and upper bounds.</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li>
+<p><tt class="tt">MSK_IINF_ANA_PRO_NUM_VAR_UP</tt><a name="const*mosek*iinfitem*ana-pro-num-var-up">&#09;</a><a name="common-const*mosek*iinfitem*ana-pro-num-var-up"></a> 
+<br/>Number of variables with an upper bound and an infinite lower bound. This value is set by</p>
+
+<p>This value is set by <a href="node017.html#common-func*mosek*task*analyzeproblem"><tt class="tt">MSK_analyzeproblem</tt></a>.</p>
+</li>
+<li><tt class="tt">MSK_IINF_CACHE_SIZE_L1</tt><a name="const*mosek*iinfitem*cache-size-l1">&#09;</a><a name="common-const*mosek*iinfitem*cache-size-l1"></a> 
+<br/>L1 cache size used. </li>
+<li><tt class="tt">MSK_IINF_CACHE_SIZE_L2</tt><a name="const*mosek*iinfitem*cache-size-l2">&#09;</a><a name="common-const*mosek*iinfitem*cache-size-l2"></a> 
+<br/>L2 cache size used. </li>
+<li><tt class="tt">MSK_IINF_CONCURRENT_FASTEST_OPTIMIZER</tt><a name="const*mosek*iinfitem*concurrent-fastest-optimizer">&#09;</a><a name="common-const*mosek*iinfitem*concurrent-fastest-optimizer"></a> 
+<br/>The type of the optimizer that finished first in a concurrent optimization. </li>
+<li><tt class="tt">MSK_IINF_CPU_TYPE</tt><a name="const*mosek*iinfitem*cpu-type">&#09;</a><a name="common-const*mosek*iinfitem*cpu-type"></a> 
+<br/>The type of cpu detected. </li>
+<li><tt class="tt">MSK_IINF_INTPNT_FACTOR_NUM_OFFCOL</tt><a name="const*mosek*iinfitem*intpnt-factor-num-offcol">&#09;</a><a name="common-const*mosek*iinfitem*intpnt-factor-num-offcol"></a> 
+<br/>Number of columns in the constraint matrix (or Jacobian) that has an offending structure. </li>
+<li><tt class="tt">MSK_IINF_INTPNT_ITER</tt><a name="const*mosek*iinfitem*intpnt-iter">&#09;</a><a name="common-const*mosek*iinfitem*intpnt-iter"></a> 
+<br/>Number of interior-point iterations since invoking the interior-point optimizer. </li>
+<li><tt class="tt">MSK_IINF_INTPNT_NUM_THREADS</tt><a name="const*mosek*iinfitem*intpnt-num-threads">&#09;</a><a name="common-const*mosek*iinfitem*intpnt-num-threads"></a> 
+<br/>Number of threads that the interior-point optimizer is using. </li>
+<li><tt class="tt">MSK_IINF_INTPNT_SOLVE_DUAL</tt><a name="const*mosek*iinfitem*intpnt-solve-dual">&#09;</a><a name="common-const*mosek*iinfitem*intpnt-solve-dual"></a> 
+<br/>Non-zero if the interior-point optimizer is solving the dual problem. </li>
+<li><tt class="tt">MSK_IINF_MIO_CONSTRUCT_SOLUTION</tt><a name="const*mosek*iinfitem*mio-construct-solution">&#09;</a><a name="common-const*mosek*iinfitem*mio-construct-solution"></a> 
+<br/>If this item has the value 0, then MOSEK did not try to construct an initial integer feasible solution. If the item has a positive value, then MOSEK successfully constructed an initial integer feasible solution. </li>
+<li><tt class="tt">MSK_IINF_MIO_INITIAL_SOLUTION</tt><a name="const*mosek*iinfitem*mio-initial-solution">&#09;</a><a name="common-const*mosek*iinfitem*mio-initial-solution"></a> 
+<br/>Is non-zero if an initial integer solution is specified. </li>
+<li><tt class="tt">MSK_IINF_MIO_NUM_ACTIVE_NODES</tt><a name="const*mosek*iinfitem*mio-num-active-nodes">&#09;</a><a name="common-const*mosek*iinfitem*mio-num-active-nodes"></a> 
+<br/>Number of active nodes in the branch and bound tree. </li>
+<li><tt class="tt">MSK_IINF_MIO_NUM_BRANCH</tt><a name="const*mosek*iinfitem*mio-num-branch">&#09;</a><a name="common-const*mosek*iinfitem*mio-num-branch"></a> 
+<br/>Number of branches performed during the optimization. </li>
+<li><tt class="tt">MSK_IINF_MIO_NUM_CUTS</tt><a name="const*mosek*iinfitem*mio-num-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-num-cuts"></a> 
+<br/>Number of cuts generated by the mixed-integer optimizer. </li>
+<li><tt class="tt">MSK_IINF_MIO_NUM_INT_SOLUTIONS</tt><a name="const*mosek*iinfitem*mio-num-int-solutions">&#09;</a><a name="common-const*mosek*iinfitem*mio-num-int-solutions"></a> 
+<br/>Number of integer feasible solutions that has been found. </li>
+<li><tt class="tt">MSK_IINF_MIO_NUM_RELAX</tt><a name="const*mosek*iinfitem*mio-num-relax">&#09;</a><a name="common-const*mosek*iinfitem*mio-num-relax"></a> 
+<br/>Number of relaxations solved during the optimization. </li>
+<li><tt class="tt">MSK_IINF_MIO_NUMCON</tt><a name="const*mosek*iinfitem*mio-numcon">&#09;</a><a name="common-const*mosek*iinfitem*mio-numcon"></a> 
+<br/>Number of constraints in the problem solved be the mixed-integer optimizer. </li>
+<li><tt class="tt">MSK_IINF_MIO_NUMINT</tt><a name="const*mosek*iinfitem*mio-numint">&#09;</a><a name="common-const*mosek*iinfitem*mio-numint"></a> 
+<br/>Number of integer variables in the problem solved be the mixed-integer optimizer. </li>
+<li><tt class="tt">MSK_IINF_MIO_NUMVAR</tt><a name="const*mosek*iinfitem*mio-numvar">&#09;</a><a name="common-const*mosek*iinfitem*mio-numvar"></a> 
+<br/>Number of variables in the problem solved be the mixed-integer optimizer. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_BASIS_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-basis-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-basis-cuts"></a> 
+<br/>Number of basis cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_BRANCH</tt><a name="const*mosek*iinfitem*mio-total-num-branch">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-branch"></a> 
+<br/>Number of branches performed during the optimization. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_CARDGUB_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-cardgub-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-cardgub-cuts"></a> 
+<br/>Number of cardgub cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_CLIQUE_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-clique-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-clique-cuts"></a> 
+<br/>Number of clique cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_COEF_REDC_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-coef-redc-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-coef-redc-cuts"></a> 
+<br/>Number of coef. redc. cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_CONTRA_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-contra-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-contra-cuts"></a> 
+<br/>Number of contra cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-cuts"></a> 
+<br/>Total number of cuts generated by the mixed-integer optimizer. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_DISAGG_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-disagg-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-disagg-cuts"></a> 
+<br/>Number of diasagg cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_FLOW_COVER_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-flow-cover-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-flow-cover-cuts"></a> 
+<br/>Number of flow cover cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_GCD_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-gcd-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-gcd-cuts"></a> 
+<br/>Number of gcd cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_GOMORY_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-gomory-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-gomory-cuts"></a> 
+<br/>Number of Gomory cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_GUB_COVER_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-gub-cover-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-gub-cover-cuts"></a> 
+<br/>Number of GUB cover cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_KNAPSUR_COVER_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-knapsur-cover-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-knapsur-cover-cuts"></a> 
+<br/>Number of knapsack cover cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_LATTICE_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-lattice-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-lattice-cuts"></a> 
+<br/>Number of lattice cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_LIFT_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-lift-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-lift-cuts"></a> 
+<br/>Number of lift cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_OBJ_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-obj-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-obj-cuts"></a> 
+<br/>Number of obj cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_PLAN_LOC_CUTS</tt><a name="const*mosek*iinfitem*mio-total-num-plan-loc-cuts">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-plan-loc-cuts"></a> 
+<br/>Number of loc cuts. </li>
+<li><tt class="tt">MSK_IINF_MIO_TOTAL_NUM_RELAX</tt><a name="const*mosek*iinfitem*mio-total-num-relax">&#09;</a><a name="common-const*mosek*iinfitem*mio-total-num-relax"></a> 
+<br/>Number of relaxations solved during the optimization. </li>
+<li><tt class="tt">MSK_IINF_MIO_USER_OBJ_CUT</tt><a name="const*mosek*iinfitem*mio-user-obj-cut">&#09;</a><a name="common-const*mosek*iinfitem*mio-user-obj-cut"></a> 
+<br/>If it is non-zero, then the objective cut is used. </li>
+<li><tt class="tt">MSK_IINF_OPT_NUMCON</tt><a name="const*mosek*iinfitem*opt-numcon">&#09;</a><a name="common-const*mosek*iinfitem*opt-numcon"></a> 
+<br/>Number of constraints in the problem solved when the optimizer is called. </li>
+<li><tt class="tt">MSK_IINF_OPT_NUMVAR</tt><a name="const*mosek*iinfitem*opt-numvar">&#09;</a><a name="common-const*mosek*iinfitem*opt-numvar"></a> 
+<br/>Number of variables in the problem solved when the optimizer is called </li>
+<li><tt class="tt">MSK_IINF_OPTIMIZE_RESPONSE</tt><a name="const*mosek*iinfitem*optimize-response">&#09;</a><a name="common-const*mosek*iinfitem*optimize-response"></a> 
+<br/>The reponse code returned by optimize. </li>
+<li><tt class="tt">MSK_IINF_RD_NUMCON</tt><a name="const*mosek*iinfitem*rd-numcon">&#09;</a><a name="common-const*mosek*iinfitem*rd-numcon"></a> 
+<br/>Number of constraints read. </li>
+<li><tt class="tt">MSK_IINF_RD_NUMCONE</tt><a name="const*mosek*iinfitem*rd-numcone">&#09;</a><a name="common-const*mosek*iinfitem*rd-numcone"></a> 
+<br/>Number of conic constraints read. </li>
+<li><tt class="tt">MSK_IINF_RD_NUMINTVAR</tt><a name="const*mosek*iinfitem*rd-numintvar">&#09;</a><a name="common-const*mosek*iinfitem*rd-numintvar"></a> 
+<br/>Number of integer-constrained variables read. </li>
+<li><tt class="tt">MSK_IINF_RD_NUMQ</tt><a name="const*mosek*iinfitem*rd-numq">&#09;</a><a name="common-const*mosek*iinfitem*rd-numq"></a> 
+<br/>Number of nonempty Q matrices read. </li>
+<li><tt class="tt">MSK_IINF_RD_NUMVAR</tt><a name="const*mosek*iinfitem*rd-numvar">&#09;</a><a name="common-const*mosek*iinfitem*rd-numvar"></a> 
+<br/>Number of variables read. </li>
+<li><tt class="tt">MSK_IINF_RD_PROTYPE</tt><a name="const*mosek*iinfitem*rd-protype">&#09;</a><a name="common-const*mosek*iinfitem*rd-protype"></a> 
+<br/>Problem type. </li>
+<li><tt class="tt">MSK_IINF_SIM_DUAL_DEG_ITER</tt><a name="const*mosek*iinfitem*sim-dual-deg-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-dual-deg-iter"></a> 
+<br/>The number of dual degenerate iterations. </li>
+<li><tt class="tt">MSK_IINF_SIM_DUAL_HOTSTART</tt><a name="const*mosek*iinfitem*sim-dual-hotstart">&#09;</a><a name="common-const*mosek*iinfitem*sim-dual-hotstart"></a> 
+<br/>If 1 then the dual simplex algorithm is solving from an advanced basis. </li>
+<li><tt class="tt">MSK_IINF_SIM_DUAL_HOTSTART_LU</tt><a name="const*mosek*iinfitem*sim-dual-hotstart-lu">&#09;</a><a name="common-const*mosek*iinfitem*sim-dual-hotstart-lu"></a> 
+<br/>If 1 then a valid basis factorization of full rank was located and used by the dual simplex algorithm. </li>
+<li><tt class="tt">MSK_IINF_SIM_DUAL_INF_ITER</tt><a name="const*mosek*iinfitem*sim-dual-inf-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-dual-inf-iter"></a> 
+<br/>The number of iterations taken with dual infeasibility. </li>
+<li><tt class="tt">MSK_IINF_SIM_DUAL_ITER</tt><a name="const*mosek*iinfitem*sim-dual-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-dual-iter"></a> 
+<br/>Number of dual simplex iterations during the last optimization. </li>
+<li><tt class="tt">MSK_IINF_SIM_NETWORK_DUAL_DEG_ITER</tt><a name="const*mosek*iinfitem*sim-network-dual-deg-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-network-dual-deg-iter"></a> 
+<br/>The number of dual network degenerate iterations. </li>
+<li><tt class="tt">MSK_IINF_SIM_NETWORK_DUAL_HOTSTART</tt><a name="const*mosek*iinfitem*sim-network-dual-hotstart">&#09;</a><a name="common-const*mosek*iinfitem*sim-network-dual-hotstart"></a> 
+<br/>If 1 then the dual network simplex algorithm is solving from an advanced basis. </li>
+<li><tt class="tt">MSK_IINF_SIM_NETWORK_DUAL_HOTSTART_LU</tt><a name="const*mosek*iinfitem*sim-network-dual-hotstart-lu">&#09;</a><a name="common-const*mosek*iinfitem*sim-network-dual-hotstart-lu"></a> 
+<br/>If 1 then a valid basis factorization of full rank was located and used by the dual network simplex algorithm. </li>
+<li><tt class="tt">MSK_IINF_SIM_NETWORK_DUAL_INF_ITER</tt><a name="const*mosek*iinfitem*sim-network-dual-inf-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-network-dual-inf-iter"></a> 
+<br/>The number of iterations taken with dual infeasibility in the network optimizer. </li>
+<li><tt class="tt">MSK_IINF_SIM_NETWORK_DUAL_ITER</tt><a name="const*mosek*iinfitem*sim-network-dual-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-network-dual-iter"></a> 
+<br/>Number of dual network simplex iterations during the last optimization. </li>
+<li><tt class="tt">MSK_IINF_SIM_NETWORK_PRIMAL_DEG_ITER</tt><a name="const*mosek*iinfitem*sim-network-primal-deg-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-network-primal-deg-iter"></a> 
+<br/>The number of primal network degenerate iterations. </li>
+<li><tt class="tt">MSK_IINF_SIM_NETWORK_PRIMAL_HOTSTART</tt><a name="const*mosek*iinfitem*sim-network-primal-hotstart">&#09;</a><a name="common-const*mosek*iinfitem*sim-network-primal-hotstart"></a> 
+<br/>If 1 then the primal network simplex algorithm is solving from an advanced basis. </li>
+<li><tt class="tt">MSK_IINF_SIM_NETWORK_PRIMAL_HOTSTART_LU</tt><a name="const*mosek*iinfitem*sim-network-primal-hotstart-lu">&#09;</a><a name="common-const*mosek*iinfitem*sim-network-primal-hotstart-lu"></a> 
+<br/>If 1 then a valid basis factorization of full rank was located and used by the primal network simplex algorithm. </li>
+<li><tt class="tt">MSK_IINF_SIM_NETWORK_PRIMAL_INF_ITER</tt><a name="const*mosek*iinfitem*sim-network-primal-inf-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-network-primal-inf-iter"></a> 
+<br/>The number of iterations taken with primal infeasibility in the network optimizer. </li>
+<li><tt class="tt">MSK_IINF_SIM_NETWORK_PRIMAL_ITER</tt><a name="const*mosek*iinfitem*sim-network-primal-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-network-primal-iter"></a> 
+<br/>Number of primal network simplex iterations during the last optimization. </li>
+<li><tt class="tt">MSK_IINF_SIM_NUMCON</tt><a name="const*mosek*iinfitem*sim-numcon">&#09;</a><a name="common-const*mosek*iinfitem*sim-numcon"></a> 
+<br/>Number of constraints in the problem solved by the simplex optimizer. </li>
+<li><tt class="tt">MSK_IINF_SIM_NUMVAR</tt><a name="const*mosek*iinfitem*sim-numvar">&#09;</a><a name="common-const*mosek*iinfitem*sim-numvar"></a> 
+<br/>Number of variables in the problem solved by the simplex optimizer. </li>
+<li><tt class="tt">MSK_IINF_SIM_PRIMAL_DEG_ITER</tt><a name="const*mosek*iinfitem*sim-primal-deg-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-primal-deg-iter"></a> 
+<br/>The number of primal degenerate iterations. </li>
+<li><tt class="tt">MSK_IINF_SIM_PRIMAL_DUAL_DEG_ITER</tt><a name="const*mosek*iinfitem*sim-primal-dual-deg-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-primal-dual-deg-iter"></a> 
+<br/>The number of degenerate major iterations taken by the primal dual simplex algorithm. </li>
+<li><tt class="tt">MSK_IINF_SIM_PRIMAL_DUAL_HOTSTART</tt><a name="const*mosek*iinfitem*sim-primal-dual-hotstart">&#09;</a><a name="common-const*mosek*iinfitem*sim-primal-dual-hotstart"></a> 
+<br/>If 1 then the primal dual simplex algorithm is solving from an advanced basis. </li>
+<li><tt class="tt">MSK_IINF_SIM_PRIMAL_DUAL_HOTSTART_LU</tt><a name="const*mosek*iinfitem*sim-primal-dual-hotstart-lu">&#09;</a><a name="common-const*mosek*iinfitem*sim-primal-dual-hotstart-lu"></a> 
+<br/>If 1 then a valid basis factorization of full rank was located and used by the primal dual simplex algorithm. </li>
+<li><tt class="tt">MSK_IINF_SIM_PRIMAL_DUAL_INF_ITER</tt><a name="const*mosek*iinfitem*sim-primal-dual-inf-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-primal-dual-inf-iter"></a> 
+<br/>The number of master iterations with dual infeasibility taken by the primal dual simplex algorithm. </li>
+<li><tt class="tt">MSK_IINF_SIM_PRIMAL_DUAL_ITER</tt><a name="const*mosek*iinfitem*sim-primal-dual-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-primal-dual-iter"></a> 
+<br/>Number of primal dual simplex iterations during the last optimization. </li>
+<li><tt class="tt">MSK_IINF_SIM_PRIMAL_HOTSTART</tt><a name="const*mosek*iinfitem*sim-primal-hotstart">&#09;</a><a name="common-const*mosek*iinfitem*sim-primal-hotstart"></a> 
+<br/>If 1 then the primal simplex algorithm is solving from an advanced basis. </li>
+<li><tt class="tt">MSK_IINF_SIM_PRIMAL_HOTSTART_LU</tt><a name="const*mosek*iinfitem*sim-primal-hotstart-lu">&#09;</a><a name="common-const*mosek*iinfitem*sim-primal-hotstart-lu"></a> 
+<br/>If 1 then a valid basis factorization of full rank was located and used by the primal simplex algorithm. </li>
+<li><tt class="tt">MSK_IINF_SIM_PRIMAL_INF_ITER</tt><a name="const*mosek*iinfitem*sim-primal-inf-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-primal-inf-iter"></a> 
+<br/>The number of iterations taken with primal infeasibility. </li>
+<li><tt class="tt">MSK_IINF_SIM_PRIMAL_ITER</tt><a name="const*mosek*iinfitem*sim-primal-iter">&#09;</a><a name="common-const*mosek*iinfitem*sim-primal-iter"></a> 
+<br/>Number of primal simplex iterations during the last optimization. </li>
+<li><tt class="tt">MSK_IINF_SIM_SOLVE_DUAL</tt><a name="const*mosek*iinfitem*sim-solve-dual">&#09;</a><a name="common-const*mosek*iinfitem*sim-solve-dual"></a> 
+<br/>Is non-zero if dual problem is solved. </li>
+<li><tt class="tt">MSK_IINF_SOL_BAS_PROSTA</tt><a name="const*mosek*iinfitem*sol-bas-prosta">&#09;</a><a name="common-const*mosek*iinfitem*sol-bas-prosta"></a> 
+<br/>Problem status of the basic solution. Updated after each optimization. </li>
+<li><tt class="tt">MSK_IINF_SOL_BAS_SOLSTA</tt><a name="const*mosek*iinfitem*sol-bas-solsta">&#09;</a><a name="common-const*mosek*iinfitem*sol-bas-solsta"></a> 
+<br/>Solution status of the basic solution. Updated after each optimization. </li>
+<li><tt class="tt">MSK_IINF_SOL_INT_PROSTA</tt><a name="const*mosek*iinfitem*sol-int-prosta">&#09;</a><a name="common-const*mosek*iinfitem*sol-int-prosta"></a> 
+<br/>Problem status of the integer solution. Updated after each optimization. </li>
+<li><tt class="tt">MSK_IINF_SOL_INT_SOLSTA</tt><a name="const*mosek*iinfitem*sol-int-solsta">&#09;</a><a name="common-const*mosek*iinfitem*sol-int-solsta"></a> 
+<br/>Solution status of the integer solution. Updated after each optimization. </li>
+<li><tt class="tt">MSK_IINF_SOL_ITR_PROSTA</tt><a name="const*mosek*iinfitem*sol-itr-prosta">&#09;</a><a name="common-const*mosek*iinfitem*sol-itr-prosta"></a> 
+<br/>Problem status of the interior-point solution. Updated after each optimization. </li>
+<li><tt class="tt">MSK_IINF_SOL_ITR_SOLSTA</tt><a name="const*mosek*iinfitem*sol-itr-solsta">&#09;</a><a name="common-const*mosek*iinfitem*sol-itr-solsta"></a> 
+<br/>Solution status of the interior-point solution. Updated after each optimization. </li>
+<li><tt class="tt">MSK_IINF_STO_NUM_A_CACHE_FLUSHES</tt><a name="const*mosek*iinfitem*sto-num-a-cache-flushes">&#09;</a><a name="common-const*mosek*iinfitem*sto-num-a-cache-flushes"></a> 
+<br/>Number of times the cache of <span class="math"><span class="mi">A</span></span> elements is flushed. A large number implies that <tt class="tt">maxnumanz</tt> is too small as well as an inefficient usage of MOSEK. </li>
+<li><tt class="tt">MSK_IINF_STO_NUM_A_REALLOC</tt><a name="const*mosek*iinfitem*sto-num-a-realloc">&#09;</a><a name="common-const*mosek*iinfitem*sto-num-a-realloc"></a> 
+<br/>Number of times the storage for storing <span class="math"><span class="mi">A</span></span> has been changed. A large value may indicates that memory fragmentation may occur. </li>
+<li><tt class="tt">MSK_IINF_STO_NUM_A_TRANSPOSES</tt><a name="const*mosek*iinfitem*sto-num-a-transposes">&#09;</a><a name="common-const*mosek*iinfitem*sto-num-a-transposes"></a> 
+<br/>Number of times the <span class="math"><span class="mi">A</span></span> matrix is transposed. A large number implies that <tt class="tt">maxnumanz</tt> is too small or an inefficient usage of MOSEK. This will occur in particular if the code alternate between accessing rows and columns of <span class="math"><span class="mi">A</span></span>. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296831096">18.17. Information item types</a></h1>
+
+<p> <a name="constclass*mosek*inftype">&#09;</a><a name="common-constclass*mosek*inftype"></a> <a name="idx-206169872">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_INF_DOU_TYPE</tt><a name="const*mosek*inftype*dou-type">&#09;</a><a name="common-const*mosek*inftype*dou-type"></a> 
+<br/>Is a double information type. </li>
+<li><tt class="tt">MSK_INF_INT_TYPE</tt><a name="const*mosek*inftype*int-type">&#09;</a><a name="common-const*mosek*inftype*int-type"></a> 
+<br/>Is an integer. </li>
+<li><tt class="tt">MSK_INF_LINT_TYPE</tt><a name="const*mosek*inftype*lint-type">&#09;</a><a name="common-const*mosek*inftype*lint-type"></a> 
+<br/>Is a long integer. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296833752">18.18. Input/output modes</a></h1>
+
+<p> <a name="constclass*mosek*iomode">&#09;</a><a name="common-constclass*mosek*iomode"></a> <a name="idx-206180296">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_IOMODE_READ</tt><a name="const*mosek*iomode*read">&#09;</a><a name="common-const*mosek*iomode*read"></a> 
+<br/>The file is read-only. </li>
+<li><tt class="tt">MSK_IOMODE_READWRITE</tt><a name="const*mosek*iomode*readwrite">&#09;</a><a name="common-const*mosek*iomode*readwrite"></a> 
+<br/>The file is to read and written. </li>
+<li><tt class="tt">MSK_IOMODE_WRITE</tt><a name="const*mosek*iomode*write">&#09;</a><a name="common-const*mosek*iomode*write"></a> 
+<br/>The file is write-only. If the file exists then it is truncated when it is opened. Otherwise it is created when it is opened. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296836344">18.19. Language selection constants</a></h1>
+
+<p> <a name="constclass*mosek*language">&#09;</a><a name="common-constclass*mosek*language"></a> <a name="idx-206164552">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_LANG_DAN</tt><a name="const*mosek*language*dan">&#09;</a><a name="common-const*mosek*language*dan"></a> 
+<br/>Danish language selection </li>
+<li><tt class="tt">MSK_LANG_ENG</tt><a name="const*mosek*language*eng">&#09;</a><a name="common-const*mosek*language*eng"></a> 
+<br/>English language selection </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296838352">18.20. Long integer information items.</a></h1>
+
+<p> <a name="constclass*mosek*liinfitem">&#09;</a><a name="common-constclass*mosek*liinfitem"></a> <a name="idx-206214928">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_LIINF_BI_CLEAN_DUAL_DEG_ITER</tt><a name="const*mosek*liinfitem*bi-clean-dual-deg-iter">&#09;</a><a name="common-const*mosek*liinfitem*bi-clean-dual-deg-iter"></a> 
+<br/>Number of dual degenerate clean iterations performed in the basis identification. </li>
+<li><tt class="tt">MSK_LIINF_BI_CLEAN_DUAL_ITER</tt><a name="const*mosek*liinfitem*bi-clean-dual-iter">&#09;</a><a name="common-const*mosek*liinfitem*bi-clean-dual-iter"></a> 
+<br/>Number of dual clean iterations performed in the basis identification. </li>
+<li><tt class="tt">MSK_LIINF_BI_CLEAN_PRIMAL_DEG_ITER</tt><a name="const*mosek*liinfitem*bi-clean-primal-deg-iter">&#09;</a><a name="common-const*mosek*liinfitem*bi-clean-primal-deg-iter"></a> 
+<br/>Number of primal degenerate clean iterations performed in the basis identification. </li>
+<li><tt class="tt">MSK_LIINF_BI_CLEAN_PRIMAL_DUAL_DEG_ITER</tt><a name="const*mosek*liinfitem*bi-clean-primal-dual-deg-iter">&#09;</a><a name="common-const*mosek*liinfitem*bi-clean-primal-dual-deg-iter"></a> 
+<br/>Number of primal-dual degenerate clean iterations performed in the basis identification. </li>
+<li><tt class="tt">MSK_LIINF_BI_CLEAN_PRIMAL_DUAL_ITER</tt><a name="const*mosek*liinfitem*bi-clean-primal-dual-iter">&#09;</a><a name="common-const*mosek*liinfitem*bi-clean-primal-dual-iter"></a> 
+<br/>Number of primal-dual clean iterations performed in the basis identification. </li>
+<li><tt class="tt">MSK_LIINF_BI_CLEAN_PRIMAL_DUAL_SUB_ITER</tt><a name="const*mosek*liinfitem*bi-clean-primal-dual-sub-iter">&#09;</a><a name="common-const*mosek*liinfitem*bi-clean-primal-dual-sub-iter"></a> 
+<br/>Number of primal-dual subproblem clean iterations performed in the basis identification. </li>
+<li><tt class="tt">MSK_LIINF_BI_CLEAN_PRIMAL_ITER</tt><a name="const*mosek*liinfitem*bi-clean-primal-iter">&#09;</a><a name="common-const*mosek*liinfitem*bi-clean-primal-iter"></a> 
+<br/>Number of primal clean iterations performed in the basis identification. </li>
+<li><tt class="tt">MSK_LIINF_BI_DUAL_ITER</tt><a name="const*mosek*liinfitem*bi-dual-iter">&#09;</a><a name="common-const*mosek*liinfitem*bi-dual-iter"></a> 
+<br/>Number of dual pivots performed in the basis identification. </li>
+<li><tt class="tt">MSK_LIINF_BI_PRIMAL_ITER</tt><a name="const*mosek*liinfitem*bi-primal-iter">&#09;</a><a name="common-const*mosek*liinfitem*bi-primal-iter"></a> 
+<br/>Number of primal pivots performed in the basis identification. </li>
+<li><tt class="tt">MSK_LIINF_INTPNT_FACTOR_NUM_NZ</tt><a name="const*mosek*liinfitem*intpnt-factor-num-nz">&#09;</a><a name="common-const*mosek*liinfitem*intpnt-factor-num-nz"></a> 
+<br/>Number of non-zeros in factorization. </li>
+<li><tt class="tt">MSK_LIINF_MIO_INTPNT_ITER</tt><a name="const*mosek*liinfitem*mio-intpnt-iter">&#09;</a><a name="common-const*mosek*liinfitem*mio-intpnt-iter"></a> 
+<br/>Number of interior-point iterations performed by the mixed-integer optimizer. </li>
+<li><tt class="tt">MSK_LIINF_MIO_SIMPLEX_ITER</tt><a name="const*mosek*liinfitem*mio-simplex-iter">&#09;</a><a name="common-const*mosek*liinfitem*mio-simplex-iter"></a> 
+<br/>Number of simplex iterations performed by the mixed-integer optimizer. </li>
+<li><tt class="tt">MSK_LIINF_RD_NUMANZ</tt><a name="const*mosek*liinfitem*rd-numanz">&#09;</a><a name="common-const*mosek*liinfitem*rd-numanz"></a> 
+<br/>Number of non-zeros in A that is read. </li>
+<li><tt class="tt">MSK_LIINF_RD_NUMQNZ</tt><a name="const*mosek*liinfitem*rd-numqnz">&#09;</a><a name="common-const*mosek*liinfitem*rd-numqnz"></a> 
+<br/>Number of Q non-zeros. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296848200">18.21. Mark</a></h1>
+
+<p> <a name="constclass*mosek*mark">&#09;</a><a name="common-constclass*mosek*mark"></a> <a name="idx-206246328">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_MARK_LO</tt><a name="const*mosek*mark*lo">&#09;</a><a name="common-const*mosek*mark*lo"></a> 
+<br/>The lower bound is selected for sensitivity analysis. </li>
+<li><tt class="tt">MSK_MARK_UP</tt><a name="const*mosek*mark*up">&#09;</a><a name="common-const*mosek*mark*up"></a> 
+<br/>The upper bound is selected for sensitivity analysis. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296850208">18.22. Continuous mixed-integer solution type</a></h1>
+
+<p> <a name="constclass*mosek*miocontsoltype">&#09;</a><a name="common-constclass*mosek*miocontsoltype"></a> <a name="idx-206297496">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_MIO_CONT_SOL_ITG</tt><a name="const*mosek*miocontsoltype*itg">&#09;</a><a name="common-const*mosek*miocontsoltype*itg"></a> 
+<br/>The reported interior-point and basic solutions are a solution to the problem with all integer variables fixed at the value they have in the integer solution. A solution is only reported in case the problem has a primal feasible solution. </li>
+<li><tt class="tt">MSK_MIO_CONT_SOL_ITG_REL</tt><a name="const*mosek*miocontsoltype*itg-rel">&#09;</a><a name="common-const*mosek*miocontsoltype*itg-rel"></a> 
+<br/>In case the problem is primal feasible then the reported interior-point and basic solutions are a solution to the problem with all integer variables fixed at the value they have in the integer solution. If the problem is primal infeasible, then the solution to the root node problem is reported. </li>
+<li><tt class="tt">MSK_MIO_CONT_SOL_NONE</tt><a name="const*mosek*miocontsoltype*none">&#09;</a><a name="common-const*mosek*miocontsoltype*none"></a> 
+<br/>No interior-point or basic solution are reported when the mixed-integer optimizer is used. </li>
+<li><tt class="tt">MSK_MIO_CONT_SOL_ROOT</tt><a name="const*mosek*miocontsoltype*root">&#09;</a><a name="common-const*mosek*miocontsoltype*root"></a> 
+<br/>The reported interior-point and basic solutions are a solution to the root node problem when mixed-integer optimizer is used. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296853448">18.23. Integer restrictions</a></h1>
+
+<p> <a name="constclass*mosek*miomode">&#09;</a><a name="common-constclass*mosek*miomode"></a> <a name="idx-206322144">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_MIO_MODE_IGNORED</tt><a name="const*mosek*miomode*ignored">&#09;</a><a name="common-const*mosek*miomode*ignored"></a> 
+<br/>The integer constraints are ignored and the problem is solved as a continuous problem. </li>
+<li><tt class="tt">MSK_MIO_MODE_LAZY</tt><a name="const*mosek*miomode*lazy">&#09;</a><a name="common-const*mosek*miomode*lazy"></a> 
+<br/>Integer restrictions should be satisfied if an optimizer is available for the problem. </li>
+<li><tt class="tt">MSK_MIO_MODE_SATISFIED</tt><a name="const*mosek*miomode*satisfied">&#09;</a><a name="common-const*mosek*miomode*satisfied"></a> 
+<br/>Integer restrictions should be satisfied. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296856104">18.24. Mixed-integer node selection types</a></h1>
+
+<p> <a name="constclass*mosek*mionodeseltype">&#09;</a><a name="common-constclass*mosek*mionodeseltype"></a> <a name="idx-206339536">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_MIO_NODE_SELECTION_BEST</tt><a name="const*mosek*mionodeseltype*best">&#09;</a><a name="common-const*mosek*mionodeseltype*best"></a> 
+<br/>The optimizer employs a best bound node selection strategy. </li>
+<li><tt class="tt">MSK_MIO_NODE_SELECTION_FIRST</tt><a name="const*mosek*mionodeseltype*first">&#09;</a><a name="common-const*mosek*mionodeseltype*first"></a> 
+<br/>The optimizer employs a depth first node selection strategy. </li>
+<li><tt class="tt">MSK_MIO_NODE_SELECTION_FREE</tt><a name="const*mosek*mionodeseltype*free">&#09;</a><a name="common-const*mosek*mionodeseltype*free"></a> 
+<br/>The optimizer decides the node selection strategy. </li>
+<li><tt class="tt">MSK_MIO_NODE_SELECTION_HYBRID</tt><a name="const*mosek*mionodeseltype*hybrid">&#09;</a><a name="common-const*mosek*mionodeseltype*hybrid"></a> 
+<br/>The optimizer employs a hybrid strategy. </li>
+<li><tt class="tt">MSK_MIO_NODE_SELECTION_PSEUDO</tt><a name="const*mosek*mionodeseltype*pseudo">&#09;</a><a name="common-const*mosek*mionodeseltype*pseudo"></a> 
+<br/>The optimizer employs selects the node based on a pseudo cost estimate. </li>
+<li><tt class="tt">MSK_MIO_NODE_SELECTION_WORST</tt><a name="const*mosek*mionodeseltype*worst">&#09;</a><a name="common-const*mosek*mionodeseltype*worst"></a> 
+<br/>The optimizer employs a worst bound node selection strategy. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296860704">18.25. MPS file format type</a></h1>
+
+<p> <a name="constclass*mosek*mpsformat">&#09;</a><a name="common-constclass*mosek*mpsformat"></a> <a name="idx-207632216">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_MPS_FORMAT_FREE</tt><a name="const*mosek*mpsformat*free">&#09;</a><a name="common-const*mosek*mpsformat*free"></a> 
+<br/>It is assumed that the input file satisfies the free MPS format. This implies that spaces are not allowed in names. Otherwise the format is free. </li>
+<li><tt class="tt">MSK_MPS_FORMAT_RELAXED</tt><a name="const*mosek*mpsformat*relaxed">&#09;</a><a name="common-const*mosek*mpsformat*relaxed"></a> 
+<br/>It is assumed that the input file satisfies a slightly relaxed version of the MPS format. </li>
+<li><tt class="tt">MSK_MPS_FORMAT_STRICT</tt><a name="const*mosek*mpsformat*strict">&#09;</a><a name="common-const*mosek*mpsformat*strict"></a> 
+<br/>It is assumed that the input file satisfies the MPS format strictly. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296863360">18.26. Message keys</a></h1>
+
+<p> <a name="constclass*mosek*msgkey">&#09;</a><a name="common-constclass*mosek*msgkey"></a> <a name="idx-206308488">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_MSG_MPS_SELECTED</tt><a name="const*mosek*msgkey*mps-selected">&#09;</a><a name="common-const*mosek*msgkey*mps-selected"></a> </li>
+<li><tt class="tt">MSK_MSG_READING_FILE</tt><a name="const*mosek*msgkey*reading-file">&#09;</a><a name="common-const*mosek*msgkey*reading-file"></a> </li>
+<li><tt class="tt">MSK_MSG_WRITING_FILE</tt><a name="const*mosek*msgkey*writing-file">&#09;</a><a name="common-const*mosek*msgkey*writing-file"></a> </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296866016">18.27. Network detection method</a></h1>
+
+<p> <a name="constclass*mosek*networkdetect">&#09;</a><a name="common-constclass*mosek*networkdetect"></a> <a name="idx-207662256">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_NETWORK_DETECT_ADVANCED</tt><a name="const*mosek*networkdetect*advanced">&#09;</a><a name="common-const*mosek*networkdetect*advanced"></a> 
+<br/>The network detection should use a more advanced heuristic. </li>
+<li><tt class="tt">MSK_NETWORK_DETECT_FREE</tt><a name="const*mosek*networkdetect*free">&#09;</a><a name="common-const*mosek*networkdetect*free"></a> 
+<br/>The network detection is free. </li>
+<li><tt class="tt">MSK_NETWORK_DETECT_SIMPLE</tt><a name="const*mosek*networkdetect*simple">&#09;</a><a name="common-const*mosek*networkdetect*simple"></a> 
+<br/>The network detection should use a very simple heuristic. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296868608">18.28. Objective sense types</a></h1>
+
+<p> <a name="constclass*mosek*objsense">&#09;</a><a name="common-constclass*mosek*objsense"></a> <a name="idx-207670664">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_OBJECTIVE_SENSE_MAXIMIZE</tt><a name="const*mosek*objsense*maximize">&#09;</a><a name="common-const*mosek*objsense*maximize"></a> 
+<br/>The problem should be maximized. </li>
+<li><tt class="tt">MSK_OBJECTIVE_SENSE_MINIMIZE</tt><a name="const*mosek*objsense*minimize">&#09;</a><a name="common-const*mosek*objsense*minimize"></a> 
+<br/>The problem should be minimized. </li>
+<li><tt class="tt">MSK_OBJECTIVE_SENSE_UNDEFINED</tt><a name="const*mosek*objsense*undefined">&#09;</a><a name="common-const*mosek*objsense*undefined"></a> 
+<br/>The objective sense is undefined. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296871264">18.29. On/off</a></h1>
+
+<p> <a name="constclass*mosek*onoffkey">&#09;</a><a name="common-constclass*mosek*onoffkey"></a> <a name="idx-207667424">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_OFF</tt><a name="const*mosek*onoffkey*off">&#09;</a><a name="common-const*mosek*onoffkey*off"></a> 
+<br/>Switch the option off. </li>
+<li><tt class="tt">MSK_ON</tt><a name="const*mosek*onoffkey*on">&#09;</a><a name="common-const*mosek*onoffkey*on"></a> 
+<br/>Switch the option on. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296873208">18.30. Optimizer types</a></h1>
+
+<p> <a name="constclass*mosek*optimizertype">&#09;</a><a name="common-constclass*mosek*optimizertype"></a> <a name="idx-207695600">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_OPTIMIZER_CONCURRENT</tt><a name="const*mosek*optimizertype*concurrent">&#09;</a><a name="common-const*mosek*optimizertype*concurrent"></a> 
+<br/>The optimizer for nonconvex nonlinear problems. </li>
+<li><tt class="tt">MSK_OPTIMIZER_CONIC</tt><a name="const*mosek*optimizertype*conic">&#09;</a><a name="common-const*mosek*optimizertype*conic"></a> 
+<br/>The optimizer for problems having conic constraints. </li>
+<li><tt class="tt">MSK_OPTIMIZER_DUAL_SIMPLEX</tt><a name="const*mosek*optimizertype*dual-simplex">&#09;</a><a name="common-const*mosek*optimizertype*dual-simplex"></a> 
+<br/>The dual simplex optimizer is used. </li>
+<li><tt class="tt">MSK_OPTIMIZER_FREE</tt><a name="const*mosek*optimizertype*free">&#09;</a><a name="common-const*mosek*optimizertype*free"></a> 
+<br/>The optimizer is chosen automatically. </li>
+<li><tt class="tt">MSK_OPTIMIZER_FREE_SIMPLEX</tt><a name="const*mosek*optimizertype*free-simplex">&#09;</a><a name="common-const*mosek*optimizertype*free-simplex"></a> 
+<br/>One of the simplex optimizers is used. </li>
+<li><tt class="tt">MSK_OPTIMIZER_INTPNT</tt><a name="const*mosek*optimizertype*intpnt">&#09;</a><a name="common-const*mosek*optimizertype*intpnt"></a> 
+<br/>The interior-point optimizer is used. </li>
+<li><tt class="tt">MSK_OPTIMIZER_MIXED_INT</tt><a name="const*mosek*optimizertype*mixed-int">&#09;</a><a name="common-const*mosek*optimizertype*mixed-int"></a> 
+<br/>The mixed-integer optimizer. </li>
+<li><tt class="tt">MSK_OPTIMIZER_NONCONVEX</tt><a name="const*mosek*optimizertype*nonconvex">&#09;</a><a name="common-const*mosek*optimizertype*nonconvex"></a> 
+<br/>The optimizer for nonconvex nonlinear problems. </li>
+<li><tt class="tt">MSK_OPTIMIZER_PRIMAL_DUAL_SIMPLEX</tt><a name="const*mosek*optimizertype*primal-dual-simplex">&#09;</a><a name="common-const*mosek*optimizertype*primal-dual-simplex"></a> 
+<br/>The primal dual simplex optimizer is used. </li>
+<li><tt class="tt">MSK_OPTIMIZER_PRIMAL_SIMPLEX</tt><a name="const*mosek*optimizertype*primal-simplex">&#09;</a><a name="common-const*mosek*optimizertype*primal-simplex"></a> 
+<br/>The primal simplex optimizer is used. </li>
+<li><tt class="tt">MSK_OPTIMIZER_QCONE</tt><a name="const*mosek*optimizertype*qcone">&#09;</a><a name="common-const*mosek*optimizertype*qcone"></a> 
+<br/>For internal use only. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296881112">18.31. Ordering strategies</a></h1>
+
+<p> <a name="constclass*mosek*orderingtype">&#09;</a><a name="common-constclass*mosek*orderingtype"></a> <a name="idx-207731744">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_ORDER_METHOD_APPMINLOC1</tt><a name="const*mosek*orderingtype*appminloc1">&#09;</a><a name="common-const*mosek*orderingtype*appminloc1"></a> 
+<br/>Approximate minimum local-fill-in ordering is used. </li>
+<li><tt class="tt">MSK_ORDER_METHOD_APPMINLOC2</tt><a name="const*mosek*orderingtype*appminloc2">&#09;</a><a name="common-const*mosek*orderingtype*appminloc2"></a> 
+<br/>A variant of the approximate minimum local-fill-in ordering is used. </li>
+<li><tt class="tt">MSK_ORDER_METHOD_FREE</tt><a name="const*mosek*orderingtype*free">&#09;</a><a name="common-const*mosek*orderingtype*free"></a> 
+<br/>The ordering method is chosen automatically. </li>
+<li><tt class="tt">MSK_ORDER_METHOD_GRAPHPAR1</tt><a name="const*mosek*orderingtype*graphpar1">&#09;</a><a name="common-const*mosek*orderingtype*graphpar1"></a> 
+<br/>Graph partitioning based ordering. </li>
+<li><tt class="tt">MSK_ORDER_METHOD_GRAPHPAR2</tt><a name="const*mosek*orderingtype*graphpar2">&#09;</a><a name="common-const*mosek*orderingtype*graphpar2"></a> 
+<br/>An alternative graph partitioning based ordering. </li>
+<li><tt class="tt">MSK_ORDER_METHOD_NONE</tt><a name="const*mosek*orderingtype*none">&#09;</a><a name="common-const*mosek*orderingtype*none"></a> 
+<br/>No ordering is used. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296885712">18.32. Parameter type</a></h1>
+
+<p> <a name="constclass*mosek*parametertype">&#09;</a><a name="common-constclass*mosek*parametertype"></a> <a name="idx-207754808">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_PAR_DOU_TYPE</tt><a name="const*mosek*parametertype*dou-type">&#09;</a><a name="common-const*mosek*parametertype*dou-type"></a> 
+<br/>Is a double parameter. </li>
+<li><tt class="tt">MSK_PAR_INT_TYPE</tt><a name="const*mosek*parametertype*int-type">&#09;</a><a name="common-const*mosek*parametertype*int-type"></a> 
+<br/>Is an integer parameter. </li>
+<li><tt class="tt">MSK_PAR_INVALID_TYPE</tt><a name="const*mosek*parametertype*invalid-type">&#09;</a><a name="common-const*mosek*parametertype*invalid-type"></a> 
+<br/>Not a valid parameter. </li>
+<li><tt class="tt">MSK_PAR_STR_TYPE</tt><a name="const*mosek*parametertype*str-type">&#09;</a><a name="common-const*mosek*parametertype*str-type"></a> 
+<br/>Is a string parameter. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296889016">18.33. Presolve method.</a></h1>
+
+<p> <a name="constclass*mosek*presolvemode">&#09;</a><a name="common-constclass*mosek*presolvemode"></a> <a name="idx-207732464">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_PRESOLVE_MODE_FREE</tt><a name="const*mosek*presolvemode*free">&#09;</a><a name="common-const*mosek*presolvemode*free"></a> 
+<br/>It is decided automatically whether to presolve before the problem is optimized. </li>
+<li><tt class="tt">MSK_PRESOLVE_MODE_OFF</tt><a name="const*mosek*presolvemode*off">&#09;</a><a name="common-const*mosek*presolvemode*off"></a> 
+<br/>The problem is not presolved before it is optimized. </li>
+<li><tt class="tt">MSK_PRESOLVE_MODE_ON</tt><a name="const*mosek*presolvemode*on">&#09;</a><a name="common-const*mosek*presolvemode*on"></a> 
+<br/>The problem is presolved before it is optimized. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296891672">18.34. Problem data items</a></h1>
+
+<p> <a name="constclass*mosek*problemitem">&#09;</a><a name="common-constclass*mosek*problemitem"></a> <a name="idx-207793832">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_PI_CON</tt><a name="const*mosek*problemitem*con">&#09;</a><a name="common-const*mosek*problemitem*con"></a> 
+<br/>Item is a constraint. </li>
+<li><tt class="tt">MSK_PI_CONE</tt><a name="const*mosek*problemitem*cone">&#09;</a><a name="common-const*mosek*problemitem*cone"></a> 
+<br/>Item is a cone. </li>
+<li><tt class="tt">MSK_PI_VAR</tt><a name="const*mosek*problemitem*var">&#09;</a><a name="common-const*mosek*problemitem*var"></a> 
+<br/>Item is a variable. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296894264">18.35. Problem types</a></h1>
+
+<p> <a name="constclass*mosek*problemtype">&#09;</a><a name="common-constclass*mosek*problemtype"></a> <a name="idx-207806408">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_PROBTYPE_CONIC</tt><a name="const*mosek*problemtype*conic">&#09;</a><a name="common-const*mosek*problemtype*conic"></a> 
+<br/>A conic optimization. </li>
+<li><tt class="tt">MSK_PROBTYPE_GECO</tt><a name="const*mosek*problemtype*geco">&#09;</a><a name="common-const*mosek*problemtype*geco"></a> 
+<br/>General convex optimization. </li>
+<li><tt class="tt">MSK_PROBTYPE_LO</tt><a name="const*mosek*problemtype*lo">&#09;</a><a name="common-const*mosek*problemtype*lo"></a> 
+<br/>The problem is a linear optimization problem. </li>
+<li><tt class="tt">MSK_PROBTYPE_MIXED</tt><a name="const*mosek*problemtype*mixed">&#09;</a><a name="common-const*mosek*problemtype*mixed"></a> 
+<br/>General nonlinear constraints and conic constraints. This combination can not be solved by MOSEK. </li>
+<li><tt class="tt">MSK_PROBTYPE_QCQO</tt><a name="const*mosek*problemtype*qcqo">&#09;</a><a name="common-const*mosek*problemtype*qcqo"></a> 
+<br/>The problem is a quadratically constrained optimization problem. </li>
+<li><tt class="tt">MSK_PROBTYPE_QO</tt><a name="const*mosek*problemtype*qo">&#09;</a><a name="common-const*mosek*problemtype*qo"></a> 
+<br/>The problem is a quadratic optimization problem. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296898928">18.36. Problem status keys</a></h1>
+
+<p> <a name="constclass*mosek*prosta">&#09;</a><a name="common-constclass*mosek*prosta"></a> <a name="idx-207833568">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_PRO_STA_DUAL_FEAS</tt><a name="const*mosek*prosta*dual-feas">&#09;</a><a name="common-const*mosek*prosta*dual-feas"></a> 
+<br/>The problem is dual feasible. </li>
+<li><tt class="tt">MSK_PRO_STA_DUAL_INFEAS</tt><a name="const*mosek*prosta*dual-infeas">&#09;</a><a name="common-const*mosek*prosta*dual-infeas"></a> 
+<br/>The problem is dual infeasible. </li>
+<li><tt class="tt">MSK_PRO_STA_ILL_POSED</tt><a name="const*mosek*prosta*ill-posed">&#09;</a><a name="common-const*mosek*prosta*ill-posed"></a> 
+<br/>The problem is ill-posed. For example, it may be primal and dual feasible but have a positive duality gap. </li>
+<li><tt class="tt">MSK_PRO_STA_NEAR_DUAL_FEAS</tt><a name="const*mosek*prosta*near-dual-feas">&#09;</a><a name="common-const*mosek*prosta*near-dual-feas"></a> 
+<br/>The problem is at least nearly dual feasible. </li>
+<li><tt class="tt">MSK_PRO_STA_NEAR_PRIM_AND_DUAL_FEAS</tt><a name="const*mosek*prosta*near-prim-and-dual-feas">&#09;</a><a name="common-const*mosek*prosta*near-prim-and-dual-feas"></a> 
+<br/>The problem is at least nearly primal and dual feasible. </li>
+<li><tt class="tt">MSK_PRO_STA_NEAR_PRIM_FEAS</tt><a name="const*mosek*prosta*near-prim-feas">&#09;</a><a name="common-const*mosek*prosta*near-prim-feas"></a> 
+<br/>The problem is at least nearly primal feasible. </li>
+<li><tt class="tt">MSK_PRO_STA_PRIM_AND_DUAL_FEAS</tt><a name="const*mosek*prosta*prim-and-dual-feas">&#09;</a><a name="common-const*mosek*prosta*prim-and-dual-feas"></a> 
+<br/>The problem is primal and dual feasible. </li>
+<li><tt class="tt">MSK_PRO_STA_PRIM_AND_DUAL_INFEAS</tt><a name="const*mosek*prosta*prim-and-dual-infeas">&#09;</a><a name="common-const*mosek*prosta*prim-and-dual-infeas"></a> 
+<br/>The problem is primal and dual infeasible. </li>
+<li><tt class="tt">MSK_PRO_STA_PRIM_FEAS</tt><a name="const*mosek*prosta*prim-feas">&#09;</a><a name="common-const*mosek*prosta*prim-feas"></a> 
+<br/>The problem is primal feasible. </li>
+<li><tt class="tt">MSK_PRO_STA_PRIM_INFEAS</tt><a name="const*mosek*prosta*prim-infeas">&#09;</a><a name="common-const*mosek*prosta*prim-infeas"></a> 
+<br/>The problem is primal infeasible. </li>
+<li><tt class="tt">MSK_PRO_STA_PRIM_INFEAS_OR_UNBOUNDED</tt><a name="const*mosek*prosta*prim-infeas-or-unbounded">&#09;</a><a name="common-const*mosek*prosta*prim-infeas-or-unbounded"></a> 
+<br/>The problem is either primal infeasible or unbounded. This may occur for mixed-integer problems. </li>
+<li><tt class="tt">MSK_PRO_STA_UNKNOWN</tt><a name="const*mosek*prosta*unknown">&#09;</a><a name="common-const*mosek*prosta*unknown"></a> 
+<br/>Unknown problem status. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296907480">18.37. Interpretation of quadratic terms in MPS files</a></h1>
+
+<p> <a name="constclass*mosek*qreadtype">&#09;</a><a name="common-constclass*mosek*qreadtype"></a> <a name="idx-209226712">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_Q_READ_ADD</tt><a name="const*mosek*qreadtype*add">&#09;</a><a name="common-const*mosek*qreadtype*add"></a> 
+<br/>All elements in a Q matrix are assumed to belong to the lower triangular part. Duplicate elements in a Q matrix are added together. </li>
+<li><tt class="tt">MSK_Q_READ_DROP_LOWER</tt><a name="const*mosek*qreadtype*drop-lower">&#09;</a><a name="common-const*mosek*qreadtype*drop-lower"></a> 
+<br/>All elements in the strict lower triangular part of the Q matrices are dropped. </li>
+<li><tt class="tt">MSK_Q_READ_DROP_UPPER</tt><a name="const*mosek*qreadtype*drop-upper">&#09;</a><a name="common-const*mosek*qreadtype*drop-upper"></a> 
+<br/>All elements in the strict upper triangular part of the Q matrices are dropped. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296910072">18.38. Response code type</a></h1>
+
+<p> <a name="constclass*mosek*rescodetype">&#09;</a><a name="common-constclass*mosek*rescodetype"></a> <a name="idx-209234112">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_RESPONSE_ERR</tt><a name="const*mosek*rescodetype*err">&#09;</a><a name="common-const*mosek*rescodetype*err"></a> 
+<br/>The response code is an error. </li>
+<li><tt class="tt">MSK_RESPONSE_OK</tt><a name="const*mosek*rescodetype*ok">&#09;</a><a name="common-const*mosek*rescodetype*ok"></a> 
+<br/>The response code is OK. </li>
+<li><tt class="tt">MSK_RESPONSE_TRM</tt><a name="const*mosek*rescodetype*trm">&#09;</a><a name="common-const*mosek*rescodetype*trm"></a> 
+<br/>The response code is an optimizer termination status. </li>
+<li><tt class="tt">MSK_RESPONSE_UNK</tt><a name="const*mosek*rescodetype*unk">&#09;</a><a name="common-const*mosek*rescodetype*unk"></a> 
+<br/>The response code does not belong to any class. </li>
+<li><tt class="tt">MSK_RESPONSE_WRN</tt><a name="const*mosek*rescodetype*wrn">&#09;</a><a name="common-const*mosek*rescodetype*wrn"></a> 
+<br/>The response code is a warning. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296914024">18.39. Scaling type</a></h1>
+
+<p> <a name="constclass*mosek*scalingmethod">&#09;</a><a name="common-constclass*mosek*scalingmethod"></a> <a name="idx-209226928">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SCALING_METHOD_FREE</tt><a name="const*mosek*scalingmethod*free">&#09;</a><a name="common-const*mosek*scalingmethod*free"></a> 
+<br/>The optimizer chooses the scaling heuristic. </li>
+<li><tt class="tt">MSK_SCALING_METHOD_POW2</tt><a name="const*mosek*scalingmethod*pow2">&#09;</a><a name="common-const*mosek*scalingmethod*pow2"></a> 
+<br/>Scales only with power of 2 leaving the mantissa untouched. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296916032">18.40. Scaling type</a></h1>
+
+<p> <a name="constclass*mosek*scalingtype">&#09;</a><a name="common-constclass*mosek*scalingtype"></a> <a name="idx-209280104">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SCALING_AGGRESSIVE</tt><a name="const*mosek*scalingtype*aggressive">&#09;</a><a name="common-const*mosek*scalingtype*aggressive"></a> 
+<br/>A very aggressive scaling is performed. </li>
+<li><tt class="tt">MSK_SCALING_FREE</tt><a name="const*mosek*scalingtype*free">&#09;</a><a name="common-const*mosek*scalingtype*free"></a> 
+<br/>The optimizer chooses the scaling heuristic. </li>
+<li><tt class="tt">MSK_SCALING_MODERATE</tt><a name="const*mosek*scalingtype*moderate">&#09;</a><a name="common-const*mosek*scalingtype*moderate"></a> 
+<br/>A conservative scaling is performed. </li>
+<li><tt class="tt">MSK_SCALING_NONE</tt><a name="const*mosek*scalingtype*none">&#09;</a><a name="common-const*mosek*scalingtype*none"></a> 
+<br/>No scaling is performed. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296919336">18.41. Sensitivity types</a></h1>
+
+<p> <a name="constclass*mosek*sensitivitytype">&#09;</a><a name="common-constclass*mosek*sensitivitytype"></a> <a name="idx-209288728">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SENSITIVITY_TYPE_BASIS</tt><a name="const*mosek*sensitivitytype*basis">&#09;</a><a name="common-const*mosek*sensitivitytype*basis"></a> 
+<br/>Basis sensitivity analysis is performed. </li>
+<li><tt class="tt">MSK_SENSITIVITY_TYPE_OPTIMAL_PARTITION</tt><a name="const*mosek*sensitivitytype*optimal-partition">&#09;</a><a name="common-const*mosek*sensitivitytype*optimal-partition"></a> 
+<br/>Optimal partition sensitivity analysis is performed. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296921280">18.42. Degeneracy strategies</a></h1>
+
+<p> <a name="constclass*mosek*simdegen">&#09;</a><a name="common-constclass*mosek*simdegen"></a> <a name="idx-209287216">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SIM_DEGEN_AGGRESSIVE</tt><a name="const*mosek*simdegen*aggressive">&#09;</a><a name="common-const*mosek*simdegen*aggressive"></a> 
+<br/>The simplex optimizer should use an aggressive degeneration strategy. </li>
+<li><tt class="tt">MSK_SIM_DEGEN_FREE</tt><a name="const*mosek*simdegen*free">&#09;</a><a name="common-const*mosek*simdegen*free"></a> 
+<br/>The simplex optimizer chooses the degeneration strategy. </li>
+<li><tt class="tt">MSK_SIM_DEGEN_MINIMUM</tt><a name="const*mosek*simdegen*minimum">&#09;</a><a name="common-const*mosek*simdegen*minimum"></a> 
+<br/>The simplex optimizer should use a minimum degeneration strategy. </li>
+<li><tt class="tt">MSK_SIM_DEGEN_MODERATE</tt><a name="const*mosek*simdegen*moderate">&#09;</a><a name="common-const*mosek*simdegen*moderate"></a> 
+<br/>The simplex optimizer should use a moderate degeneration strategy. </li>
+<li><tt class="tt">MSK_SIM_DEGEN_NONE</tt><a name="const*mosek*simdegen*none">&#09;</a><a name="common-const*mosek*simdegen*none"></a> 
+<br/>The simplex optimizer should use no degeneration strategy. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296925232">18.43. Exploit duplicate columns.</a></h1>
+
+<p> <a name="constclass*mosek*simdupvec">&#09;</a><a name="common-constclass*mosek*simdupvec"></a> <a name="idx-209323144">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SIM_EXPLOIT_DUPVEC_FREE</tt><a name="const*mosek*simdupvec*free">&#09;</a><a name="common-const*mosek*simdupvec*free"></a> 
+<br/>The simplex optimizer can choose freely. </li>
+<li><tt class="tt">MSK_SIM_EXPLOIT_DUPVEC_OFF</tt><a name="const*mosek*simdupvec*off">&#09;</a><a name="common-const*mosek*simdupvec*off"></a> 
+<br/>Disallow the simplex optimizer to exploit duplicated columns. </li>
+<li><tt class="tt">MSK_SIM_EXPLOIT_DUPVEC_ON</tt><a name="const*mosek*simdupvec*on">&#09;</a><a name="common-const*mosek*simdupvec*on"></a> 
+<br/>Allow the simplex optimizer to exploit duplicated columns. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296927888">18.44. Hot-start type employed by the simplex optimizer</a></h1>
+
+<p> <a name="constclass*mosek*simhotstart">&#09;</a><a name="common-constclass*mosek*simhotstart"></a> <a name="idx-209338096">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SIM_HOTSTART_FREE</tt><a name="const*mosek*simhotstart*free">&#09;</a><a name="common-const*mosek*simhotstart*free"></a> 
+<br/>The simplex optimize chooses the hot-start type. </li>
+<li><tt class="tt">MSK_SIM_HOTSTART_NONE</tt><a name="const*mosek*simhotstart*none">&#09;</a><a name="common-const*mosek*simhotstart*none"></a> 
+<br/>The simplex optimizer performs a coldstart. </li>
+<li><tt class="tt">MSK_SIM_HOTSTART_STATUS_KEYS</tt><a name="const*mosek*simhotstart*status-keys">&#09;</a><a name="common-const*mosek*simhotstart*status-keys"></a> 
+<br/>Only the status keys of the constraints and variables are used to choose the type of hot-start. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296930480">18.45. Problem reformulation.</a></h1>
+
+<p> <a name="constclass*mosek*simreform">&#09;</a><a name="common-constclass*mosek*simreform"></a> <a name="idx-209320560">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SIM_REFORMULATION_AGGRESSIVE</tt><a name="const*mosek*simreform*aggressive">&#09;</a><a name="common-const*mosek*simreform*aggressive"></a> 
+<br/>The simplex optimizer should use an aggressive reformulation strategy. </li>
+<li><tt class="tt">MSK_SIM_REFORMULATION_FREE</tt><a name="const*mosek*simreform*free">&#09;</a><a name="common-const*mosek*simreform*free"></a> 
+<br/>The simplex optimizer can choose freely. </li>
+<li><tt class="tt">MSK_SIM_REFORMULATION_OFF</tt><a name="const*mosek*simreform*off">&#09;</a><a name="common-const*mosek*simreform*off"></a> 
+<br/>Disallow the simplex optimizer to reformulate the problem. </li>
+<li><tt class="tt">MSK_SIM_REFORMULATION_ON</tt><a name="const*mosek*simreform*on">&#09;</a><a name="common-const*mosek*simreform*on"></a> 
+<br/>Allow the simplex optimizer to reformulate the problem. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296933784">18.46. Simplex selection strategy</a></h1>
+
+<p> <a name="constclass*mosek*simseltype">&#09;</a><a name="common-constclass*mosek*simseltype"></a> <a name="idx-209359000">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SIM_SELECTION_ASE</tt><a name="const*mosek*simseltype*ase">&#09;</a><a name="common-const*mosek*simseltype*ase"></a> 
+<br/>The optimizer uses approximate steepest-edge pricing. </li>
+<li><tt class="tt">MSK_SIM_SELECTION_DEVEX</tt><a name="const*mosek*simseltype*devex">&#09;</a><a name="common-const*mosek*simseltype*devex"></a> 
+<br/>The optimizer uses devex steepest-edge pricing (or if it is not available an approximate steep-edge selection). </li>
+<li><tt class="tt">MSK_SIM_SELECTION_FREE</tt><a name="const*mosek*simseltype*free">&#09;</a><a name="common-const*mosek*simseltype*free"></a> 
+<br/>The optimizer chooses the pricing strategy. </li>
+<li><tt class="tt">MSK_SIM_SELECTION_FULL</tt><a name="const*mosek*simseltype*full">&#09;</a><a name="common-const*mosek*simseltype*full"></a> 
+<br/>The optimizer uses full pricing. </li>
+<li><tt class="tt">MSK_SIM_SELECTION_PARTIAL</tt><a name="const*mosek*simseltype*partial">&#09;</a><a name="common-const*mosek*simseltype*partial"></a> 
+<br/>The optimizer uses a partial selection approach. The approach is usually beneficial if the number of variables is much larger than the number of constraints. </li>
+<li><tt class="tt">MSK_SIM_SELECTION_SE</tt><a name="const*mosek*simseltype*se">&#09;</a><a name="common-const*mosek*simseltype*se"></a> 
+<br/>The optimizer uses steepest-edge selection (or if it is not available an approximate steep-edge selection). </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296938384">18.47. Solution items</a></h1>
+
+<p> <a name="constclass*mosek*solitem">&#09;</a><a name="common-constclass*mosek*solitem"></a> <a name="idx-209371936">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SOL_ITEM_SLC</tt><a name="const*mosek*solitem*slc">&#09;</a><a name="common-const*mosek*solitem*slc"></a> 
+<br/>Lagrange multipliers for lower bounds on the constraints. </li>
+<li><tt class="tt">MSK_SOL_ITEM_SLX</tt><a name="const*mosek*solitem*slx">&#09;</a><a name="common-const*mosek*solitem*slx"></a> 
+<br/>Lagrange multipliers for lower bounds on the variables. </li>
+<li><tt class="tt">MSK_SOL_ITEM_SNX</tt><a name="const*mosek*solitem*snx">&#09;</a><a name="common-const*mosek*solitem*snx"></a> 
+<br/>Lagrange multipliers corresponding to the conic constraints on the variables. </li>
+<li><tt class="tt">MSK_SOL_ITEM_SUC</tt><a name="const*mosek*solitem*suc">&#09;</a><a name="common-const*mosek*solitem*suc"></a> 
+<br/>Lagrange multipliers for upper bounds on the constraints. </li>
+<li><tt class="tt">MSK_SOL_ITEM_SUX</tt><a name="const*mosek*solitem*sux">&#09;</a><a name="common-const*mosek*solitem*sux"></a> 
+<br/>Lagrange multipliers for upper bounds on the variables. </li>
+<li><tt class="tt">MSK_SOL_ITEM_XC</tt><a name="const*mosek*solitem*xc">&#09;</a><a name="common-const*mosek*solitem*xc"></a> 
+<br/>Solution for the constraints. </li>
+<li><tt class="tt">MSK_SOL_ITEM_XX</tt><a name="const*mosek*solitem*xx">&#09;</a><a name="common-const*mosek*solitem*xx"></a> 
+<br/>Variable solution. </li>
+<li><tt class="tt">MSK_SOL_ITEM_Y</tt><a name="const*mosek*solitem*y">&#09;</a><a name="common-const*mosek*solitem*y"></a> 
+<br/>Lagrange multipliers for equations. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296944344">18.48. Solution status keys</a></h1>
+
+<p> <a name="constclass*mosek*solsta">&#09;</a><a name="common-constclass*mosek*solsta"></a> <a name="idx-209429712">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SOL_STA_DUAL_FEAS</tt><a name="const*mosek*solsta*dual-feas">&#09;</a><a name="common-const*mosek*solsta*dual-feas"></a> 
+<br/>The solution is dual feasible. </li>
+<li><tt class="tt">MSK_SOL_STA_DUAL_INFEAS_CER</tt><a name="const*mosek*solsta*dual-infeas-cer">&#09;</a><a name="common-const*mosek*solsta*dual-infeas-cer"></a> 
+<br/>The solution is a certificate of dual infeasibility. </li>
+<li><tt class="tt">MSK_SOL_STA_INTEGER_OPTIMAL</tt><a name="const*mosek*solsta*integer-optimal">&#09;</a><a name="common-const*mosek*solsta*integer-optimal"></a> 
+<br/>The primal solution is integer optimal. </li>
+<li><tt class="tt">MSK_SOL_STA_NEAR_DUAL_FEAS</tt><a name="const*mosek*solsta*near-dual-feas">&#09;</a><a name="common-const*mosek*solsta*near-dual-feas"></a> 
+<br/>The solution is nearly dual feasible. </li>
+<li><tt class="tt">MSK_SOL_STA_NEAR_DUAL_INFEAS_CER</tt><a name="const*mosek*solsta*near-dual-infeas-cer">&#09;</a><a name="common-const*mosek*solsta*near-dual-infeas-cer"></a> 
+<br/>The solution is almost a certificate of dual infeasibility. </li>
+<li><tt class="tt">MSK_SOL_STA_NEAR_INTEGER_OPTIMAL</tt><a name="const*mosek*solsta*near-integer-optimal">&#09;</a><a name="common-const*mosek*solsta*near-integer-optimal"></a> 
+<br/>The primal solution is near integer optimal. </li>
+<li><tt class="tt">MSK_SOL_STA_NEAR_OPTIMAL</tt><a name="const*mosek*solsta*near-optimal">&#09;</a><a name="common-const*mosek*solsta*near-optimal"></a> 
+<br/>The solution is nearly optimal. </li>
+<li><tt class="tt">MSK_SOL_STA_NEAR_PRIM_AND_DUAL_FEAS</tt><a name="const*mosek*solsta*near-prim-and-dual-feas">&#09;</a><a name="common-const*mosek*solsta*near-prim-and-dual-feas"></a> 
+<br/>The solution is nearly both primal and dual feasible. </li>
+<li><tt class="tt">MSK_SOL_STA_NEAR_PRIM_FEAS</tt><a name="const*mosek*solsta*near-prim-feas">&#09;</a><a name="common-const*mosek*solsta*near-prim-feas"></a> 
+<br/>The solution is nearly primal feasible. </li>
+<li><tt class="tt">MSK_SOL_STA_NEAR_PRIM_INFEAS_CER</tt><a name="const*mosek*solsta*near-prim-infeas-cer">&#09;</a><a name="common-const*mosek*solsta*near-prim-infeas-cer"></a> 
+<br/>The solution is almost a certificate of primal infeasibility. </li>
+<li><tt class="tt">MSK_SOL_STA_OPTIMAL</tt><a name="const*mosek*solsta*optimal">&#09;</a><a name="common-const*mosek*solsta*optimal"></a> 
+<br/>The solution is optimal. </li>
+<li><tt class="tt">MSK_SOL_STA_PRIM_AND_DUAL_FEAS</tt><a name="const*mosek*solsta*prim-and-dual-feas">&#09;</a><a name="common-const*mosek*solsta*prim-and-dual-feas"></a> 
+<br/>The solution is both primal and dual feasible. </li>
+<li><tt class="tt">MSK_SOL_STA_PRIM_FEAS</tt><a name="const*mosek*solsta*prim-feas">&#09;</a><a name="common-const*mosek*solsta*prim-feas"></a> 
+<br/>The solution is primal feasible. </li>
+<li><tt class="tt">MSK_SOL_STA_PRIM_INFEAS_CER</tt><a name="const*mosek*solsta*prim-infeas-cer">&#09;</a><a name="common-const*mosek*solsta*prim-infeas-cer"></a> 
+<br/>The solution is a certificate of primal infeasibility. </li>
+<li><tt class="tt">MSK_SOL_STA_UNKNOWN</tt><a name="const*mosek*solsta*unknown">&#09;</a><a name="common-const*mosek*solsta*unknown"></a> 
+<br/>Status of the solution is unknown. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296954840">18.49. Solution types</a></h1>
+
+<p> <a name="constclass*mosek*soltype">&#09;</a><a name="common-constclass*mosek*soltype"></a> <a name="idx-209478288">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SOL_BAS</tt><a name="const*mosek*soltype*bas">&#09;</a><a name="common-const*mosek*soltype*bas"></a> 
+<br/>The basic solution. </li>
+<li><tt class="tt">MSK_SOL_ITG</tt><a name="const*mosek*soltype*itg">&#09;</a><a name="common-const*mosek*soltype*itg"></a> 
+<br/>The integer solution. </li>
+<li><tt class="tt">MSK_SOL_ITR</tt><a name="const*mosek*soltype*itr">&#09;</a><a name="common-const*mosek*soltype*itr"></a> 
+<br/>The interior solution. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296957496">18.50. Solve primal or dual form</a></h1>
+
+<p> <a name="constclass*mosek*solveform">&#09;</a><a name="common-constclass*mosek*solveform"></a> <a name="idx-210852536">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SOLVE_DUAL</tt><a name="const*mosek*solveform*dual">&#09;</a><a name="common-const*mosek*solveform*dual"></a> 
+<br/>The optimizer should solve the dual problem. </li>
+<li><tt class="tt">MSK_SOLVE_FREE</tt><a name="const*mosek*solveform*free">&#09;</a><a name="common-const*mosek*solveform*free"></a> 
+<br/>The optimizer is free to solve either the primal or the dual problem. </li>
+<li><tt class="tt">MSK_SOLVE_PRIMAL</tt><a name="const*mosek*solveform*primal">&#09;</a><a name="common-const*mosek*solveform*primal"></a> 
+<br/>The optimizer should solve the primal problem. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296960152">18.51. Status keys</a></h1>
+
+<p> <a name="constclass*mosek*stakey">&#09;</a><a name="common-constclass*mosek*stakey"></a> <a name="idx-210857640">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_SK_BAS</tt><a name="const*mosek*stakey*bas">&#09;</a><a name="common-const*mosek*stakey*bas"></a> 
+<br/>The constraint or variable is in the basis. </li>
+<li><tt class="tt">MSK_SK_FIX</tt><a name="const*mosek*stakey*fix">&#09;</a><a name="common-const*mosek*stakey*fix"></a> 
+<br/>The constraint or variable is fixed. </li>
+<li><tt class="tt">MSK_SK_INF</tt><a name="const*mosek*stakey*inf">&#09;</a><a name="common-const*mosek*stakey*inf"></a> 
+<br/>The constraint or variable is infeasible in the bounds. </li>
+<li><tt class="tt">MSK_SK_LOW</tt><a name="const*mosek*stakey*low">&#09;</a><a name="common-const*mosek*stakey*low"></a> 
+<br/>The constraint or variable is at its lower bound. </li>
+<li><tt class="tt">MSK_SK_SUPBAS</tt><a name="const*mosek*stakey*supbas">&#09;</a><a name="common-const*mosek*stakey*supbas"></a> 
+<br/>The constraint or variable is super basic. </li>
+<li><tt class="tt">MSK_SK_UNK</tt><a name="const*mosek*stakey*unk">&#09;</a><a name="common-const*mosek*stakey*unk"></a> 
+<br/>The status for the constraint or variable is unknown. </li>
+<li><tt class="tt">MSK_SK_UPR</tt><a name="const*mosek*stakey*upr">&#09;</a><a name="common-const*mosek*stakey*upr"></a> 
+<br/>The constraint or variable is at its upper bound. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296965400">18.52. Starting point types</a></h1>
+
+<p> <a name="constclass*mosek*startpointtype">&#09;</a><a name="common-constclass*mosek*startpointtype"></a> <a name="idx-210892632">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_STARTING_POINT_CONSTANT</tt><a name="const*mosek*startpointtype*constant">&#09;</a><a name="common-const*mosek*startpointtype*constant"></a> 
+<br/>The optimizer constructs a starting point by assigning a constant value to all primal and dual variables. This starting point is normally robust. </li>
+<li><tt class="tt">MSK_STARTING_POINT_FREE</tt><a name="const*mosek*startpointtype*free">&#09;</a><a name="common-const*mosek*startpointtype*free"></a> 
+<br/>The starting point is chosen automatically. </li>
+<li><tt class="tt">MSK_STARTING_POINT_GUESS</tt><a name="const*mosek*startpointtype*guess">&#09;</a><a name="common-const*mosek*startpointtype*guess"></a> 
+<br/>The optimizer guesses a starting point. </li>
+<li><tt class="tt">MSK_STARTING_POINT_SATISFY_BOUNDS</tt><a name="const*mosek*startpointtype*satisfy-bounds">&#09;</a><a name="common-const*mosek*startpointtype*satisfy-bounds"></a> 
+<br/>The starting point is choosen to satisfy all the simple bounds on nonlinear variables. If this starting point is employed, then more care than usual should employed when choosing the bounds on the nonlinear variables. In particular very tight bounds should be avoided. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296968704">18.53. Stream types</a></h1>
+
+<p> <a name="constclass*mosek*streamtype">&#09;</a><a name="common-constclass*mosek*streamtype"></a> <a name="idx-210906360">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_STREAM_ERR</tt><a name="const*mosek*streamtype*err">&#09;</a><a name="common-const*mosek*streamtype*err"></a> 
+<br/>Error stream. Error messages are written to this stream. </li>
+<li><tt class="tt">MSK_STREAM_LOG</tt><a name="const*mosek*streamtype*log">&#09;</a><a name="common-const*mosek*streamtype*log"></a> 
+<br/>Log stream. Contains the aggregated contents of all other streams. This means that a message written to any other stream will also be written to this stream. </li>
+<li><tt class="tt">MSK_STREAM_MSG</tt><a name="const*mosek*streamtype*msg">&#09;</a><a name="common-const*mosek*streamtype*msg"></a> 
+<br/>Message stream. Log information relating to performance and progress of the optimization is written to this stream. </li>
+<li><tt class="tt">MSK_STREAM_WRN</tt><a name="const*mosek*streamtype*wrn">&#09;</a><a name="common-const*mosek*streamtype*wrn"></a> 
+<br/>Warning stream. Warning messages are written to this stream. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296971944">18.54. Integer values</a></h1>
+
+<p> <a name="constclass*mosek*value">&#09;</a><a name="common-constclass*mosek*value"></a> <a name="idx-210911312">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_LICENSE_BUFFER_LENGTH</tt><a name="const*mosek*value*license-buffer-length">&#09;</a><a name="common-const*mosek*value*license-buffer-length"></a> 
+<br/>The length of a license key buffer. </li>
+<li><tt class="tt">MSK_MAX_STR_LEN</tt><a name="const*mosek*value*max-str-len">&#09;</a><a name="common-const*mosek*value*max-str-len"></a> 
+<br/>Maximum string length allowed in MOSEK. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296973952">18.55. Variable types</a></h1>
+
+<p> <a name="constclass*mosek*variabletype">&#09;</a><a name="common-constclass*mosek*variabletype"></a> <a name="idx-210935536">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_VAR_TYPE_CONT</tt><a name="const*mosek*variabletype*type-cont">&#09;</a><a name="common-const*mosek*variabletype*type-cont"></a> 
+<br/>Is a continuous variable. </li>
+<li><tt class="tt">MSK_VAR_TYPE_INT</tt><a name="const*mosek*variabletype*type-int">&#09;</a><a name="common-const*mosek*variabletype*type-int"></a> 
+<br/>Is an integer variable. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="296975896">18.56. XML writer output mode</a></h1>
+
+<p> <a name="constclass*mosek*xmlwriteroutputtype">&#09;</a><a name="common-constclass*mosek*xmlwriteroutputtype"></a> <a name="idx-210932008">&#09;</a> </p>
+
+<ul class="itemize">
+<li><tt class="tt">MSK_WRITE_XML_MODE_COL</tt><a name="const*mosek*xmlwriteroutputtype*col">&#09;</a><a name="common-const*mosek*xmlwriteroutputtype*col"></a> 
+<br/>Write in column order. </li>
+<li><tt class="tt">MSK_WRITE_XML_MODE_ROW</tt><a name="const*mosek*xmlwriteroutputtype*row">&#09;</a><a name="common-const*mosek*xmlwriteroutputtype*row"></a> 
+<br/>Write in row order. </li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node019.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 17. Response codes" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node021.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  A. Troubleshooting" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node019.html" target="_self">17. Response codes</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node021.html" target="_self">A. Troubleshooting</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:50:23 2012</div>
+</body></html>

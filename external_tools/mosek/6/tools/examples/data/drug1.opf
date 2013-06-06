@@ -1,0 +1,34 @@
+[comment]
+  Example: Drug production optimization problem.
+[/comment]
+
+[variables]
+  DrugI DrugII # Produced amounts/1000 packs
+  RawI  RawII  # Purchased amounts/kg
+[/variables]
+
+[objective maximize]
+  # Profit from selling drugs
+    + 6200 DrugI + 6900 DrugII
+  # Cost of purchased raw materials
+    - 100 RawI - 199.90 RawII 
+  # Cost of producing drugs
+    - 700 DrugI - 800 DrugII
+[/objective]
+
+[constraints]
+  # Balance the availability/usage of active agent A
+  [con "Balance A"]  0.01 RawI + 0.02 RawII - 0.500 DrugI - 0.600 DrugII >= 0 [/con]
+  # Constraint on storage space for raw materials
+  [con "Storage"]    RawI + RawII <= 1000 [/con]
+  # Restriction on available manpower
+  [con "Manpower"]   90.0 DrugI +100.0 DrugII <= 2000 [/con]
+  # Restriction on available equipment
+  [con "Equipment"]  40.0 DrugI + 50.0 DrugII <= 800 [/con]
+  # Restriction on available budget
+  [con "Budget"]     100 RawI  + 199.90 RawII + 700 DrugI + 800 DrugII <= 100000[/con]
+[/constraints]
+
+[bounds]
+  [b] RawI,RawII,DrugI,DrugII >= 0 [/b]
+[/bounds]

@@ -1,0 +1,3356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>5. Basic API tutorial</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node006.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 4. Testing installation and compiling examples" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node008.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  6. Advanced API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node006.html" target="_self">4. Testing installation and compiling examples</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node008.html" target="_self">6. Advanced API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="212161384">5. Basic API tutorial</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node007.html#212157216" target="_self">5.1. The basics</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#212165192" target="_self">5.1.1. The environment and the task</a></li>
+<li><a href="node007.html#212167712" target="_self">5.1.2. A simple working example</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#212169504" target="_self">5.1.2.1. Writing a problem to a file</a></li>
+<li><a href="node007.html#212170152" target="_self">5.1.2.2. Inputting and outputting problem data</a></li>
+<li><a href="node007.html#212171016" target="_self">5.1.2.3. Setting parameters</a></li>
+</ul>
+</li>
+<li><a href="node007.html#212170584" target="_self">5.1.3. Compiling and running examples</a></li>
+</ul>
+</li>
+<li><a href="node007.html#212172096" target="_self">5.2. Linear optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#212189336" target="_self">5.2.1. Linear optimization example: lo1</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#212190056" target="_self">5.2.1.1. Solving the problem</a></li>
+<li><a href="node007.html#212248984" target="_self">5.2.1.2. Source code for lo1</a></li>
+</ul>
+</li>
+<li><a href="node007.html#212255088" target="_self">5.2.2. Row-wise input</a></li>
+</ul>
+</li>
+<li><a href="node007.html#212258112" target="_self">5.3. Quadratic optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#212272408" target="_self">5.3.1. Example: Quadratic objective</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#213151896" target="_self">5.3.1.1. Source code</a></li>
+<li><a href="node007.html#213152112" target="_self">5.3.1.2. Example code comments</a></li>
+</ul>
+</li>
+<li><a href="node007.html#213157792" target="_self">5.3.2. Example: Quadratic constraints</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#213181072" target="_self">5.3.2.1. Source code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#213188408" target="_self">5.4. Conic optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#213205576" target="_self">5.4.1. Example: cqo1</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#213205792" target="_self">5.4.1.1. Source code</a></li>
+<li><a href="node007.html#213216504" target="_self">5.4.1.2. Source code comments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#213218944" target="_self">5.5. Integer optimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#213217432" target="_self">5.5.1. Example: milo1</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#213219232" target="_self">5.5.1.1. Source code</a></li>
+<li><a href="node007.html#213229936" target="_self">5.5.1.2. Code comments</a></li>
+</ul>
+</li>
+<li><a href="node007.html#213229224" target="_self">5.5.2. Specifying an initial solution</a></li>
+<li><a href="node007.html#213230368" target="_self">5.5.3. Example: Specifying an integer solution</a></li>
+</ul>
+</li>
+<li><a href="node007.html#213235616" target="_self">5.6. Problem modification and reoptimization</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#213230872" target="_self">5.6.1. A production planning problem</a></li>
+<li><a href="node007.html#213265440" target="_self">5.6.2. Changing the <span class="math"><span class="mi">A</span></span> matrix</a></li>
+<li><a href="node007.html#213282256" target="_self">5.6.3. Appending variables</a></li>
+<li><a href="node007.html#213286992" target="_self">5.6.4. Reoptimization</a></li>
+<li><a href="node007.html#213308696" target="_self">5.6.5. Appending constraints</a></li>
+</ul>
+</li>
+<li><a href="node007.html#213315384" target="_self">5.7. Efficiency considerations</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#213322136" target="_self">5.7.1. API overhead</a></li>
+</ul>
+</li>
+<li><a href="node007.html#213324288" target="_self">5.8. Conventions employed in the API</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#213322280" target="_self">5.8.1. Naming conventions for arguments</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#215050576" target="_self">5.8.1.1. Bounds</a></li>
+</ul>
+</li>
+<li><a href="node007.html#215052232" target="_self">5.8.2. Vector formats</a></li>
+<li><a href="node007.html#215055392" target="_self">5.8.3. Matrix formats</a>
+<ul class="toc-level-3">
+<li><a href="node007.html#215052512" target="_self">5.8.3.1. Unordered triplets</a></li>
+<li><a href="node007.html#215057904" target="_self">5.8.3.2. Row or column ordered sparse matrix</a></li>
+<li><a href="node007.html#215081904" target="_self">5.8.3.3. Row ordered sparse matrix</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node007.html#215090312" target="_self">5.9. The license system</a>
+<ul class="toc-level-2">
+<li><a href="node007.html#215081976" target="_self">5.9.1. Waiting for a free license</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="chap:using-mosek-interface">&#09;</a> In this chapter the reader will learn how to build a simple application that uses MOSEK.</p>
+
+<p>A number of examples is provided to demonstrate the functionality required for solving linear, quadratic, and conic problems as well as mixed integer problems.</p>
+
+<p>Please note that the section on linear optimization also describes most of the basic functionality that is not specific to linear problems. Hence, it is recommended to read Section <a title="5.2. Linear optimization" href="node007.html#chap-apiintro-sec-linear-optimization">5.2</a> before reading the rest of this chapter.</p>
+
+<div>
+<h1><a name="212157216">5.1. The basics</a></h1>
+
+<p>A typical program using the MOSEK Java interface can be described shortly: </p>
+
+<ol class="enumerate">
+<li>Create an environment (<tt class="tt">mosek.Env</tt>) object.</li>
+<li>Set up some environment specific data and initialize the environment object.</li>
+<li>Create a task (<tt class="tt">mosek.Task</tt>) object.</li>
+<li>Load a problem into the task object.</li>
+<li>Optimize the problem.</li>
+<li>Fetch the result.</li>
+<li>Dispose of the environment and task.</li>
+</ol>
+
+<div>
+<h2><a name="212165192">5.1.1. The environment and the task</a></h2>
+
+<p> The first MOSEK related step in any program that employs MOSEK is to create an environment (<tt class="tt">mosek.Env</tt>) object. The environment contains environment specific data such as information about the license file, streams for environment messages etc. Before creating any task objects, the environment must be initialized using <a href="node016.html#common-func*mosek*env*initenv"><tt class="tt">Env.initenv</tt></a>. When this is done one or more task (<tt class="tt">mosek.Task</tt>) objects can be created. Each task is associated with a single environment and defines a complete optimization problem as well as task message streams and optimization parameters.</p>
+
+<p>When done, all task and environments created must be explicitly disposed of using the <tt class="tt">dispose</tt> method. As tasks depend on their environment, a task must be disposed of before its environment; not doing so will cause memory leaks or fatal errors.</p>
+
+<p> In Java creation of an environment and a task would look something like this: </p>
+
+<pre class="verbatimcode">...
+mosek.Env env = new mosek.Env ();
+// input environment data here
+env.initenv ();
+ 
+mosek.Task task = new mosek.Task (env, num_con, num_var);
+...
+// input some task data, optimize etc.
+...
+task.Dispose ()
+env.Dispose ()
+</pre>
+
+<p>Please note that an environment should, if possible, be shared between multiple tasks.</p>
+
+</div>
+
+<div>
+<h2><a name="212167712">5.1.2. A simple working example</a></h2>
+
+<p>The following simple example shows a working Java program which </p>
+
+<ul class="itemize">
+<li>creates an environment and a task,</li>
+<li>reads a problem from a file,</li>
+<li>optimizes the problem, and</li>
+<li>writes the solution to a file. </li>
+</ul>
+
+<p> <a name="idx-67743824">&#09;</a> <a name="idx-67748280">&#09;</a></p>
+
+<p><a name="idx-67749648">&#09;</a> <a name="idx-67749720">&#09;</a> <a name="idx-67750440">&#09;</a></p>
+
+<p><a name="idx-67751592">&#09;</a> <a name="idx-67751664">&#09;</a> <a name="idx-67752520">&#09;</a> <a name="idx-67753096">&#09;</a> <a name="idx-67753672">&#09;</a> <a name="idx-67754320">&#09;</a> <a name="idx-67755544">&#09;</a> <a name="idx-67760208">&#09;</a> <a name="idx-67760856">&#09;</a> <a name="idx-67762152">&#09;</a> <a name="idx-67763304">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File:    simple.java
+
+  Purpose: Demonstrates a very simple example using MOSEK by
+  reading a problem file, solving the problem and
+  writing the solution to a file.
+*/</span>
+
+<span class="keyword">package</span> simple;
+
+<span class="keyword">import</span> mosek.*;
+
+<span class="keyword">public</span> class simple
+{
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> main (<span class="type">String</span><span class="brackets">[]</span> args)
+    {
+      <span class="keyword">if</span> (args.length == 0)
+      {
+        System.out.println ("<span class="string">Missing argument. The syntax is:</span>");
+        System.out.println ("<span class="string"> simple inputfile [ solutionfile ]</span>");
+      }
+      <span class="keyword">else</span>
+      {
+        mosek.Env
+            env = <span class="keyword">null</span>;
+        mosek.Task
+            task = <span class="keyword">null</span>;
+        <span class="keyword">try</span>
+        {
+          <span class="comment">// Make mosek environment. </span>
+
+          env  = <span class="keyword">new</span> mosek.Env ();
+          <span class="comment">// Initialize the environment.</span>
+
+          env.init ();
+
+          <span class="comment">// Create a task object linked with the environment env.</span>
+          <span class="comment">//  We create it initially with 0 variables and 0 columns, </span>
+          <span class="comment">//  since we don't know the size of the problem.</span>
+          task = <span class="keyword">new</span> mosek.Task (env, 0,0);
+
+          <span class="comment">// We assume that a problem file was given as the first command</span>
+          <span class="comment">// line argument (received in `args')</span>
+          task.readdata (args[0]);
+
+          <span class="comment">// Solve the problem</span>
+          task.optimize();
+
+          <span class="comment">// Print a summary of the solution</span>
+          task.solutionsummary(mosek.Env.streamtype.log);
+        
+          <span class="comment">// If an output file was specified, write a solution</span>
+          <span class="keyword">if</span> (args.length &gt; 1)
+          {
+            <span class="comment">// We define the output format to be OPF, and tell MOSEK to</span>
+            <span class="comment">// leave out parameters and problem data from the output file.</span>
+            task.putintparam (mosek.Env.iparam.write_data_format,
+                              mosek.Env.dataformat.op.value);
+            task.putintparam (mosek.Env.iparam.opf_write_solutions,
+                              mosek.Env.onoffkey.on.value);
+            task.putintparam (mosek.Env.iparam.opf_write_hints,
+                              mosek.Env.onoffkey.off.value);
+            task.putintparam (mosek.Env.iparam.opf_write_parameters,
+                              mosek.Env.onoffkey.off.value);
+            task.putintparam (mosek.Env.iparam.opf_write_problem,
+                              mosek.Env.onoffkey.off.value);
+            task.writedata(args[1]);
+          }
+        }
+        <span class="keyword">catch</span> (mosek.Exception e)
+          <span class="comment">/* Catch both mosek.Error and mosek.Warning */</span>
+        {
+          System.out.println ("<span class="string">An error or warning was encountered</span>");
+          System.out.println (e.getMessage ());
+        }
+
+      
+        <span class="comment">// Dispose of task end environment</span>
+        <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.dispose ();
+        <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.dispose ();
+      }
+    }
+}
+</div>
+
+<div>
+<h3><a name="212169504">5.1.2.1. Writing a problem to a file</a></h3>
+
+<p>It is frequently beneficial to write a problem to a file that can be stored for later use or inspected visually. The <a href="node016.html#common-func*mosek*task*writedata"><tt class="tt">Task.writedata</tt></a> function is used write a problem to a file as follows</p>
+
+<div class="verbatimcode">task.writedata(args[1]);
+</div>
+
+<p> By default the extension of the filename is the format written. I.e. the filename <tt class="tt">somename.opf</tt> implies the file is written in the OPF format.</p>
+
+<p>Similarly, the function <a href="node016.html#common-func*mosek*task*readdata"><tt class="tt">Task.readdata</tt></a> reads a problem from a file:</p>
+
+<div class="verbatimcode">task.readdata (args[0]);
+</div>
+
+</div>
+
+<div>
+<h3><a name="212170152">5.1.2.2. Inputting and outputting problem data</a></h3>
+
+<p>An optimization problem consists of several components; objective, objective sense, constraints, variable bounds etc. Therefore, the task (<tt class="tt">mosek.Task</tt>) provides a number of methods to operate on the task specific data, all of which are listed in Section <a title="14.9. Class mosek.Task" href="node016.html#apiclass*mosek*task">14.9</a>.</p>
+
+</div>
+
+<div>
+<h3><a name="212171016">5.1.2.3. Setting parameters</a></h3>
+
+<p>Apart from the problem data, the task contains a number of parameters defining the behavior of MOSEK. For example the <a href="node017.html#common-const*mosek*iparam*optimizer"><tt class="tt">Env.iparam.optimizer</tt></a> parameter defines which optimizer to use. A complete list of all parameters are listed in Chapter <a title="15. Parameter reference" href="node017.html#chap-paramref">15</a>.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="212170584">5.1.3. Compiling and running examples</a></h2>
+
+<p>All examples presented in this chapter are distributed with MOSEK and are available in the directory </p>
+
+<pre class="verbatim"> mosek/6/tools/examples/ 
+</pre>
+
+<p>in the MOSEK installation. Chapter <a title="4. Testing installation and compiling examples" href="node006.html#started-chap-iterface-intro-sec-compile-and-run">4</a> describes how to compile and run the examples.</p>
+
+<p>It is recommended to copy examples to a different directory before modifying and compiling them.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="212172096">5.2. Linear optimization</a></h1>
+
+<p> <a name="chap-apiintro-sec-linear-optimization">&#09;</a> <a name="idx-67798656">&#09;</a> The simplest optimization problem is a purely linear problem. A <em>linear optimization problem</em> is a problem of the following form:</p>
+
+<p>Minimize or maximize the objective function </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math1.png" alt="\begin{math}\nonumber{}\sum _{{j=0}}^{{n-1}}c_{j}x_{j}+c^{f}\end{math}"/></td>
+<td><a name="chap-using-mosek-api-sec-lo-eq1">&#09;</a>(5.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>subject to the linear constraints </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math2.png" alt="\begin{math}\nonumber{}l_{k}^{c}\leq{}\sum _{{j=0}}^{{n-1}}a_{{kj}}x_{j}\leq{}u_{k}^{c},~k=0,\ldots ,m-1,\end{math}"/></td>
+<td><a name="chap-using-mosek-api-sec-lo-eq2">&#09;</a>(5.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>and the bounds </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math3.png" alt="\begin{math}\nonumber{}l_{j}^{x}\leq{}x_{j}\leq{}u_{j}^{x},~j=0,\ldots ,n-1,\end{math}"/></td>
+<td><a name="chap-using-mosek-api-sec-lo-eq3">&#09;</a>(5.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>where we have used the problem elements </p>
+
+<dl class="description">
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">m</span></span> and <span class="math"><span class="mi">n</span></span>, <a name="idx-67792552">&#09;</a> <a name="idx-67792264">&#09;</a> which are the number of constraints and variables respectively, </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">x</span></span>, <a name="idx-67789672">&#09;</a> which is the variable vector of length <span class="math"><span class="mi">n</span></span>, </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">c</span></span>, <a name="idx-67786656">&#09;</a> which is a coefficient vector of size <span class="math"><span class="mi">n</span></span> </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math4.png" alt="\begin{displaymath}\nonumber{}c=\left[\begin{array}{c}\nonumber{}c_{0}\\\nonumber{}\vdots \\\nonumber{}c_{{n-1}}\end{array}\right],\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><img src="math/math5.png" alt="[[MathCmd 5]]"/></span>, which is a constant, </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><span class="mi">A</span></span>, <a name="idx-67808360">&#09;</a> which is a <span class="math"><img src="math/math6.png" alt="[[MathCmd 6]]"/></span> matrix of coefficients is given by  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math7.png" alt="\begin{displaymath}\nonumber{}A=\left[\begin{array}{ccc}\nonumber{}a_{{0,0}} & \cdots  & a_{{0,(n-1)}}\\\nonumber{}\vdots  & \cdots  & \vdots \\\nonumber{}a_{{(m-1),0}} & \cdots  & a_{{(m-1),(n-1)}}\end{array}\right],\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><img src="math/math8.png" alt="[[MathCmd 8]]"/></span> and <span class="math"><img src="math/math9.png" alt="[[MathCmd 9]]"/></span>, <a name="idx-67819424">&#09;</a> <a name="idx-67819928">&#09;</a> which specify the lower and upper bounds on constraints respectively, and </p>
+</dd>
+<dt></dt>
+<dd>
+<p><span class="math"><img src="math/math10.png" alt="[[MathCmd 10]]"/></span> and <span class="math"><img src="math/math11.png" alt="[[MathCmd 11]]"/></span>, <a name="idx-67821720">&#09;</a> <a name="idx-67822224">&#09;</a> which specifies the lower and upper bounds on variables respectively. </p>
+</dd>
+</dl>
+
+<p> Please note the unconventional notation using <span class="math"><span class="mn">0</span></span> as the first index rather than <span class="math"><span class="mn">1</span></span>. Hence, <span class="math"><img src="math/math12.png" alt="[[MathCmd 12]]"/></span> is the first element in variable vector <span class="math"><span class="mi">x</span></span>. This convention has been adapted from Java arrays which are indexed from 0.</p>
+
+<div>
+<h2><a name="212189336">5.2.1. Linear optimization example: lo1</a></h2>
+
+<p> <a name="idx-67826392">&#09;</a> The following is an example of a linear optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math13.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccl}\nonumber{}\mbox{maximize} & 3x_{0} & + & 1x_{1} & + & 5x_{2} & + & 1x_{3} &  & \\\nonumber{}\mbox{subject to} & 3x_{0} & + & 1x_{1} & + & 2x_{2} &  &  & = & 30,\\\nonumber{} & 2x_{0} & + & 1x_{1} & + & 3x_{2} & + & 1x_{3} & \geq{} & 15,\\\nonumber{} &  &  & 2x_{1} &  &  & + & 3x_{3} & \leq{} & 25,\end{array}\end{math}"/></td>
+<td>(5.2.4)</td></tr>
+</tbody>
+</table>
+
+<p>having the bounds </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math14.png" alt="\begin{math}\nonumber{}\begin{array}{ccccc}\nonumber{}0 & \leq{} & x_{0} & \leq{} & \infty ,\\\nonumber{}0 & \leq{} & x_{1} & \leq{} & 10,\\\nonumber{}0 & \leq{} & x_{2} & \leq{} & \infty ,\\\nonumber{}0 & \leq{} & x_{3} & \leq{} & \infty .\end{array}\end{math}"/></td>
+<td>(5.2.5)</td></tr>
+</tbody>
+</table>
+
+<div>
+<h3><a name="212190056">5.2.1.1. Solving the problem</a></h3>
+
+<p>To solve the problem above we go through the following steps: </p>
+
+<ol class="enumerate">
+<li>Create an environment. </li>
+<li>Create an optimization task. </li>
+<li>Load a problem into the task object. </li>
+<li>Optimization. </li>
+<li>Extracting the solution. </li>
+</ol>
+
+<p>Below we explain each of these steps. For the complete source code see section <a title="5.2.1.2. Source code for lo1" href="node007.html#ref-lo1-source">5.2.1.2</a>. The code can also be found in:</p>
+
+<pre class="verbatim">    mosek\6\tools\examples\java\lo1.java
+</pre>
+
+<dl class="description">
+<dt>Create an environment.</dt>
+<dd>
+<p> Before setting up the optimization problem, a MOSEK environment must be created and initialized. This is done in the lines:</p>
+
+<div class="verbatimcode">env  = <span class="keyword">new</span> mosek.Env ();
+<span class="comment">// Direct the env log stream to the user specified</span>
+<span class="comment">// method env_msg_obj.stream</span>
+msgclass env_msg_obj = <span class="keyword">new</span> msgclass ();
+env.set_Stream (mosek.Env.streamtype.log, env_msg_obj);
+<span class="comment">// Initialize the environment.</span>
+env.init ();
+</div>
+
+<p>We connect a call-back function to the environment log stream. In this case the call-back function simply prints messages to the standard output stream.</p>
+</dd>
+<dt>Create an optimization task.</dt>
+<dd>
+<p> Next, an empty task object is created:</p>
+
+<div class="verbatimcode"><span class="comment">// Create a task object linked with the environment env.</span>
+task = <span class="keyword">new</span> mosek.Task (env, 0, 0);
+<span class="comment">// Directs the log task stream to the user specified</span>
+<span class="comment">// method task_msg_obj.stream</span>
+msgclass task_msg_obj = <span class="keyword">new</span> msgclass ();
+task.set_Stream (mosek.Env.streamtype.log, task_msg_obj);
+</div>
+
+<p>We also connect a call-back function to the task log stream. Messages related to the task are passed to the call-back function. In this case the stream call-back function writes its messages to the standard output stream.</p>
+</dd>
+<dt>Load a problem into the task object.</dt>
+<dd>
+<p> First an estimate of the size of the input data is set. This is done to increase the speed of inputting data and is optional.</p>
+
+<div class="verbatimcode">task.putmaxnumvar(NUMVAR);
+task.putmaxnumcon(NUMCON);
+task.putmaxnumanz(NUMANZ);
+</div>
+
+<p>Before any problem data can be set, variables and constraints must be added to the problem via calls to the function <a href="node016.html#common-func*mosek*task*append"><tt class="tt">Task.append</tt></a>.</p>
+
+<div class="verbatimcode"> <span class="comment">/* Append 'NUMCON' empty constraints.
+The constraints will initially have no bounds. */</span>
+ task.append(mosek.Env.accmode.con,NUMCON);
+
+ <span class="comment">/* Append 'NUMVAR' variables.
+The variables will initially be fixed at zero (x=0). */</span>
+ task.append(mosek.Env.accmode.var,NUMVAR);
+</div>
+
+<p>New variables can now be referenced from other functions with indexes in <span class="math"><img src="math/math15.png" alt="[[MathCmd 15]]"/></span> and new constraints can be referenced with indexes in <span class="math"><img src="math/math16.png" alt="[[MathCmd 16]]"/></span>. More variables / constraints can be appended later as needed, these will be assigned indexes from <span class="math"><img src="math/math17.png" alt="[[MathCmd 17]]"/></span> / <span class="math"><img src="math/math18.png" alt="[[MathCmd 18]]"/></span> and up.</p>
+
+<p>Next step is to set the problem data. We loop over each variable index <span class="math"><img src="math/math19.png" alt="[[MathCmd 19]]"/></span> calling functions to set problem data. We first set the objective coefficient <span class="math"><img src="math/math20.png" alt="[[MathCmd 20]]"/></span> by calling the function <a href="node016.html#common-func*mosek*task*putcj"><tt class="tt">Task.putcj</tt></a>.</p>
+
+<div class="verbatimcode"><span class="comment">/* Set the linear term c_j in the objective.*/</span>
+task.putcj(j,c[j]);
+</div>
+
+<p>The bounds on variables are stored in the arrays</p>
+
+<div class="verbatimcode">mosek.Env.boundkey
+        bkx<span class="brackets">[]</span>  = {mosek.Env.boundkey.lo,
+                  mosek.Env.boundkey.ra,
+                  mosek.Env.boundkey.lo,
+                  mosek.Env.boundkey.lo};
+<span class="type">double</span>  blx<span class="brackets">[]</span>  = {0.0,
+                  0.0,
+                  0.0,
+                  0.0};
+<span class="type">double</span>  bux<span class="brackets">[]</span>  = {+infinity,
+                  10.0,
+                  +infinity,
+                  +infinity};
+</div>
+
+<p>and are set with calls to <a href="node016.html#common-func*mosek*task*putbound"><tt class="tt">Task.putbound</tt></a>.</p>
+
+<div class="verbatimcode"><span class="comment">/* Set the bounds on variable j.
+   blx[j] &lt;= x_j &lt;= bux[j] */</span>
+task.putbound(mosek.Env.accmode.var,j,bkx[j],blx[j],bux[j]);
+</div>
+
+<p>The <em>Bound key</em> stored in <tt class="tt">bkx</tt> specify the type of the bound according to Table <a href="node007.html#CH:API:TAB:BOUNDKEYS2">5.1</a>.  </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Bound key </td>
+<td valign="top" style="border-top:1px solid black;"> Type of bound </td>
+<td valign="top" style="border-top:1px solid black;"> Lower bound </td>
+<td valign="top" style="border-top:1px solid black;"> Upper bound </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> <a href="node019.html#common-const*mosek*boundkey*fx"><tt class="tt">Env.boundkey.fx</tt></a> </td>
+<td valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math21.png" alt="[[MathCmd 21]]"/></span></td>
+<td valign="top" style="border-top:1px solid black;"> Finite </td>
+<td valign="top" style="border-top:1px solid black;"> Identical to the lower bound </td></tr><tr class="evenrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*fr"><tt class="tt">Env.boundkey.fr</tt></a> </td>
+<td valign="top"> Free </td>
+<td valign="top"> Minus infinity </td>
+<td valign="top"> Plus infinity </td></tr><tr class="oddrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*lo"><tt class="tt">Env.boundkey.lo</tt></a> </td>
+<td valign="top"> <span class="math"><img src="math/math22.png" alt="[[MathCmd 22]]"/></span> </td>
+<td valign="top"> Finite </td>
+<td valign="top"> Plus infinity </td></tr><tr class="evenrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*ra"><tt class="tt">Env.boundkey.ra</tt></a> </td>
+<td valign="top"> <span class="math"><img src="math/math23.png" alt="[[MathCmd 23]]"/></span> </td>
+<td valign="top"> Finite </td>
+<td valign="top"> Finite </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><a href="node019.html#common-const*mosek*boundkey*up"><tt class="tt">Env.boundkey.up</tt></a> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <span class="math"><img src="math/math24.png" alt="[[MathCmd 24]]"/></span> </td>
+<td valign="top" style="border-bottom:1px solid black;"> Minus infinity </td>
+<td valign="top" style="border-bottom:1px solid black;"> Finite </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;5.1: Interpretation of the bound keys.</span>
+<br/>
+<p> <a name="CH:API:TAB:BOUNDKEYS2">&#09;</a> </p>
+</center></td></tr></table>
+</td></tr></table>
+
+<p>  For instance <tt class="tt">bkx[0]=</tt> <a href="node019.html#common-const*mosek*boundkey*lo"><tt class="tt">Env.boundkey.lo</tt></a> means that <span class="math"><img src="math/math25.png" alt="[[MathCmd 25]]"/></span>. Finally, the numerical values of the bounds on variables are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math26.png" alt="\begin{math}\nonumber{}l_{j}^{x}=\mathtt{blx[j]}\end{math}"/></td>
+<td>(5.2.6)</td></tr>
+</tbody>
+</table>
+
+<p>  and  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math27.png" alt="\begin{math}\nonumber{}u_{j}^{x}=\mathtt{bux[j]}.\end{math}"/></td>
+<td>(5.2.7)</td></tr>
+</tbody>
+</table>
+
+<p> Recall that in our example the <span class="math"><span class="mi">A</span></span> matrix is given by  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math28.png" alt="\begin{displaymath}\nonumber{}A=\left[\begin{array}{cccc}\nonumber{}3 & 1 & 2 & 0\\\nonumber{}2 & 1 & 3 & 1\\\nonumber{}0 & 2 & 0 & 3\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This matrix is stored in sparse format in the arrays:</p>
+
+<div class="verbatimcode"><span class="type">int</span>    asub<span class="brackets">[]</span><span class="brackets">[]</span> = { {0, 1},
+                    {0, 1, 2},
+                    {0, 1},
+                    {1, 2} };
+<span class="type">double</span> aval<span class="brackets">[]</span><span class="brackets">[]</span> = { {3.0, 2.0},
+                    {1.0, 1.0, 2.0},
+                    {2.0, 3.0},
+                    {1.0, 3.0} };
+</div>
+
+<p>The array <tt class="tt">aval[j]</tt> contains the non-zero values of column <span class="math"><span class="mi">j</span></span> and <tt class="tt">asub[j]</tt> contains the row index of these non-zeros.</p>
+
+<p>Using the function <a href="node016.html#common-func*mosek*task*putavec"><tt class="tt">Task.putavec</tt></a> we set column <span class="math"><span class="mi">j</span></span> of <span class="math"><span class="mi">A</span></span></p>
+
+<div class="verbatimcode"><span class="comment">/* Input column j of A */</span>
+task.putavec(mosek.Env.accmode.var, <span class="comment">/* Input columns of A.*/</span>
+             j,                     <span class="comment">/* Variable (column) index.*/</span>
+             asub[j],               <span class="comment">/* Row index of non-zeros in column j.*/</span>
+             aval[j]);              <span class="comment">/* Non-zero Values of column j. */</span>
+</div>
+
+<p>Alternatively, the same <span class="math"><span class="mi">A</span></span> matrix can be set one row at a time; please see section <a title="5.2.2. Row-wise input" href="node007.html#ref-lo2-ex">5.2.2</a> for an example.</p>
+
+<p>Finally, the bounds on each constraint are set by looping over each constraint index <span class="math"><img src="math/math29.png" alt="[[MathCmd 29]]"/></span></p>
+
+<div class="verbatimcode"><span class="comment">/* Set the bounds on constraints.
+ for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+<span class="keyword">for</span>(<span class="type">int</span> i=0; i&lt;NUMCON; ++i)
+  task.putbound(mosek.Env.accmode.con,i,bkc[i],blc[i],buc[i]);
+</div>
+</dd>
+<dt>Optimization:</dt>
+<dd>
+<p> After the problem is set-up the task can be optimized by calling the function <a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a>.</p>
+
+<div class="verbatimcode">mosek.Env.rescode r = task.optimize();
+</div>
+</dd>
+<dt>Extracting the solution.</dt>
+<dd>
+<p> After optimizing the status of the solution is examined with a call to <a href="node016.html#common-func*mosek*task*getsolutionstatus"><tt class="tt">Task.getsolutionstatus</tt></a>. If the solution status is reported as <a href="node019.html#common-const*mosek*solsta*optimal"><tt class="tt">Env.solsta.optimal</tt></a> or <a href="node019.html#common-const*mosek*solsta*near-optimal"><tt class="tt">Env.solsta.near_optimal</tt></a> the solution is extracted in the lines below:</p>
+
+<div class="verbatimcode">task.getsolutionslice(mosek.Env.soltype.bas, <span class="comment">// Basic solution.</span>
+                      mosek.Env.solitem.xx,  <span class="comment">// Which part of solution.</span>
+                      0,      <span class="comment">// Index of first variable.</span>
+                      NUMVAR, <span class="comment">// Index of last variable+1</span>
+                      xx);
+</div>
+
+<p>The <a href="node016.html#common-func*mosek*task*getsolutionslice"><tt class="tt">Task.getsolutionslice</tt></a> function obtains a &#8220;slice&#8221; of the solution. MOSEK may compute several solutions depending on the optimizer employed. In this example the <em>basic solution</em> is requested by setting the first argument to <a href="node019.html#common-const*mosek*soltype*bas"><tt class="tt">Env.soltype.bas</tt></a>. The second argument <a href="node019.html#common-const*mosek*solitem*xx"><tt class="tt">Env.solitem.xx</tt></a> specifies that we want the variable values of the solution. The two following arguments <tt class="tt">0</tt> and <tt class="tt">NUMVAR</tt> specifies the range of variable values we want.</p>
+
+<p>The range specified is the first index (here &#8220;<tt class="tt">0</tt>&#8221;) up to but not including the second index (<tt class="tt">here &#8220;<tt class="tt">NUMVAR</tt>&#8221;</tt>).</p>
+</dd>
+<dt>Catching exceptions:</dt>
+<dd>
+<p> We cache any exceptions thrown by mosek in the lines:</p>
+
+<div class="verbatimcode"><span class="keyword">catch</span> (Exception e)
+{
+  System.out.println ("<span class="string">An error/warning was encountered</span>");
+  System.out.println (e.toString());
+}
+</div>
+
+<p>The types of exceptions that MOSEK can throw can be seen in <a title="14.5. Class mosek.Error" href="node016.html#apiclass*mosek*error">14.5</a> and <a title="14.10. Class mosek.Warning" href="node016.html#apiclass*mosek*warning">14.10</a>.</p>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h3><a name="212248984">5.2.1.2. Source code for lo1</a></h3>
+
+<p> <a name="ref-lo1-source">&#09;</a></p>
+
+<p><a name="idx-67913344">&#09;</a> <a name="idx-67912768">&#09;</a></p>
+
+<p><a name="idx-67874616">&#09;</a> <a name="idx-67873968">&#09;</a></p>
+
+<p><a name="idx-67896384">&#09;</a> <a name="idx-67896168">&#09;</a> <a name="idx-67903144">&#09;</a> <a name="idx-67906376">&#09;</a> <a name="idx-67941440">&#09;</a> <a name="idx-67942088">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="keyword">package</span> lo1;
+ 
+<span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      lo1.java
+
+   Purpose:   Demonstrates how to solve a small linear
+              optimization problem using the MOSEK Java API.
+*/</span>
+
+class msgclass <span class="keyword">extends</span> mosek.Stream {
+  <span class="keyword">public</span> msgclass ()
+  {
+    <span class="keyword">super</span> ();
+  }
+  
+  <span class="keyword">public</span> <span class="type">void</span> stream (<span class="type">String</span> msg)
+    {
+      System.out.print (msg);
+  }
+}
+ 
+<span class="keyword">public</span> class lo1
+{
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMCON = 3;
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMVAR = 4;
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMANZ = 9;
+       
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> main (<span class="type">String</span><span class="brackets">[]</span> args)
+  {
+    <span class="comment">// Since the value infinity is never used, we define</span>
+    <span class="comment">// 'infinity' symbolic purposes only</span>
+    <span class="type">double</span>
+      infinity = 0;
+    
+    <span class="type">double</span> c<span class="brackets">[]</span>    = {3.0, 1.0, 5.0, 1.0};
+    <span class="type">int</span>    asub<span class="brackets">[]</span><span class="brackets">[]</span> = { {0, 1},
+                        {0, 1, 2},
+                        {0, 1},
+                        {1, 2} };
+    <span class="type">double</span> aval<span class="brackets">[]</span><span class="brackets">[]</span> = { {3.0, 2.0},
+                        {1.0, 1.0, 2.0},
+                        {2.0, 3.0},
+                        {1.0, 3.0} };
+    mosek.Env.boundkey<span class="brackets">[]</span>
+                 bkc    = {mosek.Env.boundkey.fx,
+                           mosek.Env.boundkey.lo,
+                           mosek.Env.boundkey.up};
+    <span class="type">double</span>  blc<span class="brackets">[]</span>  = {30.0,
+                      15.0,
+                      -infinity};
+    <span class="type">double</span>  buc<span class="brackets">[]</span>  = {30.0,
+                      +infinity,
+                      25.0};
+    mosek.Env.boundkey
+            bkx<span class="brackets">[]</span>  = {mosek.Env.boundkey.lo,
+                      mosek.Env.boundkey.ra,
+                      mosek.Env.boundkey.lo,
+                      mosek.Env.boundkey.lo};
+    <span class="type">double</span>  blx<span class="brackets">[]</span>  = {0.0,
+                      0.0,
+                      0.0,
+                      0.0};
+    <span class="type">double</span>  bux<span class="brackets">[]</span>  = {+infinity,
+                      10.0,
+                      +infinity,
+                      +infinity};
+    <span class="type">double</span><span class="brackets">[]</span> xx  = <span class="keyword">new</span> <span class="type">double</span>[NUMVAR];
+
+    mosek.Env
+         env = <span class="keyword">null</span>;
+    mosek.Task
+         task = <span class="keyword">null</span>;
+        
+    <span class="keyword">try</span>
+      {
+      <span class="comment">// Make mosek environment. </span>
+      env  = <span class="keyword">new</span> mosek.Env ();
+      <span class="comment">// Direct the env log stream to the user specified</span>
+      <span class="comment">// method env_msg_obj.stream</span>
+      msgclass env_msg_obj = <span class="keyword">new</span> msgclass ();
+      env.set_Stream (mosek.Env.streamtype.log, env_msg_obj);
+      <span class="comment">// Initialize the environment.</span>
+      env.init ();
+
+      <span class="comment">// Create a task object linked with the environment env.</span>
+      task = <span class="keyword">new</span> mosek.Task (env, 0, 0);
+      <span class="comment">// Directs the log task stream to the user specified</span>
+      <span class="comment">// method task_msg_obj.stream</span>
+      msgclass task_msg_obj = <span class="keyword">new</span> msgclass ();
+      task.set_Stream (mosek.Env.streamtype.log, task_msg_obj);
+      
+      <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+     This is done to increase the speed of inputting data. 
+     However, it is optional. */</span>
+      task.putmaxnumvar(NUMVAR);
+      task.putmaxnumcon(NUMCON);
+      task.putmaxnumanz(NUMANZ);
+      <span class="comment">/* Append 'NUMCON' empty constraints.
+     The constraints will initially have no bounds. */</span>
+      task.append(mosek.Env.accmode.con,NUMCON);
+      
+      <span class="comment">/* Append 'NUMVAR' variables.
+     The variables will initially be fixed at zero (x=0). */</span>
+      task.append(mosek.Env.accmode.var,NUMVAR);
+
+        <span class="comment">/* Optionally add a constant term to the objective. */</span>
+      task.putcfix(0.0);
+        
+      <span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;NUMVAR; ++j)
+      {
+        <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+        task.putcj(j,c[j]);
+        <span class="comment">/* Set the bounds on variable j.
+           blx[j] &lt;= x_j &lt;= bux[j] */</span>
+        task.putbound(mosek.Env.accmode.var,j,bkx[j],blx[j],bux[j]);
+        <span class="comment">/* Input column j of A */</span>   
+        task.putavec(mosek.Env.accmode.var, <span class="comment">/* Input columns of A.*/</span>
+                     j,                     <span class="comment">/* Variable (column) index.*/</span>
+                     asub[j],               <span class="comment">/* Row index of non-zeros in column j.*/</span>
+                     aval[j]);              <span class="comment">/* Non-zero Values of column j. */</span>
+      }
+      <span class="comment">/* Set the bounds on constraints.
+       for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+      <span class="keyword">for</span>(<span class="type">int</span> i=0; i&lt;NUMCON; ++i)
+        task.putbound(mosek.Env.accmode.con,i,bkc[i],blc[i],buc[i]);
+
+      <span class="comment">/* A maximization problem */</span> 
+      task.putobjsense(mosek.Env.objsense.maximize);
+
+      <span class="comment">/* Solve the problem */</span>
+      mosek.Env.rescode r = task.optimize();
+                
+      <span class="comment">// Print a summary containing information</span>
+      <span class="comment">//   about the solution for debugging purposes</span>
+      task.solutionsummary(mosek.Env.streamtype.msg);
+      
+      mosek.Env.solsta solsta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.solsta[1];
+      mosek.Env.prosta prosta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.prosta[1];
+      <span class="comment">/* Get status information about the solution */</span> 
+      task.getsolutionstatus(mosek.Env.soltype.bas,
+                             prosta,
+                             solsta);
+      task.getsolutionslice(mosek.Env.soltype.bas, <span class="comment">// Basic solution.     </span>
+                            mosek.Env.solitem.xx,  <span class="comment">// Which part of solution.</span>
+                            0,      <span class="comment">// Index of first variable.</span>
+                            NUMVAR, <span class="comment">// Index of last variable+1 </span>
+                            xx);
+      <span class="keyword">switch</span>(solsta[0])
+      {
+      <span class="keyword">case</span> optimal:
+      <span class="keyword">case</span> near_optimal:
+        System.out.println("<span class="string">Optimal primal solution\n</span>");
+        <span class="keyword">for</span>(<span class="type">int</span> j = 0; j &lt; NUMVAR; ++j)
+          System.out.println ("<span class="string">x[</span>" + j + "<span class="string">]:</span>" + xx[j]);
+        <span class="keyword">break</span>;
+      <span class="keyword">case</span> dual_infeas_cer:
+      <span class="keyword">case</span> prim_infeas_cer:
+      <span class="keyword">case</span> near_dual_infeas_cer:
+      <span class="keyword">case</span> near_prim_infeas_cer:  
+        System.out.println("<span class="string">Primal or dual infeasibility.\n</span>");
+        <span class="keyword">break</span>;
+      <span class="keyword">case</span> unknown:
+        System.out.println("<span class="string">Unknown solution status.\n</span>");
+        <span class="keyword">break</span>;
+      <span class="keyword">default</span>:
+        System.out.println("<span class="string">Other solution status</span>");
+        <span class="keyword">break</span>;
+      }
+    }
+    <span class="keyword">catch</span> (Exception e)
+    {
+      System.out.println ("<span class="string">An error/warning was encountered</span>");
+      System.out.println (e.toString());
+    }
+    <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.dispose ();
+    <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.dispose ();
+  }
+}
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="212255088">5.2.2. Row-wise input</a></h2>
+
+<p> <a name="ref-lo2-ex">&#09;</a> <a name="idx-67948912">&#09;</a> In the previous example the <span class="math"><span class="mi">A</span></span> matrix is set one column at a time. Alternatively the same matrix can be set one row at a time or the two methods can be mixed as in the example in section <a title="5.6. Problem modification and reoptimization" href="node007.html#ch:intro:sec:reopt">5.6</a>. The following example show how to set the <span class="math"><span class="mi">A</span></span> matrix by rows.</p>
+
+<p>The source code for this example can be found in:</p>
+
+<pre class="verbatim">  mosek\6\tools\examples\java\lo2.java
+</pre>
+
+<p><a name="idx-67943600">&#09;</a><a name="idx-67953584">&#09;</a> <a name="idx-67955744">&#09;</a> <a name="idx-67956392">&#09;</a> <a name="idx-67956888">&#09;</a> <a name="idx-67957320">&#09;</a> <a name="idx-67957896">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="keyword">package</span> lo2;
+ 
+<span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      lo2.java
+
+   Purpose:   Demonstrates how to solve a small linear
+              optimization problem using the MOSEK Java API.
+*/</span>
+
+class msgclass <span class="keyword">extends</span> mosek.Stream {
+  <span class="keyword">public</span> msgclass ()
+  {
+    <span class="keyword">super</span> ();
+  }
+  
+  <span class="keyword">public</span> <span class="type">void</span> stream (<span class="type">String</span> msg)
+    {
+      System.out.print (msg);
+  }
+}
+ 
+<span class="keyword">public</span> class lo2
+{
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMCON = 3;
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMVAR = 4;
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMANZ = 9;
+       
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> main (<span class="type">String</span><span class="brackets">[]</span> args)
+  {
+    <span class="comment">// Since the value infinity is never used, we define</span>
+    <span class="comment">// 'infinity' symbolic purposes only</span>
+    <span class="type">double</span>
+      infinity = 0;
+    
+    <span class="type">double</span> c<span class="brackets">[]</span>    = {3.0, 1.0, 5.0, 1.0};
+    <span class="type">int</span>    asub<span class="brackets">[]</span><span class="brackets">[]</span> = { {0,1,2},
+                        {0,1,2,3},
+                        {1,3} };
+    <span class="type">double</span> aval<span class="brackets">[]</span><span class="brackets">[]</span> = { {3.0,1.0,2.0 },
+                        {2.0,1.0,3.0,1.0},
+                        {2.0,3.0} };
+    mosek.Env.boundkey<span class="brackets">[]</span>
+                 bkc    = {mosek.Env.boundkey.fx,
+                           mosek.Env.boundkey.lo,
+                           mosek.Env.boundkey.up};
+    <span class="type">double</span>  blc<span class="brackets">[]</span>  = {30.0,
+                      15.0,
+                      -infinity};
+    <span class="type">double</span>  buc<span class="brackets">[]</span>  = {30.0,
+                      +infinity,
+                      25.0};
+    mosek.Env.boundkey
+            bkx<span class="brackets">[]</span>  = {mosek.Env.boundkey.lo,
+                      mosek.Env.boundkey.ra,
+                      mosek.Env.boundkey.lo,
+                      mosek.Env.boundkey.lo};
+    <span class="type">double</span>  blx<span class="brackets">[]</span>  = {0.0,
+                      0.0,
+                      0.0,
+                      0.0};
+    <span class="type">double</span>  bux<span class="brackets">[]</span>  = {+infinity,
+                      10.0,
+                      +infinity,
+                      +infinity};
+    <span class="type">double</span><span class="brackets">[]</span> xx  = <span class="keyword">new</span> <span class="type">double</span>[NUMVAR];
+
+    mosek.Env
+         env = <span class="keyword">null</span>;
+    mosek.Task
+         task = <span class="keyword">null</span>;
+        
+    <span class="keyword">try</span>
+      {
+      <span class="comment">// Make mosek environment. </span>
+      env  = <span class="keyword">new</span> mosek.Env ();
+      <span class="comment">// Direct the env log stream to the user specified</span>
+      <span class="comment">// method env_msg_obj.stream</span>
+      msgclass env_msg_obj = <span class="keyword">new</span> msgclass ();
+      env.set_Stream (mosek.Env.streamtype.log, env_msg_obj);
+      <span class="comment">// Initialize the environment.</span>
+      env.init ();
+      <span class="comment">// Create a task object linked with the environment env.</span>
+      task = <span class="keyword">new</span> mosek.Task (env,0,0);
+      <span class="comment">// Directs the log task stream to the user specified</span>
+      <span class="comment">// method task_msg_obj.stream</span>
+      msgclass task_msg_obj = <span class="keyword">new</span> msgclass ();
+      task.set_Stream (mosek.Env.streamtype.log, task_msg_obj);
+
+      <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+     This is done to increase the speed of inputting data. 
+     However, it is optional. */</span>
+      task.putmaxnumvar(NUMVAR);
+      task.putmaxnumcon(NUMCON);
+      task.putmaxnumanz(NUMANZ);
+      <span class="comment">/* Append 'NUMCON' empty constraints.
+     The constraints will initially have no bounds. */</span>
+      task.append(mosek.Env.accmode.con,NUMCON);
+      
+      <span class="comment">/* Append 'NUMVAR' variables.
+     The variables will initially be fixed at zero (x=0). */</span>
+      task.append(mosek.Env.accmode.var,NUMVAR);
+
+        <span class="comment">/* Optionally add a constant term to the objective. */</span>
+      task.putcfix(0.0);
+        
+      <span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;NUMVAR; ++j)
+      {
+        <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+        task.putcj(j,c[j]);
+        <span class="comment">/* Set the bounds on variable j.
+           blx[j] &lt;= x_j &lt;= bux[j] */</span>
+        task.putbound(mosek.Env.accmode.var,j,bkx[j],blx[j],bux[j]);
+      }
+      <span class="comment">/* Set the bounds on constraints.
+       for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+      <span class="keyword">for</span>(<span class="type">int</span> i=0; i&lt;NUMCON; ++i)
+      {  
+        task.putbound(mosek.Env.accmode.con,i,bkc[i],blc[i],buc[i]);
+
+          <span class="comment">/* Input row i of A */</span>   
+          task.putavec(mosek.Env.accmode.con, <span class="comment">/* Input row of A.*/</span>
+                       i,                     <span class="comment">/* Row index.*/</span>
+                       asub[i],               <span class="comment">/* Column indexes of non-zeros in row i.*/</span>
+                       aval[i]);              <span class="comment">/* Non-zero Values of row i. */</span>
+      }
+
+      <span class="comment">/* A maximization problem */</span> 
+      task.putobjsense(mosek.Env.objsense.maximize);
+
+      <span class="comment">/* Solve the problem */</span>
+      mosek.Env.rescode r = task.optimize();
+                
+      <span class="comment">// Print a summary containing information</span>
+      <span class="comment">//   about the solution for debugging purposes</span>
+      task.solutionsummary(mosek.Env.streamtype.msg);
+      
+      mosek.Env.solsta solsta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.solsta[1];
+      mosek.Env.prosta prosta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.prosta[1];
+      <span class="comment">/* Get status information about the solution */</span> 
+      task.getsolutionstatus(mosek.Env.soltype.bas,
+                             prosta,
+                             solsta);
+      task.getsolutionslice(mosek.Env.soltype.bas, <span class="comment">// Basic solution.     </span>
+                            mosek.Env.solitem.xx,  <span class="comment">// Which part of solution.</span>
+                            0,      <span class="comment">// Index of first variable.</span>
+                            NUMVAR, <span class="comment">// Index of last variable+1 </span>
+                            xx);
+      <span class="keyword">switch</span>(solsta[0])
+      {
+      <span class="keyword">case</span> optimal:
+      <span class="keyword">case</span> near_optimal:
+        System.out.println("<span class="string">Optimal primal solution\n</span>");
+        <span class="keyword">for</span>(<span class="type">int</span> j = 0; j &lt; NUMVAR; ++j)
+          System.out.println ("<span class="string">x[</span>" + j + "<span class="string">]:</span>" + xx[j]);
+        <span class="keyword">break</span>;
+      <span class="keyword">case</span> dual_infeas_cer:
+      <span class="keyword">case</span> prim_infeas_cer:
+      <span class="keyword">case</span> near_dual_infeas_cer:
+      <span class="keyword">case</span> near_prim_infeas_cer:  
+        System.out.println("<span class="string">Primal or dual infeasibility.\n</span>");
+        <span class="keyword">break</span>;
+      <span class="keyword">case</span> unknown:
+        System.out.println("<span class="string">Unknown solution status.\n</span>");
+        <span class="keyword">break</span>;
+      <span class="keyword">default</span>:
+        System.out.println("<span class="string">Other solution status</span>");
+        <span class="keyword">break</span>;
+      }
+    }
+    <span class="keyword">catch</span> (Exception e)
+    {
+      System.out.println ("<span class="string">An error/warning was encountered</span>");
+      System.out.println (e.toString());
+    }
+    <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.dispose ();
+    <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.dispose ();
+  }
+}
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="212258112">5.3. Quadratic optimization</a></h1>
+
+<p><a name="sec:quadratic-opt">&#09;</a> <a name="idx-67960776">&#09;</a> <a name="idx-67961488">&#09;</a> <a name="idx-67962136">&#09;</a></p>
+
+<p>MOSEK can solve quadratic and quadratically constrained convex problems. This class of problems can be formulated as follows: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math30.png" alt="\begin{math}\nonumber{}\begin{array}{lrcccll}\nonumber{}\mbox{minimize} &  &  & \frac{1}{2}x^{T}Q^{o}x+c^{T}x+c^{f} &  &  & \\\nonumber{}\mbox{subject to} & l_{k}^{c} & \leq{} & \frac{1}{2}x^{T}Q^{k}x+\sum \limits _{{j=0}}^{{n-1}}a_{{k,j}}x_{j} & \leq{} & u_{k}^{c}, & k=0,\ldots ,m-1,\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x}, & j=0,\ldots ,n-1.\end{array}\end{math}"/></td>
+<td>(5.3.1)</td></tr>
+</tbody>
+</table>
+
+<p>Without loss of generality it is assumed that <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> and <span class="math"><img src="math/math32.png" alt="[[MathCmd 32]]"/></span> are all symmetric because </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math33.png" alt="\begin{displaymath}\nonumber{}x^{T}Qx=0.5x^{T}(Q+Q^{T})x.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>This implies that a non-symmetric <span class="math"><span class="mi">Q</span></span> can be replaced by the symmetric matrix <span class="math"><img src="math/math34.png" alt="[[MathCmd 34]]"/></span>.</p>
+
+<p><a name="ch-api-ex-sec-convexity">&#09;</a></p>
+
+<p>The problem is required to be convex. More precisely, the matrix <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> must be positive semi-definite and the <span class="math"><span class="mi">k</span></span>th constraint must be of the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math36.png" alt="\begin{math}\nonumber{}l_{k}^{c}\leq{}\frac{1}{2}x^{T}Q^{k}x+\sum \limits _{{j=0}}^{{n-1}}a_{{k,j}}x_{j}\end{math}"/></td>
+<td><a name="ch-api-ex-convex-qcqo-less">&#09;</a>(5.3.2)</td></tr>
+</tbody>
+</table>
+
+<p>with a negative semi-definite <span class="math"><img src="math/math32.png" alt="[[MathCmd 32]]"/></span> or of the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math38.png" alt="\begin{math}\nonumber{}\frac{1}{2}x^{T}Q^{k}x+\sum \limits _{{j=0}}^{{n-1}}a_{{k,j}}x_{j}\leq{}u_{k}^{c}.\end{math}"/></td>
+<td><a name="ch-api-ex-convex-qcqo-greater">&#09;</a>(5.3.3)</td></tr>
+</tbody>
+</table>
+
+<p>with a positive semi-definite <span class="math"><img src="math/math32.png" alt="[[MathCmd 32]]"/></span>. This implies that quadratic equalities are <em>not</em> allowed. Specifying a non-convex problem will result in an error when the optimizer is called.</p>
+
+<div>
+<h2><a name="212272408">5.3.1. Example: Quadratic objective</a></h2>
+
+<p> <a name="idx-67975288">&#09;</a> <a name="idx-67976080">&#09;</a> <a name="chap:mosekapi:sec:quadratic_objective">&#09;</a> <a name="idx-67977512">&#09;</a></p>
+
+<p>The following is an example if a quadratic, linearly constrained problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math40.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}\mbox{minimize} &  &  & x_{1}^{2}+0.1x_{2}^{2}+x_{3}^{2}-x_{1}x_{3}-x_{2} & \\\nonumber{}\mbox{subject to} & 1 & \leq{} & x_{1}+x_{2}+x_{3} & \\\nonumber{} &  &  & x\geq{}0 &\end{array}\end{math}"/></td>
+<td>(5.3.4)</td></tr>
+</tbody>
+</table>
+
+<p>This can be written equivalently as </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math41.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & 1/2x^{T}Q^{o}x+c^{T}x &  & \\\nonumber{}\mbox{subject to} & Ax & \geq{} & b\\\nonumber{} & x & \geq{} & 0,\end{array}\end{math}"/></td>
+<td>(5.3.5)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math42.png" alt="\begin{math}\nonumber{}Q^{o}=\left[\begin{array}{ccc}\nonumber{}2 & 0 & -1\\\nonumber{}0 & 0.2 & 0\\\nonumber{}-1 & 0 & 2\end{array}\right],\quad{}c=\left[\begin{array}{c}\nonumber{}0\\\nonumber{}-1\\\nonumber{}0\end{array}\right],\quad{}A=\left[\begin{array}{ccc}\nonumber{}1 & 1 & 1\end{array}\right],\mbox{ and }b=1.\end{math}"/></td>
+<td>(5.3.6)</td></tr>
+</tbody>
+</table>
+
+<p>Please note that MOSEK always assumes that there is a <span class="math"><span class="mn">1</span><span class="mo">/</span><span class="mn">2</span></span> in front of the <span class="math"><img src="math/math43.png" alt="[[MathCmd 43]]"/></span> term in the objective. Therefore, the <span class="math"><span class="mn">1</span></span> in front of <span class="math"><img src="math/math44.png" alt="[[MathCmd 44]]"/></span> becomes <span class="math"><span class="mn">2</span></span> in <span class="math"><span class="mi">Q</span></span>, i.e. <span class="math"><img src="math/math45.png" alt="[[MathCmd 45]]"/></span>.</p>
+
+<div>
+<h3><a name="213151896">5.3.1.1. Source code</a></h3>
+
+<p><a name="idx-67995624">&#09;</a><a name="idx-67995840">&#09;</a> <a name="idx-67997352">&#09;</a> <a name="idx-67998712">&#09;</a> <a name="idx-67999144">&#09;</a> <a name="idx-67999576">&#09;</a> <a name="idx-68000152">&#09;</a> <a name="idx-68000800">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="keyword">package</span> qo1;
+
+<span class="comment">/* 
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      qo1.java
+
+   Purpose:   Demonstrate how to solve a quadratic
+              optimization problem using the MOSEK Java API.
+ */</span>
+
+class msgclass <span class="keyword">extends</span> mosek.Stream {
+  <span class="keyword">public</span> msgclass ()
+  {
+    <span class="keyword">super</span> ();
+  }
+  
+  <span class="keyword">public</span> <span class="type">void</span> stream (<span class="type">String</span> msg)
+    {
+      System.out.print (msg);
+  }
+}
+
+
+<span class="keyword">public</span> class qo1 
+{
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMCON = 1;   <span class="comment">/* Number of constraints.             */</span>
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMVAR = 3;   <span class="comment">/* Number of variables.               */</span>
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMANZ = 3;   <span class="comment">/* Number of numzeros in A.           */</span>
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMQNZ = 4;   <span class="comment">/* Number of nonzeros in Q.           */</span>
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> main (<span class="type">String</span><span class="brackets">[]</span> args)
+  {
+    <span class="comment">// Since the value infinity is never used, we define</span>
+    <span class="comment">// 'infinity' symbolic purposes only</span>
+    <span class="type">double</span> infinity = 0;
+    <span class="type">double</span><span class="brackets">[]</span> c = {0.0, -1.0, 0.0};
+
+    mosek.Env.boundkey<span class="brackets">[]</span>    bkc  = {mosek.Env.boundkey.lo};
+    <span class="type">double</span><span class="brackets">[]</span> blc = {1.0};
+    <span class="type">double</span><span class="brackets">[]</span> buc = {infinity};
+    
+    mosek.Env.boundkey<span class="brackets">[]</span>  bkx   
+                           = {mosek.Env.boundkey.lo,
+                              mosek.Env.boundkey.lo,
+                              mosek.Env.boundkey.lo};        
+    <span class="type">double</span><span class="brackets">[]</span> blx = {0.0,
+                    0.0,
+                    0.0};
+    <span class="type">double</span><span class="brackets">[]</span> bux = {infinity,
+                    infinity,
+                    infinity};
+        
+    <span class="type">int</span><span class="brackets">[]</span><span class="brackets">[]</span>    asub  = { {0},   {0}, {0} };
+    <span class="type">double</span><span class="brackets">[]</span><span class="brackets">[]</span> aval  = { {1.0}, {1.0}, {1.0} };
+    <span class="type">double</span><span class="brackets">[]</span> xx   = <span class="keyword">new</span> <span class="type">double</span>[NUMVAR];
+  
+    mosek.Env  
+      env = <span class="keyword">null</span>;
+    mosek.Task 
+      task = <span class="keyword">null</span>;
+    
+    env  = <span class="keyword">new</span> mosek.Env ();
+    <span class="keyword">try</span>
+      {
+      <span class="comment">// Direct the env log stream to the user specified</span>
+      <span class="comment">// method env_msg_obj.stream</span>
+      msgclass env_msg_obj = <span class="keyword">new</span> msgclass ();
+      env.set_Stream (mosek.Env.streamtype.log, env_msg_obj);
+      env.init ();
+      
+      task = <span class="keyword">new</span> mosek.Task (env,0,0);
+      <span class="comment">// Directs the log task stream to the user specified</span>
+      <span class="comment">// method task_msg_obj.stream</span>
+      msgclass task_msg_obj = <span class="keyword">new</span> msgclass ();
+      task.set_Stream (mosek.Env.streamtype.log, task_msg_obj);
+      <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+     This is done to increase the speed of inputting data. 
+     However, it is optional. */</span>
+      task.putmaxnumvar(NUMVAR);
+      task.putmaxnumcon(NUMCON);
+      task.putmaxnumanz(NUMANZ);
+      <span class="comment">/* Append 'NUMCON' empty constraints.
+     The constraints will initially have no bounds. */</span>
+      task.append(mosek.Env.accmode.con,NUMCON);
+
+      <span class="comment">/* Append 'NUMVAR' variables.
+     The variables will initially be fixed at zero (x=0). */</span>
+      task.append(mosek.Env.accmode.var,NUMVAR);
+
+        <span class="comment">/* Optionally add a constant term to the objective. */</span>
+      task.putcfix(0.0);
+
+      <span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;NUMVAR; ++j)
+      {
+        <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+        task.putcj(j,c[j]);
+        <span class="comment">/* Set the bounds on variable j.
+           blx[j] &lt;= x_j &lt;= bux[j] */</span>
+          task.putbound(mosek.Env.accmode.var,j,bkx[j],blx[j],bux[j]);
+          <span class="comment">/* Input column j of A */</span>   
+          task.putavec(mosek.Env.accmode.var, <span class="comment">/* Input columns of A.*/</span>
+                       j,                     <span class="comment">/* Variable (column) index.*/</span>
+                       asub[j],               <span class="comment">/* Row index of non-zeros in column j.*/</span>
+                       aval[j]);              <span class="comment">/* Non-zero Values of column j. */</span>
+      }
+      <span class="comment">/* Set the bounds on constraints.
+       for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+      <span class="keyword">for</span>(<span class="type">int</span> i=0; i&lt;NUMCON; ++i)
+        task.putbound(mosek.Env.accmode.con,i,bkc[i],blc[i],buc[i]);
+
+      <span class="comment">/*
+       The lower triangular part of the Q
+       matrix in the objective is specified.
+      */</span>
+            
+      <span class="type">int</span><span class="brackets">[]</span>    qsubi = {0,   1,    2,   2  };
+      <span class="type">int</span><span class="brackets">[]</span>    qsubj = {0,   1,    0,   2  };
+      <span class="type">double</span><span class="brackets">[]</span> qval =  {2.0, 0.2, -1.0, 2.0};
+            
+      <span class="comment">/* Input the Q for the objective. */</span>
+
+      task.putqobj(qsubi,qsubj,qval);
+
+      <span class="comment">/* Solve the problem */</span>
+      mosek.Env.rescode r = task.optimize();
+      System.out.println ("<span class="string"> Mosek warning:</span>" + r.toString());
+      <span class="comment">// Print a summary containing information</span>
+      <span class="comment">//   about the solution for debugging purposes</span>
+      task.solutionsummary(mosek.Env.streamtype.msg);
+      
+      mosek.Env.solsta solsta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.solsta[1];
+      mosek.Env.prosta prosta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.prosta[1];
+      <span class="comment">/* Get status information about the solution */</span> 
+      task.getsolutionstatus(mosek.Env.soltype.itr,
+                             prosta,
+                             solsta);
+                <span class="comment">/* Get the solution */</span>
+      task.getsolutionslice(mosek.Env.soltype.itr, <span class="comment">// Interior solution.     </span>
+                            mosek.Env.solitem.xx,  <span class="comment">// Which part of solution.</span>
+                            0,      <span class="comment">// Index of first variable.</span>
+                            NUMVAR, <span class="comment">// Index of last variable+1 </span>
+                            xx);
+                
+      <span class="keyword">switch</span>(solsta[0])
+      {
+      <span class="keyword">case</span> optimal:
+      <span class="keyword">case</span> near_optimal:      
+        System.out.println("<span class="string">Optimal primal solution\n</span>");
+        <span class="keyword">for</span>(<span class="type">int</span> j = 0; j &lt; NUMVAR; ++j)
+          System.out.println ("<span class="string">x[</span>" + j + "<span class="string">]:</span>" + xx[j]);
+        <span class="keyword">break</span>;
+      <span class="keyword">case</span> dual_infeas_cer:
+      <span class="keyword">case</span> prim_infeas_cer:
+      <span class="keyword">case</span> near_dual_infeas_cer:
+      <span class="keyword">case</span> near_prim_infeas_cer:  
+        System.out.println("<span class="string">Primal or dual infeasibility\n</span>");
+        <span class="keyword">break</span>;
+      <span class="keyword">case</span> unknown:
+        System.out.println("<span class="string">Unknown solution status.\n</span>");
+        <span class="keyword">break</span>;
+      <span class="keyword">default</span>:
+        System.out.println("<span class="string">Other solution status</span>");
+        <span class="keyword">break</span>;
+      }
+    }
+    <span class="keyword">catch</span> (Exception e)
+    {
+      System.out.println ("<span class="string">An error/warning was encountered</span>");
+      System.out.println (e.toString());
+    }
+    
+    <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.dispose ();
+    <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.dispose ();
+    
+  } <span class="comment">/* Main */</span>
+}
+</div>
+
+</div>
+
+<div>
+<h3><a name="213152112">5.3.1.2. Example code comments</a></h3>
+
+<p> Most of the functionality in this example has already been explained for the linear optimization example in Section <a title="5.2. Linear optimization" href="node007.html#chap-apiintro-sec-linear-optimization">5.2</a> and it will not be repeated here.</p>
+
+<p>This example introduces one new function, <a href="node016.html#common-func*mosek*task*putqobj"><tt class="tt">Task.putqobj</tt></a>, which is used to input the quadratic terms of the objective function.</p>
+
+<p>Since <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> is symmetric only the lower triangular part of <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> is inputted. The upper part of <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> is computed by MOSEK using the relation </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math49.png" alt="\begin{displaymath}\nonumber{}Q^{o}_{{ij}}=Q^{o}_{{ji}}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Entries from the upper part may <em>not</em> appear in the input.</p>
+
+<p>The lower triangular part of the matrix <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> is specified using an unordered sparse triplet format (for details, see Section <a title="5.8.3. Matrix formats" href="node007.html#sec-matrix-formats">5.8.3</a>):</p>
+
+<div class="verbatimcode"><span class="type">int</span><span class="brackets">[]</span>    qsubi = {0,   1,    2,   2  };
+<span class="type">int</span><span class="brackets">[]</span>    qsubj = {0,   1,    0,   2  };
+<span class="type">double</span><span class="brackets">[]</span> qval =  {2.0, 0.2, -1.0, 2.0};
+</div>
+
+<p>Please note that </p>
+
+<ul class="itemize">
+<li>only non-zero elements are specified (any element not specified is 0 by definition), </li>
+<li>the order of the non-zero elements is insignificant, and </li>
+<li><em>only</em> the lower triangular part should be specified. </li>
+</ul>
+
+<p>Finally, the matrix <span class="math"><img src="math/math31.png" alt="[[MathCmd 31]]"/></span> is loaded into the task:</p>
+
+<div class="verbatimcode">task.putqobj(qsubi,qsubj,qval);
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="213157792">5.3.2. Example: Quadratic constraints</a></h2>
+
+<p> <a name="idx-69260280">&#09;</a> <a name="idx-69258416">&#09;</a> <a name="chap:mosekapi:sec:quadratic_constraint">&#09;</a> In this section describes how to solve a problem with quadratic constraints. Please note that quadratic constraints are subject to the convexity requirement <a href="node007.html#ch-api-ex-convex-qcqo-less">(5.3.2)</a>.</p>
+
+<p>Consider the problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math52.png" alt="\begin{math}\nonumber{}\begin{array}{lcccl}\nonumber{}\mbox{minimize} &  &  & x_{1}^{2}+0.1x_{2}^{2}+x_{3}^{2}-x_{1}x_{3}-x_{2} & \\\nonumber{}\mbox{subject to} & 1 & \leq{} & x_{1}+x_{2}+x_{3}-x_{1}^{2}-x_{2}^{2}-0.1x_{3}^{2}+0.2x_{1}x_{3}, & \\\nonumber{} &  &  & x\geq{}0. &\end{array}\end{math}"/></td>
+<td>(5.3.7)</td></tr>
+</tbody>
+</table>
+
+<p>This is equivalent to</p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math53.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & 1/2x^{T}Q^{o}x+c^{T}x &  & \\\nonumber{}\mbox{subject to} & 1/2x^{T}Q^{0}x+Ax & \geq{} & b,\end{array}\end{math}"/></td>
+<td>(5.3.8)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math54.png" alt="\begin{math}\nonumber{}Q^{o}=\left[\begin{array}{ccc}\nonumber{}2 & 0 & -1\\\nonumber{}0 & 0.2 & 0\\\nonumber{}-1 & 0 & 2\end{array}\right],\quad{}c=\left[\begin{array}{c}\nonumber{}0\\\nonumber{}-1\\\nonumber{}0\end{array}\right],\quad{}A=\left[\begin{array}{ccc}\nonumber{}1 & 1 & 1\end{array}\right],\quad{}b=1.\end{math}"/></td>
+<td>(5.3.9)</td></tr>
+</tbody>
+</table>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math55.png" alt="\begin{math}\nonumber{}Q^{0}=\left[\begin{array}{ccc}\nonumber{}-2 & 0 & 0.2\\\nonumber{}0 & -2 & 0\\\nonumber{}0.2 & 0 & -0.2\end{array}\right].\end{math}"/></td>
+<td>(5.3.10)</td></tr>
+</tbody>
+</table>
+
+<div>
+<h3><a name="213181072">5.3.2.1. Source code</a></h3>
+
+<p><a name="idx-69289312">&#09;</a> <a name="idx-69289384">&#09;</a> <a name="idx-69290176">&#09;</a> <a name="idx-69290824">&#09;</a> <a name="idx-69291472">&#09;</a> <a name="idx-69292184">&#09;</a> <a name="idx-69292832">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="keyword">package</span> qcqo1;
+
+<span class="comment">/* 
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      qcqo1.java
+
+   Purpose:   Demonstrate how to solve a quadratic
+              optimization problem using the MOSEK API.
+
+              minimize  x0^2 + 0.1 x1^2 +  x2^2 - x0 x2 - x1 
+              s.t 1 &lt;=  x0 + x1 + x2 - x0^2 - x1^2 - 0.1 x2^2 + 0.2 x0 x2 
+              x &gt;= 0              
+                       
+ */</span>
+
+class msgclass <span class="keyword">extends</span> mosek.Stream {
+  <span class="keyword">public</span> msgclass ()
+  {
+    <span class="keyword">super</span> ();
+  }
+  
+  <span class="keyword">public</span> <span class="type">void</span> stream (<span class="type">String</span> msg)
+    {
+      System.out.print (msg);
+  }
+}
+
+<span class="keyword">public</span> class qcqo1
+{
+    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMCON = 1;   <span class="comment">/* Number of constraints.             */</span>
+    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMVAR = 3;   <span class="comment">/* Number of variables.               */</span>
+    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMANZ = 3;   <span class="comment">/* Number of numzeros in A.           */</span>
+    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMQNZ = 4;   <span class="comment">/* Number of nonzeros in Q.           */</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> main (<span class="type">String</span><span class="brackets">[]</span> args)
+    {
+      <span class="comment">// Since the value infinity is never used, we define</span>
+        <span class="comment">// 'infinity' symbolic purposes only</span>
+      <span class="type">double</span> infinity = 0;
+      <span class="type">double</span><span class="brackets">[]</span> c = {0.0, -1.0, 0.0};
+      
+      mosek.Env.boundkey<span class="brackets">[]</span>    bkc  = {mosek.Env.boundkey.lo};
+      <span class="type">double</span><span class="brackets">[]</span> blc = {1.0};
+      <span class="type">double</span><span class="brackets">[]</span> buc = {infinity};
+      
+      mosek.Env.boundkey<span class="brackets">[]</span>  bkx   
+                        = {mosek.Env.boundkey.lo,
+                          mosek.Env.boundkey.lo,
+                          mosek.Env.boundkey.lo};        
+      <span class="type">double</span><span class="brackets">[]</span> blx = {0.0,
+                      0.0,
+                      0.0};
+      <span class="type">double</span><span class="brackets">[]</span> bux = {infinity,
+                      infinity,
+                      infinity};
+        
+      <span class="type">int</span><span class="brackets">[]</span><span class="brackets">[]</span>    asub  = { {0},   {0},   {0} };
+      <span class="type">double</span><span class="brackets">[]</span><span class="brackets">[]</span> aval  = { {1.0}, {1.0}, {1.0} };
+
+      <span class="type">double</span><span class="brackets">[]</span> xx   = <span class="keyword">new</span> <span class="type">double</span>[NUMVAR];
+  
+      mosek.Env  
+          env = <span class="keyword">null</span>;
+      mosek.Task 
+          task = <span class="keyword">null</span>;
+ 
+      env  = <span class="keyword">new</span> mosek.Env ();
+      <span class="keyword">try</span>
+        {
+        <span class="comment">// Direct the env log stream to the user specified</span>
+        <span class="comment">// method env_msg_obj.stream</span>
+        msgclass env_msg_obj = <span class="keyword">new</span> msgclass ();
+        env.set_Stream (mosek.Env.streamtype.log, env_msg_obj);
+        env.init ();
+        
+        task = <span class="keyword">new</span> mosek.Task (env, NUMCON,NUMVAR);
+        <span class="comment">// Directs the log task stream to the user specified</span>
+        <span class="comment">// method task_msg_obj.stream</span>
+        msgclass task_msg_obj = <span class="keyword">new</span> msgclass ();
+        task.set_Stream (mosek.Env.streamtype.log, task_msg_obj);
+
+        <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+     This is done to increase the speed of inputting data. 
+     However, it is optional. */</span>
+        task.putmaxnumvar(NUMVAR);
+        task.putmaxnumcon(NUMCON);
+        task.putmaxnumanz(NUMANZ);
+        <span class="comment">/* Append 'NUMCON' empty constraints.
+     The constraints will initially have no bounds. */</span>
+        task.append(mosek.Env.accmode.con,NUMCON);
+        
+        <span class="comment">/* Append 'NUMVAR' variables.
+     The variables will initially be fixed at zero (x=0). */</span>
+        task.append(mosek.Env.accmode.var,NUMVAR);
+
+        <span class="comment">/* Optionally add a constant term to the objective. */</span>
+        task.putcfix(0.0);
+        
+        <span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;NUMVAR; ++j)
+        {
+          <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+          task.putcj(j,c[j]);
+          <span class="comment">/* Set the bounds on variable j.
+           blx[j] &lt;= x_j &lt;= bux[j] */</span>
+          task.putbound(mosek.Env.accmode.var,j,bkx[j],blx[j],bux[j]);
+          <span class="comment">/* Input column j of A */</span>   
+          task.putavec(mosek.Env.accmode.var, <span class="comment">/* Input columns of A.*/</span>
+                       j,                     <span class="comment">/* Variable (column) index.*/</span>
+                       asub[j],               <span class="comment">/* Row index of non-zeros in column j.*/</span>
+                       aval[j]);              <span class="comment">/* Non-zero Values of column j. */</span>
+        }
+        <span class="comment">/* Set the bounds on constraints.
+       for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+        <span class="keyword">for</span>(<span class="type">int</span> i=0; i&lt;NUMCON; ++i)
+          task.putbound(mosek.Env.accmode.con,i,bkc[i],blc[i],buc[i]);
+        <span class="comment">/*
+         * The lower triangular part of the Q
+         * matrix in the objective is specified.
+         */</span>
+
+        <span class="type">int</span><span class="brackets">[]</span>   qosubi = { 0,   1,   2,    2 };
+        <span class="type">int</span><span class="brackets">[]</span>   qosubj = { 0,   1,   0,    2 };
+        <span class="type">double</span><span class="brackets">[]</span> qoval = { 2.0, 0.2, -1.0, 2.0 };
+        
+        <span class="comment">/* Input the Q for the objective. */</span>
+
+        task.putqobj(qosubi,qosubj,qoval);
+        
+       <span class="comment">/*
+        * The lower triangular part of the Q^0
+        * matrix in the first constraint is specified.
+        * This corresponds to adding the term
+        * x0^2 - x1^2 - 0.1 x2^2 + 0.2 x0 x2
+        */</span>
+
+        <span class="type">int</span><span class="brackets">[]</span>    qsubi = {0,   1,    2,   2  };
+        <span class="type">int</span><span class="brackets">[]</span>    qsubj = {0,   1,    2,   0  };
+        <span class="type">double</span><span class="brackets">[]</span> qval =  {-2.0, -2.0, -0.2, 0.2};
+        
+        <span class="comment">/* put Q^0 in constraint with index 0. */</span>
+                
+        task.putqconk (0,
+                       qsubi, 
+                       qsubj, 
+                       qval); 
+        
+        task.putobjsense(mosek.Env.objsense.minimize);
+
+        <span class="comment">/* Solve the problem */</span>
+        
+        <span class="keyword">try</span>
+          {
+          mosek.Env.rescode termcode = task.optimize();
+        }
+        <span class="keyword">catch</span> (mosek.Warning e)
+        {
+          System.out.println ("<span class="string"> Mosek warning:</span>");
+          System.out.println (e.toString ());
+        }
+        <span class="comment">// Print a summary containing information</span>
+        <span class="comment">//   about the solution for debugging purposes</span>
+        task.solutionsummary(mosek.Env.streamtype.msg);
+        
+        mosek.Env.solsta solsta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.solsta[1];
+        mosek.Env.prosta prosta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.prosta[1];
+        <span class="comment">/* Get status information about the solution */</span> 
+        task.getsolutionstatus(mosek.Env.soltype.itr,
+                               prosta,
+                               solsta);
+        task.getsolutionslice(mosek.Env.soltype.itr, <span class="comment">// Interior solution.     </span>
+                              mosek.Env.solitem.xx,  <span class="comment">// Which part of solution.</span>
+                              0,      <span class="comment">// Index of first variable.</span>
+                              NUMVAR, <span class="comment">// Index of last variable+1 </span>
+                              xx);
+        <span class="keyword">switch</span>(solsta[0])
+        {
+        <span class="keyword">case</span> optimal:
+        <span class="keyword">case</span> near_optimal:      
+          System.out.println("<span class="string">Optimal primal solution\n</span>");
+          <span class="keyword">for</span>(<span class="type">int</span> j = 0; j &lt; NUMVAR; ++j)
+            System.out.println ("<span class="string">x[</span>" + j + "<span class="string">]:</span>" + xx[j]);
+          <span class="keyword">break</span>;
+        <span class="keyword">case</span> dual_infeas_cer:
+        <span class="keyword">case</span> prim_infeas_cer:
+        <span class="keyword">case</span> near_dual_infeas_cer:
+        <span class="keyword">case</span> near_prim_infeas_cer:  
+          System.out.println("<span class="string">Primal or dual infeasibility.\n</span>");
+          <span class="keyword">break</span>;
+        <span class="keyword">case</span> unknown:
+          System.out.println("<span class="string">Unknown solution status.\n</span>");
+          <span class="keyword">break</span>;
+        <span class="keyword">default</span>:
+          System.out.println("<span class="string">Other solution status</span>");
+          <span class="keyword">break</span>;
+        }
+        
+
+      }
+      <span class="keyword">catch</span> (mosek.ArrayLengthException e)
+      <span class="comment">/* Catch both Error and Warning */</span>
+      {
+        System.out.println ("<span class="string">An error/warning was encountered</span>");
+        System.out.println (e.toString ());
+      }
+      <span class="keyword">catch</span> (mosek.Exception e)
+      {
+        System.out.println ("<span class="string">An error/warning was encountered</span>");
+        System.out.println (e.msg);
+      }
+      
+      <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.dispose ();
+      <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.dispose ();
+      
+    } <span class="comment">/* Main */</span>
+}
+</div>
+
+<p>The only new function introduced in this example is <a href="node016.html#common-func*mosek*task*putqconk"><tt class="tt">Task.putqconk</tt></a>, which is used to add quadratic terms to the constraints. While <a href="node016.html#common-func*mosek*task*putqconk"><tt class="tt">Task.putqconk</tt></a> add quadratic terms to a specific constraint, it is also possible to input all quadratic terms in all constraints in one chunk using the <a href="node016.html#common-func*mosek*task*putqcon"><tt class="tt">Task.putqcon</tt></a> function.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="213188408">5.4. Conic optimization</a></h1>
+
+<p> <a name="sec:conic-opt">&#09;</a><a name="common-sec:conic-opt"></a> <a name="idx-69302824">&#09;</a> <a name="idx-69302032">&#09;</a> <a name="idx-69303184">&#09;</a></p>
+
+<p>Conic problems are a generalization of linear problems, allowing constraints of the type </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math56.png" alt="\begin{displaymath}\nonumber{}x\in{}\mathcal{C}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math57.png" alt="[[MathCmd 57]]"/></span> is a convex cone.</p>
+
+<p>MOSEK can solve conic optimization problems of the following form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math58.png" alt="\begin{math}\nonumber{}\begin{array}{lccccl}\nonumber{}\mbox{minimize} &  &  & c^{T}x+c^{f} &  & \\\nonumber{}\mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} & l^{x} & \leq{} & x & \leq{} & u^{x},\\\nonumber{} &  &  & x\in{}\mathcal{C} &  &\end{array}\end{math}"/></td>
+<td><a name="ch-matlab-sec-conicoptimization-eq-primal">&#09;</a>(5.4.1)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math57.png" alt="[[MathCmd 57]]"/></span> is a cone. <span class="math"><img src="math/math57.png" alt="[[MathCmd 57]]"/></span> can be a product of cones, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math61.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}=\mathcal{C}_{0}\times \cdots \times \mathcal{C}_{{p-1}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>in which case <span class="math"><img src="math/math62.png" alt="[[MathCmd 62]]"/></span> means <span class="math"><img src="math/math63.png" alt="[[MathCmd 63]]"/></span>. Please note that the set of real numbers <span class="math"><img src="math/math64.png" alt="[[MathCmd 64]]"/></span> is itself a cone, so linear variables are still allowed.</p>
+
+<p>MOSEK supports two specific cones apart from the real numbers: </p>
+
+<ul class="itemize">
+<li>
+<p>The quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math65.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n_{t}}}:x_{1}\geq{}\sqrt{\sum \limits _{{j=2}}^{{n^{t}}}x_{j}^{2}}\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The rotated quadratic cone: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math66.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n_{t}}}:2x_{1}x_{2}\geq{}\sum \limits _{{j=3}}^{{n^{t}}}x_{j}^{2},~x_{1},x_{2}\geq{}0\right\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<p> When creating a conic problem in MOSEK, each cone is defined by a <em>cone type</em> (quadratic or rotated quadratic cone) and a list of variable indexes. To summarize: </p>
+
+<ul class="itemize">
+<li>In MOSEK all variables belong to the set <span class="math"><img src="math/math64.png" alt="[[MathCmd 64]]"/></span> of reals, unless they are explicitly declared as belonging to a cone. </li>
+<li>Each variable may belong to one cone <em>at most</em>. </li>
+</ul>
+
+<div>
+<h2><a name="213205576">5.4.1. Example: cqo1</a></h2>
+
+<p> The problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math68.png" alt="\begin{math}\nonumber{}\begin{array}{lccccc}\nonumber{}\mbox{minimize} & x_{4}+x_{5} &  & \\\nonumber{}\mbox{subject to} & x_{0}+x_{1}+x_{2}+x_{3} & = & 1,\\\nonumber{} & x_{0},x_{1},x_{2},x_{3} & \geq{} & 0,\\\nonumber{} & x_{4}\geq{}\sqrt{x_{0}^{2} + x_{2}^{2}}, &  & \\\nonumber{} & x_{5}\geq{}\sqrt{x_{1}^{2} + x_{3}^{2}} &  &\end{array}\end{math}"/></td>
+<td><a name="ch-matlab-sec-conic-eq-ex1">&#09;</a>(5.4.2)</td></tr>
+</tbody>
+</table>
+
+<p>is an example of a conic quadratic optimization problem. The problem includes a set of linear constraints and two quadratic cones.</p>
+
+<div>
+<h3><a name="213205792">5.4.1.1. Source code</a></h3>
+
+<p> <a name="idx-69352192">&#09;</a><a name="idx-69352984">&#09;</a></p>
+
+<p><a name="idx-69358440">&#09;</a><a name="idx-69358584">&#09;</a> <a name="idx-69360744">&#09;</a> <a name="idx-69361392">&#09;</a> <a name="idx-69361888">&#09;</a> <a name="idx-69362248">&#09;</a> <a name="idx-69362824">&#09;</a> <a name="idx-69363472">&#09;</a> <a name="idx-69364048">&#09;</a> <a name="idx-69364696">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="keyword">package</span> cqo1;
+
+<span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      cqo1.java
+
+   Purpose:   Demonstrates how to solve a small conic qaudratic
+              optimization problem using the MOSEK API.
+*/</span>
+
+class msgclass <span class="keyword">extends</span> mosek.Stream {
+    <span class="keyword">public</span> msgclass ()
+    {
+        <span class="keyword">super</span> ();
+    }
+
+    <span class="keyword">public</span> <span class="type">void</span> stream (<span class="type">String</span> msg)
+    {
+        System.out.print (msg);
+    }
+}
+  
+<span class="keyword">public</span> class cqo1
+{
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMCON = 1;
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMVAR = 6;
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMANZ = 4;
+  
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> main (<span class="type">String</span><span class="brackets">[]</span> args) <span class="keyword">throws</span> java.lang.Exception
+  {
+    <span class="comment">// Since the value infinity is never used, we define</span>
+        <span class="comment">// 'infinity' symbolic purposes only</span>
+    <span class="type">double</span> infinity = 0;
+    
+    mosek.Env.boundkey<span class="brackets">[]</span> bkc    = { mosek.Env.boundkey.fx };
+    <span class="type">double</span><span class="brackets">[]</span> blc = { 1.0 };
+    <span class="type">double</span><span class="brackets">[]</span> buc = { 1.0 };
+    
+    mosek.Env.boundkey<span class="brackets">[]</span> bkx
+              = {mosek.Env.boundkey.lo,
+                 mosek.Env.boundkey.lo,
+                 mosek.Env.boundkey.lo,
+                 mosek.Env.boundkey.lo,
+                 mosek.Env.boundkey.fr,
+                 mosek.Env.boundkey.fr};
+     <span class="type">double</span><span class="brackets">[]</span> blx = { 0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      -infinity,
+                      -infinity};
+     <span class="type">double</span><span class="brackets">[]</span> bux = { 0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      +infinity,
+                      +infinity};
+                          
+     <span class="type">double</span><span class="brackets">[]</span> c   = { 0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      1.0};
+        
+     <span class="type">double</span><span class="brackets">[]</span><span class="brackets">[]</span> aval   = {{1.0},
+                         {1.0},
+                         {1.0},
+                         {1.0}};
+     <span class="type">int</span><span class="brackets">[]</span><span class="brackets">[]</span>    asub   = {{0},
+                         {0},
+                         {0},
+                         {0}};
+        
+     <span class="type">int</span><span class="brackets">[]</span> csub = <span class="keyword">new</span> <span class="type">int</span>[3];
+     <span class="type">double</span><span class="brackets">[]</span> xx  = <span class="keyword">new</span> <span class="type">double</span>[NUMVAR];
+     mosek.Env
+         env = <span class="keyword">null</span>;
+     mosek.Task
+         task = <span class="keyword">null</span>;
+
+     <span class="comment">// create a new environment object</span>
+     env  = <span class="keyword">new</span> mosek.Env ();
+     <span class="keyword">try</span>
+       {
+       <span class="comment">// Direct the env log stream to the user specified</span>
+       <span class="comment">// method env_msg_obj.stream</span>
+       msgclass env_msg_obj = <span class="keyword">new</span> msgclass ();
+       env.set_Stream (mosek.Env.streamtype.log, env_msg_obj);
+       env.init ();
+       <span class="comment">// create a task object attached to the environment</span>
+       task = <span class="keyword">new</span> mosek.Task (env, 0, 0);
+       <span class="comment">// Directs the log task stream to the user specified</span>
+       <span class="comment">// method task_msg_obj.stream</span>
+       msgclass task_msg_obj = <span class="keyword">new</span> msgclass ();
+       task.set_Stream (mosek.Env.streamtype.log, task_msg_obj);
+
+       <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+     This is done to increase the speed of inputting data. 
+     However, it is optional. */</span>
+       task.putmaxnumvar(NUMVAR);
+       task.putmaxnumcon(NUMCON);
+       task.putmaxnumanz(NUMANZ);
+       <span class="comment">/* Append 'NUMCON' empty constraints.
+     The constraints will initially have no bounds. */</span>
+       task.append(mosek.Env.accmode.con,NUMCON);
+      
+       <span class="comment">/* Append 'NUMVAR' variables.
+     The variables will initially be fixed at zero (x=0). */</span>
+       task.append(mosek.Env.accmode.var,NUMVAR);
+
+       <span class="comment">/* Optionally add a constant term to the objective. */</span>
+       task.putcfix(0.0);
+       <span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;NUMVAR; ++j)
+       {
+        <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+         task.putcj(j,c[j]);
+         <span class="comment">/* Set the bounds on variable j.
+           blx[j] &lt;= x_j &lt;= bux[j] */</span>
+         task.putbound(mosek.Env.accmode.var,j,bkx[j],blx[j],bux[j]);
+       }
+       
+       <span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;aval.length; ++j)
+         <span class="comment">/* Input column j of A */</span>   
+         task.putavec(mosek.Env.accmode.var, <span class="comment">/* Input columns of A.*/</span>
+                      j,                     <span class="comment">/* Variable (column) index.*/</span>
+                      asub[j],               <span class="comment">/* Row index of non-zeros in column j.*/</span>
+                      aval[j]);              <span class="comment">/* Non-zero Values of column j. */</span>
+
+       <span class="comment">/* Set the bounds on constraints.
+       for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+       <span class="keyword">for</span>(<span class="type">int</span> i=0; i&lt;NUMCON; ++i)
+         task.putbound(mosek.Env.accmode.con,i,bkc[i],blc[i],buc[i]);
+
+       csub[0] = 4;
+       csub[1] = 0;
+       csub[2] = 2;
+       task.appendcone(mosek.Env.conetype.quad,
+                       0.0, <span class="comment">/* For future use only, can be set to 0.0 */</span>
+                       csub);
+       csub[0] = 5;
+       csub[1] = 1;
+       csub[2] = 3;
+       task.appendcone(mosek.Env.conetype.quad,0.0,csub);
+
+       System.out.println ("<span class="string">putintparam</span>");
+       task.putobjsense(mosek.Env.objsense.minimize);
+       
+       System.out.println ("<span class="string">optimize</span>");
+       <span class="comment">/* Solve the problem */</span>
+       mosek.Env.rescode r = task.optimize();
+       System.out.println ("<span class="string"> Mosek warning:</span>" + r.toString());
+       <span class="comment">// Print a summary containing information</span>
+       <span class="comment">//   about the solution for debugging purposes</span>
+       task.solutionsummary(mosek.Env.streamtype.msg);
+                
+       mosek.Env.solsta solsta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.solsta[1];
+       mosek.Env.prosta prosta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.prosta[1];
+                <span class="comment">/* Get status information about the solution */</span> 
+       task.getsolutionstatus(mosek.Env.soltype.itr,
+                              prosta,
+                              solsta);
+       task.getsolutionslice(mosek.Env.soltype.itr, <span class="comment">// Interior solution.     </span>
+                             mosek.Env.solitem.xx,  <span class="comment">// Which part of solution.</span>
+                             0,      <span class="comment">// Index of first variable.</span>
+                             NUMVAR, <span class="comment">// Index of last variable+1 </span>
+                             xx);
+                
+       <span class="keyword">switch</span>(solsta[0])
+       {
+       <span class="keyword">case</span> optimal:
+       <span class="keyword">case</span> near_optimal:      
+         System.out.println("<span class="string">Optimal primal solution\n</span>");
+         <span class="keyword">for</span>(<span class="type">int</span> j = 0; j &lt; NUMVAR; ++j)
+           System.out.println ("<span class="string">x[</span>" + j + "<span class="string">]:</span>" + xx[j]);
+         <span class="keyword">break</span>;
+       <span class="keyword">case</span> dual_infeas_cer:
+       <span class="keyword">case</span> prim_infeas_cer:
+       <span class="keyword">case</span> near_dual_infeas_cer:
+       <span class="keyword">case</span> near_prim_infeas_cer:  
+         System.out.println("<span class="string">Primal or dual infeasibility.\n</span>");
+         <span class="keyword">break</span>;
+       <span class="keyword">case</span> unknown:
+         System.out.println("<span class="string">Unknown solution status.\n</span>");
+         <span class="keyword">break</span>;
+       <span class="keyword">default</span>:
+         System.out.println("<span class="string">Other solution status</span>");
+         <span class="keyword">break</span>;
+       }
+     }
+     <span class="keyword">catch</span> (Exception e)
+     {
+       System.out.println ("<span class="string">An error/warning was encountered</span>");
+       System.out.println (e.toString());
+       <span class="keyword">throw</span> (e);
+     }
+     
+     <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.dispose ();
+     <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.dispose ();
+  }
+}
+</div>
+
+</div>
+
+<div>
+<h3><a name="213216504">5.4.1.2. Source code comments</a></h3>
+
+<p>The only new function introduced in the example is <a href="node016.html#common-func*mosek*task*appendcone"><tt class="tt">Task.appendcone</tt></a>, which is called here:</p>
+
+<div class="verbatimcode">task.appendcone(mosek.Env.conetype.quad,
+                0.0, <span class="comment">/* For future use only, can be set to 0.0 */</span>
+                csub);
+</div>
+
+<p>Here <a href="node019.html#common-const*mosek*conetype*quad"><tt class="tt">Env.conetype.quad</tt></a> defines the cone type, in this case it is a <em>quadratic cone</em>. The cone parameter <tt class="tt">0.0</tt> is currently not used by MOSEK &mdash; simply passing <span class="math"><span class="mn">0.0</span></span> will work.</p>
+
+<p>The last argument is a list of indexes of the variables in the cone.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="213218944">5.5. Integer optimization</a></h1>
+
+<p> <a name="idx-69370440">&#09;</a><a name="idx-69369368">&#09;</a><a name="idx-69368288">&#09;</a><a name="idx-69365416">&#09;</a></p>
+
+<p>An optimization problem where one or more of the variables are constrained to integer values is denoted an integer optimization problem.</p>
+
+<div>
+<h2><a name="213217432">5.5.1. Example: milo1</a></h2>
+
+<p>In this section the example </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math69.png" alt="\begin{math}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{maximize} & x_{0}+0.64x_{1} &  & \\\nonumber{}\mbox{subject to} & 50x_{0}+31x_{1} & \leq{} & 250,\\\nonumber{} & 3x_{0}-2x_{1} & \geq{} & -4,\\\nonumber{} & x_{0},x_{1}\geq{}0 &  & \mbox{and integer}\end{array}\end{math}"/></td>
+<td><a name="ch-apiex-sec-int-opt">&#09;</a>(5.5.1)</td></tr>
+</tbody>
+</table>
+
+<p>is used to demonstrate how to solve a problem with integer variables.</p>
+
+<div>
+<h3><a name="213219232">5.5.1.1. Source code</a></h3>
+
+<p>The example (<a href="node007.html#ch-apiex-sec-int-opt">5.5.1</a>) is almost identical to a linear optimization problem except for some variables being integer constrained. Therefore, only the specification of the integer constraints requires something new compared to the linear optimization problem discussed previously. In MOSEK these constraints are specified using the function <a href="node016.html#common-func*mosek*task*putvartype"><tt class="tt">Task.putvartype</tt></a> as shown in the code:</p>
+
+<div class="verbatimcode"><span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;NUMVAR; ++j)
+  task.putvartype(j,mosek.Env.variabletype.type_int);
+</div>
+
+<p>The complete source for the example is listed below.</p>
+
+<p><a name="idx-69383952">&#09;</a><a name="idx-69384168">&#09;</a> <a name="idx-69386184">&#09;</a> <a name="idx-69387112">&#09;</a> <a name="idx-69387544">&#09;</a> <a name="idx-69387904">&#09;</a> </p>
+
+<div class="verbatimcode"><span class="keyword">package</span> milo1;
+
+<span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File:      milo1.java
+
+  
+   Purpose:   Demonstrates how to solve a small mixed
+              integer linear optimization problem using the MOSEK Java API.
+*/</span>
+
+<span class="keyword">import</span> mosek.*;
+
+class msgclass <span class="keyword">extends</span> mosek.Stream {
+    <span class="keyword">public</span> msgclass ()
+    {
+        <span class="keyword">super</span> ();
+    }
+
+    <span class="keyword">public</span> <span class="type">void</span> stream (<span class="type">String</span> msg)
+    {
+        System.out.print (msg);
+    }
+}
+
+<span class="keyword">public</span> class milo1
+{
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMCON = 2;
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMVAR = 2;
+  <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> NUMANZ = 4;
+
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> main (<span class="type">String</span><span class="brackets">[]</span> args)
+  {
+    <span class="comment">// Since the value infinity is never used, we define</span>
+    <span class="comment">// 'infinity' symbolic purposes only</span>
+    <span class="type">double</span> infinity = 0;
+
+        
+    mosek.Env.boundkey<span class="brackets">[]</span> bkc    
+      = { mosek.Env.boundkey.up, mosek.Env.boundkey.lo };
+    <span class="type">double</span><span class="brackets">[]</span> blc = { -infinity,         -4.0 };
+    <span class="type">double</span><span class="brackets">[]</span> buc = { 250.0,             infinity }; 
+      
+    mosek.Env.boundkey<span class="brackets">[]</span> bkx
+        = { mosek.Env.boundkey.lo, mosek.Env.boundkey.lo  };
+    <span class="type">double</span><span class="brackets">[]</span> blx = { 0.0,               0.0 };
+    <span class="type">double</span><span class="brackets">[]</span> bux = { infinity,          infinity };
+        
+    <span class="type">double</span><span class="brackets">[]</span> c   = {1.0, 0.64 };
+
+    <span class="type">int</span><span class="brackets">[]</span><span class="brackets">[]</span> asub    = { {0,   1},    {0,    1}   };
+    <span class="type">double</span><span class="brackets">[]</span><span class="brackets">[]</span> aval = { {50.0, 3.0}, {31.0, -2.0} };
+
+    <span class="type">int</span><span class="brackets">[]</span> ptrb = { 0, 2 };
+    <span class="type">int</span><span class="brackets">[]</span> ptre = { 2, 4 };
+        
+    <span class="type">double</span><span class="brackets">[]</span> xx  = <span class="keyword">new</span> <span class="type">double</span>[NUMVAR];
+    
+    mosek.Env env = <span class="keyword">null</span>;
+    mosek.Task task = <span class="keyword">null</span>;
+        
+    <span class="keyword">try</span>
+      {
+      <span class="comment">// Make mosek environment. </span>
+      env  = <span class="keyword">new</span> mosek.Env ();
+      <span class="comment">// Direct the env log stream to the user specified</span>
+      <span class="comment">// method env_msg_obj.stream</span>
+      msgclass env_msg_obj = <span class="keyword">new</span> msgclass ();
+      env.set_Stream (mosek.Env.streamtype.log, env_msg_obj);
+      <span class="comment">// Initialize the environment.</span>
+      env.init ();
+      <span class="comment">// Create a task object linked with the environment env.</span>
+      task = <span class="keyword">new</span> mosek.Task (env, 0, 0);
+      <span class="comment">// Directs the log task stream to the user specified</span>
+      <span class="comment">// method task_msg_obj.stream</span>
+      msgclass task_msg_obj = <span class="keyword">new</span> msgclass ();
+      task.set_Stream (mosek.Env.streamtype.log, task_msg_obj);
+      <span class="comment">/* Give MOSEK an estimate of the size of the input data. 
+     This is done to increase the speed of inputting data. 
+     However, it is optional. */</span>
+      task.putmaxnumvar(NUMVAR);
+      task.putmaxnumcon(NUMCON);
+      task.putmaxnumanz(NUMANZ);
+      <span class="comment">/* Append 'NUMCON' empty constraints.
+     The constraints will initially have no bounds. */</span>
+      task.append(mosek.Env.accmode.con,NUMCON);
+      
+      <span class="comment">/* Append 'NUMVAR' variables.
+     The variables will initially be fixed at zero (x=0). */</span>
+      task.append(mosek.Env.accmode.var,NUMVAR);
+
+        <span class="comment">/* Optionally add a constant term to the objective. */</span>
+      task.putcfix(0.0);
+        
+      <span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;NUMVAR; ++j)
+      {
+        <span class="comment">/* Set the linear term c_j in the objective.*/</span>  
+        task.putcj(j,c[j]);
+        <span class="comment">/* Set the bounds on variable j.
+           blx[j] &lt;= x_j &lt;= bux[j] */</span>
+          task.putbound(mosek.Env.accmode.var,j,bkx[j],blx[j],bux[j]);
+          <span class="comment">/* Input column j of A */</span>   
+          task.putavec(mosek.Env.accmode.var, <span class="comment">/* Input columns of A.*/</span>
+                       j,                     <span class="comment">/* Variable (column) index.*/</span>
+                       asub[j],               <span class="comment">/* Row index of non-zeros in column j.*/</span>
+                       aval[j]);              <span class="comment">/* Non-zero Values of column j. */</span>
+      }
+      <span class="comment">/* Set the bounds on constraints.
+       for i=1, ...,NUMCON : blc[i] &lt;= constraint i &lt;= buc[i] */</span>
+      <span class="keyword">for</span>(<span class="type">int</span> i=0; i&lt;NUMCON; ++i)
+        task.putbound(mosek.Env.accmode.con,i,bkc[i],blc[i],buc[i]);
+
+      <span class="comment">/* Specify integer variables. */</span>
+      <span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;NUMVAR; ++j)
+        task.putvartype(j,mosek.Env.variabletype.type_int);
+      
+      <span class="comment">/* A maximization problem */</span> 
+      task.putobjsense(mosek.Env.objsense.maximize);
+      <span class="comment">/* Solve the problem */</span>
+      <span class="keyword">try</span>
+        {
+        task.optimize();
+      }
+      <span class="keyword">catch</span> (mosek.Warning e)
+      {
+        System.out.println ("<span class="string"> Mosek warning:</span>");
+        System.out.println (e.toString ());
+      }
+
+      <span class="comment">// Print a summary containing information</span>
+      <span class="comment">//   about the solution for debugging purposes</span>
+      task.solutionsummary(mosek.Env.streamtype.msg);
+      task.getsolutionslice(mosek.Env.soltype.itg, <span class="comment">// Integer solution.     </span>
+                            mosek.Env.solitem.xx,  <span class="comment">// Which part of solution.</span>
+                            0,      <span class="comment">// Index of first variable.</span>
+                            NUMVAR, <span class="comment">// Index of last variable+1 </span>
+                            xx);
+      mosek.Env.solsta solsta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.solsta[1];
+      mosek.Env.prosta prosta<span class="brackets">[]</span> = <span class="keyword">new</span> mosek.Env.prosta[1];
+      <span class="comment">/* Get status information about the solution */</span> 
+      task.getsolutionstatus(mosek.Env.soltype.itg,
+                             prosta,
+                             solsta);
+      <span class="keyword">switch</span>(solsta[0])
+      {
+      <span class="keyword">case</span> integer_optimal:
+      <span class="keyword">case</span> near_integer_optimal:      
+        System.out.println("<span class="string">Optimal solution\n</span>");
+        <span class="keyword">for</span>(<span class="type">int</span> j = 0; j &lt; NUMVAR; ++j)
+          System.out.println ("<span class="string">x[</span>" + j + "<span class="string">]:</span>" + xx[j]);
+        <span class="keyword">break</span>;
+      <span class="keyword">case</span> prim_feas:
+        System.out.println("<span class="string">Feasible solution\n</span>");
+        <span class="keyword">for</span>(<span class="type">int</span> j = 0; j &lt; NUMVAR; ++j)
+          System.out.println ("<span class="string">x[</span>" + j + "<span class="string">]:</span>" + xx[j]);
+        <span class="keyword">break</span>;
+        
+      <span class="keyword">case</span> unknown:
+        System.out.println("<span class="string">Unknown solution status.\n</span>");
+        <span class="keyword">break</span>;
+      <span class="keyword">default</span>:
+        System.out.println("<span class="string">Other solution status</span>");
+        <span class="keyword">break</span>;
+      }
+    }
+    <span class="keyword">catch</span> (mosek.ArrayLengthException e)
+    {
+      System.out.println ("<span class="string">Error: An array was too short</span>");
+      System.out.println (e.toString ());
+    }
+    <span class="keyword">catch</span> (mosek.Exception e)
+    <span class="comment">/* Catch both mosek.Error and mosek.Warning */</span>
+    {
+      System.out.println ("<span class="string">An error or warning was encountered</span>");
+      System.out.println (e.getMessage ());
+    }
+    
+    <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.dispose ();
+    <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.dispose ();
+  }
+}
+</div>
+
+</div>
+
+<div>
+<h3><a name="213229936">5.5.1.2. Code comments</a></h3>
+
+<p> Please note that when <a href="node016.html#common-func*mosek*task*getsolutionslice"><tt class="tt">Task.getsolutionslice</tt></a> is called, the integer solution is requested by using <a href="node019.html#common-const*mosek*soltype*itg"><tt class="tt">Env.soltype.itg</tt></a>. No dual solution is defined for integer optimization problems.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="213229224">5.5.2. Specifying an initial solution</a></h2>
+
+<p> <a name="sec-mip-intro-init-mip">&#09;</a> Integer optimization problems are generally hard to solve, but the solution time can often be reduced by providing an initial solution for the solver. Solution values can be set using <a href="node016.html#common-func*mosek*task*putsolution"><tt class="tt">Task.putsolution</tt></a> (for inputting a whole solution) or <a href="node016.html#common-func*mosek*task*putsolutioni"><tt class="tt">Task.putsolutioni</tt></a> (for inputting solution values related to a single variable or constraint).</p>
+
+<p>It is not necessary to specify the whole solution. By setting the <a href="node017.html#common-const*mosek*iparam*mio-construct-sol"><tt class="tt">Env.iparam.mio_construct_sol</tt></a> parameter to <a href="node019.html#common-const*mosek*onoffkey*on"><tt class="tt">Env.onoffkey.on</tt></a> and inputting values for the integer variables only, will force MOSEK to compute the remaining continuous variable values.</p>
+
+<p>If the specified integer solution is infeasible or incomplete, MOSEK will simply ignore it.</p>
+
+</div>
+
+<div>
+<h2><a name="213230368">5.5.3. Example: Specifying an integer solution</a></h2>
+
+<p> Consider the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math70.png" alt="\begin{math}\nonumber{}\begin{array}{ll}\nonumber{}\mbox{maximize} & 7x_{0}+10x_{1}+x_{2}+5x_{3}\\\nonumber{}\mbox{subject to} & x_{0}+x_{1}+x_{2}+x_{3}\leq{}2.5\\\nonumber{} & x_{0},x_{1},x_{2}\mathrm{integer},\quad{}x_{0},x_{1},x_{2},x_{3}\geq{}0\end{array}\end{math}"/></td>
+<td>(5.5.2)</td></tr>
+</tbody>
+</table>
+
+<p>The following example demonstrates how to optimize the problem using a feasible starting solution generated by selecting the integer values as <span class="math"><img src="math/math71.png" alt="[[MathCmd 71]]"/></span>.</p>
+
+<p><a name="idx-69413416">&#09;</a></p>
+
+<div class="verbatimcode"><span class="keyword">package</span> mioinitsol;
+
+<span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      mioinitsol.c
+
+   Purpose:   Demonstrates how to solve a MIP with a start guess.
+
+   Syntax:    mioinitsol mioinitsol.lp 
+ */</span>
+
+ 
+<span class="keyword">import</span> mosek.*;
+
+class msgclass <span class="keyword">extends</span> mosek.Stream {
+    <span class="keyword">public</span> msgclass ()
+    {
+        <span class="keyword">super</span> ();
+    }
+
+    <span class="keyword">public</span> <span class="type">void</span> stream (<span class="type">String</span> msg)
+    {
+        System.out.print (msg);
+    }
+}
+ 
+<span class="keyword">public</span> class mioinitsol
+{
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> main (<span class="type">String</span><span class="brackets">[]</span> args)
+    {
+        mosek.Env
+            env = <span class="keyword">null</span>;
+        mosek.Task
+            task = <span class="keyword">null</span>;
+        <span class="comment">// Since the value infinity is never used, we define</span>
+        <span class="comment">// 'infinity' symbolic purposes only</span>
+        <span class="type">double</span>
+            infinity = 0;
+
+        <span class="type">int</span> NUMVAR = 4;
+        <span class="type">int</span> NUMCON = 1;
+        <span class="type">int</span> NUMINTVAR = 3;
+
+        <span class="type">double</span><span class="brackets">[]</span> c = { 7.0, 10.0, 1.0, 5.0 };
+        
+        mosek.Env.boundkey<span class="brackets">[]</span> bkc = {mosek.Env.boundkey.up};
+        <span class="type">double</span><span class="brackets">[]</span> blc = {-infinity};
+        <span class="type">double</span><span class="brackets">[]</span> buc = {2.5};
+        mosek.Env.boundkey<span class="brackets">[]</span> bkx
+                  = {mosek.Env.boundkey.lo,
+                     mosek.Env.boundkey.lo,
+                     mosek.Env.boundkey.lo,
+                     mosek.Env.boundkey.lo};
+        <span class="type">double</span><span class="brackets">[]</span> blx = {0.0,
+                        0.0,
+                        0.0,
+                        0.0};
+        <span class="type">double</span><span class="brackets">[]</span> bux = {infinity,
+                        infinity,
+                        infinity,
+                        infinity};
+        
+        <span class="type">int</span><span class="brackets">[]</span>    ptrb   = {0, 1, 2, 3};
+        <span class="type">int</span><span class="brackets">[]</span>    ptre   = {1, 2, 3, 4};
+        <span class="type">double</span><span class="brackets">[]</span> aval   = {1.0, 1.0, 1.0, 1.0};
+        <span class="type">int</span><span class="brackets">[]</span>    asub   = {0,   0,   0,   0  };
+        <span class="type">int</span><span class="brackets">[]</span>    intsub = {0, 1, 2};
+        <span class="type">int</span> j;
+  
+        <span class="keyword">try</span>{
+            <span class="comment">// Make mosek environment. </span>
+            env  = <span class="keyword">new</span> mosek.Env ();
+            <span class="comment">// Direct the env log stream to the user specified</span>
+            <span class="comment">// method env_msg_obj.print</span>
+            msgclass env_msg_obj = <span class="keyword">new</span> msgclass ();
+            env.set_Stream (mosek.Env.streamtype.log,env_msg_obj);
+            <span class="comment">// Initialize the environment.</span>
+            env.init ();
+            <span class="comment">// Create a task object linked with the environment env.</span>
+            task = <span class="keyword">new</span> mosek.Task (env, 0, 0);
+            <span class="comment">// Directs the log task stream to the user specified</span>
+            <span class="comment">// method task_msg_obj.print</span>
+            msgclass task_msg_obj = <span class="keyword">new</span> msgclass ();
+            task.set_Stream (mosek.Env.streamtype.log,task_msg_obj);
+
+            task.inputdata(NUMCON,NUMVAR,
+                           c,
+                           0.0,
+                           ptrb,
+                           ptre,
+                           asub,
+                           aval,
+                           bkc,
+                           blc,
+                           buc,
+                           bkx,
+                           blx,
+                           bux);
+                            
+            <span class="keyword">for</span>(j=0 ; j&lt;NUMINTVAR ; ++j)
+               task.putvartype(intsub[j],mosek.Env.variabletype.type_int);
+
+            <span class="comment">/* A maximization problem */</span> 
+            task.putobjsense(mosek.Env.objsense.maximize);
+                
+            <span class="comment">// Construct an initial feasible solution from the</span>
+            <span class="comment">//     values of the integer valuse specified </span>
+            task.putintparam(mosek.Env.iparam.mio_construct_sol,
+                             mosek.Env.onoffkey.on.value);
+        
+            <span class="comment">// Set status of all variables to unknown </span>
+            task.makesolutionstatusunknown(mosek.Env.soltype.itg);
+        
+            <span class="comment">// Assign values 1,1,0 to integer variables </span>
+            task.putsolutioni (
+                               mosek.Env.accmode.var,
+                               0,
+                               mosek.Env.soltype.itg, 
+                               mosek.Env.stakey.supbas, 
+                               0.0,
+                               0.0,
+                               0.0,
+                               0.0);
+        
+            task.putsolutioni (
+                               mosek.Env.accmode.var,
+                               1,
+                               mosek.Env.soltype.itg, 
+                               mosek.Env.stakey.supbas, 
+                               2.0,
+                               0.0,
+                               0.0,
+                               0.0);
+        
+        
+            task.putsolutioni (
+                               mosek.Env.accmode.var,
+                               2,
+                               mosek.Env.soltype.itg, 
+                               mosek.Env.stakey.supbas, 
+                               0.0,
+                               0.0,
+                               0.0,
+                               0.0);
+        
+            <span class="comment">// solve   </span>
+            task.optimize(); 
+        }
+        <span class="keyword">catch</span> (mosek.ArrayLengthException e)
+            {
+                System.out.println ("<span class="string">Error: An array was too short</span>");
+                System.out.println (e.toString ());
+            }
+        <span class="keyword">catch</span> (mosek.Exception e)
+            <span class="comment">/* Catch both Error and Warning */</span>
+            {
+                System.out.println ("<span class="string">An error was encountered</span>");
+                System.out.println (e.getMessage ());
+            }
+        
+        <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.dispose ();
+        <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.dispose ();
+    }
+}
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="213235616">5.6. Problem modification and reoptimization</a></h1>
+
+<p> <a name="ch:intro:sec:reopt">&#09;</a></p>
+
+<p>Often one might want to solve not just a single optimization problem, but a sequence of problem, each differing only slightly from the previous one. This section demonstrates how to modify and reoptimize an existing problem. The example we study is a simple production planning model.</p>
+
+<div>
+<h2><a name="213230872">5.6.1. A production planning problem</a></h2>
+
+<p> A company manufactures three types of products. Suppose the stages of manufacturing can be split into three parts, namely Assembly, Polishing and Packing. In the table below we show the time required for each stage as well as the profit associated with each product.</p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Product no. </td>
+<td valign="top" style="border-top:1px solid black;"> Assembly (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Polishing (minutes)</td>
+<td valign="top" style="border-top:1px solid black;"> Packing (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Profit ($) </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> 0 </td>
+<td valign="top" style="border-top:1px solid black;"> 2 </td>
+<td valign="top" style="border-top:1px solid black;"> 3 </td>
+<td valign="top" style="border-top:1px solid black;"> 2 </td>
+<td valign="top" style="border-top:1px solid black;"> 1.50 </td></tr><tr class="evenrow">
+<td valign="top">1 </td>
+<td valign="top"> 4 </td>
+<td valign="top"> 2 </td>
+<td valign="top"> 3 </td>
+<td valign="top"> 2.50 </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;">2 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 3 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 3 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 2 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 3.00 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>With the current resources available, the company has <span class="math"><span class="mn">100</span><span class="mo">,</span><span class="mn">000</span></span> minutes of assembly time, <span class="math"><span class="mn">50</span><span class="mo">,</span><span class="mn">000</span></span> minutes of polishing time and <span class="math"><span class="mn">60</span><span class="mo">,</span><span class="mn">000</span></span> minutes of packing time available per year.</p>
+
+<p>Now the question is how many items of each product the company should produce each year in order to maximize profit?</p>
+
+<p>Denoting the number of items of each type by <span class="math"><img src="math/math72.png" alt="[[MathCmd 72]]"/></span> and <span class="math"><img src="math/math73.png" alt="[[MathCmd 73]]"/></span>, this problem can be formulated as the linear optimization problem: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math74.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccl}\nonumber{}\mbox{maximize} & 1.5x_{0} & + & 2.5x_{1} & + & 3.0x_{2} &  & \\\nonumber{}\mbox{subject to} & 2x_{0} & + & 4x_{1} & + & 3x_{2} & \leq{} & 100000,\\\nonumber{} & 3x_{0} & + & 2x_{1} & + & 3x_{2} & \leq{} & 50000,\\\nonumber{} & 2x_{0} & + & 3x_{1} & + & 2x_{2} & \leq{} & 60000,\end{array}\end{math}"/></td>
+<td>(5.6.1)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math75.png" alt="\begin{math}\nonumber{}x_{0},x_{1},x_{2}\geq{}0.\end{math}"/></td>
+<td>(5.6.2)</td></tr>
+</tbody>
+</table>
+
+<p>The following code loads this problem into the optimization task.</p>
+
+<div class="verbatimcode"><span class="comment">// Since the value infinity is never used, we define</span>
+<span class="comment">// 'infinity' symbolic purposes only</span>
+<span class="type">double</span>
+  infinity = 0;
+
+<span class="type">double</span> c<span class="brackets">[]</span>            = {1.5,
+                         2.5,
+                         3.0};
+mosek.Env.boundkey bkc<span class="brackets">[]</span>
+                      = {mosek.Env.boundkey.up,
+                         mosek.Env.boundkey.up,
+                         mosek.Env.boundkey.up};
+<span class="type">double</span> blc<span class="brackets">[]</span>          = {-infinity,
+                         -infinity,
+                         -infinity};
+<span class="type">double</span> buc<span class="brackets">[]</span>          =  {100000,
+                          50000,
+                          60000};
+mosek.Env.boundkey bkx<span class="brackets">[]</span>
+                      = {mosek.Env.boundkey.lo,
+                          mosek.Env.boundkey.lo,
+                          mosek.Env.boundkey.lo};
+<span class="type">double</span> blx<span class="brackets">[]</span>          = {0.0,
+                          0.0,
+                          0.0};
+<span class="type">double</span> bux<span class="brackets">[]</span>           = {+infinity,
+                          +infinity,
+                          +infinity};
+
+<span class="type">int</span> asub<span class="brackets">[]</span><span class="brackets">[]</span> = {{0, 1, 2},
+                {0, 1, 2},
+                {0, 1, 2}};
+
+<span class="type">double</span> aval<span class="brackets">[]</span><span class="brackets">[]</span>   = { { 2.0, 3.0, 2.0 },
+                      { 4.0, 2.0, 3.0 },
+                      { 3.0, 3.0, 2.0 } };
+
+<span class="type">double</span><span class="brackets">[]</span> xx  = <span class="keyword">new</span> <span class="type">double</span>[NUMVAR];
+
+mosek.Env
+    env = <span class="keyword">null</span>;
+mosek.Task
+    task = <span class="keyword">null</span>;
+
+<span class="keyword">try</span>
+    {
+        <span class="comment">// Create mosek environment.</span>
+        env  = <span class="keyword">new</span> mosek.Env ();
+        <span class="comment">// Initialize the environment.</span>
+        env.init ();
+        <span class="comment">// Create a task object linked with the environment env.</span>
+        task = <span class="keyword">new</span> mosek.Task (env, NUMCON, NUMVAR);
+
+        <span class="comment">/* Give MOSEK an estimate on the size of
+           the data to input. This is done to increase
+           the speed of inputting data and is optional.*/</span>
+
+        task.putmaxnumvar(NUMVAR);
+        task.putmaxnumcon(NUMCON);
+        task.putmaxnumanz(NUMANZ);
+
+        <span class="comment">/* Append the constraints. */</span>
+        task.append(mosek.Env.accmode.con,NUMCON);
+
+        <span class="comment">/* Append the variables. */</span>
+        task.append(mosek.Env.accmode.var,NUMVAR);
+
+        <span class="comment">/* Put C. */</span>
+        task.putcfix(0.0);
+        <span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;NUMVAR; ++j)
+          task.putcj(j,c[j]);
+
+        <span class="comment">/* Put constraint bounds. */</span>
+        <span class="keyword">for</span>(<span class="type">int</span> i=0; i&lt;NUMCON; ++i)
+          task.putbound(mosek.Env.accmode.con,i,bkc[i],blc[i],buc[i]);
+
+        <span class="comment">/* Put variable bounds. */</span>
+        <span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;NUMVAR; ++j)
+          task.putbound(mosek.Env.accmode.var,j,bkx[j],blx[j],bux[j]);
+
+        <span class="comment">/* Put A. */</span>
+        <span class="keyword">if</span> ( NUMCON&gt;0 )
+        {
+          <span class="keyword">for</span>(<span class="type">int</span> j=0; j&lt;NUMVAR; ++j)
+            task.putavec(mosek.Env.accmode.var,
+                         j,
+                         asub[j],
+                         aval[j]);
+        }
+
+        <span class="comment">/* A maximization problem */</span>
+        task.putobjsense(mosek.Env.objsense.maximize);
+        mosek.Env.rescode termcode;
+        <span class="comment">/* Solve the problem */</span>
+        <span class="keyword">try</span>
+            {
+                termcode = task.optimize();
+            }
+        <span class="keyword">catch</span> (mosek.Warning e)
+            {
+                System.out.println ("<span class="string">Mosek warning:</span>");
+                System.out.println (e.toString ());
+            }
+
+        task.solutionsummary(mosek.Env.streamtype.msg);
+
+        task.getsolutionslice(mosek.Env.soltype.bas,
+                              <span class="comment">/* Basic solution.       */</span>
+                              mosek.Env.solitem.xx,
+                              <span class="comment">/* Which part of solution.  */</span>
+                              0,
+                              <span class="comment">/* Index of first variable. */</span>
+                              NUMVAR,
+                              <span class="comment">/* Index of last variable+1 */</span>
+                              xx);
+
+        <span class="keyword">for</span>(<span class="type">int</span> j = 0; j &lt; NUMVAR; ++j)
+            System.out.println ("<span class="string">x[</span>" + j + "<span class="string">]:</span>" + xx[j]);
+</div>
+
+</div>
+
+<div>
+<h2><a name="213265440">5.6.2. Changing the <span class="math"><span class="mi">A</span></span> matrix</a></h2>
+
+<p>Suppose we want to change the time required for assembly of product <span class="math"><span class="mn">0</span></span> to <span class="math"><span class="mn">3</span></span> minutes. This corresponds to setting <span class="math"><img src="math/math76.png" alt="[[MathCmd 76]]"/></span>, which is done by calling the function <a href="node016.html#common-func*mosek*task*putaij"><tt class="tt">Task.putaij</tt></a> as shown below.</p>
+
+<div class="verbatimcode">task.putaij(0, 0, 3.0);
+</div>
+
+<p>The problem now has the form: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math77.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccl}\nonumber{}\mbox{maximize} & 1.5x_{0} & + & 2.5x_{1} & + & 3.0x_{2} &  & \\\nonumber{}\mbox{subject to} & 3x_{0} & + & 4x_{1} & + & 3x_{2} & \leq{} & 100000,\\\nonumber{} & 3x_{0} & + & 2x_{1} & + & 3x_{2} & \leq{} & 50000,\\\nonumber{} & 2x_{0} & + & 3x_{1} & + & 2x_{2} & \leq{} & 60000,\end{array}\end{math}"/></td>
+<td><a name="eq-production-1">&#09;</a>(5.6.3)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math75.png" alt="\begin{math}\nonumber{}x_{0},x_{1},x_{2}\geq{}0.\end{math}"/></td>
+<td>(5.6.4)</td></tr>
+</tbody>
+</table>
+
+<p> After changing the <span class="math"><span class="mi">A</span></span> matrix we can find the new optimal solution by calling</p>
+
+<p><a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a></p>
+
+<p>again</p>
+
+</div>
+
+<div>
+<h2><a name="213282256">5.6.3. Appending variables</a></h2>
+
+<p>We now want to add a new product with the following data:</p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Product no. </td>
+<td valign="top" style="border-top:1px solid black;"> Assembly (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Polishing (minutes)</td>
+<td valign="top" style="border-top:1px solid black;"> Packing (minutes) </td>
+<td valign="top" style="border-top:1px solid black;"> Profit ($) </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;">3 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 4 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 0 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 1 </td>
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 1.00 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>This corresponds to creating a new variable <span class="math"><img src="math/math79.png" alt="[[MathCmd 79]]"/></span>, appending a new column to the <span class="math"><span class="mi">A</span></span> matrix and setting a new value in the objective. We do this in the following code.</p>
+
+<div class="verbatimcode"><span class="comment">/* Append a new varaible x_3 to the problem */</span>
+task.append(mosek.Env.accmode.var,1);
+
+<span class="comment">/* Get index of new variable, this should be 3 */</span>
+<span class="type">int</span><span class="brackets">[]</span> numvar = <span class="keyword">new</span> <span class="type">int</span>[1];
+task.getnumvar(numvar);
+
+<span class="comment">/* Set bounds on new varaible */</span>
+task.putbound(mosek.Env.accmode.var,
+              numvar[0]-1,
+              mosek.Env.boundkey.lo,
+              0,
+              +infinity);
+
+<span class="comment">/* Change objective */</span>
+task.putcj(numvar[0]-1,1.0);
+
+<span class="comment">/* Put new values in the A matrix */</span>
+<span class="type">int</span><span class="brackets">[]</span> acolsub    =  <span class="keyword">new</span> <span class="type">int</span><span class="brackets">[]</span> {0,   2};
+<span class="type">double</span><span class="brackets">[]</span> acolval =  <span class="keyword">new</span> <span class="type">double</span><span class="brackets">[]</span> {4.0, 1.0};
+
+task.putavec(mosek.Env.accmode.var,
+             numvar[0]-1, <span class="comment">/* column index */</span>
+             acolsub,
+             acolval);
+</div>
+
+<p>After this operation the problem looks this way: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math80.png" alt="\begin{math}\nonumber{}\begin{array}{lccccccccl}\nonumber{}\mbox{maximize} & 1.5x_{0} & + & 2.5x_{1} & + & 3.0x_{2} & + & 1.0x_{3} &  & \\\nonumber{}\mbox{subject to} & 3x_{0} & + & 4x_{1} & + & 3x_{2} & + & 4x_{3} & \leq{} & 100000,\\\nonumber{} & 3x_{0} & + & 2x_{1} & + & 3x_{2} &  &  & \leq{} & 50000,\\\nonumber{} & 2x_{0} & + & 3x_{1} & + & 2x_{2} & + & 1x_{3} & \leq{} & 60000,\end{array}\end{math}"/></td>
+<td><a name="eq-production-2">&#09;</a>(5.6.5)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math81.png" alt="\begin{math}\nonumber{}x_{0},x_{1},x_{2},x_{3}\geq{}0.\end{math}"/></td>
+<td>(5.6.6)</td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h2><a name="213286992">5.6.4. Reoptimization</a></h2>
+
+<p> When</p>
+
+<p><a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a></p>
+
+<p>is called MOSEK will store the optimal solution internally. After a task has been modified and</p>
+
+<p><a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a></p>
+
+<p>is called again the solution will automatically be used to reduce solution time of the new problem, if possible.</p>
+
+<p>In this case an optimal solution to problem <a href="node007.html#eq-production-1">(5.6.3)</a> was found and then added a column was added to get <a href="node007.html#eq-production-2">(5.6.5)</a>. The simplex optimizer is well suited for exploiting an existing primal or dual feasible solution. Hence, the subsequent code instructs MOSEK to choose the simplex optimizer freely when optimizing.</p>
+
+<div class="verbatimcode"><span class="comment">/* Change optimizer to simplex free and reoptimize */</span>
+task.putintparam(mosek.Env.iparam.optimizer,mosek.Env.optimizertype.free_simplex.value);
+termcode = task.optimize();
+</div>
+
+</div>
+
+<div>
+<h2><a name="213308696">5.6.5. Appending constraints</a></h2>
+
+<p>Now suppose we want to add a new stage to the production called &#8220;Quality control&#8221; for which <span class="math"><span class="mn">30000</span></span> minutes are available. The time requirement for this stage is shown below:</p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Product no. </td>
+<td valign="top" style="border-top:1px solid black;"> Quality control (minutes) </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> 0 </td>
+<td valign="top" style="border-top:1px solid black;"> 1 </td></tr><tr class="evenrow">
+<td valign="top">1 </td>
+<td valign="top"> 2 </td></tr><tr class="oddrow">
+<td valign="top">2 </td>
+<td valign="top"> 1 </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;">3 </td>
+<td valign="top" style="border-bottom:1px solid black;"> 1 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>This corresponds to adding the constraint </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math82.png" alt="\begin{math}\nonumber{}x_{0}+2x_{1}+x_{2}+x_{3}\leq{}30000\end{math}"/></td>
+<td>(5.6.7)</td></tr>
+</tbody>
+</table>
+
+<p>to the problem which is done in the following code:</p>
+
+<div class="verbatimcode"><span class="comment">/* Append a new constraint */</span>
+task.append(mosek.Env.accmode.con,1);
+
+<span class="comment">/* Get index of new constraint, this should be 4 */</span>
+<span class="type">int</span><span class="brackets">[]</span> numcon = <span class="keyword">new</span> <span class="type">int</span>[1];
+task.getnumcon(numcon);
+
+<span class="comment">/* Set bounds on new constraint */</span>
+task.putbound(
+              mosek.Env.accmode.con,
+              numcon[0]-1,
+              mosek.Env.boundkey.up,
+              -infinity,
+              30000);
+
+<span class="comment">/* Put new values in the A matrix */</span>
+
+<span class="type">int</span><span class="brackets">[]</span> arowsub = <span class="keyword">new</span> <span class="type">int</span><span class="brackets">[]</span> {0,   1,   2,   3  };
+<span class="type">double</span><span class="brackets">[]</span> arowval = <span class="keyword">new</span> <span class="type">double</span><span class="brackets">[]</span>  {1.0, 2.0, 1.0, 1.0};
+
+task.putavec(mosek.Env.accmode.con,
+             numcon[0]-1, <span class="comment">/* row index */</span>
+             arowsub,
+             arowval);
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="213315384">5.7. Efficiency considerations</a></h1>
+
+<p>Although MOSEK is implemented to handle memory efficiently, the user may have valuable knowledge about a problem, which could be used to improve the performance of MOSEK. This section discusses some tricks and general advice that hopefully make MOSEK process your problem faster.</p>
+
+<dl class="description">
+<dt>Avoid memory fragmentation:</dt>
+<dd>
+<p> MOSEK stores the optimization problem in internal data structures in the memory. Initially MOSEK will allocate structures of a certain size, and as more items are added to the problem the structures are reallocated. For large problems the same structures may be reallocated many times causing memory fragmentation. One way to avoid this is to give MOSEK an estimated size of your problem using the functions: </p>
+
+<ul class="itemize">
+<li><a href="node016.html#common-func*mosek*task*putmaxnumvar"><tt class="tt">Task.putmaxnumvar</tt></a>. Estimate for the number of variables. </li>
+<li><a href="node016.html#common-func*mosek*task*putmaxnumcon"><tt class="tt">Task.putmaxnumcon</tt></a>. Estimate for the number of constraints. </li>
+<li><a href="node016.html#common-func*mosek*task*putmaxnumcone"><tt class="tt">Task.putmaxnumcone</tt></a>. Estimate for the number of cones.</li>
+<li><a href="node016.html#common-func*mosek*task*putmaxnumanz64"><tt class="tt">Task.putmaxnumanz64</tt></a>. Estimate for the number of non-zeros in <span class="math"><span class="mi">A</span></span>. </li>
+<li><a href="node016.html#common-func*mosek*task*putmaxnumqnz64"><tt class="tt">Task.putmaxnumqnz64</tt></a>. Estimate for the number of non-zeros in the quadratic terms.</li>
+</ul>
+
+<p>None of these functions change the problem, they only give hints to the eventual dimension of the problem. If the problem ends up growing larger than this, the estimates are automatically increased.</p>
+</dd>
+<dt>Tune the reallocation process:</dt>
+<dd>
+<p> It is possible to obtain information about how often MOSEK reallocates storage for the <span class="math"><span class="mi">A</span></span> matrix by inspecting <a href="node019.html#common-const*mosek*iinfitem*sto-num-a-realloc"><tt class="tt">Env.iinfitem.sto_num_a_realloc</tt></a>.  A large value indicates that <tt class="tt">maxnumanz</tt> has been reestimated many times and that the initial estimate should be increased.</p>
+</dd>
+<dt>Do not mix <tt class="tt">put-</tt> and <tt class="tt">get-</tt> functions:</dt>
+<dd>
+<p> For instance, the functions <a href="node016.html#common-func*mosek*task*putavec"><tt class="tt">Task.putavec</tt></a> and <a href="node016.html#common-func*mosek*task*getavec"><tt class="tt">Task.getavec</tt></a>. MOSEK will queue <tt class="tt">put-</tt> commands internally until a <tt class="tt">get-</tt> function is called. If every <tt class="tt">put-</tt> function call is followed by a <tt class="tt">get-</tt> function call, the queue will have to be flushed often, decreasing efficiency.</p>
+
+<p>In general <tt class="tt">get-</tt> commands should not be called often during problem setup.</p>
+</dd>
+<dt>Use the LIFO principle when removing constraints and variables:</dt>
+<dd>
+<p>MOSEK can more efficiently remove constraints and variables with a high index than a small index.</p>
+
+<p>An alternative to removing a constraint or a variable is to fix it at 0, and set all relevant coefficients to 0. Generally this will not have any impact on the optimization speed.</p>
+</dd>
+<dt>Add more constraints and variables than you need (now):</dt>
+<dd>
+<p> The cost of adding one constraint or one variable is about the same as adding many of them. Therefore, it may be worthwhile to add many variables instead of one. Initially fix the unused variable at zero, and then later unfix them as needed. Similarly, you can add multiple free constraints and then use them as needed.</p>
+</dd>
+<dt>Use one environment (env) only:</dt>
+<dd>
+<p> If possible share the environment (<tt class="tt">env</tt>) between several tasks. For most applications you need to create only a single <tt class="tt">env</tt>.</p>
+</dd>
+<dt>Do not remove basic variables:</dt>
+<dd>
+<p> When doing reoptimizations, instead of removing a basic variable it may be more efficient to fix the variable at zero and then remove it when the problem is reoptimized and it has left the basis. This makes it easier for MOSEK to restart the simplex optimizer. </p>
+</dd>
+</dl>
+
+<div>
+<h2><a name="213322136">5.7.1. API overhead</a></h2>
+
+<p> The Java interface is a thin wrapper around a native MOSEK library. The layer between the Java application and the native MOSEK library is made as thin as possible to minimize the overhead from function calls.</p>
+
+<p>The methods in <tt class="tt">mosek.Env</tt> and <tt class="tt">mosek.Task</tt> are all written in C and resides in the library <tt class="tt">mosekjava</tt>. Each method converts the call parameter data structures (i.e. creates a complete copy of the data), calls a native MOSEK function and converts the returned values back into Java structures.</p>
+
+<p>All data are copied <em>at least</em> once. For larger problems this may mean, that fetching or inputting large chunks of data is less expensive than fetching/inputting the same data as single values.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="213324288">5.8. Conventions employed in the API</a></h1>
+
+<p> <a name="chap-apiintro-sec-prog-conv">&#09;</a></p>
+
+<div>
+<h2><a name="213322280">5.8.1. Naming conventions for arguments</a></h2>
+
+<p> In the definition of the MOSEK Java API a consistent naming convention has been used. This implies that whenever for example <tt class="tt">numcon</tt> is an argument in a function definition it indicates the number of constraints.</p>
+
+<p>In Table <a href="node007.html#TAB:CNAMES">5.2</a> the variable names used to specify the problem parameters are listed. </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Java name </td>
+<td valign="top" style="border-top:1px solid black;"> Java type </td>
+<td valign="top" style="border-top:1px solid black;"> Dimension </td>
+<td valign="top" style="border-top:1px solid black;"> Related problem </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td valign="top"> </td>
+<td valign="top"> </td>
+<td valign="top"> parameter </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"><tt class="tt">numcon</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">int</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> </td>
+<td valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mi">m</span></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">numvar</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><span class="mi">n</span></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">numcone</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><span class="mi">t</span></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">numqonz</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><img src="math/math83.png" alt="[[MathCmd 83]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qosubi</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numqonz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math83.png" alt="[[MathCmd 83]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qosubj</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numqonz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math83.png" alt="[[MathCmd 83]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qoval</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">numqonz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math83.png" alt="[[MathCmd 83]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">c</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math87.png" alt="[[MathCmd 87]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">cfix</tt> </td>
+<td valign="top"> <tt class="tt">double</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><img src="math/math5.png" alt="[[MathCmd 5]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">numqcnz</tt> </td>
+<td valign="top"> <tt class="tt">int</tt> </td>
+<td valign="top"> </td>
+<td valign="top"> <span class="math"><img src="math/math89.png" alt="[[MathCmd 89]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qcsubk</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">qcnz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math89.png" alt="[[MathCmd 89]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qcsubi</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">qcnz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math89.png" alt="[[MathCmd 89]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">qcsubj</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">qcnz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math89.png" alt="[[MathCmd 89]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">qcval</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">qcnz</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math89.png" alt="[[MathCmd 89]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">aptrb</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math94.png" alt="[[MathCmd 94]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">aptre</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math94.png" alt="[[MathCmd 94]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">asub</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">aptre[numvar-1]</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math94.png" alt="[[MathCmd 94]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">aval</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">aptre[numvar-1]</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math94.png" alt="[[MathCmd 94]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">bkc</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numcon</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math98.png" alt="[[MathCmd 98]]"/></span> and <span class="math"><img src="math/math99.png" alt="[[MathCmd 99]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">blc</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">numcon</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math98.png" alt="[[MathCmd 98]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">buc</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">numcon</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math99.png" alt="[[MathCmd 99]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">bkx</tt> </td>
+<td valign="top"> <tt class="tt">int[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math102.png" alt="[[MathCmd 102]]"/></span> and <span class="math"><img src="math/math103.png" alt="[[MathCmd 103]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">blx</tt> </td>
+<td valign="top"> <tt class="tt">double[]</tt> </td>
+<td valign="top"> <tt class="tt">numvar</tt> </td>
+<td valign="top"> <span class="math"><img src="math/math102.png" alt="[[MathCmd 102]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">bux</tt> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <tt class="tt">double[]</tt> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <tt class="tt">numvar</tt> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <span class="math"><img src="math/math103.png" alt="[[MathCmd 103]]"/></span> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;5.2: <a name="TAB:CNAMES">&#09;</a>Naming convention used in MOSEK</span>
+<br/></center></td></tr></table>
+</td></tr></table>
+
+<p> The relation between the variable names and the problem parameters is as follows: </p>
+
+<ul class="itemize">
+<li>
+<p>The quadratic terms in the objective:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math106.png" alt="\begin{math}\nonumber{}q_{{\mathtt{qosubi[t]},\mathtt{qosubj[t]}}}^{o}=\mathtt{qoval[t]},~t=0,\ldots ,\mathtt{numqonz}-1.\end{math}"/></td>
+<td><a name="EQ:QODEF">&#09;</a>(5.8.1)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The linear terms in the objective:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math107.png" alt="\begin{math}\nonumber{}c_{j}=\mathtt{c[j]},~j=0,\ldots ,\mathtt{numvar}-1\end{math}"/></td>
+<td><a name="CH:API:EQ:DEFCJ">&#09;</a>(5.8.2)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The fixed term in the objective: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math108.png" alt="\begin{math}\nonumber{}c^{f}=\mathtt{cfix}.\end{math}"/></td>
+<td>(5.8.3)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The quadratic terms in the constraints:  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math109.png" alt="\begin{math}\nonumber{}q_{{\mathtt{qcsubi[t]},\mathtt{qcsubj[t]}}}^{\mathtt{qcsubk[t]}}=\mathtt{qcval[t]},~t=0,\ldots ,\mathtt{numqcnz}-1.\end{math}"/></td>
+<td><a name="EQ:QCDEF">&#09;</a>(5.8.4)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The linear terms in the constraints: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math110.png" alt="\begin{math}\nonumber{}\begin{array}{rl}\nonumber{}a_{{\mathtt{asub[t],j}}}=\mathtt{aval[t]}, & t=\mathtt{ptrb[j]},\ldots ,\mathtt{ptre[j]}-1,\\\nonumber{} & j=0,\ldots ,\mathtt{numvar}-1.\end{array}\end{math}"/></td>
+<td><a name="EQ:ADEF">&#09;</a>(5.8.5)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The bounds on the constraints are specified using the variables <tt class="tt">bkc</tt>, <tt class="tt">blc</tt>, and <tt class="tt">buc</tt>. The components of the integer array <tt class="tt">bkc</tt> specify the bound type according to Table <a href="node007.html#CH:API:TAB:BOUNDKEYS">5.3</a>.  </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Symbolic constant </td>
+<td valign="top" style="border-top:1px solid black;"> Lower bound </td>
+<td valign="top" style="border-top:1px solid black;"> Upper bound </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> <a href="node019.html#common-const*mosek*boundkey*fx"><tt class="tt">Env.boundkey.fx</tt></a> </td>
+<td valign="top" style="border-top:1px solid black;"> finite </td>
+<td valign="top" style="border-top:1px solid black;"> identical to the lower bound </td></tr><tr class="evenrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*fr"><tt class="tt">Env.boundkey.fr</tt></a> </td>
+<td valign="top"> minus infinity </td>
+<td valign="top"> plus infinity </td></tr><tr class="oddrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*lo"><tt class="tt">Env.boundkey.lo</tt></a> </td>
+<td valign="top"> finite </td>
+<td valign="top"> plus infinity </td></tr><tr class="evenrow">
+<td valign="top"><a href="node019.html#common-const*mosek*boundkey*ra"><tt class="tt">Env.boundkey.ra</tt></a> </td>
+<td valign="top"> finite </td>
+<td valign="top"> finite </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><a href="node019.html#common-const*mosek*boundkey*up"><tt class="tt">Env.boundkey.up</tt></a> </td>
+<td valign="top" style="border-bottom:1px solid black;"> minus infinity </td>
+<td valign="top" style="border-bottom:1px solid black;"> finite </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;5.3: Interpretation of the bound keys.</span>
+<br/>
+<p> <a name="CH:API:TAB:BOUNDKEYS">&#09;</a> </p>
+</center></td></tr></table>
+</td></tr></table>
+
+<p>  For instance <tt class="tt">bkc[2]=</tt><a href="node019.html#common-const*mosek*boundkey*lo"><tt class="tt">Env.boundkey.lo</tt></a> means that <span class="math"><img src="math/math111.png" alt="[[MathCmd 111]]"/></span> and <span class="math"><img src="math/math112.png" alt="[[MathCmd 112]]"/></span>. Finally, the numerical values of the bounds are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math113.png" alt="\begin{math}\nonumber{}l_{k}^{c}=\mathtt{blc[k]},~k=0,\ldots ,\mathtt{numcon}-1\end{math}"/></td>
+<td>(5.8.6)</td></tr>
+</tbody>
+</table>
+
+<p>  and  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math114.png" alt="\begin{math}\nonumber{}u_{k}^{c}=\mathtt{buc[k]},~k=0,\ldots ,\mathtt{numcon}-1.\end{math}"/></td>
+<td>(5.8.7)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The bounds on the variables are specified using the variables <tt class="tt">bkx</tt>, <tt class="tt">blx</tt>, and <tt class="tt">bux</tt>. The components in the integer array <tt class="tt">bkx</tt> specify the bound type according to Table <a href="node007.html#CH:API:TAB:BOUNDKEYS">5.3</a>. The numerical values for the lower bounds on the variables are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math115.png" alt="\begin{math}\nonumber{}l_{j}^{x}=\mathtt{blx[j]},~j=0,\ldots ,\mathtt{numvar}-1.\end{math}"/></td>
+<td>(5.8.8)</td></tr>
+</tbody>
+</table>
+
+<p>  The numerical values for the upper bounds on the variables are given by  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math116.png" alt="\begin{math}\nonumber{}u_{j}^{x}=\mathtt{bux[j]},~j=0,\ldots ,\mathtt{numvar}-1.\end{math}"/></td>
+<td>(5.8.9)</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<div>
+<h3><a name="215050576">5.8.1.1. Bounds</a></h3>
+
+<p> A bound on a variable or on a constraint in MOSEK consists of a <em>bound key</em>, as defined in Table <a href="node007.html#CH:API:TAB:BOUNDKEYS">5.3</a>, a lower bound value and an upper bound value. Even if a variable or constraint is bounded only from below, e.g. <span class="math"><span class="mi">x</span>&ge;<span class="mn">0</span></span>, both bounds are inputted or extracted; the value inputted as upper bound for <span class="math"><span class="mo">(</span><span class="mi">x</span>&ge;<span class="mn">0</span><span class="mo">)</span></span> is ignored.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="215052232">5.8.2. Vector formats</a></h2>
+
+<p> <a name="sec-vector-formats">&#09;</a> Three different vector formats are used in the MOSEK API: </p>
+
+<dl class="description">
+<dt>Full vector:</dt>
+<dd>
+<p> <a name="idx-71190504">&#09;</a> This is simply an array where the first element corresponds to the first item, the second element to the second item etc. For example to get the linear coefficients of the objective in <tt class="tt">task</tt>, one would write</p>
+
+<div class="verbatimcode"><span class="type">double</span><span class="brackets">[]</span> c = <span class="keyword">new</span> <span class="type">double</span>[numvar];
+task.getc(c);
+</div>
+
+<p>where <tt class="tt">numvar</tt> is the number of variables in the problem. </p>
+</dd>
+<dt>Vector slice:</dt>
+<dd>
+<p> A vector slice is a range of values. For example, to get the bounds associated constraint 3 through 10 (both inclusive) one would write</p>
+
+<div class="verbatimcode"><span class="type">double</span><span class="brackets">[]</span> upper_bound     = <span class="keyword">new</span> <span class="type">double</span>[8];
+<span class="type">double</span><span class="brackets">[]</span> lower_bound     = <span class="keyword">new</span> <span class="type">double</span>[8];
+mosek.Env.boundkey bound_key<span class="brackets">[]</span>
+                         = <span class="keyword">new</span> mosek.Env.boundkey[8];
+task.getboundslice(mosek.Env.accmode.con, 2,10,
+                   bound_key,lower_bound,upper_bound);
+</div>
+
+<p>Please note that items in MOSEK are numbered from <span class="math"><span class="mn">0</span></span>, so that the index of the first item is <span class="math"><span class="mn">0</span></span>, and the index of the <span class="math"><span class="mi">n</span></span>'th item is <span class="math"><span class="mi">n</span><span class="mo">-</span><span class="mn">1</span></span>. </p>
+</dd>
+<dt>Sparse vector:</dt>
+<dd>
+<p> <a name="idx-71185616">&#09;</a> <a name="idx-71184824">&#09;</a> A sparse vector is given as an array of indexes and an array of values. For example, to input a set of bounds associated with constraints number 1, 6, 3, and 9, one might write</p>
+
+<div class="verbatimcode"><span class="type">int</span><span class="brackets">[]</span>  bound_index   = { 1, 6, 3, 9 };
+mosek.Env.boundkey<span class="brackets">[]</span> bound_key
+                     = { mosek.Env.boundkey.fr,
+                         mosek.Env.boundkey.lo,
+                         mosek.Env.boundkey.up,
+                         mosek.Env.boundkey.fx };
+<span class="type">double</span><span class="brackets">[]</span> lower_bound = { 0.0, -10.0, 0.0, 5.0 };
+<span class="type">double</span><span class="brackets">[]</span> upper_bound = { 0.0,   0.0, 6.0, 5.0 };
+task.putboundlist(mosek.Env.accmode.con, bound_index,
+                  bound_key,lower_bound,upper_bound);
+</div>
+
+<p>Note that the list of indexes need not be ordered. </p>
+</dd>
+</dl>
+
+</div>
+
+<div>
+<h2><a name="215055392">5.8.3. Matrix formats</a></h2>
+
+<p> <a name="sec-matrix-formats">&#09;</a></p>
+
+<p>The coefficient matrices in a problem are inputted and extracted in a sparse format, either as complete or a partial matrices. Basically there are two different formats for this.</p>
+
+<div>
+<h3><a name="215052512">5.8.3.1. Unordered triplets</a></h3>
+
+<p> <a name="sec-intro-subsubsec-triplets">&#09;</a> <a name="idx-71194240">&#09;</a> In unordered triplet format each entry is defined as a row index, a column index and a coefficient. For example, to input the <span class="math"><span class="mi">A</span></span> matrix coefficients for <span class="math"><img src="math/math117.png" alt="[[MathCmd 117]]"/></span>, <span class="math"><img src="math/math118.png" alt="[[MathCmd 118]]"/></span>, and <span class="math"><img src="math/math119.png" alt="[[MathCmd 119]]"/></span>, one would write as follows:</p>
+
+<div class="verbatimcode"><span class="type">int</span><span class="brackets">[]</span>    subi = {   1,   3,   5 };
+<span class="type">int</span><span class="brackets">[]</span>    subj = {   2,   3,   4 };
+<span class="type">double</span><span class="brackets">[]</span> cof  = { 1.1, 4.3, 0.2 };
+task.putaijlist(subi,subj,cof);
+</div>
+
+<p>Please note that in some cases (like <a href="node016.html#common-func*mosek*task*putaijlist"><tt class="tt">Task.putaijlist</tt></a>) <em>only</em> the specified indexes remain modified &mdash; all other are unchanged. In other cases (such as <a href="node016.html#common-func*mosek*task*putqconk"><tt class="tt">Task.putqconk</tt></a>) the triplet format is used to modify <em>all</em> entries &mdash; entries that are not specified are set to <span class="math"><span class="mn">0</span></span>.</p>
+
+</div>
+
+<div>
+<h3><a name="215057904">5.8.3.2. Row or column ordered sparse matrix</a></h3>
+
+<p> <a name="sec-intro-subsubsec-cmo-rmo-matrix">&#09;</a> <a name="idx-71214144">&#09;</a> <a name="idx-71214792">&#09;</a>In a sparse matrix format only the non-zero entries of the matrix are stored. MOSEK uses a sparse matrix format ordered either by rows or columns. In the column-wise format the position of the non-zeros are given as a list of row indexes. In the row-wise format the position of the non-zeros are given as a list of column indexes. Values of the non-zero entries are given in column or row order.</p>
+
+<p>A sparse matrix in column ordered format consists of: </p>
+
+<dl class="description">
+<dt><tt class="tt">asub</tt>:</dt>
+<dd>
+<p> List of row indexes.</p>
+</dd>
+<dt><tt class="tt">aval</tt>:</dt>
+<dd>
+<p> List of non-zero entries of <span class="math"><span class="mi">A</span></span> ordered by columns.</p>
+</dd>
+<dt><tt class="tt">ptrb</tt>:</dt>
+<dd>
+<p> Where <tt class="tt">ptrb[j]</tt> is the position of the first value/index in <tt class="tt">aval</tt> / <tt class="tt">asub</tt> for column <span class="math"><span class="mi">j</span></span>.</p>
+</dd>
+<dt><tt class="tt">ptre</tt>:</dt>
+<dd>
+<p> Where <tt class="tt">ptre[j]</tt> is the position of the last value/index plus one in <tt class="tt">aval</tt> / <tt class="tt">asub</tt> for column <span class="math"><span class="mi">j</span></span>. </p>
+</dd>
+</dl>
+
+<p>The values of a matrix A with <tt class="tt">numcol</tt> columns are assigned so that for </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math120.png" alt="\begin{displaymath}\nonumber{}j=0,\ldots ,\mathtt{numcol}-1.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>We define </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math121.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}a_{{\mathtt{asub}[k],j}}=\mathtt{aval}[k],\quad{}k=\mathtt{ptrb}[j],\ldots ,\mathtt{ptre}[j]-1.\end{array}\end{math}"/></td>
+<td>(5.8.10)</td></tr>
+</tbody>
+</table>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td><center>
+<p> <img src="graphics/sparse_format.png"/> </p>
+</center><span class="caption">Figure&nbsp;5.1: The matrix <span class="math"><span class="mi">A</span></span> (<a href="node007.html#ch-tutorial-matrix-ex">5.8.11</a>) represented in column ordered sparse matrix format.</span>
+<br/>
+<p> <a name="ch-tutorial-fig-sparse-matrix">&#09;</a> </p>
+</td></tr></table>
+
+</div>
+
+<p>As an example consider the matrix </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math122.png" alt="\begin{math}\nonumber{}A=\left[\begin{array}{ccccc}\nonumber{}1.1 &  & 1.3 & 1.4 & \\\nonumber{} & 2.2 &  &  & 2.5\\\nonumber{}3.1 &  &  & 3.4 & \\\nonumber{} &  & 4.4 &  &\end{array}\right].\end{math}"/></td>
+<td><a name="ch-tutorial-matrix-ex">&#09;</a>(5.8.11)</td></tr>
+</tbody>
+</table>
+
+<p>which can be represented in the column ordered sparse matrix format as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math123.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lcl}\nonumber{}\mathtt{ptrb} & = & [0,2,3,5,7],\\\nonumber{}\mathtt{ptre} & = & [2,3,5,7,8],\\\nonumber{}\mathtt{asub} & = & [0,2,1,0,3,0,2,1],\\\nonumber{}\mathtt{aval} & = & [1.1,3.1,2.2,1.3,4.4,1.4,3.4,2.5].\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Fig. <a href="node007.html#ch-tutorial-fig-sparse-matrix">5.1</a> illustrates how the matrix <span class="math"><span class="mi">A</span></span> (<a href="node007.html#ch-tutorial-matrix-ex">5.8.11</a>) is represented in column ordered sparse matrix format.</p>
+
+</div>
+
+<div>
+<h3><a name="215081904">5.8.3.3. Row ordered sparse matrix</a></h3>
+
+<p>The matrix <span class="math"><span class="mi">A</span></span> (<a href="node007.html#ch-tutorial-matrix-ex">5.8.11</a>) can also be represented in the row ordered sparse matrix format as:</p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math124.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lcl}\nonumber{}\mathtt{ptrb} & = & [0,3,5,7],\\\nonumber{}\mathtt{ptre} & = & [3,5,7,8],\\\nonumber{}\mathtt{asub} & = & [0,2,3,1,4,0,3,2],\\\nonumber{}\mathtt{aval} & = & [1.1,1.3,1.4,2.2,2.5,3.1,3.4,4.4].\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="215090312">5.9. The license system</a></h1>
+
+<p>By default a license token is checked out when <a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a> is first called and is returned when the MOSEK environment is deleted. Calling <a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a> from different threads using the same MOSEK environment only consumes one license token.</p>
+
+<p>To change the license systems behavior to returning the license token after each call to <a href="node016.html#common-func*mosek*task*optimizetrm"><tt class="tt">Task.optimizetrm</tt></a> set the parameter <a href="node017.html#common-const*mosek*iparam*cache-license"><tt class="tt">Env.iparam.cache_license</tt></a> to <a href="node019.html#common-const*mosek*onoffkey*off"><tt class="tt">Env.onoffkey.off</tt></a>. Please note that there is a small overhead associated with setting this parameter, since checking out a license token from the license server can take a small amount of time.</p>
+
+<p>Additionally license checkout and checkin can be controlled manually with the functions <a href="node016.html#common-func*mosek*env*checkinlicense"><tt class="tt">Env.checkinlicense</tt></a> and <a href="node016.html#common-func*mosek*env*checkoutlicense"><tt class="tt">Env.checkoutlicense</tt></a>.</p>
+
+<div>
+<h2><a name="215081976">5.9.1. Waiting for a free license</a></h2>
+
+<p>By default an error will be returned if no license token is available. By setting the parameter <a href="node017.html#common-const*mosek*iparam*license-wait"><tt class="tt">Env.iparam.license_wait</tt></a> MOSEK can be instructed to wait until a license token is available.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node006.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 4. Testing installation and compiling examples" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node008.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  6. Advanced API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node006.html" target="_self">4. Testing installation and compiling examples</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node008.html" target="_self">6. Advanced API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:42:13 2012</div>
+</body></html>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>2. Introduction</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node003.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 1. Changes and new features in MOSEK" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node005.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  3. Supported MATLAB versions" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node003.html" target="_self">1. Changes and new features in MOSEK</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node005.html" target="_self">3. Supported MATLAB versions</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="235047104">2. Introduction</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node004.html#235045664" target="_self">2.1. What is optimization?</a></li>
+<li><a href="node004.html#235047680" target="_self">2.2. Why you need the MOSEK optimization toolbox</a>
+<ul class="toc-level-2">
+<li><a href="node004.html#235046168" target="_self">2.2.1. Features of the MOSEK optimization toolbox</a></li>
+</ul>
+</li>
+<li><a href="node004.html#235052208" target="_self">2.3. Comparison with the MATLAB optimization toolbox</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="CH:INTRO">&#09;</a> This manual describes the features of the MOSEK optimization toolbox for MATLAB. The toolbox makes it possible to call the highly efficient MOSEK optimization engine from the MATLAB environment.</p>
+
+<div>
+<h1><a name="235045664">2.1. What is optimization?</a></h1>
+
+<p> Many decision problems facing individuals and companies can be cast as an optimization problem i.e. making an optimal decision given some constraints specifying the possible decisions. As an example consider the problem of determining an optimal production plan. This can be formulated as maximizing a profit function given a set of constraints specifying the possible production plans.</p>
+
+</div>
+
+<div>
+<h1><a name="235047680">2.2. Why you need the MOSEK optimization toolbox</a></h1>
+
+<p> Before solving an optimization problem data is gathered and prepared. Subsequently an optimization problem is formulated based on this data and the problem is communicated to the optimization software. Finally, when the results have been obtained, they are analyzed and interpreted. A popular software tool for these tasks is MATLAB. The MOSEK optimization toolbox provides an industrial strength solver capable of solving huge problems that other less specialized MATLAB packages can't solve.</p>
+
+<div>
+<h2><a name="235046168">2.2.1. Features of the MOSEK optimization toolbox</a></h2>
+
+<p> <a name="ch-intro-sec-what-mosek-does">&#09;</a></p>
+
+<p>Below is a partial list of features in the MOSEK optimization toolbox. </p>
+
+<ul class="itemize">
+<li>Solve linear optimization problems using either an interior-point or a simplex optimizer.</li>
+<li>Solve convex quadratic optimization problems.</li>
+<li>Handle convex quadratic constraints.</li>
+<li>Solve conic quadratic optimization problems.</li>
+<li>Solve mixed-integer linear optimization problems.</li>
+<li>Solve linear least squares problems. The problem can have arbitrary linear side constraints.</li>
+<li>Solve linear <span class="math"><img src="math/math1.png" alt="[[MathCmd 1]]"/></span> and <span class="math"><img src="math/math2.png" alt="[[MathCmd 2]]"/></span> norm minimization problems.</li>
+<li>Solve linearly constrained entropy optimization problems.</li>
+<li>Solve geometric programming problems (posynomial programming).</li>
+<li>Solve separable convex optimization problems.</li>
+<li>Read and write industry standard MPS files. </li>
+</ul>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="235052208">2.3. Comparison with the MATLAB optimization toolbox</a></h1>
+
+<p> MathWorks, the maker of MATLAB, also sells an optimization toolbox so an obvious question is how these two products compares on the following issues: </p>
+
+<dl class="description">
+<dt>Problem types:</dt>
+<dd>
+<p> The MOSEK optimization toolbox can solve only <b>convex</b> optimization problems whereas the MATLAB toolbox handles nonconvex problems too.</p>
+
+<p>On the other hand the MOSEK optimization toolbox can solve linear, quadratic and conic mixed-integer optimization problems which is not possible using the MATLAB optimization toolbox.</p>
+</dd>
+<dt>Algorithms:</dt>
+<dd>
+<p>  The emphasize of the MOSEK optimization toolbox is on <b>large-scale and sparse</b> problems. MOSEK offers only large-scale algorithms, but these algorithms perform very well for small and medium-sized problems too.</p>
+
+<p>The main computational engine within the MOSEK optimization toolbox is a primal-dual type interior-point algorithm which has been demonstrated to be very well-suited for solving large-scale problems. Particularly when the algorithm is implemented using state-of-the-art (sparse) linear algebra as is the case for the MOSEK optimization toolbox. Readers interested in further details are referred to [<a href="node024.html#ANDERSEN:98:B" class="citation">23</a>].</p>
+
+<p>Furthermore, a primal and a dual simplex optimizer is available for linear problems.</p>
+</dd>
+<dt>Compatibility:</dt>
+<dd>
+<p>  The MOSEK optimization toolbox for MATLAB includes the following functions  </p>
+
+<ul class="itemize">
+<li class="sumitem"><tt class="tt">linprog</tt> </li>
+<li class="sumitem"><tt class="tt">lsqlin</tt> </li>
+<li class="sumitem"><tt class="tt">lsqnonneg</tt> </li>
+<li class="sumitem"><tt class="tt">optimget</tt> </li>
+<li class="sumitem"><tt class="tt">optimset</tt> </li>
+<li class="sumitem"><tt class="tt">quadprog</tt> </li>
+</ul>
+
+<p>  which are also available in the MATLAB optimization toolbox. Moreover, these functions are compatible with the MATLAB functions of the same name in the sense that they accept the same arguments and return the same information.</p>
+
+<p>The only differences between the functionality of the MOSEK and the MATLAB version of these functions are that the MOSEK version does not use all the MATLAB options, does not use an optional starting point, and the MOSEK version of <tt class="tt">quadprog</tt> is intended for convex problems only. On the other hand the large-scale version of the MATLAB optimization toolbox does not accept arbitrary bounds and linear side constraints for quadratic problems whereas MOSEK does.</p>
+</dd>
+</dl>
+
+<p>In general, for problems that both the MATLAB and the MOSEK optimization toolboxes handles, MOSEK delivers better reliability and performance.</p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node003.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 1. Changes and new features in MOSEK" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node005.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  3. Supported MATLAB versions" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node003.html" target="_self">1. Changes and new features in MOSEK</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node005.html" target="_self">3. Supported MATLAB versions</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:58:20 2012</div>
+</body></html>

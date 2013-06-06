@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>A. MOSEK command line tool reference</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node016.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 14. Sensitivity analysis" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization tools manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node018.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  B. The MPS file format" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node016.html" target="_self">14. Sensitivity analysis</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node018.html" target="_self">B. The MPS file format</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="250419464">A. MOSEK command line tool reference</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node017.html#250415728" target="_self">A.1. Introduction</a></li>
+<li><a href="node017.html#250421832" target="_self">A.2. Command line arguments</a></li>
+<li><a href="node017.html#250437712" target="_self">A.3. The parameter file</a>
+<ul class="toc-level-2">
+<li><a href="node017.html#250439368" target="_self">A.3.1. Using the parameter file</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="ch-comtoolref">&#09;</a> <a name="idx-99551064">&#09;</a></p>
+
+<div>
+<h1><a name="250415728">A.1. Introduction</a></h1>
+
+<p>The MOSEK command line tool is used to solve optimization problems from the operating system command line. It is invoked as follows </p>
+
+<pre class="verbatim">mosek [options] [filename]
+</pre>
+
+<p>where both <tt class="tt">[options]</tt> and <tt class="tt">[filename]</tt> are optional arguments. <tt class="tt">[filename]</tt> is a file describing the optimization problems and is either a MPS file or AMPL nl file. <tt class="tt">[options]</tt> consists of command line arguments that modifies the behavior of MOSEK.</p>
+
+</div>
+
+<div>
+<h1><a name="250421832">A.2. Command line arguments</a></h1>
+
+<p> <a name="idx-99559544">&#09;</a></p>
+
+<p>The following list shows the possible command-line arguments for MOSEK: </p>
+
+<dl>
+<dt>-a</dt>
+<dd> MOSEK runs in AMPL mode.</dd>
+<dt>-AMPL</dt>
+<dd> The input file is an AMPL nl file.</dd>
+<dt>-basi name</dt>
+<dd> Input basis solution file <tt class="tt">name</tt>.</dd>
+<dt>-baso name</dt>
+<dd> Output basis solution file <tt class="tt">name</tt>.</dd>
+<dt>-brni name</dt>
+<dd> <tt class="tt">name</tt> is the filename of a variable branch order file to be read.</dd>
+<dt>-brno name</dt>
+<dd> <tt class="tt">name</tt> is the filename of a variable branch order file to be written.</dd>
+<dt>-d name val</dt>
+<dd> Assigns the value <tt class="tt">val</tt> to the parameter named <tt class="tt">name</tt>.</dd>
+<dt>-dbgmem name</dt>
+<dd> Name of memory debug file. Write memory debug information to file <tt class="tt">name</tt>.</dd>
+<dt>-f</dt>
+<dd> Complete license information is printed.</dd>
+<dt>-h</dt>
+<dd> Prints out help information for MOSEK.</dd>
+<dt>-inti name</dt>
+<dd> Input integer solution file <tt class="tt">name</tt>.</dd>
+<dt>-into name</dt>
+<dd> Output integer solution file <tt class="tt">name</tt>.</dd>
+<dt>-itri name</dt>
+<dd> Input interior point solution file <tt class="tt">name</tt>.</dd>
+<dt>-itro name</dt>
+<dd> Output interior point solution file <tt class="tt">name</tt>.</dd>
+<dt>-info name</dt>
+<dd> Infeasible subproblem output file <tt class="tt">name</tt>.</dd>
+<dt>-infrepo name</dt>
+<dd> Feasibility reparation output file</dd>
+<dt>-pari name</dt>
+<dd> Input parameter file <tt class="tt">name</tt>. Equivalent to <tt class="tt">-p</tt>.</dd>
+<dt>-paro name</dt>
+<dd> Output parameter file <tt class="tt">name</tt>.</dd>
+<dt>-L name</dt>
+<dd> <tt class="tt">name</tt> of the license file.</dd>
+<dt>-l name</dt>
+<dd> <tt class="tt">name</tt> of the license file.</dd>
+<dt>-max</dt>
+<dd> Forces MOSEK to maximize the objective.</dd>
+<dt>-min</dt>
+<dd> Forces MOSEK to minimize the objective.</dd>
+<dt>-n</dt>
+<dd> Ignore errors in subsequent paramter settings.</dd>
+<dt>-p name</dt>
+<dd> New parameter settings are read from a file named <tt class="tt">name</tt>.</dd>
+<dt>-q name</dt>
+<dd> Name of a optional log file.</dd>
+<dt>-r</dt>
+<dd> If the option is present, the program returns -1 if an error ocurred otherwise 0.</dd>
+<dt>-rout name</dt>
+<dd> If the option is present, the program writes the return code to file 'name'.</dd>
+<dt>-sen file</dt>
+<dd> Perform sensitivity analysis based on file.</dd>
+<dt>-silent</dt>
+<dd> As little information as possible is send to the terminal.</dd>
+<dt>-v</dt>
+<dd> The MOSEK version number is printed and no optimization is performed.</dd>
+<dt>-w</dt>
+<dd> If this options is included, then MOSEK will wait for a license.</dd>
+<dt>-=</dt>
+<dd> Lists the parameter database.</dd>
+<dt>-?</dt>
+<dd> Same as the -h option. </dd>
+</dl>
+
+</div>
+
+<div>
+<h1><a name="250437712">A.3. The parameter file</a></h1>
+
+<p> <a name="ch-comtoolref-sec-paramfile">&#09;</a> <a name="idx-102280008">&#09;</a></p>
+
+<p>Occasionally system or algorithmic parameters in MOSEK should be changed be the user. One way of the changing parameters is to use a so-called parameter file which is a plain text file. It can for example can have the format </p>
+
+<pre class="verbatim">BEGIN MOSEK
+% This is a comment.
+% The subsequent line tells MOSEK that an optimal
+% basis should be computed by the interior-point optimizer.
+MSK_IPAR_INTPNT_BASIS       MSK_BI_ALWAYS
+MSK_DPAR_INTPNT_TOL_PFEAS   1.0e-9
+END MOSEK
+</pre>
+
+<p>Note that the file begins with an <tt class="tt">BEGIN MOSEK</tt> and is terminated with an <tt class="tt">END MOSEK</tt>, this is required. Moreover, everything that appears after an <tt class="tt">%</tt> is considered to be a comment and is ignored. Similarly, empty lines are ignored. The important lines are those which begins with a valid MOSEK parameter name such as <a href="node024.html#common-const*mosek*iparam*intpnt-basis"><tt class="tt">MSK_IPAR_INTPNT_BASIS</tt></a>. Immediately after parameter name follows the new value for the parameter. All the MOSEK parameter names are listed in Appendix <a title="H. Parameters reference" href="node024.html#app-paramref">H</a>.</p>
+
+<div>
+<h2><a name="250439368">A.3.1. Using the parameter file</a></h2>
+
+<p>The parameter file can be given any name, but let us assume it has the name <tt class="tt">mosek.par</tt>. If MOSEK should use the parameter settings in that file, then <tt class="tt">-p mosek.par</tt> should be on the command line when MOSEK is invoked. An example of such a command line is </p>
+
+<pre class="verbatim">mosek -p mosek.par afiro.mps
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node016.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 14. Sensitivity analysis" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization tools manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node018.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  B. The MPS file format" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node016.html" target="_self">14. Sensitivity analysis</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization tools manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node018.html" target="_self">B. The MPS file format</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:02:16 2012</div>
+</body></html>

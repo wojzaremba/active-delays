@@ -1,0 +1,1234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>12. Sensitivity analysis</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node013.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 11. Primal feasibility repair" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node015.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  13. Usage guidelines" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node013.html" target="_self">11. Primal feasibility repair</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node015.html" target="_self">13. Usage guidelines</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="235117528">12. Sensitivity analysis</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node014.html#235093672" target="_self">12.1. Introduction</a></li>
+<li><a href="node014.html#235118672" target="_self">12.2. Restrictions</a></li>
+<li><a href="node014.html#235093888" target="_self">12.3. References</a></li>
+<li><a href="node014.html#235118816" target="_self">12.4. Sensitivity analysis for linear problems</a>
+<ul class="toc-level-2">
+<li><a href="node014.html#235119032" target="_self">12.4.1. The optimal objective value function</a>
+<ul class="toc-level-3">
+<li><a href="node014.html#236840144" target="_self">12.4.1.1. Equality constraints</a></li>
+</ul>
+</li>
+<li><a href="node014.html#236841368" target="_self">12.4.2. The basis type sensitivity analysis</a></li>
+<li><a href="node014.html#236842952" target="_self">12.4.3. The optimal partition type sensitivity analysis</a></li>
+<li><a href="node014.html#236957280" target="_self">12.4.4. Example: Sensitivity analysis</a></li>
+</ul>
+</li>
+<li><a href="node014.html#238773528" target="_self">12.5. Sensitivity analysis from the MOSEK API</a></li>
+<li><a href="node014.html#238774824" target="_self">12.6. Sensitivity analysis with the command line tool</a>
+<ul class="toc-level-2">
+<li><a href="node014.html#238777048" target="_self">12.6.1. Sensitivity analysis specification file</a></li>
+<li><a href="node014.html#238779424" target="_self">12.6.2. Example: Sensitivity analysis from command line</a></li>
+<li><a href="node014.html#238788760" target="_self">12.6.3. Controlling log output</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="chap-sensitivity-analysis">&#09;</a> <a name="idx-93156272">&#09;</a></p>
+
+<div>
+<h1><a name="235093672">12.1. Introduction</a></h1>
+
+<p> Given an optimization problem it is often useful to obtain information about how the optimal objective value changes when the problem parameters are perturbed. E.g, assume that a bound represents a capacity of a machine. Now, it may be possible to expand the capacity for a certain cost and hence it is worthwhile knowing what the value of additional capacity is. This is precisely the type of questions the sensitivity analysis deals with.</p>
+
+<p>Analyzing how the optimal objective value changes when the problem data is changed is called sensitivity analysis.</p>
+
+</div>
+
+<div>
+<h1><a name="235118672">12.2. Restrictions</a></h1>
+
+<p>Currently, sensitivity analysis is only available for continuous linear optimization problems. Moreover, MOSEK can only deal with perturbations in bounds and objective coefficients.</p>
+
+</div>
+
+<div>
+<h1><a name="235093888">12.3. References</a></h1>
+
+<p>The book [<a href="node029.html#CHVATAL:83:A" class="citation">19</a>] discusses the classical sensitivity analysis in Chapter 10 whereas the book [<a href="node029.html#ROOS:97:A" class="citation">14</a>, Chapter 19] presents a modern introduction to sensitivity analysis. Finally, it is recommended to read the short paper [<a href="node029.html#WALLACE:00:A" class="citation">2</a>] to avoid some of the pitfalls associated with sensitivity analysis.</p>
+
+</div>
+
+<div>
+<h1><a name="235118816">12.4. Sensitivity analysis for linear problems</a></h1>
+
+<div>
+<h2><a name="235119032">12.4.1. The optimal objective value function</a></h2>
+
+<p>Assume that we are given the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math568.png" alt="\begin{math}\nonumber{}\begin{array}{rclccccl}\nonumber{}z(l^{c},u^{c},l^{x},u^{x},c) & = & \mbox{minimize} &  &  & c^{T}x &  & \\\nonumber{} &  & \mbox{subject to} & l^{c} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} &  &  &  &  & l^{x}\leq{}x\leq{}u^{x}, &  &\end{array}\end{math}"/></td>
+<td><a name="ch-sens-eq-p">&#09;</a>(12.4.1)</td></tr>
+</tbody>
+</table>
+
+<p>and we want to know how the optimal objective value changes as <span class="math"><img src="math/math569.png" alt="[[MathCmd 569]]"/></span> is perturbed. To answer this question we define the perturbed problem for <span class="math"><img src="math/math569.png" alt="[[MathCmd 569]]"/></span> as follows </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math571.png" alt="\begin{math}\nonumber{}\begin{array}{rclcccl}\nonumber{}f_{{l^{c}_{i}}}(\beta ) & = & \mbox{minimize} &  &  & c^{T}x & \\\nonumber{} &  & \mbox{subject to} & l^{c}+\beta e_{i} & \leq{} & Ax & \leq{}u^{c},\\\nonumber{} &  &  &  &  & l^{x}\leq{}x\leq{}u^{x}, &\end{array}\end{math}"/></td>
+<td>(12.4.2)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math572.png" alt="[[MathCmd 572]]"/></span> is the <span class="math"><span class="mi">i</span></span>th column of the identity matrix. The function </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math573.png" alt="\begin{math}\nonumber{}f_{{l^{c}_{i}}}(\beta )\end{math}"/></td>
+<td><a name="ch-sens-eq-flci">&#09;</a>(12.4.3)</td></tr>
+</tbody>
+</table>
+
+<p>shows the optimal objective value as a function of <span class="math"><img src="math/math574.png" alt="[[MathCmd 574]]"/></span>. Please note that a change in <span class="math"><img src="math/math574.png" alt="[[MathCmd 574]]"/></span> corresponds to a perturbation in <span class="math"><img src="math/math132.png" alt="[[MathCmd 132]]"/></span> and hence (<a href="node014.html#ch-sens-eq-flci">12.4.3</a>) shows the optimal objective value as a function of <span class="math"><img src="math/math569.png" alt="[[MathCmd 569]]"/></span>.</p>
+
+<p>It is possible to prove that the function (<a href="node014.html#ch-sens-eq-flci">12.4.3</a>) is a piecewise linear and convex function, i.e. the function may look like the illustration in Figure <a href="node014.html#ch-sens-fig-piec-linear">12.1</a>. </p>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="0"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td align="center" valign="top"> <img src="graphics/optimal_val_fun2.png"/> </td>
+<td align="center" valign="top"> <img src="graphics/optimal_val_fun.png"/> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center><span class="caption">Figure&nbsp;12.1: The optimal value function <span class="math"><img src="math/math578.png" alt="[[MathCmd 578]]"/></span>. Left: <span class="math"><img src="math/math579.png" alt="[[MathCmd 579]]"/></span> is in the interior of linearity interval. Right: <span class="math"><img src="math/math579.png" alt="[[MathCmd 579]]"/></span> is a breakpoint.</span>
+<br/>
+<p> <a name="ch-sens-fig-piec-linear">&#09;</a> </p>
+</td></tr></table>
+
+</div>
+
+<p> Clearly, if the function <span class="math"><img src="math/math578.png" alt="[[MathCmd 578]]"/></span> does not change much when <span class="math"><img src="math/math574.png" alt="[[MathCmd 574]]"/></span> is changed, then we can conclude that the optimal objective value is insensitive to changes in <span class="math"><img src="math/math132.png" alt="[[MathCmd 132]]"/></span>. Therefore, we are interested in the rate of change in <span class="math"><img src="math/math578.png" alt="[[MathCmd 578]]"/></span> for small changes in <span class="math"><img src="math/math574.png" alt="[[MathCmd 574]]"/></span> &mdash; specificly the gradient </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math586.png" alt="\begin{math}\nonumber{}f'_{{l^{c}_{i}}}(0),\end{math}"/></td>
+<td>(12.4.4)</td></tr>
+</tbody>
+</table>
+
+<p>which is called the <i>shadow price</i><a name="idx-93186528">&#09;</a> related to <span class="math"><img src="math/math569.png" alt="[[MathCmd 569]]"/></span>. The shadow price specifies how the objective value changes for small changes in <span class="math"><img src="math/math574.png" alt="[[MathCmd 574]]"/></span> around zero. Moreover, we are interested in the <i>linearity interval</i> <a name="idx-93186672">&#09;</a> </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math589.png" alt="\begin{math}\nonumber{}\beta \in{}[\beta _{1},\beta _{2}]\end{math}"/></td>
+<td>(12.4.5)</td></tr>
+</tbody>
+</table>
+
+<p>for which </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math590.png" alt="\begin{math}\nonumber{}f'_{{l^{c}_{i}}}(\beta )=f'_{{l^{c}_{i}}}(0).\end{math}"/></td>
+<td>(12.4.6)</td></tr>
+</tbody>
+</table>
+
+<p>Since <span class="math"><img src="math/math591.png" alt="[[MathCmd 591]]"/></span> is not a smooth function <span class="math"><img src="math/math592.png" alt="[[MathCmd 592]]"/></span> may not be defined at <span class="math"><span class="mn">0</span></span>, as illustrated by the right example in figure <a href="node014.html#ch-sens-fig-piec-linear">12.1</a>. In this case we can define a left and a right shadow price and a left and a right linearity interval.</p>
+
+<p>The function <span class="math"><img src="math/math591.png" alt="[[MathCmd 591]]"/></span> considered only changes in <span class="math"><img src="math/math569.png" alt="[[MathCmd 569]]"/></span>. We can define similar functions for the remaining parameters of the <span class="math"><span class="mi">z</span></span> defined in <a href="node014.html#ch-sens-eq-p">(12.4.1)</a> as well: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math595.png" alt="\begin{math}\nonumber{}\begin{array}{rcll}\nonumber{}f_{{u^{c}_{i}}}(\beta ) & = & z(l^{c},u^{c}+\beta e_{i},l^{x},u^{x},c), & i=1,\ldots ,m,\\\nonumber{}f_{{l^{x}_{j}}}(\beta ) & = & z(l^{c},u^{c},l^{x}+\beta e_{j},u^{x},c), & j=1,\ldots ,n,\\\nonumber{}f_{{u^{x}_{j}}}(\beta ) & = & z(l^{c},u^{c},l^{x},u^{x}+\beta e_{j},c), & j=1,\ldots ,n,\\\nonumber{}f_{{c_{j}}}(\beta ) & = & z(l^{c},u^{c},l^{x},u^{x},c+\beta e_{j}), & j=1,\ldots ,n.\end{array}\end{math}"/></td>
+<td>(12.4.7)</td></tr>
+</tbody>
+</table>
+
+<p>Given these definitions it should be clear how linearity intervals and shadow prices are defined for the parameters <span class="math"><img src="math/math596.png" alt="[[MathCmd 596]]"/></span> etc.</p>
+
+<div>
+<h3><a name="236840144">12.4.1.1. Equality constraints</a></h3>
+
+<p> <a name="ch-sensitivity-intro-sub-equality-constraints">&#09;</a> In MOSEK a constraint can be specified as either an equality constraint or a ranged constraint. If constraint <span class="math"><span class="mi">i</span></span> is an equality constraint, we define the optimal value function for this as </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math597.png" alt="\begin{math}\nonumber{}f_{{e^{c}_{i}}}(\beta )=z(l^{c}+\beta e_{i},u^{c}+\beta e_{i},l^{x},u^{x},c)\end{math}"/></td>
+<td>(12.4.8)</td></tr>
+</tbody>
+</table>
+
+<p>Thus for an equality constraint the upper and the lower bounds (which are equal) are perturbed simultaneously. Therefore, MOSEK will handle sensitivity analysis differently for a ranged constraint with <span class="math"><img src="math/math598.png" alt="[[MathCmd 598]]"/></span> and for an equality constraint.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="236841368">12.4.2. The basis type sensitivity analysis</a></h2>
+
+<p> <a name="idx-93199464">&#09;</a></p>
+
+<p>The classical sensitivity analysis discussed in most textbooks about linear optimization, e.g. [<a href="node029.html#CHVATAL:83:A" class="citation">19</a>, Chapter 10], is based on an optimal basic solution or, equivalently, on an optimal basis. This method may produce misleading results [<a href="node029.html#ROOS:97:A" class="citation">14</a>, Chapter 19] but is <b>computationally cheap</b>. Therefore, and for historical reasons this method is available in MOSEK.</p>
+
+<p>We will now briefly discuss the basis type sensitivity analysis. Given an optimal basic solution which provides a partition of variables into basic and non-basic variables, the basis type sensitivity analysis computes the linearity interval <span class="math"><img src="math/math599.png" alt="[[MathCmd 599]]"/></span> so that the basis remains optimal for the perturbed problem. A shadow price associated with the linearity interval is also computed. However, it is well-known that an optimal basic solution may not be unique and therefore the result depends on the optimal basic solution employed in the sensitivity analysis. This implies that the computed interval is only a subset of the largest interval for which the shadow price is constant. Furthermore, the optimal objective value function might have a breakpoint for <span class="math"><img src="math/math579.png" alt="[[MathCmd 579]]"/></span>. In this case the basis type sensitivity method will only provide a subset of either the left or the right linearity interval.</p>
+
+<p>In summary, the basis type sensitivity analysis is computationally cheap but does not provide complete information. Hence, the results of the basis type sensitivity analysis should be used with care.</p>
+
+</div>
+
+<div>
+<h2><a name="236842952">12.4.3. The optimal partition type sensitivity analysis</a></h2>
+
+<p> <a name="idx-93206576">&#09;</a> Another method for computing the complete linearity interval is called the <i>optimal partition type sensitivity analysis</i>. The main drawback of the optimal partition type sensitivity analysis is that it is computationally expensive compared to the basis type analysts. This type of sensitivity analysis is currently provided as an experimental feature in MOSEK.</p>
+
+<p>Given the optimal primal and dual solutions to (<a href="node014.html#ch-sens-eq-p">12.4.1</a>), i.e. <span class="math"><img src="math/math405.png" alt="[[MathCmd 405]]"/></span> and <span class="math"><img src="math/math602.png" alt="[[MathCmd 602]]"/></span> the optimal objective value is given by </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math603.png" alt="\begin{math}\nonumber{}z^{*}:=c^{T}x^{*}.\end{math}"/></td>
+<td>(12.4.9)</td></tr>
+</tbody>
+</table>
+
+<p>The left and right shadow prices <span class="math"><img src="math/math604.png" alt="[[MathCmd 604]]"/></span> and <span class="math"><img src="math/math605.png" alt="[[MathCmd 605]]"/></span> for <span class="math"><img src="math/math132.png" alt="[[MathCmd 132]]"/></span> are given by this pair of optimization problems: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math607.png" alt="\begin{math}\nonumber{}\begin{array}{rclccl}\nonumber{}\sigma _{1} & = & \mbox{minimize} & e_{i}^{T}s_{l}^{c} &  & \\\nonumber{} &  & \mbox{subject to} & A^{T}(s_{l}^{c}-s_{u}^{c})+s_{l}^{x}-s_{u}^{x} & = & c,\\\nonumber{} &  &  & (l_{c})^{T}(s_{l}^{c})-(u_{c})^{T}(s_{u}^{c})+(l_{x})^{T}(s_{l}^{x})-(u_{x})^{T}(s_{u}^{x}) & = & z^{*},\\\nonumber{} &  &  & s_{l}^{c},s_{u}^{c},s_{l}^{c},s_{u}^{x}\geq{}0 &  &\end{array}\end{math}"/></td>
+<td>(12.4.10)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math608.png" alt="\begin{math}\nonumber{}\begin{array}{rclccl}\nonumber{}\sigma _{2} & = & \mbox{maximize} & e_{i}^{T}s_{l}^{c} &  & \\\nonumber{} &  & \mbox{subject to} & A^{T}(s_{l}^{c}-s_{u}^{c})+s_{l}^{x}-s_{u}^{x} & = & c,\\\nonumber{} &  &  & (l_{c})^{T}(s_{l}^{c})-(u_{c})^{T}(s_{u}^{c})+(l_{x})^{T}(s_{l}^{x})-(u_{x})^{T}(s_{u}^{x}) & = & z^{*},\\\nonumber{} &  &  & s_{l}^{c},s_{u}^{c},s_{l}^{c},s_{u}^{x}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td>(12.4.11)</td></tr>
+</tbody>
+</table>
+
+<p>These two optimization problems make it easy to interpret the shadow price. Indeed, if <span class="math"><img src="math/math602.png" alt="[[MathCmd 602]]"/></span> is an arbitrary optimal solution then </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math610.png" alt="\begin{math}\nonumber{}(s_{l}^{c})_{i}^{*}\in{}[\sigma _{1},\sigma _{2}].\end{math}"/></td>
+<td>(12.4.12)</td></tr>
+</tbody>
+</table>
+
+<p>Next, the linearity interval <span class="math"><img src="math/math599.png" alt="[[MathCmd 599]]"/></span> for <span class="math"><img src="math/math132.png" alt="[[MathCmd 132]]"/></span> is computed by solving the two optimization problems </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math613.png" alt="\begin{math}\nonumber{}\begin{array}{lclccccl}\nonumber{}\beta _{1} & = & \mbox{minimize} &  &  & \beta  &  & \\\nonumber{} &  & \mbox{subject to} & l^{c}+\beta e_{i} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} &  &  &  &  & c^{T}x-\sigma _{1}\beta  & = & z^{*},\\\nonumber{} &  &  &  &  & l^{x}\leq{}x\leq{}u^{x}, &  &\end{array}\end{math}"/></td>
+<td>(12.4.13)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math614.png" alt="\begin{math}\nonumber{}\begin{array}{lclccccl}\nonumber{}\beta _{2} & = & \mbox{maximize} &  &  & \beta  &  & \\\nonumber{} &  & \mbox{subject to} & l^{c}+\beta e_{i} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} &  &  &  &  & c^{T}x-\sigma _{2}\beta  & = & z^{*},\\\nonumber{} &  &  &  &  & l^{x}\leq{}x\leq{}u^{x}. &  &\end{array}\end{math}"/></td>
+<td>(12.4.14)</td></tr>
+</tbody>
+</table>
+
+<p>The linearity intervals and shadow prices for <span class="math"><img src="math/math615.png" alt="[[MathCmd 615]]"/></span> <span class="math"><img src="math/math616.png" alt="[[MathCmd 616]]"/></span> and <span class="math"><img src="math/math617.png" alt="[[MathCmd 617]]"/></span> are computed similarly to <span class="math"><img src="math/math132.png" alt="[[MathCmd 132]]"/></span>.</p>
+
+<p>The left and right shadow prices for <span class="math"><img src="math/math87.png" alt="[[MathCmd 87]]"/></span> denoted <span class="math"><img src="math/math604.png" alt="[[MathCmd 604]]"/></span> and <span class="math"><img src="math/math605.png" alt="[[MathCmd 605]]"/></span> respectively are computed as follows: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math622.png" alt="\begin{math}\nonumber{}\begin{array}{lclccccl}\nonumber{}\sigma _{1} & = & \mbox{minimize} &  &  & e_{j}^{T}x &  & \\\nonumber{} &  & \mbox{subject to} & l^{c}+\beta e_{i} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} &  &  &  &  & c^{T}x & = & z^{*},\\\nonumber{} &  &  &  &  & l^{x}\leq{}x\leq{} & u^{x} &\end{array}\end{math}"/></td>
+<td>(12.4.15)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math623.png" alt="\begin{math}\nonumber{}\begin{array}{lclccccl}\nonumber{}\sigma _{2} & = & \mbox{maximize} &  &  & e_{j}^{T}x &  & \\\nonumber{} &  & \mbox{subject to} & l^{c}+\beta e_{i} & \leq{} & Ax & \leq{} & u^{c},\\\nonumber{} &  &  &  &  & c^{T}x & = & z^{*},\\\nonumber{} &  &  &  &  & l^{x}\leq{}x\leq{} & u^{x}. &\end{array}\end{math}"/></td>
+<td>(12.4.16)</td></tr>
+</tbody>
+</table>
+
+<p>Once again the above two optimization problems make it easy to interpret the shadow prices. Indeed, if <span class="math"><img src="math/math405.png" alt="[[MathCmd 405]]"/></span> is an arbitrary primal optimal solution, then </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math625.png" alt="\begin{math}\nonumber{}x_{j}^{*}\in{}[\sigma _{1},\sigma _{2}].\end{math}"/></td>
+<td>(12.4.17)</td></tr>
+</tbody>
+</table>
+
+<p>The linearity interval <span class="math"><img src="math/math599.png" alt="[[MathCmd 599]]"/></span> for a <span class="math"><img src="math/math87.png" alt="[[MathCmd 87]]"/></span> is computed as follows: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math628.png" alt="\begin{math}\nonumber{}\begin{array}{rclccl}\nonumber{}\beta _{1} & = & \mbox{minimize} & \beta  &  & \\\nonumber{} &  & \mbox{subject to} & A^{T}(s_{l}^{c}-s_{u}^{c})+s_{l}^{x}-s_{u}^{x} & = & c+\beta e_{j},\\\nonumber{} &  &  & (l_{c})^{T}(s_{l}^{c})-(u_{c})^{T}(s_{u}^{c})+(l_{x})^{T}(s_{l}^{x})-(u_{x})^{T}(s_{u}^{x})-\sigma _{1}\beta  & \leq{} & z^{*},\\\nonumber{} &  &  & s_{l}^{c},s_{u}^{c},s_{l}^{c},s_{u}^{x}\geq{}0 &  &\end{array}\end{math}"/></td>
+<td>(12.4.18)</td></tr>
+</tbody>
+</table>
+
+<p>and </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math629.png" alt="\begin{math}\nonumber{}\begin{array}{rclccl}\nonumber{}\beta _{2} & = & \mbox{maximize} & \beta  &  & \\\nonumber{} &  & \mbox{subject to} & A^{T}(s_{l}^{c}-s_{u}^{c})+s_{l}^{x}-s_{u}^{x} & = & c+\beta e_{j},\\\nonumber{} &  &  & (l_{c})^{T}(s_{l}^{c})-(u_{c})^{T}(s_{u}^{c})+(l_{x})^{T}(s_{l}^{x})-(u_{x})^{T}(s_{u}^{x})-\sigma _{2}\beta  & \leq{} & z^{*},\\\nonumber{} &  &  & s_{l}^{c},s_{u}^{c},s_{l}^{c},s_{u}^{x}\geq{}0. &  &\end{array}\end{math}"/></td>
+<td>(12.4.19)</td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h2><a name="236957280">12.4.4. Example: Sensitivity analysis</a></h2>
+
+<p> As an example we will use the following transportation problem. Consider the problem of minimizing the transportation cost between a number of production plants and stores. Each plant supplies a number of goods and each store has a given demand that must be met. Supply, demand and cost of transportation per unit are shown in Figure <a href="node014.html#ch-sens-fig-trans-sens">12.2</a>.</p>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td><center>
+<p> <img src="graphics/transportp2.png"/></p>
+</center><span class="caption">Figure&nbsp;12.2: Supply, demand and cost of transportation.</span>
+<br/>
+<p> <a name="ch-sens-fig-trans-sens">&#09;</a> </p>
+</td></tr></table>
+
+</div>
+
+<p> If we denote the number of transported goods from location <span class="math"><span class="mi">i</span></span> to location <span class="math"><span class="mi">j</span></span> by <span class="math"><img src="math/math500.png" alt="[[MathCmd 500]]"/></span>, the problem can be formulated as the linear optimization problem</p>
+
+<p>minimize </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math631.png" alt="\begin{math}\nonumber{}\begin{array}{ccccccccccccccl}\nonumber{}1x_{{11}} & + & 2x_{{12}} & + & 5x_{{23}} & + & 2x_{{24}} & + & 1x_{{31}} & + & 2x_{{33}} & + & 1x_{{34}}\end{array}\end{math}"/></td>
+<td>(12.4.20)</td></tr>
+</tbody>
+</table>
+
+<p>subject to </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math632.png" alt="\begin{math}\nonumber{}\begin{array}{ccccccccccccccl}\nonumber{}x_{{11}} & + & x_{{12}} &  &  &  &  &  &  &  &  &  &  & \leq{} & 400,\\\nonumber{} &  &  &  & x_{{23}} & + & x_{{24}} &  &  &  &  &  &  & \leq{} & 1200,\\\nonumber{} &  &  &  &  &  &  &  & x_{{31}} & + & x_{{33}} & + & x_{{34}} & \leq{} & 1000,\\\nonumber{}x_{{11}} &  &  &  &  &  &  & + & x_{{31}} &  &  &  &  & = & 800,\\\nonumber{} &  & x_{{12}} &  &  &  &  &  &  &  &  &  &  & = & 100,\\\nonumber{} &  &  &  & x_{{23}} & + &  &  &  &  & x_{{33}} &  &  & = & 500,\\\nonumber{} &  &  &  &  &  & x_{{24}} & + &  &  &  &  & x_{{34}} & = & 500,\\\nonumber{}x_{{11}}, &  & x_{{12}}, &  & x_{{23}}, &  & x_{{24}}, &  & x_{{31}}, &  & x_{{33}}, &  & x_{{34}} & \geq{} & 0.\end{array}\end{math}"/></td>
+<td><a name="eq-sensitivityanalysis-transport">&#09;</a>(12.4.21)</td></tr>
+</tbody>
+</table>
+
+<p>The basis type and the optimal partition type sensitivity results for the transportation problem are shown in Table <a href="node014.html#ch-sens-tab-res1">12.1</a> and <a href="node014.html#ch-sens-tab-res2">12.2</a> respectively.</p>
+
+<p><small class="small">
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="0"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td align="center" valign="top"> 
+<table border="0">
+<tbody><tr>
+<td>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/></colgroup><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td colspan="5" align="center" valign="top"> <b>Basis type </b> </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> Con. </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><img src="math/math633.png" alt="[[MathCmd 633]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math634.png" alt="[[MathCmd 634]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math604.png" alt="[[MathCmd 604]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><img src="math/math605.png" alt="[[MathCmd 605]]"/></span> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mn">1</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mn">-300.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">3.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><span class="mn">3.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">2</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-700.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mo">+</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">3</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">3.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">3.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">4</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-0.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">4.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">4.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">5</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-0.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">300.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">5.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">5.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">6</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-0.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">700.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">5.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">5.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">7</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">700.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">2.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">2.00</span></span></td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> Var. </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><img src="math/math633.png" alt="[[MathCmd 633]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math634.png" alt="[[MathCmd 634]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math604.png" alt="[[MathCmd 604]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><img src="math/math605.png" alt="[[MathCmd 605]]"/></span> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><img src="math/math641.png" alt="[[MathCmd 641]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">300.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math642.png" alt="[[MathCmd 642]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">100.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math643.png" alt="[[MathCmd 643]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math644.png" alt="[[MathCmd 644]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math645.png" alt="[[MathCmd 645]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math646.png" alt="[[MathCmd 646]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"><span class="math"><img src="math/math647.png" alt="[[MathCmd 647]]"/></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mn">-0.000000</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mn">2.00</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-right:1px solid black;"> <span class="math"><span class="mn">2.00</span></span></td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</td></tr>
+</tbody>
+</table>
+ </td>
+<td align="center" valign="top"> 
+<table border="0">
+<tbody><tr>
+<td>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/></colgroup><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td colspan="5" align="center" valign="top"> <b>Optimal partition type </b> </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> Con. </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><img src="math/math633.png" alt="[[MathCmd 633]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math634.png" alt="[[MathCmd 634]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math604.png" alt="[[MathCmd 604]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><img src="math/math605.png" alt="[[MathCmd 605]]"/></span> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mn">1</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mn">-300.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">3.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><span class="mn">1.00</span></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">2</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-700.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mo">+</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">-0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">-0.00</span></span> </td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">3</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">3.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">1.00</span></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">4</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">2.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">4.00</span></span> </td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">5</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-100.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">300.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">3.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">5.00</span></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">6</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">700.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">3.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">5.00</span></span> </td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><span class="mn">7</span></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">700.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">2.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">2.00</span></span> </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> Var. </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><img src="math/math633.png" alt="[[MathCmd 633]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math634.png" alt="[[MathCmd 634]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math604.png" alt="[[MathCmd 604]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><img src="math/math605.png" alt="[[MathCmd 605]]"/></span> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><img src="math/math641.png" alt="[[MathCmd 641]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">300.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math642.png" alt="[[MathCmd 642]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">100.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span> </td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math643.png" alt="[[MathCmd 643]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">2.00</span></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math644.png" alt="[[MathCmd 644]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span> </td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math645.png" alt="[[MathCmd 645]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math646.png" alt="[[MathCmd 646]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span> </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"><span class="math"><img src="math/math647.png" alt="[[MathCmd 647]]"/></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-right:1px solid black;"> <span class="math"><span class="mn">2.00</span></span> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</td></tr>
+</tbody>
+</table>
+</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center><span class="caption">Table&nbsp;12.1:  Ranges and shadow prices related to bounds on constraints and variables. Left: Results for the basis type sensitivity analysis. Right: Results for the optimal partition type sensitivity analysis.</span>
+<br/>
+<p> <a name="ch-sens-tab-res1">&#09;</a> </p>
+</td></tr></table>
+</td></tr></table>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="0"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td align="center" valign="top"> 
+<table border="0">
+<tbody><tr>
+<td>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/></colgroup><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td colspan="5" align="center" valign="top"> <b>Basis type </b> </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> Var. </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><img src="math/math633.png" alt="[[MathCmd 633]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math634.png" alt="[[MathCmd 634]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math604.png" alt="[[MathCmd 604]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><img src="math/math605.png" alt="[[MathCmd 605]]"/></span> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><img src="math/math667.png" alt="[[MathCmd 667]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">3.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">300.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><span class="mn">300.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math668.png" alt="[[MathCmd 668]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math">&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">100.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">100.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math669.png" alt="[[MathCmd 669]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-2.00</span></span> </td>
+<td align="center" valign="top"> <span class="math">&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math670.png" alt="[[MathCmd 670]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">2.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">500.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math671.png" alt="[[MathCmd 671]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-3.00</span></span> </td>
+<td align="center" valign="top"> <span class="math">&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">500.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math672.png" alt="[[MathCmd 672]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">2.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">500.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"><span class="math"><img src="math/math673.png" alt="[[MathCmd 673]]"/></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mn">-2.00</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math">&infin;</span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span></td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</td></tr>
+</tbody>
+</table>
+ </td>
+<td align="center" valign="top"> 
+<table border="0">
+<tbody><tr>
+<td>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/></colgroup><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td colspan="5" align="center" valign="top"> <b>Optimal partition type </b> </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> Var. </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><img src="math/math633.png" alt="[[MathCmd 633]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math634.png" alt="[[MathCmd 634]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math604.png" alt="[[MathCmd 604]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><img src="math/math605.png" alt="[[MathCmd 605]]"/></span> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><img src="math/math667.png" alt="[[MathCmd 667]]"/></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">3.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mn">300.00</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black;"> <span class="math"><span class="mn">300.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math668.png" alt="[[MathCmd 668]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math">&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">100.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">100.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math669.png" alt="[[MathCmd 669]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-2.00</span></span> </td>
+<td align="center" valign="top"> <span class="math">&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math670.png" alt="[[MathCmd 670]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">2.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">500.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math671.png" alt="[[MathCmd 671]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mn">-3.00</span></span> </td>
+<td align="center" valign="top"> <span class="math">&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">500.00</span></span></td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;"><span class="math"><img src="math/math672.png" alt="[[MathCmd 672]]"/></span> </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">2.00</span></span> </td>
+<td align="center" valign="top"> <span class="math"><span class="mn">500.00</span></span> </td>
+<td align="center" valign="top" style="border-right:1px solid black;"> <span class="math"><span class="mn">500.00</span></span></td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"><span class="math"><img src="math/math673.png" alt="[[MathCmd 673]]"/></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"> <span class="math"><span class="mn">-2.00</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math">&infin;</span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mn">0.00</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-right:1px solid black;"> <span class="math"><span class="mn">0.00</span></span></td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</td></tr>
+</tbody>
+</table>
+</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center><span class="caption">Table&nbsp;12.2: Ranges and shadow prices related to the objective coefficients. Left: Results for the basis type sensitivity analysis. Right: Results for the optimal partition type sensitivity analysis.</span>
+<br/>
+<p> <a name="ch-sens-tab-res2">&#09;</a> </p>
+</td></tr></table>
+</td></tr></table>
+</small> Examining the results from the optimal partition type sensitivity analysis we see that for constraint number <span class="math"><span class="mn">1</span></span> we have <span class="math"><img src="math/math685.png" alt="[[MathCmd 685]]"/></span> and <span class="math"><img src="math/math686.png" alt="[[MathCmd 686]]"/></span>. Therefore, we have a left linearity interval of <span class="math"><span class="mo">[</span><span class="mn">-300</span><span class="mo">,</span><span class="mn">0</span><span class="mo">]</span></span> and a right interval of <span class="math"><span class="mo">[</span><span class="mn">0</span><span class="mo">,</span><span class="mn">500</span><span class="mo">]</span></span>. The corresponding left and right shadow prices are <span class="math"><span class="mn">3</span></span> and <span class="math"><span class="mn">1</span></span> respectively. This implies that if the upper bound on constraint <span class="math"><span class="mn">1</span></span> increases by </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math687.png" alt="\begin{math}\nonumber{}\beta \in{}[0,\beta _{1}]=[0,500]\end{math}"/></td>
+<td>(12.4.22)</td></tr>
+</tbody>
+</table>
+
+<p>then the optimal objective value will decrease by the value </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math688.png" alt="\begin{math}\nonumber{}\sigma _{2}\beta =1\beta .\end{math}"/></td>
+<td>(12.4.23)</td></tr>
+</tbody>
+</table>
+
+<p>Correspondingly, if the upper bound on constraint <span class="math"><span class="mn">1</span></span> is decreased by </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math689.png" alt="\begin{math}\nonumber{}\beta \in{}[0,300]\end{math}"/></td>
+<td>(12.4.24)</td></tr>
+</tbody>
+</table>
+
+<p>then the optimal objective value will increase by the value </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math690.png" alt="\begin{math}\nonumber{}\sigma _{1}\beta =3\beta .\end{math}"/></td>
+<td>(12.4.25)</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="238773528">12.5. Sensitivity analysis from the MOSEK API</a></h1>
+
+<p> <a name="chap-sensitivity-sec-apiex">&#09;</a></p>
+
+<p>MOSEK provides the functions <a href="node017.html#common-func*mosek*task*primalsensitivity"><tt class="tt">mosek.Task.primalsensitivity</tt></a> and <a href="node017.html#common-func*mosek*task*dualsensitivity"><tt class="tt">mosek.Task.dualsensitivity</tt></a> for performing sensitivity analysis. The code below gives an example of its use.</p>
+
+<p>Example code from:</p>
+
+<pre class="verbatim">mosek/6/tools/examp/sensitivity.cs
+</pre>
+
+<div class="verbatimcode"><span class="comment">/*
+  Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+  File:      sensitivity.cs
+
+  Purpose:   To demonstrate how to perform sensitivity
+  analysis from the API on a small problem:
+
+  minimize
+
+  obj: +1 x11 + 2 x12 + 5 x23 + 2 x24 + 1 x31 + 2 x33 + 1 x34
+  st
+  c1:   +  x11 +   x12                                           &lt;= 400
+  c2:                  +   x23 +   x24                           &lt;= 1200
+  c3:                                  +   x31 +   x33 +   x34   &lt;= 1000
+  c4:   +  x11                         +   x31                   = 800
+  c5:          +   x12                                           = 100
+  c6:                  +   x23                 +   x33           = 500
+  c7:                          +   x24                 +   x34   = 500
+
+  The example uses basis type sensitivity analysis.
+*/</span> 
+
+<span class="keyword">using</span> System;
+
+class msgclass : mosek.Stream 
+{
+  <span class="type">string</span> prefix;
+  <span class="keyword">public</span> msgclass (<span class="type">string</span> prfx) 
+    {
+      prefix = prfx;
+    }
+  
+  <span class="keyword">public</span> override <span class="type">void</span> streamCB (<span class="type">string</span> msg)
+    {
+      Console.Write ("<span class="string">{0}{1}</span>", prefix,msg);
+    }
+}
+
+
+<span class="keyword">public</span> class sensitivity
+{
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> Main ()
+    {
+      mosek.Env
+        env = <span class="keyword">null</span>;
+      mosek.Task
+        task = <span class="keyword">null</span>;
+      <span class="keyword">const</span> <span class="type">double</span>
+        infinity = 0;            
+    
+      mosek.boundkey<span class="brackets">[]</span> bkc = <span class="keyword">new</span> mosek.boundkey<span class="brackets">[]</span>{
+      mosek.boundkey.up,mosek.boundkey.up,
+      mosek.boundkey.up,mosek.boundkey.fx,
+      mosek.boundkey.fx,mosek.boundkey.fx,
+      mosek.boundkey.fx
+      };
+
+      mosek.boundkey<span class="brackets">[]</span> bkx = <span class="keyword">new</span> mosek.boundkey<span class="brackets">[]</span>{
+      mosek.boundkey.lo,mosek.boundkey.lo,
+      mosek.boundkey.lo,mosek.boundkey.lo,
+      mosek.boundkey.lo,mosek.boundkey.lo,
+      mosek.boundkey.lo};
+
+      <span class="type">int</span><span class="brackets">[]</span> ptrb= <span class="keyword">new</span> <span class="type">int</span><span class="brackets">[]</span>{0,2,4,6,8,10,12};
+      <span class="type">int</span><span class="brackets">[]</span> ptre= <span class="keyword">new</span> <span class="type">int</span><span class="brackets">[]</span>{2,4,6,8,10,12,14};
+      <span class="type">int</span><span class="brackets">[]</span> sub = <span class="keyword">new</span> <span class="type">int</span><span class="brackets">[]</span>{0,3,0,4,1,5,1,6,2,3,2,5,2,6};
+      <span class="type">double</span><span class="brackets">[]</span> blc = <span class="keyword">new</span> <span class="type">double</span><span class="brackets">[]</span>{
+      -infinity,-infinity,
+      -infinity,800,100,500,500};
+
+      <span class="type">double</span><span class="brackets">[]</span> buc = <span class="keyword">new</span> <span class="type">double</span><span class="brackets">[]</span>{400,1200,1000,800,100,500,500};
+      <span class="type">double</span><span class="brackets">[]</span> c   = <span class="keyword">new</span> <span class="type">double</span><span class="brackets">[]</span>{1.0,2.0,5.0,2.0,1.0,2.0,1.0};
+      <span class="type">double</span><span class="brackets">[]</span> blx = <span class="keyword">new</span> <span class="type">double</span><span class="brackets">[]</span>{0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+      <span class="type">double</span><span class="brackets">[]</span> bux = <span class="keyword">new</span> <span class="type">double</span><span class="brackets">[]</span>{infinity,
+                                  infinity,
+                                  infinity,
+                                  infinity,
+                                  infinity,
+                                  infinity,
+                                  infinity};
+
+      <span class="type">double</span><span class="brackets">[]</span> val = <span class="keyword">new</span> <span class="type">double</span><span class="brackets">[]</span>{1.0,1.0,1.0,1.0,1.0,1.0,1.0,
+                                  1.0,1.0,1.0,1.0,1.0,1.0,1.0};
+
+      <span class="type">int</span> NUMCON = 7;  <span class="comment">/* Number of constraints.             */</span>
+      <span class="type">int</span> NUMVAR = 7;  <span class="comment">/* Number of variables.               */</span>
+      <span class="type">int</span> NUMANZ = 14; <span class="comment">/* Number of non-zeros in A.           */</span>
+      <span class="keyword">try</span>
+        {
+          <span class="comment">// Create mosek environment. </span>
+          env  = <span class="keyword">new</span> mosek.Env ();
+          <span class="comment">// Direct the env log stream to the user specified</span>
+          <span class="comment">// method env_msg_obj.streamCB </span>
+          env.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">[env]</span>"));
+          <span class="comment">// Initialize the environment.</span>
+          env.init ();
+          
+          <span class="comment">// Create a task object linked with the environment env.</span>
+          task = <span class="keyword">new</span> mosek.Task (env, NUMCON,NUMVAR);
+          <span class="comment">// Directs the log task stream to the user specified</span>
+          <span class="comment">// method task_msg_obj.streamCB</span>
+          task.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">[task]</span>"));
+      
+          task.inputdata(NUMCON,NUMVAR,
+                         c,
+                         0.0,
+                         ptrb,
+                         ptre,
+                         sub,
+                         val,
+                         bkc,
+                         blc,
+                         buc,
+                         bkx,
+                         blx,
+                         bux);
+            
+          <span class="comment">/* A maximization problem */</span> 
+          task.putobjsense(mosek.objsense.minimize);
+
+          <span class="keyword">try</span>
+            {
+              task.optimize();
+            }
+          <span class="keyword">catch</span> (mosek.Warning w)
+            {
+              Console.WriteLine("<span class="string">Mosek warning:</span>");
+              Console.WriteLine (w.Code);
+              Console.WriteLine (w);
+            }
+            
+
+          <span class="comment">/* Analyze upper bound on c1 and the equality constraint on c4 */</span> 
+          <span class="type">int</span><span class="brackets">[]</span> subi  = <span class="keyword">new</span> <span class="type">int</span> <span class="brackets">[]</span>{0,3};         
+          mosek.mark<span class="brackets">[]</span> marki = <span class="keyword">new</span> mosek.mark<span class="brackets">[]</span>{mosek.mark.up,
+                                                        mosek.mark.up};
+
+          <span class="comment">/* Analyze lower bound on the variables x12 and x31 */</span> 
+          <span class="type">int</span><span class="brackets">[]</span> subj  = <span class="keyword">new</span> <span class="type">int</span> <span class="brackets">[]</span>{1,4};
+          mosek.mark<span class="brackets">[]</span> markj = <span class="keyword">new</span> mosek.mark<span class="brackets">[]</span> {mosek.mark.lo,
+                                                         mosek.mark.lo};
+       
+          <span class="type">double</span><span class="brackets">[]</span> leftpricei  = <span class="keyword">new</span>  <span class="type">double</span>[2];
+          <span class="type">double</span><span class="brackets">[]</span> rightpricei = <span class="keyword">new</span>  <span class="type">double</span>[2];  
+          <span class="type">double</span><span class="brackets">[]</span> leftrangei  = <span class="keyword">new</span>  <span class="type">double</span>[2];
+          <span class="type">double</span><span class="brackets">[]</span> rightrangei = <span class="keyword">new</span>  <span class="type">double</span>[2];
+          <span class="type">double</span><span class="brackets">[]</span> leftpricej  = <span class="keyword">new</span>  <span class="type">double</span>[2];
+          <span class="type">double</span><span class="brackets">[]</span> rightpricej = <span class="keyword">new</span>  <span class="type">double</span>[2];
+          <span class="type">double</span><span class="brackets">[]</span> leftrangej  = <span class="keyword">new</span>  <span class="type">double</span>[2];
+          <span class="type">double</span><span class="brackets">[]</span> rightrangej = <span class="keyword">new</span>  <span class="type">double</span>[2];
+
+        
+          task.primalsensitivity( subi, 
+                                  marki,  
+                                  subj,
+                                  markj, 
+                                  leftpricei,   
+                                  rightpricei,
+                                  leftrangei, 
+                                  rightrangei,
+                                  leftpricej,   
+                                  rightpricej,
+                                  leftrangej, 
+                                  rightrangej);
+
+          Console.Write("<span class="string">Results from sensitivity analysis on bounds:\n</span>");
+
+          Console.Write("<span class="string">For constraints:\n</span>");
+          <span class="keyword">for</span> (<span class="type">int</span> i=0;i&lt;2;++i)
+            Console.Write(
+            "<span class="string">leftprice = {0}, rightprice = {1},leftrange = {2}, rightrange ={3}\n</span>",
+             leftpricei[i], rightpricei[i], leftrangei[i], rightrangei[i]);
+                
+          Console.Write("<span class="string">For variables:\n</span>");
+          <span class="keyword">for</span> (<span class="type">int</span> i=0;i&lt;2;++i)
+            Console.Write(
+            "<span class="string">leftprice = {0}, rightprice = {1},leftrange = {2}, rightrange ={3}\n</span>",
+             leftpricej[i], rightpricej[i], leftrangej[i], rightrangej[i]);   
+                    
+
+          <span class="type">double</span><span class="brackets">[]</span> leftprice  = <span class="keyword">new</span>  <span class="type">double</span>[2];
+          <span class="type">double</span><span class="brackets">[]</span> rightprice = <span class="keyword">new</span>  <span class="type">double</span>[2];
+          <span class="type">double</span><span class="brackets">[]</span> leftrange  = <span class="keyword">new</span>  <span class="type">double</span>[2];
+          <span class="type">double</span><span class="brackets">[]</span> rightrange = <span class="keyword">new</span>  <span class="type">double</span>[2];
+          <span class="type">int</span><span class="brackets">[]</span> subc = <span class="keyword">new</span> <span class="type">int</span><span class="brackets">[]</span>{2,5};
+       
+          task.dualsensitivity(  subc,
+                                 leftprice,
+                                 rightprice,
+                                 leftrange,
+                                 rightrange
+                                 );
+
+          Console.Write("<span class="string">Results from sensitivity analysis on objective coefficients:</span>");
+    
+          <span class="keyword">for</span> (<span class="type">int</span> i=0;i&lt;2;++i)
+            Console.Write(
+            "<span class="string">leftprice = {0}, rightprice = {1},leftrange = {2}, rightrange = {3}\n</span>",
+            leftprice[i], rightprice[i], leftrange[i], rightrange[i]);               
+             
+        }
+      <span class="keyword">catch</span> (mosek.Exception e)
+        {
+          Console.WriteLine (e.Code);
+          Console.WriteLine (e);
+        }
+      
+      <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.Dispose ();
+      <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.Dispose ();
+    }
+}
+</div>
+
+</div>
+
+<div>
+<h1><a name="238774824">12.6. Sensitivity analysis with the command line tool</a></h1>
+
+<p>A sensitivity analysis can be performed with the MOSEK command line tool using the command </p>
+
+<pre class="verbatim">mosek myproblem.mps -sen sensitivity.ssp
+</pre>
+
+<p>where <tt class="tt">sensitivity.ssp</tt> is a file in the format described in the next section. The <tt class="tt">ssp</tt> file describes which parts of the problem the sensitivity analysis should be performed on.</p>
+
+<p>By default results are written to a file named <tt class="tt">myproblem.sen</tt>. If necessary, this filename can be changed by setting the 
+<br/><a href="node018.html#common-const*mosek*sparam*sensitivity-res-file-name"><tt class="tt">MSK_SPAR_SENSITIVITY_RES_FILE_NAME</tt></a> 
+<br/>parameter By default a basis type sensitivity analysis is performed. However, the type of sensitivity analysis (basis or optimal partition) can be changed by setting the parameter 
+<br/><a href="node018.html#common-const*mosek*iparam*sensitivity-type"><tt class="tt">MSK_IPAR_SENSITIVITY_TYPE</tt></a> 
+<br/>appropriately. Following values are accepted for this parameter: </p>
+
+<ul class="itemize">
+<li><a href="node020.html#common-const*mosek*sensitivitytype*basis"><tt class="tt">MSK_SENSITIVITY_TYPE_BASIS</tt></a> </li>
+<li><a href="node020.html#common-const*mosek*sensitivitytype*optimal-partition"><tt class="tt">MSK_SENSITIVITY_TYPE_OPTIMAL_PARTITION</tt></a> </li>
+</ul>
+
+<p> It is also possible to use the command line </p>
+
+<pre class="verbatim">mosek myproblem.mps -d MSK_IPAR_SENSITIVITY_ALL MSK_ON
+</pre>
+
+<p>in which case a sensitivity analysis on all the parameters is performed.</p>
+
+<div>
+<h2><a name="238777048">12.6.1. Sensitivity analysis specification file</a></h2>
+
+<p>MOSEK employs an MPS like file format to specify on which model parameters the sensitivity analysis should be performed. As the optimal partition type sensitivity analysis can be computationally expensive it is important to limit the sensitivity analysis.</p>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td>
+<pre class="verbatim">* A comment
+BOUNDS CONSTRAINTS
+ U|L|LU [cname1]
+ U|L|LU [cname2]-[cname3]
+BOUNDS VARIABLES
+ U|L|LU [vname1]
+ U|L|LU [vname2]-[vname3]
+OBJECTIVE VARIABLES
+ [vname1]
+ [vname2]-[vname3]
+</pre>
+<span class="caption">Figure&nbsp;12.3: The sensitivity analysis file format.</span>
+<br/>
+<p><a name="ch-sens-fig-ssp">&#09;</a> </p>
+</td></tr></table>
+
+</div>
+
+<p>The format of the sensitivity specification file is shown in figure <a href="node014.html#ch-sens-fig-ssp">12.3</a>, where capitalized names are keywords, and names in brackets are names of the constraints and variables to be included in the analysis.</p>
+
+<p>The sensitivity specification file has three sections, i.e. </p>
+
+<ul class="itemize">
+<li><tt class="tt">BOUNDS CONSTRAINTS</tt>: Specifies on which bounds on constraints the sensitivity analysis should be performed. </li>
+<li><tt class="tt">BOUNDS VARIABLES</tt>: Specifies on which bounds on variables the sensitivity analysis should be performed. </li>
+<li><tt class="tt">OBJECTIVE VARIABLES</tt>: Specifies on which objective coefficients the sensitivity analysis should be performed. </li>
+</ul>
+
+<p>A line in the body of a section must begin with a whitespace. In the <tt class="tt">BOUNDS</tt> sections one of the keys <tt class="tt">L</tt>, <tt class="tt">U</tt>, and <tt class="tt">LU</tt> must appear next. These keys specify whether the sensitivity analysis is performed on the lower bound, on the upper bound, or on both the lower and the upper bound respectively. Next, a single constraint (variable) or range of constraints (variables) is specified.</p>
+
+<p>Recall from Section <a title="12.4.1.1. Equality constraints" href="node014.html#ch-sensitivity-intro-sub-equality-constraints">12.4.1.1</a> that equality constraints are handled in a special way. Sensitivity analysis of an equality constraint can be specified with either <tt class="tt">L</tt>, <tt class="tt">U</tt>, or <tt class="tt">LU</tt>, all indicating the same, namely that upper and lower bounds (which are equal) are perturbed simultaneously.</p>
+
+<p>As an example consider </p>
+
+<pre class="verbatim">BOUNDS CONSTRAINTS
+ L  "cons1"
+ U  "cons2"
+ LU "cons3"-"cons6"
+</pre>
+
+<p>which requests that sensitivity analysis is performed on the lower bound of the constraint named <tt class="tt">cons1</tt>, on the upper bound of the constraint named <tt class="tt">cons2</tt>, and on both lower and upper bound on the constraints named <tt class="tt">cons3</tt> to <tt class="tt">cons6</tt>.</p>
+
+<p>It is allowed to use indexes instead of names, for instance </p>
+
+<pre class="verbatim">BOUNDS CONSTRAINTS
+ L  "cons1"
+ U  2
+ LU 3 - 6
+</pre>
+
+<p> The character &#8220;*&#8221; indicates that the line contains a comment and is ignored.</p>
+
+</div>
+
+<div>
+<h2><a name="238779424">12.6.2. Example: Sensitivity analysis from command line</a></h2>
+
+<p>As an example consider the <tt class="tt">sensitivity.ssp</tt> file shown in Figure <a href="node014.html#ch-sens-fig-spp-examp">12.4</a>.</p>
+
+<div class="figurediv">
+<table class="figure" border="0"><tr>
+<td>
+<p> 
+<pre class="verbatim">* Comment 1
+
+BOUNDS CONSTRAINTS
+ U "c1"         * Analyze upper bound for constraint named c1
+ U 2            * Analyze upper bound for the second constraint
+ U 3-5          * Analyze upper bound for constraint number 3 to number 5
+
+BOUNDS VARIABLES
+ L 2-4          * This section specifies which bounds on variables should be analyzed
+ L "x11"
+OBJECTIVE VARIABLES
+ "x11"          * This section specifies which objective coefficients should be analyzed
+ 2
+</pre>
+</p>
+<span class="caption">Figure&nbsp;12.4: Example of the sensitivity file format.</span>
+<br/>
+<p> <a name="ch-sens-fig-spp-examp">&#09;</a> </p>
+</td></tr></table>
+
+</div>
+
+<p>The command </p>
+
+<pre class="verbatim">mosek transport.lp -sen sensitivity.ssp  -d MSK_IPAR_SENSITIVITY_TYPE MSK_SENSITIVITY_TYPE_BASIS
+</pre>
+
+<p>produces the <tt class="tt">transport.sen</tt> file shown below. 
+<pre class="verbatim">BOUNDS CONSTRAINTS
+INDEX    NAME             BOUND    LEFTRANGE        RIGHTRANGE       LEFTPRICE        RIGHTPRICE
+0        c1               UP       -6.574875e-18    5.000000e+02     1.000000e+00     1.000000e+00
+2        c3               UP       -6.574875e-18    5.000000e+02     1.000000e+00     1.000000e+00
+3        c4               FIX      -5.000000e+02    6.574875e-18     2.000000e+00     2.000000e+00
+4        c5               FIX      -1.000000e+02    6.574875e-18     3.000000e+00     3.000000e+00
+5        c6               FIX      -5.000000e+02    6.574875e-18     3.000000e+00     3.000000e+00
+
+BOUNDS VARIABLES
+INDEX    NAME             BOUND    LEFTRANGE        RIGHTRANGE       LEFTPRICE        RIGHTPRICE
+2        x23              LO       -6.574875e-18    5.000000e+02     2.000000e+00     2.000000e+00
+3        x24              LO       -inf             5.000000e+02     0.000000e+00     0.000000e+00
+4        x31              LO       -inf             5.000000e+02     0.000000e+00     0.000000e+00
+0        x11              LO       -inf             3.000000e+02     0.000000e+00     0.000000e+00
+
+OBJECTIVE VARIABLES
+INDEX    NAME                      LEFTRANGE        RIGHTRANGE       LEFTPRICE        RIGHTPRICE
+0        x11                       -inf             1.000000e+00     3.000000e+02     3.000000e+02
+2        x23                       -2.000000e+00    +inf             0.000000e+00     0.000000e+00
+</pre>
+ </p>
+
+</div>
+
+<div>
+<h2><a name="238788760">12.6.3. Controlling log output</a></h2>
+
+<p>Setting the parameter </p>
+
+<pre class="verbatim">MSK_IPAR_LOG_SENSITIVITY
+</pre>
+
+<p>to <span class="math"><span class="mn">1</span></span> or <span class="math"><span class="mn">0</span></span> (default) controls whether or not the results from sensitivity calculations are printed to the message stream.</p>
+
+<p>The parameter </p>
+
+<pre class="verbatim">MSK_IPAR_LOG_SENSITIVITY_OPT
+</pre>
+
+<p>controls the amount of debug information on internal calculations from the sensitivity analysis.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node013.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 11. Primal feasibility repair" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node015.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  13. Usage guidelines" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node013.html" target="_self">11. Primal feasibility repair</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node015.html" target="_self">13. Usage guidelines</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:46:06 2012</div>
+</body></html>

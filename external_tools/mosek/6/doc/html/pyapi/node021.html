@@ -1,0 +1,1167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>B. The MPS file format</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node020.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : A. Problem analyzer examples" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Python API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node022.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  C. The LP file format" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node020.html" target="_self">A. Problem analyzer examples</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node022.html" target="_self">C. The LP file format</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="251829640">B. The MPS file format</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node021.html#251828776" target="_self">B.1. The MPS file format</a>
+<ul class="toc-level-2">
+<li><a href="node021.html#251849472" target="_self">B.1.1. An example</a></li>
+<li><a href="node021.html#251849832" target="_self">B.1.2. <tt class="tt">NAME</tt></a></li>
+<li><a href="node021.html#251851408" target="_self">B.1.3. <tt class="tt">OBJSENSE</tt> (optional)</a></li>
+<li><a href="node021.html#251852488" target="_self">B.1.4. <tt class="tt">OBJNAME</tt> (optional)</a></li>
+<li><a href="node021.html#251853568" target="_self">B.1.5. <tt class="tt">ROWS</tt></a></li>
+<li><a href="node021.html#253527104" target="_self">B.1.6. <tt class="tt">COLUMNS</tt></a></li>
+<li><a href="node021.html#253552184" target="_self">B.1.7. <tt class="tt">RHS</tt> (optional)</a></li>
+<li><a href="node021.html#253590128" target="_self">B.1.8. <tt class="tt">RANGES</tt> (optional)</a></li>
+<li><a href="node021.html#253633024" target="_self">B.1.9. <tt class="tt">QSECTION</tt> (optional)</a></li>
+<li><a href="node021.html#253666656" target="_self">B.1.10. <tt class="tt">BOUNDS</tt> (optional)</a></li>
+<li><a href="node021.html#253721560" target="_self">B.1.11. <tt class="tt">CSECTION</tt> (optional)</a></li>
+<li><a href="node021.html#255422408" target="_self">B.1.12. <tt class="tt">ENDATA</tt></a></li>
+</ul>
+</li>
+<li><a href="node021.html#255425928" target="_self">B.2. Integer variables</a></li>
+<li><a href="node021.html#255432536" target="_self">B.3. General limitations</a></li>
+<li><a href="node021.html#255434192" target="_self">B.4. Interpretation of the MPS format</a></li>
+<li><a href="node021.html#255436128" target="_self">B.5. The free MPS format</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="idx-180658400">&#09;</a> <a name="app-sec-mpsformat">&#09;</a></p>
+
+<p>MOSEK supports the standard MPS format with some extensions. For a detailed description of the MPS format the book by Nazareth [<a href="node027.html#NAZARETH:87:A" class="citation">12</a>] is a good reference.</p>
+
+<div>
+<h1><a name="251828776">B.1. The MPS file format</a></h1>
+
+<p> <a name="idx-180662144">&#09;</a></p>
+
+<p>The version of the MPS format supported by MOSEK allows specification of an optimization problem on the form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math883.png" alt="\begin{math}\nonumber{}\begin{array}{rcccl}\nonumber{}l^{c} & \leq{} & Ax+q(x) & \leq{} & u^{c},\\\nonumber{}l^{x} & \leq{} & x & \leq{} & u^{x},\\\nonumber{} &  & x\in{}\mathcal{C}, &  & \\\nonumber{} &  & x_{\mathcal{J}}\mbox{ integer}, &  &\end{array}\end{math}"/></td>
+<td><a name="ch-mpsformat-sec-disc-eq-problem">&#09;</a>(B.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>where </p>
+
+<ul class="itemize">
+<li><span class="math"><img src="math/math144.png" alt="[[MathCmd 144]]"/></span> is the vector of decision variables. <a name="idx-180662784">&#09;</a> </li>
+<li><span class="math"><img src="math/math146.png" alt="[[MathCmd 146]]"/></span> is the constraint matrix. <a name="idx-180666168">&#09;</a> </li>
+<li><span class="math"><img src="math/math147.png" alt="[[MathCmd 147]]"/></span> is the lower limit on the activity for the constraints. <a name="idx-180667528">&#09;</a> </li>
+<li><span class="math"><img src="math/math148.png" alt="[[MathCmd 148]]"/></span> is the upper limit on the activity for the constraints. <a name="idx-180670616">&#09;</a> </li>
+<li><span class="math"><img src="math/math149.png" alt="[[MathCmd 149]]"/></span> is the lower limit on the activity for the variables. <a name="idx-180672056">&#09;</a> </li>
+<li><span class="math"><img src="math/math150.png" alt="[[MathCmd 150]]"/></span> is the upper limit on the activity for the variables. <a name="idx-180679240">&#09;</a> </li>
+<li>
+<p><span class="math"><img src="math/math890.png" alt="[[MathCmd 890]]"/></span> is a vector of quadratic functions. Hence,  </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math891.png" alt="\begin{displaymath}\nonumber{}q_{i}(x)=1/2x^{T}Q^{i}x\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>  where it is assumed that  </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math892.png" alt="\begin{math}\nonumber{}Q^{i}=(Q^{i})^{T}.\end{math}"/></td>
+<td>(B.1.2)</td></tr>
+</tbody>
+</table>
+
+<p>  Please note the explicit <span class="math"><span class="mn">1</span><span class="mo">/</span><span class="mn">2</span></span> in the quadratic term and that <span class="math"><img src="math/math893.png" alt="[[MathCmd 893]]"/></span> is required to be symmetric. </p>
+</li>
+<li><span class="math"><img src="math/math57.png" alt="[[MathCmd 57]]"/></span> is a convex cone. </li>
+<li><span class="math"><img src="math/math895.png" alt="[[MathCmd 895]]"/></span> is an index set of the integer-constrained variables. </li>
+</ul>
+
+<p> An MPS file with one row and one column can be illustrated like this: <small class="small">
+<pre class="verbatim">*        1         2         3         4         5         6
+*23456789012345678901234567890123456789012345678901234567890
+NAME          [name]
+OBJSENSE
+    [objsense]
+OBJNAME
+    [objname]
+ROWS
+ ?  [cname1]
+COLUMNS
+    [vname1]  [cname1]    [value1]     [vname3]  [value2]
+RHS
+    [name]    [cname1]    [value1]     [cname2]  [value2]
+RANGES
+    [name]    [cname1]    [value1]     [cname2]  [value2]
+QSECTION      [cname1]
+    [vname1]  [vname2]    [value1]     [vname3]  [value2]
+BOUNDS
+ ?? [name]    [vname1]    [value1]
+CSECTION      [kname1]    [value1]     [ktype]
+    [vname1]
+ENDATA
+</pre>
+</small>Here the names in capitals are keywords of the MPS format and names in brackets are custom defined names or values. A couple of notes on the structure: </p>
+
+<dl class="description">
+<dt>Fields:</dt>
+<dd>
+<p> All items surrounded by brackets appear in <em>fields</em>. The fields named &#8220;<tt class="tt">valueN</tt>&#8221; are numerical values. Hence, they must have the format </p>
+
+<pre class="verbatim">     [+|-]XXXXXXX.XXXXXX[[e|E][+|-]XXX]
+</pre>
+
+<p>  where </p>
+
+<pre class="verbatim">     X = [0|1|2|3|4|5|6|7|8|9].
+</pre>
+</dd>
+<dt>Sections:</dt>
+<dd>
+<p> The MPS file consists of several sections where the names in capitals indicate the beginning of a new section. For example, <tt class="tt">COLUMNS</tt> denotes the beginning of the columns section.</p>
+</dd>
+<dt>Comments:</dt>
+<dd>
+<p> Lines starting with an &#8220;*&#8221; are comment lines and are ignored by MOSEK.</p>
+</dd>
+<dt>Keys:</dt>
+<dd>
+<p> The question marks represent keys to be specified later.</p>
+</dd>
+<dt>Extensions:</dt>
+<dd>
+<p> The sections <tt class="tt">QSECTION</tt> and <tt class="tt">CSECTION</tt> are MOSEK specific extensions of the MPS format. </p>
+</dd>
+</dl>
+
+<p> The standard MPS format is a fixed format, i.e. everything in the MPS file must be within certain fixed positions. MOSEK also supports a <i>free format</i>. See Section <a title="B.5. The free MPS format" href="node021.html#ch-mpsformat-sec-freeformat">B.5</a> for details.</p>
+
+<div>
+<h2><a name="251849472">B.1.1. An example</a></h2>
+
+<p>A concrete example of a MPS file is presented below: </p>
+
+<pre class="verbatim">NAME          EXAMPLE
+OBJSENSE
+    MIN
+ROWS
+ N  obj
+ L  c1
+ L  c2
+ L  c3
+ L  c4
+COLUMNS
+    x1        obj       -10.0          c1        0.7
+    x1        c2        0.5            c3        1.0
+    x1        c4        0.1
+    x2        obj       -9.0           c1        1.0
+    x2        c2        0.8333333333   c3        0.66666667
+    x2        c4        0.25
+RHS
+    rhs       c1        630.0          c2        600.0
+    rhs       c3        708.0          c4        135.0
+ENDATA
+</pre>
+
+<p>Subsequently each individual section in the MPS format is discussed.</p>
+
+</div>
+
+<div>
+<h2><a name="251849832">B.1.2. <tt class="tt">NAME</tt></a></h2>
+
+<p> <a name="idx-180701880">&#09;</a></p>
+
+<p>In this section a name (<tt class="tt">[name]</tt>) is assigned to the problem.</p>
+
+</div>
+
+<div>
+<h2><a name="251851408">B.1.3. <tt class="tt">OBJSENSE</tt> (optional)</a></h2>
+
+<p> <a name="idx-180706336">&#09;</a></p>
+
+<p>This is an optional section that can be used to specify the sense of the objective function. The <tt class="tt">OBJSENSE</tt> section contains one line at most which can be one of the following </p>
+
+<pre class="verbatim">    MIN
+    MINIMIZE
+    MAX
+    MAXIMIZE
+</pre>
+
+<p>  It should be obvious what the implication is of each of these four lines.</p>
+
+</div>
+
+<div>
+<h2><a name="251852488">B.1.4. <tt class="tt">OBJNAME</tt> (optional)</a></h2>
+
+<p> <a name="idx-180701160">&#09;</a></p>
+
+<p>This is an optional section that can be used to specify the name of the row that is used as objective function. The <tt class="tt">OBJNAME</tt> section contains one line at most which has the form </p>
+
+<pre class="verbatim">    objname 
+</pre>
+
+<p>  <tt class="tt">objname</tt> should be a valid row name.</p>
+
+</div>
+
+<div>
+<h2><a name="251853568">B.1.5. <tt class="tt">ROWS</tt></a></h2>
+
+<p> <a name="idx-180715744">&#09;</a></p>
+
+<p>A record in the <tt class="tt">ROWS</tt> section has the form  </p>
+
+<pre class="verbatim">?  [cname1]
+    </pre>
+
+<p>  where the requirements for the fields are as follows: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Field </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Starting </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Maximum </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Re- </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Description </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td align="center" valign="top"> position </td>
+<td align="center" valign="top"> width </td>
+<td align="center" valign="top"> quired </td>
+<td align="center" valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> ? </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 2 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 1 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Yes </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Constraint key </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">[cname1]</tt> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 5 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 8 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> Yes </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> Constraint name </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>   Hence, in this section each constraint is assigned an unique name denoted by <tt class="tt">[cname1]</tt>. Please note that <tt class="tt">[cname1]</tt> starts in position 5 and the field can be at most 8 characters wide. An initial key (?) must be present to specify the type of the constraint. The key can have the values <tt class="tt">E</tt>, <tt class="tt">G</tt>, <tt class="tt">L</tt>, or <tt class="tt">N</tt> whith ther following interpretation:  </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Constraint </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math126.png" alt="[[MathCmd 126]]"/></span> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math127.png" alt="[[MathCmd 127]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top">type </td>
+<td align="right" valign="top"> </td>
+<td align="right" valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">E</tt> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> finite </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math126.png" alt="[[MathCmd 126]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">G</tt> </td>
+<td align="right" valign="top"> finite </td>
+<td align="right" valign="top"> <span class="math">&infin;</span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">L</tt> </td>
+<td align="right" valign="top"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="right" valign="top"> finite </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">N</tt> </td>
+<td align="right" valign="top" style="border-bottom:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="right" valign="top" style="border-bottom:1px solid black;"> <span class="math">&infin;</span> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>  In the MPS format an objective vector is not specified explicitly, but one of the constraints having the key <tt class="tt">N</tt> will be used as the objective vector <span class="math"><span class="mi">c</span></span>. In general, if multiple <tt class="tt">N</tt> type constraints are specified, then the first will be used as the objective vector <span class="math"><span class="mi">c</span></span>.</p>
+
+</div>
+
+<div>
+<h2><a name="253527104">B.1.6. <tt class="tt">COLUMNS</tt></a></h2>
+
+<p> <a name="idx-180737736">&#09;</a></p>
+
+<p>In this section the elements of <span class="math"><span class="mi">A</span></span> are specified using one or more records having the form  </p>
+
+<pre class="verbatim">  [vname1]  [cname1]    [value1]     [cname2]  [value2]
+    </pre>
+
+<p>  where the requirements for each field are as follows: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Field </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Starting </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Maximum </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Re- </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Description </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td align="center" valign="top"> position </td>
+<td align="center" valign="top"> width </td>
+<td align="center" valign="top"> quired </td>
+<td align="center" valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">[vname1]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 5 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 8 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Yes </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Variable name </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">[cname1]</tt> </td>
+<td align="center" valign="top"> 15 </td>
+<td align="center" valign="top"> 8 </td>
+<td align="center" valign="top"> Yes </td>
+<td align="center" valign="top"> Constraint name </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">[value1]</tt> </td>
+<td align="center" valign="top"> 25 </td>
+<td align="center" valign="top"> 12 </td>
+<td align="center" valign="top"> Yes </td>
+<td align="center" valign="top"> Numerical value </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">[cname2]</tt> </td>
+<td align="center" valign="top"> 40 </td>
+<td align="center" valign="top"> 8 </td>
+<td align="center" valign="top"> No </td>
+<td align="center" valign="top"> Constraint name </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">[value2]</tt> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 50 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 12 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> No </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> Numerical value </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>  Hence, a record specifies one or two elements <span class="math"><img src="math/math92.png" alt="[[MathCmd 92]]"/></span> of <span class="math"><span class="mi">A</span></span> using the principle that <tt class="tt">[vname1]</tt> and <tt class="tt">[cname1]</tt> determines <span class="math"><span class="mi">j</span></span> and <span class="math"><span class="mi">i</span></span> respectively. Please note that <tt class="tt">[cname1]</tt> must be a constraint name specified in the <tt class="tt">ROWS</tt> section. Finally, <tt class="tt">[value1]</tt> denotes the numerical value of <span class="math"><img src="math/math92.png" alt="[[MathCmd 92]]"/></span>. Another optional element is specified by <tt class="tt">[cname2]</tt>, and <tt class="tt">[value2]</tt> for the variable specified by <tt class="tt">[vname1]</tt>. Some important comments are:  </p>
+
+<ul class="itemize">
+<li>All elements belonging to one variable must be grouped together. </li>
+<li>Zero elements of <span class="math"><span class="mi">A</span></span> should not be specified. </li>
+<li>At least one element for each variable should be specified. </li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="253552184">B.1.7. <tt class="tt">RHS</tt> (optional)</a></h2>
+
+<p> <a name="idx-180756632">&#09;</a></p>
+
+<p>A record in this section has the format  </p>
+
+<pre class="verbatim">  [name]    [cname1]    [value1]     [cname2]  [value2]
+    </pre>
+
+<p>  where the requirements for each field are as follows:  </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Field </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Starting </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Maximum </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Re- </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Description </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td align="center" valign="top"> position </td>
+<td align="center" valign="top"> width </td>
+<td align="center" valign="top"> quired </td>
+<td align="center" valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">[name]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 5 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 8 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Yes </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Name of the <tt class="tt">RHS</tt> vector </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">[cname1]</tt> </td>
+<td align="center" valign="top"> 15 </td>
+<td align="center" valign="top"> 8 </td>
+<td align="center" valign="top"> Yes </td>
+<td align="center" valign="top"> Constraint name </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">[value1]</tt> </td>
+<td align="center" valign="top"> 25 </td>
+<td align="center" valign="top"> 12 </td>
+<td align="center" valign="top"> Yes </td>
+<td align="center" valign="top"> Numerical value </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">[cname2]</tt> </td>
+<td align="center" valign="top"> 40 </td>
+<td align="center" valign="top"> 8 </td>
+<td align="center" valign="top"> No </td>
+<td align="center" valign="top"> Constraint name </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">[value2]</tt> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 50 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 12 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> No </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> Numerical value </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>   The interpretation of a record is that <tt class="tt">[name]</tt> is the name of the <tt class="tt">RHS</tt> vector to be specified. In general, several vectors can be specified. <tt class="tt">[cname1]</tt> denotes a constraint name previously specified in the <tt class="tt">ROWS</tt> section. Now, assume that this name has been assigned to the <span class="math"><span class="mi">i</span></span>th constraint and <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> denotes the value specified by <tt class="tt">[value1]</tt>, then the interpretation of <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> is: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Constraint </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math126.png" alt="[[MathCmd 126]]"/></span> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math127.png" alt="[[MathCmd 127]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top">type </td>
+<td align="right" valign="top"> </td>
+<td align="right" valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">E</tt> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">G</tt> </td>
+<td align="right" valign="top"> <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> </td>
+<td align="right" valign="top"> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">L</tt> </td>
+<td align="right" valign="top"> </td>
+<td align="right" valign="top"> <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">N</tt> </td>
+<td align="right" valign="top" style="border-bottom:1px solid black;"> </td>
+<td align="right" valign="top" style="border-bottom:1px solid black;"> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>  An optional second element is specified by <tt class="tt">[cname2]</tt> and <tt class="tt">[value2]</tt> and is interpreted in the same way. Please note that it is not necessary to specify zero elements, because elements are assumed to be zero.  </p>
+
+</div>
+
+<div>
+<h2><a name="253590128">B.1.8. <tt class="tt">RANGES</tt> (optional)</a></h2>
+
+<p> <a name="idx-180786456">&#09;</a></p>
+
+<p>A record in this section has the form  </p>
+
+<pre class="verbatim">        [name]    [cname1]    [value1]     [cname2]  [value2]
+    </pre>
+
+<p>  where the requirements for each fields are as follows: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Field </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Starting </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Maximum </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Re- </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Description </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td align="center" valign="top"> position </td>
+<td align="center" valign="top"> width </td>
+<td align="center" valign="top"> quired </td>
+<td align="center" valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">[name]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 5 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 8 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Yes </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Name of the <tt class="tt">RANGE</tt> vector </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">[cname1]</tt> </td>
+<td align="center" valign="top"> 15 </td>
+<td align="center" valign="top"> 8 </td>
+<td align="center" valign="top"> Yes </td>
+<td align="center" valign="top"> Constraint name </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">[value1]</tt> </td>
+<td align="center" valign="top"> 25 </td>
+<td align="center" valign="top"> 12 </td>
+<td align="center" valign="top"> Yes </td>
+<td align="center" valign="top"> Numerical value </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">[cname2]</tt> </td>
+<td align="center" valign="top"> 40 </td>
+<td align="center" valign="top"> 8 </td>
+<td align="center" valign="top"> No </td>
+<td align="center" valign="top"> Constraint name </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">[value2]</tt> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 50 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 12 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> No </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> Numerical value </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>  The records in this section are used to modify the bound vectors for the constraints, i.e. the values in <span class="math"><img src="math/math8.png" alt="[[MathCmd 8]]"/></span> and <span class="math"><img src="math/math9.png" alt="[[MathCmd 9]]"/></span>. A record has the following interpretation: <tt class="tt">[name]</tt> is the name of the <tt class="tt">RANGE</tt> vector anhd <tt class="tt">[cname1]</tt> is a valid constraint name. Assume that <tt class="tt">[cname1]</tt> is assigned to the <span class="math"><span class="mi">i</span></span>th constraint and let <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> be the value specified by <tt class="tt">[value1]</tt>, then a record has the interpretation: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Constraint </td>
+<td valign="top" style="border-top:1px solid black;"> Sign of <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math126.png" alt="[[MathCmd 126]]"/></span> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math127.png" alt="[[MathCmd 127]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top">type </td>
+<td valign="top"> </td>
+<td align="right" valign="top"> </td>
+<td align="right" valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">E</tt> </td>
+<td valign="top" style="border-top:1px solid black;"> - </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math915.png" alt="[[MathCmd 915]]"/></span> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">E</tt> </td>
+<td valign="top"> + </td>
+<td align="right" valign="top"> </td>
+<td align="right" valign="top"> <span class="math"><img src="math/math916.png" alt="[[MathCmd 916]]"/></span> </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">G</tt> </td>
+<td valign="top"> - or + </td>
+<td align="right" valign="top"> </td>
+<td align="right" valign="top"> <span class="math"><img src="math/math917.png" alt="[[MathCmd 917]]"/></span> </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">L</tt> </td>
+<td valign="top"> - or + </td>
+<td align="right" valign="top"> <span class="math"><img src="math/math918.png" alt="[[MathCmd 918]]"/></span> </td>
+<td align="right" valign="top"> </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">N</tt> </td>
+<td valign="top" style="border-bottom:1px solid black;"> </td>
+<td align="right" valign="top" style="border-bottom:1px solid black;"> </td>
+<td align="right" valign="top" style="border-bottom:1px solid black;"> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+</div>
+
+<div>
+<h2><a name="253633024">B.1.9. <tt class="tt">QSECTION</tt> (optional)</a></h2>
+
+<p> <a name="idx-180809168">&#09;</a>  Within the <tt class="tt">QSECTION</tt> the label <tt class="tt">[cname1]</tt> must be a constraint name previously specified in the <tt class="tt">ROWS</tt> section. The label <tt class="tt">[cname1]</tt> denotes the constraint to which the quadratic term belongs. A record in the <tt class="tt">QSECTION</tt> has the form  </p>
+
+<pre class="verbatim">        [vname1]  [vname2]    [value1]     [vname3]  [value2]
+    </pre>
+
+<p>  where the requirements for each field are: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Field </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Starting </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Maximum </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Re- </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Description </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td align="center" valign="top"> position </td>
+<td align="center" valign="top"> width </td>
+<td align="center" valign="top"> quired </td>
+<td align="center" valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">[vname1]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 5 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 8 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Yes </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Variable name </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">[vname2]</tt> </td>
+<td align="center" valign="top"> 15 </td>
+<td align="center" valign="top"> 8 </td>
+<td align="center" valign="top"> Yes </td>
+<td align="center" valign="top"> Variable name </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">[value1]</tt> </td>
+<td align="center" valign="top"> 25 </td>
+<td align="center" valign="top"> 12 </td>
+<td align="center" valign="top"> Yes </td>
+<td align="center" valign="top"> Numerical value </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">[vname3]</tt> </td>
+<td align="center" valign="top"> 40 </td>
+<td align="center" valign="top"> 8 </td>
+<td align="center" valign="top"> No </td>
+<td align="center" valign="top"> Variable name </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">[value2]</tt> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 50 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 12 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> No </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> Numerical value </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>  A record specifies one or two elements in the lower triangular part of the <span class="math"><img src="math/math893.png" alt="[[MathCmd 893]]"/></span> matrix where <tt class="tt">[cname1]</tt> specifies the <span class="math"><span class="mi">i</span></span>. Hence, if the names <tt class="tt">[vname1]</tt> and <tt class="tt">[vname2]</tt> have been assigned to the <span class="math"><span class="mi">k</span></span>th and <span class="math"><span class="mi">j</span></span>th variable, then <span class="math"><img src="math/math920.png" alt="[[MathCmd 920]]"/></span> is assigned the value given by <tt class="tt">[value1]</tt> An optional second element is specified in the same way by the fields <tt class="tt">[vname1]</tt>, <tt class="tt">[vname3]</tt>, and <tt class="tt">[value2]</tt>.</p>
+
+<p>The example </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math921.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lccl}\nonumber{}\mbox{minimize} & -x_{2}+0.5(2x_{1}^{2}-2x_{1}x_{3}+0.2x_{2}^{2}+2x_{3}^{2}) &  & \\\nonumber{}\mbox{subject to} & x_{1}+x_{2}+x_{3} & \geq{} & 1,\\\nonumber{} & x\geq{}0 &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> has the following MPS file representation </p>
+
+<pre class="verbatim">NAME          qoexp
+ROWS
+ N  obj
+ G  c1
+COLUMNS
+    x1        c1        1
+    x2        obj       -1
+    x2        c1        1
+    x3        c1        1
+RHS
+    rhs       c1        1
+QSECTION      obj
+    x1        x1        2
+    x1        x3        -1
+    x2        x2        0.2
+    x3        x3        2
+ENDATA
+
+</pre>
+
+<p> Regarding the <tt class="tt">QSECTION</tt>s please note that:  </p>
+
+<ul class="itemize">
+<li>Only one <tt class="tt">QSECTION</tt> is allowed for each constraint. </li>
+<li>The <tt class="tt">QSECTION</tt>s can appear in an arbitrary order after the <tt class="tt">COLUMNS</tt> section. </li>
+<li>All variable names occurring in the <tt class="tt">QSECTION</tt> must already be specified in the <tt class="tt">COLUMNS</tt> section. </li>
+<li>All entries specified in a <tt class="tt">QSECTION</tt> are assumed to belong to the lower triangular part of the quadratic term of <span class="math"><span class="mi">Q</span></span>. </li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="253666656">B.1.10. <tt class="tt">BOUNDS</tt> (optional)</a></h2>
+
+<p> <a name="idx-180833528">&#09;</a></p>
+
+<p>In the <tt class="tt">BOUNDS</tt> section changes to the default bounds vectors <span class="math"><img src="math/math10.png" alt="[[MathCmd 10]]"/></span> and <span class="math"><img src="math/math11.png" alt="[[MathCmd 11]]"/></span> are specified. The default bounds vectors are <span class="math"><img src="math/math924.png" alt="[[MathCmd 924]]"/></span> and <span class="math"><img src="math/math925.png" alt="[[MathCmd 925]]"/></span>. Moreover, it is possible to specify several sets of bound vectors. A record in this section has the form  </p>
+
+<pre class="verbatim">     ?? [name]    [vname1]    [value1]
+    </pre>
+
+<p>  where the requirements for each field are: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Field </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Starting </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Maximum </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Re- </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Description </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td align="center" valign="top"> position </td>
+<td align="center" valign="top"> width </td>
+<td align="center" valign="top"> quired </td>
+<td align="center" valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">??</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 2 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 2 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Yes </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Bound key </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">[name]</tt> </td>
+<td align="center" valign="top"> 5 </td>
+<td align="center" valign="top"> 8 </td>
+<td align="center" valign="top"> Yes </td>
+<td align="center" valign="top"> Name of the <tt class="tt">BOUNDS</tt> vector </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">[vname1]</tt> </td>
+<td align="center" valign="top"> 15 </td>
+<td align="center" valign="top"> 8 </td>
+<td align="center" valign="top"> Yes </td>
+<td align="center" valign="top"> Variable name </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">[value1]</tt> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 25 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 12 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> No </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> Variable name </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>  Hence, a record in the <tt class="tt">BOUNDS</tt> section has the following interpretation: <tt class="tt">[name]</tt> is the name of the bound vector and <tt class="tt">[vname1]</tt> is the name of the variable which bounds are modified by the record. <tt class="tt">??</tt> and <tt class="tt">[value1]</tt> are used to modify the bound vectors according to the following table: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  <tt class="tt">??</tt> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math926.png" alt="[[MathCmd 926]]"/></span> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><img src="math/math577.png" alt="[[MathCmd 577]]"/></span> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> Made integer </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td align="right" valign="top"> </td>
+<td align="right" valign="top"> </td>
+<td align="right" valign="top"> (added to <span class="math"><img src="math/math420.png" alt="[[MathCmd 420]]"/></span>) </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">FR</tt> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> <span class="math">&infin;</span> </td>
+<td align="right" valign="top" style="border-top:1px solid black;"> No </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">FX</tt> </td>
+<td align="right" valign="top"> <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> </td>
+<td align="right" valign="top"> <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> </td>
+<td align="right" valign="top"> No </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">LO</tt> </td>
+<td align="right" valign="top"> <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> </td>
+<td align="right" valign="top"> unchanged </td>
+<td align="right" valign="top"> No </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">MI</tt> </td>
+<td align="right" valign="top"> <span class="math"><span class="mo">-</span>&infin;</span> </td>
+<td align="right" valign="top"> unchanged </td>
+<td align="right" valign="top"> No </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">PL</tt> </td>
+<td align="right" valign="top"> unchanged </td>
+<td align="right" valign="top"> <span class="math">&infin;</span> </td>
+<td align="right" valign="top"> No </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">UP</tt> </td>
+<td align="right" valign="top"> unchanged </td>
+<td align="right" valign="top"> <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> </td>
+<td align="right" valign="top"> No </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">BV</tt> </td>
+<td align="right" valign="top"> 0 </td>
+<td align="right" valign="top"> 1 </td>
+<td align="right" valign="top"> Yes </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">LI</tt> </td>
+<td align="right" valign="top"> <span class="math"><img src="math/math933.png" alt="[[MathCmd 933]]"/></span> </td>
+<td align="right" valign="top"> <span class="math">&infin;</span> </td>
+<td align="right" valign="top"> Yes </td></tr><tr class="evenrow">
+<td valign="top"><tt class="tt">UI</tt> </td>
+<td align="right" valign="top"> unchanged </td>
+<td align="right" valign="top"> <span class="math"><img src="math/math934.png" alt="[[MathCmd 934]]"/></span> </td>
+<td align="right" valign="top"> Yes </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;">&#160;</td>
+<td align="right" valign="top" style="border-bottom:1px solid black;">&#160;</td>
+<td align="right" valign="top" style="border-bottom:1px solid black;">&#160;</td>
+<td align="right" valign="top" style="border-bottom:1px solid black;">&#160;</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>  <span class="math"><img src="math/math901.png" alt="[[MathCmd 901]]"/></span> is the value specified by <tt class="tt">[value1]</tt>.</p>
+
+</div>
+
+<div>
+<h2><a name="253721560">B.1.11. <tt class="tt">CSECTION</tt> (optional)</a></h2>
+
+<p>The purpose of the <tt class="tt">CSECTION</tt> is to specify the constraint </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math936.png" alt="\begin{displaymath}\nonumber{}x\in{}\mathcal{C}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>in (<a href="node021.html#ch-mpsformat-sec-disc-eq-problem">B.1.1</a>).</p>
+
+<p>It is assumed that <span class="math"><img src="math/math57.png" alt="[[MathCmd 57]]"/></span> satisfies the following requirements. Let </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math938.png" alt="\begin{displaymath}\nonumber{}x^{t}\in{}\mathbb{R}^{{n^{t}}},~t=1,\ldots ,k\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>be vectors comprised of parts of the decision variables <span class="math"><span class="mi">x</span></span> so that each decision variable is a member of exactly <b>one</b> vector <span class="math"><img src="math/math939.png" alt="[[MathCmd 939]]"/></span>, for example </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math940.png" alt="\begin{displaymath}\nonumber{}x^{1}=\left[\begin{array}{c}\nonumber{}x_{1}\\\nonumber{}x_{4}\\\nonumber{}x_{7}\end{array}\right]\mbox{ and }x^{2}=\left[\begin{array}{c}\nonumber{}x_{6}\\\nonumber{}x_{5}\\\nonumber{}x_{{3}}\\\nonumber{}x_{2}\end{array}\right].\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Next define </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math941.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}:=\left\lbrace{}x\in{}\mathbb{R}^{n}:~x^{t}\in{}\mathcal{C}_{t},~t=1,\ldots ,k\right\rbrace{}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><img src="math/math198.png" alt="[[MathCmd 198]]"/></span> must have one of the following forms </p>
+
+<ul class="itemize">
+<li>
+<p><span class="math"><img src="math/math64.png" alt="[[MathCmd 64]]"/></span> set: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math200.png" alt="\begin{displaymath}\nonumber{}\mathcal{C}_{t}=\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}\rbrace{}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Quadratic cone: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math945.png" alt="\begin{math}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:x_{1}\geq{}\sqrt{\sum \limits _{{j=2}}^{{n^{t}}}x_{j}^{2}}\right\rbrace{}.\end{math}"/></td>
+<td><a name="ch-mpsformat-sec-csection-eq-quad">&#09;</a>(B.1.3)</td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Rotated quadratic cone: </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math946.png" alt="\begin{math}\nonumber{}\mathcal{C}_{t}=\left\lbrace{}x\in{}\mathbb{R}^{{n^{t}}}:2x_{1}x_{2}\geq{}\sum \limits _{{j=3}}^{{n^{t}}}x_{j}^{2},~x_{1},x_{2}\geq{}0\right\rbrace{}.\end{math}"/></td>
+<td><a name="ch-mpsformat-sec-csection-eq-rquad">&#09;</a>(B.1.4)</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+<p>In general, only quadratic and rotated quadratic cones are specified in the MPS file whereas membership of the <span class="math"><img src="math/math64.png" alt="[[MathCmd 64]]"/></span> set is not. If a variable is not a member of any other cone then it is assumed to be a member of an <span class="math"><img src="math/math64.png" alt="[[MathCmd 64]]"/></span> cone.</p>
+
+<p>Next, let us study an example. Assume that the quadratic cone </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math949.png" alt="\begin{math}\nonumber{}x_{4}\geq{}\sqrt{x_{5}^{2} + x_{0}^{2}}\end{math}"/></td>
+<td><a name="ch-mpsformat-sec-csetion-eq-exquad">&#09;</a>(B.1.5)</td></tr>
+</tbody>
+</table>
+
+<p>and the rotated quadratic cone </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math950.png" alt="\begin{math}\nonumber{}2x_{3}x_{7}\geq{}x_{1}^{2}+x_{8}^{2},~x_{3},x_{7}\geq{}0,\end{math}"/></td>
+<td><a name="ch-mpsformat-sec-csection-eq-exrquad">&#09;</a>(B.1.6)</td></tr>
+</tbody>
+</table>
+
+<p>should be specified in the MPS file. One <tt class="tt">CSECTION</tt> is required for each cone and they are specified as follows: </p>
+
+<pre class="verbatim">*        1         2         3         4         5         6
+*23456789012345678901234567890123456789012345678901234567890
+CSECTION      konea       0.0          QUAD
+    x4
+    x5
+    x8
+CSECTION      koneb       0.0          RQUAD
+    x7
+    x3
+    x1
+    x0
+</pre>
+
+<p>This first <tt class="tt">CSECTION</tt> specifies the cone (<a href="node021.html#ch-mpsformat-sec-csetion-eq-exquad">B.1.5</a>) which is given the name <tt class="tt">konea</tt>. This is a quadratic cone which is specified by the keyword <tt class="tt">QUAD</tt> in the <tt class="tt">CSECTION</tt> header. The 0.0 value in the <tt class="tt">CSECTION</tt> header is not used by the <tt class="tt">QUAD</tt> cone.</p>
+
+<p>The second <tt class="tt">CSECTION</tt> specifies the rotated quadratic cone (<a href="node021.html#ch-mpsformat-sec-csection-eq-exrquad">B.1.6</a>). Please note the keyword <tt class="tt">RQUAD</tt> in the <tt class="tt">CSECTION</tt> which is used to specify that the cone is a rotated quadratic cone instead of a quadratic cone. The 0.0 value in the <tt class="tt">CSECTION</tt> header is not used by the <tt class="tt">RQUAD</tt> cone.</p>
+
+<p>In general, a <tt class="tt">CSECTION</tt> header has the format </p>
+
+<pre class="verbatim">CSECTION      [kname1]    [value1]     [ktype]
+</pre>
+
+<p>where the requirement for each field are as follows:  </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Field </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Starting </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Maximum </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Re- </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Description </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td align="center" valign="top"> position </td>
+<td align="center" valign="top"> width </td>
+<td align="center" valign="top"> quired </td>
+<td align="center" valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">[kname1]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 5 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 8 </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Yes </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Name of the cone </td></tr><tr class="oddrow">
+<td valign="top"><tt class="tt">[value1]</tt> </td>
+<td align="center" valign="top"> 15 </td>
+<td align="center" valign="top"> 12 </td>
+<td align="center" valign="top"> No </td>
+<td align="center" valign="top"> Cone parameter </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">[ktype]</tt> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 25 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> Yes </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> Type of the cone. </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p> The possible cone type keys are: </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Cone type key </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Members </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Interpretation. </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"> <tt class="tt">QUAD</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <span class="math">&ge;<span class="mn">1</span></span> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Quadratic cone i.e. (<a href="node021.html#ch-mpsformat-sec-csection-eq-quad">B.1.3</a>). </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;"><tt class="tt">RQUAD</tt> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <span class="math">&ge;<span class="mn">2</span></span> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;">Rotated quadratic cone i.e. (<a href="node021.html#ch-mpsformat-sec-csection-eq-rquad">B.1.4</a>). </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>Please note that a quadratic cone must have at least one member whereas a rotated quadratic cone must have at least two members. A record in the <tt class="tt">CSECTION</tt> has the format </p>
+
+<pre class="verbatim">    [vname1]
+</pre>
+
+<p>where the requirements for each field are  </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">  Field </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Starting </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Maximum </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Re- </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Description </td></tr><tr class="oddrow">
+<td valign="top">&#160;</td>
+<td align="center" valign="top"> position </td>
+<td align="center" valign="top"> width </td>
+<td align="center" valign="top"> quired </td>
+<td align="center" valign="top"> </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> <tt class="tt">[vname1]</tt> </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 2 </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> 8 </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> Yes </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-bottom:1px solid black;"> A valid variable name </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center>
+<p>The most important restriction with respect to the <tt class="tt">CSECTION</tt> is that a variable must occur in only one <tt class="tt">CSECTION</tt>.</p>
+
+</div>
+
+<div>
+<h2><a name="255422408">B.1.12. <tt class="tt">ENDATA</tt></a></h2>
+
+<p>This keyword denotes the end of the MPS file.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="255425928">B.2. Integer variables</a></h1>
+
+<p>Using special bound keys in the <tt class="tt">BOUNDS</tt> section it is possible to specify that some or all of the variables should be integer-constrained i.e. be members of <span class="math"><img src="math/math420.png" alt="[[MathCmd 420]]"/></span>. However, an alternative method is available.</p>
+
+<p>This method is available only for backward compability and we recommend that it is not used. This method requires that markers are placed in the <tt class="tt">COLUMNS</tt> section as in the example: </p>
+
+<pre class="verbatim">COLUMNS
+    x1        obj       -10.0          c1        0.7
+    x1        c2        0.5            c3        1.0
+    x1        c4        0.1
+* Start of integer-constrained variables.
+    MARK000   'MARKER'                 'INTORG'
+    x2        obj       -9.0           c1        1.0
+    x2        c2        0.8333333333   c3        0.66666667
+    x2        c4        0.25
+    x3        obj       1.0            c6        2.0
+    MARK001   'MARKER'                 'INTEND'
+* End of integer-constrained variables.
+</pre>
+
+<p> Please note that special marker lines are used to indicate the start and the end of the integer variables. Furthermore be aware of the following </p>
+
+<ul class="itemize">
+<li>IMPORTANT: All variables between the markers are assigned a default lower bound of 0 and a default upper bound of 1. <b>This may not be what is intended.</b> If it is not intended, the correct bounds should be defined in the <tt class="tt">BOUNDS</tt> section of the MPS formatted file. </li>
+<li>MOSEK ignores field 1, i.e. <tt class="tt">MARK0001</tt> and <tt class="tt">MARK001</tt>, however, other optimization systems require them.</li>
+<li>Field 2, i.e. <tt class="tt">'MARKER'</tt>, must be specified including the single quotes. This implies that no row can be assigned the name <tt class="tt">'MARKER'</tt>. </li>
+<li>Field 3 is ignored and should be left blank. </li>
+<li>Field 4, i.e. <tt class="tt">'INTORG'</tt> and <tt class="tt">'INTEND'</tt>, must be specified. </li>
+<li>It is possible to specify several such integer marker sections within the <tt class="tt">COLUMNS</tt> section. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="255432536">B.3. General limitations</a></h1>
+
+<ul class="itemize">
+<li>An MPS file should be an ASCII file. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="255434192">B.4. Interpretation of the MPS format</a></h1>
+
+<p>Several issues related to the MPS format are not well-defined by the industry standard. However, MOSEK uses the following interpretation: </p>
+
+<ul class="itemize">
+<li>If a matrix element in the <tt class="tt">COLUMNS</tt> section is specified multiple times, then the multiple entries are added together.</li>
+<li>If a matrix element in a <tt class="tt">QSECTION</tt> section is specified multiple times, then the multiple entries are added together.</li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="255436128">B.5. The free MPS format</a></h1>
+
+<p> <a name="ch-mpsformat-sec-freeformat">&#09;</a> <a name="idx-182476024">&#09;</a></p>
+
+<p>MOSEK supports a free format variation of the MPS format. The free format is similar to the MPS file format but less restrictive, e.g. it allows longer names. However, it also presents two main limitations: </p>
+
+<ul class="itemize">
+<li>By default a line in the MPS file must not contain more than 1024 characters. However, by modifying the parameter <a href="node017.html#common-const*mosek*iparam*read-mps-width"><tt class="tt">mosek.iparam.read_mps_width</tt></a> an arbitrary large line width will be accepted.</li>
+<li>A name must not contain any blanks. </li>
+</ul>
+
+<p>To use the free MPS format instead of the default MPS format the MOSEK parameter <a href="node017.html#common-const*mosek*iparam*read-mps-format"><tt class="tt">mosek.iparam.read_mps_format</tt></a> should be changed.</p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node020.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : A. Problem analyzer examples" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Python API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node022.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  C. The LP file format" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node020.html" target="_self">A. Problem analyzer examples</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node022.html" target="_self">C. The LP file format</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:54:32 2012</div>
+</body></html>

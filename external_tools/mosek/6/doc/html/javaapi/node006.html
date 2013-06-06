@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>4. Testing installation and compiling examples</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 3. Getting support and help" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  5. Basic API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="212126680">4. Testing installation and compiling examples</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node006.html#212134584" target="_self">4.1. Microsoft Windows Platform</a>
+<ul class="toc-level-2">
+<li><a href="node006.html#212136376" target="_self">4.1.1. Compiling and executing a program</a>
+<ul class="toc-level-3">
+<li><a href="node006.html#212139112" target="_self">4.1.1.1. Compiling with Microsoft NMake</a></li>
+</ul>
+</li>
+<li><a href="node006.html#212142704" target="_self">4.1.2. Common problems</a></li>
+</ul>
+</li>
+<li><a href="node006.html#212145792" target="_self">4.2. Linux Platform</a>
+<ul class="toc-level-2">
+<li><a href="node006.html#212146656" target="_self">4.2.1. Setting <tt class="tt">PATH</tt> and <tt class="tt">CLASSPATH</tt></a></li>
+<li><a href="node006.html#212150608" target="_self">4.2.2. Compiling and executing a program</a>
+<ul class="toc-level-3">
+<li><a href="node006.html#212153624" target="_self">4.2.2.1. Compiling examples using GMake</a></li>
+</ul>
+</li>
+<li><a href="node006.html#212157000" target="_self">4.2.3. Common problems</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="started-chap-iterface-intro-sec-compile-and-run">&#09;</a> <a name="chap:dist-examples">&#09;</a></p>
+
+<p> This chapter describes how to compile and run the Java examples distributed with MOSEK.</p>
+
+<p> To use the MOSEK Java API you must have a working installation of MOSEK. See the MOSEK Installation manual for instructions.</p>
+
+<div>
+<h1><a name="212134584">4.1. Microsoft Windows Platform</a></h1>
+
+<p> <a name="idx-66360672">&#09;</a> The MOSEK Java API consists of two files: </p>
+
+<ul class="itemize">
+<li><tt class="tt">mosekjava6_0.dll</tt> which is the binary interface to MOSEK. </li>
+<li><tt class="tt">mosek.jar</tt> which contains the Java classes for the API. </li>
+</ul>
+
+<div>
+<h2><a name="212136376">4.1.1. Compiling and executing a program</a></h2>
+
+<p> <a name="chp-linking&ndash;sec-compiling-examp-win">&#09;</a><a name="idx-66367360">&#09;</a><a name="idx-66368072">&#09;</a>We will show how to compile the example <tt class="tt">lo1.java</tt> distributed with MOSEK. We assume that MOSEK is installed in the directory denoted <tt class="tt">&lt;base&gt;</tt>. </p>
+
+<ol class="enumerate">
+<li>Open a DOS prompt. </li>
+<li>
+<p>Change directory to where the program source files are located, for example by typing </p>
+
+<pre class="verbatimcmdline">  C:
+  cd &lt;base&gt;\mosek\6\tools\examples\java
+</pre>
+</li>
+<li>
+<p>To compile a Java program, placing the class files in the current directory, type </p>
+
+<pre class="verbatimcmdline">  javac -classpath &lt;base&gt;\mosek\6\tools\platform\win32x86\bin\mosek.jar -d . lo1.java
+</pre>
+
+<p>where <tt class="tt">&lt;base&gt;</tt> is the location of the MOSEK installation. By default the installer will place MOSEK in '<tt class="verb">C:\Program Files</tt>' or a similar location, depending on the language setup. Above we assumed that we are compiling for the 32 bit version of MOSEK. For the 64 bit version <em>win32x86</em> must be replace with <em>win64x86</em>.</p>
+</li>
+<li>
+<p>To run the compiled program when it has been compiled, type </p>
+
+<pre class="verbatimcmdline">  java -classpath &lt;base&gt;\mosek\6\tools\platform\win32x86\bin\mosek.jar;. lo1.lo1
+</pre>
+</li>
+</ol>
+
+<p> If the environment variable <tt class="tt">CLASSPATH</tt> has been set to contain <tt class="tt">mosek.jar</tt>, then the part </p>
+
+<pre class="verbatim">&lt;base&gt;\mosek\6\tools\platform\win32x86\bin\mosek.jar
+</pre>
+
+<p>may be left out of the <tt class="tt">-classpath</tt> argument.</p>
+
+<p>For more information about specifying class libraries and compiling applications, see the full Java documentation at </p>
+<center>
+<p><a href="http://java.sun.com/">http://java.sun.com/</a> </p>
+</center>
+<div>
+<h3><a name="212139112">4.1.1.1. Compiling with Microsoft NMake</a></h3>
+
+<p> <a name="idx-66300168">&#09;</a>The distributed examples can also be compiled using Microsoft NMake.</p>
+
+<p>This requires that paths and environment is set up for Visual Studio tools (usually, the sub-menu containing Visual Studio also contains a <em>Visual Studio Command Prompt</em> which take care of all the necessary setup).</p>
+
+<p>To build the examples, open a DOS box and change directory to the examples directory. For English Windows with default installation directories, this is the directory </p>
+
+<pre class="verbatim">c:\Program Files\mosek\6\tools\examples\java
+</pre>
+
+<p>The directory contains several makefiles. You should use either <tt class="tt">Makefile.win32x86</tt> or <tt class="tt">Makefile.win64x86</tt>, depending on your installation. For 32-bit Windows type </p>
+
+<pre class="verbatim">nmake /f Makefile.win32x86 all
+</pre>
+
+<p>and similarly for 64-bit Windows, type </p>
+
+<pre class="verbatim">nmake /f Makefile.win64x86 all
+</pre>
+
+<p> To build a single example instead of all examples, replace &#8220;<tt class="tt">all</tt>&#8221; by the corresponding executable name. For example, to build <tt class="tt">lo1.exe</tt> on 32-bit Windows, type </p>
+
+<pre class="verbatim">nmake /f Makefile.win32x86 lo1.exe
+</pre>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="212142704">4.1.2. Common problems</a></h2>
+
+<ul class="itemize">
+<li>
+<p><em>When executing a Java program I get </em> </p>
+
+<pre class="verbatim">java.lang.UnsatisfiedLinkError: no mosek6_0 in java.library.path
+</pre>
+
+<p> The Java Virtual Machine was unable to find the dll <tt class="tt">mosekjava6_0.dll</tt>. This probably means that the <tt class="tt">path</tt> environment variable does not contain the location of the dll. See MOSEK installation manual on how to set paths correctly. </p>
+</li>
+<li>
+<p><em>When executing a Java program I get a message box saying &#8220;The application failed to start because mosek6_0 was not found&#8221;</em>.</p>
+
+<p>This means that the location of the dll <tt class="tt">mosek6_0</tt> was not included in the <tt class="tt">PATH</tt> environment variable. See how to do this above. </p>
+</li>
+<li>
+<p><em>When compiling a Java example I get &#8220;package mosek does not exist&#8221;.</em> The Java archive <tt class="tt">mosek.jar</tt> was not included in the <tt class="tt">classpath</tt>. The classpath may be specified in three ways. It can be specified on the command line using the '<tt class="tt">-classpath</tt>' option for <tt class="tt">java</tt> and <tt class="tt">javac</tt>. For example </p>
+
+<pre class="verbatim">javac -classpath C:\mosek\6\tools\platform\win32x86\bin\mosek.jar -d . lo1.java
+</pre>
+
+<p> Alternatively, the classpath may be set as an environment variable. See how to do this above. </p>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="212145792">4.2. Linux Platform</a></h1>
+
+<p> <a name="idx-66407312">&#09;</a> The MOSEK Java API consists of two files: </p>
+
+<ul class="itemize">
+<li><tt class="tt">libmosekjava6_0.so</tt> which is the binary interface to MOSEK. </li>
+<li><tt class="tt">mosek.jar</tt> which contains the Java classes for the API. </li>
+</ul>
+
+<div>
+<h2><a name="212146656">4.2.1. Setting <tt class="tt">PATH</tt> and <tt class="tt">CLASSPATH</tt></a></h2>
+
+<p> <a name="idx-66393512">&#09;</a> <a name="idx-66382376">&#09;</a> <a name="idx-66359240">&#09;</a> <a name="idx-66409968">&#09;</a> <a name="idx-66410688">&#09;</a> Before the MOSEK Java API can be used, the system environment must be set correctly up: </p>
+
+<ul class="itemize">
+<li>The environment variable <tt class="tt">LD_LIBRARY_PATH</tt> must contain the path to the mosek library. </li>
+<li>The environment variable <tt class="tt">CLASSPATH</tt> must contain the path to <tt class="tt">mosek.jar</tt>. </li>
+</ul>
+
+<p>  You can verify that this is the case as follows: Open a shell and type </p>
+
+<pre class="verbatimcmdline">  echo $PATH
+</pre>
+
+<p> This prints a &#8220;<tt class="tt">:</tt>&#8221;-separated list of paths which should contain the path to MOSEK. Then type </p>
+
+<pre class="verbatimcmdline">  echo $CLASSPATH
+</pre>
+
+<p> This prints a &#8220;<tt class="tt">:</tt>&#8221;-separated list of paths which should contain <tt class="tt">mosek.jar</tt>. If one of the above was missing, they must be set up. This can be done either temporarily or permanently:  </p>
+
+<ul class="itemize">
+<li>
+<p>The variables can be temporarily set in current shell. In <tt class="tt">Bash</tt> this can be done by typing </p>
+
+<pre class="verbatimcmdline">  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"&lt;base&gt;/mosek/6/tools/platform/&lt;arch&gt;/bin"
+  export CLASSPATH=$CLASSPATH:"&lt;base&gt;/mosek/6/tools/platform/&lt;arch&gt;/bin/mosek.jar"
+</pre>
+
+<p>where <tt class="tt">&lt;base&gt;</tt> is the directory where MOSEK is installed and <tt class="tt">&lt;arch&gt;</tt> is either &#8220;<tt class="tt">linux32x86</tt>&#8221; (on 32-bit Linux) or &#8220;<tt class="tt">linux64x86</tt>&#8221; (on 64-bit linux). Note that other shells may require a different syntax. </p>
+</li>
+<li>
+<p>The variables can be permanently set by including following lines in <tt class="tt">&nbsp;/.bashrc</tt> </p>
+
+<pre class="verbatim">if [ -z "$LD_LIBRARY_PATH" ]; then
+  export LD_LIBRARY_PATH="&lt;base&gt;/mosek/6/tools/platform/&lt;arch&gt;/bin"
+else
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"&lt;base&gt;/mosek/6/tools/platform/&lt;arch&gt;/bin"
+fi
+
+if [ -z "$CLASSPATH" ]; then
+  export CLASSPATH="&lt;base&gt;/mosek/6/tools/platform/&lt;arch&gt;/bin/mosek.jar"
+else
+  export CLASSPATH=$CLASSPATH:"&lt;base&gt;/mosek/6/tools/platform/&lt;arch&gt;/bin/mosek.jar"
+fi
+</pre>
+
+<p>where <tt class="tt">&lt;base&gt;</tt> is the directory where MOSEK is installed and <tt class="tt">&lt;arch&gt;</tt> is either &#8220;<tt class="tt">linux32x86</tt>&#8221; (on 32-bit systems), &#8220;<tt class="tt">linux64x86</tt>&#8221; (on AMD64 or EM64T) or &#8220;<tt class="tt">linuxia64</tt>&#8221; (on Itanium). Note that other shells may require a different syntax. </p>
+</li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="212150608">4.2.2. Compiling and executing a program</a></h2>
+
+<p> <a name="chp-linking&ndash;sec-compiling-examp-lnx">&#09;</a><a name="idx-66419456">&#09;</a><a name="idx-66417440">&#09;</a>We will show how to compile the example <tt class="tt">lo1.java</tt> distributed with MOSEK. We assume that MOSEK is installed in the directory denoted <tt class="tt">&lt;base&gt;</tt>. </p>
+
+<ol class="enumerate">
+<li>Open a shell. </li>
+<li>
+<p>Change directory to where the program source files are located, for example by typing </p>
+
+<pre class="verbatimcmdline">  cd &lt;base&gt;/mosek/6/tools/examples/java
+</pre>
+</li>
+<li>
+<p>To compile a Java program, placing the class files in the current directory, type </p>
+
+<pre class="verbatimcmdline">  javac -classpath &lt;base&gt;/mosek/6/tools/platform/&lt;arch&gt;/bin/mosek.jar -d . lo1.java
+</pre>
+
+<p>where <tt class="tt">&lt;base&gt;</tt> is the location of the MOSEK installation and <tt class="tt">&lt;arch&gt;</tt> is <tt class="tt">linux32x86</tt>, <tt class="tt">linux64x86</tt> or <tt class="tt">linuxia64</tt> depending in the machine architecture. </p>
+</li>
+<li>
+<p>To run the program when it has been compiled, type </p>
+
+<pre class="verbatimcmdline">  java -classpath  &lt;base&gt;/mosek/6/tools/platform/&lt;arch&gt;/bin/mosek.jar:. lo1.lo1
+</pre>
+</li>
+</ol>
+
+<p> If the environment variable <tt class="tt">CLASSPATH</tt> has been set to contain <tt class="tt">mosek.jar</tt>, then the part </p>
+
+<pre class="verbatim">&lt;base&gt;/mosek/6/tools/platform/&lt;arch&gt;/bin/mosek.jar
+</pre>
+
+<p>may be left out of the <tt class="tt">-classpath</tt> argument.</p>
+
+<p>For more information about specifying class libraries and compiling applications, see the full Java documentation at </p>
+<center>
+<p> <a href="http://java.sun.com/">http://java.sun.com/</a> </p>
+</center>
+<div>
+<h3><a name="212153624">4.2.2.1. Compiling examples using GMake</a></h3>
+
+<p> <a name="idx-66447408">&#09;</a><a name="idx-66451000">&#09;</a>The example directory contains makefiles for use with GNU Make.</p>
+
+<p>To build the examples, open a prompt and change directory to the examples directory. For Linux with default installation directories, this is the directory </p>
+
+<pre class="verbatim">mosek/6/tools/examples/java
+</pre>
+
+<p>The directory contains several makefiles. You should use either <tt class="tt">Makefile.lnx32x86</tt> or <tt class="tt">Makefile.lnx64x86</tt>, depending on your installation. For 32-bit Linux type </p>
+
+<pre class="verbatim">gmake -f Makefile.lnx32x86 all
+</pre>
+
+<p>and similarly for 64-bit Windows, type </p>
+
+<pre class="verbatim">gmake -f Makefile.lnx64x86 all
+</pre>
+
+<p> To only build a single example instead of all examples, replace &#8220;<tt class="tt">all</tt>&#8221; by the corresponding executable name. For example, to build <tt class="tt">lo1</tt> on 32-bit Linux, type </p>
+
+<pre class="verbatim">gmake -f Makefile.lnx64x86 lo1
+</pre>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="212157000">4.2.3. Common problems</a></h2>
+
+<ul class="itemize">
+<li>
+<p><em>When executing a Java program I get </em> </p>
+
+<pre class="verbatim">java.lang.NoClassDefFoundError: mosek/XYZ
+</pre>
+
+<p> <em>where XYZ is some MOSEK Java class</em>. The <tt class="tt">mosek.jar</tt> library was not found. Make sure that the classpath is defined either on the command line or in the environment variable <tt class="tt">CLASSPATH</tt>, and that it contains the location of <tt class="tt">mosek.jar</tt>. </p>
+</li>
+<li>
+<p><em>When executing a Java program I get </em> </p>
+
+<pre class="verbatim">java.lang.UnsatisfiedLinkError: no mosek6_0 in java.library.path
+</pre>
+
+<p> The Java Virtual Machine was unable to find the dll <tt class="tt">libmosekjava6_0.so</tt>. This probably means that the <tt class="tt">LD_LIBRARY_PATH</tt> environment variable does not contain the location of the dll. See MOSEK installation manual on how to set paths correctly.</p>
+</li>
+<li>
+<p><em>When executing a Java program I get</em> </p>
+
+<pre class="verbatim"> java.lang.UnsatisfiedLinkError:
+ /home/ulfw/mosekprj/dev/examples/tools/java/libmosekjava4_0.so: ...
+</pre>
+
+<p> <em>or similar.</em> This means that the the location of the dll <tt class="tt">libmosek.so.6.0</tt> or some library <tt class="tt">libmosek</tt> it depends on was not included in the <tt class="tt">LD_LIBRARY_PATH</tt> environment variable. See MOSEK installation manual on how to set paths correctly.</p>
+</li>
+<li>
+<p><em>When compiling a Java example I get &#8220;package mosek does not exist&#8221;.</em></p>
+
+<p>The Java archive <tt class="tt">mosek.jar</tt> was not included in the <tt class="tt">classpath</tt>. The classpath may be specified in three ways. It can be specified on the command line using the '<tt class="tt">-classpath</tt>' option for <tt class="tt">java</tt> and <tt class="tt">javac</tt>. For example </p>
+
+<pre class="verbatim">javac -classpath $HOME/mosek/6/tools/platform/linux32x86/bin/mosek.jar -d . lo1.java
+</pre>
+
+<p> Alternatively, the classpath may be given as an environment variable. This variable can be temporarily specified on the command line, for example in <tt class="tt">bash</tt> </p>
+
+<pre class="verbatim">export CLASSPATH=$HOME/mosek/6/tools/platform/linux32x86/bin/mosek.jar
+</pre>
+
+<p> You may add this line to a startup script (e.g. <tt class="tt">$HOME/.bashrc</tt> or <tt class="tt">$HOME/.tcshrc</tt> depending on which shell is used). </p>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 3. Getting support and help" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Java API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  5. Basic API tutorial" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node029.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">3. Getting support and help</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Java API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">5. Basic API tutorial</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node029.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:42:13 2012</div>
+</body></html>

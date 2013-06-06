@@ -1,0 +1,1340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>8. The optimizers for continuous problems</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node009.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 7. Modelling" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node011.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  9. The optimizer for mixed integer problems" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node009.html" target="_self">7. Modelling</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node011.html" target="_self">9. The optimizer for mixed integer problems</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="232904320">8. The optimizers for continuous problems</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node010.html#232903528" target="_self">8.1. How an optimizer works</a>
+<ul class="toc-level-2">
+<li><a href="node010.html#232904824" target="_self">8.1.1. Presolve</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#232906976" target="_self">8.1.1.1. Eliminator</a></li>
+<li><a href="node010.html#232916176" target="_self">8.1.1.2. Linear dependency checker</a></li>
+</ul>
+</li>
+<li><a href="node010.html#232919912" target="_self">8.1.2. Dualizer</a></li>
+<li><a href="node010.html#232920344" target="_self">8.1.3. Scaling</a></li>
+<li><a href="node010.html#232921352" target="_self">8.1.4. Using multiple CPU's</a></li>
+</ul>
+</li>
+<li><a href="node010.html#232923080" target="_self">8.2. Linear optimization</a>
+<ul class="toc-level-2">
+<li><a href="node010.html#232921568" target="_self">8.2.1. Optimizer selection</a></li>
+<li><a href="node010.html#232927672" target="_self">8.2.2. The interior-point optimizer</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#232963320" target="_self">8.2.2.1. Interior-point termination criterion</a></li>
+<li><a href="node010.html#232976824" target="_self">8.2.2.2. Basis identification</a></li>
+<li><a href="node010.html#232985304" target="_self">8.2.2.3. The interior-point log</a></li>
+</ul>
+</li>
+<li><a href="node010.html#232984088" target="_self">8.2.3. The simplex based optimizer</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#232985520" target="_self">8.2.3.1. Simplex termination criterion</a></li>
+<li><a href="node010.html#232990552" target="_self">8.2.3.2. Starting from an existing solution</a></li>
+<li><a href="node010.html#232991272" target="_self">8.2.3.3. Numerical difficulties in the simplex optimizers</a></li>
+</ul>
+</li>
+<li><a href="node010.html#232996736" target="_self">8.2.4. The interior-point or the simplex optimizer?</a></li>
+<li><a href="node010.html#232997448" target="_self">8.2.5. The primal or the dual simplex variant?</a></li>
+</ul>
+</li>
+<li><a href="node010.html#232998744" target="_self">8.3. Linear network optimization</a>
+<ul class="toc-level-2">
+<li><a href="node010.html#232997664" target="_self">8.3.1. Network flow problems</a></li>
+<li><a href="node010.html#233001832" target="_self">8.3.2. Embedded network problems</a></li>
+</ul>
+</li>
+<li><a href="node010.html#233003992" target="_self">8.4. Conic optimization</a>
+<ul class="toc-level-2">
+<li><a href="node010.html#233002264" target="_self">8.4.1. The interior-point optimizer</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#233004208" target="_self">8.4.1.1. Interior-point termination criteria</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node010.html#233018792" target="_self">8.5. Nonlinear convex optimization</a>
+<ul class="toc-level-2">
+<li><a href="node010.html#233004640" target="_self">8.5.1. The interior-point optimizer</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#233018864" target="_self">8.5.1.1. The convexity requirement</a></li>
+<li><a href="node010.html#233019296" target="_self">8.5.1.2. The differentiabilty requirement</a></li>
+<li><a href="node010.html#233005424" target="_self">8.5.1.3. Interior-point termination criteria</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node010.html#233040208" target="_self">8.6. Solving problems in parallel</a>
+<ul class="toc-level-2">
+<li><a href="node010.html#233027272" target="_self">8.6.1. Thread safety</a></li>
+<li><a href="node010.html#233040352" target="_self">8.6.2. The parallelized interior-point optimizer</a></li>
+<li><a href="node010.html#233040712" target="_self">8.6.3. The concurrent optimizer</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#233049768" target="_self">8.6.3.1. Concurrent optimization through the API</a></li>
+</ul>
+</li>
+<li><a href="node010.html#233054720" target="_self">8.6.4. A more flexible concurrent optimizer</a></li>
+</ul>
+</li>
+<li><a href="node010.html#233055224" target="_self">8.7. Understanding solution quality</a>
+<ul class="toc-level-2">
+<li><a href="node010.html#233056232" target="_self">8.7.1. The solution summary</a>
+<ul class="toc-level-3">
+<li><a href="node010.html#233055296" target="_self">8.7.1.1. The optimal case</a></li>
+<li><a href="node010.html#233060544" target="_self">8.7.1.2. The primal infeasible case</a></li>
+</ul>
+</li>
+<li><a href="node010.html#233053648" target="_self">8.7.2. Retrieving solution quality information with the API</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p>The most essential part of MOSEK is the optimizers. Each optimizer is designed to solve a particular class of problems i.e. linear, conic, or general nonlinear problems. The purpose of the present chapter is to discuss which optimizers are available for the continuous problem classes and how the performance of an optimizer can be tuned, if needed.</p>
+
+<p>This chapter deals with the optimizers for <em>continuous problems</em> with no integer variables.</p>
+
+<div>
+<h1><a name="232903528">8.1. How an optimizer works</a></h1>
+
+<p><a name="sec-opt-proced">&#09;</a></p>
+
+<p>When the optimizer is called, it roughly performs the following steps: </p>
+
+<dl class="description">
+<dt>Presolve:</dt>
+<dd>
+<p> Preprocessing to reduce the size of the problem.</p>
+</dd>
+<dt>Dualizer:</dt>
+<dd>
+<p> Choosing whether to solve the primal or the dual form of the problem.</p>
+</dd>
+<dt>Scaling:</dt>
+<dd>
+<p> Scaling the problem for better numerical stability.</p>
+</dd>
+<dt>Optimize:</dt>
+<dd>
+<p> Solve the problem using selected method.</p>
+</dd>
+</dl>
+
+<p>The first three preprocessing steps are transparent to the user, but useful to know about for tuning purposes. In general, the purpose of the preprocessing steps is to make the actual optimization more efficient and robust.</p>
+
+<div>
+<h2><a name="232904824">8.1.1. Presolve</a></h2>
+
+<p> <a name="idx-86545544">&#09;</a>Before an optimizer actually performs the optimization the problem is preprocessed using the so-called presolve. The purpose of the presolve is to </p>
+
+<ul class="itemize">
+<li>remove redundant constraints,</li>
+<li>eliminate fixed variables,</li>
+<li>remove linear dependencies,</li>
+<li>substitute out free variables, and</li>
+<li>reduce the size of the optimization problem in general. </li>
+</ul>
+
+<p>After the presolved problem has been optimized the solution is automatically postsolved so that the returned solution is valid for the original problem. Hence, the presolve is completely transparent. For further details about the presolve phase, please see [<a href="node029.html#ANDERSEN:95:D" class="citation">10</a>, <a href="node029.html#ANDERSEN:96:J" class="citation">5</a>].</p>
+
+<p>It is possible to fine-tune the behavior of the presolve or to turn it off entirely. If presolve consumes too much time or memory compared to the reduction in problem size gained it may be disabled. This is done by setting the parameter <a href="node018.html#common-const*mosek*iparam*presolve-use"><tt class="tt">mosek.iparam.presolve_use</tt></a> to <a href="node020.html#common-const*mosek*presolvemode*off"><tt class="tt">mosek.presolvemode.off</tt></a>.</p>
+
+<p>The two most time-consuming steps of the presolve are </p>
+
+<ul class="itemize">
+<li>the eliminator, and</li>
+<li>the linear dependency check. </li>
+</ul>
+
+<p>Therefore, in some cases it is worthwhile to disable one or both of these.</p>
+
+<div>
+<h3><a name="232906976">8.1.1.1. Eliminator</a></h3>
+
+<p><a name="idx-86563944">&#09;</a> <a name="idx-86564016">&#09;</a> The purpose of the eliminator is to eliminate free and implied free variables from the problem using substitution. For instance, given the constraints </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math386.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}y & = & \sum _{j}x_{j},\\\nonumber{}y,x & \geq{} & 0,\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p><span class="math"><span class="mi">y</span></span> is an implied free variable that can be substituted out of the problem, if deemed worthwhile.</p>
+
+<p>If the eliminator consumes too much time or memory compared to the reduction in problem size gained it may be disabled. This can be done with the parameter <a href="node018.html#common-const*mosek*iparam*presolve-eliminator-use"><tt class="tt">mosek.iparam.presolve_eliminator_use</tt></a> to <a href="node020.html#common-const*mosek*onoffkey*off"><tt class="tt">mosek.onoffkey.off</tt></a>.</p>
+
+</div>
+
+<div>
+<h3><a name="232916176">8.1.1.2. Linear dependency checker</a></h3>
+
+<p><a name="idx-86545688">&#09;</a> <a name="idx-86545616">&#09;</a> The purpose of the linear dependency check is to remove linear dependencies among the linear equalities. For instance, the three linear equalities </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math387.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}x_{1}+x_{2}+x_{3} & = & 1,\\\nonumber{}x_{1}+0.5x_{2} & = & 0.5,\\\nonumber{}0.5x_{2}+x_{3} & = & 0.5\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>contain exactly one linear dependency. This implies that one of the constraints can be dropped without changing the set of feasible solutions. Removing linear dependencies is in general a good idea since it reduces the size of the problem. Moreover, the linear dependencies are likely to introduce numerical problems in the optimization phase.</p>
+
+<p>It is best practise to build models without linear dependencies. If the linear dependencies are removed at the modeling stage, the linear dependency check can safely be disabled by setting the parameter <a href="node018.html#common-const*mosek*iparam*presolve-lindep-use"><tt class="tt">mosek.iparam.presolve_lindep_use</tt></a> to <a href="node020.html#common-const*mosek*onoffkey*off"><tt class="tt">mosek.onoffkey.off</tt></a>.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="232919912">8.1.2. Dualizer</a></h2>
+
+<p> <a name="idx-86589096">&#09;</a> All linear, conic, and convex optimization problems have an equivalent dual problem associated with them. MOSEK has built-in heuristics to determine if it is most efficient to solve the primal or dual problem. The form (primal or dual) solved is displayed in the MOSEK log. Should the internal heuristics not choose the most efficient form of the problem it may be worthwhile to set the dualizer manually by setting the parameters: </p>
+
+<ul class="itemize">
+<li><a href="node018.html#common-const*mosek*iparam*intpnt-solve-form"><tt class="tt">mosek.iparam.intpnt_solve_form</tt></a>: In case of the interior-point optimizer. </li>
+<li><a href="node018.html#common-const*mosek*iparam*sim-solve-form"><tt class="tt">mosek.iparam.sim_solve_form</tt></a>: In case of the simplex optimizer. </li>
+</ul>
+
+<p> Note that currently only linear problems may be dualized.</p>
+
+</div>
+
+<div>
+<h2><a name="232920344">8.1.3. Scaling</a></h2>
+
+<p> <a name="idx-86525424">&#09;</a>Problems containing data with large and/or small coefficients, say <span class="math"><span class="mn">1.0</span><span class="mi">e</span><span class="mo">+</span><span class="mn">9</span></span> or <span class="math"><span class="mn">1.0</span><span class="mi">e</span><span class="mo">-</span><span class="mn">7</span></span>, are often hard to solve. Significant digits may be truncated in calculations with finite precision, which can result in the optimizer relying on inaccurate calculations. Since computers work in finite precision, extreme coefficients should be avoided. In general, data around the same &#8220;order of magnitude&#8221; is preferred, and we will refer to a problem, satisfying this loose property, as being <em>well-scaled</em>. If the problem is not well scaled, MOSEK will try to scale (multiply) constraints and variables by suitable constants. MOSEK solves the scaled problem to improve the numerical properties.</p>
+
+<p>The scaling process is transparent, i.e. the solution to the original problem is reported. It is important to be aware that the optimizer terminates when the termination criterion is met on the scaled problem, therefore significant primal or dual infeasibilities may occur after unscaling for badly scaled problems. The best solution to this problem is to reformulate it, making it better scaled.</p>
+
+<p>By default MOSEK heuristically chooses a suitable scaling. The scaling for interior-point and simplex optimizers can be controlled with the parameters <a href="node018.html#common-const*mosek*iparam*intpnt-scaling"><tt class="tt">mosek.iparam.intpnt_scaling</tt></a> and <a href="node018.html#common-const*mosek*iparam*sim-scaling"><tt class="tt">mosek.iparam.sim_scaling</tt></a> respectively.</p>
+
+</div>
+
+<div>
+<h2><a name="232921352">8.1.4. Using multiple CPU's</a></h2>
+
+<p> <a name="idx-86622576">&#09;</a> <a name="idx-86623080">&#09;</a> The interior-point optimizers in MOSEK have been parallelized. This means that if you solve linear, quadratic, conic, or general convex optimization problem using the interior-point optimizer, you can take advantage of multiple CPU's.</p>
+
+<p>By default MOSEK uses one thread to solve the problem, but the number of threads (and thereby CPUs) employed can be changed by setting the parameter <a href="node018.html#common-const*mosek*iparam*intpnt-num-threads"><tt class="tt">mosek.iparam.intpnt_num_threads</tt></a> This should never exceed the number of CPU's on the machine.</p>
+
+<p>The speed-up obtained when using multiple CPUs is highly problem and hardware dependent, and consequently, it is advisable to compare single threaded and multi threaded performance for the given problem type to determine the optimal settings.</p>
+
+<p>For small problems, using multiple threads will probably not be worthwhile.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="232923080">8.2. Linear optimization</a></h1>
+
+<p><a name="sec-solve-linear">&#09;</a> </p>
+
+<div>
+<h2><a name="232921568">8.2.1. Optimizer selection</a></h2>
+
+<p> Two different types of optimizers are available for linear problems: The default is an interior-point method, and the alternatives are simplex methods. The optimizer can be selected using the parameter <a href="node018.html#common-const*mosek*iparam*optimizer"><tt class="tt">mosek.iparam.optimizer</tt></a>.</p>
+
+</div>
+
+<div>
+<h2><a name="232927672">8.2.2. The interior-point optimizer</a></h2>
+
+<p> <a name="ch_linopt_sec_intpnt_alg">&#09;</a> <a name="idx-86562576">&#09;</a> <a name="idx-86585856">&#09;</a></p>
+
+<p>The purpose of this section is to provide information about the algorithm employed in MOSEK interior-point optimizer.</p>
+
+<p>In order to keep the discussion simple it is assumed that MOSEK solves linear optimization problems on standard form </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math388.png" alt="\begin{math}\nonumber{}\begin{array}{lcll}\nonumber{}\mbox{minimize} & c^{T}x &  & \\\nonumber{}\mbox{subject to} & Ax & = & b,\\\nonumber{} & x\geq{}0. &  &\end{array}\end{math}"/></td>
+<td><a name="ch-linopt-intpnt-eq-std-form">&#09;</a>(8.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>This is in fact what happens inside MOSEK; for efficiency reasons MOSEK converts the problem to standard form before solving, then convert it back to the input form when reporting the solution.</p>
+
+<p>Since it is not known beforehand whether problem (<a href="node010.html#ch-linopt-intpnt-eq-std-form">8.2.1</a>) has an optimal solution, is primal infeasible or is dual infeasible, the optimization algorithm must deal with all three situations. This is the reason that MOSEK solves the so-called homogeneous model </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math389.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}Ax-b\tau  & = & 0,\\\nonumber{}A^{T}y+s-c\tau  & = & 0,\\\nonumber{}-c^{T}x+b^{T}y-\kappa  & = & 0,\\\nonumber{}x,s,\tau ,\kappa  & \geq{} & 0,\end{array}\end{math}"/></td>
+<td><a name="ch-linopt-intpnt-eq-hommodel">&#09;</a>(8.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>where <span class="math"><span class="mi">y</span></span> and <span class="math"><span class="mi">s</span></span> correspond to the dual variables in (<a href="node010.html#ch-linopt-intpnt-eq-std-form">8.2.1</a>), and <span class="math"><img src="math/math390.png" alt="[[MathCmd 390]]"/></span> and <span class="math"><img src="math/math391.png" alt="[[MathCmd 391]]"/></span> are two additional scalar variables. Note that the homogeneous model (<a href="node010.html#ch-linopt-intpnt-eq-hommodel">8.2.2</a>) always has solution since </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math392.png" alt="\begin{displaymath}\nonumber{}(x,y,s,\tau ,\kappa )=(0,0,0,0,0)\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is a solution, although not a very interesting one.</p>
+
+<p>Any solution </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math393.png" alt="\begin{displaymath}\nonumber{}(x^{*},y^{*},s^{*},\tau ^{*},\kappa ^{*})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>to the homogeneous model (<a href="node010.html#ch-linopt-intpnt-eq-hommodel">8.2.2</a>) satisfies </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math394.png" alt="\begin{displaymath}\nonumber{}x_{j}^{*}s_{j}^{*}=0\mbox{ and }\tau ^{*}\kappa ^{*}=0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Moreover, there is always a solution that has the property </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math395.png" alt="\begin{displaymath}\nonumber{}\tau ^{*}+\kappa ^{*}>0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>First, assume that <span class="math"><img src="math/math396.png" alt="[[MathCmd 396]]"/></span>. It follows that </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math397.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}A\frac{x^{*}}{\tau ^{*}} & = & b,\\\nonumber{}A^{T}\frac{y^{*}}{\tau ^{*}}+\frac{s^{*}}{\tau *} & = & c,\\\nonumber{}-c^{T}\frac{x^{*}}{\tau ^{*}}+b^{T}\frac{y^{*}}{\tau ^{*}} & = & 0,\\\nonumber{}x^{*},s^{*},\tau ^{*},\kappa ^{*} & \geq{} & 0.\end{array}\end{math}"/></td>
+<td>(8.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>This shows that <span class="math"><img src="math/math398.png" alt="[[MathCmd 398]]"/></span> is a primal optimal solution and <span class="math"><img src="math/math399.png" alt="[[MathCmd 399]]"/></span> is a dual optimal solution; this is reported as the optimal interior-point solution since </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math400.png" alt="\begin{displaymath}\nonumber{}(x,y,s)=\left(\frac{x^{*}}{\tau ^{*}},\frac{y^{*}}{\tau ^{*}},\frac{s^{*}}{\tau *}\right)\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is a primal-dual optimal solution.</p>
+
+<p>On other hand, if <span class="math"><img src="math/math401.png" alt="[[MathCmd 401]]"/></span> then </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math402.png" alt="\begin{math}\nonumber{}\begin{array}{rclcl}\nonumber{}Ax^{*} & = & 0, &  & \\\nonumber{}A^{T}y^{*}+s^{*} & = & 0, &  & \\\nonumber{}-c^{T}x^{*}+b^{T}y^{*} & = & \kappa ^{*}, &  & \\\nonumber{}x^{*},s^{*},\tau ^{*},\kappa ^{*} & \geq{} & 0. &  &\end{array}\end{math}"/></td>
+<td>(8.2.4)</td></tr>
+</tbody>
+</table>
+
+<p>This implies that at least one of </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math403.png" alt="\begin{math}\nonumber{}-c^{T}x^{*}>0\end{math}"/></td>
+<td><a name="ch-lin-opt-eq-dual-infeas">&#09;</a>(8.2.5)</td></tr>
+</tbody>
+</table>
+
+<p>or </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math404.png" alt="\begin{math}\nonumber{}b^{T}y^{*}>0\end{math}"/></td>
+<td><a name="ch-lin-opt-eq-primal-infeas">&#09;</a>(8.2.6)</td></tr>
+</tbody>
+</table>
+
+<p>is satisfied. If (<a href="node010.html#ch-lin-opt-eq-dual-infeas">8.2.5</a>) is satisfied then <span class="math"><img src="math/math405.png" alt="[[MathCmd 405]]"/></span> is a certificate of dual infeasibility, whereas if (<a href="node010.html#ch-lin-opt-eq-primal-infeas">8.2.6</a>) is satisfied then <span class="math"><img src="math/math406.png" alt="[[MathCmd 406]]"/></span> is a certificate of dual infeasibility.</p>
+
+<p>In summary, by computing an appropriate solution to the homogeneous model, all information required for a solution to the original problem is obtained. A solution to the homogeneous model can be computed using a primal-dual interior-point algorithm [<a href="node029.html#ANDERSEN:09:A" class="citation">8</a>].</p>
+
+<div>
+<h3><a name="232963320">8.2.2.1. Interior-point termination criterion</a></h3>
+
+<p>For efficiency reasons it is not practical to solve the homogeneous model exactly. Hence, an exact optimal solution or an exact infeasibility certificate cannot be computed and a reasonable termination criterion has to be employed.</p>
+
+<p>In every iteration, <span class="math"><span class="mi">k</span></span>, of the interior-point algorithm a trial solution </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math407.png" alt="\begin{displaymath}\nonumber{}(x^{k},y^{k},s^{k},\tau ^{k},\kappa ^{k})\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>to homogeneous model is generated where </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math408.png" alt="\begin{displaymath}\nonumber{}x^{k},s^{k},\tau ^{k},\kappa ^{k}>0.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Whenever the trial solution satisfies the criterion </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math409.png" alt="\begin{math}\nonumber{}\begin{array}{rcl}\nonumber{}\left\|A\frac{x^{k}}{\tau ^{k}}-b\right\| & \leq{} & \varepsilon _{p}(1+\left\|b\right\|),\\\nonumber{}\left\|A^{T}\frac{y^{k}}{\tau ^{k}}+\frac{s^{k}}{\tau ^{k}}-c\right\| & \leq{} & \varepsilon _{d}(1+\left\|c\right\|),\mbox{ and}\\\nonumber{}\min \left(\frac{(x^{k})^{T} s^{k} +\tau ^{k}\kappa ^{k}}{(\tau ^{k})^{2}},\left|\frac{c^{T} x^{k}}{\tau ^{k}}-\frac{b^{T} y^{k}}{\tau ^{k}}\right|\right) & \leq{} & \varepsilon _{g}\max \left(1,\left|\frac{c^{T} x^{k}}{\tau ^{k}}\right|\right),\end{array}\end{math}"/></td>
+<td><a name="ch-linopt-eq-term-feas-lo">&#09;</a>(8.2.7)</td></tr>
+</tbody>
+</table>
+
+<p>the interior-point optimizer is terminated and </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math410.png" alt="\begin{displaymath}\nonumber{}\frac{(x^{k},y^{k},s^{k})}{\tau ^{k}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is reported as the primal-dual optimal solution. The interpretation of (<a href="node010.html#ch-linopt-eq-term-feas-lo">8.2.7</a>) is that the optimizer is terminated if </p>
+
+<ul class="itemize">
+<li><span class="math"><img src="math/math411.png" alt="[[MathCmd 411]]"/></span> is approximately primal feasible, </li>
+<li><span class="math"><img src="math/math412.png" alt="[[MathCmd 412]]"/></span> is approximately dual feasible, and </li>
+<li>the duality gap is almost zero. </li>
+</ul>
+
+<p> On the other hand, if the trial solution satisfies </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math413.png" alt="\begin{math}\nonumber{}-\varepsilon _{i}c^{T}x^{k}>\frac{\left\|c\right\|}{\max (\left\|b\right\|,1)}\left\|Ax^{k}\right\|\end{math}"/></td>
+<td>(8.2.8)</td></tr>
+</tbody>
+</table>
+
+<p>then the problem is declared dual infeasible and <span class="math"><img src="math/math414.png" alt="[[MathCmd 414]]"/></span> is reported as a certificate of dual infeasibility. The motivation for this stopping criterion is as follows: First assume that <span class="math"><img src="math/math415.png" alt="[[MathCmd 415]]"/></span>; then <span class="math"><img src="math/math414.png" alt="[[MathCmd 414]]"/></span> is an exact certificate of dual infeasibility. Next assume that this is not the case, i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math417.png" alt="\begin{displaymath}\nonumber{}\left\|Ax^{k}\right\|>0,\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and define </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math418.png" alt="\begin{displaymath}\nonumber{}\bar{x}:=\varepsilon _{i}\frac{\max (1,\left\|b\right\|) x^{k}}{\left\|A x^{k}\right\|\left\|c\right\|}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>It is easy to verify that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math419.png" alt="\begin{displaymath}\nonumber{}\left\|A\bar{x}\right\|=\varepsilon _{i}\mbox{ and }-c^{T}\bar{x}>1,\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which shows <span class="math"><img src="math/math420.png" alt="[[MathCmd 420]]"/></span> is an approximate certificate dual infeasibility where <span class="math"><img src="math/math421.png" alt="[[MathCmd 421]]"/></span> controls the quality of the approximation. A smaller value means a better approximation.</p>
+
+<p>Finally, if </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math422.png" alt="\begin{math}\nonumber{}\varepsilon _{i}b^{T}y^{k}\geq{}\frac{\left\|b\right\|}{\max (1,\left\|c\right\|)}\left\|A^{T}y^{k}+s^{k}\right\|\end{math}"/></td>
+<td>(8.2.9)</td></tr>
+</tbody>
+</table>
+
+<p>then <span class="math"><img src="math/math423.png" alt="[[MathCmd 423]]"/></span> is reported as a certificate of primal infeasibility.</p>
+
+<p>It is possible to adjust the tolerances <span class="math"><img src="math/math424.png" alt="[[MathCmd 424]]"/></span>, <span class="math"><img src="math/math425.png" alt="[[MathCmd 425]]"/></span>, <span class="math"><img src="math/math426.png" alt="[[MathCmd 426]]"/></span> and <span class="math"><img src="math/math421.png" alt="[[MathCmd 421]]"/></span> using parameters; see table <a href="node010.html#ch-lin-opt-tab-lo-term-cri">8.1</a> for details. </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Tolerance </td>
+<td valign="top" style="border-top:1px solid black;"> Parameter name </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"><span class="math"><img src="math/math424.png" alt="[[MathCmd 424]]"/></span> </td>
+<td valign="top" style="border-top:1px solid black;"> <a href="node018.html#common-const*mosek*dparam*intpnt-tol-pfeas"><tt class="tt">mosek.dparam.intpnt_tol_pfeas</tt></a> </td></tr><tr class="evenrow">
+<td valign="top"><span class="math"><img src="math/math425.png" alt="[[MathCmd 425]]"/></span> </td>
+<td valign="top"> <a href="node018.html#common-const*mosek*dparam*intpnt-tol-dfeas"><tt class="tt">mosek.dparam.intpnt_tol_dfeas</tt></a> </td></tr><tr class="oddrow">
+<td valign="top"><span class="math"><img src="math/math426.png" alt="[[MathCmd 426]]"/></span> </td>
+<td valign="top"> <a href="node018.html#common-const*mosek*dparam*intpnt-tol-rel-gap"><tt class="tt">mosek.dparam.intpnt_tol_rel_gap</tt></a> </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;"><span class="math"><img src="math/math421.png" alt="[[MathCmd 421]]"/></span> </td>
+<td valign="top" style="border-bottom:1px solid black;"> <a href="node018.html#common-const*mosek*dparam*intpnt-tol-infeas"><tt class="tt">mosek.dparam.intpnt_tol_infeas</tt></a> </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;8.1: Parameters employed in termination criterion.</span>
+<br/>
+<p> <a name="ch-lin-opt-tab-lo-term-cri">&#09;</a> </p>
+</center></td></tr></table>
+</td></tr></table>
+
+<p> The default values of the termination tolerances are chosen such that for a majority of problems appearing in practice it is not possible to achieve much better accuracy. Therefore, tightening the tolerances usually is not worthwhile. However, an inspection of (<a href="node010.html#ch-linopt-eq-term-feas-lo">8.2.7</a>) reveals that quality of the solution is dependent on <span class="math"><img src="math/math432.png" alt="[[MathCmd 432]]"/></span> and <span class="math"><img src="math/math433.png" alt="[[MathCmd 433]]"/></span>; the smaller the norms are, the better the solution accuracy.</p>
+
+<p>The interior-point method as implemented by MOSEK will converge toward optimality and primal and dual feasibility at the same rate [<a href="node029.html#ANDERSEN:09:A" class="citation">8</a>]. This means that if the optimizer is stopped prematurely then it is very unlikely that either the primal or dual solution is feasible. Another consequence is that in most cases all the tolerances, <span class="math"><img src="math/math424.png" alt="[[MathCmd 424]]"/></span>, <span class="math"><img src="math/math425.png" alt="[[MathCmd 425]]"/></span> and <span class="math"><img src="math/math426.png" alt="[[MathCmd 426]]"/></span>, has to be relaxed together to achieve an effect.</p>
+
+<p>The basis identification discussed in section <a title="8.2.2.2. Basis identification" href="node010.html#ch-linopt-sec-basind">8.2.2.2</a> requires an optimal solution to work well; hence basis identification should turned off if the termination criterion is relaxed.</p>
+
+<p>To conclude the discussion in this section, relaxing the termination criterion is usually is not worthwhile.</p>
+
+</div>
+
+<div>
+<h3><a name="232976824">8.2.2.2. Basis identification</a></h3>
+
+<p> <a name="ch-linopt-sec-basind">&#09;</a> <a name="idx-88006456">&#09;</a> An interior-point optimizer does not return an optimal basic solution unless the problem has a unique primal and dual optimal solution. Therefore, the interior-point optimizer has an optional post-processing step that computes an optimal basic solution starting from the optimal interior-point solution. More information about the basis identification procedure may be found in [<a href="node029.html#ANDERSEN:96:K" class="citation">6</a>].</p>
+
+<p>Please note that a basic solution is often more accurate than an interior-point solution.</p>
+
+<p>By default MOSEK performs a basis identification. However, if a basic solution is not needed, the basis identification procedure can be turned off. The parameters </p>
+
+<ul class="itemize">
+<li><a href="node018.html#common-const*mosek*iparam*intpnt-basis"><tt class="tt">mosek.iparam.intpnt_basis</tt></a>, </li>
+<li><a href="node018.html#common-const*mosek*iparam*bi-ignore-max-iter"><tt class="tt">mosek.iparam.bi_ignore_max_iter</tt></a>, and </li>
+<li><a href="node018.html#common-const*mosek*iparam*bi-ignore-num-error"><tt class="tt">mosek.iparam.bi_ignore_num_error</tt></a> </li>
+</ul>
+
+<p>controls when basis identification is performed.</p>
+
+</div>
+
+<div>
+<h3><a name="232985304">8.2.2.3. The interior-point log</a></h3>
+
+<p>Below is a typical log output from the interior-point optimizer presented: <small class="small">
+<pre class="verbatim">Optimizer  - threads                : 1
+Optimizer  - solved problem         : the dual
+Optimizer  - constraints            : 2                 variables              : 6
+Factor     - setup time             : 0.04              order time             : 0.00
+Factor     - GP order used          : no                GP order time          : 0.00
+Factor     - nonzeros before factor : 3                 after factor           : 3
+Factor     - offending columns      : 0                 flops                  : 1.70e+001
+ITE PFEAS    DFEAS    KAP/TAU  POBJ              DOBJ              MU       TIME
+0   2.0e+002 2.9e+001 2.0e+002 -0.000000000e+000 -1.204741644e+003 2.0e+002 0.44
+1   2.2e+001 3.1e+000 7.3e+002 -5.885951891e+003 -5.856764353e+003 2.2e+001 0.57
+2   3.8e+000 5.4e-001 9.7e+001 -7.405187479e+003 -7.413054916e+003 3.8e+000 0.58
+3   4.0e-002 5.7e-003 2.6e-001 -7.664507945e+003 -7.665313396e+003 4.0e-002 0.58
+4   4.2e-006 6.0e-007 2.7e-005 -7.667999629e+003 -7.667999714e+003 4.2e-006 0.59
+5   4.2e-010 6.0e-011 2.7e-009 -7.667999994e+003 -7.667999994e+003 4.2e-010 0.59
+</pre>
+</small>The first line displays the number of threads used by the optimizer and second line tells that the optimizer choose to solve the dual problem rather the primal problem. The next line displays the problem dimensions as seen by the optimizer, and the &#8220;<tt class="tt">Factor...</tt>&#8221; lines show various statistics. This is followed by the iteration log.</p>
+
+<p>Using the same notation as in section <a title="8.2.2. The interior-point optimizer" href="node010.html#ch_linopt_sec_intpnt_alg">8.2.2</a> the columns of the iteration log has the following meaning: </p>
+
+<ul class="itemize">
+<li><tt class="tt">ITE</tt>: Iteration index.</li>
+<li><tt class="tt">PFEAS</tt>: <span class="math"><img src="math/math437.png" alt="[[MathCmd 437]]"/></span>. The numbers in this column should converge monotonically towards to zero.</li>
+<li><tt class="tt">DFEAS</tt>: <span class="math"><img src="math/math438.png" alt="[[MathCmd 438]]"/></span>. The numbers in this column should converge monotonically toward to zero.</li>
+<li><tt class="tt">KAP/TAU</tt>: <span class="math"><img src="math/math439.png" alt="[[MathCmd 439]]"/></span>. If the numbers in this column converge toward zero then the problem has an optimal solution. Otherwise if the numbers converge towards infinity, the problem is primal or/and dual infeasible.</li>
+<li><tt class="tt">POBJ</tt>: <span class="math"><img src="math/math440.png" alt="[[MathCmd 440]]"/></span>. An estimate for the primal objective value.</li>
+<li><tt class="tt">DOBJ</tt>: <span class="math"><img src="math/math441.png" alt="[[MathCmd 441]]"/></span>. An estimate for the dual objective value.</li>
+<li><tt class="tt">MU</tt>: <span class="math"><img src="math/math442.png" alt="[[MathCmd 442]]"/></span>. The numbers in this column should always converge monotonically to zero.</li>
+<li><tt class="tt">TIME</tt>: Time spend since the optimization started. </li>
+</ul>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="232984088">8.2.3. The simplex based optimizer</a></h2>
+
+<p> <a name="idx-88045400">&#09;</a> <a name="idx-88046264">&#09;</a> An alternative to the interior-point optimizer is the simplex optimizer.</p>
+
+<p>The simplex optimizer uses a different method that allows exploiting an initial guess for the optimal solution to reduce the solution time. Depending on the problem it may be faster or slower to use an initial guess; see section <a title="8.2.4. The interior-point or the simplex optimizer?" href="node010.html#interior-point-or-simplex-optimizer">8.2.4</a> for a discussion.</p>
+
+<p>MOSEK provides both a primal and a dual variant of the simplex optimizer &mdash; we will return to this later.</p>
+
+<div>
+<h3><a name="232985520">8.2.3.1. Simplex termination criterion</a></h3>
+
+<p> The simplex optimizer terminates when it finds an optimal basic solution or an infeasibility certificate. A basic solution is optimal when it is primal and dual feasible; see (<a href="node009.html#ch-use-sec-linopt-eq-primal">7.1.1</a>) and (<a href="node009.html#ch-use-sec-linopt-eq-dual">7.1.2</a>) for a definition of the primal and dual problem. Due the fact that to computations are performed in finite precision MOSEK allows violation of primal and dual feasibility within certain tolerances. The user can control the allowed primal and dual infeasibility with the parameters <a href="node018.html#common-const*mosek*dparam*basis-tol-x"><tt class="tt">mosek.dparam.basis_tol_x</tt></a> and <a href="node018.html#common-const*mosek*dparam*basis-tol-s"><tt class="tt">mosek.dparam.basis_tol_s</tt></a>.</p>
+
+</div>
+
+<div>
+<h3><a name="232990552">8.2.3.2. Starting from an existing solution</a></h3>
+
+<p> <a name="idx-88060920">&#09;</a> When using the simplex optimizer it may be possible to reuse an existing solution and thereby reduce the solution time significantly. When a simplex optimizer starts from an existing solution it is said to perform a <em>hot-start</em>. If the user is solving a sequence of optimization problems by solving the problem, making modifications, and solving again, MOSEK will hot-start automatically.</p>
+
+<p>Setting the parameter <a href="node018.html#common-const*mosek*iparam*optimizer"><tt class="tt">mosek.iparam.optimizer</tt></a> to <a href="node020.html#common-const*mosek*optimizertype*free-simplex"><tt class="tt">mosek.optimizertype.free_simplex</tt></a> instructs MOSEK to select automatically between the primal and the dual simplex optimizers. Hence, MOSEK tries to choose the best optimizer for the given problem and the available solution.</p>
+
+<p>By default MOSEK uses presolve when performing a hot-start. If the optimizer only needs very few iterations to find the optimal solution it may be better to turn off the presolve.</p>
+
+</div>
+
+<div>
+<h3><a name="232991272">8.2.3.3. Numerical difficulties in the simplex optimizers</a></h3>
+
+<p> Though MOSEK is designed to minimize numerical instability, completely avoiding it is impossible when working in finite precision. MOSEK counts a &#8220;numerical unexpected behavior&#8221; event inside the optimizer as a <em>set-back</em>. The user can define how many set-backs the optimizer accepts; if that number is exceeded, the optimization will be aborted. Set-backs are implemented to avoid long sequences where the optimizer tries to recover from an unstable situation.</p>
+
+<p>Set-backs are, for example, repeated singularities when factorizing the basis matrix, repeated loss of feasibility, degeneracy problems (no progress in objective) and other events indicating numerical difficulties. If the simplex optimizer encounters a lot of set-backs the problem is usually badly scaled; in such a situation try to reformulate into a better scaled problem. Then, if a lot of set-backs still occur, trying one or more of the following suggestions may be worthwhile: </p>
+
+<ul class="itemize">
+<li>
+<p>Raise tolerances for allowed primal or dual feasibility: Hence, increase the value of </p>
+
+<ul class="itemize">
+<li><a href="node018.html#common-const*mosek*dparam*basis-tol-x"><tt class="tt">mosek.dparam.basis_tol_x</tt></a>, and </li>
+<li><a href="node018.html#common-const*mosek*dparam*basis-tol-s"><tt class="tt">mosek.dparam.basis_tol_s</tt></a>. </li>
+</ul>
+</li>
+<li>Raise or lower pivot tolerance: Change the <a href="node018.html#common-const*mosek*dparam*simplex-abs-tol-piv"><tt class="tt">mosek.dparam.simplex_abs_tol_piv</tt></a> parameter.</li>
+<li>Switch optimizer: Try another optimizer.</li>
+<li>Switch off crash: Set both <a href="node018.html#common-const*mosek*iparam*sim-primal-crash"><tt class="tt">mosek.iparam.sim_primal_crash</tt></a> and <a href="node018.html#common-const*mosek*iparam*sim-dual-crash"><tt class="tt">mosek.iparam.sim_dual_crash</tt></a> to 0.</li>
+<li>
+<p>Experiment with other pricing strategies: Try different values for the parameters  </p>
+
+<ul class="itemize">
+<li><a href="node018.html#common-const*mosek*iparam*sim-primal-selection"><tt class="tt">mosek.iparam.sim_primal_selection</tt></a> and </li>
+<li><a href="node018.html#common-const*mosek*iparam*sim-dual-selection"><tt class="tt">mosek.iparam.sim_dual_selection</tt></a>. </li>
+</ul>
+</li>
+<li>If you are using hot-starts, in rare cases switching off this feature may improve stability. This is controlled by the <a href="node018.html#common-const*mosek*iparam*sim-hotstart"><tt class="tt">mosek.iparam.sim_hotstart</tt></a> parameter.</li>
+<li>Increase maximum set-backs allowed controlled by <a href="node018.html#common-const*mosek*iparam*sim-max-num-setbacks"><tt class="tt">mosek.iparam.sim_max_num_setbacks</tt></a>.</li>
+<li>If the problem repeatedly becomes infeasible try switching off the special degeneracy handling. See the parameter <a href="node018.html#common-const*mosek*iparam*sim-degen"><tt class="tt">mosek.iparam.sim_degen</tt></a> for details. </li>
+</ul>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="232996736">8.2.4. The interior-point or the simplex optimizer?</a></h2>
+
+<p> <a name="idx-88091104">&#09;</a> <a name="interior-point-or-simplex-optimizer">&#09;</a> Given a linear optimization problem, which optimizer is the best: The primal simplex, the dual simplex or the interior-point optimizer?</p>
+
+<p>It is impossible to provide a general answer to this question, however, the interior-point optimizer behaves more predictably &mdash; it tends to use between 20 and 100 iterations, almost independently of problem size &mdash; but cannot perform hot-start, while simplex can take advantage of an initial solution, but is less predictable for cold-start. The interior-point optimizer is used by default.</p>
+
+</div>
+
+<div>
+<h2><a name="232997448">8.2.5. The primal or the dual simplex variant?</a></h2>
+
+<p>MOSEK provides both a primal and a dual simplex optimizer. Predicting which simplex optimizer is faster is impossible, however, in recent years the dual optimizer has seen several algorithmic and computational improvements, which, in our experience, makes it faster on average than the primal simplex optimizer. Still, it depends much on the problem structure and size.</p>
+
+<p>Setting the <a href="node018.html#common-const*mosek*iparam*optimizer"><tt class="tt">mosek.iparam.optimizer</tt></a> parameter to <a href="node020.html#common-const*mosek*optimizertype*free-simplex"><tt class="tt">mosek.optimizertype.free_simplex</tt></a> instructs MOSEK to choose which simplex optimizer to use automatically.</p>
+
+<p>To summarize, if you want to know which optimizer is faster for a given problem type, you should try all the optimizers.</p>
+
+<p>Alternatively, use the concurrent optimizer presented in Section <a title="8.6.3. The concurrent optimizer" href="node010.html#ch-solving-sec-concurrent">8.6.3</a>.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="232998744">8.3. Linear network optimization</a></h1>
+
+<p><a name="sec-solve-linear-network">&#09;</a> </p>
+
+<div>
+<h2><a name="232997664">8.3.1. Network flow problems</a></h2>
+
+<p> <a name="solving-network-problems">&#09;</a> <a name="idx-88112160">&#09;</a> <a name="idx-88110072">&#09;</a></p>
+
+<p>Linear optimization problems with the network flow structure as specified in section <a title="6.1. Linear network flow problems" href="node008.html#chap-apiintro-sec-linear-network-optimization">6.1</a> can often be solved significantly faster with a specialized version of the simplex method [<a href="node029.html#AHUJA:89:A" class="citation">7</a>] than with the general solvers.</p>
+
+<p>MOSEK includes a network simplex solver which, on avarage, solves network problems 10 to 100 times faster than the standard simplex optimizers.</p>
+
+<p>To use the network simplex optimizer, do the following:</p>
+
+<ul class="itemize">
+<li>Input the network flow problem as an ordinary linear optimization problem. </li>
+<li>
+<p>Set the parameters </p>
+
+<ul class="itemize">
+<li><a href="node018.html#common-const*mosek*iparam*sim-network-detect"><tt class="tt">mosek.iparam.sim_network_detect</tt></a> to <span class="math"><span class="mn">0</span></span>, and </li>
+<li><a href="node018.html#common-const*mosek*iparam*optimizer"><tt class="tt">mosek.iparam.optimizer</tt></a> to <a href="node020.html#common-const*mosek*optimizertype*free-simplex"><tt class="tt">mosek.optimizertype.free_simplex</tt></a>. </li>
+</ul>
+</li>
+<li>Optimize the problem using <a href="node017.html#common-func*mosek*task*optimizetrm"><tt class="tt">mosek.Task.optimizetrm</tt></a>.</li>
+</ul>
+
+<p>MOSEK will automatically detect the network structure and apply the specialized simplex optimizer.</p>
+
+</div>
+
+<div>
+<h2><a name="233001832">8.3.2. Embedded network problems</a></h2>
+
+<p> <a name="ch-solving-embedded-network-problems">&#09;</a> <a name="idx-88111728">&#09;</a> <a name="idx-88071776">&#09;</a></p>
+
+<p>Often problems contains both large parts with network structure and some non-network constraints or variables &mdash; such problems are said to have <em>embedded network structure</em>.</p>
+
+<p>If the procedure described in section <a title="8.3.1. Network flow problems" href="node010.html#solving-network-problems">8.3.1</a> is applied, MOSEK will attemt to exploit this structure to speed up the optimization.</p>
+
+<p>This is done heuristically by detecting the largest network embedded in the problem, solving this subproblem using the network simplex optimizer, and using the solution to hot-start a normal simplex optimizer.</p>
+
+<p>The <a href="node018.html#common-const*mosek*iparam*sim-network-detect"><tt class="tt">mosek.iparam.sim_network_detect</tt></a> parameter defines how large a percentage of the problem should be a network before the specialized solver is applied. In general, it is recommended to use the network optimizer only on problems containing a substantial embedded network.</p>
+
+<p>If MOSEK only finds limited network structure in a problem, consider trying to switch off presolve <a href="node018.html#common-const*mosek*iparam*presolve-use"><tt class="tt">mosek.iparam.presolve_use</tt></a> and scaling <a href="node018.html#common-const*mosek*iparam*sim-scaling"><tt class="tt">mosek.iparam.sim_scaling</tt></a>, since in rare cases it might disturb the network heuristic.</p>
+
+<p>The network detection heuristic can also be called directly through <a href="node017.html#common-func*mosek*task*netextraction"><tt class="tt">mosek.Task.netextraction</tt></a>.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="233003992">8.4. Conic optimization</a></h1>
+
+<p><a name="sec-solve-conic">&#09;</a></p>
+
+<div>
+<h2><a name="233002264">8.4.1. The interior-point optimizer</a></h2>
+
+<p> <a name="idx-88164256">&#09;</a> <a name="idx-88165120">&#09;</a></p>
+
+<p>For conic optimization problems only an interior-point type optimizer is available. The interior-point optimizer is an implementation of the so-called homogeneous and self-dual algorithm. For a detailed description of the algorithm, please see [<a href="node029.html#ANDERSEN:03:A" class="citation">23</a>].</p>
+
+<div>
+<h3><a name="233004208">8.4.1.1. Interior-point termination criteria</a></h3>
+
+<p>The parameters controlling when the conic interior-point optimizer terminates are shown in Table <a href="node010.html#ch-lin-opt-tab-co-term-cri">8.2</a>.</p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Parameter name </td>
+<td valign="top" style="border-top:1px solid black;"> Purpose </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"><a href="node018.html#common-const*mosek*dparam*intpnt-co-tol-pfeas"><tt class="tt">mosek.dparam.intpnt_co_tol_pfeas</tt></a> </td>
+<td valign="top" style="border-top:1px solid black;"> Controls primal feasibility </td></tr><tr class="evenrow">
+<td valign="top"><a href="node018.html#common-const*mosek*dparam*intpnt-co-tol-dfeas"><tt class="tt">mosek.dparam.intpnt_co_tol_dfeas</tt></a> </td>
+<td valign="top"> Controls dual feasibility </td></tr><tr class="oddrow">
+<td valign="top"><a href="node018.html#common-const*mosek*dparam*intpnt-co-tol-rel-gap"><tt class="tt">mosek.dparam.intpnt_co_tol_rel_gap</tt></a> </td>
+<td valign="top"> Controls relative gap </td></tr><tr class="evenrow">
+<td valign="top"><a href="node018.html#common-const*mosek*dparam*intpnt-tol-infeas"><tt class="tt">mosek.dparam.intpnt_tol_infeas</tt></a> </td>
+<td valign="top"> Controls when the problem is declared infeasible </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><a href="node018.html#common-const*mosek*dparam*intpnt-co-tol-mu-red"><tt class="tt">mosek.dparam.intpnt_co_tol_mu_red</tt></a> </td>
+<td valign="top" style="border-bottom:1px solid black;"> Controls when the complementarity is reduced enough </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;8.2: Parameters employed in termination criterion.</span>
+<br/>
+<p> <a name="ch-lin-opt-tab-co-term-cri">&#09;</a> </p>
+</td></tr></table>
+</td></tr></table>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="233018792">8.5. Nonlinear convex optimization</a></h1>
+
+<p><a name="sec-solve-geco">&#09;</a></p>
+
+<div>
+<h2><a name="233004640">8.5.1. The interior-point optimizer</a></h2>
+
+<p> <a name="idx-89592248">&#09;</a> <a name="idx-89593112">&#09;</a></p>
+
+<p>For quadratic, quadratically constrained, and general convex optimization problems an interior-point type optimizer is available. The interior-point optimizer is an implementation of the homogeneous and self-dual algorithm. For a detailed description of the algorithm, please see [<a href="node029.html#ANDERSEN:98:E" class="citation">21</a>, <a href="node029.html#ANDERSEN:99:A" class="citation">20</a>].</p>
+
+<div>
+<h3><a name="233018864">8.5.1.1. The convexity requirement</a></h3>
+
+<p>Continuous nonlinear problems are required to be convex. For quadratic problems MOSEK test this requirement before optimizing. Specifying a non-convex problem results in an error message.</p>
+
+<p>The following parameters are available to control the convexity check: </p>
+
+<ul class="itemize">
+<li><a href="node018.html#common-const*mosek*iparam*check-convexity"><tt class="tt">mosek.iparam.check_convexity</tt></a>: Turn convexity check on/off. </li>
+<li><a href="node018.html#common-const*mosek*dparam*check-convexity-rel-tol"><tt class="tt">mosek.dparam.check_convexity_rel_tol</tt></a>: Tolerance for convexity check. </li>
+<li><a href="node018.html#common-const*mosek*iparam*log-check-convexity"><tt class="tt">mosek.iparam.log_check_convexity</tt></a>: Turn on more log information for debugging. </li>
+</ul>
+
+</div>
+
+<div>
+<h3><a name="233019296">8.5.1.2. The differentiabilty requirement</a></h3>
+
+<p>The nonlinear optimizer in MOSEK requires both first order and second order derivatives. This of course implies care should be taken when solving problems involving non-differentiable functions.</p>
+
+<p>For instance, the function </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math443.png" alt="\begin{displaymath}\nonumber{}f(x)=x^{2}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is differentiable everywhere whereas the function </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math444.png" alt="\begin{displaymath}\nonumber{}f(x)=\sqrt{x}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is only diffrentiable for <span class="math"><span class="mi">x</span><span class="mo">&gt;</span><span class="mn">0</span></span>. In order to make sure that MOSEK evaulates the functions at points where they are differentiable, the function domains must be defined by setting appropriate variable bounds.</p>
+
+<p>In general, if a variable is not ranged MOSEK will only evaluate that variable at points strictly within the bounds. Hence, imposing the bound </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math445.png" alt="\begin{displaymath}\nonumber{}x\geq{}0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>in the case of <span class="math"><img src="math/math446.png" alt="[[MathCmd 446]]"/></span> is sufficient to guarantee that the function will only be evaluated in points where it is differentiable.</p>
+
+<p>However, if a function is differentiable on closed a range, specifying the variable bounds is not sufficient. Consider the function </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math447.png" alt="\begin{math}\nonumber{}f(x)=\frac{1}{x}+\frac{1}{1-x}.\end{math}"/></td>
+<td><a name="eq-sec-geco-eq1">&#09;</a>(8.5.1)</td></tr>
+</tbody>
+</table>
+
+<p>In this case the bounds </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math448.png" alt="\begin{displaymath}\nonumber{}0\leq{}x\leq{}1\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>will not guarantee that MOSEK only evalues the function for <span class="math"><span class="mi">x</span></span> between <span class="math"><span class="mn">0</span></span> and <span class="math"><span class="mn">1</span></span>. To force MOSEK to strictly satisfy both bounds on ranged variables set the parameter <a href="node018.html#common-const*mosek*iparam*intpnt-starting-point"><tt class="tt">mosek.iparam.intpnt_starting_point</tt></a> to <a href="node020.html#common-const*mosek*startpointtype*satisfy-bounds"><tt class="tt">mosek.startpointtype.satisfy_bounds</tt></a>.</p>
+
+<p>For efficiency reasons it may be better to reformulate the problem than to force MOSEK to observe ranged bounds strictly. For instance, (<a href="node010.html#eq-sec-geco-eq1">8.5.1</a>) can be reformulated as follows </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math449.png" alt="\begin{displaymath}\nonumber{}\begin{array}{rcl}\nonumber{}f(x) & = & \frac{1}{x}+\frac{1}{y}\\\nonumber{}0 & = & 1-x-y\\\nonumber{}0 & \leq{} & x\\\nonumber{}0 & \leq{} & y.\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div>
+<h3><a name="233005424">8.5.1.3. Interior-point termination criteria</a></h3>
+
+<p> The parameters controlling when the general convex interior-point optimizer terminates are shown in Table <a href="node010.html#ch-lin-opt-tab-nlo-term-cri">8.3</a>.</p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;"> Parameter name </td>
+<td valign="top" style="border-top:1px solid black;"> Purpose </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;"><a href="node018.html#common-const*mosek*dparam*intpnt-nl-tol-pfeas"><tt class="tt">mosek.dparam.intpnt_nl_tol_pfeas</tt></a> </td>
+<td valign="top" style="border-top:1px solid black;"> Controls primal feasibility </td></tr><tr class="evenrow">
+<td valign="top"><a href="node018.html#common-const*mosek*dparam*intpnt-nl-tol-dfeas"><tt class="tt">mosek.dparam.intpnt_nl_tol_dfeas</tt></a> </td>
+<td valign="top"> Controls dual feasibility </td></tr><tr class="oddrow">
+<td valign="top"><a href="node018.html#common-const*mosek*dparam*intpnt-nl-tol-rel-gap"><tt class="tt">mosek.dparam.intpnt_nl_tol_rel_gap</tt></a> </td>
+<td valign="top"> Controls relative gap </td></tr><tr class="evenrow">
+<td valign="top"><a href="node018.html#common-const*mosek*dparam*intpnt-tol-infeas"><tt class="tt">mosek.dparam.intpnt_tol_infeas</tt></a> </td>
+<td valign="top"> Controls when the problem is declared infeasible </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black;"><a href="node018.html#common-const*mosek*dparam*intpnt-nl-tol-mu-red"><tt class="tt">mosek.dparam.intpnt_nl_tol_mu_red</tt></a> </td>
+<td valign="top" style="border-bottom:1px solid black;"> Controls when the complementarity is reduced enough </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;8.3: Parameters employed in termination criteria.</span>
+<br/>
+<p> <a name="ch-lin-opt-tab-nlo-term-cri">&#09;</a> </p>
+</td></tr></table>
+</td></tr></table>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="233040208">8.6. Solving problems in parallel</a></h1>
+
+<p> <a name="idx-89622072">&#09;</a> <a name="idx-89619560">&#09;</a> <a name="idx-89619128">&#09;</a></p>
+
+<p>If a computer has multiple CPUs, or has a CPU with multiple cores, it is possible for MOSEK to take advantage of this to speed up solution times.</p>
+
+<div>
+<h2><a name="233027272">8.6.1. Thread safety</a></h2>
+
+<p> The MOSEK API is thread-safe provided that a task is only modified or accessed from one thread at any given time &mdash; accessing two separate tasks from two separate threads at the same time is safe. Sharing an environment between threads is safe.</p>
+
+</div>
+
+<div>
+<h2><a name="233040352">8.6.2. The parallelized interior-point optimizer</a></h2>
+
+<p> <a name="idx-89608136">&#09;</a> The interior-point optimizer is capable of using multiple CPUs or cores. This implies that whenever the MOSEK interior-point optimizer solves an optimization problem, it will try to divide the work so that each CPU gets a share of the work. The user decides how many CPUs MOSEK should exploit.</p>
+
+<p>It is not always possible to divide the work equally, and often parts of the computations and the coordination of the work is processed sequentially, even if several CPUs are present. Therefore, the speed-up obtained when using multiple CPUs is highly problem dependent. However, as a rule of thumb, if the problem solves very quickly, i.e. in less than 60 seconds, it is not advantageous to use the parallel option.</p>
+
+<p>The <a href="node018.html#common-const*mosek*iparam*intpnt-num-threads"><tt class="tt">mosek.iparam.intpnt_num_threads</tt></a> parameter sets the number of threads (and therefore the number of CPUs) that the interior point optimizer will use.</p>
+
+</div>
+
+<div>
+<h2><a name="233040712">8.6.3. The concurrent optimizer</a></h2>
+
+<p> <a name="idx-89645352">&#09;</a> <a name="chap-casestudies-sec-concurrent-optimization">&#09;</a> <a name="ch-solving-sec-concurrent">&#09;</a> <a name="idx-89646864">&#09;</a> An alternative to the parallel interior-point optimizer is the <em>concurrent optimizer</em>. The idea of the concurrent optimizer is to run multiple optimizers on the same problem concurrently, for instance, it allows you to apply the interior-point and the dual simplex optimizers to a linear optimization problem concurrently. The concurrent optimizer terminates when the first of the applied optimizers has terminated successfully, and it reports the solution of the fastest optimizer. In that way a new optimizer has been created which essentially performs as the fastest of the interior-point and the dual simplex optimizers.Hence, the concurrent optimizer is the best one to use if there are multiple optimizers available in MOSEK for the problem and you cannot say beforehand which one will be faster.</p>
+
+<p>Note in particular that any solution present in the task will also be used for hot-starting the simplex algorithms. One possible scenario would therefore be running a hot-start dual simplex in parallel with interior point, taking advantage of both the stability of the interior-point method and the ability of the simplex method to use an initial solution.</p>
+
+<p>By setting the </p>
+
+<pre class="verbatim">mosek.iparam.optimizer
+</pre>
+
+<p>parameter to </p>
+
+<pre class="verbatim">mosek.optimizertype.concurrent
+</pre>
+
+<p>the concurrent optimizer chosen.</p>
+
+<p>The number of optimizers used in parallel is determined by the </p>
+
+<pre class="verbatim">mosek.iparam.concurrent_num_optimizers.
+</pre>
+
+<p>parameter. Moreover, the optimizers are selected according to a preassigned priority with optimizers having the highest priority being selected first. The default priority for each optimizer is shown in Table <a title="8.6.3. The concurrent optimizer" href="node010.html#ch-parallel-sec-concurrentopt">8.6.3</a>. </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td>
+<p><a name="ch-parallel-sec-concurrentopt">&#09;</a> </p>
+<center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td align="center" valign="top" style="border-top:1px solid black;">  Optimizer </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Associated </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> Default </td></tr><tr class="oddrow">
+<td align="center" valign="top">&#160;</td>
+<td align="center" valign="top"> parameter </td>
+<td align="center" valign="top"> priority </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td align="center" valign="top" style="border-top:1px solid black;"> <a href="node020.html#common-const*mosek*optimizertype*intpnt"><tt class="tt">mosek.optimizertype.intpnt</tt></a> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> <a href="node018.html#common-const*mosek*iparam*concurrent-priority-intpnt"><tt class="tt">mosek.iparam.concurrent_priority_intpnt</tt></a> </td>
+<td align="center" valign="top" style="border-top:1px solid black;"> 4 </td></tr><tr class="oddrow">
+<td align="center" valign="top"><a href="node020.html#common-const*mosek*optimizertype*free-simplex"><tt class="tt">mosek.optimizertype.free_simplex</tt></a> </td>
+<td align="center" valign="top"> <a href="node018.html#common-const*mosek*iparam*concurrent-priority-free-simplex"><tt class="tt">mosek.iparam.concurrent_priority_free_simplex</tt></a> </td>
+<td align="center" valign="top"> 3 </td></tr><tr class="evenrow">
+<td align="center" valign="top"><a href="node020.html#common-const*mosek*optimizertype*primal-simplex"><tt class="tt">mosek.optimizertype.primal_simplex</tt></a> </td>
+<td align="center" valign="top"> <a href="node018.html#common-const*mosek*iparam*concurrent-priority-primal-simplex"><tt class="tt">mosek.iparam.concurrent_priority_primal_simplex</tt></a> </td>
+<td align="center" valign="top"> 2</td></tr><tr class="oddrow">
+<td align="center" valign="top" style="border-bottom:1px solid black;"><a href="node020.html#common-const*mosek*optimizertype*dual-simplex"><tt class="tt">mosek.optimizertype.dual_simplex</tt></a> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> <a href="node018.html#common-const*mosek*iparam*concurrent-priority-dual-simplex"><tt class="tt">mosek.iparam.concurrent_priority_dual_simplex</tt></a> </td>
+<td align="center" valign="top" style="border-bottom:1px solid black;"> 1 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+</center><span class="caption">Table&nbsp;8.4: Default priorities for optimizer selection in concurrent optimization.</span>
+<br/></td></tr></table>
+</td></tr></table>
+
+<p>For example, setting the <a href="node018.html#common-const*mosek*iparam*concurrent-num-optimizers"><tt class="tt">mosek.iparam.concurrent_num_optimizers</tt></a> parameter to <span class="math"><span class="mn">2</span></span> tells the concurrent optimizer to the apply the two optimizers with highest priorities: In the default case that means the interior-point optimizer and one of the simplex optimizers.</p>
+
+<div>
+<h3><a name="233049768">8.6.3.1. Concurrent optimization through the API</a></h3>
+
+<p> The following example shows how to call the concurrent optimizer through the API.</p>
+
+<div class="verbatimcode"><span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      concurrent1.cs
+
+   Purpose:   To demonstrate how to solve a problem 
+              with the concurrent optimizer. 
+ */</span>
+
+<span class="keyword">using</span> System;
+
+class msgclass : mosek.Stream 
+{
+  <span class="type">string</span> prefix;
+  <span class="keyword">public</span> msgclass (<span class="type">string</span> prfx) 
+    {
+      prefix = prfx;
+    }
+  
+  <span class="keyword">public</span> override <span class="type">void</span> streamCB (<span class="type">string</span> msg)
+    {
+      Console.Write ("<span class="string">{0}{1}</span>", prefix,msg);
+    }
+}
+
+<span class="keyword">public</span> class concurrent1
+{
+  
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> Main (String<span class="brackets">[]</span> args)
+    {
+      mosek.Env
+        env = <span class="keyword">null</span>;
+      mosek.Task
+        task = <span class="keyword">null</span>;
+      
+      <span class="keyword">try</span>
+        {
+          <span class="comment">// Create mosek environment. </span>
+          env  = <span class="keyword">new</span> mosek.Env ();
+          <span class="comment">// Direct the env log stream to the user specified</span>
+          <span class="comment">// method env_msg_obj.streamCB </span>
+          env.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">[env]</span>"));
+          <span class="comment">// Initialize the environment.</span>
+          env.init ();
+          <span class="comment">// Create a task object linked with the environment env.</span>
+          task = <span class="keyword">new</span> mosek.Task (env, 0,0);
+          <span class="comment">// Directs the log task stream to the user specified</span>
+          <span class="comment">// method task_msg_obj.streamCB</span>
+          task.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">[task]</span>"));
+            
+          task.readdata(args[0]);
+          task.putintparam(mosek.iparam.optimizer,
+                           mosek.Val.optimizer_concurrent);
+          task.putintparam(mosek.iparam.concurrent_num_optimizers,
+                           2);
+            
+          task.optimize();
+            
+          task.solutionsummary(mosek.streamtype.msg);
+       
+        }
+      <span class="keyword">catch</span> (mosek.Exception e)
+        {
+          Console.WriteLine (e.Code);
+          Console.WriteLine (e);
+        }
+          
+      <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.Dispose ();
+      <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.Dispose ();
+          
+    }
+}
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="233054720">8.6.4. A more flexible concurrent optimizer</a></h2>
+
+<p> <a name="ch-concurrentopt-sec-flex">&#09;</a></p>
+
+<p>MOSEK also provides a more flexible method of concurrent optimization by using the function <a href="node017.html#common-func*mosek*task*optimizeconcurrent"><tt class="tt">mosek.Task.optimizeconcurrent</tt></a>. The main advantages of this function are that it allows the calling application to assign arbitrary values to the parameters of each tasks, and that call-back functions can be attached to each task. This may be useful in the following situation: Assume that you know the primal simplex optimizer to be the best optimizer for your problem, but that you do not know which of the available selection strategies (as defined by the <a href="node018.html#common-const*mosek*iparam*sim-primal-selection"><tt class="tt">mosek.iparam.sim_primal_selection</tt></a> parameter) is the best. In this case you can solve the problem with the primal simplex optimizer using several different selection strategies concurrently.</p>
+
+<p>An example demonstrating the usage of the <a href="node017.html#common-func*mosek*task*optimizeconcurrent"><tt class="tt">mosek.Task.optimizeconcurrent</tt></a> function is included below. The example solves a single problem using the interior-point and primal simplex optimizers in parallel.</p>
+
+<div class="verbatimcode"><span class="comment">/*
+ * Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+ *
+ * File:      concurrent2.cs
+ *
+ * Purpose:   To demonstrate a more flexible interface for concurrent optimization. 
+*/</span>
+
+<span class="keyword">using</span> System;
+
+class msgclass : mosek.Stream 
+{
+  <span class="type">string</span> prefix;
+  <span class="keyword">public</span> msgclass (<span class="type">string</span> prfx) 
+    {
+      prefix = prfx;
+    }
+  
+  <span class="keyword">public</span> override <span class="type">void</span> streamCB (<span class="type">string</span> msg)
+    {
+      Console.Write ("<span class="string">{0}{1}</span>", prefix,msg);
+    }
+}
+
+<span class="keyword">public</span> class concurrent1
+{
+  
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> Main (String<span class="brackets">[]</span> args)
+    {
+      mosek.Env
+        env = <span class="keyword">null</span>;
+      mosek.Task
+        task = <span class="keyword">null</span>;
+      <span class="type">int</span>
+        numtasks = 1;
+      mosek.Task<span class="brackets">[]</span>
+        task_list = <span class="keyword">new</span> mosek.Task<span class="brackets">[]</span> { <span class="keyword">null</span> };
+            
+      <span class="keyword">try</span>
+        {
+          <span class="comment">// Create mosek environment. </span>
+          env  = <span class="keyword">new</span> mosek.Env ();
+          <span class="comment">// Direct the env log stream to the user specified</span>
+          <span class="comment">// method env_msg_obj.streamCB </span>
+          env.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">[env]</span>"));
+          <span class="comment">// Initialize the environment.</span>
+          env.init ();
+
+          <span class="comment">// Create a task object linked with the environment env.</span>
+          task = <span class="keyword">new</span> mosek.Task (env, 0,0);
+          <span class="comment">// Directs the log task stream to the user specified</span>
+          <span class="comment">// method task_msg_obj.streamCB</span>
+          task.set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">simplex: </span>"));
+
+          task_list[0] = <span class="keyword">new</span> mosek.Task (env, 0,0);
+          task_list[0].set_Stream (mosek.streamtype.log, <span class="keyword">new</span> msgclass ("<span class="string">intrpnt: </span>"));
+
+          task.readdata(args[0]);
+
+          <span class="comment">// Assign different parameter values to each task. </span>
+          <span class="comment">// In this case different optimizers. </span>
+          task.putintparam(mosek.iparam.optimizer,
+                           mosek.optimizertype.primal_simplex);
+  
+          task_list[0].putintparam(mosek.iparam.optimizer,
+                                   mosek.optimizertype.intpnt);
+  
+
+          <span class="comment">// Optimize task and task_list[0] in parallel.</span>
+          <span class="comment">// The problem data i.e. C, A, etc. </span>
+          <span class="comment">// is copied from task to task_list[0].</span>
+          task.optimizeconcurrent(task_list);
+          
+          task.solutionsummary(mosek.streamtype.log);
+        }
+      <span class="keyword">catch</span> (mosek.Exception e)
+      {
+        Console.WriteLine (e.Code);
+        Console.WriteLine (e);
+      }
+          
+      <span class="keyword">if</span> (task != <span class="keyword">null</span>) task.Dispose ();
+      <span class="keyword">if</span> (env  != <span class="keyword">null</span>)  env.Dispose ();
+          
+    }
+}
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="233055224">8.7. Understanding solution quality</a></h1>
+
+<p> <a name="chap:solving:sec:solqual">&#09;</a></p>
+
+<p>MOSEK will, in general, not produce an <em>exact</em> optimal solution; for efficiency reasons computations are performed in finite precision. This means that it is important to evaluate the quality of the reported solution. To evaluate the solution quality inspect the following properties: </p>
+
+<ul class="itemize">
+<li>The solution status reported by MOSEK. </li>
+<li>Primal feasibility: How much the solution violates the original constraints of the problem. </li>
+<li>Dual feasibility: How much the dual solution violates the constraints of the dual problem. </li>
+<li>Duality gap: The difference between the primal and dual objective values. </li>
+</ul>
+
+<p>Ideally, the primal and dual solutions should only violate the constraints of their respective problem <em>slightly</em> and the primal and dual objective values should be <em>close</em>. This should be evaluated in the context of the problem: How good is the data precision in the problem, and how exact a solution is required.</p>
+
+<div>
+<h2><a name="233056232">8.7.1. The solution summary</a></h2>
+
+<p>The solution summary is a small display generated by MOSEK that makes it easy to check the quality of the solution.</p>
+
+<p>The function <a href="node017.html#common-func*mosek*task*solutionsummary"><tt class="tt">mosek.Task.solutionsummary</tt></a> should be used to generate solution summary.</p>
+
+<div>
+<h3><a name="233055296">8.7.1.1. The optimal case</a></h3>
+
+<p>The solution summary has the format <small class="small">
+<pre class="verbatim">Problem status  : PRIMAL_AND_DUAL_FEASIBLE
+Solution status : OPTIMAL
+Primal - objective: 5.5018458883e+03   eq. infeas.: 1.20e-12 max bound infeas.: 2.31e-14
+Dual   - objective: 5.5018458883e+03   eq. infeas.: 1.15e-14 max bound infeas.: 7.11e-15
+</pre>
+</small>i.e. it shows status information, objective values and quality measures for the primal and dual solutions.</p>
+
+<p>Assumeing that we are solving a linear optimization problem and referring to the problems (<a href="node009.html#ch-use-sec-linopt-eq-primal">7.1.1</a>) and (<a href="node009.html#ch-use-sec-linopt-eq-dual">7.1.2</a>), the interpretation of the solution summary is as follows: </p>
+
+<ul class="itemize">
+<li>Problem status: The status of the problem.</li>
+<li>Solution status: The status of the solution.</li>
+<li>Primal objective: The primal objective value.</li>
+<li>Primal eq. infeas: <span class="math"><img src="math/math450.png" alt="[[MathCmd 450]]"/></span>.</li>
+<li>Primal max bound infeas.: <span class="math"><img src="math/math451.png" alt="[[MathCmd 451]]"/></span>.</li>
+<li>Dual objective: The dual objective value.</li>
+<li>Dual eq. infeas: <span class="math"><img src="math/math452.png" alt="[[MathCmd 452]]"/></span>.</li>
+<li>Dual max bound infeas.: <span class="math"><img src="math/math453.png" alt="[[MathCmd 453]]"/></span>. </li>
+</ul>
+
+<p> In the solution summary above the solution is classified as <span class="math"><img src="math/math454.png" alt="[[MathCmd 454]]"/></span>, meaning that the solution should be a good approximation to the true optimal solution. This seems very reasonable since the primal and dual solutions only violate their respective constraints slightly. Moreover, the duality gap is small, i.e. the primal and dual objective values are almost identical.</p>
+
+</div>
+
+<div>
+<h3><a name="233060544">8.7.1.2. The primal infeasible case</a></h3>
+
+<p>For an infeasible problem the solution summary might look like this: <small class="small">
+<pre class="verbatim">Problem status  : PRIMAL_INFEASIBLE
+Solution status : PRIMAL_INFEASIBLE_CER
+Primal - objective: 0.0000000000e+00   eq. infeas.: 0.00e+00 max bound infeas.: 0.00e+00
+Dual   - objective: 1.0000000000e+02   eq. infeas.: 0.00e+00 max bound infeas.: 0.00e+00
+</pre>
+</small></p>
+
+<p>It is known that if the problem is primal infeasible then an infeasibility certificate exists, which is a solution to the problem (<a href="node009.html#EQ:HDUALO">7.1.3</a>) having a positive objective value. Note that the primal solution plays no role and only the dual solution is used to specify the certificate.</p>
+
+<p>Therefore, in the primal infeasible case the solution summery should report how good the dual solution is to the problem (<a href="node009.html#EQ:HDUALO">7.1.3</a>). The interpretation of the solution summary is as follows: </p>
+
+<ul class="itemize">
+<li>Problem status: The status of the problem.</li>
+<li>Solution status: The status of the solution.</li>
+<li>Primal objective: Should be ignored.</li>
+<li>Primal eq. infeas: Should be ignored.</li>
+<li>Primal max bound infeas.: Should be ignored.</li>
+<li>Dual objective: <span class="math"><img src="math/math455.png" alt="[[MathCmd 455]]"/></span>.</li>
+<li>Dual eq. infeas: <span class="math"><img src="math/math456.png" alt="[[MathCmd 456]]"/></span>.</li>
+<li>Dual max bound infeas.: <span class="math"><img src="math/math457.png" alt="[[MathCmd 457]]"/></span>. </li>
+</ul>
+
+<p> Please note that </p>
+
+<ul class="itemize">
+<li>any information about the primal solution should be ignored.</li>
+<li>the dual objective value should be strictly positive if primal problem is minimization problem. Otherwise it should be strictly negative.</li>
+<li>
+<p>the bigger the ratio </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math458.png" alt="\begin{displaymath}\nonumber{}\frac{(l^{c})^{T} s_{l}^{c} - (u^{c})^{T} s_{u}^{c} + (l^{x})^{T} s_{l}^{x} - (u^{x})^{T} s_{u}^{x}}{\max (\left\|-y+s_{l}^{c}-s_{u}^{c};A^{T} y + s_{l}^{x} - s_{u}^{x} -0\right\|_{\infty },\max (-s_{l}^{c};-s_{u}^{c};-s_{l}^{x};-s_{u}^{x}))}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p> is, the better the certificate is. The reason is that a certificate is a ray, and hence only the direction is important. Therefore, in principle, the certificate should be normalized before using it. </p>
+</li>
+</ul>
+
+<p> Please see Section <a title="10.2. Analyzing infeasible problems" href="node012.html#sec-analysing-infeasible-problems">10.2</a> for more information about certificates of infeasibility.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="233053648">8.7.2. Retrieving solution quality information with the API</a></h2>
+
+<p>Information about the solution quality may be retrieved in the API with the help of the following functions:</p>
+
+<ul class="itemize">
+<li><a href="node017.html#common-func*mosek*task*getsolutioninf"><tt class="tt">mosek.Task.getsolutioninf</tt></a>: Obtains maximum infeasibility and primal/dual objective value. </li>
+<li><a href="node017.html#common-func*mosek*task*analyzesolution"><tt class="tt">mosek.Task.analyzesolution</tt></a>: Print additional information about the solution, e.g basis condition number and optionally a list of violated constraints. </li>
+<li><a href="node017.html#common-func*mosek*task*getpeqi"><tt class="tt">mosek.Task.getpeqi</tt></a>, <a href="node017.html#common-func*mosek*task*getdeqi"><tt class="tt">mosek.Task.getdeqi</tt></a>, <a href="node017.html#common-func*mosek*task*getpbi"><tt class="tt">mosek.Task.getpbi</tt></a>, <a href="node017.html#common-func*mosek*task*getdbi"><tt class="tt">mosek.Task.getdbi</tt></a>, <a href="node017.html#common-func*mosek*task*getdcni"><tt class="tt">mosek.Task.getdcni</tt></a>, <a href="node017.html#common-func*mosek*task*getpcni"><tt class="tt">mosek.Task.getpcni</tt></a>: Obtains violation of the individual constraints. </li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node009.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 7. Modelling" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK .NET API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node011.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  9. The optimizer for mixed integer problems" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node009.html" target="_self">7. Modelling</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK .NET API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node011.html" target="_self">9. The optimizer for mixed integer problems</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:46:05 2012</div>
+</body></html>

@@ -1,0 +1,1784 @@
+<html>
+<head>
+  <title>Table of Contents</title>
+  <style>
+    body { background-color : rgb(240,240,240); color : rgb(0,64,92); font-family : sans-serif; }
+    a:link    { text-decoration : none; color: rgb(0,64,92); }
+    a:visited { text-decoration : none; color: rgb(0,64,92); }
+    a:hover   { background-color : rgb(40,40,40); color: rgb(192,192,255); }
+    #tocbox    { font-family : sans-serif; }
+    #tocbox ul { font-size : small; list-style: none; margin-left : 1em; padding-left : 0; }
+    .toc-lvl0 li { font-weight: bolder; }
+    .toc-lvl2 li { font-size : smaller; font-weight : normal; }
+    #idxbox ul { font-size : small; list-style: none; margin-left : 1em; padding-left : 0; }
+    .sidebarbuttons td { margin : 3px; background-color : rgb(153, 178, 188); font-weight : bolder; font-family: sans-serif; border : solid medium; border-color: rgb(229,235,238) rgb(229,235,238) rgb(76,121,138) rgb(76,121,138); }
+    .sidebarbuttons a:link    { color : rgb(0,64,92); font-weight : bolder; }
+    .sidebarbuttons a:visited { color : rgb(0,64,92); font-weight : bolder; }
+    .sidebarbuttons a:hover   { color: white; background-color : rgb(0,64,92); font-weight : bolder; }
+  </style>
+  <script language="Javascript">
+    function showhide(id1,id2)
+    {
+      var elm = document.getElementById(id1);
+      elm.style.display = "block";
+      var elm = document.getElementById(id2);
+      elm.style.display = "none";
+    }
+  </script>
+</head>
+<body>
+<div class="sidebarbuttons">
+<table width="100%">
+  <tr>
+    <td width="50%" align=center colspan="2"><a href="../../../help/index.html" target="_top">All Manuals</a></td>
+  </tr>
+  <tr>
+    <td width="50%" align=center><a href="javascript:showhide('tocbox','idxbox')">Contents</a></td>
+    <td width="50%" align=center><a href="javascript:showhide('idxbox','tocbox')">Index</a></td>
+  </tr>
+</table>
+</div>
+<div id="tocbox">
+<ul class="toc-lvl0">
+  <li><a href="index.html#203124248" target="mainbox">The MOSEK Java API manual.  Version 6.0 (Revision 137).</a></li>
+  <ul class="toc-lvl1">
+    <li><a href="node001.html#212082840" target="mainbox">Contact information</a></li>
+    <li><a href="node002.html#139847936661696" target="mainbox">License agreement</a></li>
+    <li><a href="node003.html#212083128" target="mainbox">1. Changes and new features in MOSEK</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node003.html#212083560" target="mainbox">1.1. Compilers used to build MOSEK</a></li>
+      <li><a href="node003.html#212116616" target="mainbox">1.2. General changes</a></li>
+      <li><a href="node003.html#212118488" target="mainbox">1.3. Optimizers</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node003.html#212117624" target="mainbox">1.3.1. Interior point optimizer</a></li>
+        <li><a href="node003.html#212118920" target="mainbox">1.3.2. The simplex optimizers</a></li>
+        <li><a href="node003.html#212119208" target="mainbox">1.3.3. Mixed-integer optimizer</a></li>
+      </ul>
+      <li><a href="node003.html#212119920" target="mainbox">1.4. API changes</a></li>
+      <li><a href="node003.html#212121144" target="mainbox">1.5. License system</a></li>
+      <li><a href="node003.html#212122440" target="mainbox">1.6. Other changes</a></li>
+      <li><a href="node003.html#212123592" target="mainbox">1.7. Interfaces</a></li>
+      <li><a href="node003.html#212124592" target="mainbox">1.8. Platform changes</a></li>
+    </ul>
+    <li><a href="node004.html#212126104" target="mainbox">2. About this manual</a></li>
+    <li><a href="node005.html#212131280" target="mainbox">3. Getting support and help</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node005.html#212126464" target="mainbox">3.1. MOSEK documentation</a></li>
+      <li><a href="node005.html#212134368" target="mainbox">3.2. Additional reading</a></li>
+    </ul>
+    <li><a href="node006.html#212126680" target="mainbox">4. Testing installation and compiling examples</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node006.html#212134584" target="mainbox">4.1. Microsoft Windows Platform</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node006.html#212136376" target="mainbox">4.1.1. Compiling and executing a program</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node006.html#212139112" target="mainbox">4.1.1.1. Compiling with Microsoft NMake</a></li>
+        </ul>
+        <li><a href="node006.html#212142704" target="mainbox">4.1.2. Common problems</a></li>
+      </ul>
+      <li><a href="node006.html#212145792" target="mainbox">4.2. Linux Platform</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node006.html#212146656" target="mainbox">4.2.1. Setting <tt class="tt">PATH</tt> and <tt class="tt">CLASSPATH</tt></a></li>
+        <li><a href="node006.html#212150608" target="mainbox">4.2.2. Compiling and executing a program</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node006.html#212153624" target="mainbox">4.2.2.1. Compiling examples using GMake</a></li>
+        </ul>
+        <li><a href="node006.html#212157000" target="mainbox">4.2.3. Common problems</a></li>
+      </ul>
+    </ul>
+    <li><a href="node007.html#212161384" target="mainbox">5. Basic API tutorial</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node007.html#212157216" target="mainbox">5.1. The basics</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node007.html#212165192" target="mainbox">5.1.1. The environment and the task</a></li>
+        <li><a href="node007.html#212167712" target="mainbox">5.1.2. A simple working example</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node007.html#212169504" target="mainbox">5.1.2.1. Writing a problem to a file</a></li>
+          <li><a href="node007.html#212170152" target="mainbox">5.1.2.2. Inputting and outputting problem data</a></li>
+          <li><a href="node007.html#212171016" target="mainbox">5.1.2.3. Setting parameters</a></li>
+        </ul>
+        <li><a href="node007.html#212170584" target="mainbox">5.1.3. Compiling and running examples</a></li>
+      </ul>
+      <li><a href="node007.html#212172096" target="mainbox">5.2. Linear optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node007.html#212189336" target="mainbox">5.2.1. Linear optimization example: lo1</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node007.html#212190056" target="mainbox">5.2.1.1. Solving the problem</a></li>
+          <li><a href="node007.html#212248984" target="mainbox">5.2.1.2. Source code for lo1</a></li>
+        </ul>
+        <li><a href="node007.html#212255088" target="mainbox">5.2.2. Row-wise input</a></li>
+      </ul>
+      <li><a href="node007.html#212258112" target="mainbox">5.3. Quadratic optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node007.html#212272408" target="mainbox">5.3.1. Example: Quadratic objective</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node007.html#213151896" target="mainbox">5.3.1.1. Source code</a></li>
+          <li><a href="node007.html#213152112" target="mainbox">5.3.1.2. Example code comments</a></li>
+        </ul>
+        <li><a href="node007.html#213157792" target="mainbox">5.3.2. Example: Quadratic constraints</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node007.html#213181072" target="mainbox">5.3.2.1. Source code</a></li>
+        </ul>
+      </ul>
+      <li><a href="node007.html#213188408" target="mainbox">5.4. Conic optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node007.html#213205576" target="mainbox">5.4.1. Example: cqo1</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node007.html#213205792" target="mainbox">5.4.1.1. Source code</a></li>
+          <li><a href="node007.html#213216504" target="mainbox">5.4.1.2. Source code comments</a></li>
+        </ul>
+      </ul>
+      <li><a href="node007.html#213218944" target="mainbox">5.5. Integer optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node007.html#213217432" target="mainbox">5.5.1. Example: milo1</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node007.html#213219232" target="mainbox">5.5.1.1. Source code</a></li>
+          <li><a href="node007.html#213229936" target="mainbox">5.5.1.2. Code comments</a></li>
+        </ul>
+        <li><a href="node007.html#213229224" target="mainbox">5.5.2. Specifying an initial solution</a></li>
+        <li><a href="node007.html#213230368" target="mainbox">5.5.3. Example: Specifying an integer solution</a></li>
+      </ul>
+      <li><a href="node007.html#213235616" target="mainbox">5.6. Problem modification and reoptimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node007.html#213230872" target="mainbox">5.6.1. A production planning problem</a></li>
+        <li><a href="node007.html#213265440" target="mainbox">5.6.2. Changing the <span class="math"><span class="mi">A</span></span> matrix</a></li>
+        <li><a href="node007.html#213282256" target="mainbox">5.6.3. Appending variables</a></li>
+        <li><a href="node007.html#213286992" target="mainbox">5.6.4. Reoptimization</a></li>
+        <li><a href="node007.html#213308696" target="mainbox">5.6.5. Appending constraints</a></li>
+      </ul>
+      <li><a href="node007.html#213315384" target="mainbox">5.7. Efficiency considerations</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node007.html#213322136" target="mainbox">5.7.1. API overhead</a></li>
+      </ul>
+      <li><a href="node007.html#213324288" target="mainbox">5.8. Conventions employed in the API</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node007.html#213322280" target="mainbox">5.8.1. Naming conventions for arguments</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node007.html#215050576" target="mainbox">5.8.1.1. Bounds</a></li>
+        </ul>
+        <li><a href="node007.html#215052232" target="mainbox">5.8.2. Vector formats</a></li>
+        <li><a href="node007.html#215055392" target="mainbox">5.8.3. Matrix formats</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node007.html#215052512" target="mainbox">5.8.3.1. Unordered triplets</a></li>
+          <li><a href="node007.html#215057904" target="mainbox">5.8.3.2. Row or column ordered sparse matrix</a></li>
+          <li><a href="node007.html#215081904" target="mainbox">5.8.3.3. Row ordered sparse matrix</a></li>
+        </ul>
+      </ul>
+      <li><a href="node007.html#215090312" target="mainbox">5.9. The license system</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node007.html#215081976" target="mainbox">5.9.1. Waiting for a free license</a></li>
+      </ul>
+    </ul>
+    <li><a href="node008.html#215090960" target="mainbox">6. Advanced API tutorial</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node008.html#215082048" target="mainbox">6.1. Linear network flow problems</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node008.html#215106120" target="mainbox">6.1.1. A linear network flow problem example</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node008.html#215138032" target="mainbox">6.1.1.1. Source code</a></li>
+          <li><a href="node008.html#215136304" target="mainbox">6.1.1.2. Example code comments</a></li>
+        </ul>
+      </ul>
+      <li><a href="node008.html#215132352" target="mainbox">6.2. Embedded network flow problems</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node008.html#215236552" target="mainbox">6.2.1. Example: Exploit embedded network flow structure in the simplex optimizer</a></li>
+      </ul>
+    </ul>
+    <li><a href="node009.html#215232592" target="mainbox">7. Modelling</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node009.html#215225912" target="mainbox">7.1. Linear optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node009.html#215247832" target="mainbox">7.1.1. Duality for linear optimization</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node009.html#215261336" target="mainbox">7.1.1.1. A primal-dual feasible solution</a></li>
+          <li><a href="node009.html#215263784" target="mainbox">7.1.1.2. An optimal solution</a></li>
+          <li><a href="node009.html#215275208" target="mainbox">7.1.1.3. Primal infeasible problems</a></li>
+          <li><a href="node009.html#215284624" target="mainbox">7.1.1.4. Dual infeasible problems</a></li>
+        </ul>
+        <li><a href="node009.html#217061496" target="mainbox">7.1.2. Primal and dual infeasible case</a></li>
+      </ul>
+      <li><a href="node009.html#217061856" target="mainbox">7.2. Quadratic and quadratically constrained optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node009.html#217077232" target="mainbox">7.2.1. A general recommendation</a></li>
+        <li><a href="node009.html#217077520" target="mainbox">7.2.2. Reformulating as a separable quadratic problem</a></li>
+      </ul>
+      <li><a href="node009.html#217107704" target="mainbox">7.3. Conic optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node009.html#217125592" target="mainbox">7.3.1. Duality for conic optimization</a></li>
+        <li><a href="node009.html#217141544" target="mainbox">7.3.2. Infeasibility</a></li>
+        <li><a href="node009.html#217125664" target="mainbox">7.3.3. Examples</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node009.html#217141616" target="mainbox">7.3.3.1. Quadratic objective and constraints</a></li>
+          <li><a href="node009.html#217190480" target="mainbox">7.3.3.2. Minimizing a sum of norms</a></li>
+          <li><a href="node009.html#217234176" target="mainbox">7.3.3.3. Modelling polynomial terms using conic optimization</a></li>
+          <li><a href="node009.html#217300792" target="mainbox">7.3.3.4. Optimization with rational polynomials</a></li>
+          <li><a href="node009.html#218939048" target="mainbox">7.3.3.5. Convex increasing power functions</a></li>
+          <li><a href="node009.html#218945656" target="mainbox">7.3.3.6. Decreasing power functions</a></li>
+          <li><a href="node009.html#218951552" target="mainbox">7.3.3.7. Minimizing general polynomials</a></li>
+          <li><a href="node009.html#218970232" target="mainbox">7.3.3.8. Further reading</a></li>
+        </ul>
+        <li><a href="node009.html#218970448" target="mainbox">7.3.4. Potential pitfalls in conic optimization</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node009.html#218970304" target="mainbox">7.3.4.1. Non-attainment in the primal problem</a></li>
+          <li><a href="node009.html#218982016" target="mainbox">7.3.4.2. Non-attainment in the dual problem</a></li>
+        </ul>
+      </ul>
+      <li><a href="node009.html#219017088" target="mainbox">7.4. Recommendations</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node009.html#219022688" target="mainbox">7.4.1. Avoid near infeasible models</a></li>
+      </ul>
+      <li><a href="node009.html#219034544" target="mainbox">7.5. Examples continued</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node009.html#219022832" target="mainbox">7.5.1. The absolute value</a></li>
+        <li><a href="node009.html#219035696" target="mainbox">7.5.2. The Markowitz portfolio model</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node009.html#219047768" target="mainbox">7.5.2.1. Minimizing variance for a given return</a></li>
+          <li><a href="node009.html#219062496" target="mainbox">7.5.2.2. Conic quadratic reformulation</a></li>
+          <li><a href="node009.html#219074504" target="mainbox">7.5.2.3. Transaction costs with market impact term</a></li>
+          <li><a href="node009.html#219113736" target="mainbox">7.5.2.4. Further reading</a></li>
+        </ul>
+      </ul>
+    </ul>
+    <li><a href="node010.html#219114600" target="mainbox">8. The optimizers for continuous problems</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node010.html#219113808" target="mainbox">8.1. How an optimizer works</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node010.html#219115104" target="mainbox">8.1.1. Presolve</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node010.html#219117256" target="mainbox">8.1.1.1. Eliminator</a></li>
+          <li><a href="node010.html#219122360" target="mainbox">8.1.1.2. Linear dependency checker</a></li>
+        </ul>
+        <li><a href="node010.html#219130192" target="mainbox">8.1.2. Dualizer</a></li>
+        <li><a href="node010.html#219130624" target="mainbox">8.1.3. Scaling</a></li>
+        <li><a href="node010.html#219131632" target="mainbox">8.1.4. Using multiple CPU's</a></li>
+      </ul>
+      <li><a href="node010.html#219133424" target="mainbox">8.2. Linear optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node010.html#219131848" target="mainbox">8.2.1. Optimizer selection</a></li>
+        <li><a href="node010.html#219133856" target="mainbox">8.2.2. The interior-point optimizer</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node010.html#219169568" target="mainbox">8.2.2.1. Interior-point termination criterion</a></li>
+          <li><a href="node010.html#219187104" target="mainbox">8.2.2.2. Basis identification</a></li>
+          <li><a href="node010.html#219191488" target="mainbox">8.2.2.3. The interior-point log</a></li>
+        </ul>
+        <li><a href="node010.html#220853312" target="mainbox">8.2.3. The simplex based optimizer</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node010.html#219191704" target="mainbox">8.2.3.1. Simplex termination criterion</a></li>
+          <li><a href="node010.html#220855616" target="mainbox">8.2.3.2. Starting from an existing solution</a></li>
+          <li><a href="node010.html#220856400" target="mainbox">8.2.3.3. Numerical difficulties in the simplex optimizers</a></li>
+        </ul>
+        <li><a href="node010.html#220861864" target="mainbox">8.2.4. The interior-point or the simplex optimizer?</a></li>
+        <li><a href="node010.html#220862512" target="mainbox">8.2.5. The primal or the dual simplex variant?</a></li>
+      </ul>
+      <li><a href="node010.html#220863808" target="mainbox">8.3. Linear network optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node010.html#220862728" target="mainbox">8.3.1. Network flow problems</a></li>
+        <li><a href="node010.html#220866896" target="mainbox">8.3.2. Embedded network problems</a></li>
+      </ul>
+      <li><a href="node010.html#220869120" target="mainbox">8.4. Conic optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node010.html#220867328" target="mainbox">8.4.1. The interior-point optimizer</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node010.html#220869336" target="mainbox">8.4.1.1. Interior-point termination criteria</a></li>
+        </ul>
+      </ul>
+      <li><a href="node010.html#220879760" target="mainbox">8.5. Nonlinear convex optimization</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node010.html#220869768" target="mainbox">8.5.1. The interior-point optimizer</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node010.html#220879832" target="mainbox">8.5.1.1. The convexity requirement</a></li>
+          <li><a href="node010.html#220880264" target="mainbox">8.5.1.2. The differentiabilty requirement</a></li>
+          <li><a href="node010.html#220882776" target="mainbox">8.5.1.3. Interior-point termination criteria</a></li>
+        </ul>
+      </ul>
+      <li><a href="node010.html#220901176" target="mainbox">8.6. Solving problems in parallel</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node010.html#220892336" target="mainbox">8.6.1. Thread safety</a></li>
+        <li><a href="node010.html#220901320" target="mainbox">8.6.2. The parallelized interior-point optimizer</a></li>
+        <li><a href="node010.html#220901744" target="mainbox">8.6.3. The concurrent optimizer</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node010.html#220914896" target="mainbox">8.6.3.1. Concurrent optimization through the API</a></li>
+        </ul>
+        <li><a href="node010.html#220915760" target="mainbox">8.6.4. A more flexible concurrent optimizer</a></li>
+      </ul>
+      <li><a href="node010.html#220916048" target="mainbox">8.7. Understanding solution quality</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node010.html#220916768" target="mainbox">8.7.1. The solution summary</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node010.html#220916120" target="mainbox">8.7.1.1. The optimal case</a></li>
+          <li><a href="node010.html#220921080" target="mainbox">8.7.1.2. The primal infeasible case</a></li>
+        </ul>
+        <li><a href="node010.html#220926536" target="mainbox">8.7.2. Retrieving solution quality information with the API</a></li>
+      </ul>
+    </ul>
+    <li><a href="node011.html#220929920" target="mainbox">9. The optimizer for mixed integer problems</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node011.html#220931496" target="mainbox">9.1. Some notation</a></li>
+      <li><a href="node011.html#220962400" target="mainbox">9.2. An important fact about integer optimization problems</a></li>
+      <li><a href="node011.html#220962968" target="mainbox">9.3. How the integer optimizer works</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node011.html#220963328" target="mainbox">9.3.1. Presolve</a></li>
+        <li><a href="node011.html#220963112" target="mainbox">9.3.2. Heuristic</a></li>
+        <li><a href="node011.html#220965416" target="mainbox">9.3.3. The optimization phase</a></li>
+      </ul>
+      <li><a href="node011.html#220966280" target="mainbox">9.4. Termination criterion</a></li>
+      <li><a href="node011.html#220987976" target="mainbox">9.5. How to speed up the solution process</a></li>
+      <li><a href="node011.html#220988480" target="mainbox">9.6. Understanding solution quality</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node011.html#220989992" target="mainbox">9.6.1. Solutionsummary</a></li>
+        <li><a href="node011.html#220991000" target="mainbox">9.6.2. Retrieving solution quality information with the API</a></li>
+      </ul>
+    </ul>
+    <li><a href="node012.html#220994808" target="mainbox">10. The analyzers</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node012.html#220992216" target="mainbox">10.1. The problem analyzer</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node012.html#220996816" target="mainbox">10.1.1. General characteristics</a></li>
+        <li><a href="node012.html#221005152" target="mainbox">10.1.2. Objective</a></li>
+        <li><a href="node012.html#221008024" target="mainbox">10.1.3. Linear constraints</a></li>
+        <li><a href="node012.html#221009320" target="mainbox">10.1.4. Constraint and variable bounds</a></li>
+        <li><a href="node012.html#221009680" target="mainbox">10.1.5. Quadratic constraints</a></li>
+        <li><a href="node012.html#221010616" target="mainbox">10.1.6. Conic constraints</a></li>
+      </ul>
+      <li><a href="node012.html#221012408" target="mainbox">10.2. Analyzing infeasible problems</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node012.html#221013560" target="mainbox">10.2.1. Example: Primal infeasibility</a></li>
+        <li><a href="node012.html#221016864" target="mainbox">10.2.2. Locating the cause of primal infeasibility</a></li>
+        <li><a href="node012.html#221084128" target="mainbox">10.2.3. Locating the cause of dual infeasibility</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node012.html#221070400" target="mainbox">10.2.3.1. A cautious note</a></li>
+        </ul>
+        <li><a href="node012.html#221091384" target="mainbox">10.2.4. The infeasibility report</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node012.html#221069680" target="mainbox">10.2.4.1. Example: Primal infeasibility</a></li>
+          <li><a href="node012.html#221096200" target="mainbox">10.2.4.2. Example: Dual infeasibility</a></li>
+        </ul>
+        <li><a href="node012.html#222815296" target="mainbox">10.2.5. Theory concerning infeasible problems</a></li>
+        <li><a href="node012.html#222837864" target="mainbox">10.2.6. The certificate of primal infeasibility</a></li>
+        <li><a href="node012.html#222853240" target="mainbox">10.2.7. The certificate of dual infeasibility</a></li>
+      </ul>
+    </ul>
+    <li><a href="node013.html#222884640" target="mainbox">11. Primal feasibility repair</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node013.html#222853312" target="mainbox">11.1. The main idea</a></li>
+      <li><a href="node013.html#222936096" target="mainbox">11.2. Feasibility repair in MOSEK</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node013.html#222853384" target="mainbox">11.2.1. Usage of negative weights</a></li>
+        <li><a href="node013.html#222936672" target="mainbox">11.2.2. Automatical naming</a></li>
+        <li><a href="node013.html#222939976" target="mainbox">11.2.3. Feasibility repair using the API</a></li>
+        <li><a href="node013.html#222941552" target="mainbox">11.2.4. An example</a></li>
+      </ul>
+    </ul>
+    <li><a href="node014.html#222966488" target="mainbox">12. Sensitivity analysis</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node014.html#222941984" target="mainbox">12.1. Introduction</a></li>
+      <li><a href="node014.html#222965840" target="mainbox">12.2. Restrictions</a></li>
+      <li><a href="node014.html#222942200" target="mainbox">12.3. References</a></li>
+      <li><a href="node014.html#222967208" target="mainbox">12.4. Sensitivity analysis for linear problems</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node014.html#222967352" target="mainbox">12.4.1. The optimal objective value function</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node014.html#223005152" target="mainbox">12.4.1.1. Equality constraints</a></li>
+        </ul>
+        <li><a href="node014.html#223006376" target="mainbox">12.4.2. The basis type sensitivity analysis</a></li>
+        <li><a href="node014.html#223008024" target="mainbox">12.4.3. The optimal partition type sensitivity analysis</a></li>
+        <li><a href="node014.html#224777136" target="mainbox">12.4.4. Example: Sensitivity analysis</a></li>
+      </ul>
+      <li><a href="node014.html#226650664" target="mainbox">12.5. Sensitivity analysis from the MOSEK API</a></li>
+      <li><a href="node014.html#226651960" target="mainbox">12.6. Sensitivity analysis with the command line tool</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node014.html#226654400" target="mainbox">12.6.1. Sensitivity analysis specification file</a></li>
+        <li><a href="node014.html#226656840" target="mainbox">12.6.2. Example: Sensitivity analysis from command line</a></li>
+        <li><a href="node014.html#226662016" target="mainbox">12.6.3. Controlling log output</a></li>
+      </ul>
+    </ul>
+    <li><a href="node015.html#226666040" target="mainbox">13. Usage guidelines</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node015.html#226662520" target="mainbox">13.1. Verifying the results</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node015.html#226668200" target="mainbox">13.1.1. Verifying primal feasibility</a></li>
+        <li><a href="node015.html#226674448" target="mainbox">13.1.2. Verifying optimality</a></li>
+      </ul>
+      <li><a href="node015.html#226675672" target="mainbox">13.2. Turn on logging</a></li>
+      <li><a href="node015.html#226678544" target="mainbox">13.3. Turn on data checking</a></li>
+      <li><a href="node015.html#226675960" target="mainbox">13.4. Debugging an optimization task</a></li>
+      <li><a href="node015.html#226680416" target="mainbox">13.5. Important API limitations</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node015.html#226679624" target="mainbox">13.5.1. Thread safety</a></li>
+      </ul>
+      <li><a href="node015.html#226681848" target="mainbox">13.6. Bug reporting</a></li>
+    </ul>
+    <li><a href="node016.html#226682928" target="mainbox">14. API reference</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node016.html#226682064" target="mainbox">14.1. API Functionality</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node016.html#226683144" target="mainbox">14.1.1. Analyzing the problem and associated data</a></li>
+        <li><a href="node016.html#226684584" target="mainbox">14.1.2. Reading and writing data files</a></li>
+        <li><a href="node016.html#226687024" target="mainbox">14.1.3. Solutions</a></li>
+        <li><a href="node016.html#226693416" target="mainbox">14.1.4. Memory allocation and deallocation</a></li>
+        <li><a href="node016.html#226694496" target="mainbox">14.1.5. Changing problem specification</a></li>
+        <li><a href="node016.html#226700824" target="mainbox">14.1.6. Delete problem elements (variables,constraints,cones)</a></li>
+        <li><a href="node016.html#226701968" target="mainbox">14.1.7. Add problem elements (variables,constraints,cones)</a></li>
+        <li><a href="node016.html#226703048" target="mainbox">14.1.8. Problem inspection</a></li>
+        <li><a href="node016.html#226711600" target="mainbox">14.1.9. Conic constraints</a></li>
+        <li><a href="node016.html#226713544" target="mainbox">14.1.10. Bounds</a></li>
+        <li><a href="node016.html#226715552" target="mainbox">14.1.11. Output stream functions</a></li>
+        <li><a href="node016.html#226717496" target="mainbox">14.1.12. Objective function</a></li>
+        <li><a href="node016.html#226722160" target="mainbox">14.1.13. Optimizer statistics</a></li>
+        <li><a href="node016.html#226724104" target="mainbox">14.1.14. Parameters (set/get)</a></li>
+        <li><a href="node016.html#226728272" target="mainbox">14.1.15. Naming</a></li>
+        <li><a href="node016.html#226731144" target="mainbox">14.1.16. Preallocating space for problem data</a></li>
+        <li><a href="node016.html#226734448" target="mainbox">14.1.17. Integer variables</a></li>
+        <li><a href="node016.html#226737040" target="mainbox">14.1.18. Quadratic terms</a></li>
+        <li><a href="node016.html#226739696" target="mainbox">14.1.19. Diagnosing infeasibility</a></li>
+        <li><a href="node016.html#226740776" target="mainbox">14.1.20. Optimization</a></li>
+        <li><a href="node016.html#226742072" target="mainbox">14.1.21. Network optimization</a></li>
+        <li><a href="node016.html#226743216" target="mainbox">14.1.22. Sensitivity analysis</a></li>
+        <li><a href="node016.html#226744512" target="mainbox">14.1.23. Testing data validity</a></li>
+        <li><a href="node016.html#226745376" target="mainbox">14.1.24. Solving with the basis</a></li>
+        <li><a href="node016.html#226746736" target="mainbox">14.1.25. Initialization of environment</a></li>
+        <li><a href="node016.html#226748032" target="mainbox">14.1.26. Change <span class="math"><span class="mi">A</span></span></a></li>
+      </ul>
+      <li><a href="node016.html#226750760" target="mainbox">14.2. Class <tt class="tt">mosek.ArrayLengthException</tt></a></li>
+      <li><a href="node016.html#226751912" target="mainbox">14.3. Class <tt class="tt">mosek.Callback</tt></a></li>
+      <li><a href="node016.html#226752776" target="mainbox">14.4. Class <tt class="tt">mosek.Env</tt></a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node016.html#226753136" target="mainbox">14.4.1. Constructors</a></li>
+        <li><a href="node016.html#226756944" target="mainbox">14.4.2. Methods</a></li>
+      </ul>
+      <li><a href="node016.html#226787912" target="mainbox">14.5. Class <tt class="tt">mosek.Error</tt></a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node016.html#226757160" target="mainbox">14.5.1. Constructors</a></li>
+      </ul>
+      <li><a href="node016.html#226793304" target="mainbox">14.6. Class <tt class="tt">mosek.Exception</tt></a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node016.html#226793736" target="mainbox">14.6.1. Constructors</a></li>
+      </ul>
+      <li><a href="node016.html#226796824" target="mainbox">14.7. Class <tt class="tt">mosek.Progress</tt></a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node016.html#226797256" target="mainbox">14.7.1. Constructors</a></li>
+        <li><a href="node016.html#226800200" target="mainbox">14.7.2. Methods</a></li>
+      </ul>
+      <li><a href="node016.html#226803008" target="mainbox">14.8. Class <tt class="tt">mosek.Stream</tt></a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node016.html#226800416" target="mainbox">14.8.1. Constructors</a></li>
+        <li><a href="node016.html#226805664" target="mainbox">14.8.2. Methods</a></li>
+      </ul>
+      <li><a href="node016.html#226808536" target="mainbox">14.9. Class <tt class="tt">mosek.Task</tt></a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node016.html#226805880" target="mainbox">14.9.1. Constructors</a></li>
+        <li><a href="node016.html#226812056" target="mainbox">14.9.2. Attributes</a></li>
+        <li><a href="node016.html#226812776" target="mainbox">14.9.3. Methods</a></li>
+      </ul>
+      <li><a href="node016.html#234824120" target="mainbox">14.10. Class <tt class="tt">mosek.Warning</tt></a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node016.html#226813136" target="mainbox">14.10.1. Constructors</a></li>
+      </ul>
+    </ul>
+    <li><a href="node017.html#234828000" target="mainbox">15. Parameter reference</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node017.html#234825200" target="mainbox">15.1. Parameter groups</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node017.html#234828216" target="mainbox">15.1.1. Logging parameters.</a></li>
+        <li><a href="node017.html#234834328" target="mainbox">15.1.2. Basis identification parameters.</a></li>
+        <li><a href="node017.html#234836552" target="mainbox">15.1.3. The Interior-point method parameters.</a></li>
+        <li><a href="node017.html#234846328" target="mainbox">15.1.4. Simplex optimizer parameters.</a></li>
+        <li><a href="node017.html#234853152" target="mainbox">15.1.5. Primal simplex optimizer parameters.</a></li>
+        <li><a href="node017.html#234854448" target="mainbox">15.1.6. Dual simplex optimizer parameters.</a></li>
+        <li><a href="node017.html#234855744" target="mainbox">15.1.7. Network simplex optimizer parameters.</a></li>
+        <li><a href="node017.html#234857320" target="mainbox">15.1.8. Nonlinear convex method parameters.</a></li>
+        <li><a href="node017.html#234860344" target="mainbox">15.1.9. The conic interior-point method parameters.</a></li>
+        <li><a href="node017.html#234862352" target="mainbox">15.1.10. The mixed-integer optimization parameters.</a></li>
+        <li><a href="node017.html#234870976" target="mainbox">15.1.11. Presolve parameters.</a></li>
+        <li><a href="node017.html#234873848" target="mainbox">15.1.12. Termination criterion parameters.</a></li>
+        <li><a href="node017.html#234881896" target="mainbox">15.1.13. Progress call-back parameters.</a></li>
+        <li><a href="node017.html#234882832" target="mainbox">15.1.14. Non-convex solver parameters.</a></li>
+        <li><a href="node017.html#234884128" target="mainbox">15.1.15. Feasibility repair parameters.</a></li>
+        <li><a href="node017.html#234884776" target="mainbox">15.1.16. Optimization system parameters.</a></li>
+        <li><a href="node017.html#234887792" target="mainbox">15.1.17. Output information parameters.</a></li>
+        <li><a href="node017.html#234894472" target="mainbox">15.1.18. Extra information about the optimization problem.</a></li>
+        <li><a href="node017.html#234895120" target="mainbox">15.1.19. Overall solver parameters.</a></li>
+        <li><a href="node017.html#234899936" target="mainbox">15.1.20. Behavior of the optimization task.</a></li>
+        <li><a href="node017.html#234904032" target="mainbox">15.1.21. Data input/output parameters.</a></li>
+        <li><a href="node017.html#234924008" target="mainbox">15.1.22. Analysis parameters.</a></li>
+        <li><a href="node017.html#234925304" target="mainbox">15.1.23. Solution input/output parameters.</a></li>
+        <li><a href="node017.html#234930832" target="mainbox">15.1.24. Infeasibility report parameters.</a></li>
+        <li><a href="node017.html#234931984" target="mainbox">15.1.25. License manager parameters.</a></li>
+        <li><a href="node017.html#234933928" target="mainbox">15.1.26. Data check parameters.</a></li>
+        <li><a href="node017.html#234937376" target="mainbox">15.1.27. Debugging parameters.</a></li>
+      </ul>
+      <li><a href="node017.html#234938808" target="mainbox">15.2. Double parameters</a></li>
+      <li><a href="node017.html#237466400" target="mainbox">15.3. Integer parameters</a></li>
+      <li><a href="node017.html#241430896" target="mainbox">15.4. String parameter types</a></li>
+    </ul>
+    <li><a href="node018.html#243160920" target="mainbox">16. Response codes</a></li>
+    <li><a href="node019.html#243408552" target="mainbox">17. Constants</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node019.html#245108960" target="mainbox">17.1. Constraint or variable access modes</a></li>
+      <li><a href="node019.html#245110832" target="mainbox">17.2. Function opcode</a></li>
+      <li><a href="node019.html#245116728" target="mainbox">17.3. Function operand type</a></li>
+      <li><a href="node019.html#245120032" target="mainbox">17.4. Basis identification</a></li>
+      <li><a href="node019.html#245123984" target="mainbox">17.5. Bound keys</a></li>
+      <li><a href="node019.html#245127936" target="mainbox">17.6. Specifies the branching direction.</a></li>
+      <li><a href="node019.html#245130592" target="mainbox">17.7. Progress call-back codes</a></li>
+      <li><a href="node019.html#245208920" target="mainbox">17.8. Types of convexity checks.</a></li>
+      <li><a href="node019.html#245211576" target="mainbox">17.9. Compression types</a></li>
+      <li><a href="node019.html#245214168" target="mainbox">17.10. Cone types</a></li>
+      <li><a href="node019.html#245216176" target="mainbox">17.11. CPU type</a></li>
+      <li><a href="node019.html#245224080" target="mainbox">17.12. Data format types</a></li>
+      <li><a href="node019.html#245229328" target="mainbox">17.13. Double information items</a></li>
+      <li><a href="node019.html#245271872" target="mainbox">17.14. Feasibility repair types</a></li>
+      <li><a href="node019.html#245274528" target="mainbox">17.15. License feature</a></li>
+      <li><a href="node019.html#245277832" target="mainbox">17.16. Integer information items.</a></li>
+      <li><a href="node019.html#245348040" target="mainbox">17.17. Information item types</a></li>
+      <li><a href="node019.html#245350696" target="mainbox">17.18. Input/output modes</a></li>
+      <li><a href="node019.html#245353288" target="mainbox">17.19. Language selection constants</a></li>
+      <li><a href="node019.html#246997792" target="mainbox">17.20. Long integer information items.</a></li>
+      <li><a href="node019.html#247007640" target="mainbox">17.21. Mark</a></li>
+      <li><a href="node019.html#247009648" target="mainbox">17.22. Continuous mixed-integer solution type</a></li>
+      <li><a href="node019.html#247012888" target="mainbox">17.23. Integer restrictions</a></li>
+      <li><a href="node019.html#247015544" target="mainbox">17.24. Mixed-integer node selection types</a></li>
+      <li><a href="node019.html#247020144" target="mainbox">17.25. MPS file format type</a></li>
+      <li><a href="node019.html#247022800" target="mainbox">17.26. Message keys</a></li>
+      <li><a href="node019.html#247025392" target="mainbox">17.27. Network detection method</a></li>
+      <li><a href="node019.html#247028048" target="mainbox">17.28. Objective sense types</a></li>
+      <li><a href="node019.html#247030704" target="mainbox">17.29. On/off</a></li>
+      <li><a href="node019.html#247032648" target="mainbox">17.30. Optimizer types</a></li>
+      <li><a href="node019.html#247040552" target="mainbox">17.31. Ordering strategies</a></li>
+      <li><a href="node019.html#247045152" target="mainbox">17.32. Parameter type</a></li>
+      <li><a href="node019.html#247048456" target="mainbox">17.33. Presolve method.</a></li>
+      <li><a href="node019.html#247051112" target="mainbox">17.34. Problem data items</a></li>
+      <li><a href="node019.html#247053704" target="mainbox">17.35. Problem types</a></li>
+      <li><a href="node019.html#247058304" target="mainbox">17.36. Problem status keys</a></li>
+      <li><a href="node019.html#247066920" target="mainbox">17.37. Interpretation of quadratic terms in MPS files</a></li>
+      <li><a href="node019.html#247069512" target="mainbox">17.38. Response code type</a></li>
+      <li><a href="node019.html#247073464" target="mainbox">17.39. Scaling type</a></li>
+      <li><a href="node019.html#247075472" target="mainbox">17.40. Scaling type</a></li>
+      <li><a href="node019.html#247078712" target="mainbox">17.41. Sensitivity types</a></li>
+      <li><a href="node019.html#247080720" target="mainbox">17.42. Degeneracy strategies</a></li>
+      <li><a href="node019.html#247084672" target="mainbox">17.43. Exploit duplicate columns.</a></li>
+      <li><a href="node019.html#247087328" target="mainbox">17.44. Hot-start type employed by the simplex optimizer</a></li>
+      <li><a href="node019.html#247089920" target="mainbox">17.45. Problem reformulation.</a></li>
+      <li><a href="node019.html#247093224" target="mainbox">17.46. Simplex selection strategy</a></li>
+      <li><a href="node019.html#247097824" target="mainbox">17.47. Solution items</a></li>
+      <li><a href="node019.html#247103784" target="mainbox">17.48. Solution status keys</a></li>
+      <li><a href="node019.html#247114280" target="mainbox">17.49. Solution types</a></li>
+      <li><a href="node019.html#247116936" target="mainbox">17.50. Solve primal or dual form</a></li>
+      <li><a href="node019.html#247119528" target="mainbox">17.51. Status keys</a></li>
+      <li><a href="node019.html#247124840" target="mainbox">17.52. Starting point types</a></li>
+      <li><a href="node019.html#247128144" target="mainbox">17.53. Stream types</a></li>
+      <li><a href="node019.html#247131384" target="mainbox">17.54. Integer values</a></li>
+      <li><a href="node019.html#247133392" target="mainbox">17.55. Variable types</a></li>
+      <li><a href="node019.html#247135336" target="mainbox">17.56. XML writer output mode</a></li>
+    </ul>
+    <li><a href="node020.html#247137848" target="mainbox">A. Troubleshooting</a></li>
+    <li><a href="node021.html#247149416" target="mainbox">B. Problem analyzer examples</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node021.html#247138064" target="mainbox">B.1. air04</a></li>
+      <li><a href="node021.html#247150568" target="mainbox">B.2. arki001</a></li>
+      <li><a href="node021.html#247151432" target="mainbox">B.3. Problem with both linear and quadratic constraints</a></li>
+      <li><a href="node021.html#247152296" target="mainbox">B.4. Problem with both linear and conic constraints</a></li>
+    </ul>
+    <li><a href="node022.html#247153656" target="mainbox">C. The MPS file format</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node022.html#247152792" target="mainbox">C.1. The MPS file format</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node022.html#247173488" target="mainbox">C.1.1. An example</a></li>
+        <li><a href="node022.html#247173848" target="mainbox">C.1.2. <tt class="tt">NAME</tt></a></li>
+        <li><a href="node022.html#247175360" target="mainbox">C.1.3. <tt class="tt">OBJSENSE</tt> (optional)</a></li>
+        <li><a href="node022.html#247176440" target="mainbox">C.1.4. <tt class="tt">OBJNAME</tt> (optional)</a></li>
+        <li><a href="node022.html#247177584" target="mainbox">C.1.5. <tt class="tt">ROWS</tt></a></li>
+        <li><a href="node022.html#247208560" target="mainbox">C.1.6. <tt class="tt">COLUMNS</tt></a></li>
+        <li><a href="node022.html#247233640" target="mainbox">C.1.7. <tt class="tt">RHS</tt> (optional)</a></li>
+        <li><a href="node022.html#248905952" target="mainbox">C.1.8. <tt class="tt">RANGES</tt> (optional)</a></li>
+        <li><a href="node022.html#248948784" target="mainbox">C.1.9. <tt class="tt">QSECTION</tt> (optional)</a></li>
+        <li><a href="node022.html#248982416" target="mainbox">C.1.10. <tt class="tt">BOUNDS</tt> (optional)</a></li>
+        <li><a href="node022.html#249036024" target="mainbox">C.1.11. <tt class="tt">CSECTION</tt> (optional)</a></li>
+        <li><a href="node022.html#249083448" target="mainbox">C.1.12. <tt class="tt">ENDATA</tt></a></li>
+      </ul>
+      <li><a href="node022.html#249086968" target="mainbox">C.2. Integer variables</a></li>
+      <li><a href="node022.html#249093512" target="mainbox">C.3. General limitations</a></li>
+      <li><a href="node022.html#249095232" target="mainbox">C.4. Interpretation of the MPS format</a></li>
+      <li><a href="node022.html#249097104" target="mainbox">C.5. The free MPS format</a></li>
+    </ul>
+    <li><a href="node023.html#249099256" target="mainbox">D. The LP file format</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node023.html#249097680" target="mainbox">D.1. A warning</a></li>
+      <li><a href="node023.html#249099688" target="mainbox">D.2. The LP file format</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node023.html#249117728" target="mainbox">D.2.1. The sections</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node023.html#249100336" target="mainbox">D.2.1.1. The objective</a></li>
+          <li><a href="node023.html#249122896" target="mainbox">D.2.1.2. The constraints</a></li>
+          <li><a href="node023.html#249130592" target="mainbox">D.2.1.3. Bounds</a></li>
+          <li><a href="node023.html#249136984" target="mainbox">D.2.1.4. Variable types</a></li>
+          <li><a href="node023.html#249139640" target="mainbox">D.2.1.5. Terminating section</a></li>
+          <li><a href="node023.html#249138136" target="mainbox">D.2.1.6. An example</a></li>
+        </ul>
+        <li><a href="node023.html#249141800" target="mainbox">D.2.2. LP format peculiarities</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node023.html#249141584" target="mainbox">D.2.2.1. Comments</a></li>
+          <li><a href="node023.html#249143096" target="mainbox">D.2.2.2. Names</a></li>
+          <li><a href="node023.html#249145536" target="mainbox">D.2.2.3. Variable bounds</a></li>
+          <li><a href="node023.html#249146112" target="mainbox">D.2.2.4. MOSEK specific extensions to the LP format</a></li>
+        </ul>
+        <li><a href="node023.html#250832008" target="mainbox">D.2.3. The strict LP format</a></li>
+        <li><a href="node023.html#250834240" target="mainbox">D.2.4. Formatting of an LP file</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node023.html#250835744" target="mainbox">D.2.4.1. Speeding up file reading</a></li>
+          <li><a href="node023.html#250836248" target="mainbox">D.2.4.2. Unnamed constraints</a></li>
+        </ul>
+      </ul>
+    </ul>
+    <li><a href="node024.html#250838840" target="mainbox">E. The OPF format</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node024.html#250836896" target="mainbox">E.1. Intended use</a></li>
+      <li><a href="node024.html#250840632" target="mainbox">E.2. The file format</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node024.html#250841496" target="mainbox">E.2.1. Sections</a></li>
+        <li><a href="node024.html#250860176" target="mainbox">E.2.2. Numbers</a></li>
+        <li><a href="node024.html#250861904" target="mainbox">E.2.3. Names</a></li>
+      </ul>
+      <li><a href="node024.html#250863696" target="mainbox">E.3. Parameters section</a></li>
+      <li><a href="node024.html#250864992" target="mainbox">E.4. Writing OPF files from MOSEK</a></li>
+      <li><a href="node024.html#250867584" target="mainbox">E.5. Examples</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node024.html#250865208" target="mainbox">E.5.1. Linear example <tt class="tt">lo1.opf</tt></a></li>
+        <li><a href="node024.html#250890144" target="mainbox">E.5.2. Quadratic example <tt class="tt">qo1.opf</tt></a></li>
+        <li><a href="node024.html#250896256" target="mainbox">E.5.3. Conic quadratic example <tt class="tt">cqo1.opf</tt></a></li>
+        <li><a href="node024.html#250912992" target="mainbox">E.5.4. Mixed integer example <tt class="tt">milo1.opf</tt></a></li>
+      </ul>
+    </ul>
+    <li><a href="node025.html#250921184" target="mainbox">F. The XML (OSiL) format</a></li>
+    <li><a href="node026.html#250922048" target="mainbox">G. The ORD file format</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node026.html#250923488" target="mainbox">G.1. An example</a></li>
+    </ul>
+    <li><a href="node027.html#250923920" target="mainbox">H. The solution file format</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node027.html#250927584" target="mainbox">H.1. The basic and interior solution files</a></li>
+      <li><a href="node027.html#250948640" target="mainbox">H.2. The integer solution file</a></li>
+    </ul>
+    <li><a href="node028.html#250949784" target="mainbox">Bibliography</a></li>
+    <li><a href="node029.html#250949288" target="mainbox">Index</a></li>
+  </ul>
+</ul>
+</div>
+<div id="idxbox" style="display:none;">
+<ul class="idx-lvl0">
+<a href="#index-letter-@">@</a> | <a href="#index-letter-A">A</a> | <a href="#index-letter-B">B</a> | <a href="#index-letter-C">C</a> | <a href="#index-letter-D">D</a> | <a href="#index-letter-E">E</a> | <a href="#index-letter-F">F</a> | <a href="#index-letter-G">G</a> | <a href="#index-letter-H">H</a> | <a href="#index-letter-I">I</a> | <a href="#index-letter-J">J</a> | <a href="#index-letter-K">K</a> | <a href="#index-letter-L">L</a> | <a href="#index-letter-M">M</a> | <a href="#index-letter-N">N</a> | <a href="#index-letter-O">O</a> | <a href="#index-letter-P">P</a> | <a href="#index-letter-Q">Q</a> | <a href="#index-letter-R">R</a> | <a href="#index-letter-S">S</a> | <a href="#index-letter-T">T</a> | <a href="#index-letter-U">U</a> | <a href="#index-letter-V">V</a> | <a href="#index-letter-W">W</a> | <a href="#index-letter-X">X</a> | <a href="#index-letter-Y">Y</a>
+<br/><hr/><br/>
+
+
+  <li> 
+  <ul class="idx-lvl1">
+<a name="index-letter-@" style="font-weight : bolder; font-size : larger;">@</a> <a name="index-letter-A" style="font-weight : bolder; font-size : larger;">A</a><br>
+
+    <li> <a href="node009.html#idx-76193664" target="mainbox">absolute value</a>
+    <li> <a href="node019.html#idx-163497528" target="mainbox"><tt class="tt">Env.accmode</tt></a>
+    <li> <a href="node019.html#idx-163502776" target="mainbox"><tt class="tt">Env.adopcode</tt></a>
+    <li> <a href="node019.html#idx-163527784" target="mainbox"><tt class="tt">Env.adoptype</tt></a>
+    <li> <a href="node017.html#idx-133394584" target="mainbox">alloc_add_qnz (parameter)</a>
+    <li> <a href="node017.html#idx-133395088" target="mainbox">ana_sol_basis (parameter)</a>
+    <li> <a href="node017.html#idx-125701080" target="mainbox">ana_sol_infeas_tol (parameter)</a>
+    <li> <a href="node017.html#idx-134865552" target="mainbox">ana_sol_print_violated (parameter)</a>
+    <li> <a href="node016.html#idx-93003288" target="mainbox">analyzeproblem (Task method)</a>
+    <li> <a href="node016.html#idx-92989704" target="mainbox">analyzesolution (Task method)</a>
+    <li> <a href="node016.html#idx-92998832" target="mainbox">append (Task method)</a>
+    <li> <a href="node016.html#idx-92991432" target="mainbox">appendcone (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-69361392" target="mainbox">Task.appendcone (example)</a>
+    </ul>
+    <li> <a href="node007.html#idx-67913344" target="mainbox">attaching streams</a>
+    <li> <a href="node017.html#idx-134892144" target="mainbox">auto_sort_a_before_opt (parameter)</a>
+    <li> <a href="node017.html#idx-134900840" target="mainbox">auto_update_sol_info (parameter)</a>
+<hr>
+
+<a name="index-letter-B" style="font-weight : bolder; font-size : larger;">B</a><br>
+
+    <li> <a href="node017.html#idx-153659656" target="mainbox">bas_sol_file_name (parameter)</a>
+    <li> <a href="node019.html#idx-163537912" target="mainbox"><tt class="tt">Env.basindtype</tt></a>
+    <li> <a href="node010.html#idx-78028600" target="mainbox">basis identification</a>
+    <li> <a href="node017.html#idx-125702224" target="mainbox">basis_rel_tol_s (parameter)</a>
+    <li> <a href="node017.html#idx-134907448" target="mainbox">basis_solve_use_plus_one (parameter)</a>
+    <li> <a href="node017.html#idx-125725440" target="mainbox">basis_tol_s (parameter)</a>
+    <li> <a href="node017.html#idx-125701008" target="mainbox">basis_tol_x (parameter)</a>
+    <li> <a href="node016.html#idx-94448600" target="mainbox">basiscond (Task method)</a>
+    <li> <a href="node017.html#idx-134941728" target="mainbox">bi_clean_optimizer (parameter)</a>
+    <li> <a href="node017.html#idx-134960264" target="mainbox">bi_ignore_max_iter (parameter)</a>
+    <li> <a href="node017.html#idx-134982184" target="mainbox">bi_ignore_num_error (parameter)</a>
+    <li> <a href="node017.html#idx-135003024" target="mainbox">bi_max_iterations (parameter)</a>
+    <li> <a href="node019.html#idx-163540720" target="mainbox"><tt class="tt">Env.boundkey</tt></a>
+    <li> <a href="node009.html#idx-72761928" target="mainbox">bounds, infinite</a>
+    <li> <a href="node019.html#idx-163563208" target="mainbox"><tt class="tt">Env.branchdir</tt></a>
+<hr>
+
+<a name="index-letter-C" style="font-weight : bolder; font-size : larger;">C</a><br>
+
+    <li> <a href="node017.html#idx-135005680" target="mainbox">cache_license (parameter)</a>
+    <li> <a href="node017.html#idx-135032272" target="mainbox">cache_size_l1 (parameter)</a>
+    <li> <a href="node017.html#idx-135030544" target="mainbox">cache_size_l2 (parameter)</a>
+    <li> <a href="node017.html#idx-125758136" target="mainbox">callback_freq (parameter)</a>
+    <li> <a href="node019.html#idx-163581392" target="mainbox"><tt class="tt">Env.callbackcode</tt></a>
+    <li> certificate
+    <ul class="idx-lvl2">
+      <li> <a href="node009.html#idx-72821360" target="mainbox">dual</a>
+      <li> <a href="node009.html#idx-72805840" target="mainbox">primal</a>
+    </ul>
+    <li> <a href="node017.html#idx-135047792" target="mainbox">check_convexity (parameter)</a>
+    <li> <a href="node017.html#idx-125760360" target="mainbox">check_convexity_rel_tol (parameter)</a>
+    <li> <a href="node017.html#idx-135063816" target="mainbox">check_task_data (parameter)</a>
+    <li> <a href="node016.html#idx-94464624" target="mainbox">checkconvexity (Task method)</a>
+    <li> <a href="node019.html#idx-165391896" target="mainbox"><tt class="tt">Env.checkconvexitytype</tt></a>
+    <li> <a href="node016.html#idx-94462536" target="mainbox">checkdata (Task method)</a>
+    <li> <a href="node016.html#idx-89560776" target="mainbox">checkinlicense (Env method)</a>
+    <li> <a href="node016.html#idx-94480576" target="mainbox">checkmemtask (Task method)</a>
+    <li> <a href="node016.html#idx-89594264" target="mainbox">checkoutlicense (Env method)</a>
+    <li> <a href="node016.html#idx-94497824" target="mainbox">chgbound (Task method)</a>
+    <li> classpath
+    <ul class="idx-lvl2">
+      <li> <a href="node006.html#idx-66359240" target="mainbox">environment variable (Linux)</a>
+    </ul>
+    <li> <a href="node016.html#idx-94542520" target="mainbox">commitchanges (Task method)</a>
+    <li> <a href="node006.html#idx-66417440" target="mainbox">compiling examples</a>
+    <li> <a href="node006.html#idx-66368072" target="mainbox">compiling examples</a>
+    <li> <a href="node009.html#idx-72801744" target="mainbox">complementarity conditions</a>
+    <li> <a href="node019.html#idx-166705488" target="mainbox"><tt class="tt">Env.compresstype</tt></a>
+    <li> concurrent
+    <ul class="idx-lvl2">
+      <li> <a href="node010.html#idx-80907224" target="mainbox">Env.optimizertype.concurrent (example)</a>
+    </ul>
+    <li> <a href="node010.html#idx-79574224" target="mainbox">concurrent optimization</a>
+    <li> <a href="node010.html#idx-79561072" target="mainbox">concurrent solution</a>
+    <li> concurrent-num-optimizers
+    <ul class="idx-lvl2">
+      <li> <a href="node010.html#idx-80906360" target="mainbox">Env.iparam.concurrentnumoptimizers (example)</a>
+    </ul>
+    <li> <a href="node017.html#idx-135076680" target="mainbox">concurrent_num_optimizers (parameter)</a>
+    <li> <a href="node017.html#idx-135069568" target="mainbox">concurrent_priority_dual_simplex (parameter)</a>
+    <li> <a href="node017.html#idx-135087672" target="mainbox">concurrent_priority_free_simplex (parameter)</a>
+    <li> <a href="node017.html#idx-135102688" target="mainbox">concurrent_priority_intpnt (parameter)</a>
+    <li> <a href="node017.html#idx-135112608" target="mainbox">concurrent_priority_primal_simplex (parameter)</a>
+    <li> <a href="node019.html#idx-165394120" target="mainbox"><tt class="tt">Env.conetype</tt></a>
+    <li> <a href="node007.html#idx-69302824" target="mainbox">conic</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node009.html#idx-74646088" target="mainbox">optimization</a>
+      <li> <a href="node009.html#idx-74644656" target="mainbox">problem</a>
+    </ul>
+    <li> <a href="node009.html#idx-74739440" target="mainbox">conic modelling</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node009.html#idx-74786576" target="mainbox">minimizing norms, example</a>
+      <li> <a href="node009.html#idx-76140344" target="mainbox">pitfalls</a>
+      <li> <a href="node009.html#idx-74741520" target="mainbox">quadratic objective, example</a>
+      <li> risk and market impact, example
+      <ul class="idx-lvl3">
+        <li> <a href="node009.html#idx-76209040" target="mainbox">Markowitz model, example</a>
+      </ul>
+    </ul>
+    <li> <a href="node007.html#idx-69302032" target="mainbox">conic optimization</a>
+    <li> <a href="node007.html#idx-69352192" target="mainbox">conic problem example</a>
+    <li> <a href="node007.html#idx-69303184" target="mainbox">conic quadratic optimization</a>
+    <li> constraint
+    <ul class="idx-lvl2">
+      <li> <a href="node022.html#idx-174607752" target="mainbox">matrix</a>
+      <li> <a href="node009.html#idx-72723776" target="mainbox">matrix</a>
+      <li> <a href="node009.html#idx-72862464" target="mainbox">quadratic</a>
+      <li> <a href="node009.html#idx-72865192" target="mainbox">quadratic</a>
+    </ul>
+    <li> constraints
+    <ul class="idx-lvl2">
+      <li> <a href="node009.html#idx-72753880" target="mainbox">lower limit</a>
+      <li> <a href="node022.html#idx-174609112" target="mainbox">lower limit</a>
+      <li> <a href="node007.html#idx-67792264" target="mainbox">number of</a>
+      <li> <a href="node009.html#idx-72755536" target="mainbox">upper limit</a>
+      <li> <a href="node022.html#idx-174611344" target="mainbox">upper limit</a>
+    </ul>
+    <li> <a href="node011.html#idx-80995320" target="mainbox">continuous relaxation</a>
+    <li> <a href="node007.html#idx-67962136" target="mainbox">convex quadratic problem</a>
+    <li> <a href="node017.html#idx-135122456" target="mainbox">cpu_type (parameter)</a>
+    <li> <a href="node019.html#idx-166730568" target="mainbox"><tt class="tt">Env.cputype</tt></a>
+<hr>
+
+<a name="index-letter-D" style="font-weight : bolder; font-size : larger;">D</a><br>
+
+    <li> <a href="node017.html#idx-136613256" target="mainbox">data_check (parameter)</a>
+    <li> <a href="node017.html#idx-153660304" target="mainbox">data_file_name (parameter)</a>
+    <li> <a href="node017.html#idx-125773152" target="mainbox">data_tol_aij (parameter)</a>
+    <li> <a href="node017.html#idx-125765536" target="mainbox">data_tol_aij_huge (parameter)</a>
+    <li> <a href="node017.html#idx-127224504" target="mainbox">data_tol_aij_large (parameter)</a>
+    <li> <a href="node017.html#idx-127228384" target="mainbox">data_tol_bound_inf (parameter)</a>
+    <li> <a href="node017.html#idx-127252384" target="mainbox">data_tol_bound_wrn (parameter)</a>
+    <li> <a href="node017.html#idx-127252528" target="mainbox">data_tol_c_huge (parameter)</a>
+    <li> <a href="node017.html#idx-127273944" target="mainbox">data_tol_cj_large (parameter)</a>
+    <li> <a href="node017.html#idx-127277176" target="mainbox">data_tol_qij (parameter)</a>
+    <li> <a href="node017.html#idx-127295928" target="mainbox">data_tol_x (parameter)</a>
+    <li> <a href="node019.html#idx-166726544" target="mainbox"><tt class="tt">Env.dataformat</tt></a>
+    <li> <a href="node017.html#idx-153699896" target="mainbox">debug_file_name (parameter)</a>
+    <li> <a href="node016.html#idx-94551000" target="mainbox">deletesolution (Task method)</a>
+    <li> <a href="node019.html#idx-166788704" target="mainbox"><tt class="tt">Env.dinfitem</tt></a>
+    <li> <a href="node009.html#idx-72821648" target="mainbox">dual certificate</a>
+    <li> <a href="node009.html#idx-72817840" target="mainbox">dual infeasible</a>
+    <li> <a href="node009.html#idx-72778168" target="mainbox">dual infeasible</a>
+    <li> <a href="node009.html#idx-72797504" target="mainbox">duality gap (linear problem)</a>
+    <li> <a href="node010.html#idx-77844848" target="mainbox">dualizer</a>
+    <li> <a href="node016.html#idx-94517944" target="mainbox">dualsensitivity (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node014.html#idx-86251064" target="mainbox">Task.dualsensitivity (example)</a>
+    </ul>
+<hr>
+
+<a name="index-letter-E" style="font-weight : bolder; font-size : larger;">E</a><br>
+
+    <li> <a href="node016.html#idx-89599944" target="mainbox">echointro (Env method)</a>
+    <li> <a href="node010.html#idx-77819632" target="mainbox">eliminator</a>
+    <li> <a href="node010.html#idx-79434672" target="mainbox">Embedded network flow problems</a>
+    <li> <a href="node008.html#idx-72694672" target="mainbox">Embedded network flow problems</a>
+    <li> Env
+    <ul class="idx-lvl2">
+      <li> <a href="node016.html#idx-89527792" target="mainbox">constructors</a>
+    </ul>
+    <li> <a href="node007.html#idx-67750440" target="mainbox">env, creating</a>
+    <li> <a href="node007.html#idx-67748280" target="mainbox">env, initializing</a>
+    <li> <a href="node016.html#idx-89497112" target="mainbox">Env.Env (constructor)</a>
+    <li> environment variable
+    <ul class="idx-lvl2">
+      <li> <a href="node006.html#idx-66382376" target="mainbox">PATH (Linux)</a>
+      <li> <a href="node006.html#idx-66409968" target="mainbox">CLASSPATH (Linux)</a>
+    </ul>
+    <li> Error
+    <ul class="idx-lvl2">
+      <li> <a href="node016.html#idx-91105328" target="mainbox">constructors</a>
+    </ul>
+    <li> <a href="node016.html#idx-91106264" target="mainbox">Error.Error (constructor)</a>
+    <li> example
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-69352984" target="mainbox">conic problem</a>
+      <li> <a href="node007.html#idx-69358440" target="mainbox">cqo1.java</a>
+      <li> <a href="node007.html#idx-67826392" target="mainbox">lo1</a>
+      <li> <a href="node007.html#idx-67948912" target="mainbox">lo2</a>
+      <li> <a href="node007.html#idx-67943600" target="mainbox">lo2.java</a>
+      <li> <a href="node007.html#idx-69383952" target="mainbox">milo1.java</a>
+      <li> <a href="node007.html#idx-69413416" target="mainbox">mioinitsol.java</a>
+      <li> <a href="node008.html#idx-72657376" target="mainbox">network1</a>
+      <li> <a href="node008.html#idx-72673184" target="mainbox">network1</a>
+      <li> <a href="node008.html#idx-72711344" target="mainbox">network2</a>
+      <li> <a href="node007.html#idx-67995624" target="mainbox">qo1.java</a>
+      <li> <a href="node007.html#idx-67977512" target="mainbox">qo1</a>
+      <li> <a href="node007.html#idx-69258416" target="mainbox">quadratic constraints</a>
+      <li> <a href="node007.html#idx-67976080" target="mainbox">quadratic objective</a>
+      <li> <a href="node007.html#idx-67743824" target="mainbox">simple</a>
+    </ul>
+    <li> examples
+    <ul class="idx-lvl2">
+      <li> <a href="node006.html#idx-66419456" target="mainbox">compile and run</a>
+      <li> <a href="node006.html#idx-66367360" target="mainbox">compile and run</a>
+      <li> <a href="node006.html#idx-66447408" target="mainbox">makefiles (Linux)</a>
+    </ul>
+    <li> Exception
+    <ul class="idx-lvl2">
+      <li> <a href="node016.html#idx-91132272" target="mainbox">constructors</a>
+    </ul>
+    <li> <a href="node016.html#idx-91133208" target="mainbox">Exception.Exception (constructor)</a>
+<hr>
+
+<a name="index-letter-F" style="font-weight : bolder; font-size : larger;">F</a><br>
+
+    <li> <a href="node009.html#idx-72763080" target="mainbox">feasible, primal</a>
+    <li> feasrepair-optimize
+    <ul class="idx-lvl2">
+      <li> <a href="node013.html#idx-82903768" target="mainbox">Env.iparam.feasrepairoptimize (example)</a>
+    </ul>
+    <li> <a href="node017.html#idx-153701840" target="mainbox">feasrepair_name_prefix (parameter)</a>
+    <li> <a href="node017.html#idx-153715488" target="mainbox">feasrepair_name_separator (parameter)</a>
+    <li> <a href="node017.html#idx-153735392" target="mainbox">feasrepair_name_wsumviol (parameter)</a>
+    <li> <a href="node017.html#idx-136620800" target="mainbox">feasrepair_optimize (parameter)</a>
+    <li> <a href="node017.html#idx-127309152" target="mainbox">feasrepair_tol (parameter)</a>
+    <li> <a href="node019.html#idx-168345328" target="mainbox"><tt class="tt">Env.feasrepairtype</tt></a>
+    <li> <a href="node019.html#idx-168353736" target="mainbox"><tt class="tt">Env.feature</tt></a>
+<hr>
+
+<a name="index-letter-G" style="font-weight : bolder; font-size : larger;">G</a><br>
+
+    <li> <a href="node016.html#idx-94604176" target="mainbox">getaij (Task method)</a>
+    <li> <a href="node016.html#idx-94612800" target="mainbox">getapiecenumnz (Task method)</a>
+    <li> <a href="node016.html#idx-94646712" target="mainbox">getaslice (Task method)</a>
+    <li> <a href="node016.html#idx-94676536" target="mainbox">getaslice64 (Task method)</a>
+    <li> <a href="node016.html#idx-90164112" target="mainbox">getaslicenumnz (Task method)</a>
+    <li> <a href="node016.html#idx-90143200" target="mainbox">getaslicenumnz64 (Task method)</a>
+    <li> <a href="node016.html#idx-90171224" target="mainbox">getaslicetrip (Task method)</a>
+    <li> <a href="node016.html#idx-90226488" target="mainbox">getavec (Task method)</a>
+    <li> <a href="node016.html#idx-90258320" target="mainbox">getavecnumnz (Task method)</a>
+    <li> <a href="node016.html#idx-90276784" target="mainbox">getbound (Task method)</a>
+    <li> <a href="node016.html#idx-90255304" target="mainbox">getboundslice (Task method)</a>
+    <li> <a href="node016.html#idx-90302584" target="mainbox">getc (Task method)</a>
+    <li> <a href="node016.html#idx-90319400" target="mainbox">getcfix (Task method)</a>
+    <li> <a href="node016.html#idx-90332264" target="mainbox">getcone (Task method)</a>
+    <li> <a href="node016.html#idx-90344912" target="mainbox">getconeinfo (Task method)</a>
+    <li> <a href="node016.html#idx-90348720" target="mainbox">getconname64 (Task method)</a>
+    <li> <a href="node016.html#idx-90372648" target="mainbox">getcslice (Task method)</a>
+    <li> <a href="node016.html#idx-90363880" target="mainbox">getdbi (Task method)</a>
+    <li> <a href="node016.html#idx-98007016" target="mainbox">getdcni (Task method)</a>
+    <li> <a href="node016.html#idx-98020888" target="mainbox">getdeqi (Task method)</a>
+    <li> <a href="node016.html#idx-98055160" target="mainbox">getdouinf (Task method)</a>
+    <li> <a href="node016.html#idx-98078160" target="mainbox">getdouparam (Task method)</a>
+    <li> <a href="node016.html#idx-98085560" target="mainbox">getdualobj (Task method)</a>
+    <li> <a href="node016.html#idx-98098784" target="mainbox">getinfeasiblesubproblem (Task method)</a>
+    <li> <a href="node016.html#idx-98122280" target="mainbox">getinfindex (Task method)</a>
+    <li> <a href="node016.html#idx-98131696" target="mainbox">getinfmax (Task method)</a>
+    <li> <a href="node016.html#idx-98133344" target="mainbox">getinfname (Task method)</a>
+    <li> <a href="node016.html#idx-98160008" target="mainbox">getinti (Task method)</a>
+    <li> <a href="node016.html#idx-98189040" target="mainbox">getintinf (Task method)</a>
+    <li> <a href="node016.html#idx-98200392" target="mainbox">getintparam (Task method)</a>
+    <li> <a href="node016.html#idx-98216632" target="mainbox">getintpntnumthreads (Task method)</a>
+    <li> <a href="node016.html#idx-98239768" target="mainbox">getlintinf (Task method)</a>
+    <li> <a href="node016.html#idx-98035256" target="mainbox">getmaxnumanz64 (Task method)</a>
+    <li> <a href="node016.html#idx-99727768" target="mainbox">getmaxnumcon (Task method)</a>
+    <li> <a href="node016.html#idx-98226832" target="mainbox">getmaxnumcone (Task method)</a>
+    <li> <a href="node016.html#idx-99740776" target="mainbox">getmaxnumqnz64 (Task method)</a>
+    <li> <a href="node016.html#idx-99753208" target="mainbox">getmaxnumvar (Task method)</a>
+    <li> <a href="node016.html#idx-99727984" target="mainbox">getmemusagetask64 (Task method)</a>
+    <li> <a href="node016.html#idx-99769160" target="mainbox">getnameapi64 (Task method)</a>
+    <li> <a href="node016.html#idx-99788056" target="mainbox">getnameindex (Task method)</a>
+    <li> <a href="node016.html#idx-99811056" target="mainbox">getnamelen64 (Task method)</a>
+    <li> <a href="node016.html#idx-99831320" target="mainbox">getnumanz (Task method)</a>
+    <li> <a href="node016.html#idx-99841736" target="mainbox">getnumanz64 (Task method)</a>
+    <li> <a href="node016.html#idx-99847920" target="mainbox">getnumcon (Task method)</a>
+    <li> <a href="node016.html#idx-99859992" target="mainbox">getnumcone (Task method)</a>
+    <li> <a href="node016.html#idx-99822408" target="mainbox">getnumconemem (Task method)</a>
+    <li> <a href="node016.html#idx-99878528" target="mainbox">getnumintvar (Task method)</a>
+    <li> <a href="node016.html#idx-99892904" target="mainbox">getnumparam (Task method)</a>
+    <li> <a href="node016.html#idx-99904688" target="mainbox">getnumqconknz (Task method)</a>
+    <li> <a href="node016.html#idx-99919488" target="mainbox">getnumqconknz64 (Task method)</a>
+    <li> <a href="node016.html#idx-99931920" target="mainbox">getnumqobjnz (Task method)</a>
+    <li> <a href="node016.html#idx-99945432" target="mainbox">getnumqobjnz64 (Task method)</a>
+    <li> <a href="node016.html#idx-99953768" target="mainbox">getnumvar (Task method)</a>
+    <li> <a href="node016.html#idx-99966632" target="mainbox">getobjname64 (Task method)</a>
+    <li> <a href="node016.html#idx-101424088" target="mainbox">getobjsense (Task method)</a>
+    <li> <a href="node016.html#idx-101422072" target="mainbox">getparammax (Task method)</a>
+    <li> <a href="node016.html#idx-101455344" target="mainbox">getparamname (Task method)</a>
+    <li> <a href="node016.html#idx-101452328" target="mainbox">getpbi (Task method)</a>
+    <li> <a href="node016.html#idx-101504064" target="mainbox">getpcni (Task method)</a>
+    <li> <a href="node016.html#idx-101531160" target="mainbox">getpeqi (Task method)</a>
+    <li> <a href="node016.html#idx-101554440" target="mainbox">getprimalobj (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node013.html#idx-82911816" target="mainbox">Task.getprimalobj (example)</a>
+    </ul>
+    <li> <a href="node016.html#idx-101569456" target="mainbox">getprobtype (Task method)</a>
+    <li> <a href="node016.html#idx-101578080" target="mainbox">getqconk (Task method)</a>
+    <li> <a href="node016.html#idx-101612072" target="mainbox">getqconk64 (Task method)</a>
+    <li> <a href="node016.html#idx-101647136" target="mainbox">getqobj (Task method)</a>
+    <li> <a href="node016.html#idx-101641104" target="mainbox">getqobj64 (Task method)</a>
+    <li> <a href="node016.html#idx-101670992" target="mainbox">getqobjij (Task method)</a>
+    <li> <a href="node016.html#idx-103044304" target="mainbox">getreducedcosts (Task method)</a>
+    <li> <a href="node016.html#idx-103063352" target="mainbox">getsolution (Task method)</a>
+    <li> <a href="node016.html#idx-103135424" target="mainbox">getsolutioni (Task method)</a>
+    <li> <a href="node016.html#idx-103163592" target="mainbox">getsolutioninf (Task method)</a>
+    <li> <a href="node016.html#idx-103156624" target="mainbox">getsolutionslice (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-68000800" target="mainbox">Task.getsolutionslice (example)</a>
+      <li> <a href="node007.html#idx-67942088" target="mainbox">Task.getsolutionslice (example)</a>
+      <li> <a href="node007.html#idx-69292832" target="mainbox">Task.getsolutionslice (example)</a>
+      <li> <a href="node007.html#idx-69362824" target="mainbox">Task.getsolutionslice (example)</a>
+      <li> <a href="node007.html#idx-67957896" target="mainbox">Task.getsolutionslice (example)</a>
+      <li> <a href="node007.html#idx-69387544" target="mainbox">Task.getsolutionslice (example)</a>
+    </ul>
+    <li> <a href="node016.html#idx-96295248" target="mainbox">getsolutionstatus (Task method)</a>
+    <li> <a href="node016.html#idx-96286480" target="mainbox">getsolutionstatuskeyslice (Task method)</a>
+    <li> <a href="node016.html#idx-96328736" target="mainbox">gettaskname64 (Task method)</a>
+    <li> <a href="node016.html#idx-96297976" target="mainbox">getvarbranchdir (Task method)</a>
+    <li> <a href="node016.html#idx-96356328" target="mainbox">getvarbranchorder (Task method)</a>
+    <li> <a href="node016.html#idx-96364664" target="mainbox">getvarbranchpri (Task method)</a>
+    <li> <a href="node016.html#idx-96382344" target="mainbox">getvarname64 (Task method)</a>
+    <li> <a href="node016.html#idx-96397072" target="mainbox">getvartype (Task method)</a>
+    <li> <a href="node016.html#idx-96348856" target="mainbox">getvartypelist (Task method)</a>
+    <li> <a href="node016.html#idx-89611944" target="mainbox">getversion (Env method)</a>
+<hr>
+
+<a name="index-letter-H" style="font-weight : bolder; font-size : larger;">H</a><br>
+
+    <li> <a href="node005.html#idx-66328048" target="mainbox">help desk</a>
+    <li> <a href="node010.html#idx-79388616" target="mainbox">hot-start</a>
+<hr>
+
+<a name="index-letter-I" style="font-weight : bolder; font-size : larger;">I</a><br>
+
+    <li> <a href="node019.html#idx-168362424" target="mainbox"><tt class="tt">Env.iinfitem</tt></a>
+    <li> <a href="node017.html#idx-136639336" target="mainbox">infeas_generic_names (parameter)</a>
+    <li> <a href="node017.html#idx-136648176" target="mainbox">infeas_prefer_primal (parameter)</a>
+    <li> <a href="node017.html#idx-136665496" target="mainbox">infeas_report_auto (parameter)</a>
+    <li> <a href="node017.html#idx-136664992" target="mainbox">infeas_report_level (parameter)</a>
+    <li> <a href="node012.html#idx-82693368" target="mainbox">infeasible</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node009.html#idx-72818560" target="mainbox">dual</a>
+      <li> <a href="node009.html#idx-72803104" target="mainbox">primal</a>
+    </ul>
+    <li> <a href="node012.html#idx-82692720" target="mainbox">infeasible problems</a>
+    <li> <a href="node009.html#idx-72778672" target="mainbox">infeasible, dual</a>
+    <li> <a href="node009.html#idx-72769832" target="mainbox">infeasible, primal</a>
+    <li> <a href="node009.html#idx-72766024" target="mainbox">infinite bounds</a>
+    <li> <a href="node019.html#idx-170002120" target="mainbox"><tt class="tt">Env.inftype</tt></a>
+    <li> <a href="node016.html#idx-96423664" target="mainbox">initbasissolve (Task method)</a>
+    <li> <a href="node016.html#idx-89584488" target="mainbox">initenv (Env method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node008.html#idx-72724848" target="mainbox">Env.initenv (example)</a>
+      <li> <a href="node008.html#idx-72668944" target="mainbox">Env.initenv (example)</a>
+      <li> <a href="node007.html#idx-67751592" target="mainbox">Env.initenv (example)</a>
+    </ul>
+    <li> <a href="node016.html#idx-106347768" target="mainbox">inputdata (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node014.html#idx-86240144" target="mainbox">Task.inputdata (example)</a>
+    </ul>
+    <li> <a href="node016.html#idx-106375504" target="mainbox">inputdata64 (Task method)</a>
+    <li> <a href="node017.html#idx-153741432" target="mainbox">int_sol_file_name (parameter)</a>
+    <li> <a href="node011.html#idx-80966720" target="mainbox">integer optimization</a>
+    <li> <a href="node007.html#idx-69368288" target="mainbox">integer optimization</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node011.html#idx-80996688" target="mainbox">relaxation</a>
+    </ul>
+    <li> <a href="node010.html#idx-77841472" target="mainbox">interior-point optimizer</a>
+    <li> <a href="node010.html#idx-79513432" target="mainbox">interior-point optimizer</a>
+    <li> <a href="node010.html#idx-79486632" target="mainbox">interior-point optimizer</a>
+    <li> <a href="node010.html#idx-79428136" target="mainbox">interior-point or simplex optimizer</a>
+    <li> <a href="node017.html#idx-136640848" target="mainbox">intpnt_basis (parameter)</a>
+    <li> <a href="node017.html#idx-127301968" target="mainbox">intpnt_co_tol_dfeas (parameter)</a>
+    <li> <a href="node017.html#idx-127340912" target="mainbox">intpnt_co_tol_infeas (parameter)</a>
+    <li> <a href="node017.html#idx-127327264" target="mainbox">intpnt_co_tol_mu_red (parameter)</a>
+    <li> <a href="node017.html#idx-127354856" target="mainbox">intpnt_co_tol_near_rel (parameter)</a>
+    <li> <a href="node017.html#idx-127377632" target="mainbox">intpnt_co_tol_pfeas (parameter)</a>
+    <li> <a href="node017.html#idx-127397328" target="mainbox">intpnt_co_tol_rel_gap (parameter)</a>
+    <li> <a href="node017.html#idx-136714648" target="mainbox">intpnt_diff_step (parameter)</a>
+    <li> <a href="node017.html#idx-136709976" target="mainbox">intpnt_factor_debug_lvl (parameter)</a>
+    <li> <a href="node017.html#idx-136701496" target="mainbox">intpnt_factor_method (parameter)</a>
+    <li> <a href="node017.html#idx-136739512" target="mainbox">intpnt_max_iterations (parameter)</a>
+    <li> <a href="node017.html#idx-136729304" target="mainbox">intpnt_max_num_cor (parameter)</a>
+    <li> <a href="node017.html#idx-136758408" target="mainbox">intpnt_max_num_refinement_steps (parameter)</a>
+    <li> <a href="node017.html#idx-127411048" target="mainbox">intpnt_nl_merit_bal (parameter)</a>
+    <li> <a href="node017.html#idx-127415432" target="mainbox">intpnt_nl_tol_dfeas (parameter)</a>
+    <li> <a href="node017.html#idx-127424992" target="mainbox">intpnt_nl_tol_mu_red (parameter)</a>
+    <li> <a href="node017.html#idx-127437712" target="mainbox">intpnt_nl_tol_near_rel (parameter)</a>
+    <li> <a href="node017.html#idx-127447840" target="mainbox">intpnt_nl_tol_pfeas (parameter)</a>
+    <li> <a href="node017.html#idx-127460632" target="mainbox">intpnt_nl_tol_rel_gap (parameter)</a>
+    <li> <a href="node017.html#idx-127470624" target="mainbox">intpnt_nl_tol_rel_step (parameter)</a>
+    <li> <a href="node017.html#idx-136759776" target="mainbox">intpnt_num_threads (parameter)</a>
+    <li> <a href="node017.html#idx-136786288" target="mainbox">intpnt_off_col_trh (parameter)</a>
+    <li> <a href="node017.html#idx-136787368" target="mainbox">intpnt_order_method (parameter)</a>
+    <li> <a href="node017.html#idx-136785720" target="mainbox">intpnt_regularization_use (parameter)</a>
+    <li> <a href="node017.html#idx-136837384" target="mainbox">intpnt_scaling (parameter)</a>
+    <li> <a href="node017.html#idx-136843136" target="mainbox">intpnt_solve_form (parameter)</a>
+    <li> <a href="node017.html#idx-138408592" target="mainbox">intpnt_starting_point (parameter)</a>
+    <li> <a href="node017.html#idx-129083080" target="mainbox">intpnt_tol_dfeas (parameter)</a>
+    <li> <a href="node017.html#idx-129094000" target="mainbox">intpnt_tol_dsafe (parameter)</a>
+    <li> <a href="node017.html#idx-129099680" target="mainbox">intpnt_tol_infeas (parameter)</a>
+    <li> <a href="node017.html#idx-129114408" target="mainbox">intpnt_tol_mu_red (parameter)</a>
+    <li> <a href="node017.html#idx-129094072" target="mainbox">intpnt_tol_path (parameter)</a>
+    <li> <a href="node017.html#idx-129134176" target="mainbox">intpnt_tol_pfeas (parameter)</a>
+    <li> <a href="node017.html#idx-129121888" target="mainbox">intpnt_tol_psafe (parameter)</a>
+    <li> <a href="node017.html#idx-129155224" target="mainbox">intpnt_tol_rel_gap (parameter)</a>
+    <li> <a href="node017.html#idx-129157240" target="mainbox">intpnt_tol_rel_step (parameter)</a>
+    <li> <a href="node017.html#idx-129183184" target="mainbox">intpnt_tol_step_size (parameter)</a>
+    <li> <a href="node019.html#idx-170027992" target="mainbox"><tt class="tt">Env.iomode</tt></a>
+    <li> <a href="node016.html#idx-89625448" target="mainbox">iparvaltosymnam (Env method)</a>
+    <li> <a href="node016.html#idx-106410712" target="mainbox">isdouparname (Task method)</a>
+    <li> <a href="node016.html#idx-106426096" target="mainbox">isintparname (Task method)</a>
+    <li> <a href="node016.html#idx-106434640" target="mainbox">isstrparname (Task method)</a>
+    <li> itr
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-69290824" target="mainbox">Env.soltype.itr (example)</a>
+      <li> <a href="node007.html#idx-69384168" target="mainbox">Env.soltype.itr (example)</a>
+      <li> <a href="node007.html#idx-67906376" target="mainbox">Env.soltype.itr (example)</a>
+      <li> <a href="node007.html#idx-67956888" target="mainbox">Env.soltype.itr (example)</a>
+      <li> <a href="node007.html#idx-67999144" target="mainbox">Env.soltype.itr (example)</a>
+      <li> <a href="node007.html#idx-69362248" target="mainbox">Env.soltype.itr (example)</a>
+    </ul>
+    <li> <a href="node017.html#idx-153752568" target="mainbox">itr_sol_file_name (parameter)</a>
+<hr>
+
+<a name="index-letter-J" style="font-weight : bolder; font-size : larger;">J</a> <a name="index-letter-K" style="font-weight : bolder; font-size : larger;">K</a> <a name="index-letter-L" style="font-weight : bolder; font-size : larger;">L</a><br>
+
+    <li> <a href="node019.html#idx-169895264" target="mainbox"><tt class="tt">Env.language</tt></a>
+    <li> library path
+    <ul class="idx-lvl2">
+      <li> <a href="node006.html#idx-66393512" target="mainbox">environment variable (Linux)</a>
+    </ul>
+    <li> <a href="node017.html#idx-138425696" target="mainbox">lic_trh_expiry_wrn (parameter)</a>
+    <li> <a href="node017.html#idx-138428360" target="mainbox">license_allow_overuse (parameter)</a>
+    <li> <a href="node017.html#idx-138449120" target="mainbox">license_cache_time (parameter)</a>
+    <li> <a href="node017.html#idx-138451280" target="mainbox">license_check_time (parameter)</a>
+    <li> <a href="node017.html#idx-138463280" target="mainbox">license_debug (parameter)</a>
+    <li> <a href="node017.html#idx-138465864" target="mainbox">license_pause_time (parameter)</a>
+    <li> <a href="node017.html#idx-138495688" target="mainbox">license_suppress_expire_wrns (parameter)</a>
+    <li> <a href="node017.html#idx-138510136" target="mainbox">license_wait (parameter)</a>
+    <li> <a href="node019.html#idx-170049120" target="mainbox"><tt class="tt">Env.liinfitem</tt></a>
+    <li> <a href="node010.html#idx-76273784" target="mainbox">linear dependency check</a>
+    <li> <a href="node008.html#idx-72688848" target="mainbox">linear embedded network problem</a>
+    <li> <a href="node008.html#idx-71238216" target="mainbox">Linear network flow problems</a>
+    <li> <a href="node007.html#idx-67798656" target="mainbox">linear optimization</a>
+    <li> <a href="node009.html#idx-72746984" target="mainbox">linear problem</a>
+    <li> <a href="node014.html#idx-83291456" target="mainbox">linearity interval</a>
+    <li> <a href="node016.html#idx-89621496" target="mainbox">linkfiletoenvstream (Env method)</a>
+    <li> <a href="node016.html#idx-106442192" target="mainbox">linkfiletotaskstream (Task method)</a>
+    <li> <a href="node017.html#idx-138528600" target="mainbox">log (parameter)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node008.html#idx-72724920" target="mainbox">Env.streamtype.log (example)</a>
+      <li> <a href="node008.html#idx-72668296" target="mainbox">Env.streamtype.log (example)</a>
+    </ul>
+    <li> <a href="node017.html#idx-138543976" target="mainbox">log_bi (parameter)</a>
+    <li> <a href="node017.html#idx-138516600" target="mainbox">log_bi_freq (parameter)</a>
+    <li> <a href="node017.html#idx-138513008" target="mainbox">log_check_convexity (parameter)</a>
+    <li> <a href="node017.html#idx-138572576" target="mainbox">log_concurrent (parameter)</a>
+    <li> <a href="node017.html#idx-138566688" target="mainbox">log_cut_second_opt (parameter)</a>
+    <li> <a href="node017.html#idx-138615912" target="mainbox">log_factor (parameter)</a>
+    <li> <a href="node017.html#idx-138614832" target="mainbox">log_feasrepair (parameter)</a>
+    <li> <a href="node017.html#idx-138639048" target="mainbox">log_file (parameter)</a>
+    <li> <a href="node017.html#idx-138530400" target="mainbox">log_head (parameter)</a>
+    <li> <a href="node017.html#idx-138602040" target="mainbox">log_infeas_ana (parameter)</a>
+    <li> <a href="node017.html#idx-140094352" target="mainbox">log_intpnt (parameter)</a>
+    <li> <a href="node017.html#idx-140083496" target="mainbox">log_mio (parameter)</a>
+    <li> <a href="node017.html#idx-140116768" target="mainbox">log_mio_freq (parameter)</a>
+    <li> <a href="node017.html#idx-140119504" target="mainbox">log_nonconvex (parameter)</a>
+    <li> <a href="node017.html#idx-140132720" target="mainbox">log_optimizer (parameter)</a>
+    <li> <a href="node017.html#idx-140145872" target="mainbox">log_order (parameter)</a>
+    <li> <a href="node017.html#idx-140148464" target="mainbox">log_param (parameter)</a>
+    <li> <a href="node017.html#idx-140165776" target="mainbox">log_presolve (parameter)</a>
+    <li> <a href="node017.html#idx-140146952" target="mainbox">log_response (parameter)</a>
+    <li> <a href="node017.html#idx-140190136" target="mainbox">log_sensitivity (parameter)</a>
+    <li> <a href="node017.html#idx-140192368" target="mainbox">log_sensitivity_opt (parameter)</a>
+    <li> <a href="node017.html#idx-140212848" target="mainbox">log_sim (parameter)</a>
+    <li> <a href="node017.html#idx-140211984" target="mainbox">log_sim_freq (parameter)</a>
+    <li> <a href="node017.html#idx-140186688" target="mainbox">log_sim_minor (parameter)</a>
+    <li> <a href="node017.html#idx-140229592" target="mainbox">log_sim_network_freq (parameter)</a>
+    <li> <a href="node017.html#idx-140254744" target="mainbox">log_storage (parameter)</a>
+    <li> <a href="node017.html#idx-129186632" target="mainbox">lower_obj_cut (parameter)</a>
+    <li> <a href="node017.html#idx-129222776" target="mainbox">lower_obj_cut_finite_trh (parameter)</a>
+    <li> <a href="node023.html#idx-177868312" target="mainbox">LP format</a>
+    <li> <a href="node017.html#idx-140256752" target="mainbox">lp_write_ignore_incompatible_items (parameter)</a>
+<hr>
+
+<a name="index-letter-M" style="font-weight : bolder; font-size : larger;">M</a><br>
+
+    <li> <a href="node006.html#idx-66300168" target="mainbox">makefile examples</a>
+    <li> <a href="node006.html#idx-66451000" target="mainbox">makefile examples (Linux)</a>
+    <li> <a href="node016.html#idx-106447216" target="mainbox">makesolutionstatusunknown (Task method)</a>
+    <li> <a href="node019.html#idx-171492272" target="mainbox"><tt class="tt">Env.mark</tt></a>
+    <li> matrix format
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-71214792" target="mainbox">column ordered</a>
+      <li> <a href="node007.html#idx-71214144" target="mainbox">row ordered</a>
+      <li> <a href="node007.html#idx-71194240" target="mainbox">triplets</a>
+    </ul>
+    <li> <a href="node017.html#idx-140277304" target="mainbox">max_num_warnings (parameter)</a>
+    <li> <a href="node017.html#idx-140279960" target="mainbox">mio_branch_dir (parameter)</a>
+    <li> <a href="node017.html#idx-140297640" target="mainbox">mio_branch_priorities_use (parameter)</a>
+    <li> <a href="node017.html#idx-140315680" target="mainbox">mio_construct_sol (parameter)</a>
+    <li> <a href="node017.html#idx-140286144" target="mainbox">mio_cont_sol (parameter)</a>
+    <li> <a href="node017.html#idx-141799504" target="mainbox">mio_cut_level_root (parameter)</a>
+    <li> <a href="node017.html#idx-141821064" target="mainbox">mio_cut_level_tree (parameter)</a>
+    <li> <a href="node017.html#idx-129231904" target="mainbox">mio_disable_term_time (parameter)</a>
+    <li> <a href="node017.html#idx-141828752" target="mainbox">mio_feaspump_level (parameter)</a>
+    <li> <a href="node017.html#idx-141793760" target="mainbox">mio_heuristic_level (parameter)</a>
+    <li> <a href="node017.html#idx-129276672" target="mainbox">mio_heuristic_time (parameter)</a>
+    <li> <a href="node017.html#idx-141851248" target="mainbox">mio_hotstart (parameter)</a>
+    <li> <a href="node017.html#idx-141870576" target="mainbox">mio_keep_basis (parameter)</a>
+    <li> <a href="node017.html#idx-141869496" target="mainbox">mio_local_branch_number (parameter)</a>
+    <li> <a href="node017.html#idx-141864400" target="mainbox">mio_max_num_branches (parameter)</a>
+    <li> <a href="node017.html#idx-141913192" target="mainbox">mio_max_num_relaxs (parameter)</a>
+    <li> <a href="node017.html#idx-141918648" target="mainbox">mio_max_num_solutions (parameter)</a>
+    <li> <a href="node017.html#idx-129264456" target="mainbox">mio_max_time (parameter)</a>
+    <li> <a href="node017.html#idx-129272288" target="mainbox">mio_max_time_aprx_opt (parameter)</a>
+    <li> <a href="node017.html#idx-141948832" target="mainbox">mio_mode (parameter)</a>
+    <li> <a href="node017.html#idx-129287016" target="mainbox">mio_near_tol_abs_gap (parameter)</a>
+    <li> <a href="node017.html#idx-129312960" target="mainbox">mio_near_tol_rel_gap (parameter)</a>
+    <li> <a href="node017.html#idx-141915560" target="mainbox">mio_node_optimizer (parameter)</a>
+    <li> <a href="node017.html#idx-141977864" target="mainbox">mio_node_selection (parameter)</a>
+    <li> <a href="node017.html#idx-141994464" target="mainbox">mio_optimizer_mode (parameter)</a>
+    <li> <a href="node017.html#idx-141985768" target="mainbox">mio_presolve_aggregate (parameter)</a>
+    <li> <a href="node017.html#idx-142013432" target="mainbox">mio_presolve_probing (parameter)</a>
+    <li> <a href="node017.html#idx-142031544" target="mainbox">mio_presolve_use (parameter)</a>
+    <li> <a href="node017.html#idx-130879072" target="mainbox">mio_rel_add_cut_limited (parameter)</a>
+    <li> <a href="node017.html#idx-129309368" target="mainbox">mio_rel_gap_const (parameter)</a>
+    <li> <a href="node017.html#idx-142031256" target="mainbox">mio_root_optimizer (parameter)</a>
+    <li> <a href="node017.html#idx-143409592" target="mainbox">mio_strong_branch (parameter)</a>
+    <li> <a href="node017.html#idx-130888192" target="mainbox">mio_tol_abs_gap (parameter)</a>
+    <li> <a href="node017.html#idx-130900408" target="mainbox">mio_tol_abs_relax_int (parameter)</a>
+    <li> <a href="node017.html#idx-130912408" target="mainbox">mio_tol_feas (parameter)</a>
+    <li> <a href="node017.html#idx-130929080" target="mainbox">mio_tol_rel_gap (parameter)</a>
+    <li> <a href="node017.html#idx-130939072" target="mainbox">mio_tol_rel_relax_int (parameter)</a>
+    <li> <a href="node017.html#idx-130949848" target="mainbox">mio_tol_x (parameter)</a>
+    <li> <a href="node019.html#idx-171496800" target="mainbox"><tt class="tt">Env.miocontsoltype</tt></a>
+    <li> <a href="node019.html#idx-171497088" target="mainbox"><tt class="tt">Env.miomode</tt></a>
+    <li> <a href="node019.html#idx-171534960" target="mainbox"><tt class="tt">Env.mionodeseltype</tt></a>
+    <li> <a href="node007.html#idx-69365416" target="mainbox">mixed integer optimization</a>
+    <li> <a href="node011.html#idx-80987200" target="mainbox">mixed-integer optimization</a>
+    <li> modelling
+    <ul class="idx-lvl2">
+      <li> <a href="node009.html#idx-76192872" target="mainbox">absolute value</a>
+      <li> <a href="node009.html#idx-74740224" target="mainbox">in cones</a>
+      <li> <a href="node009.html#idx-76258048" target="mainbox">market impact term</a>
+      <li> <a href="node009.html#idx-76232464" target="mainbox">Markowitz portfolio optimization</a>
+      <li> <a href="node009.html#idx-74779032" target="mainbox">minimizing a sum of norms</a>
+      <li> <a href="node009.html#idx-76209688" target="mainbox">portfolio optimization</a>
+      <li> <a href="node009.html#idx-76257256" target="mainbox">transaction costs</a>
+    </ul>
+    <li> mosek.jar
+    <ul class="idx-lvl2">
+      <li> <a href="node006.html#idx-66410688" target="mainbox">path to (Windows)</a>
+    </ul>
+    <li> <a href="node022.html#idx-174598192" target="mainbox">MPS format</a>
+    <li> <a href="node022.html#idx-174595824" target="mainbox">MPS format</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node022.html#idx-176195056" target="mainbox">BOUNDS</a>
+      <li> <a href="node022.html#idx-174668040" target="mainbox">COLUMNS</a>
+      <li> <a href="node022.html#idx-176344960" target="mainbox">free</a>
+      <li> <a href="node022.html#idx-174631968" target="mainbox">NAME</a>
+      <li> <a href="node022.html#idx-174631248" target="mainbox">OBJNAME</a>
+      <li> <a href="node022.html#idx-174636424" target="mainbox">OBJSENSE</a>
+      <li> <a href="node022.html#idx-176159776" target="mainbox">QSECTION</a>
+      <li> <a href="node022.html#idx-176134192" target="mainbox">RANGES</a>
+      <li> <a href="node022.html#idx-176108248" target="mainbox">RHS</a>
+      <li> <a href="node022.html#idx-174645832" target="mainbox">ROWS</a>
+    </ul>
+    <li> <a href="node019.html#idx-171558096" target="mainbox"><tt class="tt">Env.mpsformat</tt></a>
+    <li> msg
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67903144" target="mainbox">Env.streamtype.msg (example)</a>
+      <li> <a href="node007.html#idx-69290176" target="mainbox">Env.streamtype.msg (example)</a>
+      <li> <a href="node007.html#idx-69361888" target="mainbox">Env.streamtype.msg (example)</a>
+      <li> <a href="node007.html#idx-69387904" target="mainbox">Env.streamtype.msg (example)</a>
+      <li> <a href="node007.html#idx-67998712" target="mainbox">Env.streamtype.msg (example)</a>
+      <li> <a href="node007.html#idx-67956392" target="mainbox">Env.streamtype.msg (example)</a>
+    </ul>
+    <li> <a href="node019.html#idx-171574264" target="mainbox"><tt class="tt">Env.msgkey</tt></a>
+<hr>
+
+<a name="index-letter-N" style="font-weight : bolder; font-size : larger;">N</a><br>
+
+    <li> <a href="node016.html#idx-106461880" target="mainbox">netextraction (Task method)</a>
+    <li> <a href="node016.html#idx-106512608" target="mainbox">netoptimize (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node008.html#idx-72665280" target="mainbox">Task.netoptimize (example)</a>
+      <li> <a href="node008.html#idx-72736352" target="mainbox">Task.netoptimize (example)</a>
+    </ul>
+    <li> Network flow problems
+    <ul class="idx-lvl2">
+      <li> <a href="node010.html#idx-79435248" target="mainbox">embedded</a>
+      <li> <a href="node010.html#idx-79458600" target="mainbox">optimizing</a>
+    </ul>
+    <li> <a href="node019.html#idx-171571896" target="mainbox"><tt class="tt">Env.networkdetect</tt></a>
+    <li> <a href="node017.html#idx-142032048" target="mainbox">nonconvex_max_iterations (parameter)</a>
+    <li> <a href="node017.html#idx-130963648" target="mainbox">nonconvex_tol_feas (parameter)</a>
+    <li> <a href="node017.html#idx-130974496" target="mainbox">nonconvex_tol_opt (parameter)</a>
+<hr>
+
+<a name="index-letter-O" style="font-weight : bolder; font-size : larger;">O</a><br>
+
+    <li> objective
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67874616" target="mainbox">defining</a>
+      <li> <a href="node007.html#idx-67873968" target="mainbox">linear</a>
+      <li> <a href="node009.html#idx-72859800" target="mainbox">quadratic</a>
+      <li> <a href="node009.html#idx-72732328" target="mainbox">vector</a>
+    </ul>
+    <li> objective-sense
+    <ul class="idx-lvl2">
+      <li> <a href="node008.html#idx-72661184" target="mainbox">Env.iparam.objectivesense (example)</a>
+    </ul>
+    <li> <a href="node017.html#idx-143447464" target="mainbox">objective_sense (parameter)</a>
+    <li> <a href="node019.html#idx-171608112" target="mainbox"><tt class="tt">Env.objsense</tt></a>
+    <li> <a href="node019.html#idx-171613576" target="mainbox"><tt class="tt">Env.onoffkey</tt></a>
+    <li> <a href="node024.html#idx-177973944" target="mainbox">OPF format</a>
+    <li> opf, writing
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67751664" target="mainbox">OPF, writing (example)</a>
+    </ul>
+    <li> <a href="node007.html#idx-67749648" target="mainbox">OPF, writing</a>
+    <li> opf-write-hints
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67760208" target="mainbox">Env.iparam.opfwritehints (example)</a>
+    </ul>
+    <li> opf-write-parameters
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67760856" target="mainbox">Env.iparam.opfwriteparameters (example)</a>
+    </ul>
+    <li> opf-write-problem
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67763304" target="mainbox">Env.iparam.opfwriteproblem (example)</a>
+    </ul>
+    <li> opf-write-solutions
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67753672" target="mainbox">Env.iparam.opfwritesolutions (example)</a>
+    </ul>
+    <li> <a href="node017.html#idx-143468160" target="mainbox">opf_max_terms_per_line (parameter)</a>
+    <li> <a href="node017.html#idx-143470888" target="mainbox">opf_write_header (parameter)</a>
+    <li> <a href="node017.html#idx-143489432" target="mainbox">opf_write_hints (parameter)</a>
+    <li> <a href="node017.html#idx-143498488" target="mainbox">opf_write_parameters (parameter)</a>
+    <li> <a href="node017.html#idx-143516232" target="mainbox">opf_write_problem (parameter)</a>
+    <li> <a href="node017.html#idx-143524784" target="mainbox">opf_write_sol_bas (parameter)</a>
+    <li> <a href="node017.html#idx-143522344" target="mainbox">opf_write_sol_itg (parameter)</a>
+    <li> <a href="node017.html#idx-143563160" target="mainbox">opf_write_sol_itr (parameter)</a>
+    <li> <a href="node017.html#idx-143579616" target="mainbox">opf_write_solutions (parameter)</a>
+    <li> <a href="node009.html#idx-72799656" target="mainbox">optimal solution</a>
+    <li> optimization
+    <ul class="idx-lvl2">
+      <li> <a href="node009.html#idx-74645376" target="mainbox">conic</a>
+      <li> <a href="node007.html#idx-69370440" target="mainbox">integer</a>
+      <li> <a href="node011.html#idx-80970456" target="mainbox">integer</a>
+      <li> <a href="node007.html#idx-69369368" target="mainbox">mixed integer</a>
+      <li> <a href="node011.html#idx-80969600" target="mainbox">mixed-integer</a>
+    </ul>
+    <li> optimize
+    <ul class="idx-lvl2">
+      <li> <a href="node014.html#idx-86251856" target="mainbox">Task.optimize (example)</a>
+      <li> <a href="node007.html#idx-67753096" target="mainbox">Task.optimize (example)</a>
+      <li> <a href="node007.html#idx-69289384" target="mainbox">Task.optimize (example)</a>
+      <li> <a href="node007.html#idx-67955744" target="mainbox">Task.optimize (example)</a>
+      <li> <a href="node007.html#idx-67896168" target="mainbox">Task.optimize (example)</a>
+      <li> <a href="node007.html#idx-69360744" target="mainbox">Task.optimize (example)</a>
+      <li> <a href="node007.html#idx-67997352" target="mainbox">Task.optimize (example)</a>
+    </ul>
+    <li> optimize-penalty
+    <ul class="idx-lvl2">
+      <li> <a href="node013.html#idx-82910168" target="mainbox">Env.feasrepairtype.optimizepenalty (example)</a>
+    </ul>
+    <li> <a href="node017.html#idx-143563952" target="mainbox">optimizer (parameter)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node010.html#idx-80905712" target="mainbox">Env.iparam.optimizer (example)</a>
+    </ul>
+    <li> <a href="node017.html#idx-131001520" target="mainbox">optimizer_max_time (parameter)</a>
+    <li> optimizers
+    <ul class="idx-lvl2">
+      <li> <a href="node010.html#idx-79575736" target="mainbox">concurrent</a>
+      <li> <a href="node010.html#idx-79486848" target="mainbox">conic interior-point</a>
+      <li> <a href="node010.html#idx-79511632" target="mainbox">convex interior-point</a>
+      <li> <a href="node010.html#idx-77864544" target="mainbox">linear interior-point</a>
+      <li> <a href="node010.html#idx-79567040" target="mainbox">parallel</a>
+      <li> <a href="node010.html#idx-79374024" target="mainbox">simplex</a>
+    </ul>
+    <li> <a href="node016.html#idx-106569384" target="mainbox">optimizersummary (Task method)</a>
+    <li> <a href="node019.html#idx-171637936" target="mainbox"><tt class="tt">Env.optimizertype</tt></a>
+    <li> <a href="node016.html#idx-106581960" target="mainbox">optimizetrm (Task method)</a>
+    <li> Optimizing
+    <ul class="idx-lvl2">
+      <li> <a href="node010.html#idx-79457888" target="mainbox">network flow problems</a>
+    </ul>
+    <li> <a href="node026.html#idx-179577488" target="mainbox">ORD format</a>
+    <li> <a href="node019.html#idx-171673720" target="mainbox"><tt class="tt">Env.orderingtype</tt></a>
+<hr>
+
+<a name="index-letter-P" style="font-weight : bolder; font-size : larger;">P</a><br>
+
+    <li> <a href="node010.html#idx-79529744" target="mainbox">parallel extensions</a>
+    <li> <a href="node010.html#idx-77878264" target="mainbox">parallel interior-point</a>
+    <li> parallel optimizers
+    <ul class="idx-lvl2">
+      <li> <a href="node010.html#idx-77878768" target="mainbox">interior point</a>
+    </ul>
+    <li> <a href="node010.html#idx-79562584" target="mainbox">parallel solution</a>
+    <li> <a href="node017.html#idx-153761336" target="mainbox">param_comment_sign (parameter)</a>
+    <li> <a href="node017.html#idx-143606488" target="mainbox">param_read_case_name (parameter)</a>
+    <li> <a href="node017.html#idx-153772904" target="mainbox">param_read_file_name (parameter)</a>
+    <li> <a href="node017.html#idx-143614248" target="mainbox">param_read_ign_error (parameter)</a>
+    <li> <a href="node017.html#idx-153783328" target="mainbox">param_write_file_name (parameter)</a>
+    <li> <a href="node019.html#idx-171695352" target="mainbox"><tt class="tt">Env.parametertype</tt></a>
+    <li> <a href="node010.html#idx-77801232" target="mainbox">presolve</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node010.html#idx-77819704" target="mainbox">eliminator</a>
+      <li> <a href="node010.html#idx-76295992" target="mainbox">linear dependency check</a>
+    </ul>
+    <li> <a href="node017.html#idx-143635016" target="mainbox">presolve_elim_fill (parameter)</a>
+    <li> <a href="node017.html#idx-143643712" target="mainbox">presolve_eliminator_max_num_tries (parameter)</a>
+    <li> <a href="node017.html#idx-143645872" target="mainbox">presolve_eliminator_use (parameter)</a>
+    <li> <a href="node017.html#idx-145168216" target="mainbox">presolve_level (parameter)</a>
+    <li> <a href="node017.html#idx-143662616" target="mainbox">presolve_lindep_use (parameter)</a>
+    <li> <a href="node017.html#idx-145195952" target="mainbox">presolve_lindep_work_lim (parameter)</a>
+    <li> <a href="node017.html#idx-130998928" target="mainbox">presolve_tol_aij (parameter)</a>
+    <li> <a href="node017.html#idx-131004464" target="mainbox">presolve_tol_lin_dep (parameter)</a>
+    <li> <a href="node017.html#idx-131018408" target="mainbox">presolve_tol_s (parameter)</a>
+    <li> <a href="node017.html#idx-130983336" target="mainbox">presolve_tol_x (parameter)</a>
+    <li> <a href="node017.html#idx-145189200" target="mainbox">presolve_use (parameter)</a>
+    <li> <a href="node019.html#idx-171657408" target="mainbox"><tt class="tt">Env.presolvemode</tt></a>
+    <li> <a href="node009.html#idx-72806128" target="mainbox">primal certificate</a>
+    <li> <a href="node009.html#idx-72762288" target="mainbox">primal feasible</a>
+    <li> <a href="node009.html#idx-72770480" target="mainbox">primal infeasible</a>
+    <li> <a href="node009.html#idx-72769408" target="mainbox">primal infeasible</a>
+    <li> <a href="node009.html#idx-72787296" target="mainbox">primal-dual solution</a>
+    <li> <a href="node016.html#idx-108135056" target="mainbox">primalsensitivity (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node014.html#idx-86252432" target="mainbox">Task.primalsensitivity (example)</a>
+    </ul>
+    <li> problem element
+    <ul class="idx-lvl2">
+      <li> bounds
+      <ul class="idx-lvl3">
+        <li> <a href="node007.html#idx-67819928" target="mainbox">constraint</a>
+        <li> <a href="node007.html#idx-67822224" target="mainbox">variable</a>
+      </ul>
+      <li> constraint
+      <ul class="idx-lvl3">
+        <li> <a href="node007.html#idx-67819424" target="mainbox">bounds</a>
+      </ul>
+      <li> <a href="node007.html#idx-67808360" target="mainbox">constraint matrix</a>
+      <li> <a href="node007.html#idx-67786656" target="mainbox">objective, linear</a>
+      <li> variable
+      <ul class="idx-lvl3">
+        <li> <a href="node007.html#idx-67821720" target="mainbox">bounds</a>
+      </ul>
+      <li> <a href="node007.html#idx-67789672" target="mainbox">variable vector</a>
+    </ul>
+    <li> <a href="node019.html#idx-171728336" target="mainbox"><tt class="tt">Env.problemitem</tt></a>
+    <li> <a href="node019.html#idx-171708072" target="mainbox"><tt class="tt">Env.problemtype</tt></a>
+    <li> <a href="node016.html#idx-108234584" target="mainbox">probtypetostr (Task method)</a>
+    <li> Progress
+    <ul class="idx-lvl2">
+      <li> <a href="node016.html#idx-91107696" target="mainbox">constructors</a>
+    </ul>
+    <li> <a href="node016.html#idx-89576296" target="mainbox">progress (Progress method)</a>
+    <li> <a href="node016.html#idx-91158576" target="mainbox">Progress.Progress (constructor)</a>
+    <li> <a href="node019.html#idx-172857464" target="mainbox"><tt class="tt">Env.prosta</tt></a>
+    <li> <a href="node016.html#idx-108183848" target="mainbox">prostatostr (Task method)</a>
+    <li> <a href="node016.html#idx-108251472" target="mainbox">putaij (Task method)</a>
+    <li> <a href="node016.html#idx-108273320" target="mainbox">putaijlist (Task method)</a>
+    <li> <a href="node016.html#idx-108290848" target="mainbox">putavec (Task method)</a>
+    <li> <a href="node016.html#idx-108328072" target="mainbox">putaveclist (Task method)</a>
+    <li> <a href="node016.html#idx-109917248" target="mainbox">putaveclist64 (Task method)</a>
+    <li> <a href="node016.html#idx-109942832" target="mainbox">putbound (Task method)</a>
+    <li> <a href="node016.html#idx-108375072" target="mainbox">putboundlist (Task method)</a>
+    <li> <a href="node016.html#idx-110028272" target="mainbox">putboundslice (Task method)</a>
+    <li> <a href="node016.html#idx-110062336" target="mainbox">putcfix (Task method)</a>
+    <li> <a href="node016.html#idx-110073472" target="mainbox">putcj (Task method)</a>
+    <li> <a href="node016.html#idx-110057016" target="mainbox">putclist (Task method)</a>
+    <li> <a href="node016.html#idx-110095032" target="mainbox">putcone (Task method)</a>
+    <li> <a href="node016.html#idx-89652328" target="mainbox">putcpudefaults (Env method)</a>
+    <li> <a href="node016.html#idx-89661168" target="mainbox">putdllpath (Env method)</a>
+    <li> <a href="node016.html#idx-110108400" target="mainbox">putdouparam (Task method)</a>
+    <li> <a href="node016.html#idx-110109328" target="mainbox">putintparam (Task method)</a>
+    <li> <a href="node016.html#idx-91064440" target="mainbox">putkeepdlls (Env method)</a>
+    <li> <a href="node016.html#idx-89632064" target="mainbox">putlicensedefaults (Env method)</a>
+    <li> <a href="node016.html#idx-110132688" target="mainbox">putmaxnumanz (Task method)</a>
+    <li> <a href="node016.html#idx-110144904" target="mainbox">putmaxnumanz64 (Task method)</a>
+    <li> <a href="node016.html#idx-110163152" target="mainbox">putmaxnumcon (Task method)</a>
+    <li> <a href="node016.html#idx-110165240" target="mainbox">putmaxnumcone (Task method)</a>
+    <li> <a href="node016.html#idx-111505064" target="mainbox">putmaxnumqnz (Task method)</a>
+    <li> <a href="node016.html#idx-111496152" target="mainbox">putmaxnumqnz64 (Task method)</a>
+    <li> <a href="node016.html#idx-111521448" target="mainbox">putmaxnumvar (Task method)</a>
+    <li> <a href="node016.html#idx-111526688" target="mainbox">putnadouparam (Task method)</a>
+    <li> <a href="node016.html#idx-111544296" target="mainbox">putnaintparam (Task method)</a>
+    <li> <a href="node016.html#idx-111557448" target="mainbox">putname (Task method)</a>
+    <li> <a href="node016.html#idx-111566360" target="mainbox">putobjname (Task method)</a>
+    <li> <a href="node016.html#idx-111578576" target="mainbox">putobjsense (Task method)</a>
+    <li> <a href="node016.html#idx-111597400" target="mainbox">putparam (Task method)</a>
+    <li> <a href="node016.html#idx-111594240" target="mainbox">putqcon (Task method)</a>
+    <li> <a href="node016.html#idx-111587840" target="mainbox">putqconk (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-69291472" target="mainbox">Task.putqconk (example)</a>
+    </ul>
+    <li> <a href="node016.html#idx-111692976" target="mainbox">putqobj (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67999576" target="mainbox">Task.putqobj (example)</a>
+    </ul>
+    <li> <a href="node016.html#idx-111714032" target="mainbox">putqobjij (Task method)</a>
+    <li> <a href="node016.html#idx-111749960" target="mainbox">putsolution (Task method)</a>
+    <li> <a href="node016.html#idx-113502760" target="mainbox">putsolutioni (Task method)</a>
+    <li> <a href="node016.html#idx-113527840" target="mainbox">putsolutionyi (Task method)</a>
+    <li> <a href="node016.html#idx-113540416" target="mainbox">putstrparam (Task method)</a>
+    <li> <a href="node016.html#idx-113569160" target="mainbox">puttaskname (Task method)</a>
+    <li> <a href="node016.html#idx-113567216" target="mainbox">putvarbranchorder (Task method)</a>
+    <li> <a href="node016.html#idx-113587480" target="mainbox">putvartype (Task method)</a>
+    <li> <a href="node016.html#idx-113500744" target="mainbox">putvartypelist (Task method)</a>
+<hr>
+
+<a name="index-letter-Q" style="font-weight : bolder; font-size : larger;">Q</a><br>
+
+    <li> <a href="node017.html#idx-131038240" target="mainbox">qcqo_reformulate_rel_drop_tol (parameter)</a>
+    <li> <a href="node017.html#idx-145214568" target="mainbox">qo_separable_reformulation (parameter)</a>
+    <li> <a href="node019.html#idx-172906328" target="mainbox"><tt class="tt">Env.qreadtype</tt></a>
+    <li> quad
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-69363472" target="mainbox">Env.conetype.quad (example)</a>
+    </ul>
+    <li> <a href="node009.html#idx-72861960" target="mainbox">quadratic constraint</a>
+    <li> <a href="node009.html#idx-72864688" target="mainbox">quadratic constraint</a>
+    <li> <a href="node007.html#idx-69260280" target="mainbox">quadratic constraints, example</a>
+    <li> <a href="node009.html#idx-72859232" target="mainbox">quadratic objective</a>
+    <li> <a href="node007.html#idx-67975288" target="mainbox">quadratic objective, example</a>
+    <li> <a href="node007.html#idx-67961488" target="mainbox">quadratic optimization</a>
+    <li> <a href="node009.html#idx-72850104" target="mainbox">quadratic optimization</a>
+    <li> <a href="node007.html#idx-67960776" target="mainbox">quadratic problem</a>
+<hr>
+
+<a name="index-letter-R" style="font-weight : bolder; font-size : larger;">R</a><br>
+
+    <li> <a href="node017.html#idx-145234904" target="mainbox">read_add_anz (parameter)</a>
+    <li> <a href="node017.html#idx-145241656" target="mainbox">read_add_con (parameter)</a>
+    <li> <a href="node017.html#idx-145208888" target="mainbox">read_add_cone (parameter)</a>
+    <li> <a href="node017.html#idx-145264008" target="mainbox">read_add_qnz (parameter)</a>
+    <li> <a href="node017.html#idx-145261704" target="mainbox">read_add_var (parameter)</a>
+    <li> <a href="node017.html#idx-145289440" target="mainbox">read_anz (parameter)</a>
+    <li> <a href="node017.html#idx-145290088" target="mainbox">read_con (parameter)</a>
+    <li> <a href="node017.html#idx-145316392" target="mainbox">read_cone (parameter)</a>
+    <li> <a href="node017.html#idx-145315600" target="mainbox">read_data_compressed (parameter)</a>
+    <li> <a href="node017.html#idx-145334496" target="mainbox">read_data_format (parameter)</a>
+    <li> <a href="node017.html#idx-145351168" target="mainbox">read_keep_free_con (parameter)</a>
+    <li> <a href="node017.html#idx-145346288" target="mainbox">read_lp_drop_new_vars_in_bou (parameter)</a>
+    <li> <a href="node017.html#idx-145390192" target="mainbox">read_lp_quoted_names (parameter)</a>
+    <li> <a href="node017.html#idx-153797768" target="mainbox">read_mps_bou_name (parameter)</a>
+    <li> <a href="node017.html#idx-145404920" target="mainbox">read_mps_format (parameter)</a>
+    <li> <a href="node017.html#idx-145412968" target="mainbox">read_mps_keep_int (parameter)</a>
+    <li> <a href="node017.html#idx-153809336" target="mainbox">read_mps_obj_name (parameter)</a>
+    <li> <a href="node017.html#idx-146892704" target="mainbox">read_mps_obj_sense (parameter)</a>
+    <li> <a href="node017.html#idx-145385952" target="mainbox">read_mps_quoted_names (parameter)</a>
+    <li> <a href="node017.html#idx-153825504" target="mainbox">read_mps_ran_name (parameter)</a>
+    <li> <a href="node017.html#idx-146920512" target="mainbox">read_mps_relax (parameter)</a>
+    <li> <a href="node017.html#idx-153839808" target="mainbox">read_mps_rhs_name (parameter)</a>
+    <li> <a href="node017.html#idx-146929496" target="mainbox">read_mps_width (parameter)</a>
+    <li> <a href="node017.html#idx-146937472" target="mainbox">read_q_mode (parameter)</a>
+    <li> <a href="node017.html#idx-146954648" target="mainbox">read_qnz (parameter)</a>
+    <li> <a href="node017.html#idx-146965208" target="mainbox">read_task_ignore_param (parameter)</a>
+    <li> <a href="node017.html#idx-146982168" target="mainbox">read_var (parameter)</a>
+    <li> <a href="node016.html#idx-113603504" target="mainbox">readbranchpriorities (Task method)</a>
+    <li> <a href="node016.html#idx-113632392" target="mainbox">readdata (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67755544" target="mainbox">Task.readdata (example)</a>
+      <li> <a href="node013.html#idx-83227640" target="mainbox">Task.readdata (example)</a>
+    </ul>
+    <li> <a href="node016.html#idx-113656824" target="mainbox">readparamfile (Task method)</a>
+    <li> <a href="node016.html#idx-113601568" target="mainbox">readsolution (Task method)</a>
+    <li> <a href="node016.html#idx-113674864" target="mainbox">readsummary (Task method)</a>
+    <li> <a href="node011.html#idx-80996040" target="mainbox">relaxation, continuous</a>
+    <li> <a href="node016.html#idx-113641520" target="mainbox">relaxprimal (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node013.html#idx-83229008" target="mainbox">Task.relaxprimal (example)</a>
+    </ul>
+    <li> <a href="node016.html#idx-115156176" target="mainbox">remove (Task method)</a>
+    <li> <a href="node016.html#idx-115133472" target="mainbox">removecone (Task method)</a>
+    <li> <a href="node019.html#idx-172937160" target="mainbox"><tt class="tt">Env.rescodetype</tt></a>
+    <li> <a href="node016.html#idx-115185424" target="mainbox">resizetask (Task method)</a>
+    <li> rquad
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-69364048" target="mainbox">Env.conetype.rquad (example)</a>
+    </ul>
+<hr>
+
+<a name="index-letter-S" style="font-weight : bolder; font-size : larger;">S</a><br>
+
+    <li> <a href="node010.html#idx-77781040" target="mainbox">scaling</a>
+    <li> <a href="node019.html#idx-172955768" target="mainbox"><tt class="tt">Env.scalingmethod</tt></a>
+    <li> <a href="node019.html#idx-172955912" target="mainbox"><tt class="tt">Env.scalingtype</tt></a>
+    <li> <a href="node014.html#idx-83252072" target="mainbox">sensitivity analysis</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node014.html#idx-83306472" target="mainbox">basis type</a>
+      <li> <a href="node014.html#idx-83313584" target="mainbox">optimal partition type</a>
+    </ul>
+    <li> <a href="node017.html#idx-146987416" target="mainbox">sensitivity_all (parameter)</a>
+    <li> <a href="node017.html#idx-153857416" target="mainbox">sensitivity_file_name (parameter)</a>
+    <li> <a href="node017.html#idx-147010048" target="mainbox">sensitivity_optimizer (parameter)</a>
+    <li> <a href="node017.html#idx-153864744" target="mainbox">sensitivity_res_file_name (parameter)</a>
+    <li> <a href="node017.html#idx-147034768" target="mainbox">sensitivity_type (parameter)</a>
+    <li> <a href="node016.html#idx-115211584" target="mainbox">sensitivityreport (Task method)</a>
+    <li> <a href="node019.html#idx-172985592" target="mainbox"><tt class="tt">Env.sensitivitytype</tt></a>
+    <li> <a href="node016.html#idx-115252616" target="mainbox">setdefaults (Task method)</a>
+    <li> <a href="node016.html#idx-91084632" target="mainbox">set_Stream (Env method)</a>
+    <li> <a href="node016.html#idx-115203176" target="mainbox">set_Stream (Task method)</a>
+    <li> setup
+    <ul class="idx-lvl2">
+      <li> <a href="node006.html#idx-66407312" target="mainbox">Linux platform</a>
+      <li> <a href="node006.html#idx-66360672" target="mainbox">Microsoft Windows platform</a>
+    </ul>
+    <li> <a href="node014.html#idx-83290592" target="mainbox">shadow price</a>
+    <li> <a href="node017.html#idx-147027008" target="mainbox">sim_basis_factor_use (parameter)</a>
+    <li> <a href="node017.html#idx-147059200" target="mainbox">sim_degen (parameter)</a>
+    <li> <a href="node017.html#idx-147071488" target="mainbox">sim_dual_crash (parameter)</a>
+    <li> <a href="node017.html#idx-147073648" target="mainbox">sim_dual_phaseone_method (parameter)</a>
+    <li> <a href="node017.html#idx-147092040" target="mainbox">sim_dual_restrict_selection (parameter)</a>
+    <li> <a href="node017.html#idx-147101456" target="mainbox">sim_dual_selection (parameter)</a>
+    <li> <a href="node017.html#idx-147125816" target="mainbox">sim_exploit_dupvec (parameter)</a>
+    <li> <a href="node017.html#idx-147122296" target="mainbox">sim_hotstart (parameter)</a>
+    <li> <a href="node017.html#idx-148640544" target="mainbox">sim_hotstart_lu (parameter)</a>
+    <li> <a href="node017.html#idx-148648304" target="mainbox">sim_integer (parameter)</a>
+    <li> <a href="node017.html#idx-131036656" target="mainbox">sim_lu_tol_rel_piv (parameter)</a>
+    <li> <a href="node017.html#idx-148668216" target="mainbox">sim_max_iterations (parameter)</a>
+    <li> <a href="node017.html#idx-148664048" target="mainbox">sim_max_num_setbacks (parameter)</a>
+    <li> <a href="node017.html#idx-148638680" target="mainbox">sim_network_detect (parameter)</a>
+    <li> <a href="node017.html#idx-148683664" target="mainbox">sim_network_detect_hotstart (parameter)</a>
+    <li> <a href="node017.html#idx-148700840" target="mainbox">sim_network_detect_method (parameter)</a>
+    <li> <a href="node017.html#idx-148714272" target="mainbox">sim_non_singular (parameter)</a>
+    <li> <a href="node017.html#idx-148732096" target="mainbox">sim_primal_crash (parameter)</a>
+    <li> <a href="node017.html#idx-148738848" target="mainbox">sim_primal_phaseone_method (parameter)</a>
+    <li> <a href="node017.html#idx-148752792" target="mainbox">sim_primal_restrict_selection (parameter)</a>
+    <li> <a href="node017.html#idx-148759112" target="mainbox">sim_primal_selection (parameter)</a>
+    <li> <a href="node017.html#idx-148782832" target="mainbox">sim_refactor_freq (parameter)</a>
+    <li> <a href="node017.html#idx-148771040" target="mainbox">sim_reformulation (parameter)</a>
+    <li> <a href="node017.html#idx-148802592" target="mainbox">sim_save_lu (parameter)</a>
+    <li> <a href="node017.html#idx-148825008" target="mainbox">sim_scaling (parameter)</a>
+    <li> <a href="node017.html#idx-148833272" target="mainbox">sim_scaling_method (parameter)</a>
+    <li> <a href="node017.html#idx-148853248" target="mainbox">sim_solve_form (parameter)</a>
+    <li> <a href="node017.html#idx-148862592" target="mainbox">sim_stability_priority (parameter)</a>
+    <li> <a href="node017.html#idx-148865248" target="mainbox">sim_switch_optimizer (parameter)</a>
+    <li> <a href="node019.html#idx-172957920" target="mainbox"><tt class="tt">Env.simdegen</tt></a>
+    <li> <a href="node019.html#idx-172986664" target="mainbox"><tt class="tt">Env.simdupvec</tt></a>
+    <li> <a href="node019.html#idx-173030792" target="mainbox"><tt class="tt">Env.simhotstart</tt></a>
+    <li> <a href="node010.html#idx-79373160" target="mainbox">simplex optimizer</a>
+    <li> <a href="node017.html#idx-131060368" target="mainbox">simplex_abs_tol_piv (parameter)</a>
+    <li> <a href="node019.html#idx-173047248" target="mainbox"><tt class="tt">Env.simreform</tt></a>
+    <li> <a href="node019.html#idx-173020440" target="mainbox"><tt class="tt">Env.simseltype</tt></a>
+    <li> <a href="node016.html#idx-115242192" target="mainbox">sktostr (Task method)</a>
+    <li> <a href="node017.html#idx-148885448" target="mainbox">sol_filter_keep_basic (parameter)</a>
+    <li> <a href="node017.html#idx-150372008" target="mainbox">sol_filter_keep_ranged (parameter)</a>
+    <li> <a href="node017.html#idx-153882280" target="mainbox">sol_filter_xc_low (parameter)</a>
+    <li> <a href="node017.html#idx-153883856" target="mainbox">sol_filter_xc_upr (parameter)</a>
+    <li> <a href="node017.html#idx-155255080" target="mainbox">sol_filter_xx_low (parameter)</a>
+    <li> <a href="node017.html#idx-153819112" target="mainbox">sol_filter_xx_upr (parameter)</a>
+    <li> <a href="node017.html#idx-150392776" target="mainbox">sol_quoted_names (parameter)</a>
+    <li> <a href="node017.html#idx-150405848" target="mainbox">sol_read_name_width (parameter)</a>
+    <li> <a href="node017.html#idx-150427048" target="mainbox">sol_read_width (parameter)</a>
+    <li> <a href="node019.html#idx-173058096" target="mainbox"><tt class="tt">Env.solitem</tt></a>
+    <li> <a href="node019.html#idx-173107536" target="mainbox"><tt class="tt">Env.solsta</tt></a>
+    <li> <a href="node016.html#idx-115262960" target="mainbox">solstatostr (Task method)</a>
+    <li> <a href="node019.html#idx-174455552" target="mainbox"><tt class="tt">Env.soltype</tt></a>
+    <li> <a href="node009.html#idx-72800448" target="mainbox">solution, optimal</a>
+    <li> <a href="node009.html#idx-72788016" target="mainbox">solution, primal-dual</a>
+    <li> <a href="node017.html#idx-150431432" target="mainbox">solution_callback (parameter)</a>
+    <li> <a href="node016.html#idx-115270792" target="mainbox">solutiondef (Task method)</a>
+    <li> <a href="node016.html#idx-115290984" target="mainbox">solutionsummary (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-69358584" target="mainbox">Task.solutionsummary (example)</a>
+      <li> <a href="node007.html#idx-67896384" target="mainbox">Task.solutionsummary (example)</a>
+      <li> <a href="node007.html#idx-67995840" target="mainbox">Task.solutionsummary (example)</a>
+      <li> <a href="node007.html#idx-67752520" target="mainbox">Task.solutionsummary (example)</a>
+      <li> <a href="node007.html#idx-69387112" target="mainbox">Task.solutionsummary (example)</a>
+      <li> <a href="node007.html#idx-69289312" target="mainbox">Task.solutionsummary (example)</a>
+      <li> <a href="node007.html#idx-67953584" target="mainbox">Task.solutionsummary (example)</a>
+    </ul>
+    <li> <a href="node019.html#idx-174458136" target="mainbox"><tt class="tt">Env.solveform</tt></a>
+    <li> <a href="node016.html#idx-115286312" target="mainbox">solvewithbasis (Task method)</a>
+    <li> <a href="node007.html#idx-71184824" target="mainbox">sparse vector</a>
+    <li> <a href="node019.html#idx-174481352" target="mainbox"><tt class="tt">Env.stakey</tt></a>
+    <li> <a href="node019.html#idx-174505856" target="mainbox"><tt class="tt">Env.startpointtype</tt></a>
+    <li> <a href="node017.html#idx-155280448" target="mainbox">stat_file_name (parameter)</a>
+    <li> <a href="node017.html#idx-155261336" target="mainbox">stat_key (parameter)</a>
+    <li> <a href="node017.html#idx-155302224" target="mainbox">stat_name (parameter)</a>
+    <li> Stream
+    <ul class="idx-lvl2">
+      <li> <a href="node016.html#idx-91171296" target="mainbox">constructors</a>
+    </ul>
+    <li> <a href="node016.html#idx-91188400" target="mainbox">stream (Stream method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67912768" target="mainbox">attaching</a>
+    </ul>
+    <li> <a href="node016.html#idx-91172376" target="mainbox">Stream.Stream (constructor)</a>
+    <li> <a href="node019.html#idx-174520800" target="mainbox"><tt class="tt">Env.streamtype</tt></a>
+    <li> <a href="node016.html#idx-116758216" target="mainbox">strtoconetype (Task method)</a>
+    <li> <a href="node016.html#idx-116787680" target="mainbox">strtosk (Task method)</a>
+<hr>
+
+<a name="index-letter-T" style="font-weight : bolder; font-size : larger;">T</a><br>
+
+    <li> Task
+    <ul class="idx-lvl2">
+      <li> <a href="node016.html#idx-91194144" target="mainbox">constructors</a>
+    </ul>
+    <li> <a href="node007.html#idx-67749720" target="mainbox">task, creatig</a>
+    <li> <a href="node016.html#idx-91192208" target="mainbox">Task.Task (constructor)</a>
+    <li> <a href="node015.html#idx-86329104" target="mainbox">thread safety</a>
+    <li> <a href="node017.html#idx-150452416" target="mainbox">timing_level (parameter)</a>
+<hr>
+
+<a name="index-letter-U" style="font-weight : bolder; font-size : larger;">U</a><br>
+
+    <li> <a href="node016.html#idx-116788112" target="mainbox">undefsolution (Task method)</a>
+    <li> <a href="node017.html#idx-131049448" target="mainbox">upper_obj_cut (parameter)</a>
+    <li> <a href="node017.html#idx-131104992" target="mainbox">upper_obj_cut_finite_trh (parameter)</a>
+<hr>
+
+<a name="index-letter-V" style="font-weight : bolder; font-size : larger;">V</a><br>
+
+    <li> <a href="node019.html#idx-174511600" target="mainbox"><tt class="tt">Env.value</tt></a>
+    <li> variables
+    <ul class="idx-lvl2">
+      <li> <a href="node022.html#idx-174604368" target="mainbox">decision</a>
+      <li> <a href="node009.html#idx-72734912" target="mainbox">decision</a>
+      <li> <a href="node022.html#idx-174613640" target="mainbox">lower limit</a>
+      <li> <a href="node009.html#idx-72758048" target="mainbox">lower limit</a>
+      <li> <a href="node007.html#idx-67792552" target="mainbox">number of</a>
+      <li> <a href="node022.html#idx-174616728" target="mainbox">upper limit</a>
+      <li> <a href="node009.html#idx-72760496" target="mainbox">upper limit</a>
+    </ul>
+    <li> <a href="node019.html#idx-174546672" target="mainbox"><tt class="tt">Env.variabletype</tt></a>
+    <li> vector format
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-71190504" target="mainbox">full</a>
+      <li> <a href="node007.html#idx-71185616" target="mainbox">sparse</a>
+    </ul>
+<hr>
+
+<a name="index-letter-W" style="font-weight : bolder; font-size : larger;">W</a><br>
+
+    <li> Warning
+    <ul class="idx-lvl2">
+      <li> <a href="node016.html#idx-116886416" target="mainbox">constructors</a>
+    </ul>
+    <li> <a href="node016.html#idx-116887352" target="mainbox">Warning.Warning (constructor)</a>
+    <li> <a href="node017.html#idx-150453712" target="mainbox">warning_level (parameter)</a>
+    <li> write-data-format
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67762152" target="mainbox">Env.iparam.writedataformat (example)</a>
+    </ul>
+    <li> <a href="node017.html#idx-150471456" target="mainbox">write_bas_constraints (parameter)</a>
+    <li> <a href="node017.html#idx-150496032" target="mainbox">write_bas_head (parameter)</a>
+    <li> <a href="node017.html#idx-150504800" target="mainbox">write_bas_variables (parameter)</a>
+    <li> <a href="node017.html#idx-150531176" target="mainbox">write_data_compressed (parameter)</a>
+    <li> <a href="node017.html#idx-150533832" target="mainbox">write_data_format (parameter)</a>
+    <li> <a href="node017.html#idx-150556184" target="mainbox">write_data_param (parameter)</a>
+    <li> <a href="node017.html#idx-150577808" target="mainbox">write_free_con (parameter)</a>
+    <li> <a href="node017.html#idx-150567536" target="mainbox">write_generic_names (parameter)</a>
+    <li> <a href="node017.html#idx-150610648" target="mainbox">write_generic_names_io (parameter)</a>
+    <li> <a href="node017.html#idx-150609720" target="mainbox">write_int_constraints (parameter)</a>
+    <li> <a href="node017.html#idx-151888168" target="mainbox">write_int_head (parameter)</a>
+    <li> <a href="node017.html#idx-151892624" target="mainbox">write_int_variables (parameter)</a>
+    <li> <a href="node017.html#idx-155297192" target="mainbox">write_lp_gen_var_name (parameter)</a>
+    <li> <a href="node017.html#idx-151918568" target="mainbox">write_lp_line_width (parameter)</a>
+    <li> <a href="node017.html#idx-151921224" target="mainbox">write_lp_quoted_names (parameter)</a>
+    <li> <a href="node017.html#idx-151937104" target="mainbox">write_lp_strict_format (parameter)</a>
+    <li> <a href="node017.html#idx-151953704" target="mainbox">write_lp_terms_per_line (parameter)</a>
+    <li> <a href="node017.html#idx-151956296" target="mainbox">write_mps_int (parameter)</a>
+    <li> <a href="node017.html#idx-151979144" target="mainbox">write_mps_obj_sense (parameter)</a>
+    <li> <a href="node017.html#idx-151989064" target="mainbox">write_mps_quoted_names (parameter)</a>
+    <li> <a href="node017.html#idx-152007168" target="mainbox">write_mps_strict (parameter)</a>
+    <li> <a href="node017.html#idx-152016152" target="mainbox">write_precision (parameter)</a>
+    <li> <a href="node017.html#idx-152020248" target="mainbox">write_sol_constraints (parameter)</a>
+    <li> <a href="node017.html#idx-152051656" target="mainbox">write_sol_head (parameter)</a>
+    <li> <a href="node017.html#idx-152057976" target="mainbox">write_sol_variables (parameter)</a>
+    <li> <a href="node017.html#idx-152082048" target="mainbox">write_task_inc_sol (parameter)</a>
+    <li> <a href="node017.html#idx-152065952" target="mainbox">write_xml_mode (parameter)</a>
+    <li> <a href="node016.html#idx-116812832" target="mainbox">writebranchpriorities (Task method)</a>
+    <li> <a href="node016.html#idx-116819440" target="mainbox">writedata (Task method)</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-67754320" target="mainbox">Task.writedata (example)</a>
+    </ul>
+    <li> <a href="node016.html#idx-116852496" target="mainbox">writeparamfile (Task method)</a>
+    <li> <a href="node016.html#idx-116864352" target="mainbox">writesolution (Task method)</a>
+<hr>
+
+<a name="index-letter-X" style="font-weight : bolder; font-size : larger;">X</a><br>
+
+    <li> <a href="node025.html#idx-179574688" target="mainbox">xml format</a>
+    <li> <a href="node019.html#idx-174535744" target="mainbox"><tt class="tt">Env.xmlwriteroutputtype</tt></a>
+    <li> xx
+    <ul class="idx-lvl2">
+      <li> <a href="node007.html#idx-69292184" target="mainbox">Env.solitem.xx (example)</a>
+      <li> <a href="node007.html#idx-68000152" target="mainbox">Env.solitem.xx (example)</a>
+      <li> <a href="node007.html#idx-67957320" target="mainbox">Env.solitem.xx (example)</a>
+      <li> <a href="node007.html#idx-67941440" target="mainbox">Env.solitem.xx (example)</a>
+      <li> <a href="node007.html#idx-69364696" target="mainbox">Env.solitem.xx (example)</a>
+      <li> <a href="node007.html#idx-69386184" target="mainbox">Env.solitem.xx (example)</a>
+    </ul>
+<hr>
+
+<a name="index-letter-Y" style="font-weight : bolder; font-size : larger;">Y</a><br>
+
+<hr>
+
+  </ul>
+</ul>
+</div>
+</body>
+</html>

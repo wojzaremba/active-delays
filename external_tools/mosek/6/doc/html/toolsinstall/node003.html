@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>2. Installing the software</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node002.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 1. License conditions and supported platforms" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node004.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  3. Installing a license" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node002.html" target="_self">1. License conditions and supported platforms</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node004.html" target="_self">3. Installing a license</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="139655402837056">2. Installing the software</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node003.html#139655402924728" target="_self">2.1. Windows installation</a>
+<ul class="toc-level-2">
+<li><a href="node003.html#139655402923864" target="_self">2.1.1. Verifying the installation</a></li>
+</ul>
+</li>
+<li><a href="node003.html#139655402924008" target="_self">2.2. Mac OS X installation</a>
+<ul class="toc-level-2">
+<li><a href="node003.html#139655402921064" target="_self">2.2.1. License file set-up</a></li>
+<li><a href="node003.html#139655402917760" target="_self">2.2.2. Mosek binaries set-up</a></li>
+<li><a href="node003.html#139655402929040" target="_self">2.2.3. MOSEK/Python set-up</a></li>
+</ul>
+</li>
+<li><a href="node003.html#139655402931696" target="_self">2.3. Linux/UNIX installation instructions</a>
+<ul class="toc-level-2">
+<li><a href="node003.html#139655402934072" target="_self">2.3.1. Environment set-up</a></li>
+<li><a href="node003.html#139655402936512" target="_self">2.3.2. Verifying the set-up</a></li>
+<li><a href="node003.html#139655402937808" target="_self">2.3.3. Installation of the Java optimizer API</a>
+<ul class="toc-level-3">
+<li><a href="node003.html#139655402939744" target="_self">2.3.3.1. Installation of the .NET optimizer API for MONO</a></li>
+</ul>
+</li>
+<li><a href="node003.html#139655402941112" target="_self">2.3.4. MOSEK/Python set-up</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="ch-install">&#09;</a></p>
+
+<p>This section describes how to install the MOSEK software and how to verify that the software is working correctly. The packages available for download from the MOSEK homepage contain everything, i.e. </p>
+
+<ul class="itemize">
+<li>the MOSEK library, </li>
+<li>the MOSEK command line tool, </li>
+<li>the optimizer APIs, and </li>
+<li>the AMPL shell. </li>
+</ul>
+
+<p>Hence, it is sufficient to download one package for each platform.</p>
+
+<div>
+<h1><a name="139655402924728">2.1. Windows installation</a></h1>
+
+<p>First step is to download the appropriate installation file from the MOSEK website. The relevant Windows installer file is one of the following </p>
+
+<ul class="itemize">
+<li><tt class="tt">moseksetupsetwin.msi</tt> for Windows 32-bit, </li>
+<li><tt class="tt">moseksetupwin64x86.msi</tt> for Windows x64 (AMD64 or Intel EM64T) </li>
+</ul>
+
+<p>To install MOSEK you must have <em>administrative privileges</em>, or the installation will fail. After the installation you will be asked to reboot. This is required because otherwise changes to the environment variables will not take effect.</p>
+
+<div>
+<h2><a name="139655402923864">2.1.1. Verifying the installation</a></h2>
+
+<p>The set-up can be tested by executing the MOSEK command line tool: Open a terminal and type </p>
+
+<pre class="verbatim">mosek -f
+</pre>
+
+<p>If the set-up is correct, this will print MOSEK version information, host name, environment variables and other information.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="139655402924008">2.2. Mac OS X installation</a></h1>
+
+<p> First, download the relevant binary package and save it to a directory where MOSEK should be installed. For Mac OS X this would be one of the files </p>
+
+<ul class="itemize">
+<li><tt class="tt">mosektoolsosx32x86.tar.gz</tt> for Mac OS X on x86 platform. </li>
+<li><tt class="tt">mosektoolsosx64x86.tar.gz</tt> for Mac OS X on x86 platform. </li>
+</ul>
+
+<p> Open a terminal (usually located in <tt class="tt">Applications/Utilities</tt>), change to the directory where the downloaded package was saved, then unpack it using a command similar to </p>
+
+<pre class="verbatim">tar -xzvf mosektoolsosx32x86.tar.gz
+</pre>
+
+<p>This will create a <tt class="tt">mosek/6</tt> directory containing the whole distribution. In the following we will assume that the distribution was unpacked in the home directory of a user called &#8220;<tt class="tt">NAME</tt>&#8221; &ndash; you should replace &#8220;<tt class="tt">/Users/NAME</tt>&#8221; by the absolute path of the location of the .</p>
+
+<p>MOSEK can be used either as a stand-alone application from the command line or as a callable library from an application. This requires some manual installation steps to be completed.</p>
+
+<div>
+<h2><a name="139655402921064">2.2.1. License file set-up</a></h2>
+
+<p> The environment variable <tt class="tt">MOSEKLM_LICENSE_FILE</tt> must either point to a valid MOSEK license file or to a directory containing a valid MOSEK license file. This can be achieved by modifying (or creating) the </p>
+
+<pre class="verbatim">~/.MacOSX/environment.plist
+</pre>
+
+<p>file so it contains an entry defining <tt class="tt">MOSEKLM_LICENSE_FILE</tt>, e.g.</p>
+
+<pre class="verbatim">    &lt;key&gt;MOSEKLM_LICENSE_FILE&lt;/key&gt;
+    &lt;string&gt;/Users/NAME/mosek/6/licenses/mosek.lic&lt;/string&gt;
+</pre>
+
+<p>For this to take effect you must log out and log in again.</p>
+
+<p>Please see the official documentation on <tt class="tt">environment.plist</tt> and user defined environment variables at<small class="small"><center>
+<p> <a href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/index.html">http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/index.html</a> </p>
+</center></small> To verify that this has taken effect, open a terminal and type </p>
+
+<pre class="verbatim">echo $MOSEKLM_LICENSE_FILE
+</pre>
+
+</div>
+
+<div>
+<h2><a name="139655402917760">2.2.2. Mosek binaries set-up</a></h2>
+
+<p> To use MOSEK from other applications, the system must be able to find all binary libaries used by the MOSEK library. The simplest way to ensure this is to copy or link all MOSEK libraries into a directory the system knows of, e.g. the users <tt class="tt">lib</tt>. This can be done from a terminal as follows: </p>
+
+<pre class="verbatim">mkdir ~/lib
+cd ~/lib
+ln -s /Users/NAME/mosek/6/tools/platform/osx32x86/bin/*.dylib .
+</pre>
+
+<p>where &#8220;<tt class="tt">/Users/NAME</tt>&#8221; should be replaced by the location of the MOSEK installation, and &#8220;<tt class="tt">osx32x86</tt>&#8221; by the platform name. Please note that the first command will fail if that directory already exists. To verify that it works, open a terminal and run the MOSEK command line tool by typing</p>
+
+<pre class="verbatim">/Users/NAME/mosek/6/tools/platform/osx32x86/bin/mosek -f
+</pre>
+
+<p> Furthermore, if you want to be able to run the MOSEK command line tool without typing the full path, also do the following:</p>
+
+<pre class="verbatim">mkdir ~/bin
+cd ~/bin
+ln -s /Users/NAME/mosek/6/tools/platform/osx32x86/bin/mosek .
+</pre>
+
+<p>Substitute as above and note that the first command will fail if the directory already exists. To verify that it works, open a terminal and run the MOSEK command line tool by typing</p>
+
+<pre class="verbatim">mosek -f
+</pre>
+
+</div>
+
+<div>
+<h2><a name="139655402929040">2.2.3. MOSEK/Python set-up</a></h2>
+
+<p> To use the PyMosek module from Python, run the <tt class="tt">setup.py</tt> for the relevant python version &mdash; either 2 or 3. The setup scripts are located in the platform directory under </p>
+
+<pre class="verbatim">python/2/setup.py
+python/3/setup.py
+</pre>
+
+<p>To make install the MOSEK/Python module as a normal user run the command </p>
+
+<pre class="verbatim">python setup.py install --user 
+</pre>
+
+<p>otherwise, to make a global installation as <tt class="tt">root</tt>, run </p>
+
+<pre class="verbatim">python setup.py install
+</pre>
+
+<p>Note that this will install the module <em>only</em> for the Python version that the <tt class="tt">setup.py</tt> script is executed with.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="139655402931696">2.3. Linux/UNIX installation instructions</a></h1>
+
+<p> First, download the relevant binary package and save it to a directory where MOSEK should be installed. For Linux that would be one of the files </p>
+
+<ul class="itemize">
+<li><tt class="tt">mosektoolslinux32x86.tar.gz</tt> for Linux on 32-bit x86, </li>
+<li><tt class="tt">mosektoolslinux64x86.tar.gz</tt> for Linux on AMD64 or EM64T, or </li>
+</ul>
+
+<p>For Sun Solaris it is one of the files </p>
+
+<ul class="itemize">
+<li><tt class="tt">mosektoolssolarissparc.tar.gz</tt> for 32-bit Solaris Sparc, </li>
+<li><tt class="tt">mosektoolssolarissparc64.tar.gz</tt> for 64-bit Solaris Sparc, </li>
+<li><tt class="tt">mosektoolssolaris32x86.tar.gz</tt> for 32-bit Solaris on Intel x86, or </li>
+<li><tt class="tt">mosektoolssolaris64x86.tar.gz</tt> for 64-bit Solaris on Intel x86. </li>
+</ul>
+
+<p> Open a terminal, change to the directory where the downloaded package was saved, then unpack it using a command similar to </p>
+
+<pre class="verbatim">tar xzvf mosektools&lt;platform&gt;.tar.gz
+</pre>
+
+<p>where <tt class="tt">&lt;platform&gt;</tt> is the platform type, e.g. <tt class="tt">linux32x86</tt>. This will create a <tt class="tt">mosek/6</tt> directory containing the whole distribution.</p>
+
+<p>In the following </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt;
+</pre>
+
+<p>denotes the location where MOSEK was unpacked, e.g the users home directory. </p>
+
+<div>
+<h2><a name="139655402934072">2.3.1. Environment set-up</a></h2>
+
+<p> <a name="sec-env-unix">&#09;</a> To use the MOSEK library or command line tool, the environment variables rtextttLD_LIBRARY_PATH and <tt class="tt">PATH</tt> must include the relevant MOSEK path: </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt;/mosek/6/tools/platform/&lt;PLATFORM&gt;/bin
+</pre>
+
+<p>where <tt class="tt">&lt;PLATFORM&gt;</tt> should be replaced according to the platform, and <tt class="tt">MOSEKLM_LICENSE_FILE</tt> must point to the relevant license file or directory.</p>
+
+<p>These values can be permanently added by appending entries to the user's </p>
+
+<pre class="verbatim">~/.bashrc
+</pre>
+
+<p>or similar, e.g assuming that </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt; = $HOME
+</pre>
+
+<p>then </p>
+
+<pre class="verbatim"># Change "platform" to the relevant value.
+MOSEKPLATFORM=platform
+export PATH=$PATH:$HOME/mosek/6/tools/platform/$MOSEKPLATFORM/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/mosek/6/tools/platform/$MOSEKPLATFORM/bin
+export MOSEKLM_LICENSE_FILE=$HOME/mosek/6/licenses
+</pre>
+
+<p>The changes will not take effect until next time the shell is started.</p>
+
+</div>
+
+<div>
+<h2><a name="139655402936512">2.3.2. Verifying the set-up</a></h2>
+
+<p>When the environment has been set up, the next terminal that is opened should start with the correct settings. The set-up can be tested by executing the MOSEK command line tool: Open a terminal and type </p>
+
+<pre class="verbatim">mosek -f
+</pre>
+
+<p>If the set-up is correct, this will print MOSEK version information, host name, environment variables and other information. Verify that </p>
+
+<ul class="itemize">
+<li>the <tt class="tt">LD_LIBRARY_PATH</tt> matches your settings, </li>
+<li>the <tt class="tt">MOSEKLM_LICENSE_FILE</tt> matches your settings, and </li>
+<li>the version is correct (<tt class="tt">6.0</tt>). </li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="139655402937808">2.3.3. Installation of the Java optimizer API</a></h2>
+
+<p>This section can be skipped if you do not want to use the Java optimizer API.</p>
+
+<p>To use this interface, the steps described in Section <a title="2.3.1. Environment set-up" href="node003.html#sec-env-unix">2.3.1</a> must be completed in advance. The MOSEK class library is located in the </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt;/mosek/6/tools/platform/$MOSEKPLATFORM/bin/mosek.jar
+</pre>
+
+<p>file which must be specified either on compile-time and run-time. One way of doing this is to set the <tt class="tt">CLASSPATH</tt> environment variable, e.g. in the user's </p>
+
+<pre class="verbatim">~/.bashrc
+</pre>
+
+<p>or similarly as </p>
+
+<pre class="verbatim">export CLASSPATH=$CLASSPATH:$HOME/mosek/6/tools/platform/$MOSEKPLATFORM/bin/mosek.jar
+</pre>
+
+<p>This assumes that you installed MOSEK in <tt class="tt">$HOME</tt>.</p>
+
+<div>
+<h3><a name="139655402939744">2.3.3.1. Installation of the .NET optimizer API for MONO</a></h3>
+
+<p>This section can be skipped if you do not want to use the MOSEK/.NET API.</p>
+
+<p>To use this interface, the steps described in Section <a title="2.3.1. Environment set-up" href="node003.html#sec-env-unix">2.3.1</a> must be completed in advance. The MOSEK/.NET library is located in </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt;/mosek/6/tools/platform/$MOSEKPLATFORM/bin/mosekdotnet.dll
+</pre>
+
+<p>or </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt;/mosek/6/tools/platform/$MOSEKPLATFORM/bin/mosekdotnet64.dll
+</pre>
+
+<p>depending on the platform. This must be set in the <tt class="tt">MONO_PATH</tt> environment variable, e.g. in the user's </p>
+
+<pre class="verbatim">~/.bashrc
+</pre>
+
+<p>or similarly as </p>
+
+<pre class="verbatim">export MONO_PATH=$MONO_PATH:$HOME/mosek/6/tools/platform/$MOSEKPLATFORM/bin
+</pre>
+
+<p>This assumes that: </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt;=$HOME
+</pre>
+
+<p>Further instructions can be found in the MOSEK/.NET manual.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="139655402941112">2.3.4. MOSEK/Python set-up</a></h2>
+
+<p> To use the PyMosek module from Python, run the <tt class="tt">setup.py</tt> for the relevant python version &mdash; either 2 or 3. The setup scripts are located in the platform directory under </p>
+
+<pre class="verbatim">python/2/setup.py
+python/3/setup.py
+</pre>
+
+<p>To make install the MOSEK/Python module as a normal user run the command </p>
+
+<pre class="verbatim">python setup.py install --user 
+</pre>
+
+<p>otherwise, to make a global installation as <tt class="tt">root</tt>, run </p>
+
+<pre class="verbatim">python setup.py install
+</pre>
+
+<p>Note that this will install the module <em>only</em> for the Python version that the <tt class="tt">setup.py</tt> script is executed with.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node002.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 1. License conditions and supported platforms" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node004.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  3. Installing a license" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node002.html" target="_self">1. License conditions and supported platforms</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node004.html" target="_self">3. Installing a license</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:04:21 2012</div>
+</body></html>

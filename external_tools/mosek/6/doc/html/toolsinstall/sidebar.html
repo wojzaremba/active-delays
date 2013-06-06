@@ -1,0 +1,219 @@
+<html>
+<head>
+  <title>Table of Contents</title>
+  <style>
+    body { background-color : rgb(240,240,240); color : rgb(0,64,92); font-family : sans-serif; }
+    a:link    { text-decoration : none; color: rgb(0,64,92); }
+    a:visited { text-decoration : none; color: rgb(0,64,92); }
+    a:hover   { background-color : rgb(40,40,40); color: rgb(192,192,255); }
+    #tocbox    { font-family : sans-serif; }
+    #tocbox ul { font-size : small; list-style: none; margin-left : 1em; padding-left : 0; }
+    .toc-lvl0 li { font-weight: bolder; }
+    .toc-lvl2 li { font-size : smaller; font-weight : normal; }
+    #idxbox ul { font-size : small; list-style: none; margin-left : 1em; padding-left : 0; }
+    .sidebarbuttons td { margin : 3px; background-color : rgb(153, 178, 188); font-weight : bolder; font-family: sans-serif; border : solid medium; border-color: rgb(229,235,238) rgb(229,235,238) rgb(76,121,138) rgb(76,121,138); }
+    .sidebarbuttons a:link    { color : rgb(0,64,92); font-weight : bolder; }
+    .sidebarbuttons a:visited { color : rgb(0,64,92); font-weight : bolder; }
+    .sidebarbuttons a:hover   { color: white; background-color : rgb(0,64,92); font-weight : bolder; }
+  </style>
+  <script language="Javascript">
+    function showhide(id1,id2)
+    {
+      var elm = document.getElementById(id1);
+      elm.style.display = "block";
+      var elm = document.getElementById(id2);
+      elm.style.display = "none";
+    }
+  </script>
+</head>
+<body>
+<div class="sidebarbuttons">
+<table width="100%">
+  <tr>
+    <td width="50%" align=center colspan="2"><a href="../../../help/index.html" target="_top">All Manuals</a></td>
+  </tr>
+  <tr>
+    <td width="50%" align=center><a href="javascript:showhide('tocbox','idxbox')">Contents</a></td>
+    <td width="50%" align=center><a href="javascript:showhide('idxbox','tocbox')">Index</a></td>
+  </tr>
+</table>
+</div>
+<div id="tocbox">
+<ul class="toc-lvl0">
+  <li><a href="index.html#139655402809536" target="mainbox">The MOSEK installation manual.  Version 6.0 (Revision 137).</a></li>
+  <ul class="toc-lvl1">
+    <li><a href="node001.html#139655402820168" target="mainbox">Contact information</a></li>
+    <li><a href="node002.html#139655402784528" target="mainbox">1. License conditions and supported platforms</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node002.html#139655402820240" target="mainbox">1.1. License conditions</a></li>
+      <li><a href="node002.html#139655402785320" target="mainbox">1.2. Supported operating systems</a></li>
+      <li><a href="node002.html#139655402836336" target="mainbox">1.3. AMPL availability</a></li>
+      <li><a href="node002.html#139655402853728" target="mainbox">1.4. MATLAB toolbox availability</a></li>
+      <li><a href="node002.html#139655402880752" target="mainbox">1.5. Optimizer API availability</a></li>
+    </ul>
+    <li><a href="node003.html#139655402837056" target="mainbox">2. Installing the software</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node003.html#139655402924728" target="mainbox">2.1. Windows installation</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node003.html#139655402923864" target="mainbox">2.1.1. Verifying the installation</a></li>
+      </ul>
+      <li><a href="node003.html#139655402924008" target="mainbox">2.2. Mac OS X installation</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node003.html#139655402921064" target="mainbox">2.2.1. License file set-up</a></li>
+        <li><a href="node003.html#139655402917760" target="mainbox">2.2.2. Mosek binaries set-up</a></li>
+        <li><a href="node003.html#139655402929040" target="mainbox">2.2.3. MOSEK/Python set-up</a></li>
+      </ul>
+      <li><a href="node003.html#139655402931696" target="mainbox">2.3. Linux/UNIX installation instructions</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node003.html#139655402934072" target="mainbox">2.3.1. Environment set-up</a></li>
+        <li><a href="node003.html#139655402936512" target="mainbox">2.3.2. Verifying the set-up</a></li>
+        <li><a href="node003.html#139655402937808" target="mainbox">2.3.3. Installation of the Java optimizer API</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node003.html#139655402939744" target="mainbox">2.3.3.1. Installation of the .NET optimizer API for MONO</a></li>
+        </ul>
+        <li><a href="node003.html#139655402941112" target="mainbox">2.3.4. MOSEK/Python set-up</a></li>
+      </ul>
+    </ul>
+    <li><a href="node004.html#139655402947000" target="mainbox">3. Installing a license</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node004.html#139655402943984" target="mainbox">3.1. Activating a purchased license</a></li>
+      <li><a href="node004.html#139655402949304" target="mainbox">3.2. Activating a trial license</a></li>
+    </ul>
+    <li><a href="node005.html#139655402950808" target="mainbox">4. License system FAQ</a></li>
+    <li><a href="node006.html#139655402952608" target="mainbox">5. License system concepts</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node006.html#139655402951024" target="mainbox">5.1. How the license system works</a></li>
+      <li><a href="node006.html#139655402957568" target="mainbox">5.2. Sharing a single license between multiple non-networked computers</a></li>
+      <li><a href="node006.html#139655402953400" target="mainbox">5.3. The host ID</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node006.html#139655402958000" target="mainbox">5.3.1. A dongle host ID</a></li>
+      </ul>
+      <li><a href="node006.html#139655402960008" target="mainbox">5.4. Further information about FLEXlm</a></li>
+    </ul>
+    <li><a href="node007.html#139655402960872" target="mainbox">6. Dongle installation and usage</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node007.html#139655402965544" target="mainbox">6.1. Connecting the dongle</a></li>
+      <li><a href="node007.html#139655402961088" target="mainbox">6.2. License checkout from client computer</a></li>
+    </ul>
+    <li><a href="node008.html#139655402967264" target="mainbox">7. Obtaining the host ID and hostname</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node008.html#139655402966120" target="mainbox">7.1. Windows</a></li>
+      <li><a href="node008.html#139655402970576" target="mainbox">7.2. LINUX/UNIX/MAC OSX</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node008.html#139655402966336" target="mainbox">7.2.1. Default (Ethernet address) HOSTID</a></li>
+        <li><a href="node008.html#139655402972440" target="mainbox">7.2.2. Dongle HOSTID</a></li>
+        <li><a href="node008.html#139655402971432" target="mainbox">7.2.3. HOSTNAME</a></li>
+      </ul>
+    </ul>
+    <li><a href="node009.html#139655402975104" target="mainbox">8. License server installation</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node009.html#139655402974456" target="mainbox">8.1. Windows</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node009.html#139655402976320" target="mainbox">8.1.1. License server installation</a></li>
+        <li><a href="node009.html#139655402979984" target="mainbox">8.1.2. Using MOSEK from a networked client computer</a></li>
+        <ul class="toc-lvl4">
+          <li><a href="node009.html#139655402982648" target="mainbox">8.1.2.1. License file search path</a></li>
+          <li><a href="node009.html#139655402983224" target="mainbox">8.1.2.2. Verifying that the license system works</a></li>
+          <li><a href="node009.html#139655402985016" target="mainbox">8.1.2.3. Controlling port usage and firewall access</a></li>
+          <li><a href="node009.html#139655402993784" target="mainbox">8.1.2.4. Locating the license server / reducing checkout overhead</a></li>
+        </ul>
+      </ul>
+      <li><a href="node009.html#139655403005424" target="mainbox">8.2. LINUX / UNIX / MAC OSX</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node009.html#139655403006936" target="mainbox">8.2.1. License server installation</a></li>
+        <li><a href="node009.html#139655403013760" target="mainbox">8.2.2. Checking out a license from the server</a></li>
+        <li><a href="node009.html#139655403022312" target="mainbox">8.2.3. Verifying that the license system works</a></li>
+        <li><a href="node009.html#139655403023608" target="mainbox">8.2.4. Starting lmgrd on boot.</a></li>
+        <li><a href="node009.html#139655403024968" target="mainbox">8.2.5. Speeding up license checkout</a></li>
+        <li><a href="node009.html#139655403026192" target="mainbox">8.2.6. Accessing the license server through a firewall</a></li>
+      </ul>
+    </ul>
+    <li><a href="node010.html#139655402510240" target="mainbox">9. Installing a trial license</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node010.html#139655403026912" target="mainbox">9.1. Windows</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node010.html#139655402511320" target="mainbox">9.1.0.1. License file search path</a></li>
+      </ul>
+      <li><a href="node010.html#139655402512040" target="mainbox">9.2. LINUX / UNIX / MAC OSX</a></li>
+    </ul>
+    <li><a href="node011.html#139655402515344" target="mainbox">A. Manual installation instructions</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node011.html#139655402513400" target="mainbox">A.1. Windows</a></li>
+      <li><a href="node011.html#139655402516704" target="mainbox">A.2. LINUX / UNIX / MAC OSX</a></li>
+    </ul>
+    <li><a href="node012.html#139655402518000" target="mainbox">B. Operating system environment variables</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node012.html#139655402516920" target="mainbox">B.1. Windows NT/2000</a></li>
+      <li><a href="node012.html#139655402518648" target="mainbox">B.2. Windows XP</a></li>
+      <li><a href="node012.html#139655402520728" target="mainbox">B.3. MAC OSX</a></li>
+      <li><a href="node012.html#139655402521520" target="mainbox">B.4. UNIX</a></li>
+    </ul>
+    <li><a href="node013.html#139655402526120" target="mainbox">Index</a></li>
+  </ul>
+</ul>
+</div>
+<div id="idxbox" style="display:none;">
+<ul class="idx-lvl0">
+<a href="#index-letter-@">@</a> | <a href="#index-letter-A">A</a> | <a href="#index-letter-B">B</a> | <a href="#index-letter-C">C</a> | <a href="#index-letter-D">D</a> | <a href="#index-letter-E">E</a> | <a href="#index-letter-F">F</a> | <a href="#index-letter-G">G</a> | <a href="#index-letter-H">H</a> | <a href="#index-letter-I">I</a> | <a href="#index-letter-J">J</a> | <a href="#index-letter-K">K</a> | <a href="#index-letter-L">L</a> | <a href="#index-letter-M">M</a> | <a href="#index-letter-N">N</a> | <a href="#index-letter-O">O</a> | <a href="#index-letter-P">P</a> | <a href="#index-letter-Q">Q</a> | <a href="#index-letter-R">R</a> | <a href="#index-letter-S">S</a> | <a href="#index-letter-T">T</a> | <a href="#index-letter-U">U</a> | <a href="#index-letter-V">V</a> | <a href="#index-letter-W">W</a> | <a href="#index-letter-X">X</a> | <a href="#index-letter-Y">Y</a>
+<br/><hr/><br/>
+
+
+  <li> 
+  <ul class="idx-lvl1">
+<a name="index-letter-@" style="font-weight : bolder; font-size : larger;">@</a> <a name="index-letter-A" style="font-weight : bolder; font-size : larger;">A</a> <a name="index-letter-B" style="font-weight : bolder; font-size : larger;">B</a> <a name="index-letter-C" style="font-weight : bolder; font-size : larger;">C</a> <a name="index-letter-D" style="font-weight : bolder; font-size : larger;">D</a><br>
+
+    <li> <a href="node006.html#idx-139655403407264" target="mainbox">dongle</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node006.html#idx-139655403405464" target="mainbox">hostid</a>
+    </ul>
+<hr>
+
+<a name="index-letter-E" style="font-weight : bolder; font-size : larger;">E</a> <a name="index-letter-F" style="font-weight : bolder; font-size : larger;">F</a><br>
+
+    <li> Firewall
+    <ul class="idx-lvl2">
+      <li> <a href="node009.html#idx-139655403543656" target="mainbox">configuration</a>
+      <li> <a href="node009.html#idx-139655403544304" target="mainbox">Windows</a>
+    </ul>
+    <li> <a href="node006.html#idx-139655403372488" target="mainbox">floating license</a>
+<hr>
+
+<a name="index-letter-G" style="font-weight : bolder; font-size : larger;">G</a> <a name="index-letter-H" style="font-weight : bolder; font-size : larger;">H</a><br>
+
+    <li> <a href="node008.html#idx-139655403430328" target="mainbox">hostid</a>
+    <li> <a href="node006.html#idx-139655403400728" target="mainbox">hostid</a>
+    <ul class="idx-lvl2">
+      <li> <a href="node006.html#idx-139655403406040" target="mainbox">dongle</a>
+    </ul>
+<hr>
+
+<a name="index-letter-I" style="font-weight : bolder; font-size : larger;">I</a> <a name="index-letter-J" style="font-weight : bolder; font-size : larger;">J</a> <a name="index-letter-K" style="font-weight : bolder; font-size : larger;">K</a> <a name="index-letter-L" style="font-weight : bolder; font-size : larger;">L</a><br>
+
+    <li> license
+    <ul class="idx-lvl2">
+      <li> <a href="node006.html#idx-139655403373920" target="mainbox">floating</a>
+      <li> <a href="node009.html#idx-139655403465328" target="mainbox">server</a>
+      <li> <a href="node006.html#idx-139655403394040" target="mainbox">trial</a>
+      <li> <a href="node010.html#idx-139655403114792" target="mainbox">trial</a>
+    </ul>
+<hr>
+
+<a name="index-letter-M" style="font-weight : bolder; font-size : larger;">M</a> <a name="index-letter-N" style="font-weight : bolder; font-size : larger;">N</a> <a name="index-letter-O" style="font-weight : bolder; font-size : larger;">O</a><br>
+
+    <li> <a href="node012.html#idx-139655403134848" target="mainbox">Operating system environment variables</a>
+<hr>
+
+<a name="index-letter-P" style="font-weight : bolder; font-size : larger;">P</a> <a name="index-letter-Q" style="font-weight : bolder; font-size : larger;">Q</a> <a name="index-letter-R" style="font-weight : bolder; font-size : larger;">R</a> <a name="index-letter-S" style="font-weight : bolder; font-size : larger;">S</a> <a name="index-letter-T" style="font-weight : bolder; font-size : larger;">T</a><br>
+
+    <li> <a href="node006.html#idx-139655403394832" target="mainbox">trial license</a>
+<hr>
+
+<a name="index-letter-U" style="font-weight : bolder; font-size : larger;">U</a> <a name="index-letter-V" style="font-weight : bolder; font-size : larger;">V</a> <a name="index-letter-W" style="font-weight : bolder; font-size : larger;">W</a> <a name="index-letter-X" style="font-weight : bolder; font-size : larger;">X</a> <a name="index-letter-Y" style="font-weight : bolder; font-size : larger;">Y</a><br>
+
+<hr>
+
+  </ul>
+</ul>
+</div>
+</body>
+</html>

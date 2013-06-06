@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>1. Changes and new features in MOSEK</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node002.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : License agreement" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Python API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node004.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  2. About this manual" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node002.html" target="_self">License agreement</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node004.html" target="_self">2. About this manual</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="218295832">1. Changes and new features in MOSEK</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node003.html#140276784036032" target="_self">1.1. Compilers used to build MOSEK</a></li>
+<li><a href="node003.html#218329384" target="_self">1.2. General changes</a></li>
+<li><a href="node003.html#218331256" target="_self">1.3. Optimizers</a>
+<ul class="toc-level-2">
+<li><a href="node003.html#218330392" target="_self">1.3.1. Interior point optimizer</a></li>
+<li><a href="node003.html#218331688" target="_self">1.3.2. The simplex optimizers</a></li>
+<li><a href="node003.html#218331976" target="_self">1.3.3. Mixed-integer optimizer</a></li>
+</ul>
+</li>
+<li><a href="node003.html#218332624" target="_self">1.4. API changes</a></li>
+<li><a href="node003.html#218333912" target="_self">1.5. License system</a></li>
+<li><a href="node003.html#218335208" target="_self">1.6. Other changes</a></li>
+<li><a href="node003.html#218336360" target="_self">1.7. Interfaces</a></li>
+<li><a href="node003.html#218337360" target="_self">1.8. Platform changes</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p>The section presents improvements and new features added to MOSEK in version 6.0.</p>
+
+<div>
+<h1><a name="140276784036032">1.1. Compilers used to build MOSEK</a></h1>
+
+<p>MOSEK has been build with the compiler shown in Table <a href="node003.html#sec_moseknew_tab_compiler">1.1</a>.</p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black;">Platform </td>
+<td valign="top" style="border-top:1px solid black;"> C compiler </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black;">linux32x86 </td>
+<td valign="top" style="border-top:1px solid black;"> Intel C 11.0 (gcc 4.3, glibc 2.3.4) </td></tr><tr class="evenrow">
+<td valign="top">linux64x86 </td>
+<td valign="top"> Intel C 11.0 (gcc 4.3, glibc 2.3.4) </td></tr><tr class="oddrow">
+<td valign="top">osx32x86 </td>
+<td valign="top"> Intel C 11.1 (gcc 4.0) </td></tr><tr class="evenrow">
+<td valign="top">osx64x86 </td>
+<td valign="top"> Intel C 11.1 (gcc 4.0) </td></tr><tr class="oddrow">
+<td valign="top">solaris32x86 </td>
+<td valign="top"> Sun Studio 12 </td></tr><tr class="evenrow">
+<td valign="top">solaris64x86 </td>
+<td valign="top"> Sun Studio 12 </td></tr><tr class="oddrow">
+<td valign="top">win32x86 </td>
+<td valign="top"> Intel C 11.0 (VS 2005) </td></tr><tr class="evenrow">
+<td valign="top" style="border-bottom:1px solid black;">win64x86 </td>
+<td valign="top" style="border-bottom:1px solid black;"> Intel C 11.0 (VS 2005) </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;1.1: Compiler version used to build MOSEK</span>
+<br/>
+<p> <a name="sec_moseknew_tab_compiler">&#09;</a>. </p>
+</center></td></tr></table>
+</td></tr></table>
+
+</div>
+
+<div>
+<h1><a name="218329384">1.2. General changes</a></h1>
+
+<ul class="itemize">
+<li>A problem analyzer is now available. It generates an simple report with of statisics and information about the optimization problem and relevant warnings about the problem formulation are included.</li>
+<li>A solution analyzer is now available.</li>
+<li>All timing measures are now wall clock times</li>
+<li>MOSEK employs version 1.2.3 of the zlib library.</li>
+<li>MOSEK employs version 11.6.1 of the FLEXnet licensing tools.</li>
+<li>The convexity of quadratic and quadratic constrained optimization is checked explicitly.</li>
+<li>On Windows all DLLs and EXEs are now signed.</li>
+<li>On all platforms the Jar files are signed.</li>
+<li>MOSEK no longer deals with ctrl-c. The user is responsible for terminating MOSEK in the callback. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="218331256">1.3. Optimizers</a></h1>
+
+<div>
+<h2><a name="218330392">1.3.1. Interior point optimizer</a></h2>
+
+<ul class="itemize">
+<li>The speed and stability of interior-point optimizer for linear problems has been improved.</li>
+<li>The speed and stability of the interior-point optimizer for conic problems has been improved. In particular, it is much better at dealing with primal or dual infeasible problems.</li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="218331688">1.3.2. The simplex optimizers</a></h2>
+
+<ul class="itemize">
+<li>Presolve is now much more effective for simplex optimizers hot-starts. </li>
+</ul>
+
+</div>
+
+<div>
+<h2><a name="218331976">1.3.3. Mixed-integer optimizer</a></h2>
+
+<ul class="itemize">
+<li>The stopping criteria for the mixed-integer optimizer have been changed to conform better with industry standards. </li>
+</ul>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="218332624">1.4. API changes</a></h1>
+
+<ul class="itemize">
+<li>The Mosek/Java API is now built for SUN Java 1.5 and later.</li>
+<li>The Mosek/.NET API is now built for MS .NET 2.0 and later.</li>
+<li>The Mosek/Python API is now based on Python CTypes and uses NumPy instead of Numeric. Python 2.5 and later is supported on all platforms where the <tt class="tt">ctypes</tt> module is available. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="218333912">1.5. License system</a></h1>
+
+<ul class="itemize">
+<li>The license conditions have been relaxed, so that a license is shared among all tasks using a single environment. This means that running several optimizations in parallel will only consume one license, as long as the associated tasks share a single MOSEK environment. Please note this is NOT useful when using the MATLAB parallel toolbox.</li>
+<li>By default a license remains checked out for the lifetime of the environment. This behavior can be changed using the parameter <tt class="tt">MSK_IPAR_CACHE_LICENSE</tt>.</li>
+<li>Flexlm has been upgraded to version 11.6 from version 11.4. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="218335208">1.6. Other changes</a></h1>
+
+<ul class="itemize">
+<li>The documentation has been improved. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="218336360">1.7. Interfaces</a></h1>
+
+<ul class="itemize">
+<li>The AMPL interface has been augmented so it is possible to pass an initial (feasible) integer solution to mixed-integer optimizer.</li>
+<li>The AMPL interface is now capable of reading the constraint and variable names if they are avialable. </li>
+</ul>
+
+</div>
+
+<div>
+<h1><a name="218337360">1.8. Platform changes</a></h1>
+
+<ul class="itemize">
+<li>MAC OSX on the PowerPC platform is no longer supported.</li>
+<li>Solaris on the SPARC platform is no longer supported.</li>
+<li>MAC OSX is supported on Intel 64 bit X86 i.e. osx64x86.</li>
+<li>Add support for MATLAB R2009b. </li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node002.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : License agreement" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK Python API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node004.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  2. About this manual" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node028.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node002.html" target="_self">License agreement</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK Python API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node004.html" target="_self">2. About this manual</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node028.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:54:29 2012</div>
+</body></html>

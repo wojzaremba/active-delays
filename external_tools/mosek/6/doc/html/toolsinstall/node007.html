@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>6. Dongle installation and usage</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node006.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. License system concepts" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node008.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. Obtaining the host ID and hostname" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node006.html" target="_self">5. License system concepts</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node008.html" target="_self">7. Obtaining the host ID and hostname</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="139655402960872">6. Dongle installation and usage</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node007.html#139655402965544" target="_self">6.1. Connecting the dongle</a></li>
+<li><a href="node007.html#139655402961088" target="_self">6.2. License checkout from client computer</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="ch-dongle-install-usage">&#09;</a> A dongle is a small piece of hardware that is inserted in the <tt class="tt">USB</tt> port. The dongle provides a unique ID (a host ID) to which the license is tied. This will allow any computer to which the dongle is connected to act as a license server and run MOSEK. For a detailed description of the license system please see Chapter <a title="5. License system concepts" href="node006.html#license_system_basics">5</a>.</p>
+
+<p>Please note using a dongle to provide a host ID is optional since a network card Ethernet address can be used as a host ID.</p>
+
+<p>The dongle driver and license system software must be installed on any machine the dongle will be used on. To install the dongle follow the instruction below on every machine the dongle will be used on: </p>
+
+<ul class="itemize">
+<li>If you did not previously install the dongle driver, do so now. Installation instructions and drivers can be found on the web page: 
+<br/><a href="http://www.mosek.com/dongle">http://www.mosek.com/dongle</a></li>
+<li>Email the <em>host name</em> and <em>host ID</em> of the dongle to <a href="mailto:license@mosek.com">license@mosek.com</a>. See Chapter <a title="7. Obtaining the host ID and hostname" href="node008.html#ch-hostid">7</a> for instructions on how to locate the host name and host ID. You will then receive the permanent license file by email.</li>
+<li>
+<p>Make sure the hostname in the license file matches the hostname of the computer you are currently installing the license server on. The best way to do this is to set the name of the license server to <tt class="tt">localhost</tt>. The first line of the license file looks something like this:  </p>
+
+<pre class="verbatim">     SERVER myserver FLEXID=9-040998f8
+    </pre>
+
+<p> Here <tt class="tt">myserver</tt> should be the name of the computer which you are currently installing the license server on. If this is not already set to localhost, please replace <tt class="tt">myserver</tt> with <tt class="tt">localhost</tt>. The name of the license server can be changed by manually editing the license file.</p>
+
+<p>The number <tt class="tt">9-040998f8</tt> is the <em>host ID</em>. This must match the number printed on the dongle.</p>
+</li>
+<li>Install the license server (see Chapter <a title="8. License server installation" href="node009.html#ch-lic-serv-install">8</a>). </li>
+</ul>
+
+<div>
+<h1><a name="139655402965544">6.1. Connecting the dongle</a></h1>
+
+<p>When reconnecting the dongle after use on another computer it is advisable to insert the dongle before booting the computing. If the dongle is inserted after reboot it must be attached by clicking on <span style="background-color:#cccccc"><b><span class="sf">Attach dongle</span></b></span> in <span style="background-color:#cccccc"><b><span class="sf">Mosek Optimization tools 6.0</span></b></span>.</p>
+
+</div>
+
+<div>
+<h1><a name="139655402961088">6.2. License checkout from client computer</a></h1>
+
+<p>The machine that has the dongle connected to it and is running the license server may optionally act as license server for other machines connected to it over the network.</p>
+
+<p>To see how other machines should be made to connect to the license server please see Section <a title="8.1.2.4. Locating the license server / reducing checkout overhead" href="node009.html#sec-win-install-subsec-speed-up-lic">8.1.2.4</a>.</p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node006.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. License system concepts" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node008.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. Obtaining the host ID and hostname" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node006.html" target="_self">5. License system concepts</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node008.html" target="_self">7. Obtaining the host ID and hostname</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:04:21 2012</div>
+</body></html>

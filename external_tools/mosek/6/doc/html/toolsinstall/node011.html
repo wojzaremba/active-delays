@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>A. Manual installation instructions</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node010.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 9. Installing a trial license" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node012.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  B. Operating system environment variables" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node010.html" target="_self">9. Installing a trial license</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node012.html" target="_self">B. Operating system environment variables</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="139655402515344">A. Manual installation instructions</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node011.html#139655402513400" target="_self">A.1. Windows</a></li>
+<li><a href="node011.html#139655402516704" target="_self">A.2. LINUX / UNIX / MAC OSX</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="apdx-maninstall">&#09;</a></p>
+
+<div>
+<h1><a name="139655402513400">A.1. Windows</a></h1>
+
+<p> <a name="appendix-sec-windows-readme">&#09;</a></p>
+
+<p><small class="small">
+<pre class="verbatim">INSTALLATION OF THE MOSEK OPTIMIZATION 
+TOOLS FOR WINDOWS
+
+CONTENTS:
+  1. INSTALLATION.
+     1.1 MANUAL METHOD 
+     1.2 AUTOMATIC METHOD
+     1.3 CREATED DIRECTORIES
+  2. TESTING THE INSTALLATION
+  3. COMPILER.
+  4. ONLINE DOCUMENTATION.
+  5. SUPPORT.
+
+1. INSTALLATION
+
+    1.1 MANUAL METHOD
+
+       The following table shows which file you need for each platform
+       to install MOSEK manually.
+
+       Platform description  : Platform  : Binary download
+       ----------------------------------------------------------- 
+       Windows               : win       : mosektoolswin.zip          
+       Windows x64           : win64x86  : mosektoolswin64x86.zip
+       -----------------------------------------------------------
+
+       After obtaining the correct file then unzip it. 
+       Assuming you install MOSEK in the directory 
+
+       c:\
+
+       you must add the path
+
+       c:\mosek\5\tools\platform\&lt;platform&gt;\bin
+ 
+       to the operating system environment variable 
+
+       PATH
+
+       Observe that &lt;platform&gt; should be replaced by the right value from 
+       the above table i.e for instance win or win64x86.
+       
+       Also you must set the operating system environment variable 
+     
+       MOSEKLM_LICENSE_FILE
+     
+       to
+     
+       c:\mosek\5\licenses\mosek.lic
+
+    1.2 AUTOMATIC METHOD
+
+       The following table shows which binary download you need. 
+
+       Platform description  : Platform  : Binary download
+       ----------------------------------------------------------- 
+       Windows               : win       : moseksetupwin.msi         
+       Windows x64           : win64x86  : moseksetupwin64x86.msi
+       -----------------------------------------------------------
+
+       After downloading the appropriate file from the MOSEK website 
+       then run it i.e. for instance by double clicking on it.
+    
+    1.3 CREATED DIRECTORIES  
+
+       Unpacking the distribution file will create a directory
+       named 
+   
+       mosek\5
+   
+       that has the subdirectories
+
+       help/                        : The MOSEK help desk.
+       doc/                           : Manuals in HTML and PDF format.
+       doc/license                    : License conditions.  
+       licenses/                      : License files. 
+       tools/platform/                : Binaries and libraries.
+       tools/platform/&lt;platform&gt;/h/   : Include files.
+       tools/examples/                : Example files.
+       tools/scripts/                 : Useful shell scripts.
+       tools/test/                    : Test scripts for MOSEK installation.
+
+2. TESTING THE INSTALLATION (For experts only.)
+
+   This is an option for EXPERTS only. Note some operations may
+   fail during test because you do not have all the appropriate
+   tools installed. 
+   
+   The installation can be tested as follows.  First 
+   open a DOS box and then execute the command.
+
+       cd \mosek\5\tools
+
+   next if are using Windows 32 bit, do
+
+       test\testwin
+
+   else if using Windows x64, do
+       
+       test\testwin 64x86
+
+
+
+3. COMPILER
+
+   The lib, dll, and exe files in this distribution is known
+   to be compatible with 
+
+   Microsoft C V6.
+   Microsoft .NET
+   Intel C v8 and v9.
+
+4. ONLINE DOCUMENTATION
+
+   Load the file
+
+   mosek\5\help\help.html
+
+   into your browser for online help.
+
+5. SUPPORT
+
+   In case of problems consult the 
+   frequently asked question chapter in the 
+   user's manual and then contact the MOSEK support.
+
+   MOSEK support / support@mosek.com
+
+</pre>
+</small> </p>
+
+</div>
+
+<div>
+<h1><a name="139655402516704">A.2. LINUX / UNIX / MAC OSX</a></h1>
+
+<p> <a name="appendix-sec-unix-readme">&#09;</a></p>
+
+<p><small class="small">
+<pre class="verbatim">INSTALLATION OF THE MOSEK OPTIMIZATION TOOLS FOR UNIX
+
+CONTENTS:
+  1. WHAT YOU SHOULD DO.
+  2. UNPACKING.
+  3. OPERATING SYSTEM ENVIRONMENT VARIABLES.
+     3.1 LD_LIBRARY_PATH (HPUX/LINUX/SOLARIS)
+         3.1.1 SH AND BASH SHELLS  
+         3.1.2 CSH SHELL
+     3.2 DYLD_LIBRARY_PATH (MAC OSX)  
+     3.3 PATH
+     3.4 MOSEKLM_LICENSE_FILE
+  4. ONLINE DOCUMENTATION.
+  5. EVALUATION LICENSE INSTALLATION.
+  6. SUPPORT.
+   
+1. WHAT YOU SHOULD DO
+
+   Please complete the following steps to install MOSEK. 
+
+   a. Download and unpack the appropriate file, see Section 2 for
+      details.
+
+   b. Setup the appropriate environment variable.
+      The following table shows  variables should be defined
+      on each operating system.  
+
+      Variable name          : Operating system      : See Section 
+      -------------------------------------------------------------
+      LD_LIBRRY_PATH         : LINUX/SOLARIS         : 3.1
+      DYLD_LIBRARY_PATH      : MAC OSX               : 3.2
+      MOSEKLM_LICENSE_FILE   : All operating systems : 3.4
+      -------------------------------------------------------------
+       
+   c. Optionally setup the PATH variable. See Section 3.3 for details.        
+
+2. UNPACKING.
+
+   Obtain the appropriate distribution file from the MOSEK 
+   web site and unpack it. Names of the distribution
+   file for each supported platform are listed below: 
+   
+   mosektoolslinux32x86.tar.gz            Linux Intel X86 32bit version.
+   mosektoolslinux64x86.tar.gz            Linux 64 bit X86 (AMD and Intel CPUs).
+
+   mosektoolsosx32ppc.tar.gz              MAC OSX 32 bit PowerPC.
+   mosektoolsosx32x86.tar.gz              MAC OSX 32 bit Intel X86.
+   mosektoolssolarissparc.tar.gz          Solaris 32 bit Sparc. 
+   mosektoolssolarissparc64.tar.gz        Solaris 64 bit Sparc.
+   mosektoolssolaris32x86.tar.gz          Solaris 32 bit Intel X86.    
+   mosektoolssolaris64x86.tar.gz          Solaris 64 bit Intel X86 (AMD and Intel CPUs).    
+     
+   Unpacking the distribution file will create a directory
+   named 
+   
+   mosek/5
+   
+   which have the subdirectories
+
+   help/                          : The MOSEK help desk.
+   doc/                           : Manuals in HTML and PDF format.
+   doc/license                    : License conditions.  
+   licenses/                      : License files. 
+   tools/platform/                : Binaries and libraries.
+   tools/platform/&lt;platform&gt;/h/   : Include files.
+   tools/examples/                : Example files.
+   tools/scripts/                 : Useful shell scripts.
+   tools/test/                    : Test scripts for MOSEK installation.
+
+   where &lt;platform&gt; is the platform key i.e. for instance linux32x86.
+
+3. OPERATING SYSTEM ENVIRONMENT VARIABLES
+
+   MOSEK requires some shared libraries i.e.
+   all the shared libraries in
+
+   mosek/&lt;version&gt;/tools/platform/&lt;platform&gt;/bin
+
+   in order to make them accessible appropriate environment variables must be set.
+   3.1 LD_LIBRARY_PATH (LINUX/SOLARIS)
+ 
+      In order to make them accesible, then the OS environment variable
+
+      LD_LIBRARY_PATH
+
+      should point to
+
+         mosek/&lt;version&gt;/tools/platform/&lt;platform&gt;/bin
+
+      how to accomplish this is dependent on the shell you are using. 
+
+      3.1.1 SH AND BASH SHELLS.
+
+         If you are using the sh or bash shells you set LD_LIBRARY_PATH using the commands
+       
+         LD_LIBRARY_PATH=$HOME/mosek/&lt;version&gt;/tools/platform/&lt;platform&gt;/bin:$LD_LIBRARY_PATH 
+         export LD_LIBRARY_PATH 
+ 
+      3.1.2 CSH SHELL.
+
+      If you are using a CSH shell you can set it as follows
+
+      setenv LD_LIBRARY_PATH  $HOME/mosek/&lt;version&gt;/tools/platform/&lt;platform&gt;/bin:$LD_LIBRARY_PATH 
+
+   3.2 DYLD_LIBRARY_PATH (MAC OSX)
+
+       On the MAC OSX platform you need to set the DYLD_LIBRARY_PATH variable i.e.
+     
+       DYLD_LIBRARY_PATH=$HOME/mosek/&lt;version&gt;/tools/platform/osx32ppc/bin:$DYLD_LIBRARY_PATH
+       export DYLD_LIBRARY_PATH
+
+       You may have to add the DYLD_LIBRARY_PATH spefication to your 
+      
+       $HOME/.MacOSX/environment.plist 
+
+       file.
+
+   3.3 PATH
+
+       You may consider adding the path 
+   
+       mosek/5/tools/platform/&lt;platform&gt;/bin 
+
+       to environment variable $PATH. &lt;platform&gt; represent the
+       platform id e.g. solaris/sparc. 
+
+
+   3.4 MOSEKLM_LICENSE_FILE 
+
+       You should set operating system environment variable
+   
+       MOSEKLM_LICENSE_FILE 
+
+       to
+   
+       $HOME/mosek/5/licenses
+   
+       where $HOME/ represent the directory where you installed MOSEK. 
+
+   3.7 Startup file
+
+      You may want to add the commands executed in the previous section 
+      to your startup file. The startup file for a bash shell is  ~/.bashrc
+
+4. ONLINE DOCUMENTATION
+
+   Load the file
+
+   mosek/5/help/index.html
+
+   into your browser for online help.
+
+5. EVALUATION LICENSE INSTALLATION
+
+   If you are using MOSEK with an evaulation license, then
+   do NOT try to install the license server (lmgrd). 
+
+   Setting the MOSEKLM_LICENSE_FILE environment variable
+   is all that is required. Normally setting it as
+
+   MOSEKLM_LICENSE_FILE=$HOME/mosek/5/licenses/mosek.lic
+
+
+6. SUPPORT
+
+   In case of problems consult the frequently asked question
+   chapter in the user's manual or contact the MOSEK support
+   at the email address
+
+   support@mosek.com
+   
+</pre>
+</small> </p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node010.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 9. Installing a trial license" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node012.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  B. Operating system environment variables" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node010.html" target="_self">9. Installing a trial license</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node012.html" target="_self">B. Operating system environment variables</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:04:21 2012</div>
+</body></html>

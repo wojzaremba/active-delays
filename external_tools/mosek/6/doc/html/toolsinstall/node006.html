@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>5. License system concepts</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 4. License system FAQ" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  6. Dongle installation and usage" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">4. License system FAQ</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">6. Dongle installation and usage</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="139655402952608">5. License system concepts</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node006.html#139655402951024" target="_self">5.1. How the license system works</a></li>
+<li><a href="node006.html#139655402957568" target="_self">5.2. Sharing a single license between multiple non-networked computers</a></li>
+<li><a href="node006.html#139655402953400" target="_self">5.3. The host ID</a>
+<ul class="toc-level-2">
+<li><a href="node006.html#139655402958000" target="_self">5.3.1. A dongle host ID</a></li>
+</ul>
+</li>
+<li><a href="node006.html#139655402960008" target="_self">5.4. Further information about FLEXlm</a></li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="license_system_basics">&#09;</a> This chapter introduces the basic concepts of the MOSEK license system.</p>
+
+<div>
+<h1><a name="139655402951024">5.1. How the license system works</a></h1>
+
+<p> <a name="sec-introduction">&#09;</a></p>
+
+<p>MOSEK is a licensed software product which means you that must have a valid license in order to use MOSEK. A license is a file which specifies: </p>
+
+<ul class="itemize">
+<li>How many copies of MOSEK you are allowed to use simultaneously.</li>
+<li>What features in MOSEK you are allowed to use. An example of a feature is the mixed integer optimizer (<tt class="tt">PTOM</tt>). </li>
+</ul>
+
+<p> The license is managed by the FLEXlm  license manager supplied with MOSEK. Two types of licenses exist for MOSEK:</p>
+
+<ul class="itemize">
+<li>
+<p>A floating license:</p>
+
+<p>A <i>floating license</i><a name="idx-139655403373920">&#09;</a><a name="idx-139655403372488">&#09;</a> is tied to a particular computer acting as a <em>license server</em>. MOSEK can be used on any computer connected to the license server (usually through the local area network). In particular MOSEK can be used on the computer acting as license server.</p>
+
+<p>You may think of the license server as a computer with a bag of license tokens. Whenever a client computer starts using MOSEK, a license token is requested from the license server, and when MOSEK completes it sends back the license token to the license server. This implies that you can't use more license tokens than you actually have at any given point in time.</p>
+
+<p>The advantage of a floating license is:  </p>
+
+<ol class="enumerate">
+<li>MOSEK can run on any computer connected via the network to the license server.</li>
+<li>An unlimited number users can share a limited number of MOSEK licenses. </li>
+</ol>
+</li>
+<li>
+<p>A trial license:</p>
+
+<p>A <i>trial license</i><a name="idx-139655403394040">&#09;</a><a name="idx-139655403394832">&#09;</a> is not tied to any particular computer but is time limited. A trial license is only used for evaluation purposes. </p>
+</li>
+</ul>
+
+<p> All commercial MOSEK licenses are floating licenses.</p>
+
+</div>
+
+<div>
+<h1><a name="139655402957568">5.2. Sharing a single license between multiple non-networked computers</a></h1>
+
+<p>A license file should be tied to a dongle in order to share a single license among multiple computers not connected to a network . Please see Section <a title="5.3.1. A dongle host ID" href="node006.html#sec-donglehostid">5.3.1</a> for further details. Most MOSEK users do not use a dongle and for most set-ups it is not advisable as it complicates the installation. A better setup for using MOSEK on computers not connected to the network is to install the license server with a single license on each non-networked machine. This will allow MOSEK to run on each machine even when disconnected from the network.</p>
+
+</div>
+
+<div>
+<h1><a name="139655402953400">5.3. The host ID</a></h1>
+
+<p> <a name="sec-hostid">&#09;</a> <a name="idx-139655403400728">&#09;</a></p>
+
+<p>A floating license is tied to a particular computer acting as a license server. The license server is identified using a unique ID known as the <em>host ID</em>. Usually the host ID is identical to the MAC address of a network card. Therefore, the computer needs to be equipped with a network card. However, an actual network connection is not needed as MOSEK requires only a number coded in the network card.</p>
+
+<div>
+<h2><a name="139655402958000">5.3.1. A dongle host ID</a></h2>
+
+<p> <a name="sec-donglehostid">&#09;</a> <a name="idx-139655403405464">&#09;</a> <a name="idx-139655403406040">&#09;</a></p>
+
+<p>Alternatively a license can be tied to an ID in a dongle <a name="idx-139655403407264">&#09;</a> which is a small piece of hardware that is attached to a USB port. The advantage of using a dongle is that the dongle can be moved to another computer. A license can e.g be used at the office and at home without the two locations being connected by a network. Please Note that the license server software must be installed on each computer the dongle is used on. For information on how to obtain the <tt class="tt">host ID</tt> see Chapter <a title="7. Obtaining the host ID and hostname" href="node008.html#ch-hostid">7</a>.</p>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="139655402960008">5.4. Further information about FLEXlm</a></h1>
+
+<p> <a name="sec-further-flexlm-info">&#09;</a></p>
+
+<p>Further information about the FLEXlm license system is available in the <a href="http://www.mosek.com/fileadmin/download/flexnetdoc/fnp_LicAdmin.pdf">Flexlm end user manual</a> available on the MOSEK website.</p>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node005.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 4. License system FAQ" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node007.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  6. Dongle installation and usage" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node005.html" target="_self">4. License system FAQ</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node007.html" target="_self">6. Dongle installation and usage</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:04:21 2012</div>
+</body></html>

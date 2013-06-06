@@ -1,0 +1,3800 @@
+unit mosek;
+(*
+ *
+ *   Copyright: $$copyright
+ *   File:      mosek.pas
+ *
+ *)
+{$X+}{$Z4}{$A8}
+
+interface
+
+const
+  mosekDLLFile = 'mosek6_0.dll';
+
+
+(************************************************************)
+(**  CONSTANTS AND ENUMS                                   **)
+(************************************************************)
+(* Solve primal or dual form *)
+const
+  MSK_SOLVE_PRIMAL                     = 1;
+  MSK_SOLVE_DUAL                       = 2;
+  MSK_SOLVE_FREE                       = 0;
+
+(* Constraint or variable access modes *)
+type
+  MSKaccmode =
+  (
+    MSK_ACC_VAR                        = 0,
+    MSK_ACC_CON                        = 1
+  );
+
+(* Sensitivity types *)
+const
+  MSK_SENSITIVITY_TYPE_OPTIMAL_PARTITION = 1;
+  MSK_SENSITIVITY_TYPE_BASIS           = 0;
+
+(* Interpretation of quadratic terms in MPS files *)
+const
+  MSK_Q_READ_ADD                       = 0;
+  MSK_Q_READ_DROP_LOWER                = 1;
+  MSK_Q_READ_DROP_UPPER                = 2;
+
+(* Integer parameters *)
+type
+  MSKiparam =
+  (
+    MSK_IPAR_ALLOC_ADD_QNZ             = 0,
+    MSK_IPAR_ANA_SOL_BASIS             = 1,
+    MSK_IPAR_ANA_SOL_PRINT_VIOLATED    = 2,
+    MSK_IPAR_AUTO_SORT_A_BEFORE_OPT    = 3,
+    MSK_IPAR_AUTO_UPDATE_SOL_INFO      = 4,
+    MSK_IPAR_BASIS_SOLVE_USE_PLUS_ONE  = 5,
+    MSK_IPAR_BI_CLEAN_OPTIMIZER        = 6,
+    MSK_IPAR_BI_IGNORE_MAX_ITER        = 7,
+    MSK_IPAR_BI_IGNORE_NUM_ERROR       = 8,
+    MSK_IPAR_BI_MAX_ITERATIONS         = 9,
+    MSK_IPAR_CACHE_LICENSE             = 10,
+    MSK_IPAR_CACHE_SIZE_L1             = 11,
+    MSK_IPAR_CACHE_SIZE_L2             = 12,
+    MSK_IPAR_CHECK_CONVEXITY           = 13,
+    MSK_IPAR_CHECK_TASK_DATA           = 14,
+    MSK_IPAR_CONCURRENT_NUM_OPTIMIZERS = 15,
+    MSK_IPAR_CONCURRENT_PRIORITY_DUAL_SIMPLEX = 16,
+    MSK_IPAR_CONCURRENT_PRIORITY_FREE_SIMPLEX = 17,
+    MSK_IPAR_CONCURRENT_PRIORITY_INTPNT = 18,
+    MSK_IPAR_CONCURRENT_PRIORITY_PRIMAL_SIMPLEX = 19,
+    MSK_IPAR_CPU_TYPE                  = 20,
+    MSK_IPAR_DATA_CHECK                = 21,
+    MSK_IPAR_FEASREPAIR_OPTIMIZE       = 22,
+    MSK_IPAR_INFEAS_GENERIC_NAMES      = 23,
+    MSK_IPAR_INFEAS_PREFER_PRIMAL      = 24,
+    MSK_IPAR_INFEAS_REPORT_AUTO        = 25,
+    MSK_IPAR_INFEAS_REPORT_LEVEL       = 26,
+    MSK_IPAR_INTPNT_BASIS              = 27,
+    MSK_IPAR_INTPNT_DIFF_STEP          = 28,
+    MSK_IPAR_INTPNT_FACTOR_DEBUG_LVL   = 29,
+    MSK_IPAR_INTPNT_FACTOR_METHOD      = 30,
+    MSK_IPAR_INTPNT_MAX_ITERATIONS     = 31,
+    MSK_IPAR_INTPNT_MAX_NUM_COR        = 32,
+    MSK_IPAR_INTPNT_MAX_NUM_REFINEMENT_STEPS = 33,
+    MSK_IPAR_INTPNT_NUM_THREADS        = 34,
+    MSK_IPAR_INTPNT_OFF_COL_TRH        = 35,
+    MSK_IPAR_INTPNT_ORDER_METHOD       = 36,
+    MSK_IPAR_INTPNT_REGULARIZATION_USE = 37,
+    MSK_IPAR_INTPNT_SCALING            = 38,
+    MSK_IPAR_INTPNT_SOLVE_FORM         = 39,
+    MSK_IPAR_INTPNT_STARTING_POINT     = 40,
+    MSK_IPAR_LIC_TRH_EXPIRY_WRN        = 41,
+    MSK_IPAR_LICENSE_ALLOW_OVERUSE     = 42,
+    MSK_IPAR_LICENSE_CACHE_TIME        = 43,
+    MSK_IPAR_LICENSE_CHECK_TIME        = 44,
+    MSK_IPAR_LICENSE_DEBUG             = 45,
+    MSK_IPAR_LICENSE_PAUSE_TIME        = 46,
+    MSK_IPAR_LICENSE_SUPPRESS_EXPIRE_WRNS = 47,
+    MSK_IPAR_LICENSE_WAIT              = 48,
+    MSK_IPAR_LOG                       = 49,
+    MSK_IPAR_LOG_BI                    = 50,
+    MSK_IPAR_LOG_BI_FREQ               = 51,
+    MSK_IPAR_LOG_CHECK_CONVEXITY       = 52,
+    MSK_IPAR_LOG_CONCURRENT            = 53,
+    MSK_IPAR_LOG_CUT_SECOND_OPT        = 54,
+    MSK_IPAR_LOG_FACTOR                = 55,
+    MSK_IPAR_LOG_FEASREPAIR            = 56,
+    MSK_IPAR_LOG_FILE                  = 57,
+    MSK_IPAR_LOG_HEAD                  = 58,
+    MSK_IPAR_LOG_INFEAS_ANA            = 59,
+    MSK_IPAR_LOG_INTPNT                = 60,
+    MSK_IPAR_LOG_MIO                   = 61,
+    MSK_IPAR_LOG_MIO_FREQ              = 62,
+    MSK_IPAR_LOG_NONCONVEX             = 63,
+    MSK_IPAR_LOG_OPTIMIZER             = 64,
+    MSK_IPAR_LOG_ORDER                 = 65,
+    MSK_IPAR_LOG_PARAM                 = 66,
+    MSK_IPAR_LOG_PRESOLVE              = 67,
+    MSK_IPAR_LOG_RESPONSE              = 68,
+    MSK_IPAR_LOG_SENSITIVITY           = 69,
+    MSK_IPAR_LOG_SENSITIVITY_OPT       = 70,
+    MSK_IPAR_LOG_SIM                   = 71,
+    MSK_IPAR_LOG_SIM_FREQ              = 72,
+    MSK_IPAR_LOG_SIM_MINOR             = 73,
+    MSK_IPAR_LOG_SIM_NETWORK_FREQ      = 74,
+    MSK_IPAR_LOG_STORAGE               = 75,
+    MSK_IPAR_LP_WRITE_IGNORE_INCOMPATIBLE_ITEMS = 76,
+    MSK_IPAR_MAX_NUM_WARNINGS          = 77,
+    MSK_IPAR_MIO_BRANCH_DIR            = 78,
+    MSK_IPAR_MIO_BRANCH_PRIORITIES_USE = 79,
+    MSK_IPAR_MIO_CONSTRUCT_SOL         = 80,
+    MSK_IPAR_MIO_CONT_SOL              = 81,
+    MSK_IPAR_MIO_CUT_LEVEL_ROOT        = 82,
+    MSK_IPAR_MIO_CUT_LEVEL_TREE        = 83,
+    MSK_IPAR_MIO_FEASPUMP_LEVEL        = 84,
+    MSK_IPAR_MIO_HEURISTIC_LEVEL       = 85,
+    MSK_IPAR_MIO_HOTSTART              = 86,
+    MSK_IPAR_MIO_KEEP_BASIS            = 87,
+    MSK_IPAR_MIO_LOCAL_BRANCH_NUMBER   = 88,
+    MSK_IPAR_MIO_MAX_NUM_BRANCHES      = 89,
+    MSK_IPAR_MIO_MAX_NUM_RELAXS        = 90,
+    MSK_IPAR_MIO_MAX_NUM_SOLUTIONS     = 91,
+    MSK_IPAR_MIO_MODE                  = 92,
+    MSK_IPAR_MIO_NODE_OPTIMIZER        = 93,
+    MSK_IPAR_MIO_NODE_SELECTION        = 94,
+    MSK_IPAR_MIO_OPTIMIZER_MODE        = 95,
+    MSK_IPAR_MIO_PRESOLVE_AGGREGATE    = 96,
+    MSK_IPAR_MIO_PRESOLVE_PROBING      = 97,
+    MSK_IPAR_MIO_PRESOLVE_USE          = 98,
+    MSK_IPAR_MIO_ROOT_OPTIMIZER        = 99,
+    MSK_IPAR_MIO_STRONG_BRANCH         = 100,
+    MSK_IPAR_NONCONVEX_MAX_ITERATIONS  = 101,
+    MSK_IPAR_OBJECTIVE_SENSE           = 102,
+    MSK_IPAR_OPF_MAX_TERMS_PER_LINE    = 103,
+    MSK_IPAR_OPF_WRITE_HEADER          = 104,
+    MSK_IPAR_OPF_WRITE_HINTS           = 105,
+    MSK_IPAR_OPF_WRITE_PARAMETERS      = 106,
+    MSK_IPAR_OPF_WRITE_PROBLEM         = 107,
+    MSK_IPAR_OPF_WRITE_SOL_BAS         = 108,
+    MSK_IPAR_OPF_WRITE_SOL_ITG         = 109,
+    MSK_IPAR_OPF_WRITE_SOL_ITR         = 110,
+    MSK_IPAR_OPF_WRITE_SOLUTIONS       = 111,
+    MSK_IPAR_OPTIMIZER                 = 112,
+    MSK_IPAR_PARAM_READ_CASE_NAME      = 113,
+    MSK_IPAR_PARAM_READ_IGN_ERROR      = 114,
+    MSK_IPAR_PRESOLVE_ELIM_FILL        = 115,
+    MSK_IPAR_PRESOLVE_ELIMINATOR_MAX_NUM_TRIES = 116,
+    MSK_IPAR_PRESOLVE_ELIMINATOR_USE   = 117,
+    MSK_IPAR_PRESOLVE_LEVEL            = 118,
+    MSK_IPAR_PRESOLVE_LINDEP_USE       = 119,
+    MSK_IPAR_PRESOLVE_LINDEP_WORK_LIM  = 120,
+    MSK_IPAR_PRESOLVE_USE              = 121,
+    MSK_IPAR_QO_SEPARABLE_REFORMULATION = 122,
+    MSK_IPAR_READ_ADD_ANZ              = 123,
+    MSK_IPAR_READ_ADD_CON              = 124,
+    MSK_IPAR_READ_ADD_CONE             = 125,
+    MSK_IPAR_READ_ADD_QNZ              = 126,
+    MSK_IPAR_READ_ADD_VAR              = 127,
+    MSK_IPAR_READ_ANZ                  = 128,
+    MSK_IPAR_READ_CON                  = 129,
+    MSK_IPAR_READ_CONE                 = 130,
+    MSK_IPAR_READ_DATA_COMPRESSED      = 131,
+    MSK_IPAR_READ_DATA_FORMAT          = 132,
+    MSK_IPAR_READ_KEEP_FREE_CON        = 133,
+    MSK_IPAR_READ_LP_DROP_NEW_VARS_IN_BOU = 134,
+    MSK_IPAR_READ_LP_QUOTED_NAMES      = 135,
+    MSK_IPAR_READ_MPS_FORMAT           = 136,
+    MSK_IPAR_READ_MPS_KEEP_INT         = 137,
+    MSK_IPAR_READ_MPS_OBJ_SENSE        = 138,
+    MSK_IPAR_READ_MPS_QUOTED_NAMES     = 139,
+    MSK_IPAR_READ_MPS_RELAX            = 140,
+    MSK_IPAR_READ_MPS_WIDTH            = 141,
+    MSK_IPAR_READ_Q_MODE               = 142,
+    MSK_IPAR_READ_QNZ                  = 143,
+    MSK_IPAR_READ_TASK_IGNORE_PARAM    = 144,
+    MSK_IPAR_READ_VAR                  = 145,
+    MSK_IPAR_SENSITIVITY_ALL           = 146,
+    MSK_IPAR_SENSITIVITY_OPTIMIZER     = 147,
+    MSK_IPAR_SENSITIVITY_TYPE          = 148,
+    MSK_IPAR_SIM_BASIS_FACTOR_USE      = 149,
+    MSK_IPAR_SIM_DEGEN                 = 150,
+    MSK_IPAR_SIM_DUAL_CRASH            = 151,
+    MSK_IPAR_SIM_DUAL_PHASEONE_METHOD  = 152,
+    MSK_IPAR_SIM_DUAL_RESTRICT_SELECTION = 153,
+    MSK_IPAR_SIM_DUAL_SELECTION        = 154,
+    MSK_IPAR_SIM_EXPLOIT_DUPVEC        = 155,
+    MSK_IPAR_SIM_HOTSTART              = 156,
+    MSK_IPAR_SIM_HOTSTART_LU           = 157,
+    MSK_IPAR_SIM_INTEGER               = 158,
+    MSK_IPAR_SIM_MAX_ITERATIONS        = 159,
+    MSK_IPAR_SIM_MAX_NUM_SETBACKS      = 160,
+    MSK_IPAR_SIM_NETWORK_DETECT        = 161,
+    MSK_IPAR_SIM_NETWORK_DETECT_HOTSTART = 162,
+    MSK_IPAR_SIM_NETWORK_DETECT_METHOD = 163,
+    MSK_IPAR_SIM_NON_SINGULAR          = 164,
+    MSK_IPAR_SIM_PRIMAL_CRASH          = 165,
+    MSK_IPAR_SIM_PRIMAL_PHASEONE_METHOD = 166,
+    MSK_IPAR_SIM_PRIMAL_RESTRICT_SELECTION = 167,
+    MSK_IPAR_SIM_PRIMAL_SELECTION      = 168,
+    MSK_IPAR_SIM_REFACTOR_FREQ         = 169,
+    MSK_IPAR_SIM_REFORMULATION         = 170,
+    MSK_IPAR_SIM_SAVE_LU               = 171,
+    MSK_IPAR_SIM_SCALING               = 172,
+    MSK_IPAR_SIM_SCALING_METHOD        = 173,
+    MSK_IPAR_SIM_SOLVE_FORM            = 174,
+    MSK_IPAR_SIM_STABILITY_PRIORITY    = 175,
+    MSK_IPAR_SIM_SWITCH_OPTIMIZER      = 176,
+    MSK_IPAR_SOL_FILTER_KEEP_BASIC     = 177,
+    MSK_IPAR_SOL_FILTER_KEEP_RANGED    = 178,
+    MSK_IPAR_SOL_QUOTED_NAMES          = 179,
+    MSK_IPAR_SOL_READ_NAME_WIDTH       = 180,
+    MSK_IPAR_SOL_READ_WIDTH            = 181,
+    MSK_IPAR_SOLUTION_CALLBACK         = 182,
+    MSK_IPAR_TIMING_LEVEL              = 183,
+    MSK_IPAR_WARNING_LEVEL             = 184,
+    MSK_IPAR_WRITE_BAS_CONSTRAINTS     = 185,
+    MSK_IPAR_WRITE_BAS_HEAD            = 186,
+    MSK_IPAR_WRITE_BAS_VARIABLES       = 187,
+    MSK_IPAR_WRITE_DATA_COMPRESSED     = 188,
+    MSK_IPAR_WRITE_DATA_FORMAT         = 189,
+    MSK_IPAR_WRITE_DATA_PARAM          = 190,
+    MSK_IPAR_WRITE_FREE_CON            = 191,
+    MSK_IPAR_WRITE_GENERIC_NAMES       = 192,
+    MSK_IPAR_WRITE_GENERIC_NAMES_IO    = 193,
+    MSK_IPAR_WRITE_INT_CONSTRAINTS     = 194,
+    MSK_IPAR_WRITE_INT_HEAD            = 195,
+    MSK_IPAR_WRITE_INT_VARIABLES       = 196,
+    MSK_IPAR_WRITE_LP_LINE_WIDTH       = 197,
+    MSK_IPAR_WRITE_LP_QUOTED_NAMES     = 198,
+    MSK_IPAR_WRITE_LP_STRICT_FORMAT    = 199,
+    MSK_IPAR_WRITE_LP_TERMS_PER_LINE   = 200,
+    MSK_IPAR_WRITE_MPS_INT             = 201,
+    MSK_IPAR_WRITE_MPS_OBJ_SENSE       = 202,
+    MSK_IPAR_WRITE_MPS_QUOTED_NAMES    = 203,
+    MSK_IPAR_WRITE_MPS_STRICT          = 204,
+    MSK_IPAR_WRITE_PRECISION           = 205,
+    MSK_IPAR_WRITE_SOL_CONSTRAINTS     = 206,
+    MSK_IPAR_WRITE_SOL_HEAD            = 207,
+    MSK_IPAR_WRITE_SOL_VARIABLES       = 208,
+    MSK_IPAR_WRITE_TASK_INC_SOL        = 209,
+    MSK_IPAR_WRITE_XML_MODE            = 210
+  );
+
+(* Function opcode *)
+type
+  MSKadopcode =
+  (
+    MSK_ADOP_ADD                       = 0,
+    MSK_ADOP_SUB                       = 1,
+    MSK_ADOP_MUL                       = 2,
+    MSK_ADOP_DIV                       = 3,
+    MSK_ADOP_POW                       = 4,
+    MSK_ADOP_EXP                       = 5,
+    MSK_ADOP_LOG                       = 6,
+    MSK_ADOP_RET                       = 7
+  );
+
+(* Solution status keys *)
+type
+  MSKsolsta =
+  (
+    MSK_SOL_STA_UNKNOWN                = 0,
+    MSK_SOL_STA_OPTIMAL                = 1,
+    MSK_SOL_STA_PRIM_FEAS              = 2,
+    MSK_SOL_STA_DUAL_FEAS              = 3,
+    MSK_SOL_STA_PRIM_AND_DUAL_FEAS     = 4,
+    MSK_SOL_STA_PRIM_INFEAS_CER        = 5,
+    MSK_SOL_STA_DUAL_INFEAS_CER        = 6,
+    MSK_SOL_STA_NEAR_OPTIMAL           = 8,
+    MSK_SOL_STA_NEAR_PRIM_FEAS         = 9,
+    MSK_SOL_STA_NEAR_DUAL_FEAS         = 10,
+    MSK_SOL_STA_NEAR_PRIM_AND_DUAL_FEAS = 11,
+    MSK_SOL_STA_NEAR_PRIM_INFEAS_CER   = 12,
+    MSK_SOL_STA_NEAR_DUAL_INFEAS_CER   = 13,
+    MSK_SOL_STA_INTEGER_OPTIMAL        = 14,
+    MSK_SOL_STA_NEAR_INTEGER_OPTIMAL   = 15
+  );
+
+(* Objective sense types *)
+type
+  MSKobjsense =
+  (
+    MSK_OBJECTIVE_SENSE_UNDEFINED      = 0,
+    MSK_OBJECTIVE_SENSE_MINIMIZE       = 1,
+    MSK_OBJECTIVE_SENSE_MAXIMIZE       = 2
+  );
+
+(* Solution items *)
+type
+  MSKsolitem =
+  (
+    MSK_SOL_ITEM_XC                    = 0,
+    MSK_SOL_ITEM_XX                    = 1,
+    MSK_SOL_ITEM_Y                     = 2,
+    MSK_SOL_ITEM_SLC                   = 3,
+    MSK_SOL_ITEM_SUC                   = 4,
+    MSK_SOL_ITEM_SLX                   = 5,
+    MSK_SOL_ITEM_SUX                   = 6,
+    MSK_SOL_ITEM_SNX                   = 7
+  );
+
+(* Bound keys *)
+type
+  MSKboundkey =
+  (
+    MSK_BK_LO                          = 0,
+    MSK_BK_UP                          = 1,
+    MSK_BK_FX                          = 2,
+    MSK_BK_FR                          = 3,
+    MSK_BK_RA                          = 4
+  );
+
+(* Basis identification *)
+const
+  MSK_BI_ALWAYS                        = 1;
+  MSK_BI_NO_ERROR                      = 2;
+  MSK_BI_NEVER                         = 0;
+  MSK_BI_IF_FEASIBLE                   = 3;
+  MSK_BI_OTHER                         = 4;
+
+(* Specifies the branching direction. *)
+const
+  MSK_BRANCH_DIR_DOWN                  = 2;
+  MSK_BRANCH_DIR_UP                    = 1;
+  MSK_BRANCH_DIR_FREE                  = 0;
+
+(* Long integer information items. *)
+type
+  MSKliinfitem =
+  (
+    MSK_LIINF_BI_CLEAN_DUAL_DEG_ITER   = 0,
+    MSK_LIINF_BI_CLEAN_DUAL_ITER       = 1,
+    MSK_LIINF_BI_CLEAN_PRIMAL_DEG_ITER = 2,
+    MSK_LIINF_BI_CLEAN_PRIMAL_DUAL_DEG_ITER = 3,
+    MSK_LIINF_BI_CLEAN_PRIMAL_DUAL_ITER = 4,
+    MSK_LIINF_BI_CLEAN_PRIMAL_DUAL_SUB_ITER = 5,
+    MSK_LIINF_BI_CLEAN_PRIMAL_ITER     = 6,
+    MSK_LIINF_BI_DUAL_ITER             = 7,
+    MSK_LIINF_BI_PRIMAL_ITER           = 8,
+    MSK_LIINF_INTPNT_FACTOR_NUM_NZ     = 9,
+    MSK_LIINF_MIO_INTPNT_ITER          = 10,
+    MSK_LIINF_MIO_SIMPLEX_ITER         = 11,
+    MSK_LIINF_RD_NUMANZ                = 12,
+    MSK_LIINF_RD_NUMQNZ                = 13
+  );
+
+(* Stream types *)
+type
+  MSKstreamtype =
+  (
+    MSK_STREAM_LOG                     = 0,
+    MSK_STREAM_MSG                     = 1,
+    MSK_STREAM_ERR                     = 2,
+    MSK_STREAM_WRN                     = 3
+  );
+
+(* Hot-start type employed by the simplex optimizer *)
+type
+  MSKsimhotstart =
+  (
+    MSK_SIM_HOTSTART_NONE              = 0,
+    MSK_SIM_HOTSTART_FREE              = 1,
+    MSK_SIM_HOTSTART_STATUS_KEYS       = 2
+  );
+
+(* Progress call-back codes *)
+type
+  MSKcallbackcode =
+  (
+    MSK_CALLBACK_BEGIN_BI              = 0,
+    MSK_CALLBACK_BEGIN_CONCURRENT      = 1,
+    MSK_CALLBACK_BEGIN_CONIC           = 2,
+    MSK_CALLBACK_BEGIN_DUAL_BI         = 3,
+    MSK_CALLBACK_BEGIN_DUAL_SENSITIVITY = 4,
+    MSK_CALLBACK_BEGIN_DUAL_SETUP_BI   = 5,
+    MSK_CALLBACK_BEGIN_DUAL_SIMPLEX    = 6,
+    MSK_CALLBACK_BEGIN_DUAL_SIMPLEX_BI = 7,
+    MSK_CALLBACK_BEGIN_FULL_CONVEXITY_CHECK = 8,
+    MSK_CALLBACK_BEGIN_INFEAS_ANA      = 9,
+    MSK_CALLBACK_BEGIN_INTPNT          = 10,
+    MSK_CALLBACK_BEGIN_LICENSE_WAIT    = 11,
+    MSK_CALLBACK_BEGIN_MIO             = 12,
+    MSK_CALLBACK_BEGIN_NETWORK_DUAL_SIMPLEX = 13,
+    MSK_CALLBACK_BEGIN_NETWORK_PRIMAL_SIMPLEX = 14,
+    MSK_CALLBACK_BEGIN_NETWORK_SIMPLEX = 15,
+    MSK_CALLBACK_BEGIN_NONCONVEX       = 16,
+    MSK_CALLBACK_BEGIN_OPTIMIZER       = 17,
+    MSK_CALLBACK_BEGIN_PRESOLVE        = 18,
+    MSK_CALLBACK_BEGIN_PRIMAL_BI       = 19,
+    MSK_CALLBACK_BEGIN_PRIMAL_DUAL_SIMPLEX = 20,
+    MSK_CALLBACK_BEGIN_PRIMAL_DUAL_SIMPLEX_BI = 21,
+    MSK_CALLBACK_BEGIN_PRIMAL_SENSITIVITY = 22,
+    MSK_CALLBACK_BEGIN_PRIMAL_SETUP_BI = 23,
+    MSK_CALLBACK_BEGIN_PRIMAL_SIMPLEX  = 24,
+    MSK_CALLBACK_BEGIN_PRIMAL_SIMPLEX_BI = 25,
+    MSK_CALLBACK_BEGIN_QCQO_REFORMULATE = 26,
+    MSK_CALLBACK_BEGIN_READ            = 27,
+    MSK_CALLBACK_BEGIN_SIMPLEX         = 28,
+    MSK_CALLBACK_BEGIN_SIMPLEX_BI      = 29,
+    MSK_CALLBACK_BEGIN_SIMPLEX_NETWORK_DETECT = 30,
+    MSK_CALLBACK_BEGIN_WRITE           = 31,
+    MSK_CALLBACK_CONIC                 = 32,
+    MSK_CALLBACK_DUAL_SIMPLEX          = 33,
+    MSK_CALLBACK_END_BI                = 34,
+    MSK_CALLBACK_END_CONCURRENT        = 35,
+    MSK_CALLBACK_END_CONIC             = 36,
+    MSK_CALLBACK_END_DUAL_BI           = 37,
+    MSK_CALLBACK_END_DUAL_SENSITIVITY  = 38,
+    MSK_CALLBACK_END_DUAL_SETUP_BI     = 39,
+    MSK_CALLBACK_END_DUAL_SIMPLEX      = 40,
+    MSK_CALLBACK_END_DUAL_SIMPLEX_BI   = 41,
+    MSK_CALLBACK_END_FULL_CONVEXITY_CHECK = 42,
+    MSK_CALLBACK_END_INFEAS_ANA        = 43,
+    MSK_CALLBACK_END_INTPNT            = 44,
+    MSK_CALLBACK_END_LICENSE_WAIT      = 45,
+    MSK_CALLBACK_END_MIO               = 46,
+    MSK_CALLBACK_END_NETWORK_DUAL_SIMPLEX = 47,
+    MSK_CALLBACK_END_NETWORK_PRIMAL_SIMPLEX = 48,
+    MSK_CALLBACK_END_NETWORK_SIMPLEX   = 49,
+    MSK_CALLBACK_END_NONCONVEX         = 50,
+    MSK_CALLBACK_END_OPTIMIZER         = 51,
+    MSK_CALLBACK_END_PRESOLVE          = 52,
+    MSK_CALLBACK_END_PRIMAL_BI         = 53,
+    MSK_CALLBACK_END_PRIMAL_DUAL_SIMPLEX = 54,
+    MSK_CALLBACK_END_PRIMAL_DUAL_SIMPLEX_BI = 55,
+    MSK_CALLBACK_END_PRIMAL_SENSITIVITY = 56,
+    MSK_CALLBACK_END_PRIMAL_SETUP_BI   = 57,
+    MSK_CALLBACK_END_PRIMAL_SIMPLEX    = 58,
+    MSK_CALLBACK_END_PRIMAL_SIMPLEX_BI = 59,
+    MSK_CALLBACK_END_QCQO_REFORMULATE  = 60,
+    MSK_CALLBACK_END_READ              = 61,
+    MSK_CALLBACK_END_SIMPLEX           = 62,
+    MSK_CALLBACK_END_SIMPLEX_BI        = 63,
+    MSK_CALLBACK_END_SIMPLEX_NETWORK_DETECT = 64,
+    MSK_CALLBACK_END_WRITE             = 65,
+    MSK_CALLBACK_IM_BI                 = 66,
+    MSK_CALLBACK_IM_CONIC              = 67,
+    MSK_CALLBACK_IM_DUAL_BI            = 68,
+    MSK_CALLBACK_IM_DUAL_SENSIVITY     = 69,
+    MSK_CALLBACK_IM_DUAL_SIMPLEX       = 70,
+    MSK_CALLBACK_IM_FULL_CONVEXITY_CHECK = 71,
+    MSK_CALLBACK_IM_INTPNT             = 72,
+    MSK_CALLBACK_IM_LICENSE_WAIT       = 73,
+    MSK_CALLBACK_IM_LU                 = 74,
+    MSK_CALLBACK_IM_MIO                = 75,
+    MSK_CALLBACK_IM_MIO_DUAL_SIMPLEX   = 76,
+    MSK_CALLBACK_IM_MIO_INTPNT         = 77,
+    MSK_CALLBACK_IM_MIO_PRESOLVE       = 78,
+    MSK_CALLBACK_IM_MIO_PRIMAL_SIMPLEX = 79,
+    MSK_CALLBACK_IM_NETWORK_DUAL_SIMPLEX = 80,
+    MSK_CALLBACK_IM_NETWORK_PRIMAL_SIMPLEX = 81,
+    MSK_CALLBACK_IM_NONCONVEX          = 82,
+    MSK_CALLBACK_IM_ORDER              = 83,
+    MSK_CALLBACK_IM_PRESOLVE           = 84,
+    MSK_CALLBACK_IM_PRIMAL_BI          = 85,
+    MSK_CALLBACK_IM_PRIMAL_DUAL_SIMPLEX = 86,
+    MSK_CALLBACK_IM_PRIMAL_SENSIVITY   = 87,
+    MSK_CALLBACK_IM_PRIMAL_SIMPLEX     = 88,
+    MSK_CALLBACK_IM_QO_REFORMULATE     = 89,
+    MSK_CALLBACK_IM_SIMPLEX            = 90,
+    MSK_CALLBACK_IM_SIMPLEX_BI         = 91,
+    MSK_CALLBACK_INTPNT                = 92,
+    MSK_CALLBACK_NEW_INT_MIO           = 93,
+    MSK_CALLBACK_NONCOVEX              = 94,
+    MSK_CALLBACK_PRIMAL_SIMPLEX        = 95,
+    MSK_CALLBACK_QCONE                 = 96,
+    MSK_CALLBACK_READ_ADD_ANZ          = 97,
+    MSK_CALLBACK_READ_ADD_CONES        = 98,
+    MSK_CALLBACK_READ_ADD_CONS         = 99,
+    MSK_CALLBACK_READ_ADD_QNZ          = 100,
+    MSK_CALLBACK_READ_ADD_VARS         = 101,
+    MSK_CALLBACK_READ_OPF              = 102,
+    MSK_CALLBACK_READ_OPF_SECTION      = 103,
+    MSK_CALLBACK_UPDATE_DUAL_BI        = 104,
+    MSK_CALLBACK_UPDATE_DUAL_SIMPLEX   = 105,
+    MSK_CALLBACK_UPDATE_DUAL_SIMPLEX_BI = 106,
+    MSK_CALLBACK_UPDATE_NETWORK_DUAL_SIMPLEX = 107,
+    MSK_CALLBACK_UPDATE_NETWORK_PRIMAL_SIMPLEX = 108,
+    MSK_CALLBACK_UPDATE_NONCONVEX      = 109,
+    MSK_CALLBACK_UPDATE_PRESOLVE       = 110,
+    MSK_CALLBACK_UPDATE_PRIMAL_BI      = 111,
+    MSK_CALLBACK_UPDATE_PRIMAL_DUAL_SIMPLEX = 112,
+    MSK_CALLBACK_UPDATE_PRIMAL_DUAL_SIMPLEX_BI = 113,
+    MSK_CALLBACK_UPDATE_PRIMAL_SIMPLEX = 114,
+    MSK_CALLBACK_UPDATE_PRIMAL_SIMPLEX_BI = 115,
+    MSK_CALLBACK_WRITE_OPF             = 116
+  );
+
+(* Problem data items *)
+type
+  MSKproblemitem =
+  (
+    MSK_PI_VAR                         = 0,
+    MSK_PI_CON                         = 1,
+    MSK_PI_CONE                        = 2
+  );
+
+(* License feature *)
+type
+  MSKfeature =
+  (
+    MSK_FEATURE_PTS                    = 0,
+    MSK_FEATURE_PTON                   = 1,
+    MSK_FEATURE_PTOM                   = 2,
+    MSK_FEATURE_PTOX                   = 3
+  );
+
+(* String parameter types *)
+type
+  MSKsparam =
+  (
+    MSK_SPAR_BAS_SOL_FILE_NAME         = 0,
+    MSK_SPAR_DATA_FILE_NAME            = 1,
+    MSK_SPAR_DEBUG_FILE_NAME           = 2,
+    MSK_SPAR_FEASREPAIR_NAME_PREFIX    = 3,
+    MSK_SPAR_FEASREPAIR_NAME_SEPARATOR = 4,
+    MSK_SPAR_FEASREPAIR_NAME_WSUMVIOL  = 5,
+    MSK_SPAR_INT_SOL_FILE_NAME         = 6,
+    MSK_SPAR_ITR_SOL_FILE_NAME         = 7,
+    MSK_SPAR_PARAM_COMMENT_SIGN        = 8,
+    MSK_SPAR_PARAM_READ_FILE_NAME      = 9,
+    MSK_SPAR_PARAM_WRITE_FILE_NAME     = 10,
+    MSK_SPAR_READ_MPS_BOU_NAME         = 11,
+    MSK_SPAR_READ_MPS_OBJ_NAME         = 12,
+    MSK_SPAR_READ_MPS_RAN_NAME         = 13,
+    MSK_SPAR_READ_MPS_RHS_NAME         = 14,
+    MSK_SPAR_SENSITIVITY_FILE_NAME     = 15,
+    MSK_SPAR_SENSITIVITY_RES_FILE_NAME = 16,
+    MSK_SPAR_SOL_FILTER_XC_LOW         = 17,
+    MSK_SPAR_SOL_FILTER_XC_UPR         = 18,
+    MSK_SPAR_SOL_FILTER_XX_LOW         = 19,
+    MSK_SPAR_SOL_FILTER_XX_UPR         = 20,
+    MSK_SPAR_STAT_FILE_NAME            = 21,
+    MSK_SPAR_STAT_KEY                  = 22,
+    MSK_SPAR_STAT_NAME                 = 23,
+    MSK_SPAR_WRITE_LP_GEN_VAR_NAME     = 24
+  );
+
+(* Mark *)
+type
+  MSKmark =
+  (
+    MSK_MARK_LO                        = 0,
+    MSK_MARK_UP                        = 1
+  );
+
+(* Cone types *)
+type
+  MSKconetype =
+  (
+    MSK_CT_QUAD                        = 0,
+    MSK_CT_RQUAD                       = 1
+  );
+
+(* Feasibility repair types *)
+const
+  MSK_FEASREPAIR_OPTIMIZE_NONE         = 0;
+  MSK_FEASREPAIR_OPTIMIZE_COMBINED     = 2;
+  MSK_FEASREPAIR_OPTIMIZE_PENALTY      = 1;
+
+(* Input/output modes *)
+const
+  MSK_IOMODE_READ                      = 0;
+  MSK_IOMODE_WRITE                     = 1;
+  MSK_IOMODE_READWRITE                 = 2;
+
+(* Function operand type *)
+type
+  MSKadoptype =
+  (
+    MSK_ADOPTYPE_NONE                  = 0,
+    MSK_ADOPTYPE_CONSTANT              = 1,
+    MSK_ADOPTYPE_VARIABLE              = 2,
+    MSK_ADOPTYPE_REFERENCE             = 3
+  );
+
+(* Simplex selection strategy *)
+const
+  MSK_SIM_SELECTION_FULL               = 1;
+  MSK_SIM_SELECTION_PARTIAL            = 5;
+  MSK_SIM_SELECTION_FREE               = 0;
+  MSK_SIM_SELECTION_ASE                = 2;
+  MSK_SIM_SELECTION_DEVEX              = 3;
+  MSK_SIM_SELECTION_SE                 = 4;
+
+(* Message keys *)
+type
+  MSKmsgkey =
+  (
+    MSK_MSG_READING_FILE               = 1000,
+    MSK_MSG_WRITING_FILE               = 1001,
+    MSK_MSG_MPS_SELECTED               = 1100
+  );
+
+(* Integer restrictions *)
+const
+  MSK_MIO_MODE_IGNORED                 = 0;
+  MSK_MIO_MODE_LAZY                    = 2;
+  MSK_MIO_MODE_SATISFIED               = 1;
+
+(* Double information items *)
+type
+  MSKdinfitem =
+  (
+    MSK_DINF_BI_CLEAN_DUAL_TIME        = 0,
+    MSK_DINF_BI_CLEAN_PRIMAL_DUAL_TIME = 1,
+    MSK_DINF_BI_CLEAN_PRIMAL_TIME      = 2,
+    MSK_DINF_BI_CLEAN_TIME             = 3,
+    MSK_DINF_BI_DUAL_TIME              = 4,
+    MSK_DINF_BI_PRIMAL_TIME            = 5,
+    MSK_DINF_BI_TIME                   = 6,
+    MSK_DINF_CONCURRENT_TIME           = 7,
+    MSK_DINF_INTPNT_DUAL_FEAS          = 8,
+    MSK_DINF_INTPNT_DUAL_OBJ           = 9,
+    MSK_DINF_INTPNT_FACTOR_NUM_FLOPS   = 10,
+    MSK_DINF_INTPNT_KAP_DIV_TAU        = 11,
+    MSK_DINF_INTPNT_ORDER_TIME         = 12,
+    MSK_DINF_INTPNT_PRIMAL_FEAS        = 13,
+    MSK_DINF_INTPNT_PRIMAL_OBJ         = 14,
+    MSK_DINF_INTPNT_TIME               = 15,
+    MSK_DINF_MIO_CONSTRUCT_SOLUTION_OBJ = 16,
+    MSK_DINF_MIO_HEURISTIC_TIME        = 17,
+    MSK_DINF_MIO_OBJ_ABS_GAP           = 18,
+    MSK_DINF_MIO_OBJ_BOUND             = 19,
+    MSK_DINF_MIO_OBJ_INT               = 20,
+    MSK_DINF_MIO_OBJ_REL_GAP           = 21,
+    MSK_DINF_MIO_OPTIMIZER_TIME        = 22,
+    MSK_DINF_MIO_ROOT_OPTIMIZER_TIME   = 23,
+    MSK_DINF_MIO_ROOT_PRESOLVE_TIME    = 24,
+    MSK_DINF_MIO_TIME                  = 25,
+    MSK_DINF_MIO_USER_OBJ_CUT          = 26,
+    MSK_DINF_OPTIMIZER_TIME            = 27,
+    MSK_DINF_PRESOLVE_ELI_TIME         = 28,
+    MSK_DINF_PRESOLVE_LINDEP_TIME      = 29,
+    MSK_DINF_PRESOLVE_TIME             = 30,
+    MSK_DINF_QCQO_REFORMULATE_TIME     = 31,
+    MSK_DINF_RD_TIME                   = 32,
+    MSK_DINF_SIM_DUAL_TIME             = 33,
+    MSK_DINF_SIM_FEAS                  = 34,
+    MSK_DINF_SIM_NETWORK_DUAL_TIME     = 35,
+    MSK_DINF_SIM_NETWORK_PRIMAL_TIME   = 36,
+    MSK_DINF_SIM_NETWORK_TIME          = 37,
+    MSK_DINF_SIM_OBJ                   = 38,
+    MSK_DINF_SIM_PRIMAL_DUAL_TIME      = 39,
+    MSK_DINF_SIM_PRIMAL_TIME           = 40,
+    MSK_DINF_SIM_TIME                  = 41,
+    MSK_DINF_SOL_BAS_DUAL_OBJ          = 42,
+    MSK_DINF_SOL_BAS_MAX_DBI           = 43,
+    MSK_DINF_SOL_BAS_MAX_DEQI          = 44,
+    MSK_DINF_SOL_BAS_MAX_PBI           = 45,
+    MSK_DINF_SOL_BAS_MAX_PEQI          = 46,
+    MSK_DINF_SOL_BAS_MAX_PINTI         = 47,
+    MSK_DINF_SOL_BAS_PRIMAL_OBJ        = 48,
+    MSK_DINF_SOL_INT_MAX_PBI           = 49,
+    MSK_DINF_SOL_INT_MAX_PEQI          = 50,
+    MSK_DINF_SOL_INT_MAX_PINTI         = 51,
+    MSK_DINF_SOL_INT_PRIMAL_OBJ        = 52,
+    MSK_DINF_SOL_ITR_DUAL_OBJ          = 53,
+    MSK_DINF_SOL_ITR_MAX_DBI           = 54,
+    MSK_DINF_SOL_ITR_MAX_DCNI          = 55,
+    MSK_DINF_SOL_ITR_MAX_DEQI          = 56,
+    MSK_DINF_SOL_ITR_MAX_PBI           = 57,
+    MSK_DINF_SOL_ITR_MAX_PCNI          = 58,
+    MSK_DINF_SOL_ITR_MAX_PEQI          = 59,
+    MSK_DINF_SOL_ITR_MAX_PINTI         = 60,
+    MSK_DINF_SOL_ITR_PRIMAL_OBJ        = 61
+  );
+
+(* Parameter type *)
+type
+  MSKparametertype =
+  (
+    MSK_PAR_INVALID_TYPE               = 0,
+    MSK_PAR_DOU_TYPE                   = 1,
+    MSK_PAR_INT_TYPE                   = 2,
+    MSK_PAR_STR_TYPE                   = 3
+  );
+
+(* Response code type *)
+type
+  MSKrescodetype =
+  (
+    MSK_RESPONSE_OK                    = 0,
+    MSK_RESPONSE_WRN                   = 1,
+    MSK_RESPONSE_TRM                   = 2,
+    MSK_RESPONSE_ERR                   = 3,
+    MSK_RESPONSE_UNK                   = 4
+  );
+
+(* Problem status keys *)
+type
+  MSKprosta =
+  (
+    MSK_PRO_STA_UNKNOWN                = 0,
+    MSK_PRO_STA_PRIM_AND_DUAL_FEAS     = 1,
+    MSK_PRO_STA_PRIM_FEAS              = 2,
+    MSK_PRO_STA_DUAL_FEAS              = 3,
+    MSK_PRO_STA_PRIM_INFEAS            = 4,
+    MSK_PRO_STA_DUAL_INFEAS            = 5,
+    MSK_PRO_STA_PRIM_AND_DUAL_INFEAS   = 6,
+    MSK_PRO_STA_ILL_POSED              = 7,
+    MSK_PRO_STA_NEAR_PRIM_AND_DUAL_FEAS = 8,
+    MSK_PRO_STA_NEAR_PRIM_FEAS         = 9,
+    MSK_PRO_STA_NEAR_DUAL_FEAS         = 10,
+    MSK_PRO_STA_PRIM_INFEAS_OR_UNBOUNDED = 11
+  );
+
+(* Scaling type *)
+const
+  MSK_SCALING_NONE                     = 1;
+  MSK_SCALING_MODERATE                 = 2;
+  MSK_SCALING_AGGRESSIVE               = 3;
+  MSK_SCALING_FREE                     = 0;
+
+(* Response codes *)
+type
+  MSKrescode =
+  (
+    MSK_RES_OK                         = 0,
+    MSK_RES_WRN_OPEN_PARAM_FILE        = 50,
+    MSK_RES_WRN_LARGE_BOUND            = 51,
+    MSK_RES_WRN_LARGE_LO_BOUND         = 52,
+    MSK_RES_WRN_LARGE_UP_BOUND         = 53,
+    MSK_RES_WRN_LARGE_CON_FX           = 54,
+    MSK_RES_WRN_LARGE_CJ               = 57,
+    MSK_RES_WRN_LARGE_AIJ              = 62,
+    MSK_RES_WRN_ZERO_AIJ               = 63,
+    MSK_RES_WRN_NAME_MAX_LEN           = 65,
+    MSK_RES_WRN_SPAR_MAX_LEN           = 66,
+    MSK_RES_WRN_MPS_SPLIT_RHS_VECTOR   = 70,
+    MSK_RES_WRN_MPS_SPLIT_RAN_VECTOR   = 71,
+    MSK_RES_WRN_MPS_SPLIT_BOU_VECTOR   = 72,
+    MSK_RES_WRN_LP_OLD_QUAD_FORMAT     = 80,
+    MSK_RES_WRN_LP_DROP_VARIABLE       = 85,
+    MSK_RES_WRN_NZ_IN_UPR_TRI          = 200,
+    MSK_RES_WRN_DROPPED_NZ_QOBJ        = 201,
+    MSK_RES_WRN_IGNORE_INTEGER         = 250,
+    MSK_RES_WRN_NO_GLOBAL_OPTIMIZER    = 251,
+    MSK_RES_WRN_MIO_INFEASIBLE_FINAL   = 270,
+    MSK_RES_WRN_SOL_FILTER             = 300,
+    MSK_RES_WRN_UNDEF_SOL_FILE_NAME    = 350,
+    MSK_RES_WRN_SOL_FILE_IGNORED_CON   = 351,
+    MSK_RES_WRN_SOL_FILE_IGNORED_VAR   = 352,
+    MSK_RES_WRN_TOO_FEW_BASIS_VARS     = 400,
+    MSK_RES_WRN_TOO_MANY_BASIS_VARS    = 405,
+    MSK_RES_WRN_LICENSE_EXPIRE         = 500,
+    MSK_RES_WRN_LICENSE_SERVER         = 501,
+    MSK_RES_WRN_EMPTY_NAME             = 502,
+    MSK_RES_WRN_USING_GENERIC_NAMES    = 503,
+    MSK_RES_WRN_LICENSE_FEATURE_EXPIRE = 505,
+    MSK_RES_WRN_ZEROS_IN_SPARSE_ROW    = 705,
+    MSK_RES_WRN_ZEROS_IN_SPARSE_COL    = 710,
+    MSK_RES_WRN_INCOMPLETE_LINEAR_DEPENDENCY_CHECK = 800,
+    MSK_RES_WRN_ELIMINATOR_SPACE       = 801,
+    MSK_RES_WRN_PRESOLVE_OUTOFSPACE    = 802,
+    MSK_RES_WRN_PRESOLVE_BAD_PRECISION = 803,
+    MSK_RES_WRN_WRITE_DISCARDED_CFIX   = 804,
+    MSK_RES_WRN_CONSTRUCT_SOLUTION_INFEAS = 805,
+    MSK_RES_WRN_CONSTRUCT_INVALID_SOL_ITG = 807,
+    MSK_RES_WRN_CONSTRUCT_NO_SOL_ITG   = 810,
+    MSK_RES_WRN_ANA_LARGE_BOUNDS       = 900,
+    MSK_RES_WRN_ANA_C_ZERO             = 901,
+    MSK_RES_WRN_ANA_EMPTY_COLS         = 902,
+    MSK_RES_WRN_ANA_CLOSE_BOUNDS       = 903,
+    MSK_RES_WRN_ANA_ALMOST_INT_BOUNDS  = 904,
+    MSK_RES_ERR_LICENSE                = 1000,
+    MSK_RES_ERR_LICENSE_EXPIRED        = 1001,
+    MSK_RES_ERR_LICENSE_VERSION        = 1002,
+    MSK_RES_ERR_SIZE_LICENSE           = 1005,
+    MSK_RES_ERR_PROB_LICENSE           = 1006,
+    MSK_RES_ERR_FILE_LICENSE           = 1007,
+    MSK_RES_ERR_MISSING_LICENSE_FILE   = 1008,
+    MSK_RES_ERR_SIZE_LICENSE_CON       = 1010,
+    MSK_RES_ERR_SIZE_LICENSE_VAR       = 1011,
+    MSK_RES_ERR_SIZE_LICENSE_INTVAR    = 1012,
+    MSK_RES_ERR_OPTIMIZER_LICENSE      = 1013,
+    MSK_RES_ERR_FLEXLM                 = 1014,
+    MSK_RES_ERR_LICENSE_SERVER         = 1015,
+    MSK_RES_ERR_LICENSE_MAX            = 1016,
+    MSK_RES_ERR_LICENSE_MOSEKLM_DAEMON = 1017,
+    MSK_RES_ERR_LICENSE_FEATURE        = 1018,
+    MSK_RES_ERR_PLATFORM_NOT_LICENSED  = 1019,
+    MSK_RES_ERR_LICENSE_CANNOT_ALLOCATE = 1020,
+    MSK_RES_ERR_LICENSE_CANNOT_CONNECT = 1021,
+    MSK_RES_ERR_LICENSE_INVALID_HOSTID = 1025,
+    MSK_RES_ERR_LICENSE_SERVER_VERSION = 1026,
+    MSK_RES_ERR_LICENSE_NO_SERVER_SUPPORT = 1027,
+    MSK_RES_ERR_OPEN_DL                = 1030,
+    MSK_RES_ERR_OLDER_DLL              = 1035,
+    MSK_RES_ERR_NEWER_DLL              = 1036,
+    MSK_RES_ERR_LINK_FILE_DLL          = 1040,
+    MSK_RES_ERR_THREAD_MUTEX_INIT      = 1045,
+    MSK_RES_ERR_THREAD_MUTEX_LOCK      = 1046,
+    MSK_RES_ERR_THREAD_MUTEX_UNLOCK    = 1047,
+    MSK_RES_ERR_THREAD_CREATE          = 1048,
+    MSK_RES_ERR_THREAD_COND_INIT       = 1049,
+    MSK_RES_ERR_UNKNOWN                = 1050,
+    MSK_RES_ERR_SPACE                  = 1051,
+    MSK_RES_ERR_FILE_OPEN              = 1052,
+    MSK_RES_ERR_FILE_READ              = 1053,
+    MSK_RES_ERR_FILE_WRITE             = 1054,
+    MSK_RES_ERR_DATA_FILE_EXT          = 1055,
+    MSK_RES_ERR_INVALID_FILE_NAME      = 1056,
+    MSK_RES_ERR_INVALID_SOL_FILE_NAME  = 1057,
+    MSK_RES_ERR_INVALID_MBT_FILE       = 1058,
+    MSK_RES_ERR_END_OF_FILE            = 1059,
+    MSK_RES_ERR_NULL_ENV               = 1060,
+    MSK_RES_ERR_NULL_TASK              = 1061,
+    MSK_RES_ERR_INVALID_STREAM         = 1062,
+    MSK_RES_ERR_NO_INIT_ENV            = 1063,
+    MSK_RES_ERR_INVALID_TASK           = 1064,
+    MSK_RES_ERR_NULL_POINTER           = 1065,
+    MSK_RES_ERR_LIVING_TASKS           = 1066,
+    MSK_RES_ERR_BLANK_NAME             = 1070,
+    MSK_RES_ERR_DUP_NAME               = 1071,
+    MSK_RES_ERR_INVALID_OBJ_NAME       = 1075,
+    MSK_RES_ERR_SPACE_LEAKING          = 1080,
+    MSK_RES_ERR_SPACE_NO_INFO          = 1081,
+    MSK_RES_ERR_READ_FORMAT            = 1090,
+    MSK_RES_ERR_MPS_FILE               = 1100,
+    MSK_RES_ERR_MPS_INV_FIELD          = 1101,
+    MSK_RES_ERR_MPS_INV_MARKER         = 1102,
+    MSK_RES_ERR_MPS_NULL_CON_NAME      = 1103,
+    MSK_RES_ERR_MPS_NULL_VAR_NAME      = 1104,
+    MSK_RES_ERR_MPS_UNDEF_CON_NAME     = 1105,
+    MSK_RES_ERR_MPS_UNDEF_VAR_NAME     = 1106,
+    MSK_RES_ERR_MPS_INV_CON_KEY        = 1107,
+    MSK_RES_ERR_MPS_INV_BOUND_KEY      = 1108,
+    MSK_RES_ERR_MPS_INV_SEC_NAME       = 1109,
+    MSK_RES_ERR_MPS_NO_OBJECTIVE       = 1110,
+    MSK_RES_ERR_MPS_SPLITTED_VAR       = 1111,
+    MSK_RES_ERR_MPS_MUL_CON_NAME       = 1112,
+    MSK_RES_ERR_MPS_MUL_QSEC           = 1113,
+    MSK_RES_ERR_MPS_MUL_QOBJ           = 1114,
+    MSK_RES_ERR_MPS_INV_SEC_ORDER      = 1115,
+    MSK_RES_ERR_MPS_MUL_CSEC           = 1116,
+    MSK_RES_ERR_MPS_CONE_TYPE          = 1117,
+    MSK_RES_ERR_MPS_CONE_OVERLAP       = 1118,
+    MSK_RES_ERR_MPS_CONE_REPEAT        = 1119,
+    MSK_RES_ERR_MPS_INVALID_OBJSENSE   = 1122,
+    MSK_RES_ERR_MPS_TAB_IN_FIELD2      = 1125,
+    MSK_RES_ERR_MPS_TAB_IN_FIELD3      = 1126,
+    MSK_RES_ERR_MPS_TAB_IN_FIELD5      = 1127,
+    MSK_RES_ERR_MPS_INVALID_OBJ_NAME   = 1128,
+    MSK_RES_ERR_ORD_INVALID_BRANCH_DIR = 1130,
+    MSK_RES_ERR_ORD_INVALID            = 1131,
+    MSK_RES_ERR_LP_INCOMPATIBLE        = 1150,
+    MSK_RES_ERR_LP_EMPTY               = 1151,
+    MSK_RES_ERR_LP_DUP_SLACK_NAME      = 1152,
+    MSK_RES_ERR_WRITE_MPS_INVALID_NAME = 1153,
+    MSK_RES_ERR_LP_INVALID_VAR_NAME    = 1154,
+    MSK_RES_ERR_LP_FREE_CONSTRAINT     = 1155,
+    MSK_RES_ERR_WRITE_OPF_INVALID_VAR_NAME = 1156,
+    MSK_RES_ERR_LP_FILE_FORMAT         = 1157,
+    MSK_RES_ERR_WRITE_LP_FORMAT        = 1158,
+    MSK_RES_ERR_READ_LP_MISSING_END_TAG = 1159,
+    MSK_RES_ERR_LP_FORMAT              = 1160,
+    MSK_RES_ERR_WRITE_LP_NON_UNIQUE_NAME = 1161,
+    MSK_RES_ERR_READ_LP_NONEXISTING_NAME = 1162,
+    MSK_RES_ERR_LP_WRITE_CONIC_PROBLEM = 1163,
+    MSK_RES_ERR_LP_WRITE_GECO_PROBLEM  = 1164,
+    MSK_RES_ERR_WRITING_FILE           = 1166,
+    MSK_RES_ERR_OPF_FORMAT             = 1168,
+    MSK_RES_ERR_OPF_NEW_VARIABLE       = 1169,
+    MSK_RES_ERR_INVALID_NAME_IN_SOL_FILE = 1170,
+    MSK_RES_ERR_LP_INVALID_CON_NAME    = 1171,
+    MSK_RES_ERR_OPF_PREMATURE_EOF      = 1172,
+    MSK_RES_ERR_ARGUMENT_LENNEQ        = 1197,
+    MSK_RES_ERR_ARGUMENT_TYPE          = 1198,
+    MSK_RES_ERR_NR_ARGUMENTS           = 1199,
+    MSK_RES_ERR_IN_ARGUMENT            = 1200,
+    MSK_RES_ERR_ARGUMENT_DIMENSION     = 1201,
+    MSK_RES_ERR_INDEX_IS_TOO_SMALL     = 1203,
+    MSK_RES_ERR_INDEX_IS_TOO_LARGE     = 1204,
+    MSK_RES_ERR_PARAM_NAME             = 1205,
+    MSK_RES_ERR_PARAM_NAME_DOU         = 1206,
+    MSK_RES_ERR_PARAM_NAME_INT         = 1207,
+    MSK_RES_ERR_PARAM_NAME_STR         = 1208,
+    MSK_RES_ERR_PARAM_INDEX            = 1210,
+    MSK_RES_ERR_PARAM_IS_TOO_LARGE     = 1215,
+    MSK_RES_ERR_PARAM_IS_TOO_SMALL     = 1216,
+    MSK_RES_ERR_PARAM_VALUE_STR        = 1217,
+    MSK_RES_ERR_PARAM_TYPE             = 1218,
+    MSK_RES_ERR_INF_DOU_INDEX          = 1219,
+    MSK_RES_ERR_INF_INT_INDEX          = 1220,
+    MSK_RES_ERR_INDEX_ARR_IS_TOO_SMALL = 1221,
+    MSK_RES_ERR_INDEX_ARR_IS_TOO_LARGE = 1222,
+    MSK_RES_ERR_INF_LINT_INDEX         = 1225,
+    MSK_RES_ERR_INF_DOU_NAME           = 1230,
+    MSK_RES_ERR_INF_INT_NAME           = 1231,
+    MSK_RES_ERR_INF_TYPE               = 1232,
+    MSK_RES_ERR_INF_LINT_NAME          = 1234,
+    MSK_RES_ERR_INDEX                  = 1235,
+    MSK_RES_ERR_WHICHSOL               = 1236,
+    MSK_RES_ERR_SOLITEM                = 1237,
+    MSK_RES_ERR_WHICHITEM_NOT_ALLOWED  = 1238,
+    MSK_RES_ERR_MAXNUMCON              = 1240,
+    MSK_RES_ERR_MAXNUMVAR              = 1241,
+    MSK_RES_ERR_MAXNUMQNZ              = 1243,
+    MSK_RES_ERR_NUMCONLIM              = 1250,
+    MSK_RES_ERR_NUMVARLIM              = 1251,
+    MSK_RES_ERR_TOO_SMALL_MAXNUMANZ    = 1252,
+    MSK_RES_ERR_INV_APTRE              = 1253,
+    MSK_RES_ERR_MUL_A_ELEMENT          = 1254,
+    MSK_RES_ERR_INV_BK                 = 1255,
+    MSK_RES_ERR_INV_BKC                = 1256,
+    MSK_RES_ERR_INV_BKX                = 1257,
+    MSK_RES_ERR_INV_VAR_TYPE           = 1258,
+    MSK_RES_ERR_SOLVER_PROBTYPE        = 1259,
+    MSK_RES_ERR_OBJECTIVE_RANGE        = 1260,
+    MSK_RES_ERR_FIRST                  = 1261,
+    MSK_RES_ERR_LAST                   = 1262,
+    MSK_RES_ERR_NEGATIVE_SURPLUS       = 1263,
+    MSK_RES_ERR_NEGATIVE_APPEND        = 1264,
+    MSK_RES_ERR_UNDEF_SOLUTION         = 1265,
+    MSK_RES_ERR_BASIS                  = 1266,
+    MSK_RES_ERR_INV_SKC                = 1267,
+    MSK_RES_ERR_INV_SKX                = 1268,
+    MSK_RES_ERR_INV_SK_STR             = 1269,
+    MSK_RES_ERR_INV_SK                 = 1270,
+    MSK_RES_ERR_INV_CONE_TYPE_STR      = 1271,
+    MSK_RES_ERR_INV_CONE_TYPE          = 1272,
+    MSK_RES_ERR_INV_SKN                = 1274,
+    MSK_RES_ERR_INVALID_SURPLUS        = 1275,
+    MSK_RES_ERR_INV_NAME_ITEM          = 1280,
+    MSK_RES_ERR_PRO_ITEM               = 1281,
+    MSK_RES_ERR_INVALID_FORMAT_TYPE    = 1283,
+    MSK_RES_ERR_FIRSTI                 = 1285,
+    MSK_RES_ERR_LASTI                  = 1286,
+    MSK_RES_ERR_FIRSTJ                 = 1287,
+    MSK_RES_ERR_LASTJ                  = 1288,
+    MSK_RES_ERR_NONLINEAR_EQUALITY     = 1290,
+    MSK_RES_ERR_NONCONVEX              = 1291,
+    MSK_RES_ERR_NONLINEAR_RANGED       = 1292,
+    MSK_RES_ERR_CON_Q_NOT_PSD          = 1293,
+    MSK_RES_ERR_CON_Q_NOT_NSD          = 1294,
+    MSK_RES_ERR_OBJ_Q_NOT_PSD          = 1295,
+    MSK_RES_ERR_OBJ_Q_NOT_NSD          = 1296,
+    MSK_RES_ERR_ARGUMENT_PERM_ARRAY    = 1299,
+    MSK_RES_ERR_CONE_INDEX             = 1300,
+    MSK_RES_ERR_CONE_SIZE              = 1301,
+    MSK_RES_ERR_CONE_OVERLAP           = 1302,
+    MSK_RES_ERR_CONE_REP_VAR           = 1303,
+    MSK_RES_ERR_MAXNUMCONE             = 1304,
+    MSK_RES_ERR_CONE_TYPE              = 1305,
+    MSK_RES_ERR_CONE_TYPE_STR          = 1306,
+    MSK_RES_ERR_REMOVE_CONE_VARIABLE   = 1310,
+    MSK_RES_ERR_SOL_FILE_INVALID_NUMBER = 1350,
+    MSK_RES_ERR_HUGE_C                 = 1375,
+    MSK_RES_ERR_HUGE_AIJ               = 1380,
+    MSK_RES_ERR_INFINITE_BOUND         = 1400,
+    MSK_RES_ERR_INV_QOBJ_SUBI          = 1401,
+    MSK_RES_ERR_INV_QOBJ_SUBJ          = 1402,
+    MSK_RES_ERR_INV_QOBJ_VAL           = 1403,
+    MSK_RES_ERR_INV_QCON_SUBK          = 1404,
+    MSK_RES_ERR_INV_QCON_SUBI          = 1405,
+    MSK_RES_ERR_INV_QCON_SUBJ          = 1406,
+    MSK_RES_ERR_INV_QCON_VAL           = 1407,
+    MSK_RES_ERR_QCON_SUBI_TOO_SMALL    = 1408,
+    MSK_RES_ERR_QCON_SUBI_TOO_LARGE    = 1409,
+    MSK_RES_ERR_QOBJ_UPPER_TRIANGLE    = 1415,
+    MSK_RES_ERR_QCON_UPPER_TRIANGLE    = 1417,
+    MSK_RES_ERR_FIXED_BOUND_VALUES     = 1425,
+    MSK_RES_ERR_USER_FUNC_RET          = 1430,
+    MSK_RES_ERR_USER_FUNC_RET_DATA     = 1431,
+    MSK_RES_ERR_USER_NLO_FUNC          = 1432,
+    MSK_RES_ERR_USER_NLO_EVAL          = 1433,
+    MSK_RES_ERR_USER_NLO_EVAL_HESSUBI  = 1440,
+    MSK_RES_ERR_USER_NLO_EVAL_HESSUBJ  = 1441,
+    MSK_RES_ERR_INVALID_OBJECTIVE_SENSE = 1445,
+    MSK_RES_ERR_UNDEFINED_OBJECTIVE_SENSE = 1446,
+    MSK_RES_ERR_Y_IS_UNDEFINED         = 1449,
+    MSK_RES_ERR_NAN_IN_DOUBLE_DATA     = 1450,
+    MSK_RES_ERR_NAN_IN_BLC             = 1461,
+    MSK_RES_ERR_NAN_IN_BUC             = 1462,
+    MSK_RES_ERR_NAN_IN_C               = 1470,
+    MSK_RES_ERR_NAN_IN_BLX             = 1471,
+    MSK_RES_ERR_NAN_IN_BUX             = 1472,
+    MSK_RES_ERR_NAN_IN_AIJ             = 1473,
+    MSK_RES_ERR_INV_PROBLEM            = 1500,
+    MSK_RES_ERR_MIXED_PROBLEM          = 1501,
+    MSK_RES_ERR_INV_OPTIMIZER          = 1550,
+    MSK_RES_ERR_MIO_NO_OPTIMIZER       = 1551,
+    MSK_RES_ERR_NO_OPTIMIZER_VAR_TYPE  = 1552,
+    MSK_RES_ERR_MIO_NOT_LOADED         = 1553,
+    MSK_RES_ERR_POSTSOLVE              = 1580,
+    MSK_RES_ERR_OVERFLOW               = 1590,
+    MSK_RES_ERR_NO_BASIS_SOL           = 1600,
+    MSK_RES_ERR_BASIS_FACTOR           = 1610,
+    MSK_RES_ERR_BASIS_SINGULAR         = 1615,
+    MSK_RES_ERR_FACTOR                 = 1650,
+    MSK_RES_ERR_FEASREPAIR_CANNOT_RELAX = 1700,
+    MSK_RES_ERR_FEASREPAIR_SOLVING_RELAXED = 1701,
+    MSK_RES_ERR_FEASREPAIR_INCONSISTENT_BOUND = 1702,
+    MSK_RES_ERR_NAME_MAX_LEN           = 1750,
+    MSK_RES_ERR_NAME_IS_NULL           = 1760,
+    MSK_RES_ERR_INVALID_COMPRESSION    = 1800,
+    MSK_RES_ERR_INVALID_IOMODE         = 1801,
+    MSK_RES_ERR_NO_PRIMAL_INFEAS_CER   = 2000,
+    MSK_RES_ERR_NO_DUAL_INFEAS_CER     = 2001,
+    MSK_RES_ERR_NO_SOLUTION_IN_CALLBACK = 2500,
+    MSK_RES_ERR_INV_MARKI              = 2501,
+    MSK_RES_ERR_INV_MARKJ              = 2502,
+    MSK_RES_ERR_INV_NUMI               = 2503,
+    MSK_RES_ERR_INV_NUMJ               = 2504,
+    MSK_RES_ERR_CANNOT_CLONE_NL        = 2505,
+    MSK_RES_ERR_CANNOT_HANDLE_NL       = 2506,
+    MSK_RES_ERR_INVALID_ACCMODE        = 2520,
+    MSK_RES_ERR_MBT_INCOMPATIBLE       = 2550,
+    MSK_RES_ERR_LU_MAX_NUM_TRIES       = 2800,
+    MSK_RES_ERR_INVALID_UTF8           = 2900,
+    MSK_RES_ERR_INVALID_WCHAR          = 2901,
+    MSK_RES_ERR_NO_DUAL_FOR_ITG_SOL    = 2950,
+    MSK_RES_ERR_INTERNAL               = 3000,
+    MSK_RES_ERR_API_ARRAY_TOO_SMALL    = 3001,
+    MSK_RES_ERR_API_CB_CONNECT         = 3002,
+    MSK_RES_ERR_API_FATAL_ERROR        = 3005,
+    MSK_RES_ERR_SEN_FORMAT             = 3050,
+    MSK_RES_ERR_SEN_UNDEF_NAME         = 3051,
+    MSK_RES_ERR_SEN_INDEX_RANGE        = 3052,
+    MSK_RES_ERR_SEN_BOUND_INVALID_UP   = 3053,
+    MSK_RES_ERR_SEN_BOUND_INVALID_LO   = 3054,
+    MSK_RES_ERR_SEN_INDEX_INVALID      = 3055,
+    MSK_RES_ERR_SEN_INVALID_REGEXP     = 3056,
+    MSK_RES_ERR_SEN_SOLUTION_STATUS    = 3057,
+    MSK_RES_ERR_SEN_NUMERICAL          = 3058,
+    MSK_RES_ERR_CONCURRENT_OPTIMIZER   = 3059,
+    MSK_RES_ERR_UNB_STEP_SIZE          = 3100,
+    MSK_RES_ERR_IDENTICAL_TASKS        = 3101,
+    MSK_RES_ERR_AD_INVALID_CODELIST    = 3102,
+    MSK_RES_ERR_AD_INVALID_OPERATOR    = 3103,
+    MSK_RES_ERR_AD_INVALID_OPERAND     = 3104,
+    MSK_RES_ERR_AD_MISSING_OPERAND     = 3105,
+    MSK_RES_ERR_AD_MISSING_RETURN      = 3106,
+    MSK_RES_ERR_INVALID_BRANCH_DIRECTION = 3200,
+    MSK_RES_ERR_INVALID_BRANCH_PRIORITY = 3201,
+    MSK_RES_ERR_INTERNAL_TEST_FAILED   = 3500,
+    MSK_RES_ERR_XML_INVALID_PROBLEM_TYPE = 3600,
+    MSK_RES_ERR_INVALID_AMPL_STUB      = 3700,
+    MSK_RES_ERR_INT64_TO_INT32_CAST    = 3800,
+    MSK_RES_ERR_SIZE_LICENSE_NUMCORES  = 3900,
+    MSK_RES_ERR_INFEAS_UNDEFINED       = 3910,
+    MSK_RES_ERR_API_INTERNAL           = 3999,
+    MSK_RES_TRM_MAX_ITERATIONS         = 4000,
+    MSK_RES_TRM_MAX_TIME               = 4001,
+    MSK_RES_TRM_OBJECTIVE_RANGE        = 4002,
+    MSK_RES_TRM_MIO_NEAR_REL_GAP       = 4003,
+    MSK_RES_TRM_MIO_NEAR_ABS_GAP       = 4004,
+    MSK_RES_TRM_USER_BREAK             = 4005,
+    MSK_RES_TRM_STALL                  = 4006,
+    MSK_RES_TRM_USER_CALLBACK          = 4007,
+    MSK_RES_TRM_MIO_NUM_RELAXS         = 4008,
+    MSK_RES_TRM_MIO_NUM_BRANCHES       = 4009,
+    MSK_RES_TRM_NUM_MAX_NUM_INT_SOLUTIONS = 4015,
+    MSK_RES_TRM_MAX_NUM_SETBACKS       = 4020,
+    MSK_RES_TRM_NUMERICAL_PROBLEM      = 4025,
+    MSK_RES_TRM_INTERNAL               = 4030,
+    MSK_RES_TRM_INTERNAL_STOP          = 4031
+  );
+
+(* Mixed-integer node selection types *)
+const
+  MSK_MIO_NODE_SELECTION_PSEUDO        = 5;
+  MSK_MIO_NODE_SELECTION_HYBRID        = 4;
+  MSK_MIO_NODE_SELECTION_FREE          = 0;
+  MSK_MIO_NODE_SELECTION_WORST         = 3;
+  MSK_MIO_NODE_SELECTION_BEST          = 2;
+  MSK_MIO_NODE_SELECTION_FIRST         = 1;
+
+(* On/off *)
+const
+  MSK_ON                               = 1;
+  MSK_OFF                              = 0;
+
+(* Degeneracy strategies *)
+type
+  MSKsimdegen =
+  (
+    MSK_SIM_DEGEN_NONE                 = 0,
+    MSK_SIM_DEGEN_FREE                 = 1,
+    MSK_SIM_DEGEN_AGGRESSIVE           = 2,
+    MSK_SIM_DEGEN_MODERATE             = 3,
+    MSK_SIM_DEGEN_MINIMUM              = 4
+  );
+
+(* Data format types *)
+const
+  MSK_DATA_FORMAT_XML                  = 5;
+  MSK_DATA_FORMAT_FREE_MPS             = 6;
+  MSK_DATA_FORMAT_EXTENSION            = 0;
+  MSK_DATA_FORMAT_MPS                  = 1;
+  MSK_DATA_FORMAT_LP                   = 2;
+  MSK_DATA_FORMAT_MBT                  = 3;
+  MSK_DATA_FORMAT_OP                   = 4;
+
+(* Ordering strategies *)
+const
+  MSK_ORDER_METHOD_NONE                = 5;
+  MSK_ORDER_METHOD_APPMINLOC2          = 2;
+  MSK_ORDER_METHOD_APPMINLOC1          = 1;
+  MSK_ORDER_METHOD_GRAPHPAR2           = 4;
+  MSK_ORDER_METHOD_FREE                = 0;
+  MSK_ORDER_METHOD_GRAPHPAR1           = 3;
+
+(* Problem types *)
+type
+  MSKproblemtype =
+  (
+    MSK_PROBTYPE_LO                    = 0,
+    MSK_PROBTYPE_QO                    = 1,
+    MSK_PROBTYPE_QCQO                  = 2,
+    MSK_PROBTYPE_GECO                  = 3,
+    MSK_PROBTYPE_CONIC                 = 4,
+    MSK_PROBTYPE_MIXED                 = 5
+  );
+
+(* Information item types *)
+type
+  MSKinftype =
+  (
+    MSK_INF_DOU_TYPE                   = 0,
+    MSK_INF_INT_TYPE                   = 1,
+    MSK_INF_LINT_TYPE                  = 2
+  );
+
+(* Presolve method. *)
+const
+  MSK_PRESOLVE_MODE_ON                 = 1;
+  MSK_PRESOLVE_MODE_OFF                = 0;
+  MSK_PRESOLVE_MODE_FREE               = 2;
+
+(* Double parameters *)
+type
+  MSKdparam =
+  (
+    MSK_DPAR_ANA_SOL_INFEAS_TOL        = 0,
+    MSK_DPAR_BASIS_REL_TOL_S           = 1,
+    MSK_DPAR_BASIS_TOL_S               = 2,
+    MSK_DPAR_BASIS_TOL_X               = 3,
+    MSK_DPAR_CALLBACK_FREQ             = 4,
+    MSK_DPAR_CHECK_CONVEXITY_REL_TOL   = 5,
+    MSK_DPAR_DATA_TOL_AIJ              = 6,
+    MSK_DPAR_DATA_TOL_AIJ_HUGE         = 7,
+    MSK_DPAR_DATA_TOL_AIJ_LARGE        = 8,
+    MSK_DPAR_DATA_TOL_BOUND_INF        = 9,
+    MSK_DPAR_DATA_TOL_BOUND_WRN        = 10,
+    MSK_DPAR_DATA_TOL_C_HUGE           = 11,
+    MSK_DPAR_DATA_TOL_CJ_LARGE         = 12,
+    MSK_DPAR_DATA_TOL_QIJ              = 13,
+    MSK_DPAR_DATA_TOL_X                = 14,
+    MSK_DPAR_FEASREPAIR_TOL            = 15,
+    MSK_DPAR_INTPNT_CO_TOL_DFEAS       = 16,
+    MSK_DPAR_INTPNT_CO_TOL_INFEAS      = 17,
+    MSK_DPAR_INTPNT_CO_TOL_MU_RED      = 18,
+    MSK_DPAR_INTPNT_CO_TOL_NEAR_REL    = 19,
+    MSK_DPAR_INTPNT_CO_TOL_PFEAS       = 20,
+    MSK_DPAR_INTPNT_CO_TOL_REL_GAP     = 21,
+    MSK_DPAR_INTPNT_NL_MERIT_BAL       = 22,
+    MSK_DPAR_INTPNT_NL_TOL_DFEAS       = 23,
+    MSK_DPAR_INTPNT_NL_TOL_MU_RED      = 24,
+    MSK_DPAR_INTPNT_NL_TOL_NEAR_REL    = 25,
+    MSK_DPAR_INTPNT_NL_TOL_PFEAS       = 26,
+    MSK_DPAR_INTPNT_NL_TOL_REL_GAP     = 27,
+    MSK_DPAR_INTPNT_NL_TOL_REL_STEP    = 28,
+    MSK_DPAR_INTPNT_TOL_DFEAS          = 29,
+    MSK_DPAR_INTPNT_TOL_DSAFE          = 30,
+    MSK_DPAR_INTPNT_TOL_INFEAS         = 31,
+    MSK_DPAR_INTPNT_TOL_MU_RED         = 32,
+    MSK_DPAR_INTPNT_TOL_PATH           = 33,
+    MSK_DPAR_INTPNT_TOL_PFEAS          = 34,
+    MSK_DPAR_INTPNT_TOL_PSAFE          = 35,
+    MSK_DPAR_INTPNT_TOL_REL_GAP        = 36,
+    MSK_DPAR_INTPNT_TOL_REL_STEP       = 37,
+    MSK_DPAR_INTPNT_TOL_STEP_SIZE      = 38,
+    MSK_DPAR_LOWER_OBJ_CUT             = 39,
+    MSK_DPAR_LOWER_OBJ_CUT_FINITE_TRH  = 40,
+    MSK_DPAR_MIO_DISABLE_TERM_TIME     = 41,
+    MSK_DPAR_MIO_HEURISTIC_TIME        = 42,
+    MSK_DPAR_MIO_MAX_TIME              = 43,
+    MSK_DPAR_MIO_MAX_TIME_APRX_OPT     = 44,
+    MSK_DPAR_MIO_NEAR_TOL_ABS_GAP      = 45,
+    MSK_DPAR_MIO_NEAR_TOL_REL_GAP      = 46,
+    MSK_DPAR_MIO_REL_ADD_CUT_LIMITED   = 47,
+    MSK_DPAR_MIO_REL_GAP_CONST         = 48,
+    MSK_DPAR_MIO_TOL_ABS_GAP           = 49,
+    MSK_DPAR_MIO_TOL_ABS_RELAX_INT     = 50,
+    MSK_DPAR_MIO_TOL_FEAS              = 51,
+    MSK_DPAR_MIO_TOL_REL_GAP           = 52,
+    MSK_DPAR_MIO_TOL_REL_RELAX_INT     = 53,
+    MSK_DPAR_MIO_TOL_X                 = 54,
+    MSK_DPAR_NONCONVEX_TOL_FEAS        = 55,
+    MSK_DPAR_NONCONVEX_TOL_OPT         = 56,
+    MSK_DPAR_OPTIMIZER_MAX_TIME        = 57,
+    MSK_DPAR_PRESOLVE_TOL_AIJ          = 58,
+    MSK_DPAR_PRESOLVE_TOL_LIN_DEP      = 59,
+    MSK_DPAR_PRESOLVE_TOL_S            = 60,
+    MSK_DPAR_PRESOLVE_TOL_X            = 61,
+    MSK_DPAR_QCQO_REFORMULATE_REL_DROP_TOL = 62,
+    MSK_DPAR_SIM_LU_TOL_REL_PIV        = 63,
+    MSK_DPAR_SIMPLEX_ABS_TOL_PIV       = 64,
+    MSK_DPAR_UPPER_OBJ_CUT             = 65,
+    MSK_DPAR_UPPER_OBJ_CUT_FINITE_TRH  = 66
+  );
+
+(* Exploit duplicate columns. *)
+type
+  MSKsimdupvec =
+  (
+    MSK_SIM_EXPLOIT_DUPVEC_OFF         = 0,
+    MSK_SIM_EXPLOIT_DUPVEC_ON          = 1,
+    MSK_SIM_EXPLOIT_DUPVEC_FREE        = 2
+  );
+
+(* Network detection method *)
+const
+  MSK_NETWORK_DETECT_SIMPLE            = 1;
+  MSK_NETWORK_DETECT_ADVANCED          = 2;
+  MSK_NETWORK_DETECT_FREE              = 0;
+
+(* Compression types *)
+const
+  MSK_COMPRESS_GZIP                    = 2;
+  MSK_COMPRESS_NONE                    = 0;
+  MSK_COMPRESS_FREE                    = 1;
+
+(* MPS file format type *)
+const
+  MSK_MPS_FORMAT_STRICT                = 0;
+  MSK_MPS_FORMAT_RELAXED               = 1;
+  MSK_MPS_FORMAT_FREE                  = 2;
+
+(* Variable types *)
+type
+  MSKvariabletype =
+  (
+    MSK_VAR_TYPE_CONT                  = 0,
+    MSK_VAR_TYPE_INT                   = 1
+  );
+
+(* Types of convexity checks. *)
+const
+  MSK_CHECK_CONVEXITY_SIMPLE           = 1;
+  MSK_CHECK_CONVEXITY_NONE             = 0;
+  MSK_CHECK_CONVEXITY_FULL             = 2;
+
+(* Language selection constants *)
+type
+  MSKlanguage =
+  (
+    MSK_LANG_ENG                       = 0,
+    MSK_LANG_DAN                       = 1
+  );
+
+(* Starting point types *)
+const
+  MSK_STARTING_POINT_GUESS             = 1;
+  MSK_STARTING_POINT_SATISFY_BOUNDS    = 3;
+  MSK_STARTING_POINT_CONSTANT          = 2;
+  MSK_STARTING_POINT_FREE              = 0;
+
+(* Solution types *)
+type
+  MSKsoltype =
+  (
+    MSK_SOL_ITR                        = 0,
+    MSK_SOL_BAS                        = 1,
+    MSK_SOL_ITG                        = 2
+  );
+
+(* Scaling type *)
+const
+  MSK_SCALING_METHOD_POW2              = 0;
+  MSK_SCALING_METHOD_FREE              = 1;
+
+(* Integer values *)
+const
+  MSK_MAX_STR_LEN                      = 1024;
+  MSK_LICENSE_BUFFER_LENGTH            = 20;
+
+(* Status keys *)
+type
+  MSKstakey =
+  (
+    MSK_SK_UNK                         = 0,
+    MSK_SK_BAS                         = 1,
+    MSK_SK_SUPBAS                      = 2,
+    MSK_SK_LOW                         = 3,
+    MSK_SK_UPR                         = 4,
+    MSK_SK_FIX                         = 5,
+    MSK_SK_INF                         = 6
+  );
+
+(* Problem reformulation. *)
+type
+  MSKsimreform =
+  (
+    MSK_SIM_REFORMULATION_OFF          = 0,
+    MSK_SIM_REFORMULATION_ON           = 1,
+    MSK_SIM_REFORMULATION_FREE         = 2,
+    MSK_SIM_REFORMULATION_AGGRESSIVE   = 3
+  );
+
+(* Integer information items. *)
+type
+  MSKiinfitem =
+  (
+    MSK_IINF_ANA_PRO_NUM_CON           = 0,
+    MSK_IINF_ANA_PRO_NUM_CON_EQ        = 1,
+    MSK_IINF_ANA_PRO_NUM_CON_FR        = 2,
+    MSK_IINF_ANA_PRO_NUM_CON_LO        = 3,
+    MSK_IINF_ANA_PRO_NUM_CON_RA        = 4,
+    MSK_IINF_ANA_PRO_NUM_CON_UP        = 5,
+    MSK_IINF_ANA_PRO_NUM_VAR           = 6,
+    MSK_IINF_ANA_PRO_NUM_VAR_BIN       = 7,
+    MSK_IINF_ANA_PRO_NUM_VAR_CONT      = 8,
+    MSK_IINF_ANA_PRO_NUM_VAR_EQ        = 9,
+    MSK_IINF_ANA_PRO_NUM_VAR_FR        = 10,
+    MSK_IINF_ANA_PRO_NUM_VAR_INT       = 11,
+    MSK_IINF_ANA_PRO_NUM_VAR_LO        = 12,
+    MSK_IINF_ANA_PRO_NUM_VAR_RA        = 13,
+    MSK_IINF_ANA_PRO_NUM_VAR_UP        = 14,
+    MSK_IINF_CACHE_SIZE_L1             = 15,
+    MSK_IINF_CACHE_SIZE_L2             = 16,
+    MSK_IINF_CONCURRENT_FASTEST_OPTIMIZER = 17,
+    MSK_IINF_CPU_TYPE                  = 18,
+    MSK_IINF_INTPNT_FACTOR_NUM_OFFCOL  = 19,
+    MSK_IINF_INTPNT_ITER               = 20,
+    MSK_IINF_INTPNT_NUM_THREADS        = 21,
+    MSK_IINF_INTPNT_SOLVE_DUAL         = 22,
+    MSK_IINF_MIO_CONSTRUCT_SOLUTION    = 23,
+    MSK_IINF_MIO_INITIAL_SOLUTION      = 24,
+    MSK_IINF_MIO_NUM_ACTIVE_NODES      = 25,
+    MSK_IINF_MIO_NUM_BRANCH            = 26,
+    MSK_IINF_MIO_NUM_CUTS              = 27,
+    MSK_IINF_MIO_NUM_INT_SOLUTIONS     = 28,
+    MSK_IINF_MIO_NUM_RELAX             = 29,
+    MSK_IINF_MIO_NUMCON                = 30,
+    MSK_IINF_MIO_NUMINT                = 31,
+    MSK_IINF_MIO_NUMVAR                = 32,
+    MSK_IINF_MIO_TOTAL_NUM_BASIS_CUTS  = 33,
+    MSK_IINF_MIO_TOTAL_NUM_BRANCH      = 34,
+    MSK_IINF_MIO_TOTAL_NUM_CARDGUB_CUTS = 35,
+    MSK_IINF_MIO_TOTAL_NUM_CLIQUE_CUTS = 36,
+    MSK_IINF_MIO_TOTAL_NUM_COEF_REDC_CUTS = 37,
+    MSK_IINF_MIO_TOTAL_NUM_CONTRA_CUTS = 38,
+    MSK_IINF_MIO_TOTAL_NUM_CUTS        = 39,
+    MSK_IINF_MIO_TOTAL_NUM_DISAGG_CUTS = 40,
+    MSK_IINF_MIO_TOTAL_NUM_FLOW_COVER_CUTS = 41,
+    MSK_IINF_MIO_TOTAL_NUM_GCD_CUTS    = 42,
+    MSK_IINF_MIO_TOTAL_NUM_GOMORY_CUTS = 43,
+    MSK_IINF_MIO_TOTAL_NUM_GUB_COVER_CUTS = 44,
+    MSK_IINF_MIO_TOTAL_NUM_KNAPSUR_COVER_CUTS = 45,
+    MSK_IINF_MIO_TOTAL_NUM_LATTICE_CUTS = 46,
+    MSK_IINF_MIO_TOTAL_NUM_LIFT_CUTS   = 47,
+    MSK_IINF_MIO_TOTAL_NUM_OBJ_CUTS    = 48,
+    MSK_IINF_MIO_TOTAL_NUM_PLAN_LOC_CUTS = 49,
+    MSK_IINF_MIO_TOTAL_NUM_RELAX       = 50,
+    MSK_IINF_MIO_USER_OBJ_CUT          = 51,
+    MSK_IINF_OPT_NUMCON                = 52,
+    MSK_IINF_OPT_NUMVAR                = 53,
+    MSK_IINF_OPTIMIZE_RESPONSE         = 54,
+    MSK_IINF_RD_NUMCON                 = 55,
+    MSK_IINF_RD_NUMCONE                = 56,
+    MSK_IINF_RD_NUMINTVAR              = 57,
+    MSK_IINF_RD_NUMQ                   = 58,
+    MSK_IINF_RD_NUMVAR                 = 59,
+    MSK_IINF_RD_PROTYPE                = 60,
+    MSK_IINF_SIM_DUAL_DEG_ITER         = 61,
+    MSK_IINF_SIM_DUAL_HOTSTART         = 62,
+    MSK_IINF_SIM_DUAL_HOTSTART_LU      = 63,
+    MSK_IINF_SIM_DUAL_INF_ITER         = 64,
+    MSK_IINF_SIM_DUAL_ITER             = 65,
+    MSK_IINF_SIM_NETWORK_DUAL_DEG_ITER = 66,
+    MSK_IINF_SIM_NETWORK_DUAL_HOTSTART = 67,
+    MSK_IINF_SIM_NETWORK_DUAL_HOTSTART_LU = 68,
+    MSK_IINF_SIM_NETWORK_DUAL_INF_ITER = 69,
+    MSK_IINF_SIM_NETWORK_DUAL_ITER     = 70,
+    MSK_IINF_SIM_NETWORK_PRIMAL_DEG_ITER = 71,
+    MSK_IINF_SIM_NETWORK_PRIMAL_HOTSTART = 72,
+    MSK_IINF_SIM_NETWORK_PRIMAL_HOTSTART_LU = 73,
+    MSK_IINF_SIM_NETWORK_PRIMAL_INF_ITER = 74,
+    MSK_IINF_SIM_NETWORK_PRIMAL_ITER   = 75,
+    MSK_IINF_SIM_NUMCON                = 76,
+    MSK_IINF_SIM_NUMVAR                = 77,
+    MSK_IINF_SIM_PRIMAL_DEG_ITER       = 78,
+    MSK_IINF_SIM_PRIMAL_DUAL_DEG_ITER  = 79,
+    MSK_IINF_SIM_PRIMAL_DUAL_HOTSTART  = 80,
+    MSK_IINF_SIM_PRIMAL_DUAL_HOTSTART_LU = 81,
+    MSK_IINF_SIM_PRIMAL_DUAL_INF_ITER  = 82,
+    MSK_IINF_SIM_PRIMAL_DUAL_ITER      = 83,
+    MSK_IINF_SIM_PRIMAL_HOTSTART       = 84,
+    MSK_IINF_SIM_PRIMAL_HOTSTART_LU    = 85,
+    MSK_IINF_SIM_PRIMAL_INF_ITER       = 86,
+    MSK_IINF_SIM_PRIMAL_ITER           = 87,
+    MSK_IINF_SIM_SOLVE_DUAL            = 88,
+    MSK_IINF_SOL_BAS_PROSTA            = 89,
+    MSK_IINF_SOL_BAS_SOLSTA            = 90,
+    MSK_IINF_SOL_INT_PROSTA            = 91,
+    MSK_IINF_SOL_INT_SOLSTA            = 92,
+    MSK_IINF_SOL_ITR_PROSTA            = 93,
+    MSK_IINF_SOL_ITR_SOLSTA            = 94,
+    MSK_IINF_STO_NUM_A_CACHE_FLUSHES   = 95,
+    MSK_IINF_STO_NUM_A_REALLOC         = 96,
+    MSK_IINF_STO_NUM_A_TRANSPOSES      = 97
+  );
+
+(* XML writer output mode *)
+type
+  MSKxmlwriteroutputtype =
+  (
+    MSK_WRITE_XML_MODE_ROW             = 0,
+    MSK_WRITE_XML_MODE_COL             = 1
+  );
+
+(* Optimizer types *)
+const
+  MSK_OPTIMIZER_INTPNT                 = 1;
+  MSK_OPTIMIZER_CONCURRENT             = 10;
+  MSK_OPTIMIZER_MIXED_INT              = 8;
+  MSK_OPTIMIZER_DUAL_SIMPLEX           = 5;
+  MSK_OPTIMIZER_FREE                   = 0;
+  MSK_OPTIMIZER_PRIMAL_DUAL_SIMPLEX    = 6;
+  MSK_OPTIMIZER_CONIC                  = 2;
+  MSK_OPTIMIZER_NONCONVEX              = 9;
+  MSK_OPTIMIZER_QCONE                  = 3;
+  MSK_OPTIMIZER_PRIMAL_SIMPLEX         = 4;
+  MSK_OPTIMIZER_FREE_SIMPLEX           = 7;
+
+(* CPU type *)
+const
+  MSK_CPU_POWERPC_G5                   = 8;
+  MSK_CPU_INTEL_PM                     = 9;
+  MSK_CPU_GENERIC                      = 1;
+  MSK_CPU_UNKNOWN                      = 0;
+  MSK_CPU_AMD_OPTERON                  = 7;
+  MSK_CPU_INTEL_ITANIUM2               = 6;
+  MSK_CPU_AMD_ATHLON                   = 4;
+  MSK_CPU_HP_PARISC20                  = 5;
+  MSK_CPU_INTEL_P4                     = 3;
+  MSK_CPU_INTEL_P3                     = 2;
+  MSK_CPU_INTEL_CORE2                  = 10;
+
+(* Continuous mixed-integer solution type *)
+const
+  MSK_MIO_CONT_SOL_ITG                 = 2;
+  MSK_MIO_CONT_SOL_NONE                = 0;
+  MSK_MIO_CONT_SOL_ROOT                = 1;
+  MSK_MIO_CONT_SOL_ITG_REL             = 3;
+
+(************************************************************)
+(**  TYPES                                                 **)
+(************************************************************)
+type
+  MSKenv_t  = pointer;
+  MSKtask_t = pointer;
+  MSKfile_t = pointer;
+  MSKuserhandle_t = pointer;
+
+  MSKintt   = Integer; (* int32 *)
+  MSKoprt   = Integer; (* int32 *)
+  MSKlintt  = Integer; (* int32 - may become int64*)
+  MSKidxt   = Integer; (* int32 *)
+  MSKlidxt  = Integer; (* int32 - may become int64*)
+  MSKint32t  = Integer;
+  MSKuint32t = Word;
+  MSKint64t  = LongInt;
+  MSKuint64t = LongWord;
+
+  MSKrealt  = double;  (* 64 bit float *)
+
+  AMSKtask_t = array[0..High(integer) div SizeOf(MSKtask_t)  - 1] of MSKtask_t;
+  PMSKtask_t = ^ AMSKtask_t;
+
+  AMSKrealt = array[0..High(integer) div SizeOf(double)  - 1] of double;
+  PMSKrealt = ^ AMSKrealt;
+
+  AMSKidxt  = array[0..High(integer) div SizeOf(MSKidxt)  - 1] of MSKidxt;
+  AMSKlidxt = array[0..High(integer) div SizeOf(MSKlidxt) - 1] of MSKlidxt;
+  AMSKintt  = array[0..High(integer) div SizeOf(MSKintt)  - 1] of MSKintt;
+  AMSKlintt = array[0..High(integer) div SizeOf(MSKlintt) - 1] of MSKlintt;
+
+  PMSKidxt  = ^ AMSKidxt;
+  PMSKoprt  = ^ AMSKoprt;
+  PMSKlidxt = ^ AMSKlidxt;
+  PMSKintt  = ^ AMSKintt;
+  PMSKlintt = ^ AMSKlintt;
+  AMSKint32  = array[0..High(integer) div SizeOf(MSKint32)  - 1] of MSKint32t;
+  AMSKuint32 = array[0..High(integer) div SizeOf(MSKuint32) - 1] of MSKuint32t;
+  AMSKint64  = array[0..High(integer) div SizeOf(MSKint64)  - 1] of MSKint64t;
+  AMSKuint64 = array[0..High(integer) div SizeOf(MSKuint64) - 1] of MSKuint64t;
+  PMSKint32  = ^ AMSKint32;
+  PMSKuint32 = ^ AMSKiunt32;
+  PMSKint64  = ^ AMSKint64;
+  PMSKuint64 = ^ AMSKuint64;
+
+  MSKcallbackfunc = function  ( task : MSKtask_t; usrptr : pointer; caller : MSKcallbackcode ) : Longint; stdcall;
+  MSKstreamfunc   = procedure ( usrptr : pointer; str : PChar ); stdcall;
+  MSKctrlcfunc    = function  ( usrptr : pointer ) : Longint; stdcall;
+  MSKexitfunc     = procedure ( usrptr : pointer; file_ : PChar; line : Longint; msg : PChar ); stdcall;
+  MSKresponsefunc = function  ( usrptr : pointer; r : MSKrescode; msg : PChar) : MSKrescode; stdcall;
+
+  (* some dummy definitions *)
+  MSKfreefunc = pointer;
+  MSKmallocfunc = pointer;
+
+(************************************************************)
+(**  FUNCTIONS                                             **)
+(************************************************************)
+type
+  TMSK_analyzeproblem = function
+      (task        : MSKtask_t;
+       whichstream : MSKstreamtype) : MSKrescode; stdcall;
+
+  TMSK_analyzesolution = function
+      (task        : MSKtask_t;
+       whichstream : MSKstreamtype;
+       whichsol    : MSKsoltype) : MSKrescode; stdcall;
+
+  TMSK_initbasissolve = function
+      (task  : MSKtask_t;
+       basis : PMSKidxt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_solvewithbasis = function
+      (task      : MSKtask_t;
+       transp    : MSKintt;
+       var numnz : MSKintt;
+       sub       : PMSKidxt (* input/output *);
+       val       : PMSKrealt (* input/output *)) : MSKrescode; stdcall;
+
+  TMSK_basiscond = function
+      (task            : MSKtask_t;
+       out nrmbasis    : MSKrealt;
+       out nrminvbasis : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_append = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       num     : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_remove = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       num     : MSKintt;
+       sub     : PMSKintt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_appendcone = function
+      (task     : MSKtask_t;
+       conetype : MSKconetype;
+       conepar  : MSKrealt;
+       nummem   : MSKintt;
+       submem   : PMSKidxt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_removecone = function
+      (task : MSKtask_t;
+       k    : MSKidxt) : MSKrescode; stdcall;
+
+  TMSK_bktostr = function
+      (task : MSKtask_t;
+       bk   : MSKboundkey;
+       str  : PChar) : MSKrescode; stdcall;
+
+  TMSK_callbackcodetostr = function
+      (code            : MSKcallbackcode;
+       callbackcodestr : PChar) : MSKrescode; stdcall;
+
+  TMSK_chgbound = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       i       : MSKidxt;
+       lower   : MSKintt;
+       finite  : MSKintt;
+       value   : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_conetypetostr = function
+      (task     : MSKtask_t;
+       conetype : MSKconetype;
+       str      : PChar) : MSKrescode; stdcall;
+
+  TMSK_deletetask = function (var task : MSKtask_t) : MSKrescode; stdcall;
+  (* not translated: MSK_exceptiontask *)
+  (* not translated: MSK_echotask *)
+  TMSK_freetask = procedure
+      (task   : MSKtask_t;
+       buffer : pointer (* input only *)); stdcall;
+
+  TMSK_freedbgtask = procedure
+      (task   : MSKtask_t;
+       buffer : pointer (* input only *);
+       file_  : PChar;
+       line   : cardinal); stdcall;
+
+  TMSK_getaij = function
+      (task    : MSKtask_t;
+       i       : MSKidxt;
+       j       : MSKidxt;
+       out aij : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getapiecenumnz = function
+      (task      : MSKtask_t;
+       firsti    : MSKidxt;
+       lasti     : MSKidxt;
+       firstj    : MSKidxt;
+       lastj     : MSKidxt;
+       out numnz : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getavecnumnz = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       i       : MSKidxt;
+       out nzj : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getavec = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       i       : MSKidxt;
+       out nzi : MSKintt;
+       subi    : PMSKidxt (* output only *);
+       vali    : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getaslicenumnz = function
+      (task      : MSKtask_t;
+       accmode   : MSKaccmode;
+       first     : MSKidxt;
+       last      : MSKidxt;
+       out numnz : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getaslicenumnz64 = function
+      (task      : MSKtask_t;
+       accmode   : MSKaccmode;
+       first     : MSKidxt;
+       last      : MSKidxt;
+       out numnz : MSKint64t) : MSKrescode; stdcall;
+
+  TMSK_getaslice = function
+      (task     : MSKtask_t;
+       accmode  : MSKaccmode;
+       first    : MSKidxt;
+       last     : MSKidxt;
+       maxnumnz : MSKintt;
+       var surp : MSKintt;
+       ptrb     : PMSKintt (* output only *);
+       ptre     : PMSKlidxt (* output only *);
+       sub      : PMSKidxt (* output only *);
+       val      : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getaslice64 = function
+      (task     : MSKtask_t;
+       accmode  : MSKaccmode;
+       first    : MSKidxt;
+       last     : MSKidxt;
+       maxnumnz : MSKint64t;
+       var surp : MSKint64t;
+       ptrb     : PMSKint64t (* output only *);
+       ptre     : PMSKint64t (* output only *);
+       sub      : PMSKidxt (* output only *);
+       val      : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getaslicetrip = function
+      (task     : MSKtask_t;
+       accmode  : MSKaccmode;
+       first    : MSKidxt;
+       last     : MSKidxt;
+       maxnumnz : MSKintt;
+       var surp : MSKintt;
+       subi     : PMSKidxt (* output only *);
+       subj     : PMSKidxt (* output only *);
+       val      : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getbound = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       i       : MSKidxt;
+       out bk  : MSKboundkey;
+       out bl  : MSKrealt;
+       out bu  : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getboundslice = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       first   : MSKidxt;
+       last    : MSKidxt;
+       bk      : PMSKintt (* output only *);
+       bl      : PMSKrealt (* output only *);
+       bu      : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_putboundslice = function
+      (task  : MSKtask_t;
+       con   : MSKaccmode;
+       first : MSKidxt;
+       last  : MSKidxt;
+       bk    : PMSKintt (* input only *);
+       bl    : PMSKrealt (* input only *);
+       bu    : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_getc = function
+      (task : MSKtask_t;
+       c    : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getcallbackfunc = function
+      (task       : MSKtask_t;
+       out func   : MSKcallbackfunc;
+       out handle : MSKuserhandle_t) : MSKrescode; stdcall;
+
+  TMSK_getsolutionincallback = function
+      (task       : MSKtask_t;
+       where      : MSKcallbackcode;
+       whichsol   : MSKsoltype;
+       out prosta : MSKprosta;
+       out solsta : MSKsolsta;
+       skc        : PMSKintt (* output only *);
+       skx        : PMSKintt (* output only *);
+       skn        : PMSKintt (* output only *);
+       xc         : PMSKrealt (* output only *);
+       xx         : PMSKrealt (* output only *);
+       y          : PMSKrealt (* output only *);
+       slc        : PMSKrealt (* output only *);
+       suc        : PMSKrealt (* output only *);
+       slx        : PMSKrealt (* output only *);
+       sux        : PMSKrealt (* output only *);
+       snx        : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getcfix = function
+      (task     : MSKtask_t;
+       out cfix : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getcone = function
+      (task         : MSKtask_t;
+       k            : MSKidxt;
+       out conetype : MSKconetype;
+       out conepar  : MSKrealt;
+       out nummem   : MSKintt;
+       submem       : PMSKidxt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getconeinfo = function
+      (task         : MSKtask_t;
+       k            : MSKidxt;
+       out conetype : MSKconetype;
+       out conepar  : MSKrealt;
+       out nummem   : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getcslice = function
+      (task  : MSKtask_t;
+       first : MSKidxt;
+       last  : MSKidxt;
+       c     : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getdouinf = function
+      (task       : MSKtask_t;
+       whichdinf  : MSKdinfitem;
+       out dvalue : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getdouparam = function
+      (task         : MSKtask_t;
+       param        : MSKdparam;
+       out parvalue : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getdualobj = function
+      (task        : MSKtask_t;
+       whichsol    : MSKsoltype;
+       out dualobj : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getenv = function
+      (task    : MSKtask_t;
+       out env : MSKenv_t) : MSKrescode; stdcall;
+
+  TMSK_getinfindex = function
+      (task         : MSKtask_t;
+       inftype      : MSKinftype;
+       infname      : PChar;
+       out infindex : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getinfmax = function
+      (task    : MSKtask_t;
+       inftype : MSKinftype;
+       infmax  : PMSKintt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getinfname = function
+      (task     : MSKtask_t;
+       inftype  : MSKinftype;
+       whichinf : MSKintt;
+       infname  : PChar) : MSKrescode; stdcall;
+
+  TMSK_getintinf = function
+      (task       : MSKtask_t;
+       whichiinf  : MSKiinfitem;
+       out ivalue : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getlintinf = function
+      (task       : MSKtask_t;
+       whichliinf : MSKliinfitem;
+       out ivalue : MSKint64t) : MSKrescode; stdcall;
+
+  TMSK_getintparam = function
+      (task         : MSKtask_t;
+       param        : MSKiparam;
+       out parvalue : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getmaxnamelen = function
+      (task       : MSKtask_t;
+       out maxlen : cardinal) : MSKrescode; stdcall;
+
+  TMSK_getmaxnumanz = function
+      (task          : MSKtask_t;
+       out maxnumanz : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getmaxnumanz64 = function
+      (task          : MSKtask_t;
+       out maxnumanz : MSKint64t) : MSKrescode; stdcall;
+
+  TMSK_getmaxnumcon = function
+      (task          : MSKtask_t;
+       out maxnumcon : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getmaxnumvar = function
+      (task          : MSKtask_t;
+       out maxnumvar : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getnadouinf = function
+      (task       : MSKtask_t;
+       whichdinf  : PChar;
+       out dvalue : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getnadouparam = function
+      (task         : MSKtask_t;
+       paramname    : PChar;
+       out parvalue : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getnaintinf = function
+      (task        : MSKtask_t;
+       infitemname : PChar;
+       out ivalue  : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getnaintparam = function
+      (task         : MSKtask_t;
+       paramname    : PChar;
+       out parvalue : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getnamelen64 = function
+      (task      : MSKtask_t;
+       whichitem : MSKproblemitem;
+       i         : MSKidxt;
+       out len   : MSKint64t) : MSKrescode; stdcall;
+
+  TMSK_getname = function
+      (task      : MSKtask_t;
+       whichitem : MSKproblemitem;
+       i         : MSKidxt;
+       maxlen    : cardinal;
+       out len   : cardinal;
+       name      : PChar) : MSKrescode; stdcall;
+
+  TMSK_getname64 = function
+      (task      : MSKtask_t;
+       whichitem : MSKproblemitem;
+       i         : MSKidxt;
+       maxlen    : MSKint64t;
+       out len   : MSKint64t;
+       name      : PChar) : MSKrescode; stdcall;
+
+  TMSK_getnameapi64 = function
+      (task      : MSKtask_t;
+       whichitem : MSKproblemitem;
+       i         : MSKidxt;
+       maxlen    : MSKint64t;
+       name      : PChar) : MSKrescode; stdcall;
+
+  TMSK_getvarname = function
+      (task   : MSKtask_t;
+       i      : MSKidxt;
+       maxlen : cardinal;
+       name   : PChar) : MSKrescode; stdcall;
+
+  TMSK_getvarname64 = function
+      (task   : MSKtask_t;
+       i      : MSKidxt;
+       maxlen : MSKint64t;
+       name   : PChar) : MSKrescode; stdcall;
+
+  TMSK_getconname = function
+      (task   : MSKtask_t;
+       i      : MSKidxt;
+       maxlen : cardinal;
+       name   : PChar) : MSKrescode; stdcall;
+
+  TMSK_getconname64 = function
+      (task   : MSKtask_t;
+       i      : MSKidxt;
+       maxlen : MSKint64t;
+       name   : PChar) : MSKrescode; stdcall;
+
+  TMSK_getnameindex = function
+      (task      : MSKtask_t;
+       whichitem : MSKproblemitem;
+       name      : PChar;
+       out asgn  : MSKintt;
+       out index : MSKidxt) : MSKrescode; stdcall;
+
+  TMSK_getnastrparam = function
+      (task      : MSKtask_t;
+       paramname : PChar;
+       maxlen    : cardinal;
+       out len   : cardinal;
+       parvalue  : PChar) : MSKrescode; stdcall;
+
+  TMSK_getnumanz = function
+      (task       : MSKtask_t;
+       out numanz : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getnumanz64 = function
+      (task       : MSKtask_t;
+       out numanz : MSKint64t) : MSKrescode; stdcall;
+
+  TMSK_getnumcon = function
+      (task       : MSKtask_t;
+       out numcon : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getnumcone = function
+      (task        : MSKtask_t;
+       out numcone : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getnumconemem = function
+      (task       : MSKtask_t;
+       k          : MSKidxt;
+       out nummem : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getnumintvar = function
+      (task          : MSKtask_t;
+       out numintvar : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getnumparam = function
+      (task         : MSKtask_t;
+       partype      : MSKparametertype;
+       out numparam : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getnumqconknz = function
+      (task        : MSKtask_t;
+       k           : MSKidxt;
+       out numqcnz : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getnumqconknz64 = function
+      (task        : MSKtask_t;
+       k           : MSKidxt;
+       out numqcnz : MSKint64t) : MSKrescode; stdcall;
+
+  TMSK_getnumqobjnz = function
+      (task        : MSKtask_t;
+       out numqonz : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getnumqobjnz64 = function
+      (task        : MSKtask_t;
+       out numqonz : MSKint64t) : MSKrescode; stdcall;
+
+  TMSK_getnumvar = function
+      (task       : MSKtask_t;
+       out numvar : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getobjname = function
+      (task    : MSKtask_t;
+       maxlen  : cardinal;
+       out len : cardinal;
+       objname : PChar) : MSKrescode; stdcall;
+
+  TMSK_getobjname64 = function
+      (task    : MSKtask_t;
+       maxlen  : MSKint64t;
+       out len : MSKint64t;
+       objname : PChar) : MSKrescode; stdcall;
+
+  TMSK_getparamname = function
+      (task    : MSKtask_t;
+       partype : MSKparametertype;
+       param   : MSKintt;
+       parname : PChar) : MSKrescode; stdcall;
+
+  TMSK_getparammax = function
+      (task     : MSKtask_t;
+       partype  : MSKparametertype;
+       parammax : PMSKintt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_getprimalobj = function
+      (task          : MSKtask_t;
+       whichsol      : MSKsoltype;
+       out primalobj : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getprobtype = function
+      (task         : MSKtask_t;
+       out probtype : MSKproblemtype) : MSKrescode; stdcall;
+
+  TMSK_getqconk64 = function
+      (task        : MSKtask_t;
+       k           : MSKidxt;
+       maxnumqcnz  : MSKint64t;
+       var qcsurp  : MSKint64t;
+       out numqcnz : MSKint64t;
+       qcsubi      : PMSKidxt (* output only *);
+       qcsubj      : PMSKidxt (* output only *);
+       qcval       : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getqconk = function
+      (task        : MSKtask_t;
+       k           : MSKidxt;
+       maxnumqcnz  : MSKintt;
+       var qcsurp  : MSKintt;
+       out numqcnz : MSKintt;
+       qcsubi      : PMSKidxt (* output only *);
+       qcsubj      : PMSKidxt (* output only *);
+       qcval       : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getqobj = function
+      (task        : MSKtask_t;
+       maxnumqonz  : MSKintt;
+       var qosurp  : MSKintt;
+       out numqonz : MSKintt;
+       qosubi      : PMSKidxt (* output only *);
+       qosubj      : PMSKidxt (* output only *);
+       qoval       : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getqobj64 = function
+      (task        : MSKtask_t;
+       maxnumqonz  : MSKint64t;
+       var qosurp  : MSKint64t;
+       out numqonz : MSKint64t;
+       qosubi      : PMSKidxt (* output only *);
+       qosubj      : PMSKidxt (* output only *);
+       qoval       : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getqobjij = function
+      (task     : MSKtask_t;
+       i        : MSKidxt;
+       j        : MSKidxt;
+       out qoij : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getsolution = function
+      (task       : MSKtask_t;
+       whichsol   : MSKsoltype;
+       out prosta : MSKprosta;
+       out solsta : MSKsolsta;
+       skc        : PMSKintt (* output only *);
+       skx        : PMSKintt (* output only *);
+       skn        : PMSKintt (* output only *);
+       xc         : PMSKrealt (* output only *);
+       xx         : PMSKrealt (* output only *);
+       y          : PMSKrealt (* output only *);
+       slc        : PMSKrealt (* output only *);
+       suc        : PMSKrealt (* output only *);
+       slx        : PMSKrealt (* output only *);
+       sux        : PMSKrealt (* output only *);
+       snx        : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getpbi = function
+      (task      : MSKtask_t;
+       whichsol  : MSKsoltype;
+       accmode   : MSKaccmode;
+       sub       : PMSKidxt (* input only *);
+       len       : MSKintt;
+       pbi       : PMSKrealt (* output only *);
+       normalize : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getdbi = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype;
+       accmode  : MSKaccmode;
+       sub      : PMSKidxt (* input only *);
+       len      : MSKintt;
+       dbi      : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getdeqi = function
+      (task      : MSKtask_t;
+       whichsol  : MSKsoltype;
+       accmode   : MSKaccmode;
+       sub       : PMSKidxt (* input only *);
+       len       : MSKintt;
+       deqi      : PMSKrealt (* output only *);
+       normalize : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getpeqi = function
+      (task      : MSKtask_t;
+       whichsol  : MSKsoltype;
+       sub       : PMSKidxt (* input only *);
+       len       : MSKintt;
+       peqi      : PMSKrealt (* output only *);
+       normalize : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getinti = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype;
+       sub      : PMSKidxt (* input only *);
+       len      : MSKintt;
+       inti     : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getpcni = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype;
+       sub      : PMSKidxt (* input only *);
+       len      : MSKintt;
+       pcni     : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getdcni = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype;
+       sub      : PMSKidxt (* input only *);
+       len      : MSKintt;
+       dcni     : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getsolutioni = function
+      (task     : MSKtask_t;
+       accmode  : MSKaccmode;
+       i        : MSKidxt;
+       whichsol : MSKsoltype;
+       out sk   : MSKstakey;
+       out x    : MSKrealt;
+       out sl   : MSKrealt;
+       out su   : MSKrealt;
+       out sn   : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getsolutioninf = function
+      (task          : MSKtask_t;
+       whichsol      : MSKsoltype;
+       out prosta    : MSKprosta;
+       out solsta    : MSKsolsta;
+       out primalobj : MSKrealt;
+       out maxpbi    : MSKrealt;
+       out maxpcni   : MSKrealt;
+       out maxpeqi   : MSKrealt;
+       out maxinti   : MSKrealt;
+       out dualobj   : MSKrealt;
+       out maxdbi    : MSKrealt;
+       out maxdcni   : MSKrealt;
+       out maxdeqi   : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_getsolutionstatus = function
+      (task       : MSKtask_t;
+       whichsol   : MSKsoltype;
+       out prosta : MSKprosta;
+       out solsta : MSKsolsta) : MSKrescode; stdcall;
+
+  TMSK_getsolutionslice = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype;
+       solitem  : MSKsolitem;
+       first    : MSKidxt;
+       last     : MSKidxt;
+       values   : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getsolutionstatuskeyslice = function
+      (task     : MSKtask_t;
+       accmode  : MSKaccmode;
+       whichsol : MSKsoltype;
+       first    : MSKidxt;
+       last     : MSKidxt;
+       sk       : PMSKintt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getreducedcosts = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype;
+       first    : MSKidxt;
+       last     : MSKidxt;
+       redcosts : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_getstrparam = function
+      (task     : MSKtask_t;
+       param    : MSKsparam;
+       maxlen   : cardinal;
+       out len  : cardinal;
+       parvalue : PChar) : MSKrescode; stdcall;
+
+  TMSK_getstrparam64 = function
+      (task     : MSKtask_t;
+       param    : MSKsparam;
+       maxlen   : MSKint64t;
+       out len  : MSKint64t;
+       parvalue : PChar) : MSKrescode; stdcall;
+
+  TMSK_getstrparamal = function
+      (task      : MSKtask_t;
+       param     : MSKsparam;
+       numaddchr : cardinal;
+       value     : PPChar (* input/output *)) : MSKrescode; stdcall;
+
+  TMSK_getnastrparamal = function
+      (task      : MSKtask_t;
+       paramname : PChar;
+       numaddchr : cardinal;
+       value     : PPChar (* input/output *)) : MSKrescode; stdcall;
+
+  TMSK_getsymbcon = function
+      (task      : MSKtask_t;
+       i         : MSKidxt;
+       maxlen    : cardinal;
+       name      : PChar;
+       out value : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_gettaskname = function
+      (task     : MSKtask_t;
+       maxlen   : cardinal;
+       out len  : cardinal;
+       taskname : PChar) : MSKrescode; stdcall;
+
+  TMSK_gettaskname64 = function
+      (task     : MSKtask_t;
+       maxlen   : MSKint64t;
+       out len  : MSKint64t;
+       taskname : PChar) : MSKrescode; stdcall;
+
+  TMSK_getintpntnumthreads = function
+      (task           : MSKtask_t;
+       out numthreads : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getvartype = function
+      (task        : MSKtask_t;
+       j           : MSKidxt;
+       out vartype : MSKvariabletype) : MSKrescode; stdcall;
+
+  TMSK_getvartypelist = function
+      (task    : MSKtask_t;
+       num     : MSKintt;
+       subj    : PMSKidxt (* input only *);
+       vartype : PMSKintt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_inputdata = function
+      (task      : MSKtask_t;
+       maxnumcon : MSKintt;
+       maxnumvar : MSKintt;
+       numcon    : MSKintt;
+       numvar    : MSKintt;
+       c         : PMSKrealt (* input only *);
+       cfix      : MSKrealt;
+       aptrb     : PMSKintt (* input only *);
+       aptre     : PMSKintt (* input only *);
+       asub      : PMSKidxt (* input only *);
+       aval      : PMSKrealt (* input only *);
+       bkc       : PMSKintt (* input only *);
+       blc       : PMSKrealt (* input only *);
+       buc       : PMSKrealt (* input only *);
+       bkx       : PMSKintt (* input only *);
+       blx       : PMSKrealt (* input only *);
+       bux       : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_inputdata64 = function
+      (task      : MSKtask_t;
+       maxnumcon : MSKintt;
+       maxnumvar : MSKintt;
+       numcon    : MSKintt;
+       numvar    : MSKintt;
+       c         : PMSKrealt (* input only *);
+       cfix      : MSKrealt;
+       aptrb     : PMSKint64t (* input only *);
+       aptre     : PMSKint64t (* input only *);
+       asub      : PMSKidxt (* input only *);
+       aval      : PMSKrealt (* input only *);
+       bkc       : PMSKintt (* input only *);
+       blc       : PMSKrealt (* input only *);
+       buc       : PMSKrealt (* input only *);
+       bkx       : PMSKintt (* input only *);
+       blx       : PMSKrealt (* input only *);
+       bux       : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_isdouparname = function
+      (task      : MSKtask_t;
+       parname   : PChar;
+       out param : MSKdparam) : MSKrescode; stdcall;
+
+  TMSK_isintparname = function
+      (task      : MSKtask_t;
+       parname   : PChar;
+       out param : MSKiparam) : MSKrescode; stdcall;
+
+  TMSK_isstrparname = function
+      (task      : MSKtask_t;
+       parname   : PChar;
+       out param : MSKsparam) : MSKrescode; stdcall;
+
+  TMSK_linkfiletotaskstream = function
+      (task        : MSKtask_t;
+       whichstream : MSKstreamtype;
+       filename    : PChar;
+       append      : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_linkfunctotaskstream = function
+      (task        : MSKtask_t;
+       whichstream : MSKstreamtype;
+       handle      : MSKuserhandle_t;
+       func        : MSKstreamfunc) : MSKrescode; stdcall;
+
+  TMSK_unlinkfuncfromtaskstream = function
+      (task        : MSKtask_t;
+       whichstream : MSKstreamtype) : MSKrescode; stdcall;
+
+  TMSK_clonetask = function
+      (task           : MSKtask_t;
+       out clonedtask : MSKtask_t) : MSKrescode; stdcall;
+
+  TMSK_relaxprimal = function
+      (task            : MSKtask_t;
+       out relaxedtask : MSKtask_t;
+       wlc             : PMSKrealt (* input/output *);
+       wuc             : PMSKrealt (* input/output *);
+       wlx             : PMSKrealt (* input/output *);
+       wux             : PMSKrealt (* input/output *)) : MSKrescode; stdcall;
+
+  TMSK_optimizeconcurrent = function
+      (task      : MSKtask_t;
+       taskarray : PMSKtask_t (* input only *);
+       num       : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_checkdata = function (task : MSKtask_t) : MSKrescode; stdcall;
+  TMSK_optimize = function (task : MSKtask_t) : MSKrescode; stdcall;
+  TMSK_netextraction = function
+      (task       : MSKtask_t;
+       out numcon : MSKintt;
+       out numvar : MSKintt;
+       netcon     : PMSKidxt (* output only *);
+       netvar     : PMSKidxt (* output only *);
+       scalcon    : PMSKrealt (* output only *);
+       scalvar    : PMSKrealt (* output only *);
+       cx         : PMSKrealt (* output only *);
+       bkc        : PMSKintt (* output only *);
+       blc        : PMSKrealt (* output only *);
+       buc        : PMSKrealt (* output only *);
+       bkx        : PMSKintt (* output only *);
+       blx        : PMSKrealt (* output only *);
+       bux        : PMSKrealt (* output only *);
+       from       : PMSKidxt (* output only *);
+       to         : PMSKidxt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_netoptimize = function
+      (task       : MSKtask_t;
+       numcon     : MSKintt;
+       numvar     : MSKintt;
+       cc         : PMSKrealt (* input only *);
+       cx         : PMSKrealt (* input only *);
+       bkc        : PMSKintt (* input only *);
+       blc        : PMSKrealt (* input only *);
+       buc        : PMSKrealt (* input only *);
+       bkx        : PMSKintt (* input only *);
+       blx        : PMSKrealt (* input only *);
+       bux        : PMSKrealt (* input only *);
+       from       : PMSKidxt (* input only *);
+       to         : PMSKidxt (* input only *);
+       out prosta : MSKprosta;
+       out solsta : MSKsolsta;
+       hotstart   : MSKintt;
+       skc        : PMSKintt (* input/output *);
+       skx        : PMSKintt (* input/output *);
+       xc         : PMSKrealt (* input/output *);
+       xx         : PMSKrealt (* input/output *);
+       y          : PMSKrealt (* input/output *);
+       slc        : PMSKrealt (* input/output *);
+       suc        : PMSKrealt (* input/output *);
+       slx        : PMSKrealt (* input/output *);
+       sux        : PMSKrealt (* input/output *)) : MSKrescode; stdcall;
+
+  TMSK_optimizetrm = function
+      (task        : MSKtask_t;
+       out trmcode : MSKrescode) : MSKrescode; stdcall;
+
+  TMSK_printdata = function
+      (task        : MSKtask_t;
+       whichstream : MSKstreamtype;
+       firsti      : MSKidxt;
+       lasti       : MSKidxt;
+       firstj      : MSKidxt;
+       lastj       : MSKidxt;
+       firstk      : MSKidxt;
+       lastk       : MSKidxt;
+       c           : MSKintt;
+       qo          : MSKintt;
+       a           : MSKintt;
+       qc          : MSKintt;
+       bc          : MSKintt;
+       bx          : MSKintt;
+       vartype     : MSKintt;
+       cones       : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_printparam = function (task : MSKtask_t) : MSKrescode; stdcall;
+  TMSK_probtypetostr = function
+      (task     : MSKtask_t;
+       probtype : MSKproblemtype;
+       str      : PChar) : MSKrescode; stdcall;
+
+  TMSK_prostatostr = function
+      (task   : MSKtask_t;
+       prosta : MSKprosta;
+       str    : PChar) : MSKrescode; stdcall;
+
+  TMSK_putresponsefunc = function
+      (task         : MSKtask_t;
+       responsefunc : MSKresponsefunc;
+       handle       : MSKuserhandle_t) : MSKrescode; stdcall;
+
+  TMSK_commitchanges = function (task : MSKtask_t) : MSKrescode; stdcall;
+  TMSK_putaij = function
+      (task : MSKtask_t;
+       i    : MSKidxt;
+       j    : MSKidxt;
+       aij  : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_putaijlist = function
+      (task  : MSKtask_t;
+       num   : MSKintt;
+       subi  : PMSKidxt (* input only *);
+       subj  : PMSKidxt (* input only *);
+       valij : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putavec = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       i       : MSKidxt;
+       nzi     : MSKintt;
+       asub    : PMSKidxt (* input only *);
+       aval    : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putaveclist = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       num     : MSKintt;
+       sub     : PMSKidxt (* input only *);
+       ptrb    : PMSKintt (* input only *);
+       ptre    : PMSKintt (* input only *);
+       asub    : PMSKidxt (* input only *);
+       aval    : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putaveclist64 = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       num     : MSKintt;
+       sub     : PMSKidxt (* input only *);
+       ptrb    : PMSKint64t (* input only *);
+       ptre    : PMSKint64t (* input only *);
+       asub    : PMSKidxt (* input only *);
+       aval    : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putbound = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       i       : MSKidxt;
+       bk      : MSKboundkey;
+       bl      : MSKrealt;
+       bu      : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_putboundlist = function
+      (task    : MSKtask_t;
+       accmode : MSKaccmode;
+       num     : MSKintt;
+       sub     : PMSKidxt (* input only *);
+       bk      : PMSKintt (* input only *);
+       bl      : PMSKrealt (* input only *);
+       bu      : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putcallbackfunc = function
+      (task   : MSKtask_t;
+       func   : MSKcallbackfunc;
+       handle : MSKuserhandle_t) : MSKrescode; stdcall;
+
+  TMSK_putcfix = function
+      (task : MSKtask_t;
+       cfix : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_putcj = function
+      (task : MSKtask_t;
+       j    : MSKidxt;
+       cj   : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_putobjsense = function
+      (task  : MSKtask_t;
+       sense : MSKobjsense) : MSKrescode; stdcall;
+
+  TMSK_getobjsense = function
+      (task      : MSKtask_t;
+       out sense : MSKobjsense) : MSKrescode; stdcall;
+
+  TMSK_putclist = function
+      (task : MSKtask_t;
+       num  : MSKintt;
+       subj : PMSKidxt (* input only *);
+       val  : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putcone = function
+      (task     : MSKtask_t;
+       k        : MSKidxt;
+       conetype : MSKconetype;
+       conepar  : MSKrealt;
+       nummem   : MSKintt;
+       submem   : PMSKidxt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putdouparam = function
+      (task     : MSKtask_t;
+       param    : MSKdparam;
+       parvalue : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_putintparam = function
+      (task     : MSKtask_t;
+       param    : MSKiparam;
+       parvalue : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_putmaxnumcon = function
+      (task      : MSKtask_t;
+       maxnumcon : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_putmaxnumcone = function
+      (task       : MSKtask_t;
+       maxnumcone : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getmaxnumcone = function
+      (task           : MSKtask_t;
+       out maxnumcone : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_putmaxnumvar = function
+      (task      : MSKtask_t;
+       maxnumvar : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_putmaxnumanz = function
+      (task      : MSKtask_t;
+       maxnumanz : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_putmaxnumanz64 = function
+      (task      : MSKtask_t;
+       maxnumanz : MSKint64t) : MSKrescode; stdcall;
+
+  TMSK_putmaxnumqnz = function
+      (task      : MSKtask_t;
+       maxnumqnz : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_putmaxnumqnz64 = function
+      (task      : MSKtask_t;
+       maxnumqnz : MSKint64t) : MSKrescode; stdcall;
+
+  TMSK_getmaxnumqnz = function
+      (task          : MSKtask_t;
+       out maxnumqnz : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getmaxnumqnz64 = function
+      (task          : MSKtask_t;
+       out maxnumqnz : MSKint64t) : MSKrescode; stdcall;
+
+  TMSK_putnadouparam = function
+      (task      : MSKtask_t;
+       paramname : PChar;
+       parvalue  : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_putnaintparam = function
+      (task      : MSKtask_t;
+       paramname : PChar;
+       parvalue  : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_putname = function
+      (task      : MSKtask_t;
+       whichitem : MSKproblemitem;
+       i         : MSKidxt;
+       name      : PChar) : MSKrescode; stdcall;
+
+  TMSK_putnastrparam = function
+      (task      : MSKtask_t;
+       paramname : PChar;
+       parvalue  : PChar) : MSKrescode; stdcall;
+
+  (* not translated: MSK_putnlfunc *)
+  (* not translated: MSK_getnlfunc *)
+  TMSK_putobjname = function
+      (task    : MSKtask_t;
+       objname : PChar) : MSKrescode; stdcall;
+
+  TMSK_putparam = function
+      (task     : MSKtask_t;
+       parname  : PChar;
+       parvalue : PChar) : MSKrescode; stdcall;
+
+  TMSK_putqcon = function
+      (task    : MSKtask_t;
+       numqcnz : MSKintt;
+       qcsubk  : PMSKidxt (* input only *);
+       qcsubi  : PMSKidxt (* input only *);
+       qcsubj  : PMSKidxt (* input only *);
+       qcval   : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putqconk = function
+      (task    : MSKtask_t;
+       k       : MSKidxt;
+       numqcnz : MSKintt;
+       qcsubi  : PMSKidxt (* input only *);
+       qcsubj  : PMSKintt (* input only *);
+       qcval   : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putqobj = function
+      (task    : MSKtask_t;
+       numqonz : MSKintt;
+       qosubi  : PMSKidxt (* input only *);
+       qosubj  : PMSKidxt (* input only *);
+       qoval   : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putqobjij = function
+      (task : MSKtask_t;
+       i    : MSKidxt;
+       j    : MSKidxt;
+       qoij : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_makesolutionstatusunknown = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype) : MSKrescode; stdcall;
+
+  TMSK_putsolution = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype;
+       skc      : PMSKintt (* input only *);
+       skx      : PMSKintt (* input only *);
+       skn      : PMSKintt (* input only *);
+       xc       : PMSKrealt (* input only *);
+       xx       : PMSKrealt (* input only *);
+       y        : PMSKrealt (* input only *);
+       slc      : PMSKrealt (* input only *);
+       suc      : PMSKrealt (* input only *);
+       slx      : PMSKrealt (* input only *);
+       sux      : PMSKrealt (* input only *);
+       snx      : PMSKrealt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putsolutioni = function
+      (task     : MSKtask_t;
+       accmode  : MSKaccmode;
+       i        : MSKidxt;
+       whichsol : MSKsoltype;
+       sk       : MSKstakey;
+       x        : MSKrealt;
+       sl       : MSKrealt;
+       su       : MSKrealt;
+       sn       : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_putsolutionyi = function
+      (task     : MSKtask_t;
+       i        : MSKidxt;
+       whichsol : MSKsoltype;
+       y        : MSKrealt) : MSKrescode; stdcall;
+
+  TMSK_putstrparam = function
+      (task     : MSKtask_t;
+       param    : MSKsparam;
+       parvalue : PChar) : MSKrescode; stdcall;
+
+  TMSK_puttaskname = function
+      (task     : MSKtask_t;
+       taskname : PChar) : MSKrescode; stdcall;
+
+  TMSK_putvartype = function
+      (task    : MSKtask_t;
+       j       : MSKidxt;
+       vartype : MSKvariabletype) : MSKrescode; stdcall;
+
+  TMSK_putvartypelist = function
+      (task    : MSKtask_t;
+       num     : MSKintt;
+       subj    : PMSKidxt (* input only *);
+       vartype : PMSKintt (* input only *)) : MSKrescode; stdcall;
+
+  TMSK_putvarbranchorder = function
+      (task      : MSKtask_t;
+       j         : MSKidxt;
+       priority  : MSKintt;
+       direction : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getvarbranchorder = function
+      (task          : MSKtask_t;
+       j             : MSKidxt;
+       out priority  : MSKintt;
+       out direction : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getvarbranchpri = function
+      (task         : MSKtask_t;
+       j            : MSKidxt;
+       out priority : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getvarbranchdir = function
+      (task          : MSKtask_t;
+       j             : MSKidxt;
+       out direction : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_readdata = function
+      (task     : MSKtask_t;
+       filename : PChar) : MSKrescode; stdcall;
+
+  TMSK_readparamfile = function (task : MSKtask_t) : MSKrescode; stdcall;
+  TMSK_readsolution = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype;
+       filename : PChar) : MSKrescode; stdcall;
+
+  TMSK_readsummary = function
+      (task        : MSKtask_t;
+       whichstream : MSKstreamtype) : MSKrescode; stdcall;
+
+  TMSK_resizetask = function
+      (task       : MSKtask_t;
+       maxnumcon  : MSKintt;
+       maxnumvar  : MSKintt;
+       maxnumcone : MSKintt;
+       maxnumanz  : MSKintt;
+       maxnumqnz  : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_checkmemtask = function
+      (task  : MSKtask_t;
+       file_ : PChar;
+       line  : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_getmemusagetask = function
+      (task          : MSKtask_t;
+       out meminuse  : cardinal;
+       out maxmemuse : cardinal) : MSKrescode; stdcall;
+
+  TMSK_getmemusagetask64 = function
+      (task          : MSKtask_t;
+       out meminuse  : MSKint64t;
+       out maxmemuse : MSKint64t) : MSKrescode; stdcall;
+
+  TMSK_setdefaults = function (task : MSKtask_t) : MSKrescode; stdcall;
+  TMSK_sktostr = function
+      (task : MSKtask_t;
+       sk   : MSKintt;
+       str  : PChar) : MSKrescode; stdcall;
+
+  TMSK_solstatostr = function
+      (task   : MSKtask_t;
+       solsta : MSKsolsta;
+       str    : PChar) : MSKrescode; stdcall;
+
+  TMSK_solutiondef = function
+      (task      : MSKtask_t;
+       whichsol  : MSKsoltype;
+       out isdef : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_deletesolution = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype) : MSKrescode; stdcall;
+
+  TMSK_undefsolution = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype) : MSKrescode; stdcall;
+
+  TMSK_solutionsummary = function
+      (task        : MSKtask_t;
+       whichstream : MSKstreamtype) : MSKrescode; stdcall;
+
+  TMSK_optimizersummary = function
+      (task        : MSKtask_t;
+       whichstream : MSKstreamtype) : MSKrescode; stdcall;
+
+  TMSK_strduptask = function
+      (task : MSKtask_t;
+       str  : PChar) : PChar; stdcall;
+
+  TMSK_strdupdbgtask = function
+      (task  : MSKtask_t;
+       str   : PChar;
+       file_ : PChar;
+       line  : cardinal) : PChar; stdcall;
+
+  TMSK_strtoconetype = function
+      (task         : MSKtask_t;
+       str          : PChar;
+       out conetype : MSKconetype) : MSKrescode; stdcall;
+
+  TMSK_strtosk = function
+      (task   : MSKtask_t;
+       str    : PChar;
+       out sk : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_whichparam = function
+      (task        : MSKtask_t;
+       parname     : PChar;
+       out partype : MSKparametertype;
+       out param   : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_writedata = function
+      (task     : MSKtask_t;
+       filename : PChar) : MSKrescode; stdcall;
+
+  TMSK_readbranchpriorities = function
+      (task     : MSKtask_t;
+       filename : PChar) : MSKrescode; stdcall;
+
+  TMSK_writebranchpriorities = function
+      (task     : MSKtask_t;
+       filename : PChar) : MSKrescode; stdcall;
+
+  TMSK_writeparamfile = function
+      (task     : MSKtask_t;
+       filename : PChar) : MSKrescode; stdcall;
+
+  TMSK_getinfeasiblesubproblem = function
+      (task        : MSKtask_t;
+       whichsol    : MSKsoltype;
+       out inftask : MSKtask_t) : MSKrescode; stdcall;
+
+  TMSK_writesolution = function
+      (task     : MSKtask_t;
+       whichsol : MSKsoltype;
+       filename : PChar) : MSKrescode; stdcall;
+
+  TMSK_primalsensitivity = function
+      (task        : MSKtask_t;
+       numi        : MSKintt;
+       subi        : PMSKidxt (* input only *);
+       marki       : PMSKintt (* input only *);
+       numj        : MSKintt;
+       subj        : PMSKidxt (* input only *);
+       markj       : PMSKintt (* input only *);
+       leftpricei  : PMSKrealt (* output only *);
+       rightpricei : PMSKrealt (* output only *);
+       leftrangei  : PMSKrealt (* output only *);
+       rightrangei : PMSKrealt (* output only *);
+       leftpricej  : PMSKrealt (* output only *);
+       rightpricej : PMSKrealt (* output only *);
+       leftrangej  : PMSKrealt (* output only *);
+       rightrangej : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_sensitivityreport = function
+      (task        : MSKtask_t;
+       whichstream : MSKstreamtype) : MSKrescode; stdcall;
+
+  TMSK_dualsensitivity = function
+      (task        : MSKtask_t;
+       numj        : MSKintt;
+       subj        : PMSKidxt (* input only *);
+       leftpricej  : PMSKrealt (* output only *);
+       rightpricej : PMSKrealt (* output only *);
+       leftrangej  : PMSKrealt (* output only *);
+       rightrangej : PMSKrealt (* output only *)) : MSKrescode; stdcall;
+
+  TMSK_checkconvexity = function (task : MSKtask_t) : MSKrescode; stdcall;
+  TMSK_getlasterror = function
+      (task            : MSKtask_t;
+       out lastrescode : MSKrescode;
+       maxlen          : cardinal;
+       out lastmsglen  : cardinal;
+       lastmsg         : PChar) : MSKrescode; stdcall;
+
+  TMSK_getlasterror64 = function
+      (task            : MSKtask_t;
+       out lastrescode : MSKrescode;
+       maxlen          : MSKint64t;
+       out lastmsglen  : MSKint64t;
+       lastmsg         : PChar) : MSKrescode; stdcall;
+
+  TMSK_isinfinity = function (value : MSKrealt) : MSKintt; stdcall;
+  TMSK_checkoutlicense = function
+      (env     : MSKenv_t;
+       feature : MSKfeature) : MSKrescode; stdcall;
+
+  TMSK_checkinlicense = function
+      (env     : MSKenv_t;
+       feature : MSKfeature) : MSKrescode; stdcall;
+
+  TMSK_getbuildinfo = function
+      (buildstate : PChar;
+       builddate  : PChar;
+       buildtool  : PChar) : MSKrescode; stdcall;
+
+  TMSK_getresponseclass = function
+      (r      : MSKrescode;
+       out rc : MSKrescodetype) : MSKrescode; stdcall;
+
+  TMSK_deleteenv = function (var env : MSKenv_t) : MSKrescode; stdcall;
+  (* not translated: MSK_echoenv *)
+  TMSK_echointro = function
+      (env     : MSKenv_t;
+       longver : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_freeenv = procedure
+      (env    : MSKenv_t;
+       buffer : pointer (* input only *)); stdcall;
+
+  TMSK_freedbgenv = procedure
+      (env    : MSKenv_t;
+       buffer : pointer (* input only *);
+       file_  : PChar;
+       line   : cardinal); stdcall;
+
+  TMSK_getcodedisc = function
+      (code    : MSKrescode;
+       symname : PChar;
+       str     : PChar) : MSKrescode; stdcall;
+
+  TMSK_getcodedesc = function
+      (code    : MSKrescode;
+       symname : PChar;
+       str     : PChar) : MSKrescode; stdcall;
+
+  TMSK_getsymbcondim = function
+      (env        : MSKenv_t;
+       out num    : MSKintt;
+       out maxlen : cardinal) : MSKrescode; stdcall;
+
+  TMSK_getversion = function
+      (out major    : MSKintt;
+       out minor    : MSKintt;
+       out build    : MSKintt;
+       out revision : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_checkversion = function
+      (env      : MSKenv_t;
+       major    : MSKintt;
+       minor    : MSKintt;
+       build    : MSKintt;
+       revision : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_iparvaltosymnam = function
+      (env          : MSKenv_t;
+       whichparam   : MSKiparam;
+       whichvalue   : MSKintt;
+       symbolicname : PChar) : MSKrescode; stdcall;
+
+  TMSK_linkfiletoenvstream = function
+      (env         : MSKenv_t;
+       whichstream : MSKstreamtype;
+       filename    : PChar;
+       append      : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_linkfunctoenvstream = function
+      (env         : MSKenv_t;
+       whichstream : MSKstreamtype;
+       handle      : MSKuserhandle_t;
+       func        : MSKstreamfunc) : MSKrescode; stdcall;
+
+  TMSK_unlinkfuncfromenvstream = function
+      (env         : MSKenv_t;
+       whichstream : MSKstreamtype) : MSKrescode; stdcall;
+
+  TMSK_makeenv = function
+      (out env   : MSKenv_t;
+       usrptr    : MSKuserhandle_t;
+       usrmalloc : MSKmallocfunc;
+       usrfree   : MSKfreefunc;
+       dbgfile   : PChar) : MSKrescode; stdcall;
+
+  TMSK_initenv = function (env : MSKenv_t) : MSKrescode; stdcall;
+  TMSK_getglbdllname = function
+      (env         : MSKenv_t;
+       sizedllname : cardinal;
+       dllname     : PChar) : MSKrescode; stdcall;
+
+  TMSK_putdllpath = function
+      (env     : MSKenv_t;
+       dllpath : PChar) : MSKrescode; stdcall;
+
+  TMSK_putlicensedefaults = function
+      (env         : MSKenv_t;
+       licensefile : PChar;
+       licensebuf  : PMSKintt (* input only *);
+       licwait     : MSKintt;
+       licdebug    : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_putkeepdlls = function
+      (env      : MSKenv_t;
+       keepdlls : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_putcpudefaults = function
+      (env     : MSKenv_t;
+       cputype : MSKintt;
+       sizel1  : MSKintt;
+       sizel2  : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_maketask = function
+      (env       : MSKenv_t;
+       maxnumcon : MSKintt;
+       maxnumvar : MSKintt;
+       out task  : MSKtask_t) : MSKrescode; stdcall;
+
+  TMSK_makeemptytask = function
+      (env      : MSKenv_t;
+       out task : MSKtask_t) : MSKrescode; stdcall;
+
+  TMSK_putexitfunc = function
+      (env      : MSKenv_t;
+       exitfunc : MSKexitfunc;
+       handle   : MSKuserhandle_t) : MSKrescode; stdcall;
+
+  TMSK_replacefileext = procedure
+      (filename     : PChar;
+       newextension : PChar); stdcall;
+
+  (* not translated: MSK_utf8towchar *)
+  (* not translated: MSK_wchartoutf8 *)
+  TMSK_checkmemenv = function
+      (env   : MSKenv_t;
+       file_ : PChar;
+       line  : MSKintt) : MSKrescode; stdcall;
+
+  TMSK_strdupenv = function
+      (env : MSKenv_t;
+       str : PChar) : PChar; stdcall;
+
+  TMSK_strdupdbgenv = function
+      (env   : MSKenv_t;
+       str   : PChar;
+       file_ : PChar;
+       line  : cardinal) : PChar; stdcall;
+
+  TMSK_symnamtovalue = function
+      (name  : PChar;
+       value : PChar) : MSKintt; stdcall;
+
+
+var
+  MSK_analyzeproblem            : TMSK_analyzeproblem = nil;
+  MSK_analyzesolution           : TMSK_analyzesolution = nil;
+  MSK_initbasissolve            : TMSK_initbasissolve = nil;
+  MSK_solvewithbasis            : TMSK_solvewithbasis = nil;
+  MSK_basiscond                 : TMSK_basiscond = nil;
+  MSK_append                    : TMSK_append = nil;
+  MSK_remove                    : TMSK_remove = nil;
+  MSK_appendcone                : TMSK_appendcone = nil;
+  MSK_removecone                : TMSK_removecone = nil;
+  MSK_bktostr                   : TMSK_bktostr = nil;
+  MSK_callbackcodetostr         : TMSK_callbackcodetostr = nil;
+  MSK_chgbound                  : TMSK_chgbound = nil;
+  MSK_conetypetostr             : TMSK_conetypetostr = nil;
+  MSK_deletetask                : TMSK_deletetask = nil;
+  (* not translated: MSK_exceptiontask *)
+  (* not translated: MSK_echotask *)
+  MSK_freetask                  : TMSK_freetask = nil;
+  MSK_freedbgtask               : TMSK_freedbgtask = nil;
+  MSK_getaij                    : TMSK_getaij = nil;
+  MSK_getapiecenumnz            : TMSK_getapiecenumnz = nil;
+  MSK_getavecnumnz              : TMSK_getavecnumnz = nil;
+  MSK_getavec                   : TMSK_getavec = nil;
+  MSK_getaslicenumnz            : TMSK_getaslicenumnz = nil;
+  MSK_getaslicenumnz64          : TMSK_getaslicenumnz64 = nil;
+  MSK_getaslice                 : TMSK_getaslice = nil;
+  MSK_getaslice64               : TMSK_getaslice64 = nil;
+  MSK_getaslicetrip             : TMSK_getaslicetrip = nil;
+  MSK_getbound                  : TMSK_getbound = nil;
+  MSK_getboundslice             : TMSK_getboundslice = nil;
+  MSK_putboundslice             : TMSK_putboundslice = nil;
+  MSK_getc                      : TMSK_getc = nil;
+  MSK_getcallbackfunc           : TMSK_getcallbackfunc = nil;
+  MSK_getsolutionincallback     : TMSK_getsolutionincallback = nil;
+  MSK_getcfix                   : TMSK_getcfix = nil;
+  MSK_getcone                   : TMSK_getcone = nil;
+  MSK_getconeinfo               : TMSK_getconeinfo = nil;
+  MSK_getcslice                 : TMSK_getcslice = nil;
+  MSK_getdouinf                 : TMSK_getdouinf = nil;
+  MSK_getdouparam               : TMSK_getdouparam = nil;
+  MSK_getdualobj                : TMSK_getdualobj = nil;
+  MSK_getenv                    : TMSK_getenv = nil;
+  MSK_getinfindex               : TMSK_getinfindex = nil;
+  MSK_getinfmax                 : TMSK_getinfmax = nil;
+  MSK_getinfname                : TMSK_getinfname = nil;
+  MSK_getintinf                 : TMSK_getintinf = nil;
+  MSK_getlintinf                : TMSK_getlintinf = nil;
+  MSK_getintparam               : TMSK_getintparam = nil;
+  MSK_getmaxnamelen             : TMSK_getmaxnamelen = nil;
+  MSK_getmaxnumanz              : TMSK_getmaxnumanz = nil;
+  MSK_getmaxnumanz64            : TMSK_getmaxnumanz64 = nil;
+  MSK_getmaxnumcon              : TMSK_getmaxnumcon = nil;
+  MSK_getmaxnumvar              : TMSK_getmaxnumvar = nil;
+  MSK_getnadouinf               : TMSK_getnadouinf = nil;
+  MSK_getnadouparam             : TMSK_getnadouparam = nil;
+  MSK_getnaintinf               : TMSK_getnaintinf = nil;
+  MSK_getnaintparam             : TMSK_getnaintparam = nil;
+  MSK_getnamelen64              : TMSK_getnamelen64 = nil;
+  MSK_getname                   : TMSK_getname = nil;
+  MSK_getname64                 : TMSK_getname64 = nil;
+  MSK_getnameapi64              : TMSK_getnameapi64 = nil;
+  MSK_getvarname                : TMSK_getvarname = nil;
+  MSK_getvarname64              : TMSK_getvarname64 = nil;
+  MSK_getconname                : TMSK_getconname = nil;
+  MSK_getconname64              : TMSK_getconname64 = nil;
+  MSK_getnameindex              : TMSK_getnameindex = nil;
+  MSK_getnastrparam             : TMSK_getnastrparam = nil;
+  MSK_getnumanz                 : TMSK_getnumanz = nil;
+  MSK_getnumanz64               : TMSK_getnumanz64 = nil;
+  MSK_getnumcon                 : TMSK_getnumcon = nil;
+  MSK_getnumcone                : TMSK_getnumcone = nil;
+  MSK_getnumconemem             : TMSK_getnumconemem = nil;
+  MSK_getnumintvar              : TMSK_getnumintvar = nil;
+  MSK_getnumparam               : TMSK_getnumparam = nil;
+  MSK_getnumqconknz             : TMSK_getnumqconknz = nil;
+  MSK_getnumqconknz64           : TMSK_getnumqconknz64 = nil;
+  MSK_getnumqobjnz              : TMSK_getnumqobjnz = nil;
+  MSK_getnumqobjnz64            : TMSK_getnumqobjnz64 = nil;
+  MSK_getnumvar                 : TMSK_getnumvar = nil;
+  MSK_getobjname                : TMSK_getobjname = nil;
+  MSK_getobjname64              : TMSK_getobjname64 = nil;
+  MSK_getparamname              : TMSK_getparamname = nil;
+  MSK_getparammax               : TMSK_getparammax = nil;
+  MSK_getprimalobj              : TMSK_getprimalobj = nil;
+  MSK_getprobtype               : TMSK_getprobtype = nil;
+  MSK_getqconk64                : TMSK_getqconk64 = nil;
+  MSK_getqconk                  : TMSK_getqconk = nil;
+  MSK_getqobj                   : TMSK_getqobj = nil;
+  MSK_getqobj64                 : TMSK_getqobj64 = nil;
+  MSK_getqobjij                 : TMSK_getqobjij = nil;
+  MSK_getsolution               : TMSK_getsolution = nil;
+  MSK_getpbi                    : TMSK_getpbi = nil;
+  MSK_getdbi                    : TMSK_getdbi = nil;
+  MSK_getdeqi                   : TMSK_getdeqi = nil;
+  MSK_getpeqi                   : TMSK_getpeqi = nil;
+  MSK_getinti                   : TMSK_getinti = nil;
+  MSK_getpcni                   : TMSK_getpcni = nil;
+  MSK_getdcni                   : TMSK_getdcni = nil;
+  MSK_getsolutioni              : TMSK_getsolutioni = nil;
+  MSK_getsolutioninf            : TMSK_getsolutioninf = nil;
+  MSK_getsolutionstatus         : TMSK_getsolutionstatus = nil;
+  MSK_getsolutionslice          : TMSK_getsolutionslice = nil;
+  MSK_getsolutionstatuskeyslice : TMSK_getsolutionstatuskeyslice = nil;
+  MSK_getreducedcosts           : TMSK_getreducedcosts = nil;
+  MSK_getstrparam               : TMSK_getstrparam = nil;
+  MSK_getstrparam64             : TMSK_getstrparam64 = nil;
+  MSK_getstrparamal             : TMSK_getstrparamal = nil;
+  MSK_getnastrparamal           : TMSK_getnastrparamal = nil;
+  MSK_getsymbcon                : TMSK_getsymbcon = nil;
+  MSK_gettaskname               : TMSK_gettaskname = nil;
+  MSK_gettaskname64             : TMSK_gettaskname64 = nil;
+  MSK_getintpntnumthreads       : TMSK_getintpntnumthreads = nil;
+  MSK_getvartype                : TMSK_getvartype = nil;
+  MSK_getvartypelist            : TMSK_getvartypelist = nil;
+  MSK_inputdata                 : TMSK_inputdata = nil;
+  MSK_inputdata64               : TMSK_inputdata64 = nil;
+  MSK_isdouparname              : TMSK_isdouparname = nil;
+  MSK_isintparname              : TMSK_isintparname = nil;
+  MSK_isstrparname              : TMSK_isstrparname = nil;
+  MSK_linkfiletotaskstream      : TMSK_linkfiletotaskstream = nil;
+  MSK_linkfunctotaskstream      : TMSK_linkfunctotaskstream = nil;
+  MSK_unlinkfuncfromtaskstream  : TMSK_unlinkfuncfromtaskstream = nil;
+  MSK_clonetask                 : TMSK_clonetask = nil;
+  MSK_relaxprimal               : TMSK_relaxprimal = nil;
+  MSK_optimizeconcurrent        : TMSK_optimizeconcurrent = nil;
+  MSK_checkdata                 : TMSK_checkdata = nil;
+  MSK_optimize                  : TMSK_optimize = nil;
+  MSK_netextraction             : TMSK_netextraction = nil;
+  MSK_netoptimize               : TMSK_netoptimize = nil;
+  MSK_optimizetrm               : TMSK_optimizetrm = nil;
+  MSK_printdata                 : TMSK_printdata = nil;
+  MSK_printparam                : TMSK_printparam = nil;
+  MSK_probtypetostr             : TMSK_probtypetostr = nil;
+  MSK_prostatostr               : TMSK_prostatostr = nil;
+  MSK_putresponsefunc           : TMSK_putresponsefunc = nil;
+  MSK_commitchanges             : TMSK_commitchanges = nil;
+  MSK_putaij                    : TMSK_putaij = nil;
+  MSK_putaijlist                : TMSK_putaijlist = nil;
+  MSK_putavec                   : TMSK_putavec = nil;
+  MSK_putaveclist               : TMSK_putaveclist = nil;
+  MSK_putaveclist64             : TMSK_putaveclist64 = nil;
+  MSK_putbound                  : TMSK_putbound = nil;
+  MSK_putboundlist              : TMSK_putboundlist = nil;
+  MSK_putcallbackfunc           : TMSK_putcallbackfunc = nil;
+  MSK_putcfix                   : TMSK_putcfix = nil;
+  MSK_putcj                     : TMSK_putcj = nil;
+  MSK_putobjsense               : TMSK_putobjsense = nil;
+  MSK_getobjsense               : TMSK_getobjsense = nil;
+  MSK_putclist                  : TMSK_putclist = nil;
+  MSK_putcone                   : TMSK_putcone = nil;
+  MSK_putdouparam               : TMSK_putdouparam = nil;
+  MSK_putintparam               : TMSK_putintparam = nil;
+  MSK_putmaxnumcon              : TMSK_putmaxnumcon = nil;
+  MSK_putmaxnumcone             : TMSK_putmaxnumcone = nil;
+  MSK_getmaxnumcone             : TMSK_getmaxnumcone = nil;
+  MSK_putmaxnumvar              : TMSK_putmaxnumvar = nil;
+  MSK_putmaxnumanz              : TMSK_putmaxnumanz = nil;
+  MSK_putmaxnumanz64            : TMSK_putmaxnumanz64 = nil;
+  MSK_putmaxnumqnz              : TMSK_putmaxnumqnz = nil;
+  MSK_putmaxnumqnz64            : TMSK_putmaxnumqnz64 = nil;
+  MSK_getmaxnumqnz              : TMSK_getmaxnumqnz = nil;
+  MSK_getmaxnumqnz64            : TMSK_getmaxnumqnz64 = nil;
+  MSK_putnadouparam             : TMSK_putnadouparam = nil;
+  MSK_putnaintparam             : TMSK_putnaintparam = nil;
+  MSK_putname                   : TMSK_putname = nil;
+  MSK_putnastrparam             : TMSK_putnastrparam = nil;
+  (* not translated: MSK_putnlfunc *)
+  (* not translated: MSK_getnlfunc *)
+  MSK_putobjname                : TMSK_putobjname = nil;
+  MSK_putparam                  : TMSK_putparam = nil;
+  MSK_putqcon                   : TMSK_putqcon = nil;
+  MSK_putqconk                  : TMSK_putqconk = nil;
+  MSK_putqobj                   : TMSK_putqobj = nil;
+  MSK_putqobjij                 : TMSK_putqobjij = nil;
+  MSK_makesolutionstatusunknown : TMSK_makesolutionstatusunknown = nil;
+  MSK_putsolution               : TMSK_putsolution = nil;
+  MSK_putsolutioni              : TMSK_putsolutioni = nil;
+  MSK_putsolutionyi             : TMSK_putsolutionyi = nil;
+  MSK_putstrparam               : TMSK_putstrparam = nil;
+  MSK_puttaskname               : TMSK_puttaskname = nil;
+  MSK_putvartype                : TMSK_putvartype = nil;
+  MSK_putvartypelist            : TMSK_putvartypelist = nil;
+  MSK_putvarbranchorder         : TMSK_putvarbranchorder = nil;
+  MSK_getvarbranchorder         : TMSK_getvarbranchorder = nil;
+  MSK_getvarbranchpri           : TMSK_getvarbranchpri = nil;
+  MSK_getvarbranchdir           : TMSK_getvarbranchdir = nil;
+  MSK_readdata                  : TMSK_readdata = nil;
+  MSK_readparamfile             : TMSK_readparamfile = nil;
+  MSK_readsolution              : TMSK_readsolution = nil;
+  MSK_readsummary               : TMSK_readsummary = nil;
+  MSK_resizetask                : TMSK_resizetask = nil;
+  MSK_checkmemtask              : TMSK_checkmemtask = nil;
+  MSK_getmemusagetask           : TMSK_getmemusagetask = nil;
+  MSK_getmemusagetask64         : TMSK_getmemusagetask64 = nil;
+  MSK_setdefaults               : TMSK_setdefaults = nil;
+  MSK_sktostr                   : TMSK_sktostr = nil;
+  MSK_solstatostr               : TMSK_solstatostr = nil;
+  MSK_solutiondef               : TMSK_solutiondef = nil;
+  MSK_deletesolution            : TMSK_deletesolution = nil;
+  MSK_undefsolution             : TMSK_undefsolution = nil;
+  MSK_solutionsummary           : TMSK_solutionsummary = nil;
+  MSK_optimizersummary          : TMSK_optimizersummary = nil;
+  MSK_strduptask                : TMSK_strduptask = nil;
+  MSK_strdupdbgtask             : TMSK_strdupdbgtask = nil;
+  MSK_strtoconetype             : TMSK_strtoconetype = nil;
+  MSK_strtosk                   : TMSK_strtosk = nil;
+  MSK_whichparam                : TMSK_whichparam = nil;
+  MSK_writedata                 : TMSK_writedata = nil;
+  MSK_readbranchpriorities      : TMSK_readbranchpriorities = nil;
+  MSK_writebranchpriorities     : TMSK_writebranchpriorities = nil;
+  MSK_writeparamfile            : TMSK_writeparamfile = nil;
+  MSK_getinfeasiblesubproblem   : TMSK_getinfeasiblesubproblem = nil;
+  MSK_writesolution             : TMSK_writesolution = nil;
+  MSK_primalsensitivity         : TMSK_primalsensitivity = nil;
+  MSK_sensitivityreport         : TMSK_sensitivityreport = nil;
+  MSK_dualsensitivity           : TMSK_dualsensitivity = nil;
+  MSK_checkconvexity            : TMSK_checkconvexity = nil;
+  MSK_getlasterror              : TMSK_getlasterror = nil;
+  MSK_getlasterror64            : TMSK_getlasterror64 = nil;
+  MSK_isinfinity                : TMSK_isinfinity = nil;
+  MSK_checkoutlicense           : TMSK_checkoutlicense = nil;
+  MSK_checkinlicense            : TMSK_checkinlicense = nil;
+  MSK_getbuildinfo              : TMSK_getbuildinfo = nil;
+  MSK_getresponseclass          : TMSK_getresponseclass = nil;
+  MSK_deleteenv                 : TMSK_deleteenv = nil;
+  (* not translated: MSK_echoenv *)
+  MSK_echointro                 : TMSK_echointro = nil;
+  MSK_freeenv                   : TMSK_freeenv = nil;
+  MSK_freedbgenv                : TMSK_freedbgenv = nil;
+  MSK_getcodedisc               : TMSK_getcodedisc = nil;
+  MSK_getcodedesc               : TMSK_getcodedesc = nil;
+  MSK_getsymbcondim             : TMSK_getsymbcondim = nil;
+  MSK_getversion                : TMSK_getversion = nil;
+  MSK_checkversion              : TMSK_checkversion = nil;
+  MSK_iparvaltosymnam           : TMSK_iparvaltosymnam = nil;
+  MSK_linkfiletoenvstream       : TMSK_linkfiletoenvstream = nil;
+  MSK_linkfunctoenvstream       : TMSK_linkfunctoenvstream = nil;
+  MSK_unlinkfuncfromenvstream   : TMSK_unlinkfuncfromenvstream = nil;
+  MSK_makeenv                   : TMSK_makeenv = nil;
+  MSK_initenv                   : TMSK_initenv = nil;
+  MSK_getglbdllname             : TMSK_getglbdllname = nil;
+  MSK_putdllpath                : TMSK_putdllpath = nil;
+  MSK_putlicensedefaults        : TMSK_putlicensedefaults = nil;
+  MSK_putkeepdlls               : TMSK_putkeepdlls = nil;
+  MSK_putcpudefaults            : TMSK_putcpudefaults = nil;
+  MSK_maketask                  : TMSK_maketask = nil;
+  MSK_makeemptytask             : TMSK_makeemptytask = nil;
+  MSK_putexitfunc               : TMSK_putexitfunc = nil;
+  MSK_replacefileext            : TMSK_replacefileext = nil;
+  (* not translated: MSK_utf8towchar *)
+  (* not translated: MSK_wchartoutf8 *)
+  MSK_checkmemenv               : TMSK_checkmemenv = nil;
+  MSK_strdupenv                 : TMSK_strdupenv = nil;
+  MSK_strdupdbgenv              : TMSK_strdupdbgenv = nil;
+  MSK_symnamtovalue             : TMSK_symnamtovalue = nil;
+
+
+function LoadMosekDll   : boolean;
+function UnLoadMosekDll : boolean;
+var
+  hMosekDll : THandle = 0;
+
+
+implementation
+uses
+  Windows;
+
+function LoadMosekDll: boolean;
+begin
+  Result := hMosekDll <> 0;
+  if not Result then
+  begin
+    hMosekDll:=LoadLibrary(MosekDllFile);
+    if hMosekDll <> 0 then
+    begin
+      MSK_analyzeproblem            := GetProcAddress( hMosekDll, 'MSK_analyzeproblem' );
+      MSK_analyzesolution           := GetProcAddress( hMosekDll, 'MSK_analyzesolution' );
+      MSK_initbasissolve            := GetProcAddress( hMosekDll, 'MSK_initbasissolve' );
+      MSK_solvewithbasis            := GetProcAddress( hMosekDll, 'MSK_solvewithbasis' );
+      MSK_basiscond                 := GetProcAddress( hMosekDll, 'MSK_basiscond' );
+      MSK_append                    := GetProcAddress( hMosekDll, 'MSK_append' );
+      MSK_remove                    := GetProcAddress( hMosekDll, 'MSK_remove' );
+      MSK_appendcone                := GetProcAddress( hMosekDll, 'MSK_appendcone' );
+      MSK_removecone                := GetProcAddress( hMosekDll, 'MSK_removecone' );
+      MSK_bktostr                   := GetProcAddress( hMosekDll, 'MSK_bktostr' );
+      MSK_callbackcodetostr         := GetProcAddress( hMosekDll, 'MSK_callbackcodetostr' );
+      MSK_chgbound                  := GetProcAddress( hMosekDll, 'MSK_chgbound' );
+      MSK_conetypetostr             := GetProcAddress( hMosekDll, 'MSK_conetypetostr' );
+      MSK_deletetask                := GetProcAddress( hMosekDll, 'MSK_deletetask' );
+      MSK_freetask                  := GetProcAddress( hMosekDll, 'MSK_freetask' );
+      MSK_freedbgtask               := GetProcAddress( hMosekDll, 'MSK_freedbgtask' );
+      MSK_getaij                    := GetProcAddress( hMosekDll, 'MSK_getaij' );
+      MSK_getapiecenumnz            := GetProcAddress( hMosekDll, 'MSK_getapiecenumnz' );
+      MSK_getavecnumnz              := GetProcAddress( hMosekDll, 'MSK_getavecnumnz' );
+      MSK_getavec                   := GetProcAddress( hMosekDll, 'MSK_getavec' );
+      MSK_getaslicenumnz            := GetProcAddress( hMosekDll, 'MSK_getaslicenumnz' );
+      MSK_getaslicenumnz64          := GetProcAddress( hMosekDll, 'MSK_getaslicenumnz64' );
+      MSK_getaslice                 := GetProcAddress( hMosekDll, 'MSK_getaslice' );
+      MSK_getaslice64               := GetProcAddress( hMosekDll, 'MSK_getaslice64' );
+      MSK_getaslicetrip             := GetProcAddress( hMosekDll, 'MSK_getaslicetrip' );
+      MSK_getbound                  := GetProcAddress( hMosekDll, 'MSK_getbound' );
+      MSK_getboundslice             := GetProcAddress( hMosekDll, 'MSK_getboundslice' );
+      MSK_putboundslice             := GetProcAddress( hMosekDll, 'MSK_putboundslice' );
+      MSK_getc                      := GetProcAddress( hMosekDll, 'MSK_getc' );
+      MSK_getcallbackfunc           := GetProcAddress( hMosekDll, 'MSK_getcallbackfunc' );
+      MSK_getsolutionincallback     := GetProcAddress( hMosekDll, 'MSK_getsolutionincallback' );
+      MSK_getcfix                   := GetProcAddress( hMosekDll, 'MSK_getcfix' );
+      MSK_getcone                   := GetProcAddress( hMosekDll, 'MSK_getcone' );
+      MSK_getconeinfo               := GetProcAddress( hMosekDll, 'MSK_getconeinfo' );
+      MSK_getcslice                 := GetProcAddress( hMosekDll, 'MSK_getcslice' );
+      MSK_getdouinf                 := GetProcAddress( hMosekDll, 'MSK_getdouinf' );
+      MSK_getdouparam               := GetProcAddress( hMosekDll, 'MSK_getdouparam' );
+      MSK_getdualobj                := GetProcAddress( hMosekDll, 'MSK_getdualobj' );
+      MSK_getenv                    := GetProcAddress( hMosekDll, 'MSK_getenv' );
+      MSK_getinfindex               := GetProcAddress( hMosekDll, 'MSK_getinfindex' );
+      MSK_getinfmax                 := GetProcAddress( hMosekDll, 'MSK_getinfmax' );
+      MSK_getinfname                := GetProcAddress( hMosekDll, 'MSK_getinfname' );
+      MSK_getintinf                 := GetProcAddress( hMosekDll, 'MSK_getintinf' );
+      MSK_getlintinf                := GetProcAddress( hMosekDll, 'MSK_getlintinf' );
+      MSK_getintparam               := GetProcAddress( hMosekDll, 'MSK_getintparam' );
+      MSK_getmaxnamelen             := GetProcAddress( hMosekDll, 'MSK_getmaxnamelen' );
+      MSK_getmaxnumanz              := GetProcAddress( hMosekDll, 'MSK_getmaxnumanz' );
+      MSK_getmaxnumanz64            := GetProcAddress( hMosekDll, 'MSK_getmaxnumanz64' );
+      MSK_getmaxnumcon              := GetProcAddress( hMosekDll, 'MSK_getmaxnumcon' );
+      MSK_getmaxnumvar              := GetProcAddress( hMosekDll, 'MSK_getmaxnumvar' );
+      MSK_getnadouinf               := GetProcAddress( hMosekDll, 'MSK_getnadouinf' );
+      MSK_getnadouparam             := GetProcAddress( hMosekDll, 'MSK_getnadouparam' );
+      MSK_getnaintinf               := GetProcAddress( hMosekDll, 'MSK_getnaintinf' );
+      MSK_getnaintparam             := GetProcAddress( hMosekDll, 'MSK_getnaintparam' );
+      MSK_getnamelen64              := GetProcAddress( hMosekDll, 'MSK_getnamelen64' );
+      MSK_getname                   := GetProcAddress( hMosekDll, 'MSK_getname' );
+      MSK_getname64                 := GetProcAddress( hMosekDll, 'MSK_getname64' );
+      MSK_getnameapi64              := GetProcAddress( hMosekDll, 'MSK_getnameapi64' );
+      MSK_getvarname                := GetProcAddress( hMosekDll, 'MSK_getvarname' );
+      MSK_getvarname64              := GetProcAddress( hMosekDll, 'MSK_getvarname64' );
+      MSK_getconname                := GetProcAddress( hMosekDll, 'MSK_getconname' );
+      MSK_getconname64              := GetProcAddress( hMosekDll, 'MSK_getconname64' );
+      MSK_getnameindex              := GetProcAddress( hMosekDll, 'MSK_getnameindex' );
+      MSK_getnastrparam             := GetProcAddress( hMosekDll, 'MSK_getnastrparam' );
+      MSK_getnumanz                 := GetProcAddress( hMosekDll, 'MSK_getnumanz' );
+      MSK_getnumanz64               := GetProcAddress( hMosekDll, 'MSK_getnumanz64' );
+      MSK_getnumcon                 := GetProcAddress( hMosekDll, 'MSK_getnumcon' );
+      MSK_getnumcone                := GetProcAddress( hMosekDll, 'MSK_getnumcone' );
+      MSK_getnumconemem             := GetProcAddress( hMosekDll, 'MSK_getnumconemem' );
+      MSK_getnumintvar              := GetProcAddress( hMosekDll, 'MSK_getnumintvar' );
+      MSK_getnumparam               := GetProcAddress( hMosekDll, 'MSK_getnumparam' );
+      MSK_getnumqconknz             := GetProcAddress( hMosekDll, 'MSK_getnumqconknz' );
+      MSK_getnumqconknz64           := GetProcAddress( hMosekDll, 'MSK_getnumqconknz64' );
+      MSK_getnumqobjnz              := GetProcAddress( hMosekDll, 'MSK_getnumqobjnz' );
+      MSK_getnumqobjnz64            := GetProcAddress( hMosekDll, 'MSK_getnumqobjnz64' );
+      MSK_getnumvar                 := GetProcAddress( hMosekDll, 'MSK_getnumvar' );
+      MSK_getobjname                := GetProcAddress( hMosekDll, 'MSK_getobjname' );
+      MSK_getobjname64              := GetProcAddress( hMosekDll, 'MSK_getobjname64' );
+      MSK_getparamname              := GetProcAddress( hMosekDll, 'MSK_getparamname' );
+      MSK_getparammax               := GetProcAddress( hMosekDll, 'MSK_getparammax' );
+      MSK_getprimalobj              := GetProcAddress( hMosekDll, 'MSK_getprimalobj' );
+      MSK_getprobtype               := GetProcAddress( hMosekDll, 'MSK_getprobtype' );
+      MSK_getqconk64                := GetProcAddress( hMosekDll, 'MSK_getqconk64' );
+      MSK_getqconk                  := GetProcAddress( hMosekDll, 'MSK_getqconk' );
+      MSK_getqobj                   := GetProcAddress( hMosekDll, 'MSK_getqobj' );
+      MSK_getqobj64                 := GetProcAddress( hMosekDll, 'MSK_getqobj64' );
+      MSK_getqobjij                 := GetProcAddress( hMosekDll, 'MSK_getqobjij' );
+      MSK_getsolution               := GetProcAddress( hMosekDll, 'MSK_getsolution' );
+      MSK_getpbi                    := GetProcAddress( hMosekDll, 'MSK_getpbi' );
+      MSK_getdbi                    := GetProcAddress( hMosekDll, 'MSK_getdbi' );
+      MSK_getdeqi                   := GetProcAddress( hMosekDll, 'MSK_getdeqi' );
+      MSK_getpeqi                   := GetProcAddress( hMosekDll, 'MSK_getpeqi' );
+      MSK_getinti                   := GetProcAddress( hMosekDll, 'MSK_getinti' );
+      MSK_getpcni                   := GetProcAddress( hMosekDll, 'MSK_getpcni' );
+      MSK_getdcni                   := GetProcAddress( hMosekDll, 'MSK_getdcni' );
+      MSK_getsolutioni              := GetProcAddress( hMosekDll, 'MSK_getsolutioni' );
+      MSK_getsolutioninf            := GetProcAddress( hMosekDll, 'MSK_getsolutioninf' );
+      MSK_getsolutionstatus         := GetProcAddress( hMosekDll, 'MSK_getsolutionstatus' );
+      MSK_getsolutionslice          := GetProcAddress( hMosekDll, 'MSK_getsolutionslice' );
+      MSK_getsolutionstatuskeyslice := GetProcAddress( hMosekDll, 'MSK_getsolutionstatuskeyslice' );
+      MSK_getreducedcosts           := GetProcAddress( hMosekDll, 'MSK_getreducedcosts' );
+      MSK_getstrparam               := GetProcAddress( hMosekDll, 'MSK_getstrparam' );
+      MSK_getstrparam64             := GetProcAddress( hMosekDll, 'MSK_getstrparam64' );
+      MSK_getstrparamal             := GetProcAddress( hMosekDll, 'MSK_getstrparamal' );
+      MSK_getnastrparamal           := GetProcAddress( hMosekDll, 'MSK_getnastrparamal' );
+      MSK_getsymbcon                := GetProcAddress( hMosekDll, 'MSK_getsymbcon' );
+      MSK_gettaskname               := GetProcAddress( hMosekDll, 'MSK_gettaskname' );
+      MSK_gettaskname64             := GetProcAddress( hMosekDll, 'MSK_gettaskname64' );
+      MSK_getintpntnumthreads       := GetProcAddress( hMosekDll, 'MSK_getintpntnumthreads' );
+      MSK_getvartype                := GetProcAddress( hMosekDll, 'MSK_getvartype' );
+      MSK_getvartypelist            := GetProcAddress( hMosekDll, 'MSK_getvartypelist' );
+      MSK_inputdata                 := GetProcAddress( hMosekDll, 'MSK_inputdata' );
+      MSK_inputdata64               := GetProcAddress( hMosekDll, 'MSK_inputdata64' );
+      MSK_isdouparname              := GetProcAddress( hMosekDll, 'MSK_isdouparname' );
+      MSK_isintparname              := GetProcAddress( hMosekDll, 'MSK_isintparname' );
+      MSK_isstrparname              := GetProcAddress( hMosekDll, 'MSK_isstrparname' );
+      MSK_linkfiletotaskstream      := GetProcAddress( hMosekDll, 'MSK_linkfiletotaskstream' );
+      MSK_linkfunctotaskstream      := GetProcAddress( hMosekDll, 'MSK_linkfunctotaskstream' );
+      MSK_unlinkfuncfromtaskstream  := GetProcAddress( hMosekDll, 'MSK_unlinkfuncfromtaskstream' );
+      MSK_clonetask                 := GetProcAddress( hMosekDll, 'MSK_clonetask' );
+      MSK_relaxprimal               := GetProcAddress( hMosekDll, 'MSK_relaxprimal' );
+      MSK_optimizeconcurrent        := GetProcAddress( hMosekDll, 'MSK_optimizeconcurrent' );
+      MSK_checkdata                 := GetProcAddress( hMosekDll, 'MSK_checkdata' );
+      MSK_optimize                  := GetProcAddress( hMosekDll, 'MSK_optimize' );
+      MSK_netextraction             := GetProcAddress( hMosekDll, 'MSK_netextraction' );
+      MSK_netoptimize               := GetProcAddress( hMosekDll, 'MSK_netoptimize' );
+      MSK_optimizetrm               := GetProcAddress( hMosekDll, 'MSK_optimizetrm' );
+      MSK_printdata                 := GetProcAddress( hMosekDll, 'MSK_printdata' );
+      MSK_printparam                := GetProcAddress( hMosekDll, 'MSK_printparam' );
+      MSK_probtypetostr             := GetProcAddress( hMosekDll, 'MSK_probtypetostr' );
+      MSK_prostatostr               := GetProcAddress( hMosekDll, 'MSK_prostatostr' );
+      MSK_putresponsefunc           := GetProcAddress( hMosekDll, 'MSK_putresponsefunc' );
+      MSK_commitchanges             := GetProcAddress( hMosekDll, 'MSK_commitchanges' );
+      MSK_putaij                    := GetProcAddress( hMosekDll, 'MSK_putaij' );
+      MSK_putaijlist                := GetProcAddress( hMosekDll, 'MSK_putaijlist' );
+      MSK_putavec                   := GetProcAddress( hMosekDll, 'MSK_putavec' );
+      MSK_putaveclist               := GetProcAddress( hMosekDll, 'MSK_putaveclist' );
+      MSK_putaveclist64             := GetProcAddress( hMosekDll, 'MSK_putaveclist64' );
+      MSK_putbound                  := GetProcAddress( hMosekDll, 'MSK_putbound' );
+      MSK_putboundlist              := GetProcAddress( hMosekDll, 'MSK_putboundlist' );
+      MSK_putcallbackfunc           := GetProcAddress( hMosekDll, 'MSK_putcallbackfunc' );
+      MSK_putcfix                   := GetProcAddress( hMosekDll, 'MSK_putcfix' );
+      MSK_putcj                     := GetProcAddress( hMosekDll, 'MSK_putcj' );
+      MSK_putobjsense               := GetProcAddress( hMosekDll, 'MSK_putobjsense' );
+      MSK_getobjsense               := GetProcAddress( hMosekDll, 'MSK_getobjsense' );
+      MSK_putclist                  := GetProcAddress( hMosekDll, 'MSK_putclist' );
+      MSK_putcone                   := GetProcAddress( hMosekDll, 'MSK_putcone' );
+      MSK_putdouparam               := GetProcAddress( hMosekDll, 'MSK_putdouparam' );
+      MSK_putintparam               := GetProcAddress( hMosekDll, 'MSK_putintparam' );
+      MSK_putmaxnumcon              := GetProcAddress( hMosekDll, 'MSK_putmaxnumcon' );
+      MSK_putmaxnumcone             := GetProcAddress( hMosekDll, 'MSK_putmaxnumcone' );
+      MSK_getmaxnumcone             := GetProcAddress( hMosekDll, 'MSK_getmaxnumcone' );
+      MSK_putmaxnumvar              := GetProcAddress( hMosekDll, 'MSK_putmaxnumvar' );
+      MSK_putmaxnumanz              := GetProcAddress( hMosekDll, 'MSK_putmaxnumanz' );
+      MSK_putmaxnumanz64            := GetProcAddress( hMosekDll, 'MSK_putmaxnumanz64' );
+      MSK_putmaxnumqnz              := GetProcAddress( hMosekDll, 'MSK_putmaxnumqnz' );
+      MSK_putmaxnumqnz64            := GetProcAddress( hMosekDll, 'MSK_putmaxnumqnz64' );
+      MSK_getmaxnumqnz              := GetProcAddress( hMosekDll, 'MSK_getmaxnumqnz' );
+      MSK_getmaxnumqnz64            := GetProcAddress( hMosekDll, 'MSK_getmaxnumqnz64' );
+      MSK_putnadouparam             := GetProcAddress( hMosekDll, 'MSK_putnadouparam' );
+      MSK_putnaintparam             := GetProcAddress( hMosekDll, 'MSK_putnaintparam' );
+      MSK_putname                   := GetProcAddress( hMosekDll, 'MSK_putname' );
+      MSK_putnastrparam             := GetProcAddress( hMosekDll, 'MSK_putnastrparam' );
+      MSK_putobjname                := GetProcAddress( hMosekDll, 'MSK_putobjname' );
+      MSK_putparam                  := GetProcAddress( hMosekDll, 'MSK_putparam' );
+      MSK_putqcon                   := GetProcAddress( hMosekDll, 'MSK_putqcon' );
+      MSK_putqconk                  := GetProcAddress( hMosekDll, 'MSK_putqconk' );
+      MSK_putqobj                   := GetProcAddress( hMosekDll, 'MSK_putqobj' );
+      MSK_putqobjij                 := GetProcAddress( hMosekDll, 'MSK_putqobjij' );
+      MSK_makesolutionstatusunknown := GetProcAddress( hMosekDll, 'MSK_makesolutionstatusunknown' );
+      MSK_putsolution               := GetProcAddress( hMosekDll, 'MSK_putsolution' );
+      MSK_putsolutioni              := GetProcAddress( hMosekDll, 'MSK_putsolutioni' );
+      MSK_putsolutionyi             := GetProcAddress( hMosekDll, 'MSK_putsolutionyi' );
+      MSK_putstrparam               := GetProcAddress( hMosekDll, 'MSK_putstrparam' );
+      MSK_puttaskname               := GetProcAddress( hMosekDll, 'MSK_puttaskname' );
+      MSK_putvartype                := GetProcAddress( hMosekDll, 'MSK_putvartype' );
+      MSK_putvartypelist            := GetProcAddress( hMosekDll, 'MSK_putvartypelist' );
+      MSK_putvarbranchorder         := GetProcAddress( hMosekDll, 'MSK_putvarbranchorder' );
+      MSK_getvarbranchorder         := GetProcAddress( hMosekDll, 'MSK_getvarbranchorder' );
+      MSK_getvarbranchpri           := GetProcAddress( hMosekDll, 'MSK_getvarbranchpri' );
+      MSK_getvarbranchdir           := GetProcAddress( hMosekDll, 'MSK_getvarbranchdir' );
+      MSK_readdata                  := GetProcAddress( hMosekDll, 'MSK_readdata' );
+      MSK_readparamfile             := GetProcAddress( hMosekDll, 'MSK_readparamfile' );
+      MSK_readsolution              := GetProcAddress( hMosekDll, 'MSK_readsolution' );
+      MSK_readsummary               := GetProcAddress( hMosekDll, 'MSK_readsummary' );
+      MSK_resizetask                := GetProcAddress( hMosekDll, 'MSK_resizetask' );
+      MSK_checkmemtask              := GetProcAddress( hMosekDll, 'MSK_checkmemtask' );
+      MSK_getmemusagetask           := GetProcAddress( hMosekDll, 'MSK_getmemusagetask' );
+      MSK_getmemusagetask64         := GetProcAddress( hMosekDll, 'MSK_getmemusagetask64' );
+      MSK_setdefaults               := GetProcAddress( hMosekDll, 'MSK_setdefaults' );
+      MSK_sktostr                   := GetProcAddress( hMosekDll, 'MSK_sktostr' );
+      MSK_solstatostr               := GetProcAddress( hMosekDll, 'MSK_solstatostr' );
+      MSK_solutiondef               := GetProcAddress( hMosekDll, 'MSK_solutiondef' );
+      MSK_deletesolution            := GetProcAddress( hMosekDll, 'MSK_deletesolution' );
+      MSK_undefsolution             := GetProcAddress( hMosekDll, 'MSK_undefsolution' );
+      MSK_solutionsummary           := GetProcAddress( hMosekDll, 'MSK_solutionsummary' );
+      MSK_optimizersummary          := GetProcAddress( hMosekDll, 'MSK_optimizersummary' );
+      MSK_strduptask                := GetProcAddress( hMosekDll, 'MSK_strduptask' );
+      MSK_strdupdbgtask             := GetProcAddress( hMosekDll, 'MSK_strdupdbgtask' );
+      MSK_strtoconetype             := GetProcAddress( hMosekDll, 'MSK_strtoconetype' );
+      MSK_strtosk                   := GetProcAddress( hMosekDll, 'MSK_strtosk' );
+      MSK_whichparam                := GetProcAddress( hMosekDll, 'MSK_whichparam' );
+      MSK_writedata                 := GetProcAddress( hMosekDll, 'MSK_writedata' );
+      MSK_readbranchpriorities      := GetProcAddress( hMosekDll, 'MSK_readbranchpriorities' );
+      MSK_writebranchpriorities     := GetProcAddress( hMosekDll, 'MSK_writebranchpriorities' );
+      MSK_writeparamfile            := GetProcAddress( hMosekDll, 'MSK_writeparamfile' );
+      MSK_getinfeasiblesubproblem   := GetProcAddress( hMosekDll, 'MSK_getinfeasiblesubproblem' );
+      MSK_writesolution             := GetProcAddress( hMosekDll, 'MSK_writesolution' );
+      MSK_primalsensitivity         := GetProcAddress( hMosekDll, 'MSK_primalsensitivity' );
+      MSK_sensitivityreport         := GetProcAddress( hMosekDll, 'MSK_sensitivityreport' );
+      MSK_dualsensitivity           := GetProcAddress( hMosekDll, 'MSK_dualsensitivity' );
+      MSK_checkconvexity            := GetProcAddress( hMosekDll, 'MSK_checkconvexity' );
+      MSK_getlasterror              := GetProcAddress( hMosekDll, 'MSK_getlasterror' );
+      MSK_getlasterror64            := GetProcAddress( hMosekDll, 'MSK_getlasterror64' );
+      MSK_isinfinity                := GetProcAddress( hMosekDll, 'MSK_isinfinity' );
+      MSK_checkoutlicense           := GetProcAddress( hMosekDll, 'MSK_checkoutlicense' );
+      MSK_checkinlicense            := GetProcAddress( hMosekDll, 'MSK_checkinlicense' );
+      MSK_getbuildinfo              := GetProcAddress( hMosekDll, 'MSK_getbuildinfo' );
+      MSK_getresponseclass          := GetProcAddress( hMosekDll, 'MSK_getresponseclass' );
+      MSK_deleteenv                 := GetProcAddress( hMosekDll, 'MSK_deleteenv' );
+      MSK_echointro                 := GetProcAddress( hMosekDll, 'MSK_echointro' );
+      MSK_freeenv                   := GetProcAddress( hMosekDll, 'MSK_freeenv' );
+      MSK_freedbgenv                := GetProcAddress( hMosekDll, 'MSK_freedbgenv' );
+      MSK_getcodedisc               := GetProcAddress( hMosekDll, 'MSK_getcodedisc' );
+      MSK_getcodedesc               := GetProcAddress( hMosekDll, 'MSK_getcodedesc' );
+      MSK_getsymbcondim             := GetProcAddress( hMosekDll, 'MSK_getsymbcondim' );
+      MSK_getversion                := GetProcAddress( hMosekDll, 'MSK_getversion' );
+      MSK_checkversion              := GetProcAddress( hMosekDll, 'MSK_checkversion' );
+      MSK_iparvaltosymnam           := GetProcAddress( hMosekDll, 'MSK_iparvaltosymnam' );
+      MSK_linkfiletoenvstream       := GetProcAddress( hMosekDll, 'MSK_linkfiletoenvstream' );
+      MSK_linkfunctoenvstream       := GetProcAddress( hMosekDll, 'MSK_linkfunctoenvstream' );
+      MSK_unlinkfuncfromenvstream   := GetProcAddress( hMosekDll, 'MSK_unlinkfuncfromenvstream' );
+      MSK_makeenv                   := GetProcAddress( hMosekDll, 'MSK_makeenv' );
+      MSK_initenv                   := GetProcAddress( hMosekDll, 'MSK_initenv' );
+      MSK_getglbdllname             := GetProcAddress( hMosekDll, 'MSK_getglbdllname' );
+      MSK_putdllpath                := GetProcAddress( hMosekDll, 'MSK_putdllpath' );
+      MSK_putlicensedefaults        := GetProcAddress( hMosekDll, 'MSK_putlicensedefaults' );
+      MSK_putkeepdlls               := GetProcAddress( hMosekDll, 'MSK_putkeepdlls' );
+      MSK_putcpudefaults            := GetProcAddress( hMosekDll, 'MSK_putcpudefaults' );
+      MSK_maketask                  := GetProcAddress( hMosekDll, 'MSK_maketask' );
+      MSK_makeemptytask             := GetProcAddress( hMosekDll, 'MSK_makeemptytask' );
+      MSK_putexitfunc               := GetProcAddress( hMosekDll, 'MSK_putexitfunc' );
+      MSK_replacefileext            := GetProcAddress( hMosekDll, 'MSK_replacefileext' );
+      MSK_checkmemenv               := GetProcAddress( hMosekDll, 'MSK_checkmemenv' );
+      MSK_strdupenv                 := GetProcAddress( hMosekDll, 'MSK_strdupenv' );
+      MSK_strdupdbgenv              := GetProcAddress( hMosekDll, 'MSK_strdupdbgenv' );
+      MSK_symnamtovalue             := GetProcAddress( hMosekDll, 'MSK_symnamtovalue' );
+      hMosekDll := 0;
+    end;
+  end;
+end;
+
+function UnLoadMosekDll: boolean;
+begin
+  Result := true;
+  if hMosekDll <> 0 then
+  begin
+    Result := FreeLibrary(hMosekDll);
+      MSK_analyzeproblem            := nil;
+      MSK_analyzesolution           := nil;
+      MSK_initbasissolve            := nil;
+      MSK_solvewithbasis            := nil;
+      MSK_basiscond                 := nil;
+      MSK_append                    := nil;
+      MSK_remove                    := nil;
+      MSK_appendcone                := nil;
+      MSK_removecone                := nil;
+      MSK_bktostr                   := nil;
+      MSK_callbackcodetostr         := nil;
+      MSK_chgbound                  := nil;
+      MSK_conetypetostr             := nil;
+      MSK_deletetask                := nil;
+      MSK_freetask                  := nil;
+      MSK_freedbgtask               := nil;
+      MSK_getaij                    := nil;
+      MSK_getapiecenumnz            := nil;
+      MSK_getavecnumnz              := nil;
+      MSK_getavec                   := nil;
+      MSK_getaslicenumnz            := nil;
+      MSK_getaslicenumnz64          := nil;
+      MSK_getaslice                 := nil;
+      MSK_getaslice64               := nil;
+      MSK_getaslicetrip             := nil;
+      MSK_getbound                  := nil;
+      MSK_getboundslice             := nil;
+      MSK_putboundslice             := nil;
+      MSK_getc                      := nil;
+      MSK_getcallbackfunc           := nil;
+      MSK_getsolutionincallback     := nil;
+      MSK_getcfix                   := nil;
+      MSK_getcone                   := nil;
+      MSK_getconeinfo               := nil;
+      MSK_getcslice                 := nil;
+      MSK_getdouinf                 := nil;
+      MSK_getdouparam               := nil;
+      MSK_getdualobj                := nil;
+      MSK_getenv                    := nil;
+      MSK_getinfindex               := nil;
+      MSK_getinfmax                 := nil;
+      MSK_getinfname                := nil;
+      MSK_getintinf                 := nil;
+      MSK_getlintinf                := nil;
+      MSK_getintparam               := nil;
+      MSK_getmaxnamelen             := nil;
+      MSK_getmaxnumanz              := nil;
+      MSK_getmaxnumanz64            := nil;
+      MSK_getmaxnumcon              := nil;
+      MSK_getmaxnumvar              := nil;
+      MSK_getnadouinf               := nil;
+      MSK_getnadouparam             := nil;
+      MSK_getnaintinf               := nil;
+      MSK_getnaintparam             := nil;
+      MSK_getnamelen64              := nil;
+      MSK_getname                   := nil;
+      MSK_getname64                 := nil;
+      MSK_getnameapi64              := nil;
+      MSK_getvarname                := nil;
+      MSK_getvarname64              := nil;
+      MSK_getconname                := nil;
+      MSK_getconname64              := nil;
+      MSK_getnameindex              := nil;
+      MSK_getnastrparam             := nil;
+      MSK_getnumanz                 := nil;
+      MSK_getnumanz64               := nil;
+      MSK_getnumcon                 := nil;
+      MSK_getnumcone                := nil;
+      MSK_getnumconemem             := nil;
+      MSK_getnumintvar              := nil;
+      MSK_getnumparam               := nil;
+      MSK_getnumqconknz             := nil;
+      MSK_getnumqconknz64           := nil;
+      MSK_getnumqobjnz              := nil;
+      MSK_getnumqobjnz64            := nil;
+      MSK_getnumvar                 := nil;
+      MSK_getobjname                := nil;
+      MSK_getobjname64              := nil;
+      MSK_getparamname              := nil;
+      MSK_getparammax               := nil;
+      MSK_getprimalobj              := nil;
+      MSK_getprobtype               := nil;
+      MSK_getqconk64                := nil;
+      MSK_getqconk                  := nil;
+      MSK_getqobj                   := nil;
+      MSK_getqobj64                 := nil;
+      MSK_getqobjij                 := nil;
+      MSK_getsolution               := nil;
+      MSK_getpbi                    := nil;
+      MSK_getdbi                    := nil;
+      MSK_getdeqi                   := nil;
+      MSK_getpeqi                   := nil;
+      MSK_getinti                   := nil;
+      MSK_getpcni                   := nil;
+      MSK_getdcni                   := nil;
+      MSK_getsolutioni              := nil;
+      MSK_getsolutioninf            := nil;
+      MSK_getsolutionstatus         := nil;
+      MSK_getsolutionslice          := nil;
+      MSK_getsolutionstatuskeyslice := nil;
+      MSK_getreducedcosts           := nil;
+      MSK_getstrparam               := nil;
+      MSK_getstrparam64             := nil;
+      MSK_getstrparamal             := nil;
+      MSK_getnastrparamal           := nil;
+      MSK_getsymbcon                := nil;
+      MSK_gettaskname               := nil;
+      MSK_gettaskname64             := nil;
+      MSK_getintpntnumthreads       := nil;
+      MSK_getvartype                := nil;
+      MSK_getvartypelist            := nil;
+      MSK_inputdata                 := nil;
+      MSK_inputdata64               := nil;
+      MSK_isdouparname              := nil;
+      MSK_isintparname              := nil;
+      MSK_isstrparname              := nil;
+      MSK_linkfiletotaskstream      := nil;
+      MSK_linkfunctotaskstream      := nil;
+      MSK_unlinkfuncfromtaskstream  := nil;
+      MSK_clonetask                 := nil;
+      MSK_relaxprimal               := nil;
+      MSK_optimizeconcurrent        := nil;
+      MSK_checkdata                 := nil;
+      MSK_optimize                  := nil;
+      MSK_netextraction             := nil;
+      MSK_netoptimize               := nil;
+      MSK_optimizetrm               := nil;
+      MSK_printdata                 := nil;
+      MSK_printparam                := nil;
+      MSK_probtypetostr             := nil;
+      MSK_prostatostr               := nil;
+      MSK_putresponsefunc           := nil;
+      MSK_commitchanges             := nil;
+      MSK_putaij                    := nil;
+      MSK_putaijlist                := nil;
+      MSK_putavec                   := nil;
+      MSK_putaveclist               := nil;
+      MSK_putaveclist64             := nil;
+      MSK_putbound                  := nil;
+      MSK_putboundlist              := nil;
+      MSK_putcallbackfunc           := nil;
+      MSK_putcfix                   := nil;
+      MSK_putcj                     := nil;
+      MSK_putobjsense               := nil;
+      MSK_getobjsense               := nil;
+      MSK_putclist                  := nil;
+      MSK_putcone                   := nil;
+      MSK_putdouparam               := nil;
+      MSK_putintparam               := nil;
+      MSK_putmaxnumcon              := nil;
+      MSK_putmaxnumcone             := nil;
+      MSK_getmaxnumcone             := nil;
+      MSK_putmaxnumvar              := nil;
+      MSK_putmaxnumanz              := nil;
+      MSK_putmaxnumanz64            := nil;
+      MSK_putmaxnumqnz              := nil;
+      MSK_putmaxnumqnz64            := nil;
+      MSK_getmaxnumqnz              := nil;
+      MSK_getmaxnumqnz64            := nil;
+      MSK_putnadouparam             := nil;
+      MSK_putnaintparam             := nil;
+      MSK_putname                   := nil;
+      MSK_putnastrparam             := nil;
+      MSK_putobjname                := nil;
+      MSK_putparam                  := nil;
+      MSK_putqcon                   := nil;
+      MSK_putqconk                  := nil;
+      MSK_putqobj                   := nil;
+      MSK_putqobjij                 := nil;
+      MSK_makesolutionstatusunknown := nil;
+      MSK_putsolution               := nil;
+      MSK_putsolutioni              := nil;
+      MSK_putsolutionyi             := nil;
+      MSK_putstrparam               := nil;
+      MSK_puttaskname               := nil;
+      MSK_putvartype                := nil;
+      MSK_putvartypelist            := nil;
+      MSK_putvarbranchorder         := nil;
+      MSK_getvarbranchorder         := nil;
+      MSK_getvarbranchpri           := nil;
+      MSK_getvarbranchdir           := nil;
+      MSK_readdata                  := nil;
+      MSK_readparamfile             := nil;
+      MSK_readsolution              := nil;
+      MSK_readsummary               := nil;
+      MSK_resizetask                := nil;
+      MSK_checkmemtask              := nil;
+      MSK_getmemusagetask           := nil;
+      MSK_getmemusagetask64         := nil;
+      MSK_setdefaults               := nil;
+      MSK_sktostr                   := nil;
+      MSK_solstatostr               := nil;
+      MSK_solutiondef               := nil;
+      MSK_deletesolution            := nil;
+      MSK_undefsolution             := nil;
+      MSK_solutionsummary           := nil;
+      MSK_optimizersummary          := nil;
+      MSK_strduptask                := nil;
+      MSK_strdupdbgtask             := nil;
+      MSK_strtoconetype             := nil;
+      MSK_strtosk                   := nil;
+      MSK_whichparam                := nil;
+      MSK_writedata                 := nil;
+      MSK_readbranchpriorities      := nil;
+      MSK_writebranchpriorities     := nil;
+      MSK_writeparamfile            := nil;
+      MSK_getinfeasiblesubproblem   := nil;
+      MSK_writesolution             := nil;
+      MSK_primalsensitivity         := nil;
+      MSK_sensitivityreport         := nil;
+      MSK_dualsensitivity           := nil;
+      MSK_checkconvexity            := nil;
+      MSK_getlasterror              := nil;
+      MSK_getlasterror64            := nil;
+      MSK_isinfinity                := nil;
+      MSK_checkoutlicense           := nil;
+      MSK_checkinlicense            := nil;
+      MSK_getbuildinfo              := nil;
+      MSK_getresponseclass          := nil;
+      MSK_deleteenv                 := nil;
+      MSK_echointro                 := nil;
+      MSK_freeenv                   := nil;
+      MSK_freedbgenv                := nil;
+      MSK_getcodedisc               := nil;
+      MSK_getcodedesc               := nil;
+      MSK_getsymbcondim             := nil;
+      MSK_getversion                := nil;
+      MSK_checkversion              := nil;
+      MSK_iparvaltosymnam           := nil;
+      MSK_linkfiletoenvstream       := nil;
+      MSK_linkfunctoenvstream       := nil;
+      MSK_unlinkfuncfromenvstream   := nil;
+      MSK_makeenv                   := nil;
+      MSK_initenv                   := nil;
+      MSK_getglbdllname             := nil;
+      MSK_putdllpath                := nil;
+      MSK_putlicensedefaults        := nil;
+      MSK_putkeepdlls               := nil;
+      MSK_putcpudefaults            := nil;
+      MSK_maketask                  := nil;
+      MSK_makeemptytask             := nil;
+      MSK_putexitfunc               := nil;
+      MSK_replacefileext            := nil;
+      MSK_checkmemenv               := nil;
+      MSK_strdupenv                 := nil;
+      MSK_strdupdbgenv              := nil;
+      MSK_symnamtovalue             := nil;
+  end;
+end;
+
+end.

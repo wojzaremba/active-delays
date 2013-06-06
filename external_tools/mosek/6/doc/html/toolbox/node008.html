@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>6. MOSEK / MATLAB integration</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. Getting support and help" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. A guided tour" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">5. Getting support and help</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">7. A guided tour</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="235095176">6. MOSEK / MATLAB integration</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node008.html#235096040" target="_self">6.1. MOSEK replacements for MATLAB functions</a></li>
+<li><a href="node008.html#235102152" target="_self">6.2. The license system</a>
+<ul class="toc-level-2">
+<li><a href="node008.html#235102648" target="_self">6.2.1. Waiting for a free license</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="CH:MOSEK-MATLAB-INTEGRATION">&#09;</a> <a name="idx-71861600">&#09;</a></p>
+
+<p>In this chapter we provide some details concerning the integration of MOSEK in MATLAB. The information in this chapter is not strictly necessary for basic use of the MOSEK optimization toolbox for MATLAB. The novice user can safely ok to the next chapter.</p>
+
+<div>
+<h1><a name="235096040">6.1. MOSEK replacements for MATLAB functions</a></h1>
+
+<p>  MOSEK provides replacements for the MATLAB functions: </p>
+
+<ul class="itemize">
+<li><tt class="tt">linprog</tt> </li>
+<li><tt class="tt">quadprog</tt> </li>
+<li><tt class="tt">optimget</tt> </li>
+<li><tt class="tt">optimset</tt> </li>
+<li><tt class="tt">lsqlin</tt> </li>
+<li><tt class="tt">lsqnonneg</tt> </li>
+</ul>
+
+<p> The corresponding MATLAB file for each function is located in the <tt class="tt">toolbox/solvers</tt> directory of the MOSEK distribution. To use the MATLAB version of these functions instead of the MOSEK version, delete the MATLAB files provided by MOSEK.</p>
+
+</div>
+
+<div>
+<h1><a name="235102152">6.2. The license system</a></h1>
+
+<p> <a name="idx-71869720">&#09;</a> By default a license token remains checked out for the duration of the MATLAB session. This can be changed such that the license is returned after each call to MOSEK by setting the parameter <a href="node021.html#common-const*mosek*iparam*cache-license"><tt class="tt">MSK_IPAR_CACHE_LICENSE</tt></a>.</p>
+
+<pre class="verbatim">param.MSK_IPAR_CACHE_LICENSE = 'MSK_OFF'; %set parameter.
+[r,res] = mosekopt('minimize',prob,param); %call mosek.
+</pre>
+
+<p> It should however be noted that there is a small overhead associated with checking out a license token from the license server.</p>
+
+<div>
+<h2><a name="235102648">6.2.1. Waiting for a free license</a></h2>
+
+<p>By default an error will be returned if no license token is available. By setting the parameter <a href="node021.html#common-const*mosek*iparam*license-wait"><tt class="tt">MSK_IPAR_LICENSE_WAIT</tt></a> MOSEK can be instructed to wait until a license token is available.</p>
+
+<pre class="verbatim">param.MSK_IPAR_LICENSE_WAIT = 'MSK_ON'; %set parameter.
+[r,res] = mosekopt('minimize',prob,param); %call mosek.
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node007.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 5. Getting support and help" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK optimization toolbox for MATLAB manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node009.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  7. A guided tour" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node025.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node007.html" target="_self">5. Getting support and help</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK optimization toolbox for MATLAB manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node009.html" target="_self">7. A guided tour</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node025.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:58:20 2012</div>
+</body></html>

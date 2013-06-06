@@ -1,0 +1,195 @@
+<html>
+<head>
+  <title>Table of Contents</title>
+  <style>
+    body { background-color : rgb(240,240,240); color : rgb(0,64,92); font-family : sans-serif; }
+    a:link    { text-decoration : none; color: rgb(0,64,92); }
+    a:visited { text-decoration : none; color: rgb(0,64,92); }
+    a:hover   { background-color : rgb(40,40,40); color: rgb(192,192,255); }
+    #tocbox    { font-family : sans-serif; }
+    #tocbox ul { font-size : small; list-style: none; margin-left : 1em; padding-left : 0; }
+    .toc-lvl0 li { font-weight: bolder; }
+    .toc-lvl2 li { font-size : smaller; font-weight : normal; }
+    #idxbox ul { font-size : small; list-style: none; margin-left : 1em; padding-left : 0; }
+    .sidebarbuttons td { margin : 3px; background-color : rgb(153, 178, 188); font-weight : bolder; font-family: sans-serif; border : solid medium; border-color: rgb(229,235,238) rgb(229,235,238) rgb(76,121,138) rgb(76,121,138); }
+    .sidebarbuttons a:link    { color : rgb(0,64,92); font-weight : bolder; }
+    .sidebarbuttons a:visited { color : rgb(0,64,92); font-weight : bolder; }
+    .sidebarbuttons a:hover   { color: white; background-color : rgb(0,64,92); font-weight : bolder; }
+  </style>
+  <script language="Javascript">
+    function showhide(id1,id2)
+    {
+      var elm = document.getElementById(id1);
+      elm.style.display = "block";
+      var elm = document.getElementById(id2);
+      elm.style.display = "none";
+    }
+  </script>
+</head>
+<body>
+<div class="sidebarbuttons">
+<table width="100%">
+  <tr>
+    <td width="50%" align=center colspan="2"><a href="../../../help/index.html" target="_top">All Manuals</a></td>
+  </tr>
+  <tr>
+    <td width="50%" align=center><a href="javascript:showhide('tocbox','idxbox')">Contents</a></td>
+    <td width="50%" align=center><a href="javascript:showhide('idxbox','tocbox')">Index</a></td>
+  </tr>
+</table>
+</div>
+<div id="tocbox">
+<ul class="toc-lvl0">
+  <li><a href="index.html#140378741105944" target="mainbox">The MOSEK Release Notes. Version 6.0 (Revision 137).</a></li>
+  <ul class="toc-lvl1">
+    <li><a href="node001.html#140378740595960" target="mainbox">1. Changes and new features in MOSEK</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node001.html#140378740595816" target="mainbox">1.1. Compilers used to build MOSEK</a></li>
+      <li><a href="node001.html#140378740609176" target="mainbox">1.2. General changes</a></li>
+      <li><a href="node001.html#140378740611264" target="mainbox">1.3. Optimizers</a></li>
+      <ul class="toc-lvl3">
+        <li><a href="node001.html#140378740610400" target="mainbox">1.3.1. Interior point optimizer</a></li>
+        <li><a href="node001.html#140378740611696" target="mainbox">1.3.2. The simplex optimizers</a></li>
+        <li><a href="node001.html#140378740611912" target="mainbox">1.3.3. Mixed-integer optimizer</a></li>
+      </ul>
+      <li><a href="node001.html#140378740612488" target="mainbox">1.4. API changes</a></li>
+      <li><a href="node001.html#140378740613776" target="mainbox">1.5. License system</a></li>
+      <li><a href="node001.html#140378740615072" target="mainbox">1.6. Other changes</a></li>
+      <li><a href="node001.html#140378740616224" target="mainbox">1.7. Interfaces</a></li>
+      <li><a href="node001.html#140378740617160" target="mainbox">1.8. Platform changes</a></li>
+    </ul>
+    <li><a href="node002.html#140378740618736" target="mainbox">2. Limitations and known issues</a></li>
+    <li><a href="node003.html#140378740620248" target="mainbox">3. Bug fixes and improvements</a></li>
+    <ul class="toc-lvl2">
+      <li><a href="node003.html#140378740619096" target="mainbox">6.0.0.137</a></li>
+      <li><a href="node003.html#140378740621256" target="mainbox">6.0.0.136</a></li>
+      <li><a href="node003.html#140378740622184" target="mainbox">6.0.0.135</a></li>
+      <li><a href="node003.html#140378740623048" target="mainbox">6.0.0.133</a></li>
+      <li><a href="node003.html#140378740623912" target="mainbox">6.0.0.132</a></li>
+      <li><a href="node003.html#140378740624776" target="mainbox">6.0.0.131</a></li>
+      <li><a href="node003.html#140378740625704" target="mainbox">6.0.0.130</a></li>
+      <li><a href="node003.html#140378740626568" target="mainbox">6.0.0.129</a></li>
+      <li><a href="node003.html#140378740627432" target="mainbox">6.0.0.128</a></li>
+      <li><a href="node003.html#140378740628512" target="mainbox">6.0.0.127</a></li>
+      <li><a href="node003.html#140378740629376" target="mainbox">6.0.0.126</a></li>
+      <li><a href="node003.html#140378740630736" target="mainbox">6.0.0.125</a></li>
+      <li><a href="node003.html#140378740631600" target="mainbox">6.0.0.124</a></li>
+      <li><a href="node003.html#140378740632680" target="mainbox">6.0.0.123</a></li>
+      <li><a href="node003.html#140378740634040" target="mainbox">6.0.0.122</a></li>
+      <li><a href="node003.html#140378740635336" target="mainbox">6.0.0.121</a></li>
+      <li><a href="node003.html#140378740636200" target="mainbox">6.0.0.120</a></li>
+      <li><a href="node003.html#140378740637280" target="mainbox">6.0.0.119</a></li>
+      <li><a href="node003.html#140378740638208" target="mainbox">6.0.0.118</a></li>
+      <li><a href="node003.html#140378740639072" target="mainbox">6.0.0.117</a></li>
+      <li><a href="node003.html#140378740639936" target="mainbox">6.0.0.116</a></li>
+      <li><a href="node003.html#140378740640800" target="mainbox">6.0.0.115</a></li>
+      <li><a href="node003.html#140378740641664" target="mainbox">6.0.0.114</a></li>
+      <li><a href="node003.html#140378740642808" target="mainbox">6.0.0.113</a></li>
+      <li><a href="node003.html#140378740643672" target="mainbox">6.0.0.112</a></li>
+      <li><a href="node003.html#140378740644752" target="mainbox">6.0.0.111</a></li>
+      <li><a href="node003.html#140378740645616" target="mainbox">6.0.0.110</a></li>
+      <li><a href="node003.html#140378740646544" target="mainbox">6.0.0.109</a></li>
+      <li><a href="node003.html#140378740647408" target="mainbox">6.0.0.108</a></li>
+      <li><a href="node003.html#140378740648272" target="mainbox">6.0.0.107</a></li>
+      <li><a href="node003.html#140378740649136" target="mainbox">6.0.0.106</a></li>
+      <li><a href="node003.html#140378740650928" target="mainbox">6.0.0.105</a></li>
+      <li><a href="node003.html#140378740652008" target="mainbox">6.0.0.104</a></li>
+      <li><a href="node003.html#140378740653088" target="mainbox">6.0.0.103</a></li>
+      <li><a href="node003.html#140378740653952" target="mainbox">6.0.0.102</a></li>
+      <li><a href="node003.html#140378740654880" target="mainbox">6.0.0.101</a></li>
+      <li><a href="node003.html#140378740655744" target="mainbox">6.0.0.100</a></li>
+      <li><a href="node003.html#140378740656608" target="mainbox">6.0.0.99</a></li>
+      <li><a href="node003.html#140378740657904" target="mainbox">6.0.0.98</a></li>
+      <li><a href="node003.html#140378740659048" target="mainbox">6.0.0.97</a></li>
+      <li><a href="node003.html#140378740660128" target="mainbox">6.0.0.96</a></li>
+      <li><a href="node003.html#140378740660992" target="mainbox">6.0.0.95</a></li>
+      <li><a href="node003.html#140378740662072" target="mainbox">6.0.0.94</a></li>
+      <li><a href="node003.html#140378740663000" target="mainbox">6.0.0.93</a></li>
+      <li><a href="node003.html#140378740663864" target="mainbox">6.0.0.92</a></li>
+      <li><a href="node003.html#140378740664728" target="mainbox">6.0.0.91</a></li>
+      <li><a href="node003.html#140378740665592" target="mainbox">6.0.0.90</a></li>
+      <li><a href="node003.html#140378740666520" target="mainbox">6.0.0.89</a></li>
+      <li><a href="node003.html#140378740667384" target="mainbox">6.0.0.87</a></li>
+      <li><a href="node003.html#140378740668536" target="mainbox">6.0.0.86</a></li>
+      <li><a href="node003.html#140378740669616" target="mainbox">6.0.0.85</a></li>
+      <li><a href="node003.html#140378740671120" target="mainbox">6.0.0.83</a></li>
+      <li><a href="node003.html#140378740672200" target="mainbox">6.0.0.82</a></li>
+      <li><a href="node003.html#140378740673064" target="mainbox">6.0.0.81</a></li>
+      <li><a href="node003.html#140378740673928" target="mainbox">6.0.0.80</a></li>
+      <li><a href="node003.html#140378740675144" target="mainbox">6.0.0.79</a></li>
+      <li><a href="node003.html#140378740676440" target="mainbox">6.0.0.78</a></li>
+      <li><a href="node003.html#140378740677520" target="mainbox">6.0.0.77</a></li>
+      <li><a href="node003.html#140378740678096" target="mainbox">6.0.0.76</a></li>
+      <li><a href="node003.html#140378740679024" target="mainbox">6.0.0.75</a></li>
+      <li><a href="node003.html#140378740679888" target="mainbox">6.0.0.74</a></li>
+      <li><a href="node003.html#140378740681256" target="mainbox">6.0.0.73</a></li>
+      <li><a href="node003.html#140378740681832" target="mainbox">6.0.0.70</a></li>
+      <li><a href="node003.html#140378740682696" target="mainbox">6.0.0.69</a></li>
+      <li><a href="node003.html#140378740683912" target="mainbox">6.0.0.68</a></li>
+      <li><a href="node003.html#140378740684776" target="mainbox">6.0.0.67</a></li>
+      <li><a href="node003.html#140378740685856" target="mainbox">6.0.0.66</a></li>
+      <li><a href="node003.html#140378740687216" target="mainbox">6.0.0.65</a></li>
+      <li><a href="node003.html#140378740688008" target="mainbox">6.0.0.64</a></li>
+      <li><a href="node003.html#140378740689160" target="mainbox">6.0.0.63</a></li>
+      <li><a href="node003.html#140378740689952" target="mainbox">6.0.0.62</a></li>
+      <li><a href="node003.html#140378740691600" target="mainbox">6.0.0.61</a></li>
+      <li><a href="node003.html#140378740692392" target="mainbox">6.0.0.60</a></li>
+      <li><a href="node003.html#140378740693328" target="mainbox">6.0.0.59</a></li>
+      <li><a href="node003.html#140378740694120" target="mainbox">6.0.0.58</a></li>
+      <li><a href="node003.html#140378740694984" target="mainbox">6.0.0.57</a></li>
+      <li><a href="node003.html#140378740695912" target="mainbox">6.0.0.56</a></li>
+      <li><a href="node003.html#140378740696776" target="mainbox">6.0.0.55</a></li>
+      <li><a href="node003.html#140378740699008" target="mainbox">6.0.0.54</a></li>
+      <li><a href="node003.html#140378740700584" target="mainbox">6.0.0.53</a></li>
+      <li><a href="node003.html#140378740701664" target="mainbox">6.0.0.52</a></li>
+      <li><a href="node003.html#140378740702960" target="mainbox">6.0.0.51</a></li>
+      <li><a href="node003.html#140378740704320" target="mainbox">6.0.0.50</a></li>
+      <li><a href="node003.html#140378740705400" target="mainbox">6.0.0.49</a></li>
+      <li><a href="node003.html#140378740706480" target="mainbox">6.0.0.47</a></li>
+      <li><a href="node003.html#140378740707272" target="mainbox">6.0.0.46</a></li>
+      <li><a href="node003.html#140378740708200" target="mainbox">6.0.0.44</a></li>
+      <li><a href="node003.html#140378740708848" target="mainbox">6.0.0.43</a></li>
+      <li><a href="node003.html#140378740709496" target="mainbox">6.0.0.41</a></li>
+      <li><a href="node003.html#140378740710432" target="mainbox">6.0.0.40</a></li>
+      <li><a href="node003.html#140378740711008" target="mainbox">6.0.0.39</a></li>
+      <li><a href="node003.html#140378740712440" target="mainbox">6.0.0.38</a></li>
+      <li><a href="node003.html#140378740713736" target="mainbox">6.0.0.37</a></li>
+      <li><a href="node003.html#140378740714600" target="mainbox">6.0.0.36</a></li>
+      <li><a href="node003.html#140378740715464" target="mainbox">6.0.0.34</a></li>
+      <li><a href="node003.html#140378740716320" target="mainbox">6.0.0.33</a></li>
+      <li><a href="node003.html#140378740717184" target="mainbox">6.0.0.32</a></li>
+      <li><a href="node003.html#140378740717832" target="mainbox">6.0.0.31</a></li>
+      <li><a href="node003.html#140378740718768" target="mainbox">6.0.0.30</a></li>
+      <li><a href="node003.html#140378740719344" target="mainbox">6.0.0.29</a></li>
+      <li><a href="node003.html#140378740720560" target="mainbox">6.0.0.28</a></li>
+      <li><a href="node003.html#140378740721640" target="mainbox">6.0.0.27</a></li>
+      <li><a href="node003.html#140378740722720" target="mainbox">6.0.0.26</a></li>
+      <li><a href="node003.html#140378740723584" target="mainbox">6.0.0.25</a></li>
+      <li><a href="node003.html#140378740724224" target="mainbox">6.0.0.24</a></li>
+      <li><a href="node003.html#140378740725592" target="mainbox">6.0.0.23</a></li>
+      <li><a href="node003.html#140378740726456" target="mainbox">6.0.0.22</a></li>
+      <li><a href="node003.html#140378740727320" target="mainbox">6.0.0.21</a></li>
+      <li><a href="node003.html#140378740728464" target="mainbox">6.0.0.20</a></li>
+      <li><a href="node003.html#140378740729328" target="mainbox">6.0.0.19</a></li>
+      <li><a href="node003.html#140378740729904" target="mainbox">6.0.0.18</a></li>
+      <li><a href="node003.html#140378740731056" target="mainbox">6.0.0.17</a></li>
+      <li><a href="node003.html#140378740731632" target="mainbox">6.0.0.15</a></li>
+      <li><a href="node003.html#140378740732560" target="mainbox">6.0.0.14</a></li>
+      <li><a href="node003.html#140378740733424" target="mainbox">6.0.0.12</a></li>
+      <li><a href="node003.html#140378740734288" target="mainbox">6.0.0.10</a></li>
+      <li><a href="node003.html#140378740735152" target="mainbox">3.1. Mosek/Java API</a></li>
+    </ul>
+  </ul>
+</ul>
+</div>
+<div id="idxbox" style="display:none;">
+<ul class="idx-lvl0">
+<a href="#index-letter-@">@</a> | <a href="#index-letter-A">A</a> | <a href="#index-letter-B">B</a> | <a href="#index-letter-C">C</a> | <a href="#index-letter-D">D</a> | <a href="#index-letter-E">E</a> | <a href="#index-letter-F">F</a> | <a href="#index-letter-G">G</a> | <a href="#index-letter-H">H</a> | <a href="#index-letter-I">I</a> | <a href="#index-letter-J">J</a> | <a href="#index-letter-K">K</a> | <a href="#index-letter-L">L</a> | <a href="#index-letter-M">M</a> | <a href="#index-letter-N">N</a> | <a href="#index-letter-O">O</a> | <a href="#index-letter-P">P</a> | <a href="#index-letter-Q">Q</a> | <a href="#index-letter-R">R</a> | <a href="#index-letter-S">S</a> | <a href="#index-letter-T">T</a> | <a href="#index-letter-U">U</a> | <a href="#index-letter-V">V</a> | <a href="#index-letter-W">W</a> | <a href="#index-letter-X">X</a> | <a href="#index-letter-Y">Y</a>
+<br/><hr/><br/>
+
+
+  <li> 
+</ul>
+</div>
+</body>
+</html>

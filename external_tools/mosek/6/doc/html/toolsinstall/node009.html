@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>8. License server installation</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node008.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 7. Obtaining the host ID and hostname" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node010.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  9. Installing a trial license" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node008.html" target="_self">7. Obtaining the host ID and hostname</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node010.html" target="_self">9. Installing a trial license</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="139655402975104">8. License server installation</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node009.html#139655402974456" target="_self">8.1. Windows</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#139655402976320" target="_self">8.1.1. License server installation</a></li>
+<li><a href="node009.html#139655402979984" target="_self">8.1.2. Using MOSEK from a networked client computer</a>
+<ul class="toc-level-3">
+<li><a href="node009.html#139655402982648" target="_self">8.1.2.1. License file search path</a></li>
+<li><a href="node009.html#139655402983224" target="_self">8.1.2.2. Verifying that the license system works</a></li>
+<li><a href="node009.html#139655402985016" target="_self">8.1.2.3. Controlling port usage and firewall access</a></li>
+<li><a href="node009.html#139655402993784" target="_self">8.1.2.4. Locating the license server / reducing checkout overhead</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="node009.html#139655403005424" target="_self">8.2. LINUX / UNIX / MAC OSX</a>
+<ul class="toc-level-2">
+<li><a href="node009.html#139655403006936" target="_self">8.2.1. License server installation</a></li>
+<li><a href="node009.html#139655403013760" target="_self">8.2.2. Checking out a license from the server</a></li>
+<li><a href="node009.html#139655403022312" target="_self">8.2.3. Verifying that the license system works</a></li>
+<li><a href="node009.html#139655403023608" target="_self">8.2.4. Starting lmgrd on boot.</a></li>
+<li><a href="node009.html#139655403024968" target="_self">8.2.5. Speeding up license checkout</a></li>
+<li><a href="node009.html#139655403026192" target="_self">8.2.6. Accessing the license server through a firewall</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="idx-139655403465328">&#09;</a> <a name="ch-lic-serv-install">&#09;</a></p>
+
+<div>
+<h1><a name="139655402974456">8.1. Windows</a></h1>
+
+<p> In order to use a purchased MOSEK license you must: </p>
+
+<ol class="enumerate">
+<li>Install the license server as described in Section <a title="8.1.1. License server installation" href="node009.html#sec-lic-serv-install-win">8.1.1</a>.</li>
+<li><em>(Optional)</em>: If you want to use the license from a client computer other than the one running the license server, then you should configure each client to check out the license from the license server. See Section <a title="8.1.2. Using MOSEK from a networked client computer" href="node009.html#sec-from-client">8.1.2</a> for details. </li>
+</ol>
+
+<div>
+<h2><a name="139655402976320">8.1.1. License server installation</a></h2>
+
+<p> <a name="sec-lic-serv-install-win">&#09;</a></p>
+
+<p>Please follow the steps below to install a purchased license or to restart the license server with an new license file. <b>Note</b>: Installing the license server will remove any existing MOSEK license server services.</p>
+
+<ul class="itemize">
+<li>First make sure you have <em>administrative privileges</em>.</li>
+<li><em>(Optional)</em>: If you have purchased a dongle, insert this. If you have not already installed the dongle, do so using the instructions in Chapter <a title="6. Dongle installation and usage" href="node007.html#ch-dongle-install-usage">6</a>.</li>
+<li>
+<p>In the start menu select <span style="background-color:#cccccc"><b><span class="sf">Mosek Optimization tools 6.0</span></b></span> and click on <span style="background-color:#cccccc"><b><span class="sf">Install MOSEK license server</span></b></span> to start the license installation wizard.</p>
+<center>
+<p> <img src="graphics/flexlicinstall1.png"/> </p>
+</center></li>
+<li>Click <span style="background-color:#cccccc"><b><span class="sf">Next</span></b></span>.</li>
+<li>
+<p>Click <span style="background-color:#cccccc"><b><span class="sf">Browse</span></b></span> and select the license file. </p>
+<center>
+<p> <img src="graphics/flexlicinstall3.png"/> </p>
+</center></li>
+<li>Click <span style="background-color:#cccccc"><b><span class="sf">Next</span></b></span> to install the license server.</li>
+<li>Click <span style="background-color:#cccccc"><b><span class="sf">Finish</span></b></span>.</li>
+<li>Finally, you will be asked to log out and log in again. All users on the license server must do so before they can run MOSEK. </li>
+</ul>
+
+<p> MOSEK can now be used by any user on the computer where the license server is installed. To configure MOSEK to run on a computer other than the license server please follow the instructions in Section <a title="8.1.2. Using MOSEK from a networked client computer" href="node009.html#sec-from-client">8.1.2</a>.</p>
+
+<p>To share a single license between multiple computers who are not on the same network you must use a dongle. See Chapter <a title="6. Dongle installation and usage" href="node007.html#ch-dongle-install-usage">6</a> for details.</p>
+
+<p>The above procedure describes how to install the license server using the MOSEK license server installation tool. Alternatively the FLEXlm installation tool <tt class="tt">lmtools</tt> may be used. For information about this tool and the many other options of FLEXlm please see <a href="http://www.mosek.com/fileadmin/download/flexnetdoc/fnp_LicAdmin.pdf">Flexlm end user manual</a>.</p>
+
+</div>
+
+<div>
+<h2><a name="139655402979984">8.1.2. Using MOSEK from a networked client computer</a></h2>
+
+<p> <a name="sec-from-client">&#09;</a></p>
+
+<p>A MOSEK license can be used from any computer that can connect to the license server via a network including the license server itself. The license server should not be installed on every client computer. To use your MOSEK license from a computer other than the license server, follow the procedure below: </p>
+
+<ul class="itemize">
+<li>Install MOSEK as described in Chapter <a title="2. Installing the software" href="node003.html#ch-install">2</a>.</li>
+<li>
+<p>Replace the </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt;\mosek\6\licenses\mosek.lic
+</pre>
+
+<p>file with your permanent license file where <tt class="tt">&lt;INSTALL_DIR&gt;</tt> is the location of your MOSEK installation.</p>
+</li>
+<li>Verify that MOSEK can now check out a license from the server by performing the step described in Section <a title="8.1.2.2. Verifying that the license system works" href="node009.html#sec-ver-lic-ok-win">8.1.2.2</a>.</li>
+</ul>
+
+<p> MOSEK will then check out the license from the license server. Please note that on the client machine the license files only function is to identify the name of the license server. For information on how to change the license server used please see Section <a title="8.1.2.4. Locating the license server / reducing checkout overhead" href="node009.html#sec-win-install-subsec-speed-up-lic">8.1.2.4</a>.</p>
+
+<div>
+<h3><a name="139655402982648">8.1.2.1. License file search path</a></h3>
+
+<p>The location of the license file used is controlled by the </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE
+</pre>
+
+<p>environment variable. The default value for a Windows installation performed with the automatic installation tool is </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt;\mosek\6\licenses\mosek.lic
+</pre>
+
+<p>For information on changing this variable see Section <a title="8.1.2.4. Locating the license server / reducing checkout overhead" href="node009.html#sec-win-install-subsec-speed-up-lic">8.1.2.4</a>.</p>
+
+</div>
+
+<div>
+<h3><a name="139655402983224">8.1.2.2. Verifying that the license system works</a></h3>
+
+<p> <a name="sec-ver-lic-ok-win">&#09;</a></p>
+
+<p>In the start menu select <span style="background-color:#cccccc"><b><span class="sf">Mosek Optimization tools 6.0</span></b></span> and click on <span style="background-color:#cccccc"><b><span class="sf">Test license system</span></b></span>. The message </p>
+
+<pre class="verbatim">************************************
+A license was checked out correctly.
+************************************
+</pre>
+
+<p>will appear if the license system works correctly. If the license does not check out correctly please contact MOSEK support at <a href="mailto:support@mosek.com">support@mosek.com</a>. Please include the error messages in your email.</p>
+
+</div>
+
+<div>
+<h3><a name="139655402985016">8.1.2.3. Controlling port usage and firewall access</a></h3>
+
+<p> <a name="sec-firewall-windows">&#09;</a> <a name="idx-139655403543656">&#09;</a> <a name="idx-139655403544304">&#09;</a></p>
+
+<p>The MOSEK license server installation automatically creates exceptions for the programs </p>
+
+<ul class="itemize">
+<li><tt class="tt">lmgrd.exe</tt> and </li>
+<li><tt class="tt">MOSEKLM.exe</tt> </li>
+</ul>
+
+<p>in the &#8220;Windows firewall&#8221;. This is required to access the license server from a remote computer. For other firewalls than the standard &#8220;Windows firewall&#8221; manual configuration may be required.</p>
+
+<p>The license server consists of two daemons </p>
+
+<ul class="itemize">
+<li><tt class="tt">lmgrd.exe</tt>: The license server daemon running as a service, </li>
+<li><tt class="tt">MOSEKLM.exe</tt>: A daemon started by <tt class="tt">lmgrd</tt> </li>
+</ul>
+
+<p>each of which needs an open port in the firewall. To specify which port number each service should use you must change the license file. The first two lines in a standard MOSEK license files looks like this: </p>
+
+<pre class="verbatim">SERVER my_server 123456789ABC
+VENDOR MOSEKLM
+</pre>
+
+<p>To instruct <tt class="tt">lmgrd.exe</tt> to use port <span class="math"><span class="mn">27000</span></span> and <tt class="tt">MOSEKLM.exe</tt> to use port <span class="math"><span class="mn">3084</span></span> change the first two lines of the license file to: </p>
+
+<pre class="verbatim">SERVER my_server 123456789ABC 27000
+VENDOR MOSEKLM port=3084
+</pre>
+
+<p> After changing the license file reboot your computer for the changes to take effect and configure your firewall to allow access to the chosen port numbers which in this case are <span class="math"><span class="mn">27000</span></span> and <span class="math"><span class="mn">3084</span></span>.</p>
+
+<p>Finally, it is a good idea to check if the port is open by using the telnet command as follows </p>
+
+<pre class="verbatim">telnet my_server 27000
+</pre>
+
+<p>on the client computer(s). You will get an error message similar to this: </p>
+
+<pre class="verbatim">Connecting To birkende...Could not open connection to the host,
+   on port 27000: Connect failed
+</pre>
+
+<p>if the port is not open.</p>
+
+<p>Also see the <a href="http://www.mosek.com/fileadmin/download/flexnetdoc/fnp_LicAdmin.pdf">Flexlm end user manual</a> for more information.</p>
+
+</div>
+
+<div>
+<h3><a name="139655402993784">8.1.2.4. Locating the license server / reducing checkout overhead</a></h3>
+
+<p> <a name="sec-win-install-subsec-speed-up-lic">&#09;</a></p>
+
+<p>In the following section we describe how to connect to the license server. We will also discuss how to reduce license checkout overhead by configuring the way a client machine locates the license server. In general this overhead is very low and will have an impact only if the license is checked out frequently.</p>
+
+<p>Per default the client computer running MOSEK locates the license server by reading the first line of the license file, which e.g look like this: </p>
+
+<pre class="verbatim">SERVER myserver 123456789ABC
+</pre>
+
+<p>In this case <tt class="tt">myserver</tt> is the license server used and the port number will be determined automatically. The name of the server can be changed at any time by manually editing the license file. The last number is the MAC address which can not be changed by the user. The location of the license file to read the license server name from is determined by the environment variable: </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE = PATH_TO_LICENSE
+</pre>
+
+<p>where <tt class="tt">PATH_TO_LICENSE</tt> is the location of your permanent license file. When using the automatic installer <tt class="tt">MOSEKLM_LICENSE_FILE</tt> is automatically set to </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE = &lt;INSTALL_DIR&gt;\mosek\6\licenses\mosek.lic
+</pre>
+
+<p>Alternatively you may use the syntax </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE = port@host
+</pre>
+
+<p>or </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE = @host
+</pre>
+
+<p>where <tt class="tt">port</tt> is the port that <tt class="tt">lmgrd</tt> is running on and <tt class="tt">hostname</tt> is the hostname or IP-address of the license server. If only <tt class="tt">host</tt> is given the <tt class="tt">port</tt> will be determined automatically (there is an overhead associated with this). As an example consider setting </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE = 27000@server01
+</pre>
+
+<p>where the default port <span class="math"><span class="mn">27000</span></span> used by <tt class="tt">lmgrd</tt> is used on the server named <tt class="tt">server01</tt>. Please note that if port <span class="math"><span class="mn">27000</span></span> is not free another port number may be used by <tt class="tt">lmgrd</tt>. See Section <a title="8.1.2.3. Controlling port usage and firewall access" href="node009.html#sec-firewall-windows">8.1.2.3</a> for instructions on how to manually set the port number used by <tt class="tt">lmgrd</tt>.</p>
+
+<p>The most efficient way to specify the license server is </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE = port@ip
+</pre>
+
+<p>where <tt class="tt">IP</tt> is the IP-address of the license server. This way the client machine will not need to search for the correct port number or do a DNS lookup to locate the IP-address.</p>
+
+<p>For instructions on setting the operation system environment variables see Appendix <a title="B. Operating system environment variables" href="node012.html#app-osenvvar">B</a>.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="139655403005424">8.2. LINUX / UNIX / MAC OSX</a></h1>
+
+<p> To use a floating MOSEK license you must: </p>
+
+<ol class="enumerate">
+<li>Install LSB 3.0 or later on the server if not already installed. This package is called lsb in most linux distributions. </li>
+<li>Install the license server (Section <a title="8.2.1. License server installation" href="node009.html#sec-lic-serv-install">8.2.1</a>). </li>
+<li>Set the <tt class="tt">MOSEKLM_LICENSE_FILE</tt> environment variable on any machine on witch you want to run MOSEK. (Section <a title="8.2.2. Checking out a license from the server" href="node009.html#sec-ch-out-lic">8.2.2</a>). </li>
+</ol>
+
+<div>
+<h2><a name="139655403006936">8.2.1. License server installation</a></h2>
+
+<p> <a name="sec-lic-serv-install">&#09;</a></p>
+
+<p>This section discusses how to install the license server on LINUX / UNIX / MAC OS X. Two files are required to run the license server: </p>
+
+<ul class="itemize">
+<li><tt class="tt">lmgrd</tt>: The license server daemon executed by the user. </li>
+<li><tt class="tt">MOSEKLM</tt>: A daemon started by <tt class="tt">lmgrd</tt>. </li>
+</ul>
+
+<p>These files can be found in: </p>
+
+<pre class="verbatim">&lt;INSTALL_DIR&gt;/mosek/6/tools/platform/&lt;PLATFORM&gt;/bin/
+</pre>
+
+<p>To start the license server run the following commands: </p>
+
+<pre class="verbatim">cd &lt;INSTALL_DIR&gt;/mosek/6/tools/platform/&lt;PLATFORM&gt;/bin/
+./lmgrd -c PATH_TO_LICENSE -l lmgrd.log
+</pre>
+
+<p>Where <tt class="tt">PATH_TO_LICENSE</tt> is the path to your license file. The license server will save a log file in the location given by the <tt class="tt">-l</tt> command line parameter. If the license server was started successfully the <tt class="tt">lmgrd.log</tt> file will look similar to this: <small class="small">
+<pre class="verbatim">cat lmgrd.log
+15:03:09 (lmgrd) -----------------------------------------------
+15:03:09 (lmgrd)   Please Note:
+15:03:09 (lmgrd) 
+15:03:09 (lmgrd)   This log is intended for debug purposes only.
+15:03:09 (lmgrd)   In order to capture accurate license
+15:03:09 (lmgrd)   usage data into an organized repository,
+15:03:09 (lmgrd)   please enable report logging. Use Macrovision's
+15:03:09 (lmgrd)   software license administration  solution,
+15:03:09 (lmgrd)   FLEXnet Manager, to  readily gain visibility
+15:03:09 (lmgrd)   into license usage data and to create
+15:03:09 (lmgrd)   insightful reports on critical information like
+15:03:09 (lmgrd)   license availability and usage. FLEXnet Manager
+15:03:09 (lmgrd)   can be fully automated to run these reports on
+15:03:09 (lmgrd)   schedule and can be used to track license
+15:03:09 (lmgrd)   servers and usage across a heterogeneous
+15:03:09 (lmgrd)   network of servers including Windows NT, Linux
+15:03:09 (lmgrd)   and UNIX. Contact Macrovision at
+15:03:09 (lmgrd)   www.macrovision.com for more details on how to
+15:03:09 (lmgrd)   obtain an evaluation copy of FLEXnet Manager
+15:03:09 (lmgrd)   for your enterprise.
+15:03:09 (lmgrd) 
+15:03:09 (lmgrd) -----------------------------------------------
+15:03:09 (lmgrd) 
+15:03:09 (lmgrd) 
+15:03:09 (lmgrd) FLEXnet Licensing (v11.4.0.0 build 31341) started on kolding (linux) (5/14/2007)
+15:03:09 (lmgrd) Copyright (c) 1988-2006 Macrovision Europe Ltd. and/or Macrovision Corporation. All Rights Reserved.
+15:03:09 (lmgrd) US Patents 5,390,297 and 5,671,412.
+15:03:09 (lmgrd) World Wide Web:  http://www.macrovision.com
+15:03:09 (lmgrd) License file(s): /home/sandvik/kolding.lic
+15:03:09 (lmgrd) lmgrd tcp-port 27000
+15:03:09 (lmgrd) Starting vendor daemons ... 
+15:03:09 (lmgrd) Started MOSEKLM (internet tcp_port 44950 pid 23251)
+15:03:09 (MOSEKLM) FLEXnet Licensing version v11.4.0.0 build 31341
+15:03:09 (MOSEKLM) Server started on kolding for:       PTS
+15:03:09 (MOSEKLM) PTOC         PTON            PTOM
+15:03:09 (lmgrd) MOSEKLM using TCP-port 44950
+</pre>
+</small>In this case <tt class="tt">lmgrd</tt> is running on port <span class="math"><span class="mn">27000</span></span> and <tt class="tt">MOSEKLM</tt> is running on port <span class="math"><span class="mn">44950</span></span>.</p>
+
+</div>
+
+<div>
+<h2><a name="139655403013760">8.2.2. Checking out a license from the server</a></h2>
+
+<p> <a name="sec-ch-out-lic">&#09;</a></p>
+
+<p>To run MOSEK (from the license server or a remote machine) you must set the environment variable </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE = PATH_TO_LICENSE
+</pre>
+
+<p> where <tt class="tt">PATH_TO_LICENSE</tt> is the location of your permanent license file, e.g. </p>
+
+<pre class="verbatim">/home/me/mosek/6/licenses/mosek.lic
+</pre>
+
+<p>On the client machine the only function of the license file is to identify the host name of the license server. The first line of the license file should be similar to: </p>
+
+<pre class="verbatim">SERVER myserver 123456789ABC
+</pre>
+
+<p>In this case MOSEK will try to use <tt class="tt">myserver</tt> as a license server. The name of the server can be changed at any time by manually editing the license file. Alternatively you may use the syntax </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE = port@host
+</pre>
+
+<p>or </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE = @host
+</pre>
+
+<p>where <tt class="tt">port</tt> is the port that <tt class="tt">lmgrd</tt> is running on and <tt class="tt">hostname</tt> is the hostname or IP address of the license server. If only <tt class="tt">host</tt> is given the <tt class="tt">port</tt> will be determined automatically. As an example consider setting </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE = 27000@server01
+</pre>
+
+<p>where the default port <span class="math"><span class="mn">27000</span></span> used by <tt class="tt">lmgrd</tt> is used on the server named <tt class="tt">server01</tt>. Please note that if port <span class="math"><span class="mn">27000</span></span> is not free another port number may be used by <tt class="tt">lmgrd</tt>. See Section <a title="8.2.6. Accessing the license server through a firewall" href="node009.html#sec-firewall-unix">8.2.6</a> for instructions on how to manually set the port number used by <tt class="tt">lmgrd</tt>.</p>
+
+</div>
+
+<div>
+<h2><a name="139655403022312">8.2.3. Verifying that the license system works</a></h2>
+
+<p> <a name="sec-ver-lic-ok-unix">&#09;</a> Run the commands </p>
+
+<pre class="verbatim">cd &lt;INSTALL_DIR&gt;/mosek/6/tools/platform/&lt;PLATFORM&gt;/bin/
+./msktestlic
+</pre>
+
+<p>The message </p>
+
+<pre class="verbatim">************************************
+A license was checked out correctly.
+************************************
+</pre>
+
+<p>appears on successful license checkout.</p>
+
+</div>
+
+<div>
+<h2><a name="139655403023608">8.2.4. Starting lmgrd on boot.</a></h2>
+
+<p>For security reasons <tt class="tt">lmgrd</tt> should not run as root. To start <tt class="tt">lmgrd</tt> at boot time we recommend that you add the following command to your startup script: </p>
+
+<pre class="verbatim">su username -c "umask 022; lmgrd -c path_to_license_file -l lmgrd.log"
+
+#   Where:
+#     username:  is a normal, non-root, non-privileged user
+#
+#     lmgrd: is the complete path and file name to the lmgrd binary
+#
+#     path_to_license_file:   is the complete path and file name to
+#                             the license file
+#
+#    log:       is the complete path and file name to the debug log file
+</pre>
+
+</div>
+
+<div>
+<h2><a name="139655403024968">8.2.5. Speeding up license checkout</a></h2>
+
+<p>The most efficient way to specify the license server is </p>
+
+<pre class="verbatim">MOSEKLM_LICENSE_FILE = port@ip
+</pre>
+
+<p>where <tt class="tt">IP</tt> is the IP-address of the license server. This way the client machine will not need to search for the correct port number or to do a DNS lookup to locate the IP-address.</p>
+
+</div>
+
+<div>
+<h2><a name="139655403026192">8.2.6. Accessing the license server through a firewall</a></h2>
+
+<p> <a name="sec-firewall-unix">&#09;</a></p>
+
+<p>The license server consists of two daemons </p>
+
+<ul class="itemize">
+<li><tt class="tt">lmgrd</tt>: The license server daemons, </li>
+<li><tt class="tt">MOSEKLM</tt>: A demon started by <tt class="tt">lmgrd</tt> </li>
+</ul>
+
+<p>Both needs an open port in the firewall. To specify which port number each daemon should use you must change the license file. The first two lines in a standard MOSEK license file look like: </p>
+
+<pre class="verbatim">SERVER my_server 123456789ABC
+VENDOR MOSEKLM
+</pre>
+
+<p>To instruct <tt class="tt">lmgrd</tt> to use port <span class="math"><span class="mn">27000</span></span> and <tt class="tt">MOSEKLM</tt> to use port <span class="math"><span class="mn">3084</span></span> change the first two lines of the license file to: </p>
+
+<pre class="verbatim">SERVER my_server 123456789ABC 27000
+VENDOR MOSEKLM port=3084
+</pre>
+
+<p>Restart the license server and configure your firewall to allow access to the chosen port numbers which in this case are <span class="math"><span class="mn">27000</span></span> and <span class="math"><span class="mn">3084</span></span>.</p>
+
+<p>Finally, it is a good idea to check if the port is open by using the telnet command as follows </p>
+
+<pre class="verbatim">telnet my_server 27000
+</pre>
+
+<p>on the client computer(s). You will get an error message similar to </p>
+
+<pre class="verbatim">Connecting To birkende...Could not open connection to the host,
+   on port 27000: Connect failed
+</pre>
+
+<p>if the port is <em>not</em> open. If open <tt class="tt">telnet</tt> will connect with no error message.</p>
+
+<p>See also the <a href="http://www.mosek.com/fileadmin/download/flexnetdoc/fnp_LicAdmin.pdf">Flexlm end user manual</a> for more information.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node008.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 7. Obtaining the host ID and hostname" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK installation manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node010.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  9. Installing a trial license" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node013.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node008.html" target="_self">7. Obtaining the host ID and hostname</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK installation manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node010.html" target="_self">9. Installing a trial license</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node013.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 11:04:21 2012</div>
+</body></html>

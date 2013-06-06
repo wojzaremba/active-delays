@@ -1,0 +1,1115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>13. Case Studies</title>
+<!-- pyLaTeX: XHTML.lib.Sectioning.chapter -->
+<link href="styles/style.css" rel="stylesheet"/>
+<link href="styles/gstyles.css" rel="stylesheet"/>
+<link href="graphics/favicon.png" rel="shortcut icon"/>
+</head>
+<body>
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node014.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 12. Sensitivity analysis" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node016.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  14. Usage guidelines" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node014.html" target="_self">12. Sensitivity analysis</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node016.html" target="_self">14. Usage guidelines</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div>
+<h1><a name="272444448">13. Case Studies</a></h1>
+
+<div class="contents">
+<ul class="toc-level-1">
+<li><a href="node015.html#272440928" target="_self">13.1. The traveling salesman problem</a>
+<ul class="toc-level-2">
+<li><a href="node015.html#272444664" target="_self">13.1.1. The TSP formulations</a></li>
+<li><a href="node015.html#272463920" target="_self">13.1.2. Comparing formulations</a></li>
+<li><a href="node015.html#272451920" target="_self">13.1.3. Example code</a></li>
+</ul>
+</li>
+<li><a href="node015.html#272491656" target="_self">13.2. Geometric (posynomial) optimization</a>
+<ul class="toc-level-2">
+<li><a href="node015.html#272484904" target="_self">13.2.1. The problem</a></li>
+<li><a href="node015.html#272519896" target="_self">13.2.2. Applications</a></li>
+<li><a href="node015.html#272491512" target="_self">13.2.3. Modeling tricks</a>
+<ul class="toc-level-3">
+<li><a href="node015.html#272521120" target="_self">13.2.3.1. Equalities</a></li>
+</ul>
+</li>
+<li><a href="node015.html#274217872" target="_self">13.2.4. Problematic formulations</a>
+<ul class="toc-level-3">
+<li><a href="node015.html#274218232" target="_self">13.2.4.1. Finite unattainable solution</a></li>
+<li><a href="node015.html#274234040" target="_self">13.2.4.2. Infinite solution</a></li>
+</ul>
+</li>
+<li><a href="node015.html#274242304" target="_self">13.2.5. An example</a></li>
+<li><a href="node015.html#274270400" target="_self">13.2.6. Solving from the command line tool</a>
+<ul class="toc-level-3">
+<li><a href="node015.html#274271048" target="_self">13.2.6.1. An example</a></li>
+</ul>
+</li>
+<li><a href="node015.html#274272128" target="_self">13.2.7. Further information</a></li>
+</ul>
+</li>
+</ul>
+
+<hr width="100%" class="tocseparator"/>
+</div>
+
+<p> <a name="chap-case-studies">&#09;</a></p>
+
+<div>
+<h1><a name="272440928">13.1. The traveling salesman problem</a></h1>
+
+<p> <a name="idx-98241928">&#09;</a> <a name="idx-98238760">&#09;</a> The Travelling Salesman Problem (TSP) is the problem of finding the shortest cyclic tour between a set of cities, visiting each city exactly once. This can be formulated using mixed integer programming.</p>
+
+<p>When solving mixed integer optimization problems it is important to use a strong formulation of the problem, otherwise MOSEK may spend a very long time solving the optimization problem. This is not only true for MOSEK but for the branch-and-bound based solution method too.</p>
+
+<p>The approach explored in this section is an implementation of the approach discussed in the article &#8220;Teaching integer programming formulations using the Traveling Salesman Problem&#8221; by G&aacute;bor Pataki [<a href="node029.html#PATAKI:03:A" class="citation">13</a>].</p>
+
+<div>
+<h2><a name="272444664">13.1.1. The TSP formulations</a></h2>
+
+<p> Given a set of nodes we want to find the shortest tour (a directed cycle containing all nodes) in a complete directed graph. We use the variables <span class="math"><img src="math/math608.png" alt="[[MathCmd 608]]"/></span> to indicate whether the arc <span class="math"><span class="mo">(</span><span class="mi">i</span><span class="mo">,</span><span class="mi">j</span><span class="mo">)</span></span> is included in the tour.</p>
+
+<p>The core of the formulation is </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math800.png" alt="\begin{math}\nonumber{}\begin{array}{lll}\nonumber{}\mbox{minimize} & \sum \limits _{{i,j}}c_{{ij}}x_{{ij}} & \\\nonumber{}\mbox{subject to} & \sum \limits _{i}x_{{ij}}=1 & \forall j,\\\nonumber{} & \sum \limits _{j}x_{{ij}}=1 & \forall i,\\\nonumber{} & 0\leq{}x_{{ij}}\leq{}1, & x_{{ij}}\,\mbox{integer}.\end{array}\end{math}"/></td>
+<td><a name="TSPassignmentcons">&#09;</a>(13.1.1)</td></tr>
+</tbody>
+</table>
+
+<p>These constraints are called the assignment constraints. The assignment constraints, however, do not constitute the entire formulation as groups of disjoint cycles, called subtours, as well as the complete tours are feasible.</p>
+
+<p>To exclude the subtours two sets of constraints are considered. </p>
+
+<dl class="description">
+<dt>The MTZ formulation</dt>
+<dd>
+<p> The MTZ (Miller-Tucker-Zemlin) formulation of the TSP includes the following constraints </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math801.png" alt="\begin{math}\nonumber{}\begin{array}{cl}\nonumber{}u_{1}=1, & \\\nonumber{}2\leq{}u_{i}\leq{}n & \forall i\neq{}1,\\\nonumber{}u_{i}-u_{j}+1\leq{}(n-1)(1-x_{{ij}}) & \forall i\neq{}1,j\neq{}1.\end{array}\end{math}"/></td>
+<td>(13.1.2)</td></tr>
+</tbody>
+</table>
+
+<p>The idea of this formulation is to assign the numbers 1 through <span class="math"><span class="mi">n</span></span> to the nodes with the extra variables <span class="math"><img src="math/math802.png" alt="[[MathCmd 802]]"/></span> so that this numbering corresponds to the order of the nodes in the tour. It is obvious that this excludes subtours, as a subtour excluding the node 1 cannot have a feasible assignment of the corresponding <span class="math"><img src="math/math802.png" alt="[[MathCmd 802]]"/></span> variables. </p>
+</dd>
+<dt>The subtour formulation</dt>
+<dd>
+<p> An alternative approach is simply to take any potential subtour, i.e. any true subset of nodes, and declare that it is illegal. </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math804.png" alt="\begin{math}\nonumber{}\sum _{{i,j\in{}S}}x_{{ij}}\leq{}|S|-1\quad{}(S\not\subseteq{}V,|S|>1)\end{math}"/></td>
+<td>(13.1.3)</td></tr>
+</tbody>
+</table>
+
+<p>As the subtour inequality for <span class="math"><img src="math/math805.png" alt="[[MathCmd 805]]"/></span> is a linear combination of the inequality for <span class="math"><span class="mi">S</span></span> and the assignment constraints, it is sufficient to use the subtour inequalities with <span class="math"><span class="mi">S</span></span> having size <span class="math"><span class="mi">n</span><span class="mo">/</span><span class="mn">2</span></span> at most. Note that this formulation has the disadvantage of being exponential in size. </p>
+</dd>
+</dl>
+
+<p> The MTZ formulation of the TSP is a very weak formulation so we will try to strengthen it by adding some of the subtour constraints from the stronger subtour formulation and then compare the solution times. For each problem we will try to identify some of the most relevant subtour constraints by solving the relaxed IP without the MTZ constraints and then choosing some of the violated subtour inequalities, corresponding to the subtours in the solution. The complete algorithm in pseudo-code is (the complete C implementation is included below in Section <a title="13.1.3. Example code" href="node015.html#tspcode">13.1.3</a>): </p>
+
+<ol class="enumerate">
+<li>Let the IP formulation consist of the assignment constraints <a href="node015.html#TSPassignmentcons">(13.1.1)</a> only. </li>
+<li>
+<p><b>for</b> <span class="math"><span class="mi">k</span><span class="mo">=</span><span class="mn">1</span></span> <b>to</b> <span class="math"><img src="math/math806.png" alt="[[MathCmd 806]]"/></span> </p>
+
+<ul class="itemize">
+<li> Solve the IP over the current formulation. Assume that the optimal solution consists of <span class="math"><span class="mi">r</span></span> subtours <span class="math"><img src="math/math807.png" alt="[[MathCmd 807]]"/></span>. </li>
+<li> If <span class="math"><span class="mi">r</span><span class="mo">=</span><span class="mn">1</span></span>, stop; the solution is optimal to the TSP. Otherwise, add to the formulation 1000 subtour constraints at most, in which <span class="math"><span class="mi">S</span></span> is the union of several <span class="math"><img src="math/math808.png" alt="[[MathCmd 808]]"/></span> sets and <span class="math"><img src="math/math809.png" alt="[[MathCmd 809]]"/></span>. </li>
+</ul>
+</li>
+<li>Add the MTZ arc constraints to the formulation, and solve the IP to optimality. </li>
+</ol>
+
+<p>Each round we add 1000 constraints at most as the number of violated subtour inequalities is exponential in <span class="math"><span class="mi">r</span></span>.</p>
+
+<p>Setting <span class="math"><img src="math/math806.png" alt="[[MathCmd 806]]"/></span> equal to 0, 1, and 2, we obtain three formulations of increasing strength which we solve in 3.</p>
+
+</div>
+
+<div>
+<h2><a name="272463920">13.1.2. Comparing formulations</a></h2>
+
+<p> We have tested this method on six TSP instances from the TSPLIB library which can be found at </p>
+<center>
+<p><a href="http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/">http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/</a> </p>
+</center>
+<p>The time and number of B&amp;B nodes for each of the three formulations are recorded in Table <a href="node015.html#table:tspresult">13.1</a>. The entry &#8220;***&#8221; means that the problem was unsolvable within a time window of 5000 seconds. The time spent solving the relaxed IPs and identifying subtour constraints was negligible. </p>
+
+<table width="100%" class="tablecontainer"><tr>
+<td align="center">
+<table class="table" border="0"><tr>
+<td><center>
+<div class="outerframe">
+<div class="innerframe">
+<table class="tabular" rules="none" cellspacing="0" frame="void" cellpadding="5" border="1"><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup><colgroup><col/></colgroup>
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;"> Number of rounds </td>
+<td colspan="2" align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> Zero rounds </td>
+<td colspan="2" align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> One round </td>
+<td colspan="2" align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black; border-left:1px solid black;"> Two rounds </td></tr>
+</tbody>
+
+<tbody><tr class="oddrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;">Problem name </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> Time </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> B&amp;B nodes </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> Time </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> B&amp;B nodes </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> Time </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black; border-left:1px solid black;"> B&amp;B nodes </td></tr>
+</tbody>
+
+<tbody><tr class="evenrow">
+<td valign="top" style="border-top:1px solid black; border-left:1px solid black;">bays29 </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> 658 </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> 53809 </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> 85 </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> 1715 </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-left:1px solid black;"> 39 </td>
+<td align="center" valign="top" style="border-top:1px solid black; border-right:1px solid black; border-left:1px solid black;"> 2739 </td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;">berlin52 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 553 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 7944 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 56 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 198 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 10 </td>
+<td align="center" valign="top" style="border-right:1px solid black; border-left:1px solid black;"> 2 </td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;">br17 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> *** </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> *** </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 1 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 13 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 1 </td>
+<td align="center" valign="top" style="border-right:1px solid black; border-left:1px solid black;"> 1 </td></tr><tr class="oddrow">
+<td valign="top" style="border-left:1px solid black;">ft70 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> *** </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> *** </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 17 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 3 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 16 </td>
+<td align="center" valign="top" style="border-right:1px solid black; border-left:1px solid black;"> 5 </td></tr><tr class="evenrow">
+<td valign="top" style="border-left:1px solid black;">ftv33 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 23 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 1882 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 8 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 2 </td>
+<td align="center" valign="top" style="border-left:1px solid black;"> 9 </td>
+<td align="center" valign="top" style="border-right:1px solid black; border-left:1px solid black;"> 1 </td></tr><tr class="oddrow">
+<td valign="top" style="border-bottom:1px solid black; border-left:1px solid black;">ftv55 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"> 864 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"> 12494 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"> 138 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"> 4853 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-left:1px solid black;"> 53 </td>
+<td align="center" valign="top" style="border-bottom:1px solid black; border-right:1px solid black; border-left:1px solid black;"> 2515 </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+<span class="caption">Table&nbsp;13.1: Solving TSP using increasingly stronger formulations.</span>
+<br/>
+<p><a name="table:tspresult">&#09;</a> </p>
+</center></td></tr></table>
+</td></tr></table>
+
+<p> Not surprisingly a stronger formulation means shorter solution time (with a few exceptions where the second round of strengthening seemingly is superfluous), but it is worth noting the magnitude of the decrease in solution time arising from stronger formulations.</p>
+
+<p>Therefore, it is often worthwhile to consider whether one can strengthen a given formulation when solving a mixed integer optimization problem.</p>
+
+</div>
+
+<div>
+<h2><a name="272451920">13.1.3. Example code</a></h2>
+
+<p><a name="tspcode">&#09;</a> The following example is included in the distribution in the file <tt class="tt">msktsp.c</tt>. </p>
+
+<div class="verbatimcode"><span class="comment">/*
+   Copyright: Copyright (c) 1998-2011 MOSEK ApS, Denmark. All rights reserved.
+
+   File:      msktsp.c
+
+   Purpose:   Demonstrates the difference between weak
+              and strong formulations when solving MIP's.
+ */</span>
+
+<span class="preprocessor">#include</span> &lt;stdio.h&gt;
+<span class="preprocessor">#include</span> &lt;string.h&gt;
+<span class="preprocessor">#include</span> &lt;math.h&gt;
+<span class="preprocessor">#include</span> &lt;assert.h&gt;
+
+<span class="preprocessor">#include</span> "<span class="string">mosek.h</span>"
+
+<span class="preprocessor">#define</span> MAXCUTROUNDS 2
+<span class="preprocessor">#define</span> MAXADDPERROUND 1000
+
+<span class="keyword">static</span> <span class="type">void</span> MSKAPI printstr(<span class="type">void</span> *handle, <span class="type">char</span> str<span class="brackets">[]</span>)
+{
+    printf("<span class="string">MOSEK: %s</span>",str);
+} <span class="comment">/* printstr */</span>
+
+
+<span class="comment">/* conversion from n x n tsp city matrix indices to array index */</span>
+<span class="preprocessor">#define</span> IJ(i,j) (n*(i)+(j))
+
+<span class="comment">/* mallocs and returns costmatrix, returns number of cities in ncities */</span>
+<span class="type">int</span>* readtspfromfile(<span class="type">char</span>* filename, <span class="type">int</span>* ncities)
+{
+    FILE *tspfile;
+    <span class="type">char</span> sbuf[21];
+    tspfile = fopen(filename,"<span class="string">r</span>");
+    <span class="keyword">if</span> (!tspfile) <span class="keyword">return</span> <span class="keyword">NULL</span>;
+    <span class="keyword">do</span>
+    {
+        <span class="keyword">if</span> (1 != fscanf(tspfile,"<span class="string">%20s </span>",sbuf)) <span class="keyword">return</span> <span class="keyword">NULL</span>;
+    } <span class="keyword">while</span> (strncmp(sbuf,"<span class="string">DIMENSION</span>",9) != 0);
+    <span class="keyword">if</span> (1 != fscanf(tspfile,"<span class="string">%d </span>",ncities)) <span class="keyword">return</span> <span class="keyword">NULL</span>;
+    <span class="keyword">do</span>
+    {
+        <span class="keyword">if</span> (1 != fscanf(tspfile,"<span class="string">%20s </span>",sbuf)) <span class="keyword">return</span> <span class="keyword">NULL</span>;
+    } <span class="keyword">while</span> (strncmp(sbuf,"<span class="string">EDGE_WEIGHT_TYPE</span>",16) != 0);
+    <span class="keyword">if</span> (1 != fscanf(tspfile,"<span class="string">%20s </span>",sbuf)) <span class="keyword">return</span> <span class="keyword">NULL</span>;
+    <span class="keyword">if</span> (strcmp(sbuf,"<span class="string">EXPLICIT</span>") == 0)
+    {
+        <span class="keyword">do</span>
+        {
+            <span class="keyword">if</span> (1 != fscanf(tspfile,"<span class="string">%20s </span>",sbuf)) <span class="keyword">return</span> <span class="keyword">NULL</span>;
+        } <span class="keyword">while</span> (strncmp(sbuf,"<span class="string">EDGE_WEIGHT_FORMAT</span>",18) != 0);
+        <span class="keyword">if</span> (1 != fscanf(tspfile,"<span class="string">%20s </span>",sbuf)) <span class="keyword">return</span> <span class="keyword">NULL</span>;
+        <span class="keyword">if</span> (strcmp(sbuf,"<span class="string">FULL_MATRIX</span>") == 0)
+        {
+            <span class="type">int</span>* cost;
+            <span class="type">int</span> ij, n2;
+            <span class="keyword">do</span>
+            {
+                <span class="keyword">if</span> (1 != fscanf(tspfile,"<span class="string">%20s </span>",sbuf)) <span class="keyword">return</span> <span class="keyword">NULL</span>;
+            } <span class="keyword">while</span> (strncmp(sbuf,"<span class="string">EDGE_WEIGHT_SECTION</span>",19) != 0);
+            n2 = *ncities;
+            n2 *= n2;
+            cost = (<span class="type">int</span>*) malloc(n2*sizeof(<span class="type">int</span>));
+            assert(cost);
+            <span class="keyword">for</span> (ij = 0; ij&lt;n2; ij++)
+            {
+                <span class="keyword">if</span> (1 != fscanf(tspfile,"<span class="string">%d </span>",&amp;cost[ij]))
+                {
+                    free(cost);
+                    <span class="keyword">return</span> <span class="keyword">NULL</span>;
+                }
+            }
+            <span class="keyword">return</span> cost;
+        }
+        <span class="keyword">else</span> <span class="keyword">if</span> (strcmp(sbuf,"<span class="string">LOWER_DIAG_ROW</span>") == 0)
+        {
+            <span class="type">int</span>* cost;
+            <span class="type">int</span> i, j, n;
+            <span class="keyword">do</span>
+            {
+                <span class="keyword">if</span> (1 != fscanf(tspfile,"<span class="string">%20s </span>",sbuf)) <span class="keyword">return</span> <span class="keyword">NULL</span>;
+            } <span class="keyword">while</span> (strncmp(sbuf,"<span class="string">EDGE_WEIGHT_SECTION</span>",19) != 0);
+            n = *ncities;
+            cost = (<span class="type">int</span>*) malloc(n*n*sizeof(<span class="type">int</span>));
+            assert(cost);
+            <span class="keyword">for</span> (i=0; i&lt;n; i++) <span class="keyword">for</span> (j=0; j&lt;=i; j++)
+            {
+                <span class="type">int</span> c;
+                <span class="keyword">if</span> (1 != fscanf(tspfile,"<span class="string">%d </span>",&amp;c))
+                {
+                    free(cost);
+                    <span class="keyword">return</span> <span class="keyword">NULL</span>;
+                }
+                cost[IJ(i,j)] = c;
+                cost[IJ(j,i)] = c;
+            }
+            <span class="keyword">return</span> cost;
+        }
+        <span class="keyword">else</span>
+        {
+            printf("<span class="string">Format not supported\n</span>");
+            <span class="keyword">return</span> <span class="keyword">NULL</span>;
+        }
+    }
+    <span class="keyword">else</span> <span class="keyword">if</span> (strcmp(sbuf,"<span class="string">EUC_2D</span>") == 0)
+    {
+        <span class="type">int</span>* cost;
+        <span class="type">double</span> *xcoord, *ycoord;
+        <span class="type">int</span> i, j, n;
+        <span class="keyword">do</span>
+        {
+            <span class="keyword">if</span> (1 != fscanf(tspfile,"<span class="string">%20s </span>",sbuf)) <span class="keyword">return</span> <span class="keyword">NULL</span>;
+        } <span class="keyword">while</span> (strncmp(sbuf,"<span class="string">NODE_COORD_SECTION</span>",18) != 0);
+        n = *ncities;
+        xcoord = (<span class="type">double</span>*) malloc(n*sizeof(<span class="type">double</span>));
+        ycoord = (<span class="type">double</span>*) malloc(n*sizeof(<span class="type">double</span>));
+        cost = (<span class="type">int</span>*) malloc(n*n*sizeof(<span class="type">int</span>));
+        assert(xcoord); assert(ycoord); assert(cost);
+        <span class="keyword">for</span> (i = 0; i&lt;n; i++)
+        {
+            <span class="type">int</span> dummy;
+            <span class="keyword">if</span> (3 != fscanf(tspfile,"<span class="string">%d %lf %lf </span>",&amp;dummy,&amp;xcoord[i],&amp;ycoord[i]))
+            {
+                free(cost);
+                <span class="keyword">return</span> <span class="keyword">NULL</span>;
+            }
+        }
+        <span class="keyword">for</span> (i = 0; i&lt;n; i++) <span class="keyword">for</span> (j=0; j&lt;n; j++)
+        {
+            <span class="type">double</span> xd = xcoord[i] - xcoord[j];
+            <span class="type">double</span> yd = ycoord[i] - ycoord[j];
+            cost[IJ(i,j)] = (<span class="type">int</span>) (0.5 + sqrt(xd*xd + yd*yd));
+        }
+        <span class="keyword">return</span> cost;
+    }
+    <span class="keyword">else</span>
+    {
+        printf("<span class="string">E_W_Type not supported\n</span>");
+        <span class="keyword">return</span> <span class="keyword">NULL</span>;
+    }
+} <span class="comment">/* readtspfromfile */</span>
+
+<span class="comment">/* add the x_ij variables */</span>
+<span class="type">void</span> add_vars(MSKtask_t task, <span class="type">int</span> n)
+{
+    MSKrescodee r;
+    <span class="type">int</span> ij;
+    <span class="type">int</span> n2 = n*n;
+    r = MSK_append(task,MSK_ACC_VAR,n2); assert(r==MSK_RES_OK);
+    <span class="keyword">for</span>(ij=0; ij&lt;n2; ++ij)
+    {
+        r = MSK_putbound(task,MSK_ACC_VAR,ij,MSK_BK_RA,0,1);
+        assert(r==MSK_RES_OK);
+        r = MSK_putvartype(task,ij,MSK_VAR_TYPE_INT); assert(r==MSK_RES_OK);
+    }
+    <span class="keyword">for</span> (ij=0; ij&lt;n; ij++)
+    {
+        r = MSK_putbound(task,MSK_ACC_VAR,IJ(ij,ij),MSK_BK_FX,0,0);
+        assert(r==MSK_RES_OK);
+    }
+} <span class="comment">/* add_vars */</span>
+
+<span class="comment">/* adds the tsp objective function and frees cost */</span>
+<span class="type">void</span> add_objective_function(MSKtask_t task, <span class="type">int</span> n, <span class="type">int</span>* cost)
+{
+    MSKrescodee r;
+    <span class="type">int</span> ij;
+    <span class="type">int</span> n2 = n*n;
+    r = MSK_putcfix(task,0.0); assert(r==MSK_RES_OK);
+    <span class="keyword">for</span>(ij=0; ij&lt;n2; ++ij)
+    {
+        r = MSK_putcj(task,ij,cost[ij]); assert(r==MSK_RES_OK);
+    }
+    free(cost);
+} <span class="comment">/* add_objective_function */</span>
+
+<span class="comment">/* adds the tsp assignment constraints */</span>
+<span class="type">void</span> add_assignment_constraints(MSKtask_t task, <span class="type">int</span> n)
+{
+    MSKrescodee r;
+    <span class="type">int</span> i, j;
+    <span class="type">double</span>* aval;
+    <span class="type">int</span> *asub;
+    aval = (<span class="type">double</span>*) malloc(n*sizeof(<span class="type">double</span>)); assert(aval);
+    asub = (<span class="type">int</span>*) malloc(n*sizeof(<span class="type">int</span>)); assert(asub);
+    <span class="keyword">for</span> (i=0; i&lt;n; i++) aval[i] = 1;
+    r = MSK_append(task,MSK_ACC_CON,n*2); assert(r==MSK_RES_OK);
+    <span class="comment">/* Constraint 0--(n-1) is \sum_j x_{ij} = 1 */</span>
+    <span class="keyword">for</span> (i=0; i&lt;n; i++)
+    {
+        r = MSK_putbound(task,MSK_ACC_CON,i,MSK_BK_FX,1,1);
+        assert(r==MSK_RES_OK);
+        <span class="keyword">for</span> (j=0; j&lt;n; j++)
+            asub[j] = IJ(i,j);
+        r = MSK_putavec(task,MSK_ACC_CON,i,n,asub,aval); assert(r==MSK_RES_OK);
+    }
+    <span class="comment">/* Constraint n--(2n-1) is \sum_i x_{ij} = 1 */</span>
+    <span class="keyword">for</span> (j=0; j&lt;n; j++)
+    {
+        r = MSK_putbound(task,MSK_ACC_CON,j+n,MSK_BK_FX,1,1);
+        assert(r==MSK_RES_OK);
+        <span class="keyword">for</span> (i=0; i&lt;n; i++)
+            asub[i] = IJ(i,j);
+        r = MSK_putavec(task,MSK_ACC_CON,j+n,n,asub,aval);
+        assert(r==MSK_RES_OK);
+    }
+    free(aval);
+    free(asub);
+} <span class="comment">/* add_assignment_constraints */</span>
+
+<span class="comment">/* adds the Miller-Tucker-Zemlin arc constraints */</span>
+<span class="type">void</span> add_MTZ_arc_constraints(MSKtask_t task, <span class="type">int</span> n)
+{
+    MSKrescodee r;
+    <span class="type">int</span> varidx, conidx, i, j;
+    r = MSK_getnumvar(task,&amp;varidx); assert(r==MSK_RES_OK);
+    r = MSK_getnumcon(task,&amp;conidx); assert(r==MSK_RES_OK);
+    <span class="comment">/* add the vars u_k for k=1..(n-1) getting index
+     * from varidx to varidx+n-2 */</span>
+    r = MSK_append(task,MSK_ACC_VAR,n-1); assert(r==MSK_RES_OK);
+    <span class="keyword">for</span>(i=varidx; i&lt;varidx+n-1; ++i)
+    {
+        <span class="comment">/* set bound: 2 &lt;= u_k &lt;= n, k=1..(n-1) */</span>
+        r = MSK_putbound(task,MSK_ACC_VAR,i,MSK_BK_RA,2,n);
+        assert(r==MSK_RES_OK);
+    }
+    <span class="comment">/* add the (n-1)^2 constraints:
+     * u_i - u_j + 1 &lt;= (n - 1)(1 - x_ij) or equivalently
+     * u_i - u_j + (n - 1)x_ij &lt;= n - 2, for i,j != 0 */</span>
+    r = MSK_append(task,MSK_ACC_CON,(n-1)*(n-1)); assert(r==MSK_RES_OK);
+    <span class="keyword">for</span> (i=1; i&lt;n; i++) <span class="keyword">for</span> (j=1; j&lt;n; j++)
+    {
+        <span class="type">double</span> aval[3];
+        <span class="type">int</span> asub[3];
+        aval[0] = 1; aval[1] = -1; aval[2] = n-1;
+        asub[0] = varidx + i - 1; <span class="comment">/* u_i */</span>
+        asub[1] = varidx + j - 1; <span class="comment">/* u_j */</span>
+        asub[2] = IJ(i,j);        <span class="comment">/* x_ij */</span>
+        r = MSK_putbound(task,MSK_ACC_CON,conidx,MSK_BK_UP,-MSK_INFINITY,n-2);
+        assert(r==MSK_RES_OK);
+        r = MSK_putavec(task,MSK_ACC_CON,conidx,3,asub,aval);
+        assert(r==MSK_RES_OK);
+        conidx++;
+    }
+} <span class="comment">/* add_MTZ_arc_constraints */</span>
+
+<span class="comment">/* construct the list of cities in the chosen subtours */</span>
+<span class="type">int</span>* subtourstolist(MSKtask_t task, <span class="type">int</span> n, <span class="type">int</span> nextnode<span class="brackets">[]</span>,
+        <span class="type">int</span> subtour<span class="brackets">[]</span>, <span class="type">int</span> chosen<span class="brackets">[]</span>, <span class="type">int</span> k, <span class="type">int</span>* size)
+{
+    <span class="type">int</span> ncities, i, j;
+    <span class="type">int</span> *cities;
+    cities = (<span class="type">int</span>*) malloc(n*sizeof(<span class="type">int</span>));
+    assert(cities);
+    ncities = 0;
+    <span class="keyword">for</span> (i=0; i&lt;k; i++)
+    {
+        <span class="type">int</span> subtourstart = subtour[chosen[i]];
+        j = subtourstart;
+        <span class="keyword">do</span>
+        {
+            cities[ncities] = j;
+            ncities++;
+            j = nextnode[j];
+        } <span class="keyword">while</span> (j != subtourstart);
+    }
+    *size = ncities;
+    <span class="keyword">return</span> cities;
+} <span class="comment">/* subtourstolist */</span>
+
+<span class="comment">/* adds the subtour constraint given by the list cities S:
+ * \sum_{i,j \in S} x_{ij} \leq |S|-1 */</span>
+<span class="type">void</span> addcut(MSKtask_t task, <span class="type">int</span> n, <span class="type">int</span> citylist<span class="brackets">[]</span>, <span class="type">int</span> size)
+{
+    MSKrescodee r;
+    <span class="type">int</span> i, j, asubidx, conidx;
+    <span class="type">double</span>* aval;
+    <span class="type">int</span> *asub;
+    <span class="type">int</span> size2 = size*size;
+    aval = (<span class="type">double</span>*) malloc(size2*sizeof(<span class="type">double</span>)); assert(aval);
+    asub = (<span class="type">int</span>*) malloc(size2*sizeof(<span class="type">int</span>)); assert(asub);
+    <span class="keyword">for</span> (i=0; i&lt;size2; i++) aval[i] = 1;
+    r = MSK_getnumcon(task,&amp;conidx); assert(r==MSK_RES_OK);
+    r = MSK_append(task,MSK_ACC_CON,1); assert(r==MSK_RES_OK);
+    r = MSK_putbound(task,MSK_ACC_CON,conidx,MSK_BK_UP,-MSK_INFINITY,size-1);
+    assert(r==MSK_RES_OK);
+    asubidx = 0;
+    <span class="keyword">for</span> (i=0; i&lt;size; i++) <span class="keyword">for</span> (j=0; j&lt;size; j++)
+    {
+        asub[asubidx] = IJ(citylist[i],citylist[j]);
+        asubidx++;
+    }
+    r = MSK_putavec(task,MSK_ACC_CON,conidx,size2,asub,aval);
+    assert(r==MSK_RES_OK);
+    free(aval);
+    free(asub);
+} <span class="comment">/* addcut */</span>
+
+<span class="comment">/* identifies subtours and adds a number of violated cuts */</span>
+<span class="type">void</span> addcuts(MSKtask_t task, <span class="type">int</span> n, <span class="type">int</span> maxcuts, <span class="type">int</span>* nsubtours, <span class="type">int</span>* ncuts)
+{
+    MSKrescodee r;
+    <span class="type">int</span> i, j, k;
+    <span class="type">int</span> n2 = n*n;
+    <span class="type">double</span> *xx;
+    <span class="type">int</span> *nextnode, *visited, *subtour, *chosen;
+    <span class="type">int</span> nsubt = 0;
+    xx = (<span class="type">double</span>*) malloc(n2*sizeof(<span class="type">double</span>));
+    nextnode = (<span class="type">int</span>*) malloc(n*sizeof(<span class="type">int</span>));
+    assert(xx);
+    assert(nextnode);
+    r = MSK_getsolutionslice(task,MSK_SOL_ITG,MSK_SOL_ITEM_XX,0,n2,xx);
+    assert(r==MSK_RES_OK);
+    <span class="comment">/* convert matrix representation of graph (xx) to
+     * adjacency(-list) (nextnode) */</span>
+    <span class="keyword">for</span> (i=0; i&lt;n; i++) <span class="keyword">for</span> (j=0; j&lt;n; j++)
+    {
+        <span class="keyword">if</span> (xx[IJ(i,j)]&gt;0.5) <span class="comment">/* i.e. x_ij = 1 */</span>
+            nextnode[i] = j;
+    }
+    free(xx); xx = <span class="keyword">NULL</span>;
+    visited = (<span class="type">int</span>*) calloc(n,sizeof(<span class="type">int</span>)); <span class="comment">/* visited is initialized to 0 */</span>
+    subtour = (<span class="type">int</span>*) malloc(n*sizeof(<span class="type">int</span>));
+    assert(visited);
+    assert(subtour);
+    <span class="comment">/* identify subtours; keep count in nsubt, save starting
+     * pointers in subtour[0..(nsubt-1)] */</span>
+    <span class="keyword">for</span> (i=0; i&lt;n; i++) <span class="keyword">if</span> (!visited[i]) <span class="comment">/* find an unvisited node;
+                                          * this starts a new subtour */</span>
+    {
+        subtour[nsubt] = i;
+        nsubt++;
+        j = i;
+        <span class="keyword">do</span>
+        {
+            assert(!visited[j]);
+            visited[j] = 1;
+            j = nextnode[j];
+        } <span class="keyword">while</span> (j!=i);
+    }
+    free(visited); visited = <span class="keyword">NULL</span>;
+    *nsubtours = nsubt;
+    *ncuts = 0;
+    chosen = (<span class="type">int</span>*) malloc(nsubt*sizeof(<span class="type">int</span>)); <span class="comment">/* list of chosen subtours */</span>
+    <span class="keyword">for</span> (k=1; k&lt;=nsubt; k++) <span class="comment">/* choose k of nsubt subtours */</span>
+    {
+        <span class="type">int</span> nchosen = 1;
+        chosen[0] = nsubt - 1;
+        <span class="keyword">while</span> (*ncuts &lt; maxcuts)
+        {
+            <span class="keyword">if</span> (nchosen == k)
+            {
+                <span class="type">int</span> *citylist;
+                <span class="type">int</span> size;
+                citylist = subtourstolist(task,n,nextnode,subtour,
+                                            chosen,k,&amp;size);
+                <span class="keyword">if</span> (size &lt;= n/2) <span class="comment">/* add only subtour constraints
+                                  * of size n/2 or less */</span>
+                {
+                    addcut(task,n,citylist,size);
+                    (*ncuts)++;
+                }
+                free(citylist);
+                j=0;
+                <span class="keyword">while</span> (j&lt;k &amp;&amp; chosen[k - 1 - j] == j) j++;
+                <span class="keyword">if</span> (k==j) <span class="keyword">break</span>; <span class="comment">/* all k-size subsets done */</span>
+                nchosen = k - j;
+                chosen[nchosen - 1]--;
+            }
+            <span class="keyword">else</span> <span class="comment">/* 0 &lt; nchosen &lt; k */</span>
+            {
+                chosen[nchosen] = chosen[nchosen - 1] - 1;
+                nchosen++;
+            }
+        }
+    }
+    free(nextnode);
+    free(subtour);
+    free(chosen);
+} <span class="comment">/* addcuts */</span>
+
+<span class="type">int</span> main(<span class="type">int</span> argc, <span class="type">char</span> *argv<span class="brackets">[]</span>)
+{
+    <span class="type">int</span>            *cost;     <span class="comment">/* tsp cost matrix */</span>
+    <span class="type">int</span>            n;         <span class="comment">/* number of cities */</span>
+    MSKenv_t       env;       <span class="comment">/* Mosek environment */</span>
+    MSKtask_t      task;      <span class="comment">/* Mosek task */</span>
+    MSKrescodee    r;         <span class="comment">/* Mosek return code */</span>
+    <span class="type">double</span>         ObjVal;    <span class="comment">/* Value of the objective function */</span>
+    <span class="type">int</span>            maxrounds; <span class="comment">/* number of cutting rounds */</span>
+    <span class="type">int</span>            maxcuts;   <span class="comment">/* maximum number of cuts added per round */</span>
+    <span class="type">int</span> k;
+    <span class="type">int</span> nsubtours, ncuts;
+    <span class="type">double</span> t;
+    <span class="type">double</span> cuttime = 0;
+
+    <span class="keyword">if</span> (argc &lt; 2)
+    {
+        printf("<span class="string">Usage: ./tsp filename.tsp [rounds] [maxcuts]\n\n</span>"
+               "<span class="string">rounds is the maximum number of cutting rounds (default = %d)\n</span>"
+               "<span class="string">maxcuts is the maximum number of cuts added per round </span>"
+               "<span class="string">(default = %d)\n</span>",
+                MAXCUTROUNDS,MAXADDPERROUND);
+        <span class="keyword">return</span> 1;
+    }
+    maxrounds = MAXCUTROUNDS;
+    <span class="keyword">if</span> (argc &gt;= 3) maxrounds = atoi(argv[2]);
+    maxcuts = MAXADDPERROUND;
+    <span class="keyword">if</span> (argc &gt;= 4) maxcuts = atoi(argv[3]);
+
+    cost = readtspfromfile(argv[1],&amp;n);
+    <span class="keyword">if</span> (!cost)
+    {
+        printf("<span class="string">Bad tsp file\n</span>");
+        <span class="keyword">return</span> 1;
+    }
+
+    r = MSK_makeenv(&amp;env,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>,<span class="keyword">NULL</span>); assert(r==MSK_RES_OK);
+    MSK_linkfunctoenvstream(env,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+    r = MSK_initenv(env);                      assert(r==MSK_RES_OK);
+    r = MSK_makeemptytask(env,&amp;task);          assert(r==MSK_RES_OK);
+    MSK_linkfunctotaskstream(task,MSK_STREAM_LOG,<span class="keyword">NULL</span>,printstr);
+
+    add_vars(task,n);
+    add_objective_function(task,n,cost);
+    add_assignment_constraints(task,n);
+
+    nsubtours = 2;
+    <span class="keyword">for</span> (k=0; k&lt;maxrounds; k++)
+    {
+        r = MSK_optimize(task);                         assert(r==MSK_RES_OK);
+        r = MSK_getprimalobj(task,MSK_SOL_ITG,&amp;ObjVal); assert(r==MSK_RES_OK);
+        MSK_getdouinf(task,MSK_DINF_OPTIMIZER_TIME,&amp;t);
+        cuttime += t;
+        addcuts(task,n,maxcuts,&amp;nsubtours,&amp;ncuts);
+        printf("<span class="string">\n</span>"
+               "<span class="string">Round: %d\n</span>"
+               "<span class="string">ObjValue: %e\n</span>"
+               "<span class="string">Number of subtours: %d\n</span>"
+               "<span class="string">Number of cuts added: %d\n\n</span>",k+1,ObjVal,nsubtours,ncuts);
+        <span class="keyword">if</span> (nsubtours == 1) <span class="keyword">break</span>; <span class="comment">/* problem solved! */</span>
+    }
+
+    t = 0;
+    <span class="keyword">if</span> (nsubtours &gt; 1)
+    {
+        printf("<span class="string">Adding MTZ arc constraints\n\n</span>");
+        add_MTZ_arc_constraints(task,n);
+        r = MSK_optimize(task);                         assert(r==MSK_RES_OK);
+        r = MSK_getprimalobj(task,MSK_SOL_ITG,&amp;ObjVal); assert(r==MSK_RES_OK);
+        MSK_getdouinf(task,MSK_DINF_OPTIMIZER_TIME,&amp;t);
+    }
+
+    printf("<span class="string">\n</span>"
+           "<span class="string">Done solving.\n</span>"
+           "<span class="string">Time spent cutting: %.2f\n</span>"
+           "<span class="string">Total time spent: %.2f\n</span>"
+           "<span class="string">ObjValue: %e\n</span>",cuttime,cuttime+t,ObjVal);
+
+    MSK_deletetask(&amp;task);
+    MSK_deleteenv(&amp;env);
+    <span class="keyword">return</span> 0;
+} <span class="comment">/* main */</span>
+</div>
+
+</div>
+
+</div>
+
+<div>
+<h1><a name="272491656">13.2. Geometric (posynomial) optimization</a></h1>
+
+<p> <a name="ch-cases-sec-posyopt">&#09;</a> <a name="idx-98293016">&#09;</a> <a name="idx-98293664">&#09;</a></p>
+
+<div>
+<h2><a name="272484904">13.2.1. The problem</a></h2>
+
+<p>A <em>geometric optimization</em> problem can be stated as follows </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math811.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{k\in{}J_{0}}}c_{k}\prod \limits _{{j=0}}^{{n-1}}t_{j}^{{a_{{kj}}}} &  &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{k\in{}J_{i}}}c_{k}\prod \limits _{{j=0}}^{{n-1}}t_{j}^{{a_{{kj}}}} & \leq{} & 1, & i=1,\ldots ,m,\\\nonumber{} & t>0, &  &  &\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-posyopt-eq-primal-posy">&#09;</a>(13.2.1)</td></tr>
+</tbody>
+</table>
+
+<p>where it is assumed that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math812.png" alt="\begin{displaymath}\nonumber{}\cup _{{k=0}}^{m}J_{k}=\lbrace{}1,\ldots ,T\rbrace{}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>and if <span class="math"><img src="math/math169.png" alt="[[MathCmd 169]]"/></span>, then </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math814.png" alt="\begin{displaymath}\nonumber{}J_{i}\cap J_{j}=\emptyset .\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Hence, <span class="math"><span class="mi">A</span></span> is a <span class="math"><img src="math/math815.png" alt="[[MathCmd 815]]"/></span> matrix and <span class="math"><span class="mi">c</span></span> is a vector of length <span class="math"><span class="mi">T</span></span>. Given <span class="math"><img src="math/math816.png" alt="[[MathCmd 816]]"/></span> then </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math817.png" alt="\begin{displaymath}\nonumber{}c_{k}\prod \limits _{{j=0}}^{{n-1}}t_{j}^{{a_{{kj}}}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is called a <i>monomial</i> <a name="idx-98311776">&#09;</a>. A sum of monomials i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math818.png" alt="\begin{displaymath}\nonumber{}\sum \limits _{{k\in{}J_{i}}}c_{k}\prod \limits _{{j=0}}^{{n-1}}t_{j}^{{a_{{kj}}}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is called a <i>posynomial</i><a name="idx-98314720">&#09;</a>. In general, the problem (<a href="node015.html#ch-cases-sec-posyopt-eq-primal-posy">13.2.1</a>) is very hard to solve. However, the posynomial case where it is required that </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math819.png" alt="\begin{displaymath}\nonumber{}c>0\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is relatively easy. The reason is that using a simple variable transformation a convex optimization problem can be obtained. Indeed using the variable transformation </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math820.png" alt="\begin{math}\nonumber{}t_{j}=e^{{x_{j}}}\end{math}"/></td>
+<td><a name="ch-cases-sec-posyopt-eq-posy-trans">&#09;</a>(13.2.2)</td></tr>
+</tbody>
+</table>
+
+<p>we obtain the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math821.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{k\in{}J_{0}}}c_{k}e^{{\sum \limits _{{j=0}}^{{n-1}}a_{{kj}}x_{j}}} &  &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{k\in{}J_{i}}}c_{k}e^{{\sum \limits _{{j=0}}^{{n-1}}a_{{kj}}x_{j}}} & \leq{} & 1, & i=1,\ldots ,m,\end{array}\end{math}"/></td>
+<td><a name="ch-cases-sec-posyopt-eq-primal-exp">&#09;</a>(13.2.3)</td></tr>
+</tbody>
+</table>
+
+<p>which is a convex optimization problem that can be solved using MOSEK. We will call </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math822.png" alt="\begin{displaymath}\nonumber{}c_{t}e^{{\left(\sum \limits _{{j=0}}^{{n-1}}a_{{tj}}x_{j}\right)}}=e^{{\left(\log (c_{t})+\sum \limits _{{j=0}}^{{n-1}}a_{{tj}}x_{j}\right)}}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>a <em>term</em> and hence the number of terms is <span class="math"><span class="mi">T</span></span>.</p>
+
+<p>As stated, the problem (<a href="node015.html#ch-cases-sec-posyopt-eq-primal-exp">13.2.3</a>) is non-separable. However, using </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math823.png" alt="\begin{displaymath}\nonumber{}v_{t}=\log (c_{t})+\sum \limits _{{j=0}}^{{n-1}}a_{{tj}}x_{j}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>we obtain the separable problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math824.png" alt="\begin{math}\nonumber{}\begin{array}{lccll}\nonumber{}\mbox{minimize} & \sum \limits _{{t\in{}J_{0}}}e^{{v_{t}}} &  &  & \\\nonumber{}\mbox{subject to} & \sum \limits _{{t\in{}J_{i}}}e^{{v_{t}}} & \leq{} & 1, & i=1,\ldots ,m,\\\nonumber{} & \sum \limits _{{j=0}}^{{n-1}}a_{{tj}}x_{j}-v_{t} & = & -\log (c_{t}), & t=0,\ldots ,T,\end{array}\end{math}"/></td>
+<td><a name="ch-case-exp-separable">&#09;</a>(13.2.4)</td></tr>
+</tbody>
+</table>
+
+<p>which is a separable convex optimization problem.</p>
+
+<p>A warning about this approach is that the exponential function <span class="math"><img src="math/math153.png" alt="[[MathCmd 153]]"/></span> is only numerically well-defined for values of <span class="math"><span class="mi">x</span></span> in a small interval around <span class="math"><span class="mn">0</span></span> since <span class="math"><img src="math/math153.png" alt="[[MathCmd 153]]"/></span> grows very rapidly as <span class="math"><span class="mi">x</span></span> becomes larger. Therefore numerical problems may arise when solving the problem on this form.</p>
+
+</div>
+
+<div>
+<h2><a name="272519896">13.2.2. Applications</a></h2>
+
+<p> A large number of practical applications, particularly in electrical circuit design, can be cast as a geometric optimization problem. We will not review these applications here but rather refer the reader to [<a href="node029.html#BOYD:04:A" class="citation">14</a>] and the references therein.</p>
+
+</div>
+
+<div>
+<h2><a name="272491512">13.2.3. Modeling tricks</a></h2>
+
+<p> A lot of tricks that can be used for modeling posynomial optimization problems are described in [<a href="node029.html#BOYD:04:A" class="citation">14</a>]. Therefore, in this section we cover only one important case.</p>
+
+<div>
+<h3><a name="272521120">13.2.3.1. Equalities</a></h3>
+
+<p> In general, equalities are not allowed in (<a href="node015.html#ch-cases-sec-posyopt-eq-primal-posy">13.2.1</a>), i.e. </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math827.png" alt="\begin{displaymath}\nonumber{}\sum \limits _{{k\in{}J_{i}}}c_{k}\prod \limits _{{j=0}}^{{n-1}}t_{j}^{{a_{{kj}}}}=1\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>is not allowed. However, a monomial equality is not a problem. Indeed consider the example </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math828.png" alt="\begin{displaymath}\nonumber{}xyz^{{-1}}=1\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>of a monomial equality. The equality is identical to </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math829.png" alt="\begin{displaymath}\nonumber{}1\leq{}xyz^{{-1}}\leq{}1\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which in turn is identical to the two inequalities </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math830.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lclcl}\nonumber{}xyz^{{-1}} &  &  & \leq{} & 1,\\\nonumber{}\frac{1}{xyz^{{-1}}} & = & x^{{-1}}y^{{-1}}z & \leq{} & 1.\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Hence, it is possible to model a monomial equality using two inequalities.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="274217872">13.2.4. Problematic formulations</a></h2>
+
+<p> Certain formulations of geometric optimization problems may cause problems for the algorithms implemented in MOSEK. Basically there are two kinds of problems that may occur: </p>
+
+<ul class="itemize">
+<li>The solution vector is finite, but an optimal objective value can only be a approximated. </li>
+<li>The optimal objective value is finite but implies that a variable in the solution is infinite. </li>
+</ul>
+
+<div>
+<h3><a name="274218232">13.2.4.1. Finite unattainable solution</a></h3>
+
+<p> The following problem illustrates an unattainable solution: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math831.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lclcl}\nonumber{}\mbox{minimize} & x^{2}y &  & \\\nonumber{}\mbox{subject to} & xy & \leq{} & 1,\\\nonumber{} & x,y>0. &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>Clearly, the optimal objective value is <span class="math"><span class="mn">0</span></span> but because of the constraint the <span class="math"><span class="mi">x</span><span class="mo">,</span><span class="mi">y</span><span class="mo">&gt;</span><span class="mn">0</span></span> constraint this value can never be attained: To see why this is a problem, remember that MOSEK substitutes <span class="math"><img src="math/math832.png" alt="[[MathCmd 832]]"/></span> and <span class="math"><img src="math/math833.png" alt="[[MathCmd 833]]"/></span> and solves the problem as </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math834.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lclcl}\nonumber{}\mbox{minimize} & e^{{2t_{x}}}e^{{t_{y}}} &  & \\\nonumber{}\mbox{subject to} & e^{{t_{x}}}e^{{t_{y}}} & \leq{} & 1,\\\nonumber{} & t_{x},t_{y}\in{}\mathbb{R}. &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>The optimal solution implies that <span class="math"><img src="math/math835.png" alt="[[MathCmd 835]]"/></span> or <span class="math"><img src="math/math836.png" alt="[[MathCmd 836]]"/></span>, and thus it is unattainable.</p>
+
+<p>Now, the issue should be clear: If a variable <span class="math"><span class="mi">x</span></span> appears only with nonnegative exponents, then fixing <span class="math"><span class="mi">x</span><span class="mo">=</span><span class="mn">0</span></span> will minimize all terms in which it appears &mdash; but such a solution cannot be attained.</p>
+
+</div>
+
+<div>
+<h3><a name="274234040">13.2.4.2. Infinite solution</a></h3>
+
+<p> A similar problem will occur if a finite optimal objective value requires a variable to be infinite. This can be illustrated by the following example: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math837.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lclcl}\nonumber{}\mbox{minimize} & x^{{-2}} &  & \\\nonumber{}\mbox{subject to} & x^{{-1}} & \leq{} & 1,\\\nonumber{} & x>0, &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which is a valid geometric programming problem. In this case the optimal objective is <span class="math"><span class="mn">0</span></span>, but this requires <span class="math"><span class="mi">x</span><span class="mo">=</span>&infin;</span>, which is unattainable.</p>
+
+<p>Again, this specific case will appear if a variable <span class="math"><span class="mi">x</span></span> appears only with negative exponents in the problem, implying that each term in which it appears can be minimized for <span class="math"><img src="math/math838.png" alt="[[MathCmd 838]]"/></span>.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="274242304">13.2.5. An example</a></h2>
+
+<p> Consider the example </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math839.png" alt="\begin{displaymath}\nonumber{}\begin{array}{lclcl}\nonumber{}\mbox{minimize} & x^{{-1}}y &  & \\\nonumber{}\mbox{subject to} & x^{2}y^{{-\frac{1}{2}}}+3y^{{\frac{1}{2}}}z^{{-1}} & \leq{} & 1,\\\nonumber{} & xy^{{-1}} & = & z^{2},\\\nonumber{} & -x & \leq{} & -\frac{1}{10},\\\nonumber{} & x & \leq{} & 3,\\\nonumber{} & x,y,z>0, &  &\end{array}\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>which is not a geometric optimization problem. However, using the obvious transformations we obtain the problem </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math840.png" alt="\begin{math}\nonumber{}\begin{array}{lclcl}\nonumber{}\mbox{minimize} & x^{{-1}}y &  & \\\nonumber{}\mbox{subject to} & x^{2}y^{{-\frac{1}{2}}}+3y^{{\frac{1}{2}}}z^{{-1}} & \leq{} & 1,\\\nonumber{} & xy^{{-1}}z^{{-2}} & \leq{} & 1,\\\nonumber{} & x^{{-1}}yz^{2} & \leq{} & 1,\\\nonumber{} & \frac{1}{10}x^{{-1}} & \leq{} & 1,\\\nonumber{} & \frac{1}{3}x & \leq{} & 1,\\\nonumber{} & x,y,z>0, &  &\end{array}\end{math}"/></td>
+<td><a name="ch-case-exp-separable-normalized">&#09;</a>(13.2.5)</td></tr>
+</tbody>
+</table>
+
+<p>which is a geometric optimization problem.</p>
+
+</div>
+
+<div>
+<h2><a name="274270400">13.2.6. Solving from the command line tool</a></h2>
+
+<p> MOSEK provides the command line tool <tt class="tt">mskexpopt</tt> to solve a problem on the form (<a href="node015.html#ch-case-exp-separable">13.2.4</a>). As demonstrated previously an optimal solution to this problem can be transformed into an optimal solution to the geometric optimization problem (<a href="node015.html#ch-cases-sec-posyopt-eq-primal-posy">13.2.1</a>) by using the transform: </p>
+
+<table width="100%" class="displaymath" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math841.png" alt="\begin{displaymath}\nonumber{}t_{j}=e^{{x_{j}}}.\end{displaymath}"/></td></tr>
+</tbody>
+</table>
+
+<p>A more detailed description of <tt class="tt">mskexpopt</tt> and the definition of the input format used is found in Section <a title="6.2. Exponential optimization" href="node008.html#chap-mosekapi-sec-exponential-optimization">6.2</a>. The source code is also included in the MOSEK distribution.</p>
+
+<div>
+<h3><a name="274271048">13.2.6.1. An example</a></h3>
+
+<p>The problem <a href="node015.html#ch-case-exp-separable-normalized">(13.2.5)</a> can be written in the <tt class="tt">mskexpopt</tt> format as follows: </p>
+
+<pre class="verbatim">5   * numcon 
+3   * numvar 
+7   * numter 
+* Coefficients of terms
+1
+1
+3
+1
+1
+0.1
+0.333333
+* Constraints each term belong to
+0
+1
+1
+2
+3
+4
+5
+* Section defining a_kj. 
+* Format: term var coef
+0 0 -1
+0 1  1
+1 0  2
+1 1  -0.5
+2 1  0.5
+2 2  -1
+3 0 1
+3 1 -1
+3 2 -2
+4 0 -1
+4 1 1
+4 2 2
+5 0 -1
+6 0 1 
+ 
+</pre>
+
+<p>The command line: </p>
+
+<pre class="verbatim">mskexpopt go1.eo
+</pre>
+
+<p>solves the problem and writes the solution file: </p>
+
+<pre class="verbatim">PROBLEM STATUS      : PRIMAL_AND_DUAL_FEASIBLE
+SOLUTION STATUS     : OPTIMAL
+OBJECTIVE           : 1.001904e-03
+
+PRIMAL VARIABLES
+INDEX   ACTIVITY
+1       -2.302585e+00
+2       -9.208438e+00
+3       3.452927e+00
+
+DUAL VARIABLES
+INDEX   ACTIVITY
+1       1.000000e+00
+2       2.003813e+00
+3       1.906415e-03
+4       5.272269e+00
+5       5.273223e+00
+6       3.006672e+00
+7       8.758884e-12
+</pre>
+
+<p>The primal solution can be transformed into a solution to the geometric optimization problem as follows </p>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math842.png" alt="\begin{math}\nonumber{}t_{0}=e^{{-2.302585e+00}}=0.1\end{math}"/></td>
+<td>(13.2.6)</td></tr>
+</tbody>
+</table>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math843.png" alt="\begin{math}\nonumber{}t_{1}=e^{{-9.208438e+00}}=1.0019^{{-4}}\end{math}"/></td>
+<td>(13.2.7)</td></tr>
+</tbody>
+</table>
+
+<table width="100%" class="equation" border="0">
+<tbody><tr>
+<td width="100%" align="center"><img src="math/math844.png" alt="\begin{math}\nonumber{}t_{1}=e^{{3.452927e+00}}=31.5927.\end{math}"/></td>
+<td>(13.2.8)</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div>
+<h2><a name="274272128">13.2.7. Further information</a></h2>
+
+<p>More information about geometric optimization problems is located in [<a href="node029.html#BAZARAA:93:A" class="citation">18</a>, <a href="node029.html#BEIGHTLER:76:A" class="citation">24</a>, <a href="node029.html#BOYD:04:A" class="citation">14</a>].</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="navigationarea">
+<table class="navigation" width="100%" cellpadding="0" cellspacing="2">
+<tbody><tr>
+<td><a href="node014.html" target="_self"><img src="graphics/previous.png" class="navbutton-previous" alt="Previous : 12. Sensitivity analysis" border="0"/></a></td>
+<td><a href="index.html" target="_self"><img src="graphics/up.png" class="navbutton-up" alt="Up:  The MOSEK C API manual. 
+Version 6.0 (Revision 137)." border="0"/></a></td>
+<td><a href="node016.html" target="_self"><img src="graphics/next.png" class="navbutton-next" alt="Next:  14. Usage guidelines" border="0"/></a></td>
+<td align="center" class="navtitle">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</td>
+<td><a href="index.html"><img src="graphics/contents.png" class="navbutton-contents" alt="" border="0"/></a></td>
+<td><a href="node030.html"><img src="graphics/index.png" class="navbutton-index" alt="" border="0"/></a></td></tr>
+</tbody>
+</table>
+
+
+<table class="trail"><tr>
+<td valign="top"><b>Previous : </b><a href="node014.html" target="_self">12. Sensitivity analysis</a></td>
+<td valign="top"><b>Up : </b><a href="index.html" target="_self">The MOSEK C API manual. 
+<br/>Version 6.0 (Revision 137).</a></td>
+<td valign="top"><b>Next : </b><a href="node016.html" target="_self">14. Usage guidelines</a></td>
+<td valign="top"><a href="index.html" target="_self"><b>Contents</b></a></td>
+<td valign="top"><a href="node030.html"><b>Index</b></a></td></tr></table>
+
+<hr/>
+</div>
+
+<div class="gentime">Tue Apr 10 10:50:20 2012</div>
+</body></html>
