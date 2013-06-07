@@ -19,10 +19,10 @@ Download exemplary data from
 
 Put ltmcla_S08.mat file that constains experimental data of subject nr 8 into directory active-delays/data/ of your project. You can download ltmcla_S09.mat as well.
 
+Related papers are stored in the directory active-delays/data_description
+
 HOW TO RUN
 ==========
-
-Change path mainpath in the file active-delays/initialize.m to your path to the main directory.
 
 Project is dependent on the mosek (http://mosek.com/). In order to make mosek work, please go to their webside and apply for licence for research purpose. Next please place it in a directory "active-delays/external_tools/mosek/6/licenses". All other external components should work without any additional external twicking. Don't forget about putting exemplary dataset (described in the section DATA) in active-delays/data directory.
 

@@ -1,7 +1,7 @@
 function initialize()
     clc;
     clear;
-    mainpath = '/home/wojto/bio/Dropbox/Wojciech_shared_old/active-delays/';
+    mainpath = [pwd, '/'];
     external_tools = [mainpath, 'external_tools/'];
     setenv('code_path', mainpath);
     setenv('output_images', [mainpath, '/output/images']);    

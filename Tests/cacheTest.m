@@ -160,6 +160,7 @@ function ensureCacheFileindexTest()
     removeCache('test');
     cache_path = getenv('cache_path');
     file_path = [cache_path, '/test/test.m'];
+    mkdir([cache_path, '/test']);
     index = ensureCacheFileindex_(file_path, struct('aa', 10:12, 'bb', [1,4,5]));
     assertEqual(index, zeros(3 * 3, 1));
     index = ensureCacheFileindex_(file_path, struct('aa', 10:22, 'bb', [1,4,5], 'cc', [10,14]));

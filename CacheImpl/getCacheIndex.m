@@ -2,6 +2,9 @@ function [ ret ] = getCacheIndex( size_desc, cache_name )
     [ idxs, allwidth ] = getDescriptionSize_( size_desc );
     join_index = zeros(allwidth, 1); 
     cache_path = [getenv('cache_path'), '/', cache_name, '/'];
+    if (~exist(cache_path, 'dir'))
+        mkdir(cache_path);
+    end
     files=what(cache_path);
     for i=1:size(files.mat, 1)     
         index = ensureCacheFileindex_([cache_path, files.mat{i}], size_desc);
